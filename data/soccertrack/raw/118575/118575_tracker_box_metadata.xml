@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <match matchId="118575" matchTitle="筑波大学 - C3 vs 筑波大学 サッカー同好会" matchDatetime="2023-12-09 04:30:00+00:00" matchDatetimeLocal="2023-12-09 13:30:00+09:00" timezone="Asia/Tokyo" matchFullTime="5400000" matchExtraTime="0">
+    <period period="FIRST_HALF" frameStart="251.0" frameEnd="72351.0" matchTimeStart="-33.0" matchTimeEnd="2883967.0" fps="25"/>
+    <period period="SECOND_HALF" frameStart="251.0" frameEnd="73926.0" matchTimeStart="2699967.0" matchTimeEnd="5646967.0" fps="25"/>
+    <period period="EXTRA_FIRST_HALF" frameStart="nan" frameEnd="nan" matchTimeStart="nan" matchTimeEnd="nan" fps="25"/>
+    <period period="EXTRA_SECOND_HALF" frameStart="nan" frameEnd="nan" matchTimeStart="nan" matchTimeEnd="nan" fps="25"/>
+  </match>
+  <pitch width="105" height="68"/>
+  <teams>
+    <team id="31424" name="筑波大学 - C3" nameEn="University of Tsukuba - C3" side="home"/>
+    <team id="31425" name="筑波大学 サッカー同好会" nameEn="University of Tsukuba - Football Society" side="away"/>
+  </teams>
+  <players>
+    <player id="476367" name="" nameEn="" shirtNumber="1" position="GK" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476374" name="" nameEn="" shirtNumber="2" position="RM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476371" name="" nameEn="" shirtNumber="5" position="RB" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476368" name="" nameEn="" shirtNumber="40" position="CB" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476369" name="" nameEn="" shirtNumber="30" position="CB" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476370" name="" nameEn="" shirtNumber="14" position="LB" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476372" name="" nameEn="" shirtNumber="34" position="CM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476373" name="" nameEn="" shirtNumber="39" position="CM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476375" name="" nameEn="" shirtNumber="55" position="LM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476377" name="" nameEn="" shirtNumber="24" position="CF" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476376" name="" nameEn="" shirtNumber="19" position="CF" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476378" name="" nameEn="" shirtNumber="29" position="RB" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476380" name="" nameEn="" shirtNumber="58" position="CM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476379" name="" nameEn="" shirtNumber="6" position="CM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476381" name="" nameEn="" shirtNumber="10" position="LM" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476382" name="" nameEn="" shirtNumber="3" position="CF" teamId="31424" teamName="筑波大学 - C3" teamNameEn="University of Tsukuba - C3"/>
+    <player id="476352" name="" nameEn="" shirtNumber="12" position="GK" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476353" name="" nameEn="" shirtNumber="47" position="LB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476354" name="" nameEn="" shirtNumber="29" position="CB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476355" name="" nameEn="" shirtNumber="31" position="CB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476356" name="" nameEn="" shirtNumber="14" position="RB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476357" name="" nameEn="" shirtNumber="17" position="CM" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476358" name="" nameEn="" shirtNumber="22" position="CM" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476359" name="" nameEn="" shirtNumber="16" position="CDM" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476360" name="" nameEn="" shirtNumber="18" position="LM" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476361" name="" nameEn="" shirtNumber="10" position="RM" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476362" name="" nameEn="" shirtNumber="9" position="CF" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476363" name="" nameEn="" shirtNumber="32" position="CF" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476364" name="" nameEn="" shirtNumber="55" position="LB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476365" name="" nameEn="" shirtNumber="44" position="CB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+    <player id="476366" name="" nameEn="" shirtNumber="77" position="RB" teamId="31425" teamName="筑波大学 サッカー同好会" teamNameEn="University of Tsukuba - Football Society"/>
+  </players>
+  <activePlayers>
+    <chunk period="FIRST_HALF" matchTime="0">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476371" teamId="31424"/>
+      <player playerId="476372" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476374" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476353" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476357" teamId="31425"/>
+      <player playerId="476358" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476361" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="2700000">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476372" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476374" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476353" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476357" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476361" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="3435000">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476374" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476380" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476353" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476357" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476361" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="3436367">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476374" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476380" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476357" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476363" teamId="31425"/>
+      <player playerId="476364" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="3974400">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476374" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476380" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476363" teamId="31425"/>
+      <player playerId="476364" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+      <player playerId="476366" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="4003767">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476373" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476377" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476380" teamId="31424"/>
+      <player playerId="476382" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476363" teamId="31425"/>
+      <player playerId="476364" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+      <player playerId="476366" teamId="31425"/>
+    </chunk>
+    <chunk period="SECOND_HALF" matchTime="4458900">
+      <player playerId="476367" teamId="31424"/>
+      <player playerId="476368" teamId="31424"/>
+      <player playerId="476369" teamId="31424"/>
+      <player playerId="476370" teamId="31424"/>
+      <player playerId="476375" teamId="31424"/>
+      <player playerId="476376" teamId="31424"/>
+      <player playerId="476378" teamId="31424"/>
+      <player playerId="476379" teamId="31424"/>
+      <player playerId="476380" teamId="31424"/>
+      <player playerId="476381" teamId="31424"/>
+      <player playerId="476382" teamId="31424"/>
+      <player playerId="476352" teamId="31425"/>
+      <player playerId="476354" teamId="31425"/>
+      <player playerId="476355" teamId="31425"/>
+      <player playerId="476356" teamId="31425"/>
+      <player playerId="476359" teamId="31425"/>
+      <player playerId="476360" teamId="31425"/>
+      <player playerId="476362" teamId="31425"/>
+      <player playerId="476363" teamId="31425"/>
+      <player playerId="476364" teamId="31425"/>
+      <player playerId="476365" teamId="31425"/>
+      <player playerId="476366" teamId="31425"/>
+    </chunk>
+  </activePlayers>
+</metadata>
