@@ -1,7 +1,24 @@
 .venv/
 __pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
 .env
 .DS_Store
 
+# Generated videos and renderer sidecars.
+outputs/
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Large downloaded/generated SoccerTrack assets.
+data/soccertrack/gsr/
+data/soccertrack/mot/clips/
+data/soccertrack/mot/*_sync.json
+
+# Local dataset exports and temporary files.
 data/raw/
 data/processed/
+*.log

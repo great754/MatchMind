@@ -105,8 +105,7 @@ def main():
                         p = selected.iloc[0]
                         cv2.ellipse(combined, (int(p.foot_x), int(p.foot_y)),
                                     (18, 7), 0, 0, 360, (0, 255, 255), 2, cv2.LINE_AA)
-                cv2.putText(combined, 'BALL: POSITION UNAVAILABLE' if annotations.ball_position(frame_number) is None
-                            else 'WHITE BALL: INTERPOLATED / GROUND PROJECTION',
+                cv2.putText(combined, 'WHITE BALL: INTERPOLATED / GROUND PROJECTION',
                             (20, height-22), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,255,255), 1, cv2.LINE_AA)
             writer.write(combined)
             if frame_number == 0:
