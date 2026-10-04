@@ -19,15 +19,15 @@ Use `--play` for local playback while rendering, `--inset-width 0.25` to enlarge
 
 Player foot positions map onto a 105×68 m field through the supplied pitch landmarks and piecewise affine interpolation. This accounts for the panoramic camera's nonlinear distortion better than a single global homography. Points outside the calibrated landmark hull are omitted. The renderer checks that the source video and zero-based MOT tracking cover the same frames and streams frames without loading the entire video into memory.
 
-The basic render includes footage and team markers. Add `--annotations` as described below to include the synchronized ball, action panel, and acting player.
+The basic render includes footage and team markers. Add `--annotations` as described below to include the synchronized action panel and acting player.
 
-### Ball and action overlay
+### Action overlay
 
 ```bash
 python -m src.vision.visualize_pitch --annotations --output outputs/match_118575_ball_actions.mp4
 ```
 
-This adds a white ball on the tactical map, a white ring at its projected ground position on the footage, a 12-row action panel, and the acting player's ID and foot highlight. An action row lights up for one second from its annotated frame; simultaneous actions can light up together. The four-minute clip contains 88 events across eight classes; all twelve classes are supported.
+This adds a 12-row action panel and the acting player's ID and foot highlight. An action row lights up for one second from its annotated frame; simultaneous actions can light up together. The four-minute clip contains 88 events across eight classes; all twelve classes are supported.
 
 The official BAS and ball files use the clock of each released half-video. `data/soccertrack/mot/118575_sync.json` records the inferred alignment: the clip's first frame corresponds to first-half frame 6000 (one-based), approximately 4:00 into that video. This was determined by matching the 22 players' image foot positions across 21 checkpoints; mean assignment error is 14.24 pixels, with approximately one-frame timing precision. The mapping also connects MOT IDs to event actor IDs and uses authoritative team sides to correct goalkeeper assignments.
 

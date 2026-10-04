@@ -8,7 +8,7 @@ import numpy as np
 
 from src.vision.coordinate_transform import PitchCoordinateTransformer
 from src.vision.data_loading import DatasetPaths, load_mot
-from src.vision.pitch import PITCH_LENGTH, PITCH_WIDTH, create_pitch, draw_player, draw_ball
+from src.vision.pitch import PITCH_LENGTH, PITCH_WIDTH, create_pitch, draw_player
 from src.vision.annotations import ClipAnnotations
 from src.vision.team_classifier import classify_teams
 from src.vision.video_renderer import MatchMindVideoWriter, overlay_tactical_view
@@ -24,7 +24,7 @@ def main():
     parser.add_argument('--max-frames', type=int, help='Render only this many frames for a preview')
     parser.add_argument('--inset-width', type=float, default=0.215)
     parser.add_argument('--opacity', type=float, default=0.65)
-    parser.add_argument('--annotations', action='store_true', help='Render synchronized ball and 12-class action annotations')
+    parser.add_argument('--annotations', action='store_true', help='Render synchronized 12-class action annotations')
     parser.add_argument('--play', action='store_true')
     args = parser.parse_args()
     if args.max_frames is not None and args.max_frames < 1:
@@ -83,11 +83,6 @@ def main():
                 if valid_pitch_position(player.pitch_x, player.pitch_y):
                     draw_player(tactical, player.pitch_x, player.pitch_y,
                                 int(player.player_id), team=teams[int(player.player_id)], show_id=False)
-            if annotations:
-                ball = annotations.ball_position(frame_number)
-                if ball is not None and valid_pitch_position(*ball):
-                    draw_ball(tactical, *ball)
-                annotations.draw_projected_ball(frame, frame_number)
             combined = overlay_tactical_view(frame, tactical, width_ratio=args.inset_width,
                                               bottom_margin=18, opacity=args.opacity)
             cv2.putText(combined, f'{frame_number / fps:.2f}s', (20, 36),
@@ -105,8 +100,6 @@ def main():
                         p = selected.iloc[0]
                         cv2.ellipse(combined, (int(p.foot_x), int(p.foot_y)),
                                     (18, 7), 0, 0, 360, (0, 255, 255), 2, cv2.LINE_AA)
-                cv2.putText(combined, 'WHITE BALL: INTERPOLATED / GROUND PROJECTION',
-                            (20, height-22), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,255,255), 1, cv2.LINE_AA)
             writer.write(combined)
             if frame_number == 0:
                 cv2.imwrite(str(output.with_suffix('.jpg')), combined)
