@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MatchMind explained</title>
+  <style>
+    :root { --ink:#1f2937; --muted:#5b6777; --line:#d8e0e8; --blue:#1558b0; --soft:#eef5ff; --warn:#fff5dc; --green:#eaf7ef; }
+    * { box-sizing:border-box; }
+    body { max-width:1100px; margin:0 auto; padding:32px 22px 70px; color:var(--ink); background:#f7f9fc; font:16px/1.65 system-ui,-apple-system,sans-serif; }
+    h1,h2,h3 { color:#17283b; line-height:1.2; }
+    h1 { font-size:2.3rem; margin-bottom:.3rem; }
+    h2 { margin-top:2.4rem; padding-top:1rem; border-top:2px solid var(--line); }
+    h3 { margin-top:1.5rem; }
+    p { max-width:92ch; }
+    code,pre { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { background:#edf1f5; padding:2px 5px; border-radius:4px; }
+    pre { overflow:auto; padding:16px; background:#17283b; color:#eef5ff; border-radius:8px; }
+    a { color:var(--blue); }
+    .lead,.simple,.detail,.warning,.good { padding:16px 18px; border-radius:8px; margin:14px 0; }
+    .lead { background:var(--soft); border-left:5px solid var(--blue); }
+    .simple { background:var(--green); border-left:5px solid #29945a; }
+    .detail { background:#fff; border:1px solid var(--line); }
+    .warning { background:var(--warn); border-left:5px solid #d99b19; }
+    .good { background:var(--green); border-left:5px solid #29945a; }
+    .label { display:inline-block; margin-bottom:5px; color:var(--muted); font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    table { width:100%; border-collapse:collapse; background:#fff; margin:12px 0 20px; }
+    th,td { text-align:left; vertical-align:top; padding:9px 10px; border-bottom:1px solid var(--line); }
+    th { background:#eaf0f6; }
+    .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:18px 0; }
+    .flow span { padding:9px 12px; background:#fff; border:1px solid #b9c9da; border-radius:7px; }
+    .arrow { color:var(--blue); font-weight:700; }
+    .small { color:var(--muted); font-size:.92rem; }
+    dt { font-weight:700; margin-top:12px; }
+    dd { margin:2px 0 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>MatchMind explained</h1>
+  <p class="small">A plain-language and technical guide to the current repository, its data, and its analytics.</p>
+
+  <div class="lead">
+    <strong>One-sentence overview:</strong> MatchMind takes a panoramic soccer video plus tracking and event files, converts player positions into football-pitch coordinates, estimates movement and possession, detects observable transfers, and writes a review report.
+  </div>
+
+  <h2>1. The big picture</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">
+    The project has two main jobs. The <strong>vision renderer</strong> makes a video with a small top-down pitch. The <strong>analytics pipeline</strong> studies where players and the ball were, then creates CSV files, graphs, and an HTML report.
+  </div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <div class="flow">
+      <span>Video and dataset files</span><b class="arrow">-&gt;</b>
+      <span>Load and align data</span><b class="arrow">-&gt;</b>
+      <span>Convert coordinates</span><b class="arrow">-&gt;</b>
+      <span>Motion</span><b class="arrow">-&gt;</b>
+      <span>Possession</span><b class="arrow">-&gt;</b>
+      <span>Transfers and shots</span><b class="arrow">-&gt;</b>
+      <span>CSV files and report</span>
+    </div>
+    <p>The tactical video starts at <a href="../src/vision/visualize_pitch.py">visualize_pitch.py</a>. The analytics report starts at <a href="../src/analytics/pipeline.py">pipeline.py</a>. They share the dataset, but they are not the same output.</p>
+  </div>
+
+  <h2>2. What are MOT IDs?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">No. An MOT ID is usually not the number on the player's jersey. It is a label assigned by the tracking system so the computer can say, "this player in frame 20 is the same player as this player in frame 21."</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p>MOT means <strong>Multiple Object Tracking</strong>. The file has rows like:</p>
+    <pre>frame, id, x, y, width, height, ...</pre>
+    <p>The <code>id</code> value is the track identity. In this match there are 22 tracking IDs, usually numbered 1 through 22. The number does not have to match the player's shirt number.</p>
+    <p>The analytics report also has a real player ID such as <code>476371</code>. That is a different identity from the MOT ID. The synchronization file connects them:</p>
+    <pre>real player ID 476371  &lt;--&gt;  MOT track ID 13</pre>
+    <p>The current dataset's player metadata has a <code>back_number</code> field, but <code>load_mot()</code> does not read it and the MOT text file does not contain it. So the current renderer cannot claim that MOT ID 13 means jersey number 13.</p>
+  </div>
+
+  <h2>3. How does <code>load_mot()</code> work?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">It opens the tracking text file, gives names to its ten columns, and calculates a point near each player's feet. That foot point is more useful than the box's top-left corner because it represents where the player touches the ground.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/vision/data_loading.py">load_mot()</a> calls <code>pandas.read_csv()</code> with <code>header=None</code>, because the text file has no header row. It assigns these names:</p>
+    <table><tr><th>Column</th><th>Meaning</th></tr>
+      <tr><td><code>frame</code></td><td>Video frame number, starting at 0 in this dataset.</td></tr>
+      <tr><td><code>player_id</code></td><td>MOT tracking identity, not necessarily jersey number.</td></tr>
+      <tr><td><code>x</code>, <code>y</code></td><td>Top-left corner of the image bounding box.</td></tr>
+      <tr><td><code>width</code>, <code>height</code></td><td>Size of the bounding box in pixels.</td></tr>
+      <tr><td><code>unused_1</code> through <code>unused_4</code></td><td>Extra MOT fields. They are currently retained but not used.</td></tr>
+    </table>
+    <p>Then it adds:</p>
+    <pre>foot_x = x + width / 2
+foot_y = y + height</pre>
+    <p>That means the foot point is the horizontal center of the box at its bottom edge. The function does not detect players, identify teams, read jersey numbers, or convert image pixels into meters. Those jobs happen elsewhere.</p>
+  </div>
+
+  <h2>4. How does <code>load_homography()</code> work?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">It loads a saved 3-by-3 math matrix from a NumPy file and checks that the matrix has the expected shape. It does not calculate the matrix.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/vision/data_loading.py">load_homography()</a> calls <code>np.load()</code> on the supplied <code>.npy</code> file. It expects a matrix shaped:</p>
+    <pre>[[a, b, c],
+ [d, e, f],
+ [g, h, i]]</pre>
+    <p>That matrix can map a point from one flat coordinate system to another using homogeneous coordinates:</p>
+    <pre>[x_image, y_image, 1] -> H -> [x_pitch, y_pitch, w]
+then divide x_pitch and y_pitch by w</pre>
+    <p>The function verifies <code>H.shape == (3, 3)</code> and returns a floating-point matrix. It does not apply the matrix to points. In the current active code, <code>PitchCoordinateTransformer</code> uses piecewise triangulation instead because the panoramic image has nonlinear distortion. The repository still contains a supplied homography file and this loader as a useful dataset utility.</p>
+  </div>
+
+  <h2>5. How does <code>PitchCoordinateTransformer</code> work?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">Imagine stretching a net over the image. The known landmarks are pins in the net. The program makes small triangles between nearby pins. When it sees a player's image position, it finds the triangle containing that point and estimates the matching pitch position from the triangle's three corners.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/vision/coordinate_transform.py">PitchCoordinateTransformer</a> reads the keypoint JSON. Each entry pairs:</p>
+    <pre>pitch point: (x meters, y meters)
+image point: (x pixels, y pixels)</pre>
+    <p>For example, one known point might say that image pixel <code>(2050, 242)</code> corresponds to pitch location <code>(52.5, 34)</code>.</p>
+    <ol>
+      <li>All image landmarks are passed to SciPy's <code>Delaunay</code> triangulation.</li>
+      <li>Delaunay creates triangles whose vertices are the calibration landmarks.</li>
+      <li>For a player point, <code>find_simplex()</code> finds the triangle containing it.</li>
+      <li>The code gets the triangle's precomputed transform.</li>
+      <li>It calculates three barycentric weights. The weights add to 1 and describe how much each triangle corner contributes.</li>
+      <li>The same weights are applied to the three pitch-coordinate corners.</li>
+    </ol>
+    <p>In simplified math, if the image triangle has corners <code>A</code>, <code>B</code>, and <code>C</code>, a point is represented as:</p>
+    <pre>image_point = w1*A + w2*B + w3*C
+where w1 + w2 + w3 = 1</pre>
+    <p>The transformer uses those same weights on the corresponding pitch corners. If the point is outside the triangles' outer boundary, it returns <code>None</code>; the batch method turns that into <code>[NaN, NaN]</code>.</p>
+    <p>The current validation error is nearly zero for the supplied landmarks. That only proves the transformer reproduces its calibration points. It does not prove every location between landmarks is perfectly accurate.</p>
+  </div>
+
+  <h2>6. Why does the team classifier sample every 50 frames?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">It does not need to identify the team again every 50 frames. It samples every 50 frames to collect many views of each shirt, then makes one stable team decision for each tracking ID. Sampling only once is faster, but one frame may be blurry, dark, occluded, or show the goalkeeper in a confusing pose.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/vision/team_classifier.py">classify_teams()</a> samples frames 0, 50, 100, and so on. At 25 FPS, that is one sample every 2 seconds.</p>
+    <p>For each sampled frame it:</p>
+    <ol>
+      <li>Gets every MOT bounding box.</li>
+      <li>Crops the upper-middle torso area.</li>
+      <li>Removes likely green grass pixels.</li>
+      <li>Converts colors to LAB, which is often more stable for color comparison.</li>
+      <li>Stores a representative color for each tracking ID.</li>
+      <li>Takes the median color across the whole clip for each player.</li>
+      <li>Uses KMeans with two clusters to form two teams.</li>
+    </ol>
+    <p>So the code is not constantly changing a player's team. It is gathering repeated evidence before making one stable assignment.</p>
+    <p>One sample could work if every crop were perfect, but it would be fragile. More samples help with shadows, motion blur, players turning, partial occlusion, and temporary grass contamination. A better implementation could sample fewer carefully chosen frames, but repeated sampling is still useful.</p>
+  </div>
+
+  <h2>7. What does <code>align_clip.py</code> do?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">It figures out which moment in the long GSR match timeline corresponds to frame 0 of the short MOT video. It also figures out which real player is which MOT tracking ID and which team each player belongs to.</div>
+  <p class="label">What are GSR and MOT?</p>
+  <div class="detail">
+    <dl>
+      <dt>MOT</dt><dd>The short-video tracking file. It says where 22 tracked boxes are in every clip frame, using image pixels and temporary tracking IDs.</dd>
+      <dt>GSR</dt><dd>The repository uses GSR as the name for the dataset's long, global scene annotation stream. Its JSON files contain player annotations with image bounding boxes, pitch-coordinate boxes, real player IDs, and team-side attributes. The code does not define an official expansion of the acronym.</dd>
+    </dl>
+    <p>The two sources describe the same match, but they use different timelines and different IDs. The GSR files are much larger than the MOT file, which is why <a href="../src/vision/align_clip.py">align_clip.py</a> can turn them into smaller compact <code>.npz</code> files.</p>
+  </div>
+  <p class="label">Detailed process</p>
+  <div class="detail">
+    <ol>
+      <li><strong>Read GSR annotations.</strong> It extracts each player's image foot position, pitch position, real player ID, and team side.</li>
+      <li><strong>Read MOT frame 0.</strong> It gets the 22 MOT foot positions in the first frame of the short clip.</li>
+      <li><strong>Search both halves.</strong> It compares the MOT frame-0 pattern against many possible GSR frames. A good candidate is a GSR frame where the group of player positions looks like the MOT group.</li>
+      <li><strong>Refine the timing.</strong> After finding a rough candidate, it tests nearby offsets and uses checkpoints throughout the 6,000-frame clip.</li>
+      <li><strong>Associate players.</strong> At a checkpoint, the program has two lists of points: GSR player points and MOT player points. It needs to decide which GSR point matches which MOT point.</li>
+      <li><strong>Save votes.</strong> Across many checkpoints, it votes on the most likely real player ID and team side for each MOT ID.</li>
+    </ol>
+    <p><strong>Hungarian matching</strong> is the point-association step. It builds a cost matrix where each cost is the pixel distance between one GSR foot point and one MOT foot point. The Hungarian algorithm chooses a one-to-one assignment with the smallest total distance. In other words, it associates each visible MOT track with the most compatible GSR player position, while preventing two MOT players from claiming the same GSR player.</p>
+    <p><strong>Temporal offset</strong> means the starting index in the long GSR timeline. If the offset is <code>5999</code>, then local MOT frame 0 is compared with GSR frame 5999, local MOT frame 1 with GSR frame 6000, and so on.</p>
+    <p>The output is <code>118575_sync.json</code>. It contains the half, offset, real-player/MOT mappings, team sides, and an estimated matching error.</p>
+  </div>
+
+  <h2>8. Which coordinate source does analytics use?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">By default, analytics uses the GSR pitch positions. It does not start with the panoramic image and calculate a homography for every player. You can explicitly choose the MOT route, in which case it transforms panoramic image positions using the triangulated pitch calibration.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/analytics/data.py">load_recording()</a> has two modes:</p>
+    <table><tr><th>Mode</th><th>Input player positions</th><th>Coordinate conversion</th></tr>
+      <tr><td><code>--player-source gsr</code></td><td>GSR compact <code>pitch</code> arrays</td><td>Already supplied in metric pitch coordinates.</td></tr>
+      <tr><td><code>--player-source mot</code></td><td>MOT bounding boxes in panoramic image pixels</td><td>Foot points go through <code>PitchCoordinateTransformer</code>.</td></tr>
+    </table>
+    <p>The default command uses GSR:</p>
+    <pre>python -m src.analytics.pipeline</pre>
+    <p>The alternative is:</p>
+    <pre>python -m src.analytics.pipeline --player-source mot</pre>
+    <p>GSR is preferred for analytics because its player pitch positions and the ball positions already use a compatible metric coordinate system.</p>
+  </div>
+
+  <h2>9. Does the ball have x, y, and z?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">This project uses only the ball's x and y position on the ground plane. It does not know the ball's height. So it can estimate left/right and up/down on the field, but not whether the ball is in the air.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p>The ball files contain frame information, <code>x</code>, <code>y</code>, and a status value. The loader changes the coordinate origin by adding:</p>
+    <pre>x_pitch = x_ball + 52.5
+y_pitch = y_ball + 34</pre>
+    <p>There is no <code>z</code> coordinate in the active ball data. The analytics therefore cannot distinguish a rolling pass from a lofted pass at the same ground position. Ball speed is a 2D ground-plane speed, not a full 3D speed.</p>
+    <p>When status is unknown, the code sets the ball position to <code>NaN</code>. It does not invent a position for those frames.</p>
+  </div>
+
+  <h2>10. What do the <code>AnalyticsConfig</code> thresholds mean?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">These numbers are rules for deciding what counts as believable movement, control, a pass, pressure, or a shot. They are not universal soccer laws. Changing them changes the results.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <table>
+      <tr><th>Setting</th><th>Current value</th><th>Meaning</th></tr>
+      <tr><td><code>fps</code></td><td>25</td><td>Frames processed per second.</td></tr>
+      <tr><td><code>player_smoothing_frames</code></td><td>15</td><td>Window used to smooth player positions.</td></tr>
+      <tr><td><code>ball_smoothing_frames</code></td><td>11</td><td>Window used to smooth ball positions.</td></tr>
+      <tr><td><code>median_frames</code></td><td>3</td><td>Removes isolated coordinate spikes before smoothing.</td></tr>
+      <tr><td><code>player_speed_limit_mps</code></td><td>14</td><td>Player speed above this is rejected as likely bad tracking.</td></tr>
+      <tr><td><code>ball_speed_limit_mps</code></td><td>50</td><td>Ball speed above this is rejected as likely bad evidence.</td></tr>
+      <tr><td><code>acquisition_radius_m</code></td><td>2.5</td><td>A player must be within this distance to become a possession candidate.</td></tr>
+      <tr><td><code>retention_radius_m</code></td><td>3.5</td><td>A current owner may be kept within this larger distance.</td></tr>
+      <tr><td><code>ambiguity_margin_m</code></td><td>0.5</td><td>If two players are almost equally close, possession becomes contested.</td></tr>
+      <tr><td><code>control_ball_speed_mps</code></td><td>8</td><td>Ball must usually be slower than this to count as controlled.</td></tr>
+      <tr><td><code>control_relative_speed_mps</code></td><td>4</td><td>Allows a player moving with the ball to retain control.</td></tr>
+      <tr><td><code>possession_frames</code></td><td>5</td><td>Evidence must last five frames before control is confirmed.</td></tr>
+      <tr><td><code>pass_min_flight_frames</code></td><td>3</td><td>Requires independent ball travel between players.</td></tr>
+      <tr><td><code>pass_min_distance_m</code></td><td>3</td><td>Short movements are not counted as passes.</td></tr>
+      <tr><td><code>pass_min_speed_mps</code></td><td>3</td><td>Very slow movements are not counted as passes.</td></tr>
+      <tr><td><code>pass_timeout_seconds</code></td><td>8</td><td>Ends an unresolved pass attempt after this much time.</td></tr>
+      <tr><td><code>defender_radius_m</code></td><td>5</td><td>Distance used to count nearby defenders.</td></tr>
+      <tr><td><code>lane_radius_m</code></td><td>2</td><td>Sideways distance from the passing line for lane pressure.</td></tr>
+      <tr><td><code>shot_min_speed_mps</code></td><td>8</td><td>Minimum speed for a shot candidate.</td></tr>
+      <tr><td><code>shot_max_goal_distance_m</code></td><td>35</td><td>Maximum starting distance from the goal.</td></tr>
+      <tr><td><code>shot_goal_margin_m</code></td><td>3</td><td>Extra vertical tolerance around the goal mouth.</td></tr>
+      <tr><td><code>shot_max_time_to_goal_seconds</code></td><td>3</td><td>Projected ball arrival must be within this time.</td></tr>
+      <tr><td><code>shot_persistence_frames</code></td><td>3</td><td>Fast goal-directed evidence must persist this long.</td></tr>
+      <tr><td><code>shot_window_seconds</code></td><td>1.2</td><td>Speed window measured around a shot.</td></tr>
+      <tr><td><code>validation_tolerance_seconds</code></td><td>1</td><td>Prediction and annotation can be within one second to match.</td></tr>
+      <tr><td><code>left_attack_direction</code></td><td>1</td><td>Defines which x direction counts as forward for the left team.</td></tr>
+    </table>
+  </div>
+
+  <h2>11. What are BAS action annotations?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">BAS annotations are human or dataset-provided labels saying that something happened at a particular time, such as a pass, shot, tackle, header, or cross. MatchMind uses them as reference events and timeline anchors.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p>The BAS file is the 12-class action annotation JSON. Events include fields such as:</p>
+    <pre>frame
+gameTime
+position
+label
+player_id
+team</pre>
+    <p>The analytics converts event times into local clip frames. It uses labels such as <code>PASS</code>, <code>HIGH PASS</code>, <code>CROSS</code>, and <code>THROW IN</code> as pass-like reference events. It uses <code>SHOT</code> for shot validation.</p>
+    <p>Important: BAS labels do not automatically create detected passes or shots. The detectors work from positions and ball motion. BAS events are compared afterward, although the reconstructed ball path also uses BAS anchors, so the comparison is not fully independent.</p>
+  </div>
+
+  <h2>12. How does <code>motion.py</code> calculate movement?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">The program compares a player's position from one frame to the next. It divides the distance by the time between frames to get speed. It uses smoothing to reduce noisy jumps and rejects movements that are too fast to be believable.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/analytics/motion.py">calculate_motion()</a> receives an array shaped like:</p>
+    <pre>[[x0, y0],
+ [x1, y1],
+ [x2, y2], ...]</pre>
+    <p><strong>Raw speed:</strong> for frame <code>i</code>, it calculates the Euclidean distance from the previous position:</p>
+    <pre>step = sqrt((x[i]-x[i-1])^2 + (y[i]-y[i-1])^2)
+raw_speed = step * fps</pre>
+    <p><strong>Median filtering:</strong> a short median window replaces an isolated spike with a more typical nearby value. This helps when one tracking box briefly jumps.</p>
+    <p><strong>Savitzky-Golay smoothing:</strong> this fits a small polynomial over a moving window of positions. Unlike a simple average, it can preserve the general shape and slope of movement while reducing noise. The current player window is 15 frames, or about 0.6 seconds at 25 FPS.</p>
+    <p><strong>Velocity:</strong> the change in the smoothed x and y coordinates per second:</p>
+    <pre>vx = (smoothed_x[i] - smoothed_x[i-1]) * fps
+vy = (smoothed_y[i] - smoothed_y[i-1]) * fps</pre>
+    <p><strong>Smoothed speed:</strong></p>
+    <pre>speed = sqrt(vx^2 + vy^2)</pre>
+    <p><strong>Distance:</strong> accepted step lengths are added over time. Missing gaps and rejected jumps contribute no distance. Therefore the result is measured distance from usable evidence, not guaranteed total distance.</p>
+    <p>The smoothing is centered, so it uses future frames. This is appropriate for offline analysis but would not be a real-time algorithm.</p>
+  </div>
+
+  <h2>13. How does possession detection work?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">The program asks which player is close to the ball, whether the ball is moving slowly enough to be controlled, and whether the same player stays close for several frames. If two players are almost equally close, it refuses to choose and marks the moment contested.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/analytics/possession.py">detect_possession()</a> calculates, for every frame:</p>
+    <ul>
+      <li>Distance from the ball to every player.</li>
+      <li>Relative speed between the ball and every player.</li>
+      <li>The nearest player.</li>
+      <li>The difference between the nearest and second-nearest distances.</li>
+    </ul>
+    <p>A player becomes a candidate when they are within 2.5 meters and the ball's motion is compatible with control. The candidate must remain valid for five frames before becoming the owner.</p>
+    <p>An existing owner gets hysteresis: they can remain the owner out to 3.5 meters. This prevents ownership from flickering whenever the distance changes by a tiny amount.</p>
+    <p>The detector clears ownership when:</p>
+    <ul>
+      <li>the ball position is missing</li>
+      <li>the ball leaves the pitch</li>
+      <li>the ball speed is unavailable</li>
+      <li>two nearby players make the situation ambiguous</li>
+    </ul>
+    <p>The output state can be <code>controlled</code>, <code>candidate</code>, <code>free</code>, <code>contested</code>, <code>unknown</code>, or <code>out_of_play</code>.</p>
+  </div>
+
+  <h2>14. How is a pass detected?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">A pass is treated as: one player controls the ball, the ball travels independently for a while, and another player later controls it. The code does not simply trust the BAS pass label.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/analytics/passes.py">detect_passes()</a> is a small state machine.</p>
+    <ol>
+      <li>Remember the last controlled player.</li>
+      <li>When control ends, start a pending transfer.</li>
+      <li>Wait for at least three independent flight frames.</li>
+      <li>When a new player controls the ball, finish the transfer.</li>
+      <li>Measure distance, duration, path length, and ball speed.</li>
+      <li>Call it completed if the receiver is on the same team.</li>
+      <li>Call it intercepted if the receiver is on the other team.</li>
+    </ol>
+    <p>It rejects short movements, very slow movements, self-recoveries, and transfers across missing data. If nobody receives the ball before a timeout or the end of the recording, the result may be unresolved.</p>
+    <p>Because the input is approximate and the ball path is reconstructed, these should be called <strong>observable transfer candidates</strong>, not guaranteed intentional passes.</p>
+  </div>
+
+  <h2>15. How does <code>validate_events()</code> work?</h2>
+  <p class="label">Simple version</p>
+  <div class="simple">It compares the program's predicted events with reference events. Each reference event can be used only once. A prediction matches when it is close enough in time and, when requested, has the correct actor.</div>
+  <p class="label">Detailed version</p>
+  <div class="detail">
+    <p><a href="../src/analytics/validation.py">validate_events()</a> builds a cost matrix. Each prediction is compared to each reference:</p>
+    <pre>time_difference = abs(predicted_frame - reference_frame) / fps</pre>
+    <p>If the difference is greater than the tolerance, the pair is made invalid. For pass validation, the sender ID must also equal the reference player ID.</p>
+    <p>Then it uses a one-to-one assignment algorithm. This matters because two predictions near one reference should not both count as correct.</p>
+    <table><tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td>True positive / matched</td><td>A prediction paired with a reference.</td></tr>
+      <tr><td>False positive</td><td>A prediction with no matching reference.</td></tr>
+      <tr><td>False negative</td><td>A reference event the detector missed.</td></tr>
+      <tr><td>Precision</td><td>Of the predictions, how many matched.</td></tr>
+      <tr><td>Recall</td><td>Of the references, how many were found.</td></tr>
+      <tr><td>F1</td><td>A combined balance of precision and recall.</td></tr>
+    </table>
+    <p>If there are no reference events, precision and recall are <code>null</code>, not 1.0. That is why the current clip's shot validation is shown as unavailable: the clip contains no BAS shots.</p>
+  </div>
+
+  <h2>16. Mistake: goalkeepers receive the wrong team color</h2>
+  <p class="label">Simple version</p>
+  <div class="warning">The current standard video guesses teams from shirt colors. Goalkeeper shirts are often different from their teammates, so a two-color shirt clustering algorithm can put a goalkeeper into the other team.</div>
+  <p class="label">What is happening?</p>
+  <div class="detail">
+    <p>The default tactical renderer calls <code>classify_teams()</code>. It clusters all 22 representative jersey colors into exactly two groups. That assumes the two visual color groups are the two teams. It does not understand positions, goalkeeper roles, or team identity.</p>
+    <p>But the alignment pipeline has better information. GSR annotations include team-side attributes, and <code>align_clip.py</code> writes those team-side mappings into <code>118575_sync.json</code>. The current renderer already uses that authoritative mapping when <code>--annotations</code> is enabled, but the normal render uses the jersey classifier.</p>
+  </div>
+  <p class="label">Better approach</p>
+  <div class="good">
+    <ol>
+      <li>Use the GSR team-side mapping as the primary team assignment whenever <code>118575_sync.json</code> exists.</li>
+      <li>Use the jersey classifier only as a fallback when no authoritative mapping is available.</li>
+      <li>Use goalkeeper location and role as a consistency check, not as the main team detector.</li>
+      <li>For multiple matches, create a calibration table that maps each tracking ID to its authoritative team after alignment.</li>
+    </ol>
+    <p>Jersey color is still useful for naming colors such as blue and red, but it should not decide team membership when a dataset-provided side label is available.</p>
+  </div>
+
+  <h2>17. Mistake: the homographic view is not accurate enough</h2>
+  <p class="label">Simple version</p>
+  <div class="warning">The problem may not be one single bug. The panoramic camera bends the image, the calibration points may be sparse or imperfect, and a player's box foot point may not be exactly where their real foot touches the field.</div>
+  <p class="label">What could cause the error?</p>
+  <div class="detail">
+    <ul>
+      <li><strong>Panorama distortion:</strong> one global homography assumes a flat projective camera. A panoramic or fisheye image often violates that assumption.</li>
+      <li><strong>Calibration landmark quality:</strong> a landmark that is a few pixels wrong moves nearby estimates.</li>
+      <li><strong>Landmark coverage:</strong> interpolation is less trustworthy far from landmarks and unavailable outside the convex hull.</li>
+      <li><strong>Bounding-box foot estimate:</strong> <code>x + width/2, y + height</code> is only an approximation. A box may include shadow, grass, or a player leaning.</li>
+      <li><strong>Coordinate conventions:</strong> image y increases downward, while pitch y is a chosen field coordinate. Flipped axes or wrong origins create systematic errors.</li>
+      <li><strong>Time alignment:</strong> if the video frame and tracking row do not refer to the same moment, a moving player appears in the wrong place.</li>
+      <li><strong>Camera or padding differences:</strong> calibration may have been created for a differently cropped or padded image.</li>
+    </ul>
+  </div>
+  <p class="label">Does the dataset already provide a mapping?</p>
+  <div class="detail">
+    <p>Yes, the dataset provides useful mapping ingredients:</p>
+    <ul>
+      <li>image-to-pitch keypoints</li>
+      <li>a supplied homography matrix</li>
+      <li>camera intrinsics</li>
+      <li>GSR annotations with image and pitch positions</li>
+      <li>padding metadata</li>
+    </ul>
+    <p>However, the repository still has to choose how to use them. The current code implements the mapping in <code>PitchCoordinateTransformer</code> using piecewise affine triangulation. The supplied global homography is loaded by <code>load_homography()</code>, but the active transformer does not use it because one global matrix is usually too simple for this panoramic view.</p>
+  </div>
+  <p class="label">What would improve it?</p>
+  <div class="good">
+    <ol>
+      <li>Use GSR pitch positions directly whenever they are available and the goal is analytics accuracy.</li>
+      <li>Compare transformer output against GSR pitch positions at many known player locations, not only the calibration landmarks.</li>
+      <li>Report median and 95th-percentile error across the pitch.</li>
+      <li>Review and correct landmark points, especially near the edges and goal areas.</li>
+      <li>Use a denser piecewise model or camera-specific calibration if errors vary across the panorama.</li>
+      <li>Improve foot-point detection instead of always using the bottom-center of the box.</li>
+      <li>Verify frame alignment before judging the spatial transform.</li>
+    </ol>
+    <p>The near-zero calibration error printed by the current transformer means it reproduces the landmarks it was given. It does not prove that player locations between those landmarks are accurate. The next useful measurement is an independent GSR-versus-MOT error report over many frames and players.</p>
+  </div>
+
+  <h2>18. Useful commands</h2>
+  <pre># Run the tactical video renderer
+python -m src.vision.visualize_pitch
+
+# Run analytics with GSR player positions
+python -m src.analytics.pipeline
+
+# Run analytics with MOT plus the triangulated coordinate transform
+python -m src.analytics.pipeline --player-source mot
+
+# Rebuild compact GSR files and synchronization metadata
+python -m src.vision.align_clip
+
+# Run all tests
+python -m unittest discover -s tests -v</pre>
+
+  <div class="lead">
+    <strong>Bottom line:</strong> MOT tells the project where tracked boxes are in the video. GSR supplies a richer, already-calibrated player representation. The triangulated transformer is the project's fallback for converting panoramic image pixels into pitch meters. Analytics defaults to GSR because it is already in pitch coordinates, and the current team-color mistake comes from using jersey clustering where the aligned GSR team mapping would be more reliable.
+  </div>
+</body>
+</html>

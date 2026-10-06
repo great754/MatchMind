@@ -41,3 +41,21 @@ python -m unittest discover -s tests -v
 ```
 
 The alignment tool streams the large GSR JSON files into compact arrays rather than loading the entire files into memory. Annotation source and clock convention: [SoccerTrack v2](https://huggingface.co/datasets/atomscott/soccertrack-v2) (CC BY 4.0).
+
+### Motion, possession, pass difficulty and shots
+
+```bash
+python -m src.analytics.pipeline
+open outputs/analytics_118575_clip/report.html
+python -m unittest discover -s tests -v
+```
+
+This exports per-player speeds and measured distance, ball speeds, per-frame ownership, completed/intercepted transfer candidates, transparent difficulty features, shot candidates and BAS comparison files. The offline report has a scrubber and clickable events to review against the source clip. Analytics use the synchronized GSR metric positions by default; `--player-source mot` enables the clip's existing image-to-pitch estimate instead.
+
+For the first half, which contains Shot annotations absent from this four-minute clip:
+
+```bash
+python -m src.analytics.pipeline --scope half --summary-only
+```
+
+Read [the implementation and testing guide](docs/analytics.md) for the rules, units, configuration, output schemas and validation limits. The ball is event-interpolated: speeds are estimated 2D values, BAS matching is not independent accuracy, and the difficulty score is not a calibrated probability.
