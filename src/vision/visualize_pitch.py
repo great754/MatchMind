@@ -10,7 +10,7 @@ from src.vision.coordinate_transform import PitchCoordinateTransformer
 from src.vision.data_loading import DatasetPaths, load_mot
 from src.vision.pitch import PITCH_LENGTH, PITCH_WIDTH, create_pitch, draw_player
 from src.vision.annotations import ClipAnnotations
-from src.vision.team_classifier import classify_teams
+from src.vision.tactical_tracking import prepare_tactical_tracking
 from src.vision.video_renderer import MatchMindVideoWriter, overlay_tactical_view
 
 
@@ -46,19 +46,23 @@ def main():
         if fps <= 0 or mot.frame.min() != 0 or mot.frame.max() != total - 1 or mot.frame.nunique() != total:
             raise ValueError('Video and zero-based tracking frame counts do not match')
         print(f'Video: {width}x{height}, {fps:g} FPS, {total} frames', flush=True)
-        print('Loading mapped teams...' if args.annotations else 'Detecting stable teams from jersey colors...', flush=True)
-        if args.annotations:
-            sync = json.loads((paths.root/'mot'/f'{paths.match_id}_sync.json').read_text())
-            teams = {int(t): int(sync['side_to_color'][str(p['team'])]) for t,p in sync['players'].items()}
-        else:
-            teams = classify_teams(paths.video, mot)
-        missing = set(mot.player_id.astype(int)) - set(teams)
-        if missing:
-            raise ValueError(f'Missing team assignments for players: {sorted(missing)}')
-        print(f'Team assignments: {teams}', flush=True)
+        print('Comparing GSR and calibrated image positions...', flush=True)
+        tracking, frame_errors = prepare_tactical_tracking(paths, mot, fps)
+        mot, teams = tracking.rows, tracking.teams
+        comparison = tracking.comparison
+        print(f"Comparison across {comparison['frames_compared']} frames: "
+              f"mean {comparison['mean_m']} m, median {comparison['median_m']} m, "
+              f"P95 {comparison['p95_m']} m (relative to GSR)", flush=True)
+        print(f"Selected sources: {comparison['position_source_counts']}", flush=True)
+        print(f"Goalkeepers: {comparison['goalkeepers']}", flush=True)
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.with_suffix('.teams.json').write_text(json.dumps(teams, indent=2) + '\n')
+        output.with_suffix('.comparison.json').write_text(json.dumps(comparison, indent=2, allow_nan=False)+'\n')
+        frame_errors.to_csv(output.with_suffix('.comparison.csv'), index=False)
+        output.with_suffix('.positions.csv').write_text(mot[['frame','player_id','pitch_x','pitch_y','position_source','is_goalkeeper','transform_gsr_error_m']].to_csv(index=False))
+        output.with_suffix('.teams.json').write_text(json.dumps(teams, indent=2)+'\n')
+        if tracking.sync:
+            output.with_suffix('.sync.json').write_text(json.dumps(tracking.sync, indent=2)+'\n')
         transformer = PitchCoordinateTransformer(paths.keypoints)
         print(f'Landmark calibration: {transformer.validation_error()}', flush=True)
         annotations = ClipAnnotations(paths, transformer, total, fps) if args.annotations else None
@@ -66,9 +70,6 @@ def main():
             output.with_suffix('.events.json').write_text(json.dumps(annotations.events, indent=2)+'\n')
             output.with_suffix('.sync.json').write_text(json.dumps(annotations.sync, indent=2)+'\n')
             print(f'Aligned {len(annotations.events)} actions; ball offset {annotations.offset}', flush=True)
-        # Mapping is fixed for this static panoramic camera; calculate it once.
-        positions = transformer.transform_points(mot[['foot_x', 'foot_y']].to_numpy())
-        mot['pitch_x'], mot['pitch_y'] = positions[:, 0], positions[:, 1]
         by_frame = {int(n): rows for n, rows in mot.groupby('frame')}
         base_pitch = create_pitch()
         writer = MatchMindVideoWriter(str(output), width, height, fps)
@@ -82,7 +83,7 @@ def main():
             for player in by_frame[frame_number].itertuples():
                 if valid_pitch_position(player.pitch_x, player.pitch_y):
                     draw_player(tactical, player.pitch_x, player.pitch_y,
-                                int(player.player_id), team=teams[int(player.player_id)], show_id=False)
+                                int(player.player_id), team=teams[int(player.player_id)], show_id=False, is_goalkeeper=bool(player.is_goalkeeper))
             combined = overlay_tactical_view(frame, tactical, width_ratio=args.inset_width,
                                               bottom_margin=18, opacity=args.opacity)
             cv2.putText(combined, f'{frame_number / fps:.2f}s', (20, 36),

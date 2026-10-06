@@ -210,6 +210,7 @@ def draw_player(
     player_id: int,
     team: int | None = None,
     show_id: bool = True,
+    is_goalkeeper: bool = False,
 ):
 
     sx, sy = pitch_to_screen(x, y)
@@ -241,6 +242,11 @@ def draw_player(
         cv2.LINE_AA,
     )
 
+    if is_goalkeeper:
+        # Same team color; a larger white ring and GK label identify the role.
+        cv2.circle(canvas, (sx, sy), 14, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(canvas, 'GK', (sx + 18, sy + 6), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6, (255, 255, 255), 2, cv2.LINE_AA)
     if not show_id:
         return
 

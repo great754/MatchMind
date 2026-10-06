@@ -89,115 +89,74 @@ def extract_jersey_color(frame, row):
     )
 
 
-def classify_teams(
-    video_path,
-    mot,
-    sample_every=50,
-):
+def infer_goalkeepers(mot):
+    """Fallback role hint: persistent extreme depth, rather than shirt color.
+
+    Uses median pitch x when calibrated coordinates exist. Image foot x is
+    a weaker backup. These are candidates; authoritative GSR/metadata wins.
     """
-    Estimate a stable jersey-color representation for each
-    MOT player ID, then cluster the 22 player tracks.
+    column = 'pitch_x' if 'pitch_x' in mot else 'foot_x'
+    depth = mot.groupby('player_id')[column].median().dropna()
+    if len(depth) < 4:
+        return {}
+    return {int(depth.idxmin()): 'left', int(depth.idxmax()): 'right'}
 
-    Initially uses 2 clusters:
-        team_1
-        team_2
 
-    Goalkeepers can be separated afterward.
+def cluster_team_colors(colors, depth, goalkeepers):
+    """Cluster outfield jerseys only; give each keeper the defending side's team."""
+    player_ids = sorted(pid for pid in colors if pid not in goalkeepers)
+    if len(player_ids) < 2:
+        raise RuntimeError('Not enough outfield jersey observations')
+    samples = np.asarray([colors[p] for p in player_ids], dtype=np.float32)
+    model = KMeans(n_clusters=2, random_state=42, n_init=20)
+    labels = model.fit_predict(samples)
+    centers = np.uint8(np.clip(model.cluster_centers_,0,255)).reshape(1,2,3)
+    bgr = cv2.cvtColor(centers, cv2.COLOR_LAB2BGR)[0].astype(float)
+    blue_cluster = int(np.argmax(bgr[:,0]-bgr[:,2]))
+    assignments = {pid:0 if int(label)==blue_cluster else 1 for pid,label in zip(player_ids,labels)}
+    if goalkeepers:
+        group_depth = {team:np.median([depth[p] for p in assignments if assignments[p]==team and p in depth])
+                       for team in (0,1)}
+        if not np.isfinite(list(group_depth.values())).all() or group_depth[0] == group_depth[1]:
+            raise RuntimeError('Cannot associate goalkeeper sides with outfield teams')
+        left_team = min(group_depth,key=group_depth.get)
+        for pid,side in goalkeepers.items():
+            assignments[pid] = left_team if side=='left' else 1-left_team
+    return assignments
+
+
+def classify_teams(video_path, mot, sample_every=50):
+    """Fallback classifier when authoritative team labels are unavailable.
+
+    Keeper candidates are inferred from persistent backfield position and
+    excluded from the jersey clusters because their kits differ from teammates.
     """
-
-    cap = cv2.VideoCapture(
-        str(video_path)
-    )
-
+    if sample_every < 1:
+        raise ValueError('sample_every must be positive')
+    keepers = infer_goalkeepers(mot)
+    cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
-        raise RuntimeError(
-            f"Could not open {video_path}"
-        )
-
-    mot_by_frame = {
-        int(frame_number): group
-        for frame_number, group
-        in mot.groupby("frame")
-    }
-
+        raise RuntimeError(f'Could not open {video_path}')
+    by_frame = {int(n):rows for n,rows in mot.groupby('frame')}
     observations = defaultdict(list)
-
-    # Seek to evenly spaced frames instead of decoding the whole clip twice.
     try:
-        for frame_number in range(int(mot.frame.min()), int(mot.frame.max()) + 1, sample_every):
-            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
-            ok, frame = cap.read()
+        for frame_number in range(int(mot.frame.min()),int(mot.frame.max())+1,sample_every):
+            cap.set(cv2.CAP_PROP_POS_FRAMES,frame_number)
+            ok,frame = cap.read()
             if not ok:
                 continue
-            players = mot_by_frame.get(frame_number)
+            players = by_frame.get(frame_number)
             if players is None:
                 continue
             for row in players.itertuples():
-                color = extract_jersey_color(frame, row)
+                if int(row.player_id) in keepers:
+                    continue
+                color = extract_jersey_color(frame,row)
                 if color is not None:
                     observations[int(row.player_id)].append(color)
     finally:
         cap.release()
-
-
-
-    # ---------------------------------------------------------
-    # Aggregate each player's observations.
-    # ---------------------------------------------------------
-
-    player_ids = []
-    player_colors = []
-
-    for player_id in sorted(
-        observations.keys()
-    ):
-
-        samples = np.asarray(
-            observations[player_id],
-            dtype=np.float32,
-        )
-
-        if len(samples) == 0:
-            continue
-
-        # Median color across the entire 4-minute clip.
-        representative = np.median(
-            samples,
-            axis=0,
-        )
-
-        player_ids.append(player_id)
-        player_colors.append(
-            representative
-        )
-
-    player_colors = np.asarray(
-        player_colors,
-        dtype=np.float32,
-    )
-
-    if len(player_ids) < 2:
-        raise RuntimeError(
-            "Not enough player color observations."
-        )
-
-    # ---------------------------------------------------------
-    # Team clustering
-    # ---------------------------------------------------------
-
-    kmeans = KMeans(
-        n_clusters=2,
-        random_state=42,
-        n_init=20,
-    )
-
-    labels = kmeans.fit_predict(
-        player_colors
-    )
-
-    # Anchor cluster labels to the bluer jersey, so colors remain repeatable.
-    centers = np.uint8(np.clip(kmeans.cluster_centers_, 0, 255)).reshape(1, 2, 3)
-    bgr = cv2.cvtColor(centers, cv2.COLOR_LAB2BGR)[0].astype(float)
-    blue_cluster = int(np.argmax(bgr[:, 0] - bgr[:, 2]))
-    return {player_id: (0 if int(label) == blue_cluster else 1)
-            for player_id, label in zip(player_ids, labels)}
+    colors = {p:np.median(values,axis=0) for p,values in observations.items()}
+    column = 'pitch_x' if 'pitch_x' in mot else 'foot_x'
+    depth = mot.groupby('player_id')[column].median().dropna().to_dict()
+    return cluster_team_colors(colors,depth,keepers)
