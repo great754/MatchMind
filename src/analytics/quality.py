@@ -7,7 +7,7 @@ QUALITY_COLUMNS = ['forward_progression_m','sender_nearby_defenders',
                    'difficulty_distance_component','difficulty_progression_component',
                    'difficulty_lane_component','difficulty_target_pressure_component',
                    'difficulty_sender_pressure_component','difficulty_score_0_100',
-                   'heuristic_completion_score_0_1','quality_available']
+                   'heuristic_completion_score_0_1','inverse_geometric_difficulty_0_1','quality_available']
 
 
 def pass_features(start, end, defenders_at_launch, defenders_at_arrival, direction, config):
@@ -50,6 +50,7 @@ def pass_features(start, end, defenders_at_launch, defenders_at_arrival, directi
                 difficulty_sender_pressure_component=components[4] if available else None,
                 difficulty_score_0_100=score,
                 heuristic_completion_score_0_1=1-score/100 if score is not None else None,
+                inverse_geometric_difficulty_0_1=1-score/100 if score is not None else None,
                 quality_available=available)
 
 

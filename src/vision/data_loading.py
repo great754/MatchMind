@@ -11,6 +11,24 @@ class DatasetPaths:
     root: Path = Path("data/soccertrack")
 
     @property
+    def sync(self):
+        return self.root / 'mot' / f'{self.match_id}_sync.json'
+
+    @property
+    def bas(self):
+        return self.root / 'bas' / self.match_id / f'{self.match_id}_12_class_events.json'
+
+    def gsr_compact(self, half):
+        if half not in (1, 2):
+            raise ValueError('half must be 1 or 2')
+        return self.root / 'gsr' / self.match_id / ('1st_compact.npz' if half == 1 else '2nd_compact.npz')
+
+    def ball(self, half):
+        if half not in (1, 2):
+            raise ValueError('half must be 1 or 2')
+        return self.ball_first_half if half == 1 else self.ball_second_half
+
+    @property
     def mot(self):
         return self.root / "mot" / f"{self.match_id}.txt"
 

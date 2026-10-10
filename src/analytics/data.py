@@ -28,20 +28,26 @@ class Recording:
     sync: dict
 
 
-def load_recording(paths=None, scope='clip', player_source='gsr'):
+def load_recording(paths=None, scope='clip', player_source='gsr', half=None):
     paths = paths or DatasetPaths()
     if scope not in ('clip','half') or player_source not in ('gsr','mot'):
         raise ValueError('scope must be clip/half and player_source must be gsr/mot')
-    sync_path = paths.root/'mot'/f'{paths.match_id}_sync.json'
+    sync_path = paths.sync
     sync = json.loads(sync_path.read_text())
-    bas_path = paths.root/'bas'/paths.match_id/f'{paths.match_id}_12_class_events.json'
+    bas_path = paths.bas
     bas = json.loads(bas_path.read_text())
     fps = float(sync['fps'])
     if bas['fps'] != fps or 'first frame' not in bas.get('clock',''):
         raise ValueError('BAS must use the synchronized released-half clock')
-    half = int(sync['half'])
+    if str(sync['match_id']) != str(paths.match_id):
+        raise ValueError('Synchronization match ID does not match selected recording')
+    half = int(sync['half']) if half is None else half
+    if half not in (1, 2):
+        raise ValueError('half must be 1 or 2')
+    if scope == 'clip' and half != int(sync['half']):
+        raise ValueError('Requested half does not contain the synchronized clip')
     suffix = '1st' if half == 1 else '2nd'
-    ball_path = paths.ball_first_half if half == 1 else paths.ball_second_half
+    ball_path = paths.ball(half)
     with np.load(ball_path) as raw:
         frames = raw['frame']
         if not np.array_equal(frames,np.arange(1,len(frames)+1)):
@@ -66,7 +72,7 @@ def load_recording(paths=None, scope='clip', player_source='gsr'):
     ball[status == 0] = np.nan
     mot_ids = {int(p['player_id']):int(t) for t,p in sync['players'].items()}
     if player_source == 'gsr':
-        compact = paths.root/'gsr'/paths.match_id/f'{suffix}_compact.npz'
+        compact = paths.gsr_compact(half)
         if not compact.exists():
             raise FileNotFoundError(f'{compact} is required for GSR analytics. Run python -m src.vision.align_clip after downloading GSR, or use --player-source mot for the clip.')
         with np.load(compact) as gsr:
@@ -113,5 +119,7 @@ def load_recording(paths=None, scope='clip', player_source='gsr'):
                            'half_video_seconds':float(e['position'])/1000,
                            'label':e['label'],'player_id':int(e['player_id']) if e.get('player_id') is not None else None, 'team':e.get('team')})
     events.sort(key=lambda e:e['frame'])
-    return Recording(positions,ball,status,player_ids,teams,mot_ids,events,fps,offset,
+    recording = Recording(positions,ball,status,player_ids,teams,mot_ids,events,fps,offset,
                      half,scope,player_source,files,sync)
+    recording.video_path = paths.video
+    return recording

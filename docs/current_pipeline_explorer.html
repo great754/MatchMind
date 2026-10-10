@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MatchMind | Pipeline Explorer</title>
+  <style>
+    :root {
+      --ink: #152a35;
+      --muted: #60737a;
+      --paper: #f6f5ef;
+      --panel: #fffefa;
+      --line: #d9dfd9;
+      --teal: #0d766f;
+      --teal-soft: #dff1ed;
+      --coral: #d85b45;
+      --coral-soft: #fde7df;
+      --gold: #c58a21;
+      --gold-soft: #fff2c9;
+      --navy: #183845;
+      --shadow: 0 16px 40px rgba(21, 42, 53, .08);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(13,118,111,.10), transparent 28rem),
+        linear-gradient(135deg, #f6f5ef 0%, #eef4ef 48%, #fbf1e8 100%);
+      font: 16px/1.65 "Avenir Next", "Trebuchet MS", sans-serif;
+    }
+    a { color: var(--teal); font-weight: 700; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    code, pre, .eyebrow, .tag { font-family: "SFMono-Regular", Consolas, monospace; }
+    code { padding: .12em .35em; color: var(--navy); background: #eaf0ed; border-radius: 4px; }
+    pre { overflow: auto; padding: 16px; color: #eef8f5; background: var(--navy); border-radius: 9px; }
+
+    .shell { width: min(1240px, calc(100% - 36px)); margin: 0 auto; }
+    .hero { padding: 54px 0 36px; }
+    .eyebrow { color: var(--coral); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; color: var(--navy); line-height: 1.15; letter-spacing: 0; }
+    h1 { max-width: 850px; margin-top: 12px; font-size: clamp(2.5rem, 6vw, 5.7rem); }
+    h2 { margin-top: 14px; font-size: clamp(1.7rem, 3vw, 2.7rem); }
+    h3 { font-size: 1.25rem; }
+    .hero p { max-width: 780px; margin: 20px 0 0; color: #3f555d; font-size: 1.08rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .tag { display: inline-flex; align-items: center; min-height: 30px; padding: 4px 10px; color: var(--teal); background: var(--teal-soft); border: 1px solid #b6ddd6; border-radius: 999px; font-size: .75rem; font-weight: 800; }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      padding: 12px 0; background: rgba(246,245,239,.92); border-bottom: 1px solid rgba(217,223,217,.8); backdrop-filter: blur(14px);
+    }
+    .mode-switch { display: inline-flex; padding: 4px; background: var(--navy); border-radius: 999px; }
+    .mode-switch button { padding: 7px 13px; color: #d9e9e5; background: transparent; border: 0; border-radius: 999px; font-weight: 800; }
+    .mode-switch button[aria-pressed="true"] { color: var(--navy); background: #fffefa; }
+    .search { flex: 1 1 230px; min-width: 180px; padding: 9px 12px; color: var(--ink); background: #fffefa; border: 1px solid var(--line); border-radius: 8px; }
+    .toolbar-link { color: var(--navy); text-decoration: none; font-size: .9rem; }
+
+    .notice { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin: 24px 0; padding: 18px; background: var(--gold-soft); border-left: 5px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+    .notice strong { display: block; color: #805c13; }
+    .notice p { margin: 2px 0 0; }
+    .notice-mark { color: var(--gold); font-size: 1.5rem; font-weight: 900; line-height: 1; }
+
+    .section { margin: 54px 0; scroll-margin-top: 80px; }
+    .section-heading { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; justify-content: space-between; margin-bottom: 18px; }
+    .section-heading p { max-width: 680px; margin: 0; color: var(--muted); }
+    .panel { padding: 24px; background: rgba(255,254,250,.88); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .muted { color: var(--muted); }
+    .small { color: var(--muted); font-size: .9rem; }
+    .technical, .fifth { display: none; }
+    body.mode-fifth .fifth { display: block; }
+    body.mode-fifth .technical { display: none; }
+    body.mode-technical .technical { display: block; }
+    body.mode-technical .fifth { display: none; }
+
+    .chart-wrap { overflow: auto; padding: 14px; background: #eaf0eb; border: 1px solid var(--line); border-radius: var(--radius); }
+    .chart { min-width: 960px; }
+    .chart-row { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 116px; }
+    .chart-node { position: relative; width: 150px; min-height: 82px; padding: 12px 10px; color: var(--navy); background: #fffefa; border: 2px solid #b9d2cb; border-radius: 10px; text-align: left; transition: transform .18s, border-color .18s, box-shadow .18s; }
+    .chart-node:hover, .chart-node.active { transform: translateY(-4px); border-color: var(--coral); box-shadow: 0 10px 20px rgba(216,91,69,.18); }
+    .chart-node strong { display: block; font-size: .93rem; line-height: 1.2; }
+    .chart-node span { display: block; margin-top: 5px; color: var(--muted); font-size: .72rem; line-height: 1.25; }
+    .chart-arrow { color: var(--coral); font-size: 1.35rem; font-weight: 900; }
+    .chart-branch { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px auto; max-width: 680px; }
+    .branch-label { padding: 8px; color: var(--teal); background: var(--teal-soft); border-radius: 8px; font-size: .8rem; font-weight: 800; text-align: center; }
+    .chart-caption { margin: 12px 0 0; color: var(--muted); font-size: .88rem; text-align: center; }
+    .stage-inspector { margin-top: 16px; padding: 18px; background: var(--navy); color: #edf7f3; border-radius: var(--radius); }
+    .stage-inspector h3 { color: #fffefa; }
+    .stage-inspector p { margin-bottom: 0; color: #c8ddd8; }
+    .stage-inspector .tag { color: #effcf8; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.22); }
+
+    .explainer { min-height: 154px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; }
+    .explainer h3 { margin-bottom: 10px; }
+    .explainer p:last-child { margin-bottom: 0; }
+    .fifth .voice { color: #8d4d22; font-weight: 800; }
+    .technical .voice { color: var(--teal); font-weight: 800; }
+
+    .choice { padding: 18px; background: #fffefa; border-top: 4px solid var(--teal); border-radius: 8px; box-shadow: 0 6px 18px rgba(21,42,53,.06); }
+    .choice h3 { margin-bottom: 7px; }
+    .choice p { margin: 8px 0 0; }
+    .choice .why { color: var(--coral); font-size: .9rem; font-weight: 800; }
+
+    .formula { margin: 14px 0; padding: 16px; color: #edf7f3; background: var(--navy); border-radius: 9px; }
+    .formula code { color: #fff4cd; background: transparent; font-size: 1rem; }
+    .formula small { display: block; margin-top: 8px; color: #b7d1ca; }
+    .steps { display: grid; gap: 10px; padding: 0; list-style: none; counter-reset: steps; }
+    .steps li { display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: start; counter-increment: steps; }
+    .steps li::before { content: counter(steps); display: grid; place-items: center; width: 28px; height: 28px; color: #fffefa; background: var(--coral); border-radius: 50%; font-weight: 900; }
+
+    details { margin: 10px 0; border: 1px solid var(--line); border-radius: 8px; background: #fffefa; }
+    summary { padding: 14px 16px; color: var(--navy); font-weight: 800; cursor: pointer; }
+    details > div { padding: 0 16px 16px; }
+    details[open] summary { color: var(--coral); border-bottom: 1px solid var(--line); }
+
+    .table-wrap { overflow: auto; }
+    table { width: 100%; min-width: 640px; border-collapse: collapse; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { color: var(--navy); background: #edf3ef; font-size: .88rem; }
+    .status { display: inline-block; padding: 2px 7px; color: #17654f; background: #dff1e8; border-radius: 999px; font-size: .77rem; font-weight: 800; }
+    .status.caveat { color: #8c5a10; background: #fff0c6; }
+
+    .glossary-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .filter { padding: 7px 10px; color: var(--navy); background: #fffefa; border: 1px solid var(--line); border-radius: 7px; }
+    .term { padding: 14px; border-bottom: 1px solid var(--line); }
+    .term:last-child { border-bottom: 0; }
+    .term dt { color: var(--coral); font-weight: 900; }
+    .term dd { margin: 2px 0 0; color: #465c63; }
+    .term.hidden { display: none; }
+
+    .footer { margin: 70px 0 34px; padding: 24px 0; color: var(--muted); border-top: 1px solid var(--line); font-size: .9rem; }
+    .back-top { float: right; color: var(--teal); }
+    .no-results { display: none; padding: 18px; color: var(--muted); text-align: center; }
+    .no-results.visible { display: block; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 1240px); }
+      .hero { padding-top: 34px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .toolbar { gap: 8px; }
+      .toolbar-link { display: none; }
+      .panel { padding: 18px; }
+    }
+  </style>
+</head>
+<body class="mode-fifth" id="top">
+  <header class="shell hero">
+    <div class="eyebrow">MatchMind / current repository explorer</div>
+    <h1>How the match becomes a model you can inspect.</h1>
+    <p>Follow a SoccerTrack video, tracking files, pitch coordinates, and action annotations through synchronization, geometry, motion, possession, passes, shots, intelligence, and the final review report.</p>
+    <div class="hero-meta">
+      <span class="tag">match 118575</span>
+      <span class="tag">25 FPS</span>
+      <span class="tag">105 x 68 m pitch</span>
+      <span class="tag">offline first</span>
+      <span class="tag">GSR-first</span>
+      <span class="tag">tactics at 5 Hz</span>
+    </div>
+  </header>
+
+  <div class="shell toolbar" aria-label="Document controls">
+    <div class="mode-switch" role="group" aria-label="Explanation level">
+      <button type="button" data-mode="fifth" aria-pressed="true">Fifth-grade view</button>
+      <button type="button" data-mode="technical" aria-pressed="false">Technical view</button>
+    </div>
+    <input class="search" id="search" type="search" placeholder="Search this guide, e.g. pass, homography, speed..." aria-label="Search this guide">
+    <a class="toolbar-link" href="#map">Pipeline map</a>
+    <a class="toolbar-link" href="#glossary">Glossary</a>
+  </div>
+
+  <main class="shell">
+    <div class="notice">
+      <div class="notice-mark">!</div>
+      <div>
+        <strong>Important reading rule</strong>
+        <p>This repository produces careful estimates from tracking data. A plotted dot is not automatically ground truth, a pass candidate is not automatically an intentional pass, and BAS agreement is not independent accuracy because the supplied ball path is event-anchored.</p>
+      </div>
+    </div>
+
+    <section class="section" id="map" data-search="pipeline architecture chart stages data flow">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">01 / Navigate the system</div>
+          <h2>The pipeline map</h2>
+        </div>
+        <p>Click a stage. The inspector underneath explains what that stage receives, decides, and produces.</p>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart" role="list" aria-label="Interactive MatchMind pipeline">
+          <div class="chart-row">
+            <button class="chart-node" data-stage="inputs"><strong>Inputs</strong><span>video, MOT, GSR, ball, BAS</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="sync"><strong>Sync</strong><span>offsets and identities</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="coordinates"><strong>Coordinates</strong><span>image to pitch</span></button>
+          </div>
+          <div class="chart-branch">
+            <div class="branch-label">visual branch</div>
+            <div class="branch-label">analytics branch</div>
+          </div>
+          <div class="chart-row">
+            <button class="chart-node" data-stage="renderer"><strong>Tactical renderer</strong><span>video + pitch inset</span></button>
+            <span class="chart-arrow">&nbsp;</span>
+            <button class="chart-node" data-stage="motion"><strong>Motion</strong><span>speed, velocity, distance</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="possession"><strong>Possession</strong><span>proximity + persistence</span></button>
+          </div>
+          <div class="chart-row">
+            <span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span>
+            <span class="chart-arrow">&nbsp;</span>
+            <button class="chart-node" data-stage="transfers"><strong>Transfers</strong><span>sender -> flight -> receiver</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="shots"><strong>Shots</strong><span>goal-directed trajectories</span></button>
+          </div>
+          <div class="chart-row">
+            <span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span>
+            <button class="chart-node" data-stage="intelligence"><strong>Intelligence</strong><span>events, context, commentary</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="outputs"><strong>Outputs</strong><span>CSV, JSON, plots, HTML</span></button>
+          </div>
+          <div class="chart-row">
+            <span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span>
+            <button class="chart-node" data-stage="tactics"><strong>Tactical state</strong><span>shape, blocks, pressure</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="audit"><strong>Validity audit</strong><span>projection evidence</span></button>
+          </div>
+        </div>
+        <p class="chart-caption">The renderer and analytics share synchronized inputs but are separate products. Click any node to inspect its local contract.</p>
+      </div>
+      <div class="stage-inspector" id="stage-inspector" aria-live="polite"></div>
+    </section>
+
+    <section class="section" data-search="two explanations fifth grader technical overview">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">02 / Two ways in</div>
+          <h2>What is MatchMind doing?</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="explainer">
+          <div class="fifth"><h3>Fifth-grade view</h3><p class="voice">Imagine a soccer match made of thousands of snapshots.</p><p>The computer follows the players and ball from snapshot to snapshot, draws them on a tiny soccer field, and looks for patterns such as moving fast, being near the ball, or sending the ball to another player.</p></div>
+          <div class="technical"><h3>Technical view</h3><p class="voice">MatchMind is an offline, metric-space reconstruction and event-inference pipeline.</p><p>It normalizes multiple annotation timelines into one recording-local frame grid, chooses a coordinate source, computes quality-gated motion, applies heuristic ownership and transfer state machines, then serializes deterministic facts into reports and optional bounded commentary.</p></div>
+        </article>
+        <article class="explainer">
+          <div class="fifth"><h3>What it does not know</h3><p class="voice">A picture can be blurry, and a ball can hide.</p><p>It does not truly see the ball's height, know every player's shirt number, or understand a player's intention. It records uncertainty instead of pretending.</p></div>
+          <div class="technical"><h3>What it does not claim</h3><p class="voice">The outputs are estimates, not official match statistics.</p><p>Ball height is absent, ball coordinates are event-interpolated, identities are not roster-verified, smoothing is non-causal, and BAS matching is not independent validation.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="inputs" data-search="inputs MOT GSR BAS ball video files dataset">
+      <div class="section-heading"><div><div class="eyebrow">03 / The raw material</div><h2>What goes in?</h2></div><p>The code treats every source as a different view of the same match. Synchronization is what lets those views talk to each other.</p></div>
+      <div class="grid-3">
+        <article class="choice"><h3>Panoramic video</h3><p class="fifth">The big camera view of the match. It is useful for seeing what happened, but the computer needs extra files to measure it.</p><p class="technical">The clip is decoded with OpenCV and streamed frame by frame. The renderer checks that its FPS, frame count, and zero-based MOT timeline agree.</p><p class="why">Used by: tactical renderer, jersey fallback, optional report video.</p></article>
+        <article class="choice"><h3>MOT detections</h3><p class="fifth">Boxes around players. The number on a box helps the computer keep following the same person.</p><p class="technical">Rows contain frame, track ID, image box position, width, height, and unused MOT fields. The foot point is the box center at its bottom edge.</p><p class="why">Used by: alignment, calibration fallback, video marker joins.</p></article>
+        <article class="choice"><h3>GSR annotations</h3><p class="fifth">A second notebook that already knows more about where players are on the soccer field.</p><p class="technical">GSR supplies image boxes, pitch-coordinate boxes, actor IDs, and team sides. Compact arrays are preferred to repeatedly parsing huge JSON files.</p><p class="why">Used by: primary metric player positions and authoritative team labels.</p></article>
+        <article class="choice"><h3>Ball NPZ files</h3><p class="fifth">A list of where the ball was thought to be at each moment.</p><p class="technical">The ball arrays use a center-circle origin and are translated by (+52.5, +34) into the 105 x 68 m corner-origin pitch frame. Status zero becomes missing data.</p><p class="why">Used by: motion, possession, transfer, shot, and report stages.</p></article>
+        <article class="choice"><h3>BAS actions</h3><p class="fifth">Helpful labels such as pass or shot that can be compared with the computer's guesses.</p><p class="technical">BAS annotations use the released-half clock. The loader converts them into clip-local frames using one-based correction and the inferred source offset.</p><p class="why">Used for references and windows, never to create detector predictions.</p></article>
+        <article class="choice"><h3>Calibration landmarks</h3><p class="fifth">Known dots saying, "this picture spot matches this spot on the real field."</p><p class="technical">The keypoint file pairs metric pitch coordinates with panoramic image coordinates. Delaunay triangulation and barycentric interpolation provide the active projection.</p><p class="why">Used by MOT projection and ball image overlay.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="sync" data-search="sync alignment offset Hungarian actor identity timeline frame">
+      <div class="section-heading"><div><div class="eyebrow">04 / Make the clocks agree</div><h2>How does synchronization work?</h2></div><p>Before calculating anything, the pipeline must know which player and which moment each file is talking about.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>Think of two videos that started at different times. The program looks for a moment where the 22 player dots have the same shape in both videos. Once it finds that moment, it keeps checking the match to make sure the dots still line up.</p></div><div class="technical"><h3>Technical view</h3><p><a href="../src/vision/align_clip.py">align_clip.py</a> compares the MOT frame-zero foot-position pattern against candidate GSR frames in both halves. It evaluates coarse candidates at several offsets, refines the best candidate, then uses Hungarian assignment at 21 checkpoints.</p></div><ol class="steps"><li>Read MOT foot positions from local frame zero.</li><li>Scan both GSR halves for plausible spatial matches.</li><li>Compare candidate alignments at multiple offsets.</li><li>Refine the offset near the best candidate.</li><li>Vote on actor IDs and team sides across checkpoints.</li></ol></article>
+        <article class="panel"><h3>Why the Hungarian algorithm?</h3><div class="fifth"><p>If two dots are close, the program still needs each player to get only one matching player. Hungarian matching makes a one-to-one assignment with the smallest total distance.</p></div><div class="technical"><p>It builds a cost matrix of image-foot distances between GSR detections and MOT detections. The linear-sum assignment minimizes total cost while preventing two MOT tracks from claiming one GSR actor.</p><pre>cost[gsr_player, mot_player] = pixel_distance
+assignment = argmin(one_to_one_total_cost)</pre></div><p class="small">The saved sync sidecar contains the half, zero-based clip offset, actor mapping, team mapping, and alignment error.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="coordinates" data-search="coordinates homography homographic view Delaunay triangulation barycentric projection pitch transform image map">
+      <div class="section-heading"><div><div class="eyebrow">05 / From pixels to grass</div><h2>How does the homographic view work?</h2></div><p>The short answer is subtle: the repository has a homography utility, but the active renderer uses a piecewise triangulated mapping instead.</p></div>
+      <div class="notice"><div class="notice-mark">i</div><div><strong>Terminology correction</strong><p>The visual idea is often called a homographic or top-down view. A single global homography is not the active implementation because the panoramic camera has nonlinear distortion. MatchMind uses local triangle mappings built from calibration landmarks.</p></div></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>Imagine stretching a rubber net over the camera picture. The net has pins in places we know. The computer makes little triangles between the pins. If a player is inside one triangle, it uses the three nearby pins to estimate where that player is on the field.</p><p>If the player is outside the net, the program says, "I do not know," instead of guessing far away.</p></div><div class="technical"><h3>Technical view</h3><p><code>PitchCoordinateTransformer</code> loads image/pitch keypoints, runs SciPy Delaunay triangulation in image space, finds the containing simplex, and uses the transform's barycentric coordinates to interpolate the corresponding pitch triangle.</p><div class="formula"><code>p_image = w1*A + w2*B + w3*C</code><small>The weights sum to one. The same weights are applied to the corresponding pitch vertices.</small></div><div class="formula"><code>w1 + w2 + w3 = 1</code><small>Outside the calibration convex hull, <code>find_simplex()</code> returns no triangle and the result becomes missing.</small></div></div></article>
+        <article class="panel"><h3>Why not one homography?</h3><div class="fifth"><p>A single flat ruler cannot perfectly measure a picture taken through a curved, wide camera view. Small local triangles bend the measurement to fit different parts of the picture.</p></div><div class="technical"><p>A global 3x3 projective transform assumes one consistent planar relationship. Panoramic/fisheye distortion violates that assumption. Piecewise affine interpolation is a pragmatic local approximation using supplied landmarks.</p><table><tr><th>Path</th><th>Role</th></tr><tr><td>Homography loader</td><td>Retained dataset utility; validates a 3x3 matrix.</td></tr><tr><td>Delaunay transform</td><td>Active MOT-to-pitch projection.</td></tr><tr><td>GSR pitch coordinates</td><td>Primary analytics/rendering source when present.</td></tr></table></div></article>
+      </div>
+      <details><summary>GSR-first position selection</summary><div><p>For each player/frame pair, the tactical tracker first uses a valid GSR pitch coordinate. Only a missing GSR sample falls back to the calibrated MOT projection. A present but out-of-pitch GSR value is preserved for audit rather than silently replaced.</p><p>Each output row records <code>position_source</code> as <code>gsr</code>, <code>pitch_transform</code>, or <code>unavailable</code>.</p></div></details>
+    </section>
+
+    <section class="section" id="motion" data-search="motion speed velocity distance smoothing Savitzky Golay median missing data">
+      <div class="section-heading"><div><div class="eyebrow">06 / Motion</div><h2>How is speed calculated?</h2></div><p>Motion begins with position differences, then applies quality controls so one bad detection does not become a fake sprint.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>The program asks how far a dot moved between two pictures. Since the pictures arrive 25 times each second, it multiplies the movement by 25 to estimate meters per second.</p><p>Then it smooths bumpy dots. If a dot suddenly jumps impossibly far, the jump is rejected instead of counted as a super-fast run.</p></div><div class="technical"><h3>Technical view</h3><p>For position <code>p_i</code> and frame rate <code>f</code>, the raw step and speed are:</p><div class="formula"><code>step_i = ||p_i - p_(i-1)||</code><code>speed_i = step_i * f</code><small>At 25 FPS, one meter between adjacent frames would imply 25 m/s before quality filtering.</small></div><p>The implementation applies a three-frame median filter, then a centered degree-two Savitzky-Golay filter separately within each finite segment. It differentiates the smoothed positions for velocity and smoothed speed.</p></div></article>
+        <article class="panel"><h3>What happens to bad or missing data?</h3><ul><li>Missing samples remain missing.</li><li>Gaps are never bridged by invented motion.</li><li>The first sample of a segment has no derivative.</li><li>Player speeds over 14 m/s are rejected by default.</li><li>Ball speeds over 50 m/s are rejected by default.</li><li>The rejected step and the derivative touching it are removed.</li><li>Distance is cumulative accepted step distance only.</li></ul><p class="small">The centered filters use future samples, so the pipeline is offline rather than live.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="possession" data-search="possession ownership control proximity relative speed persistence contested">
+      <div class="section-heading"><div><div class="eyebrow">07 / Possession</div><h2>How does the program decide who controls the ball?</h2></div><p>It does not choose the nearest player instantly. It asks whether proximity and motion stay believable long enough.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>Being closest to the ball for one picture is not enough. A player must be close for several pictures. Two players close together means the computer says the ball is contested instead of picking a winner too quickly.</p></div><div class="technical"><h3>Technical view</h3><p>The detector computes player-ball distance and relative velocity at every frame. Acquisition needs five consecutive frames within 2.5 m. Existing ownership has hysteresis: it can retain control within 3.5 m.</p></div><table><tr><th>Rule</th><th>Default</th><th>Reason</th></tr><tr><td>Acquire radius</td><td>2.5 m</td><td>Requires close contact evidence.</td></tr><tr><td>Retention radius</td><td>3.5 m</td><td>Prevents flicker around the boundary.</td></tr><tr><td>Persistence</td><td>5 frames</td><td>Rejects one-frame coincidences.</td></tr><tr><td>Contested margin</td><td>0.5 m</td><td>Does not force a close call.</td></tr></table></article>
+        <article class="panel"><h3>Possible frame states</h3><div class="grid-3"><div><span class="status">controlled</span><p class="small">A persistent owner is accepted.</p></div><div><span class="status">candidate</span><p class="small">Someone is close but not confirmed.</p></div><div><span class="status caveat">contested</span><p class="small">Two players are similarly close.</p></div><div><span class="status caveat">unknown</span><p class="small">Ball position or motion is unavailable.</p></div><div><span class="status caveat">out_of_play</span><p class="small">Ball is outside 0..105 by 0..68 m.</p></div><div><span class="status">free</span><p class="small">Ball is usable but no owner is accepted.</p></div></div><p>Control confidence is a proximity-derived score, not a calibrated probability. Unknown time is reported separately instead of being silently assigned to a team.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="transfers" data-search="pass transfer pass calculation sender receiver flight independent frames completed intercepted unresolved">
+      <div class="section-heading"><div><div class="eyebrow">08 / Transfers</div><h2>How is a pass calculated?</h2></div><p>MatchMind calls these observable transfer candidates. That wording matters: geometry can show a ball moving between controlled players, but not always the player's intention.</p></div>
+      <div class="panel">
+        <div class="fifth"><h3>Fifth-grade view</h3><p>The program waits for a player to control the ball. Then it checks that the ball travels on its own for a little while. Finally, it waits for someone to control it again. If the new player is on the same team, it is a completed transfer. If the other team gets it, it is an interception candidate.</p></div>
+        <div class="technical"><h3>Technical view</h3><p><code>detect_passes()</code> is a state machine. It remembers the last controlled owner, opens a pending flight when control is lost, and closes that flight when a persistent receiver is observed.</p></div>
+        <div class="grid-3" style="margin-top:18px"><div class="choice"><h3>1. Sender</h3><p>Record the last controlled player and team.</p></div><div class="choice"><h3>2. Flight</h3><p>Require independent frames, displacement, and speed.</p></div><div class="choice"><h3>3. Receiver</h3><p>Confirm the next controlled player and compare teams.</p></div></div>
+        <div class="formula"><code>outcome = completed</code><small>Receiver exists and receiver team equals sender team.</small></div>
+        <div class="formula"><code>outcome = intercepted</code><small>Receiver exists and receiver team differs from sender team.</small></div>
+        <table><tr><th>Default gate</th><th>Value</th><th>What it prevents</th></tr><tr><td>Minimum independent flight</td><td>3 frames</td><td>Direct ownership flips being called passes.</td></tr><tr><td>Minimum straight distance</td><td>3 m</td><td>Tiny position noise becoming a transfer.</td></tr><tr><td>Minimum peak speed</td><td>3 m/s</td><td>Stationary or barely moving ball events.</td></tr><tr><td>Timeout</td><td>8 seconds</td><td>Indefinite pending flights.</td></tr></table>
+        <p class="small">A player recovering their own ball is not a pass. Missing intervals terminate the attempt rather than creating a completed pass across the gap. A transfer can be a clearance, tackle, interception, or loose ball.</p>
+      </div>
+    </section>
+
+    <section class="section" data-search="difficulty quality defenders passing lane progression heuristic completion probability">
+      <div class="section-heading"><div><div class="eyebrow">09 / Transfer quality</div><h2>How is transfer difficulty calculated?</h2></div><p>This is an inspectable geometry score, not a trained probability model.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>A long pass with defenders near the path is considered harder than a short pass into open space. The computer adds points for different kinds of difficulty.</p></div><div class="technical"><h3>Technical view</h3><p>The score uses the realized start and end points, the configured attack direction, opponent positions at launch, and opponent positions at arrival. Each component is exported so the result can be audited.</p></div><table><tr><th>Component</th><th>Maximum</th></tr><tr><td>Distance</td><td>35</td></tr><tr><td>Positive progression</td><td>10</td></tr><tr><td>Defenders in interior lane</td><td>25</td></tr><tr><td>Nearest target defender pressure</td><td>20</td></tr><tr><td>Sender pressure</td><td>10</td></tr></table></article>
+        <article class="panel"><h3>Critical interpretation</h3><p>The endpoint is the actual detected reception, so the score describes what happened after the fact. It cannot be a clean release-time prediction because it uses realized target geometry.</p><div class="notice"><div class="notice-mark">!</div><div><strong>Not a probability</strong><p><code>heuristic_completion_score_0_1 = 1 - difficulty / 100</code> is a descriptive inverse score. It is not a 25% or 80% chance of completion.</p></div></div><p>If a defender is missing, quality is marked unavailable rather than assuming the pass was easy.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="shots" data-search="shot detection goal trajectory speed projected goal line BAS shot window">
+      <div class="section-heading"><div><div class="eyebrow">10 / Shots</div><h2>How does the shot detector work?</h2></div><p>It searches for a fast, independent ball trajectory that points toward a nearby goal.</p></div>
+      <div class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>The program asks: Is the ball moving quickly? Is it going toward a goal? Is it close enough to reach the goal soon? Does the path cross near the goal opening? If the pattern lasts long enough, it marks a possible shot.</p></div><div class="technical"><h3>Technical view</h3><p>The detector checks speed, direction, goal distance, horizontal velocity, projected goal-line crossing, time to goal, and persistence. If the recent controlling team is known, the ball must travel in that team's attack direction.</p></div><div class="grid-3" style="margin-top:18px"><div class="choice"><h3>Speed</h3><p>At least 8 m/s by default.</p></div><div class="choice"><h3>Geometry</h3><p>Within 35 m and projected near the goal mouth.</p></div><div class="choice"><h3>Timing</h3><p>Projected arrival within 3 seconds.</p></div></div><div class="formula"><code>t_goal = (goal_x - ball_x) / velocity_x</code><small>Then the detector projects y at the goal line and checks whether it is near the 7.32 m goal mouth centerline, with a configured margin.</small></div><p>Estimated 2D post-shot ball speed comes from a short 1.2-second window; it is not measured strike velocity. Missing positions truncate that window. A confirmed reception stops it so a later kick does not leak into the first shot.</p><p class="small">The pipeline also creates separate BAS reference windows. A BAS shot reference does not create a trajectory candidate.</p></div>
+    </section>
+
+    <section class="section" data-search="validation BAS precision recall false positive false negative independent">
+      <div class="section-heading"><div><div class="eyebrow">11 / Checking the guesses</div><h2>How does validation work?</h2></div><p>References help compare timing and identity. They do not magically turn an estimate into ground truth.</p></div>
+      <div class="grid-2">
+        <article class="panel"><h3>One-to-one matching</h3><div class="fifth"><p>One computer guess cannot claim the same official label twice. The matcher pairs predictions and references only once and reports the leftovers.</p></div><div class="technical"><p>The validator builds a cost matrix from timing differences, rejects pairs outside the tolerance, optionally requires actor agreement, and applies Hungarian assignment.</p></div><pre>valid pair = abs(prediction_frame - reference_frame) / fps <= 1.0</pre><p>Unmatched predictions are false positives. Unmatched references are false negatives.</p></article>
+        <article class="panel"><h3>Why BAS is not independent</h3><p>The supplied ball path is reconstructed using BAS event anchors. Therefore, matching a detector to BAS can show timing consistency, but it is not evaluation against an independently measured ball trajectory.</p><table><tr><th>Validation</th><th>Extra requirement</th></tr><tr><td>Pass family</td><td>Timing and sender actor agreement.</td></tr><tr><td>Shot</td><td>Timing only; shooter identity is not independently verified.</td></tr></table></article>
+      </div>
+    </section>
+
+    <section class="section" id="intelligence" data-search="intelligence events context commentary Gemini AI schema cache sentence provider">
+      <div class="section-heading"><div><div class="eyebrow">12 / From metrics to explanations</div><h2>What does the intelligence layer add?</h2></div><p>It creates a stable language layer over existing analytics. It does not re-run the detectors.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>The analytics make notes like, "the ball changed owners here." Intelligence turns those notes into organized event cards and short explanations. Gemini can choose which approved sentence is most useful, but it cannot invent a new story.</p></div><div class="technical"><h3>Technical view</h3><p><code>build_events()</code> adapts possession, transfer, shot, BAS, speed, and distance results into closed Pydantic event schemas. Each event has a stable content-derived ID, source, significance, identity namespace, validation state, and metrics.</p></div><details><summary>Context windows</summary><div><p><code>ContextBuilder.at(timestamp, window)</code> supports 15, 30, and 60 seconds. It reports current possession, streak, team percentages, unknown ownership, transfers, sequences, fastest players, ball displacement, progression, BAS actions, shot candidates, and limitations.</p></div></details><details><summary>Commentary selection</summary><div><p>The service filters significant events, groups related events, applies cooldowns, and requests one to three sentence IDs per mode. It generates beginner, fan, and analyst options ahead of time, so the browser does not need a network request while you scrub.</p></div></details><details><summary>Gemini boundary</summary><div><p>Gemini receives structured facts and a sentence catalogue. Strict validation rejects unknown IDs, extra fields, and free-form prose. The final text comes from deterministic templates.</p></div></details></article>
+        <article class="panel"><h3>Why make the model choose instead of write?</h3><ul><li>It limits unsupported identities and statistics.</li><li>It keeps uncertainty language attached to estimates.</li><li>It makes cached output reproducible.</li><li>It prevents credentials from entering prompts or reports.</li><li>It keeps analytics deterministic when commentary is disabled.</li></ul><p>The tactical engine now contributes closed tactical states and tactical events to the same intelligence context. Commentary can describe supported shape, pressure, formation, and network facts, but it cannot invent tactical intent or causal claims.</p><p class="small">The default provider is <code>none</code>, so ordinary runs and tests make no network calls.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="tactics" data-search="tactics tactical state shape block pressure formation network centroid compactness ball relative evidence">
+      <div class="section-heading"><div><div class="eyebrow">13 / New tactical branch</div><h2>How does the tactics engine work?</h2></div><p>This branch adds deterministic tactical evidence without changing the existing ownership, transfer, difficulty, shot, or renderer calculations.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>The computer takes a team picture five times each second. It measures how wide and deep the team is, whether the team is defending near or far from its goal, who is close to the ball carrier, and which players are in front of the ball.</p><p>It waits before announcing a change. A team that briefly stretches for one picture does not instantly become a new tactical shape.</p></div><div class="technical"><h3>Technical view</h3><p><code>src/tactics/engine.py</code> samples every 200 ms by default. It consumes raw metric recording positions, confirmed ownership, GSR actor labels, and the analytics attack direction. It publishes closed <code>TacticalState</code> objects and persistent tactical events.</p></div><div class="grid-3" style="margin-top:18px"><div class="choice"><h3>Shape</h3><p>Outfield centroid, width, depth, RMS compactness, pairwise spread, longitudinal position.</p></div><div class="choice"><h3>Block</h3><p>Low, mid, or high defending band from centroid distance to own goal.</p></div><div class="choice"><h3>Pressure</h3><p>Observed nearby defenders plus backward closing velocity.</p></div></div></article>
+        <article class="panel"><h3>What stays unknown?</h3><p>Unknown is an intentional output. If the goalkeeper role is unavailable, the outfield shape and formation are withheld rather than guessed. If too few players are usable, shape is unavailable. If the carrier, ball, or backward history is missing, pressure is unavailable.</p><p>Goalkeepers are excluded from team shape, formation, and ball-relative counts. They remain included in local pressure because a goalkeeper can challenge a carrier.</p><div class="notice"><div class="notice-mark">!</div><div><strong>Geometry is not intent</strong><p>These facts can describe observed positions and movement. They do not prove a coach's instruction, collective intent, or that pressure caused a turnover.</p></div></div></article>
+      </div>
+      <details><summary>Shape, width, depth, compactness, and spread</summary><div><p>For usable outfield points, the centroid is the mean position. Width is <code>max(y) - min(y)</code>; depth is <code>max(x) - min(x)</code>; compactness is the RMS distance from each player to the centroid; spread is the mean pairwise Euclidean distance. All are in meters.</p><p>Shape requires a minimum usable outfield roster. More than ten observed outfield players is treated as ambiguous rather than accepted as a larger shape.</p></div></details>
+      <details><summary>Defensive block bands</summary><div><p>While the team is defending, the outfield centroid's distance from its own goal is compared with configurable bands. By default, low is at most 35 m, high is at least 70 m, and the space between is mid. A candidate must persist for three seconds. Missing evidence or unknown ownership resets the state.</p></div></details>
+      <details><summary>Pressure and closing velocity</summary><div><p>Local pressure counts opponents within 3 m, 5 m, and 8 m. Closing velocity uses only a backward one-second displacement history; centered future-looking velocities are deliberately not used here. For defender-carrier vector <code>r</code>, closing speed is <code>-(v_defender - v_carrier) dot (r / ||r||)</code>. A pressure candidate needs at least two local defenders, one observed closing defender, and enough observed defenders. Two seconds of same-carrier evidence produces sustained pressure.</p><p>Static proximity alone is never labeled pressing. Missing defenders make counts lower-bound observations, not full-team certainty.</p></div></details>
+      <details><summary>Ball-relative counts</summary><div><p>For an attacking player, the signed longitudinal value is <code>(player_x - ball_x) * attack_direction</code>. Values beyond 0.5 m are ahead or behind; values inside the tolerance are level. The engine separately counts goal-side defenders and keeps availability counts.</p></div></details>
+      <details><summary>Formation estimate</summary><div><p>Formation is a conservative longitudinal line-count fit over a trailing 15-second window. It tests 4-3-3, 4-4-2, 4-2-3-1, and 3-5-2. It requires ten identity-stable outfield players, known goalkeeper exclusion, enough coverage, line gaps, a maximum RMSE of 4.5 m, a best-fit margin of 1 m, and at least 80% membership stability. The fit must persist for five seconds. Otherwise the estimate is unknown.</p><p>This is not verified lineup information. It does not invent winger or defender roles, and averaging can hide rotations.</p></div></details>
+      <details><summary>Transfer network</summary><div><p>The network aggregates completed observable transfers into directed sender-to-receiver edges. It reports counts, distance/progression/difficulty summaries, long-transfer counts, and BAS release/sender support. The default report shows a trailing 60-second network at the current time; a whole-recording option intentionally includes later transfers.</p></div></details>
+    </section>
+
+    <section class="section" id="audit" data-search="validity audit projection evaluation calibration error heatmap disagreement evidence GSR MOT">
+      <div class="section-heading"><div><div class="eyebrow">14 / New validity branch</div><h2>How is projection quality audited?</h2></div><p>The new audit measures the unchanged MOT fallback in more detail. It diagnoses the projection; it does not silently repair it.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>The computer compares two ways of placing the same player on the field: the normal camera-picture method and the GSR field-coordinate method. It checks where the errors happen and whether changing the clock or flipping the field fixes them.</p><p>If a correction makes the old examples look better but has not been tested on new evidence, it could hide the problem. So the audit reports the problem and leaves the working method alone.</p></div><div class="technical"><h3>Technical view</h3><p><code>src/vision/projection_evaluation.py</code> reproduces the existing MOT-foot projection against synchronized GSR using all finite paired detections. It reports global statistics, per-player results, pitch and image grids, boundary regions, landmark-distance bins, triangle shapes, synchronization shifts, orientation experiments, and supplementary image-foot diagnostics.</p></div><div class="formula"><code>error_i = ||projected_MOT_i - GSR_pitch_i||</code><small>Coverage is finite paired samples divided by all eligible detections, including failures.</small></div></article>
+        <article class="panel"><h3>Current audit result</h3><table><tr><th>Measurement</th><th>Current result</th></tr><tr><td>Mean disagreement</td><td>11.6831 m</td></tr><tr><td>Median / P50</td><td>10.7398 m</td></tr><tr><td>P95</td><td>24.9560 m</td></tr><tr><td>RMSE</td><td>14.1925 m</td></tr><tr><td>Finite pairs</td><td>130,782 / 132,000</td></tr><tr><td>Coverage</td><td>99.0773%</td></tr><tr><td>Method changed?</td><td><span class="status caveat">No</span></td></tr></table><p class="small">The main mean error vector is approximately (0.1401, -10.8486) m. This is a diagnostic against GSR, not independent surveyed accuracy.</p></article>
+      </div>
+      <details><summary>What experiments are included?</summary><div><ul><li>Per-player and per-frame error statistics.</li><li>Pitch boundary and image-region comparisons.</li><li>Distance to nearest calibration landmark.</li><li>Triangle simplex and triangle-aspect bins.</li><li>Synchronization shifts from -2 to +2 frames.</li><li>Original, x-reversed, y-reversed, and both-reversed orientations.</li><li>Nearest-actor agreement checks.</li><li>Actual paired-detection heatmaps with empty cells left blank.</li></ul></div></details>
+      <p>The audit does not subtract the mean error, refit calibration, change the offset, or replace actor mappings. Such changes would optimize in-sample agreement without independent ground contacts. GSR remains primary for all renderer positions; the projection is a fallback and comparison source.</p>
+    </section>
+
+    <section class="section" id="outputs" data-search="outputs CSV JSON report HTML files artifacts provenance tactics audit network measurement definitions">
+      <div class="section-heading"><div><div class="eyebrow">15 / What comes out</div><h2>Outputs you can inspect</h2></div><p>Every major inference has a corresponding table, sidecar, plot, or report section.</p></div>
+      <div class="table-wrap panel"><table><thead><tr><th>Output</th><th>What it contains</th><th>Why it exists</th></tr></thead><tbody>
+        <tr><td><code>player_summary.csv</code></td><td>Distance, speed, observation, validity, possession seconds.</td><td>Player-level overview.</td></tr>
+        <tr><td><code>player_frames.csv</code></td><td>Raw and smoothed coordinates, velocity, speed, flags, distance.</td><td>Frame-level audit trail.</td></tr>
+        <tr><td><code>ball_frames.csv</code></td><td>Ball position, speed, status, source offset, validity.</td><td>Ball-motion audit trail.</td></tr>
+        <tr><td><code>possession.csv</code></td><td>Owner, candidate, state, confidence, distances.</td><td>Inspect every ownership decision.</td></tr>
+        <tr><td><code>passes.csv</code></td><td>Transfer endpoints, receiver, outcome, speed, distance, difficulty.</td><td>Audit observable transfers.</td></tr>
+        <tr><td><code>shots.csv</code></td><td>Trajectory candidates and speed-window coverage.</td><td>Audit goal-directed candidates.</td></tr>
+        <tr><td><code>events.json</code></td><td>Versioned canonical intelligence events.</td><td>Stable downstream contract.</td></tr>
+        <tr><td><code>rolling_context.json</code></td><td>Periodic 15/30/60-second context snapshots.</td><td>Review facts around moments.</td></tr>
+        <tr><td><code>commentary.json</code></td><td>Provider, cache, errors, sentence IDs, event references.</td><td>Audit optional commentary.</td></tr>
+        <tr><td><code>transfers.csv</code></td><td>Preferred observable-transfer export with source, validation scope, BAS support, and renamed inverse difficulty field.</td><td>Clarifies that legacy <code>passes.csv</code> contains transfer candidates, not official pass accuracy.</td></tr>
+        <tr><td><code>measurement_definitions.json</code></td><td>Field meanings, units, source conventions, and compatibility semantics.</td><td>Prevents ambiguous metric labels from being reused as stronger claims.</td></tr>
+        <tr><td><code>tactical_states.csv/json</code></td><td>5 Hz shape, block, pressure, ball-relative, phase, and formation states.</td><td>Audit tactical geometry over time.</td></tr>
+        <tr><td><code>tactical_events.json</code></td><td>Persistent block, width, compactness, pressure, formation, and network events.</td><td>Stable tactical event stream merged into intelligence.</td></tr>
+        <tr><td><code>transfer_network.json/csv</code></td><td>Directed completed observable-transfer edges and rolling windows.</td><td>Review who connected to whom without calling it official passing accuracy.</td></tr>
+        <tr><td><code>tactical_summary.json</code></td><td>Thresholds, definitions, units, source hashes, role provenance, and quality gates.</td><td>Reproduce and interpret tactical states.</td></tr>
+        <tr><td><code>pre_event_evidence.json</code></td><td>Strictly earlier tactical samples linked to original transfer/shot/ownership times.</td><td>Separate prior observed context from later confirmation and realized-target geometry.</td></tr>
+        <tr><td><code>tactical_shape.png</code> / <code>tactical_pressure.png</code></td><td>Observed shape and pressure series with unavailable gaps.</td><td>Visual audit of tactical evidence.</td></tr>
+        <tr><td><code>projection_evaluation.json</code></td><td>Projection error distributions, region bins, shift/orientation tests, and source hashes.</td><td>Diagnose the unchanged MOT fallback.</td></tr>
+        <tr><td><code>report.html</code></td><td>Offline video/pitch review page with plots and tables.</td><td>Human inspection and playback.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="section" data-search="implementation choices tradeoffs design decisions GSR-first offline missing data">
+      <div class="section-heading"><div><div class="eyebrow">14 / Why it is built this way</div><h2>Implementation choices and tradeoffs</h2></div><p>These choices make the system more auditable, but they also define what it cannot claim.</p></div>
+      <div class="grid-2">
+        <article class="choice"><h3>GSR-first coordinates</h3><p>GSR pitch coordinates already share a metric convention with the ball, so they are preferred for proximity and motion. MOT projection remains available for comparison and gaps.</p></article>
+        <article class="choice"><h3>Missingness over invention</h3><p>Unknown ball samples, calibration misses, and broken observation segments remain unknown. The pipeline avoids silently adding distance, speed, ownership, or shots.</p></article>
+        <article class="choice"><h3>Centered smoothing</h3><p>Centered median and Savitzky-Golay filters reduce quantization noise. The tradeoff is that they use future frames, so the pipeline is explicitly offline.</p></article>
+        <article class="choice"><h3>State machines over instant labels</h3><p>Possession and transfers require persistence. This reduces flicker and false events, but brief touches can be missed.</p></article>
+        <article class="choice"><h3>Closed intelligence schemas</h3><p>Pydantic models reject extra fields and invalid values. This creates a stable contract and limits unsupported narration.</p></article>
+        <article class="choice"><h3>Standalone reports</h3><p>Plots and browser review are generated as static files. No server is needed, but live collaboration and server-side querying are outside the current design.</p></article>
+      </div>
+    </section>
+
+    <section class="section" data-search="commands run reproduce test verify CLI">
+      <div class="section-heading"><div><div class="eyebrow">16 / Try it yourself</div><h2>Useful commands</h2></div></div>
+      <div class="grid-2">
+        <article class="panel"><h3>Run the full test suite</h3><pre>.venv/bin/python -m unittest discover -s tests -v</pre><p>The current agent-added test set covers the original analytics/vision behavior plus tactics and projection-audit cases. Check the command output for the current count.</p><h3>Render a preview</h3><pre>python -m src.vision.visualize_pitch \
+  --max-frames 250 \
+  --output outputs/match_118575_preview.mp4</pre></article>
+        <article class="panel"><h3>Generate analytics</h3><pre>python -m src.analytics.pipeline
+open outputs/analytics_118575_clip/report.html</pre><h3>Use the local deterministic commentary</h3><pre>.venv/bin/python -m src.analytics.pipeline \
+  --summary-only \
+  --commentary-provider template \
+  --max-commentary-events 8</pre><h3>Use Gemini</h3><pre>.venv/bin/python -m src.analytics.pipeline \
+  --commentary-provider gemini \
+  --max-commentary-events 4 \
+  --max-provider-calls 12</pre><h3>Run the tactical branch</h3><pre>.venv/bin/python -m src.analytics.pipeline \
+  --summary-only \
+  --commentary-provider template \
+  --tactics-config configs/tactics.default.json \
+  --output outputs/analytics_118575_tactics</pre><p>Use <code>--no-tactics</code> to omit tactical calculations. The default tactical sample rate is 5 Hz and must divide the source FPS.</p><h3>Run the projection audit</h3><pre>.venv/bin/python -m src.vision.projection_evaluation \
+  --output outputs/validity_audit/projection</pre></article>
+      </div>
+    </section>
+
+    <section class="section" id="glossary" data-search="glossary terms definitions MOT GSR BAS actor homography">
+      <div class="section-heading"><div><div class="eyebrow">17 / Keep these words straight</div><h2>Glossary</h2></div><p>Search the terms when the names start to blur together.</p></div>
+      <div class="panel">
+        <div class="glossary-controls"><input class="filter" id="glossary-search" type="search" placeholder="Filter glossary..." aria-label="Filter glossary"></div>
+        <dl id="terms">
+          <div class="term"><dt>MOT</dt><dd>Multiple Object Tracking. A temporary track identity that helps connect a player across video frames. It is not automatically a jersey number.</dd></div>
+          <div class="term"><dt>GSR</dt><dd>The repository's global scene annotation source containing player image boxes, pitch coordinates, actor IDs, and team sides.</dd></div>
+          <div class="term"><dt>BAS</dt><dd>The action annotation source containing labels such as PASS, SHOT, GOAL, and TACKLE, timestamped in the released half-video clock.</dd></div>
+          <div class="term"><dt>Homography</dt><dd>A projective mapping often used to flatten a planar view. MatchMind retains a homography loader but actively uses piecewise triangulation for the panoramic image.</dd></div>
+          <div class="term"><dt>Delaunay triangulation</dt><dd>A way to divide the calibration points into triangles so a local mapping can be applied around each query point.</dd></div>
+          <div class="term"><dt>Barycentric coordinates</dt><dd>Three weights describing where a point lies inside a triangle. MatchMind reuses those weights on the matching pitch triangle.</dd></div>
+          <div class="term"><dt>Observed</dt><dd>A coordinate sample exists and is finite. It may still be rejected for motion quality.</dd></div>
+          <div class="term"><dt>Usable motion</dt><dd>A sample/step survives the speed quality gates and can contribute to accepted speed or distance.</dd></div>
+          <div class="term"><dt>Recording-local time</dt><dd>Time measured from the beginning of the selected clip or half. Add the source offset to recover half-video time.</dd></div>
+          <div class="term"><dt>Transfer</dt><dd>An observable sender-to-receiver ball movement. It is intentionally broader than the word pass.</dd></div>
+          <div class="term"><dt>Independent flight</dt><dd>A period where the ball is moving without a confirmed controlled owner, used to distinguish transfers from direct ownership changes.</dd></div>
+          <div class="term"><dt>Heuristic</dt><dd>A transparent rule-based estimate. It can be useful without being a calibrated probability or official label.</dd></div>
+          <div class="term"><dt>Ground truth</dt><dd>An independently verified reference. The current BAS comparison is not fully independent because ball reconstruction uses BAS anchors.</dd></div>
+          <div class="term"><dt>Tactical state</dt><dd>A sampled, closed record of observed team geometry, phase, block, pressure, ball-relative counts, and formation evidence.</dd></div>
+          <div class="term"><dt>Shape</dt><dd>Outfield geometry summarized by centroid, width, depth, compactness, spread, and orientation-aware longitudinal position.</dd></div>
+          <div class="term"><dt>Closing velocity</dt><dd>Backward relative motion projected toward the carrier. It requires a complete trailing history and is distinct from simply being nearby.</dd></div>
+          <div class="term"><dt>Formation estimate</dt><dd>A conservative longitudinal line-count fit over a trailing window. It is unknown when roster, fit, stability, or persistence gates fail.</dd></div>
+          <div class="term"><dt>Transfer network</dt><dd>A directed aggregation of completed observable transfers. It is not an official passing network or proof of tactical causation.</dd></div>
+          <div class="term"><dt>Pre-event evidence</dt><dd>The latest tactical sample strictly before an original release or start frame, kept separate from later confirmation and realized-target geometry.</dd></div>
+          <div class="term"><dt>Validity audit</dt><dd>A reproducible measurement of the unchanged MOT projection against GSR across regions, offsets, orientations, and paired samples.</dd></div>
+        </dl>
+        <div class="no-results" id="no-results">No glossary term matches that search.</div>
+      </div>
+    </section>
+
+    <section class="section" data-search="limitations uncertainty what not know caveats">
+      <div class="section-heading"><div><div class="eyebrow">18 / Honest boundaries</div><h2>What should you be careful about?</h2></div></div>
+      <div class="panel"><ul><li>Ball positions are event-interpolated and have no height.</li><li>Ball speed is a 2D estimate, not measured strike speed.</li><li>MOT IDs are not verified jersey numbers.</li><li>Synchronization and calibration can introduce errors.</li><li>Possession is inferred from proximity, motion, and persistence.</li><li>Transfers can be interceptions, tackles, clearances, or loose balls.</li><li>Difficulty uses a realized endpoint and is not completion probability.</li><li>Shot candidates can be false positives or false negatives.</li><li>Goalkeeper fallback assignment is geometric and can be ambiguous.</li><li>Tactical shape and formation are geometric estimates, not verified tactics or lineups.</li><li>Pressure is observed proximity plus closing evidence, not proof of pressing intent or causation.</li><li>Validity-audit disagreement is relative to GSR, not independently surveyed absolute error.</li><li>Centered smoothing uses later frames and is not causal.</li></ul></div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <a class="back-top" href="#top">Back to top</a>
+    <p>MatchMind Pipeline Explorer. This page is static and works by opening the HTML file directly. Source references point back to the repository's implementation and documentation.</p>
+  </footer>
+
+  <script>
+    const stageData = {
+      inputs: { title: 'Inputs', tag: 'data contract', text: 'Video, MOT boxes, GSR annotations, ball arrays, BAS actions, and calibration landmarks describe the same match from different perspectives. They are not interchangeable until time, identity, and coordinate conventions are normalized.' },
+      sync: { title: 'Synchronization', tag: 'timeline + identity', text: 'The alignment tool finds the GSR half and source offset that best match MOT foot positions, then uses one-to-one assignments and checkpoint votes to connect MOT tracks to GSR actors and team sides.' },
+      coordinates: { title: 'Coordinates', tag: 'metric pitch space', text: 'GSR pitch positions are primary. Calibrated MOT positions use a Delaunay triangulation and barycentric interpolation. Missing or out-of-hull points are preserved as unavailable rather than extrapolated.' },
+      renderer: { title: 'Tactical renderer', tag: 'visual branch', text: 'The renderer streams video frames, draws selected player coordinates on a 105 x 68 m pitch, blends the pitch inset into the panoramic footage, and writes video and audit sidecars.' },
+      motion: { title: 'Motion', tag: 'quality-gated derivatives', text: 'Positions are segmented, median-filtered, Savitzky-Golay smoothed, differentiated, and filtered by speed limits. Missing gaps do not create distance or speed.' },
+      possession: { title: 'Possession', tag: 'rule-based control', text: 'Distance, relative motion, acquisition persistence, retention hysteresis, and contested margins produce controlled, candidate, free, contested, unknown, or out_of_play states.' },
+      transfers: { title: 'Transfers', tag: 'state machine', text: 'A controlled sender, independent flight, and persistent receiver form an observable transfer. Same-team reception is completed; opposite-team reception is intercepted candidate.' },
+      shots: { title: 'Shots', tag: 'trajectory candidate', text: 'Fast, persistent, goal-directed ball flight is checked against goal distance, forward direction, projected goal-line position, and time to goal.' },
+      tactics: { title: 'Tactical state', tag: '5 Hz deterministic geometry', text: 'The new tactics branch samples raw metric positions every fifth 25 FPS frame. It estimates outfield shape, block bands, local pressure, ball-relative counts, conservative formations, and transfer-network patterns with persistence and explicit unknown states.' },
+      intelligence: { title: 'Intelligence', tag: 'grounded language layer', text: 'Existing analytics become versioned canonical events and rolling contexts. Optional providers select from a deterministic sentence catalogue; they do not replace detector logic.' },
+      audit: { title: 'Validity audit', tag: 'unchanged-method evidence', text: 'The projection evaluation measures MOT fallback disagreement against synchronized GSR across pitch regions, image regions, landmarks, triangles, offsets, orientations, and exact pairs. It does not fit a correction or claim independent accuracy.' },
+      outputs: { title: 'Outputs', tag: 'audit artifacts', text: 'The pipeline writes CSV metrics, JSON provenance and events, PNG plots, a standalone interactive HTML report, and optional commentary cache files.' }
+    };
+
+    const inspector = document.getElementById('stage-inspector');
+    const stageButtons = [...document.querySelectorAll('.chart-node')];
+    function selectStage(name) {
+      const data = stageData[name] || stageData.inputs;
+      stageButtons.forEach(button => button.classList.toggle('active', button.dataset.stage === name));
+      inspector.innerHTML = '<span class="tag">' + data.tag + '</span><h3>' + data.title + '</h3><p>' + data.text + '</p>';
+    }
+    stageButtons.forEach(button => button.addEventListener('click', () => selectStage(button.dataset.stage)));
+    selectStage('inputs');
+
+    document.querySelectorAll('[data-mode]').forEach(button => {
+      button.addEventListener('click', () => {
+        const mode = button.dataset.mode;
+        document.body.className = 'mode-' + mode;
+        document.querySelectorAll('[data-mode]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      });
+    });
+
+    const search = document.getElementById('search');
+    const searchable = [...document.querySelectorAll('[data-search]')];
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+      searchable.forEach(section => {
+        section.hidden = Boolean(query) && !(section.dataset.search + ' ' + section.textContent).toLowerCase().includes(query);
+      });
+    });
+
+    const glossarySearch = document.getElementById('glossary-search');
+    const terms = [...document.querySelectorAll('.term')];
+    const noResults = document.getElementById('no-results');
+    glossarySearch.addEventListener('input', () => {
+      const query = glossarySearch.value.trim().toLowerCase();
+      let shown = 0;
+      terms.forEach(term => {
+        const visible = term.textContent.toLowerCase().includes(query);
+        term.classList.toggle('hidden', !visible);
+        if (visible) shown += 1;
+      });
+      noResults.classList.toggle('visible', shown === 0);
+    });
+  </script>
+</body>
+</html>

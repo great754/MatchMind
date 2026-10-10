@@ -22,7 +22,7 @@ The existing video renderer is separate. These analytics are exported for inspec
 | `src/analytics/possession.py` | Frame-by-frame proximity, movement and persistence rules |
 | `src/analytics/passes.py` | Controlled player → independent ball → controlled receiver transitions |
 | `src/analytics/quality.py` | Defender geometry and transparent difficulty components |
-| `src/analytics/shots.py` | Trajectory candidates and separate BAS shot speed windows |
+| `src/analytics/shots.py` | Trajectory candidates and separate BAS estimated 2D ball-speed windows |
 | `src/analytics/validation.py` | One-to-one event matching and explicit misses |
 | `src/analytics/pipeline.py` | Connect the stages and export metrics and provenance |
 | `src/analytics/report.py` | Plots, playback review, and clickable event tables |
@@ -88,9 +88,9 @@ The frame state is `controlled`, `candidate`, `free`, `contested`, `unknown`, or
 
 ## 3. Transfers and passes
 
-The pass state machine remembers the last controlled player, waits for an independent ball interval, and looks for a persistent controlled receiver. At least three independent frames, three meters of displacement, and a peak speed of three m/s are required by default.
+The transfer state machine remembers the last controlled player, waits for an independent ball interval, and looks for a persistent controlled receiver. At least three independent frames, three meters of displacement, and a peak speed of three m/s are required by default.
 
-A same-team reception becomes `completed`; an opposite-team reception becomes `intercepted`. A ball leaving the pitch becomes `out_of_play`, and a timeout, missing segment or recording boundary can produce `unresolved`. A player recovering their own ball is not a pass. A direct ownership flip without independent travel is not a pass either. A missing interval terminates the attempt; the detector never invents a completed pass across that gap.
+A same-team reception becomes `completed`; an opposite-team reception becomes `intercepted`. A ball leaving the pitch becomes `out_of_play`, and a timeout, missing segment or recording boundary can produce `unresolved`. A player recovering their own ball is not a transfer to another player. A direct ownership flip without independent travel is not an observable transfer either. A missing interval terminates the attempt; the detector never invents a completed pass across that gap.
 
 `passes.csv` contains sender, actual receiver, team, local start/end frames and times, coordinates, straight distance, measured path distance, duration, independent-frame count, and mean/median/peak ball speeds. The mean is calculated over observed motion intervals. Missing receivers remain blank.
 
@@ -188,3 +188,7 @@ python -m src.analytics.pipeline --config my_analytics_config.json --output outp
 Larger smoothing windows reduce noise but blur quick movements. Larger control radii improve coverage but risk false owners; more persistence reduces flicker but misses brief touches. Review both detections and misses after changing them, and keep separate matches for tuning and evaluation.
 
 `summary.json` records the full effective configuration, input paths and SHA-256 fingerprints, frame offset, coverage, counts and caveats. Outputs are deterministic for the same inputs/configuration. Regenerate reports after code or threshold changes rather than mixing files from different runs.
+
+## Measurement validity audit
+
+See [the reproducible projection and terminology audit](validity_audit.md). `transfers.csv` is the preferred transfer export; compatibility filenames/fields and their meanings are recorded in `measurement_definitions.json`. `inverse_geometric_difficulty_0_1` is an inverse geometric score, not a calibrated probability.

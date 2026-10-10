@@ -42,7 +42,7 @@ python -m unittest discover -s tests -v
 
 The alignment tool streams the large GSR JSON files into compact arrays rather than loading the entire files into memory. Annotation source and clock convention: [SoccerTrack v2](https://huggingface.co/datasets/atomscott/soccertrack-v2) (CC BY 4.0).
 
-### Motion, possession, pass difficulty and shots
+### Motion, possession, transfer difficulty and shots
 
 ```bash
 python -m src.analytics.pipeline
@@ -80,3 +80,76 @@ python -m unittest discover -s tests -v
 ```
 
 The tactical tests cover changing GSR array slots, actor-ID/frame-offset joins, missing samples/files, raw JSON fallback, conflicting labels, keeper colors, and outfield clustering that excludes keeper kits.
+
+### AI Match Intelligence
+
+The existing analytics command now also exports `events.json`, `rolling_context.json`, and `commentary.json`. Commentary defaults to `none`, so normal runs and tests make no external calls. The report retains its video, pitch, plots, tables and validation sections, and adds a synchronized commentary timeline, three local style switches, and optional speed/distance callouts.
+
+Try the local preview first (explicitly labeled as deterministic, not AI):
+
+```bash
+.venv/bin/python -m src.analytics.pipeline --summary-only \
+  --commentary-provider template --max-commentary-events 8 \
+  --output outputs/analytics_118575_intelligence_demo
+open outputs/analytics_118575_intelligence_demo/report.html
+```
+
+For Gemini, copy `.env.example` to `.env` and set `GEMINI_API_KEY` there, or set that environment variable in your shell. `.env` is ignored by Git. Environment values take precedence over `.env`. A missing key fails before analytics runs; credentials never enter prompts, exports or report HTML. No new dependencies are needed: the REST adapter uses the existing `requests`, `python-dotenv` and `pydantic` dependencies.
+
+```bash
+.venv/bin/python -m src.analytics.pipeline --summary-only \
+  --commentary-provider gemini --max-commentary-events 4 --max-provider-calls 12 \
+  --commentary-start 0 --commentary-end 120
+```
+
+Each selected moment can cost three calls, one per mode. `--max-provider-calls` caps actual attempted calls, including failures; cache hits do not count. `--gemini-model` changes the default `gemini-3.5-flash-lite` model. `--significance-threshold` filters events before selection. `--intelligence-config path.json` overrides speed/distance thresholds, persistence, cooldowns and other `IntelligenceConfig` fields; explicit CLI options override that file. For example:
+
+```json
+{
+  "player_speed_kmh": 25,
+  "ball_speed_kmh": 80,
+  "distance_milestone_m": 100,
+  "threshold_persistence_frames": 3,
+  "commentary_cooldown_seconds": 8,
+  "significance_threshold": 40
+}
+```
+
+Gemini chooses and orders supported sentences; it cannot inject arbitrary prose into the report. A strict response validator rejects unknown sentence IDs or extra fields. This intentionally favors factual grounding over unrestricted narration. Cached, validated selections live in `<output>/commentary_cache/`; delete that folder to regenerate. Provider/model, prompt version, event facts, window context and mode all affect the cache hash.
+
+```bash
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+Read [the intelligence implementation and testing guide](docs/intelligence.md) for event semantics, context queries, provider extension and verification. Gemini is optional; the automated tests mock hosted calls. The generated HTML uses the source clip when available; half-scope reports have a tactical scrubber but no clip video. Existing uncertainty remains: interpolated 2D ball data, missing height, tracker identities, team/goalkeeper assignment, calibration, alignment, and heuristic ownership/transfer/shot detection.
+
+### Measurement validity audit
+
+```bash
+.venv/bin/python -m src.vision.projection_evaluation --output outputs/validity_audit/projection
+```
+
+This reproduces the unchanged projection baseline and exports pair-level errors, time aggregates, region/landmark/triangle diagnostics, offset/orientation experiments, four actual-data plots, and before/after metrics. See [the audit findings](docs/validity_audit.md). GSR remains primary; no calibration improvement is claimed. Prefer `transfers.csv` for observable transfers, and see `measurement_definitions.json` for compatibility field semantics and 2D estimated ball-speed definitions.
+
+### Tactical State Engine
+
+```bash
+.venv/bin/python -m src.analytics.pipeline --summary-only \
+  --commentary-provider template --output outputs/analytics_118575_tactics
+open outputs/analytics_118575_tactics/report.html
+```
+
+The deterministic 5 Hz layer adds goalkeeper-excluded team shape, persistent defensive bands, local and sustained closing-pressure evidence, players relative to the ball, conservative formation estimates, observable-transfer networks and strictly earlier tactical evidence for important events. Unknown states remain explicit. The report adds synchronized shape review, centroids, pressure/formation details, a transfer network at the current video time and clickable tactical events. Existing Gemini grounding and caching also accept these closed tactical facts.
+
+Use `--tactics-config configs/tactics.default.json` for explicit thresholds, or `--no-tactics` to omit the layer. New outputs include `tactical_states.csv`, `tactical_events.json`, `transfer_network.json`, `tactical_summary.json`, plots and `pre_event_evidence.json`. Read [the tactical implementation guide](docs/tactics.md) for every formula, threshold, unit, quality gate, test and limitation. This remains offline tracking evidence: upstream centered smoothing and interpolated 2D ball positions do not support causal claims about intent, pressing traps or why a turnover occurred.
+
+## Evaluation and Ask MatchMind
+
+Run frozen-config evaluation over both available halves and open the measured results:
+
+```bash
+.venv/bin/python -m src.evaluation --manifest configs/evaluation.118575.json --output outputs/evaluation
+open outputs/evaluation/evaluation_report.html
+```
+
+Analytics now accepts `--match-id`, `--scope`, `--half`, `--data-root`, and `--output`. Reports include offline Ask MatchMind, grounded event explanations and timestamp links. See [evaluation](docs/evaluation.md) for required files, download/run commands, threshold sensitivity and interpretation, and [Ask MatchMind](docs/ask_matchmind.md) for queries, closed tool schemas, grounding and future provider integration. Only one match is installed; two halves do not establish cross-match generalization. Shot consistency results are poor and reported openly; no accuracy improvement is claimed.

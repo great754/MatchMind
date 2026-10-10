@@ -1,3 +1,4 @@
+import argparse
 import json
 from pathlib import Path
 from collections import Counter, defaultdict
@@ -19,17 +20,25 @@ def read_annotations(path):
 
 
 def main():
-    p=DatasetPaths();mot=load_mot(p.mot)
+    parser=argparse.ArgumentParser(description='Build compact GSR files and infer MOT clip alignment.')
+    parser.add_argument('--match-id',default='118575')
+    parser.add_argument('--data-root',type=Path,default=Path('data/soccertrack'))
+    args=parser.parse_args()
+    p=DatasetPaths(args.match_id,args.data_root);mot=load_mot(p.mot)
+    clip_count=int(mot.frame.max())+1
+    checks=sorted(set(range(0,clip_count,max(1,clip_count//20)))|{clip_count-1})
     target=mot[mot.frame==0][['foot_x','foot_y']].to_numpy()
     results=[]
-    for half,name,count in ((1,'1st',71850),(2,'2nd',73425)):
-        cache=Path(f'data/soccertrack/gsr/118575/{name}_compact.npz')
+    for half,name in ((1,'1st'),(2,'2nd')):
+        with np.load(p.ball(half)) as ball:
+            count=len(ball['frame'])
+        cache=p.gsr_compact(half)
         if cache.exists():
             z=np.load(cache);coords=z['coords'];pitch=z['pitch'];ids=z['ids'];sides=z['sides']
         else:
             coords=np.full((count,40,2),np.nan,dtype=np.float32);pitch=coords.copy()
             ids=np.zeros((count,40),dtype=np.int32);sides=np.full((count,40),-1,dtype=np.int8)
-            for a in read_annotations(p.root/'gsr'/'118575'/f'118575_{name}.json'):
+            for a in read_annotations(p.root/'gsr'/p.match_id/f'{p.match_id}_{name}.json'):
                 if a.get('category_id') not in (1,2):continue
                 n=int(a['image_id'])%1000000-1;t=int(a['track_id'])-1
                 if t>=40:raise ValueError(t)
@@ -47,21 +56,20 @@ def main():
         print('half',half,'candidates',[(int(n),float(score[n])) for n in candidates[:10]],flush=True)
         for n in candidates:
             errors=[]
-            for off in (0,250,1000,3000,5999):
+            for off in tuple(sorted(set((0,clip_count//24,clip_count//6,clip_count//2,clip_count-1)))):
                 if n+off>=count:break
                 dst=mot[mot.frame==off][['foot_x','foot_y']].to_numpy()
                 valid=np.isfinite(coords[n+off]).all(axis=1)
                 c=coords[n+off,valid];d=np.linalg.norm(c[:,None]-dst[None],axis=-1)
                 r,s=linear_sum_assignment(d);errors.append(float(d[r,s].mean()))
-            if len(errors)==5:results.append((float(np.mean(errors)),half,int(n),errors))
+            if len(errors)>=2:results.append((float(np.mean(errors)),half,int(n),errors))
     best_error, best_half, coarse_offset, _ = min(results)
     name = '1st' if best_half == 1 else '2nd'
     z = np.load(p.root/'gsr'/p.match_id/f'{name}_compact.npz')
     coords = z['coords']
-    checks = list(range(0, 6000, 300)) + [5999]
     refined = []
     for offset in range(max(0, coarse_offset-50), coarse_offset+51):
-        if offset+5999 >= len(coords):
+        if offset+clip_count-1 >= len(coords):
             continue
         errors = []
         for off in checks:

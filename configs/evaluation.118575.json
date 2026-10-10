@@ -1,0 +1,8 @@
+{
+  "recordings": [
+    {"match_id": "118575", "scope": "half", "half": 1, "split": "evaluation"},
+    {"match_id": "118575", "scope": "half", "half": 2, "split": "evaluation"}
+  ],
+  "analytics_config": {},
+  "tactics_config": {}
+}
