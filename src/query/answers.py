@@ -70,7 +70,7 @@ def explain_event(tools,event_id,mode='fan',include_sequence=False):
 def intent(question):
     """Conservative finite intent router, shared with offline report catalogue."""
     q=question.lower().strip()
-    if re.search(r'\b(tired|fatigue|coach|intent|score|jersey|name|win|predict|weather)\b',q):return 'unsupported'
+    if re.search(r'\b(tired|fatigue|coach|intent|score|jersey|name|win|predict|weather|cause|caused|causality)\b',q):return 'unsupported'
     if re.search(r'\b(fastest|quickest)\b',q):return 'fastest'
     if re.search(r'\b(hardest|difficult|difficulty)\b',q):return 'difficult'
     if 'possession' in q:return 'possession'

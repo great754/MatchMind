@@ -1,0 +1,8 @@
+{
+  "name": "acceleration_1",
+  "description": "Require estimated change in velocity; centered smoothing/interpolation limit interpretation.",
+  "analytics_overrides": {},
+  "shot_options": {
+    "min_acceleration_mps2": 1.0
+  }
+}

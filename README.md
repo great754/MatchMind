@@ -37,7 +37,7 @@ To reproduce alignment after downloading both official GSR half files:
 
 ```bash
 python -m src.vision.align_clip
-python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 The alignment tool streams the large GSR JSON files into compact arrays rather than loading the entire files into memory. Annotation source and clock convention: [SoccerTrack v2](https://huggingface.co/datasets/atomscott/soccertrack-v2) (CC BY 4.0).
@@ -47,7 +47,7 @@ The alignment tool streams the large GSR JSON files into compact arrays rather t
 ```bash
 python -m src.analytics.pipeline
 open outputs/analytics_118575_clip/report.html
-python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 This exports per-player speeds and measured distance, ball speeds, per-frame ownership, completed/intercepted transfer candidates, transparent difficulty features, shot candidates and BAS comparison files. The offline report has a scrubber and clickable events to review against the source clip. Analytics use the synchronized GSR metric positions by default; `--player-source mot` enables the clip's existing image-to-pitch estimate instead.
@@ -76,7 +76,7 @@ Goalkeepers are identified from provider role metadata when available. In this c
 Alongside the video, `.comparison.json` records global/per-player errors, data coverage, sources, and goalkeeper assignments; `.comparison.csv` records per-frame disagreements; `.positions.csv` records the exact coordinates and source used for each marker. Add `--max-frames 250` for a preview; the comparison still covers the entire clip.
 
 ```bash
-python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 The tactical tests cover changing GSR array slots, actor-ID/frame-offset joins, missing samples/files, raw JSON fallback, conflicting labels, keeper colors, and outfield clustering that excludes keeper kits.
@@ -118,7 +118,7 @@ Each selected moment can cost three calls, one per mode. `--max-provider-calls` 
 Gemini chooses and orders supported sentences; it cannot inject arbitrary prose into the report. A strict response validator rejects unknown sentence IDs or extra fields. This intentionally favors factual grounding over unrestricted narration. Cached, validated selections live in `<output>/commentary_cache/`; delete that folder to regenerate. Provider/model, prompt version, event facts, window context and mode all affect the cache hash.
 
 ```bash
-.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 Read [the intelligence implementation and testing guide](docs/intelligence.md) for event semantics, context queries, provider extension and verification. Gemini is optional; the automated tests mock hosted calls. The generated HTML uses the source clip when available; half-scope reports have a tactical scrubber but no clip video. Existing uncertainty remains: interpolated 2D ball data, missing height, tracker identities, team/goalkeeper assignment, calibration, alignment, and heuristic ownership/transfer/shot detection.
@@ -153,3 +153,7 @@ open outputs/evaluation/evaluation_report.html
 ```
 
 Analytics now accepts `--match-id`, `--scope`, `--half`, `--data-root`, and `--output`. Reports include offline Ask MatchMind, grounded event explanations and timestamp links. See [evaluation](docs/evaluation.md) for required files, download/run commands, threshold sensitivity and interpretation, and [Ask MatchMind](docs/ask_matchmind.md) for queries, closed tool schemas, grounding and future provider integration. Only one match is installed; two halves do not establish cross-match generalization. Shot consistency results are poor and reported openly; no accuracy improvement is claimed.
+
+Evaluation diagnostics, controlled shot experiments, held-out preparation and the artifact API are documented in [the evaluation/Azure milestone](docs/milestone_evaluation_azure.md). Final verified suite: 216 discovered/passed, zero failed/skipped. Microsoft integration status and planned cloud roles: [Azure architecture](docs/azure_architecture.md).
+
+The Microsoft/product milestone now includes provider selection, structured evidence and follow-ups, artifact stores, Fabric CSV exports and verified local API/Docker smoke checks. Start with [the current demo guide](docs/microsoft_demo.md) and [Azure preparation](deploy/azure/README.md). Live Microsoft/Agent Framework, Azure deployment, Fabric upload and MCP execution remain unverified.

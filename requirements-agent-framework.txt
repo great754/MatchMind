@@ -1,0 +1,4 @@
+# Optional runtime; not installed or executed in the verified local environment.
+# Resolve/pin in a separate environment before deployment; upstream SDK evolves.
+agent-framework-foundry
+azure-identity>=1.19,<2

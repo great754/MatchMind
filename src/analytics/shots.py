@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 from src.analytics.motion import segments
+from src.analytics.shot_evidence import trace_shot_frames
 
 SHOT_COLUMNS = ['shot_id','start_frame','end_frame','start_seconds','end_seconds',
                 'shooter_id','team','goal_x_m','start_x_m','start_y_m',
@@ -28,42 +29,12 @@ def speed_window(ball_motion, start, end, config):
                 window_requested_frames=requested_frames, window_truncated=end < requested_end)
 
 
-def detect_shots(possession, ball_motion, config):
-    n = len(ball_motion.positions)
-    flags = np.zeros(n, dtype=bool)
-    targets = np.full(n, np.nan)
-    projected_y = np.full(n, np.nan)
-    contexts = []
-    last_actor = None
-    last_team = None
-    last_frame = -100000
-    for r in possession.itertuples(index=False):
-        i = int(r.frame)
-        if r.state in ('unknown','out_of_play'):
-            last_actor = last_team = None
-        if not pd.isna(r.possessing_player_id):
-            last_actor, last_team, last_frame = int(r.possessing_player_id), r.possessing_team, i
-        actor = last_actor if i-last_frame <= config.fps else None
-        team = last_team if actor is not None else None
-        contexts.append((actor,team))
-        p = ball_motion.positions[i]
-        v = ball_motion.velocity[i]
-        speed = ball_motion.smoothed_speed_mps[i]
-        if r.state not in ('free','candidate','contested') or not np.isfinite([*p,*v,speed]).all() or speed < config.shot_min_speed_mps:
-            continue
-        direction = 1 if v[0]>0 else -1
-        if team is not None and config.attack_direction(team) != direction:
-            continue
-        goal_x = 105.0 if direction == 1 else 0.0
-        dx = (goal_x-p[0])*direction
-        if not 0 < dx <= config.shot_max_goal_distance_m or abs(v[0])/speed < 0.6:
-            continue
-        t = (goal_x-p[0])/v[0]
-        goal_y = p[1]+t*v[1]
-        if 0 < t <= config.shot_max_time_to_goal_seconds and abs(goal_y-34) <= 3.66+config.shot_goal_margin_m:
-            flags[i] = True
-            targets[i] = goal_x
-            projected_y[i] = goal_y
+def detect_shots(possession, ball_motion, config, options=None):
+    evidence=trace_shot_frames(possession,ball_motion,config,options)
+    flags=np.array([e['eligible'] for e in evidence],dtype=bool)
+    targets=np.array([e['goal_x'] if e['eligible'] else np.nan for e in evidence])
+    projected_y=np.array([e['projected_goal_crossing_y'] if e['eligible'] else np.nan for e in evidence])
+    contexts=[(e['recent_possessing_player'],e['recent_possessing_team']) for e in evidence]
     rows = []
     last_end = -1
     for start,end in segments(flags):

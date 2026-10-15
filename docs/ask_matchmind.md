@@ -1,12 +1,12 @@
 # Ask MatchMind
 
-The report now includes an offline question panel, suggested questions, Beginner/Fan/Analyst presentation, and Explain buttons keyed by canonical event ID. Answers and timestamps come from deterministic tools, not language-model arithmetic. Timestamp buttons use the existing `seek()` function; referenced explanation buttons are outlined. No browser API credentials, server, or network requests are needed. This milestone implements local Q&A, not a new live Gemini chat service. Existing Gemini commentary remains isolated and unchanged.
+The report includes suggestions, Beginner/Fan/Analyst modes, evidence disclosure, Explain cards, contextual follow-ups, timestamp seeking and actor highlighting. Offline HTML uses embedded deterministic answers without network calls. Service-served reports connect to the same-origin Ask API with local, Microsoft, Gemini or optional Agent Framework presentation. Hosted answers preserve canonical facts and select only supported statements; outages retain deterministic fallback. No model/API credentials enter the browser. Current verification and setup are in [Microsoft demo](microsoft_demo.md).
 
 ```bash
 .venv/bin/python -m src.analytics.pipeline --summary-only --commentary-provider template --output outputs/analytics_118575_tactics
 open outputs/analytics_118575_tactics/report.html
 .venv/bin/python -m src.query --recording outputs/analytics_118575_tactics --question 'Who was the fastest player?' --mode analyst
-.venv/bin/python -m unittest discover -s tests
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 Try “Which team had more possession?”, “Show the most difficult completed transfer”, “When was Team 1 under the most pressure?”, “Which player connected with the most teammates?”, “How did Team 1 shape change in possession?”, “When did Team 2 use a high block?”, “What formation was detected?”, and “Explain this event.” A time such as `2:14` selects a nearby relevant event within two seconds; an unavailable turnover/shot returns unknown. Without an explicit time, event explanation selects the nearest eligible event to the scrubber. Unsupported questions such as fatigue, intentions, coaching instructions, names or scores return “MatchMind cannot determine that from the available tracking data.” The router is a conservative finite set of intents, not general natural-language understanding. Use left/right or Team 1/2; color aliases are declined because mappings differ by recording.

@@ -1,17 +1,21 @@
 # MatchMind Current Pipeline Status
 
-Status date: 2026-10-10
+Status date: 2026-10-14
+
+Current repository revision: `89cd0fe` (`main`, pushed to `origin/main`). The current worktree contains a larger uncommitted milestone on top of that commit. It includes updates to the README, analytics/report/evaluation/tactics/intelligence/query tests and configuration, plus new service/deployment files, provider adapters, diagnostics, shot experiments, Azure architecture documentation, and the pipeline explorer/status documents. The local `.env`, datasets, caches, and generated outputs remain ignored.
 
 This document describes the current MatchMind repository as implemented now. It covers the input data, synchronization, coordinate systems, tactical video renderer, deterministic analytics, new tactical-state engine, intelligence/commentary layer, projection-validity audit, generated outputs, verification numbers, and limitations.
 
 ## Executive Summary
 
-MatchMind is an offline soccer-analysis system built around SoccerTrack match `118575`. It has four connected but distinct responsibilities:
+MatchMind combines an offline soccer-analysis engine and an artifact-only online serving system built around SoccerTrack match `118575`. It has five connected responsibilities:
 
 1. **Tactical video rendering**: combine panoramic match footage with a synchronized top-down pitch.
 2. **Deterministic match analytics**: calculate motion, possession, observable transfers, transfer difficulty, and shot candidates.
 3. **Tactical state analysis**: sample team geometry and pressure at 5 Hz, then publish conservative block, shape, formation, and transfer-network evidence.
 4. **Grounded intelligence and review**: serialize closed events, build rolling context, optionally select approved commentary sentences, and expose the results through an offline HTML report.
+
+5. **Online Ask and serving**: load validated precomputed bundles, expose grounded API answers and follow-ups, and serve the existing report with optional Microsoft/Gemini presentation and local fallback.
 
 The implementation prefers evidence over invention:
 
@@ -28,20 +32,15 @@ The implementation prefers evidence over invention:
 
 ### Tests
 
-The current command is:
+The canonical command is:
 
 ```bash
-.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
-Current result:
+Verified 2026-10-14: **216 discovered, 216 passed, 0 failed, 0 skipped**. This milestone began with 176 passing tests and added 40 tests. Shared fixtures live in `tests/helpers.py`; evaluation/query modules import correctly in package and discovery contexts. The earlier 117-test claim is stale and superseded by this measured run.
 
-```text
-Ran 117 tests
-OK
-```
-
-The suite covers the original analytics and vision behavior plus the new projection-evaluation and tactical-engine branches.
+See [the current Microsoft demo milestone](microsoft_demo.md) for complete metrics, diagnostic/experiment artifacts, held-out availability, API commands and actual versus planned Microsoft integration. The original baseline remains unchanged. Both halves of 118575 are now correctly labeled development; held-out metrics remain unavailable.
 
 ### Current clip facts
 
@@ -681,6 +680,107 @@ Gemini is optional. It does not calculate possession, transfers, shots, formatio
 
 The default provider is `none`. The local `template` provider is deterministic and makes no network calls.
 
+## Reproducible Evaluation Layer
+
+The new [`src/evaluation`](../src/evaluation) package evaluates multiple recordings or halves from a manifest. It is separate from detector implementation and does not fit thresholds.
+
+Run it with:
+
+```bash
+.venv/bin/python -m src.evaluation \
+  --manifest configs/evaluation.118575.json \
+  --output outputs/evaluation
+open outputs/evaluation/evaluation_report.html
+```
+
+The manifest supports:
+
+- Match ID.
+- `clip` or `half` scope.
+- Half number.
+- `development` or `evaluation` split.
+- Shared analytics configuration.
+- Shared tactics configuration.
+
+The evaluator rejects duplicate recordings and overlapping time intervals so the same events cannot be counted twice. Development recordings remain visible in the report but are excluded from aggregate evaluation metrics. Both downloaded halves of match `118575` are additional recordings of one development match, not held-out matches, so no cross-match generalization claim is possible.
+
+It measures:
+
+- Transfer matching with sender agreement.
+- Shot matching.
+- Transfer timing errors.
+- Possession coverage and episode diagnostics.
+- Goal references.
+- Tactical threshold sensitivity.
+- Per-recording and aggregate provenance.
+
+The transfer evaluation currently reports:
+
+| Scope | Candidates | BAS references | Matched | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Half 1 | 432 | 556 | 344 | 79.6% | 61.9% | 69.6% |
+| Half 2 | 435 | 538 | 362 | 83.2% | 67.3% | 74.4% |
+| Development aggregate | 867 | 1,094 | 706 | 81.4% | 64.5% | 72.0% |
+
+The shot evaluation currently reports:
+
+| Scope | Candidates | BAS references | Matched | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Half 1 | 25 | 10 | 3 | 12.0% | 30.0% | 17.1% |
+| Half 2 | 21 | 11 | 2 | 9.5% | 18.2% | 12.5% |
+| Development aggregate | 46 | 21 | 5 | 10.9% | 23.8% | 14.9% |
+
+Aggregate transfer timing error is approximately `0.1037 s` mean, `0.08 s` median, and `0.40 s` P95. These are BAS consistency checks, not independent accuracy, because ball reconstruction uses BAS anchors.
+
+Sensitivity variants change pressure and formation outputs, which exposes threshold dependence. No variant is promoted to the default because it looks better. The second-half formation estimate remains unknown under the current fixed-roster requirement because substitutions create more than ten actor identities across the recording.
+
+## Ask MatchMind Query Layer
+
+The current worktree adds a local grounded Q&A layer under [`src/query`](../src/query). Its deterministic core reads structured exports without raw tracking, SQL or network access. The optional provider orchestration around that core can call Microsoft or Gemini for bounded tool/statement selection; it does not perform unrestricted natural-language arithmetic.
+
+Example:
+
+```bash
+.venv/bin/python -m src.query \
+  --recording outputs/analytics_118575_tactics \
+  --question "Who was the fastest player?" \
+  --mode analyst
+```
+
+The report-side integration in [`src/analytics/report.py`](../src/analytics/report.py) adds:
+
+- An Ask MatchMind question panel.
+- Suggested grounded questions.
+- Beginner, Fan, and Analyst presentation modes.
+- Explain buttons keyed to canonical event IDs.
+- Timestamp seeking through the existing report controls.
+- Source and fact provenance.
+
+Supported tool categories include:
+
+- Match, player, and possession summaries.
+- Filtered canonical events.
+- Transfer lookup and difficulty ranking.
+- Tactical state at or before a timestamp.
+- Strictly pre-event evidence.
+- Pressure sequences.
+- Formation transitions.
+- Transfer networks.
+- Fastest players and peak timestamps.
+- Event validation.
+
+Every query argument is validated against a closed schema. Facts carry stable IDs, record IDs, source files, field names, event IDs, and timestamps where available. Unsupported questions about fatigue, coaching instructions, player intent, names, scores, or unsupported causality return an explicit unknown answer.
+
+Explain answers keep three kinds of evidence separate:
+
+1. What the canonical event says happened.
+2. What was observed strictly before the original event release/start.
+3. What retrospective geometry or validation says afterward.
+
+No query answer claims that pressure caused a turnover or that a player intended a pass or shot. Gemini commentary remains available; Gemini query presentation now shares the canonical fact and closed-statement boundary with Microsoft and local answers.
+
+The new Q&A tests cover closed dispatch, known answers, unknown questions, modes sharing facts, fact-field traceability, safe HTML text, Explain IDs, and timestamp seeking. These tests are included in the canonical 216-test suite; shared fixtures no longer import another test module.
+
 ## Outputs
 
 Standard analytics outputs include:
@@ -708,6 +808,19 @@ Intelligence outputs include:
 - `rolling_context.json`
 - `commentary.json`
 - `commentary_cache/`
+
+Evaluation outputs include:
+
+- `evaluation_summary.json`
+- `evaluation_report.html`
+- `per_match/<match>_<scope>_h<half>/evaluation.json`
+- Per-recording analytics and sensitivity artifacts.
+
+Query/report outputs include:
+
+- `ask_matchmind.json`
+- Fact records embedded in the generated report.
+- Explain-button event references and timestamp links.
 
 Tactical outputs include:
 
@@ -751,7 +864,13 @@ It supports:
 - Trailing or whole-recording transfer network.
 - Commentary modes.
 - Speed and distance callouts.
+- Ask MatchMind questions.
+- Beginner, Fan, and Analyst answer modes.
+- Explain buttons linked to canonical event IDs.
+- Fact/source provenance for grounded answers.
 - Links to detailed CSV/JSON artifacts.
+
+The evaluation report is a separate standalone page with aggregate metrics, per-recording measurements, split policy, sensitivity results, possession diagnostics, and documented failure modes.
 
 The tactical report's network graph uses completed observable transfers and a trailing 60-second window by default. It does not continuously redraw players' current positions; node positions are mean observed transfer endpoints.
 
@@ -871,3 +990,117 @@ The strongest current design choices are:
 - Projection auditing without unsupported calibration claims.
 
 The main remaining uncertainty is upstream data quality and interpretation: synchronization, calibration, GSR quantization, event-anchored ball reconstruction, tracker identities, and the gap between geometric evidence and soccer intent.
+
+## Current Evaluation and Serving Milestone
+
+The current uncommitted milestone adds several layers on top of the committed offline pipeline:
+
+### Diagnostics and experiments
+
+- `src/analytics/shot_evidence.py` exposes per-frame shot-gate evidence and direction provenance.
+- `src/evaluation/shot_diagnostics.py` explains matched shots, false positives, and false negatives without changing detection.
+- `src/evaluation/transfer_diagnostics.py` audits all transfer false positives and false negatives without changing transfer rules.
+- `src/evaluation/shot_experiments.py` runs ten one-factor shot ablations plus a baseline reproduction.
+- `src/evaluation/diagnostics.py` validates source hashes and exported inputs before creating diagnostic artifacts.
+- Shot production remains the original baseline: `5 TP`, `41 FP`, `16 FN`, precision `10.8696%`, recall `23.8095%`, F1 `14.9254%`.
+- The best-looking development ablation is not promoted. The project explicitly refuses to tune production thresholds against dependent BAS references from this single match.
+
+### Generalization policy
+
+- Both downloaded halves of match `118575` are development recordings.
+- The evaluation aggregate reserved for held-out recordings is currently empty.
+- `configs/evaluation.heldout.example.json` is preparation only; no held-out match is installed.
+- Cross-match accuracy and generalization are therefore unknown.
+- Future evaluation must freeze detector configurations before inspecting held-out results.
+
+### Current provider, artifact and service architecture
+
+Offline: video/data → synchronized GSR-first analytics → tactics → canonical evidence → precomputed artifacts. Online: Local/Azure Blob ArtifactStore → deterministic tools → local/Microsoft/Gemini/optional Agent Framework → structured answers → report/API. Providers select tools/statements; deterministic Python remains authoritative.
+
+`src/providers/agent.py` emits an Answer plus an evidence list (fact_id, event_id, timestamp, source, field, value, category), safe provider/fallback status, selected tools, provider latency and small structured conversation references. Categories distinguish observed identity/metadata, inferred measurements, BAS support where present, heuristic labels and unknown values. BAS support is not independent validation. All providers receive the same canonical facts for a question; unrelated tool plans, invented fields/numbers and invalid selections fall back. Unsupported questions bypass providers.
+
+`src/providers/conversation.py` supports event explanation, “why?”, “take me there”, and player follow-ups. References are recording-scoped and must resolve in the current artifacts; a caller-supplied ID/time is not new evidence. The report includes provider selection, suggestions, modes, source disclosure, limits, event cards, timestamp seeking and actor highlighting. Local HTML is network-free. Service-served HTML uses a same-origin API; offline facts/commentary remain available during outages. No model credentials enter HTML.
+
+`src/artifacts/store.py` defines ArtifactStore, LocalArtifactStore and AzureBlobArtifactStore. Local bundles are validated at startup. Blob snapshots use allowlisted filenames, per-file hashes, startup download/cache and the same schema validation. Missing/corrupt startup artifacts fail readiness rather than becoming fabricated measurements. Bundle export excludes raw data/video, secrets and caches. IDs include scope/half; clip/half overlap must not be aggregated twice.
+
+### Service routes and observability
+
+| Route | Behavior |
+|---|---|
+| GET /health | Liveness; precomputed serving status |
+| GET /ready | Readiness; empty registry returns 503 |
+| GET /matches/{recording_id}/summary | Grounded summary facts |
+| GET /matches/{recording_id}/events | Event facts, optional team/type filters |
+| GET /matches/{recording_id}/players/{actor_id} | Actor namespace summary; unknown actor stays unknown |
+| POST /matches/{recording_id}/ask | Closed request: question, mode, timestamp, optional event/provider/conversation |
+| GET /matches/{recording_id}/events/{event_id}/explain | Grounded event evidence; absent event returns 404 |
+| GET /matches/{recording_id}/report | Existing report with public same-origin API configuration |
+| GET /matches/{recording_id}/{asset} | Allowlisted PNG; optional configured clip video.mp4 |
+
+Startup loads all registered artifacts once. Requests never rerun analytics. Correlation IDs and structured logs record route template, status, request/provider latency, provider/query/tool selection, fallback and unknown counts. Questions, prompts, headers and secrets are excluded. Uvicorn uses --no-access-log to avoid a second raw-URL log. POST limit: 16 KiB; question limit: 2,000 characters. Optional Bearer auth protects match routes. Hosted browser gateway/login, distributed rate limiting and cloud media hosting remain unfinished.
+
+### Explicit verification status — 2026-10-14
+
+| Component | Status | Actual verification |
+|---|---|---|
+| Local API and demo | IMPLEMENTED AND VERIFIED | Actual loopback HTTP requests and eight-turn artifact demo |
+| Docker service | IMPLEMENTED AND VERIFIED | Image built and ran; real container HTTP smoke passed |
+| Microsoft REST provider | IMPLEMENTED BUT MOCK-VERIFIED ONLY | Request/schema/timeout/fallback tests; no configured resource |
+| Agent Framework runtime adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY | Real SDK invocation code exists; fake-SDK unit test; SDK not installed and real agent did not run |
+| Gemini query adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY for hosted calls this milestone | Fact parity/fallback tests; existing commentary remains supported |
+| Local ArtifactStore and bundle packaging | IMPLEMENTED AND VERIFIED | Real bundles and corrupt/missing/traversal tests |
+| Azure Blob adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY | SDK client injection, hash/cache/error tests; no upload/download against Azure |
+| Container Apps Bicep/script | PREPARED BUT NOT DEPLOYED | Static checks only; no Azure CLI/subscription configured |
+| Fabric CSV analytical export | IMPLEMENTED AND VERIFIED locally | Six typed/keyed tables with deterministic row counts and hashes |
+| Fabric Delta import | PREPARED BUT NOT DEPLOYED | Notebook importer exists; Fabric received no data |
+| Azure MCP | PREPARED boundary; real integration NOT IMPLEMENTED | Read-only operator policy; no MCP server ran |
+
+No live Microsoft request succeeded. No Azure deployment occurred. No real Agent Framework execution, Fabric upload or MCP execution is claimed. Official Microsoft docs were checked for current resource OpenAI-v1 structured outputs and the project-backed Agent/FoundryChatClient distinction; setup references are in deploy/azure/README.md.
+
+Docker local measurement: image matchmind-service **94,649,434 bytes**, UID **10001**, port **8000/tcp**, readiness about **4.99 seconds**. Three artifact directories were mounted read-only. The optional local clip-media route was verified with an actual HTTP byte-range request; configure MATCHMIND_MEDIA_ROOT for API video playback. The image copies only online code and service dependencies; no raw dataset, outputs, caches, .env or vision packages. Azure Blob dependencies require WITH_AZURE=true; the default verified image is local. Cloud size/startup and load behavior are unmeasured.
+
+### Configuration and exact commands
+
+| Variable | Meaning/default |
+|---|---|
+| MATCHMIND_PROVIDER | local (default), gemini, microsoft, microsoft-framework |
+| MATCHMIND_REGISTRY | configs/serving/local.json; trusted recording aliases to local bundles |
+| MATCHMIND_ARTIFACT_STORE | local (default) or azure |
+| MATCHMIND_API_TOKEN | Optional server-side match-route Bearer auth; never included in report |
+| MATCHMIND_MEDIA_ROOT | Optional trusted directory for clip MP4 files; unset by default |
+| AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_DEPLOYMENT / AZURE_OPENAI_API_KEY | Optional resource REST endpoint, model deployment and server secret |
+| FOUNDRY_PROJECT_ENDPOINT / FOUNDRY_MODEL | Optional project-backed framework runtime; also requires SDK/Entra login |
+| GEMINI_API_KEY | Existing optional server-side Gemini key |
+| MATCHMIND_BLOB_ACCOUNT_URL / MATCHMIND_BLOB_CONTAINER / MATCHMIND_RECORDINGS | Blob account/container and JSON recording-ID list |
+| MATCHMIND_CACHE | /tmp/matchmind-artifacts, startup Blob snapshot cache |
+
+```bash
+.venv/bin/python -m unittest discover -s tests -t . -v
+.venv/bin/python -m uvicorn src.serving.app:from_environment --factory --host 127.0.0.1 --port 8000 --no-access-log
+# Browser: http://127.0.0.1:8000/matches/118575_clip/report
+.venv/bin/python scripts/verify_service.py
+.venv/bin/python -m scripts.demo_matchmind
+.venv/bin/python -m src.query --recording outputs/analytics_118575_tactics --question 'Who was the fastest player?' --mode analyst
+
+docker build -f Dockerfile.service -t matchmind-service .
+docker run --rm -p 127.0.0.1:8000:8000 -v "$PWD/outputs:/app/outputs:ro" matchmind-service
+.venv/bin/python scripts/verify_container.py
+
+# Microsoft: configure AZURE_OPENAI_ENDPOINT/DEPLOYMENT/API_KEY in server environment first.
+MATCHMIND_PROVIDER=microsoft .venv/bin/python -m uvicorn src.serving.app:from_environment --factory --host 127.0.0.1 --port 8000 --no-access-log
+.venv/bin/python -m scripts.demo_matchmind --provider microsoft
+
+.venv/bin/python -m scripts.refresh_report_ui
+.venv/bin/python -m src.artifacts
+.venv/bin/python -m src.fabric
+```
+
+### Analytical dataset, tests and remaining work
+
+Fabric-ready CSV counts: Match **3**, Player **73**, Event **11,707**, Transfer **905**, TacticalState **60,510**, Evaluation **4**. schema.json defines types, primary keys, nullability and hashes. Match records retain source/configuration/limitations. Actor IDs and tracker IDs remain separate. Timestamps are recording-local seconds, never wall-clock timestamps. Evaluation rows remain development only. The importer verifies counts/keys and creates new Delta tables; it has not run against Fabric.
+
+The 40 new product tests cover store loading/corruption/path traversal/hash caching, deterministic Fabric schemas/identity/timing/counts, provider fact parity and outages, optional framework routing with a fake SDK, evidence propagation and rejected fabrication, recording-scoped follow-ups, readiness, body limits, sanitized logs and static deployment/container boundaries. Existing report tests execute offline and API browser-script paths in Node, including provider selection, contextual seeking and source-safe rendering.
+
+Frozen development results are unchanged: transfers 706 TP / 161 FP / 388 FN, precision 81.430219%, recall 64.533821%, F1 72.004080%; shots 5 TP / 41 FP / 16 FN, precision 10.869565%, recall 23.809524%, F1 14.925373%. This product milestone reads preserved baseline artifacts and does not tune/recompute detectors. No second match is installed; cross-match generalization remains unknown. GSR remains primary; fallback projection disagreement remains 11.6831065 m mean, 10.7398110 m median, 24.9560484 m P95.
+
+Remaining work: actual Foundry request, optional SDK version resolution/pinning and live framework run; real Blob/Key Vault/Container Apps deployment, browser ingress authentication, media hosting and load/rate-limit verification; Fabric upload/import; authorized MCP connection. Scientific limits remain BAS-dependent 2D ball reconstruction, absent height/verified identities, heuristic possession/tactics/difficulty, full-half formation roster limitations and no independent causal evidence. See docs/microsoft_demo.md and deploy/azure/README.md for implementation choices and setup. No planned cloud capability is counted as live integration.

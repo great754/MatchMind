@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Supply resource IDs/URLs from the operator's environment, never from source control.
+: "${MATCHMIND_RESOURCE_GROUP:?}" "${MATCHMIND_APP_NAME:?}" "${MATCHMIND_ENVIRONMENT_ID:?}" "${MATCHMIND_IMAGE:?}" "${MATCHMIND_IDENTITY_ID:?}" "${MATCHMIND_IDENTITY_PRINCIPAL_ID:?}" "${MATCHMIND_BLOB_ACCOUNT_URL:?}" "${MATCHMIND_REGISTRY_SERVER:?}" "${MATCHMIND_API_TOKEN_SECRET_URL:?}"
+az deployment group create --resource-group "$MATCHMIND_RESOURCE_GROUP" --template-file deploy/azure/container-app.bicep --parameters appName="$MATCHMIND_APP_NAME" environmentId="$MATCHMIND_ENVIRONMENT_ID" image="$MATCHMIND_IMAGE" identityResourceId="$MATCHMIND_IDENTITY_ID" identityPrincipalId="$MATCHMIND_IDENTITY_PRINCIPAL_ID" storageAccountUrl="$MATCHMIND_BLOB_ACCOUNT_URL" registryServer="$MATCHMIND_REGISTRY_SERVER" apiTokenSecretUrl="$MATCHMIND_API_TOKEN_SECRET_URL" provider="${MATCHMIND_PROVIDER:-local}" modelEndpoint="${AZURE_OPENAI_ENDPOINT:-}" modelDeployment="${AZURE_OPENAI_DEPLOYMENT:-}" keyVaultSecretUrl="${MATCHMIND_MODEL_KEY_SECRET_URL:-}"

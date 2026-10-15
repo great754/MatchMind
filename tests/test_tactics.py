@@ -21,38 +21,7 @@ from src.tactics.passing_network import transfer_network
 from src.tactics.evidence import pre_event_evidence
 
 
-def formation_points(counts,direction=1):
-    points=[]
-    for line,count in enumerate(counts):
-        points.extend([[20+line*20,float(y)] for y in np.linspace(10,58,count)] if count>1 else [[20+line*20,34.]])
-    points=np.array(points)
-    if direction==-1:points[:,0]=105-points[:,0]
-    return points
-
-
-def tactical_fixture(seconds=30):
-    n=round(seconds*25)
-    left=np.vstack(([5,34],formation_points((4,3,3))))
-    right=np.vstack(([100,34],formation_points((4,4,2),-1)))
-    positions=np.tile(np.vstack((left,right)),(n,1,1))
-    ids=np.arange(100,122)
-    recording=SimpleNamespace(positions=positions,ball=np.tile(left[1],(n,1)),fps=25.,player_ids=ids,
-        player_teams=['left']*11+['right']*11,mot_ids={int(actor):int(actor-99) for actor in ids},goalkeeper_ids={100,111},
-        source_files=[],source_offset=0,half=1,scope='clip',player_source='gsr',sync={'match_id':'synthetic','method':'synthetic'})
-    ownership=pd.DataFrame(dict(frame=np.arange(n),possessing_player_id=pd.array([101]*n,dtype='Int64'),possessing_team=['left']*n,
-        state=['controlled']*n,control_confidence=[.9]*n))
-    motion=[SimpleNamespace(smoothed_speed_mps=np.zeros(n)) for _ in ids]
-    ball_motion=SimpleNamespace(segment_id=np.zeros(n),positions=recording.ball)
-    result={'possession':ownership,'players':motion,'ball':ball_motion}
-    return recording,result
-
-
-def transfer(frame=100,distance=10,progression=5,difficulty=20,validated=False):
-    return make_event('synthetic',frame=frame,fps=25,type=T.PASS_COMPLETED,group_id=f'transfer:{frame}',source='transfer',significance=60,
-        team='left',player_id=2,actor_id=101,receiver_id=3,receiver_actor_id=102,
-        validation_state='bas_time_actor_match' if validated else 'estimated',validated_by_bas=validated,
-        metrics=EventMetrics(start_frame=frame-25,end_frame=frame,distance_m=distance,forward_progression_m=progression,
-            difficulty_score_0_100=difficulty,outcome='completed',start_x_m=20,start_y_m=20,end_x_m=30,end_y_m=30))
+from tests.helpers import formation_points,tactical_fixture,transfer
 
 class TacticalGeometryTests(unittest.TestCase):
     def test_centroid_width_depth_compactness_spread(self):

@@ -10,7 +10,7 @@ PASS_COLUMNS = ['pass_id','start_frame','end_frame','start_seconds','end_seconds
                 'observed_step_fraction','termination_reason']
 
 
-def detect_passes(possession, ball_motion, config):
+def detect_passes(possession, ball_motion, config, audit=None):
     rows = []
     last_owner = None
     last_team = None
@@ -23,10 +23,15 @@ def detect_passes(possession, ball_motion, config):
         start = pending['start']
         end = max(start, end_frame)
         independent = max(0, end-start-1)
+        def reject(reason,**evidence):
+            if audit is not None:audit.append(dict(start_frame=start,end_frame=end,sender_id=pending['sender'],sender_team=pending['team'],
+                receiver_id=receiver,independent_frames=independent,reason=reason,termination_reason=reason if reason in ('unknown','out_of_play','timeout') else 'gate_rejection',**evidence))
         if independent < config.pass_min_flight_frames:
+            reject('FLIGHT_TOO_SHORT')
             return
         points = ball_motion.positions[start:end+1]
         if len(points) < 2 or not np.isfinite(points[[0,-1]]).all():
+            reject('BALL_RECONSTRUCTION_GAP')
             return
         straight = float(np.linalg.norm(points[-1]-points[0]))
         speed = ball_motion.smoothed_speed_mps[start+1:end+1]
@@ -34,10 +39,13 @@ def detect_passes(possession, ball_motion, config):
         steps = ball_motion.step_distance_m[start+1:end+1]
         steps = steps[np.isfinite(steps)]
         if straight < config.pass_min_distance_m or not len(speed) or speed.max() < config.pass_min_speed_mps:
+            reject('DISTANCE_BELOW_THRESHOLD' if straight < config.pass_min_distance_m else 'SPEED_UNAVAILABLE' if not len(speed) else 'SPEED_BELOW_THRESHOLD',distance_m=straight,peak_speed_mps=float(speed.max()) if len(speed) else None)
             return
         if receiver == pending['sender']:
+            reject('SELF_RECOVERY')
             return  # A player recovering their own loose ball is not a pass.
         outcome = ('completed' if receiver_team == pending['team'] else 'intercepted') if receiver is not None else ('out_of_play' if reason == 'out_of_play' else 'unresolved')
+        if audit is not None:audit.append(dict(start_frame=start,end_frame=end,sender_id=pending['sender'],receiver_id=receiver,independent_frames=independent,reason='ACCEPTED',termination_reason=reason,distance_m=straight))
         rows.append(dict(pass_id=len(rows)+1, start_frame=start, end_frame=end,
                          start_seconds=start/config.fps, end_seconds=end/config.fps,
                          sender_id=pending['sender'], receiver_id=receiver,
@@ -64,6 +72,8 @@ def detect_passes(possession, ball_motion, config):
         controlled = not pd.isna(r.possessing_player_id)
         if controlled:
             pid = int(r.possessing_player_id)
+            if audit is not None and pending is None and last_owner is not None and last_owner!=pid:
+                audit.append(dict(start_frame=last_control,end_frame=frame,sender_id=last_owner,receiver_id=pid,independent_frames=0,reason='DIRECT_OWNERSHIP_FLIP'))
             if pending is not None:
                 contact = int(r.control_start_frame) if not pd.isna(r.control_start_frame) else frame
                 finish(max(pending['start']+1, contact), pid, r.possessing_team)

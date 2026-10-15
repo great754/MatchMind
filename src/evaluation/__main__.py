@@ -17,12 +17,16 @@ from .tactical_evaluation import sensitivity,implementation_signature
 
 def run(manifest,output,data_root=Path('data/soccertrack'),run_sensitivity=True,reuse_sensitivity=False):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
-    rows=[];keys=set();intervals={}
+    rows=[];keys=set();intervals={};match_splits={}
     # Reject collisions/overlaps before creating per-recording outputs or aggregate counts.
     recordings=[]
     for item in manifest['recordings']:
         if item.get('split','evaluation') not in ('development','evaluation'):raise ValueError('split must be development/evaluation')
         match=str(item['match_id']);scope=item.get('scope','clip');half=item.get('half')
+        split=item.get('split','evaluation')
+        if match in ({'118575'}|set(map(str,manifest.get('development_match_ids',[])))) and split!='development':raise ValueError('Known development match cannot be labeled held-out evaluation')
+        if match in match_splits and match_splits[match]!=split:raise ValueError('A match cannot appear in both development and evaluation splits')
+        match_splits[match]=split
         recording=load_recording(DatasetPaths(match,Path(data_root)),scope,'gsr',half)
         key=f'{match}_{scope}_h{recording.half}'
         if key in keys:raise ValueError(f'Duplicate recording: {key}')
@@ -53,10 +57,14 @@ def run(manifest,output,data_root=Path('data/soccertrack'),run_sensitivity=True,
     # Development data are visible but excluded from evaluation aggregates.
     evaluated=[r for r in rows if r['split']=='evaluation']
     payload=dict(schema_version='1.0',recordings=rows,aggregate={k:aggregate_events([r[k] for r in evaluated]) for k in ('transfers','shots')},
-        split_policy='Development recordings excluded from evaluation aggregates. Existing thresholds developed using 118575; held-out matches are unavailable.',
+        split_policy='Development recordings excluded from evaluation aggregates. Existing thresholds developed using 118575; evaluation-only metrics are reported separately; consult held_out_match_ids for availability.',
         independence='BAS checks are not independent: reconstructed ball trajectories use BAS anchors.',
         projection_audit=dict(match_id='118575',scope='clip',mean_disagreement_m=11.6831065,median_m=10.7398110,p95_m=24.9560484,rmse_m=14.1924825,finite_pairs=130782,coverage_percent=99.0772727,policy='GSR first; fallback disagreement unchanged; not surveyed ground-contact accuracy.'),
         missing_data='Only downloaded recordings are evaluated; no multi-match generalization claim.')
+    development=[r for r in rows if r['split']=='development']
+    payload['development_aggregate']={k:aggregate_events([r[k] for r in development]) for k in ('transfers','shots')}
+    payload['development_aggregate']['transfers']['by_bas_class']=aggregate_transfer_classes([r['transfers'] for r in development])
+    payload['held_out_match_ids']=sorted({str(r['match_id']) for r in evaluated})
     payload['aggregate']['transfers']['by_bas_class']=aggregate_transfer_classes([r['transfers'] for r in evaluated])
     (output/'evaluation_summary.json').write_text(json.dumps(payload,indent=2,allow_nan=False)+'\n')
     write_report(payload,output)
@@ -66,7 +74,8 @@ def run(manifest,output,data_root=Path('data/soccertrack'),run_sensitivity=True,
 def write_report(payload,output):
     page='<!doctype html><html lang="en"><meta charset="utf-8"><title>MatchMind evaluation</title><style>body{max-width:1100px;margin:30px auto;font:16px system-ui}pre{white-space:pre-wrap}td,th{padding:10px;border-bottom:1px solid #ddd}</style><h1>MatchMind evaluation</h1>'
     page+='<p>Observed: GSR player locations. Inferred: possession, transfers and trajectory shot candidates. Heuristic: difficulty, pressure, block and formation. BAS support checks release timing and sender, not intent or outcomes. Ball interpolation uses BAS anchors, so these checks are not independent validation.</p><p>The 118575 baseline projection disagreement remains 11.6831065 m; GSR-first coordinates are preserved. Geometry tests and threshold sensitivity establish implementation behavior, not tactical ground-truth accuracy. Multiple recordings of one match do not establish cross-match generalization.</p>'
-    page+='<h2>Aggregate</h2><pre>'+html.escape(json.dumps(payload['aggregate'],indent=2))+'</pre><p>'+html.escape(payload['split_policy'])+'</p>'
+    page+='<h2>Development performance</h2><pre>'+html.escape(json.dumps(payload.get('development_aggregate',{}),indent=2))+'</pre>'
+    page+='<h2>Held-out evaluation performance</h2><pre>'+html.escape(json.dumps(payload['aggregate'],indent=2))+'</pre><p>'+html.escape(payload['split_policy'])+'</p>'
     rows=payload['recordings']
     page+='<h2>Measured results</h2><table><tr><th>Recording</th><th>Detector</th><th>Candidates</th><th>BAS refs</th><th>TP / FP / FN</th><th>Precision</th><th>Recall</th><th>F1</th><th>Median timing error</th></tr>'
     number=lambda x: 'unavailable' if x is None else f'{x:.3f}'

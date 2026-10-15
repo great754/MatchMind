@@ -50,3 +50,22 @@ Compact conversion derives half length from ball arrays and match paths from arg
 Transfer checks use all observable transfer candidates and global one-to-one BAS pass-like matching with sender agreement. Class-level recall and matched/reference counts are identifiable. Class precision/FP/F1 are null because detector predictions do not carry PASS/HIGH PASS/CROSS/THROW IN labels; assigning all unmatched transfers to each class would fabricate class precision. Zero-reference recordings retain detections but no FP/precision/recall claim. Aggregate micro metrics use only reference-containing evaluation recordings and disclose exclusions. Possession has coverage/stability and pre-BAS sender agreement diagnostics, never ground-truth precision/recall. Candidate frames are counted separately. Ownership episode durations break at missing ownership; changes across such gaps are separately labeled. Warnings use explicit exported diagnostic thresholds.
 
 For later report regeneration, `--reuse-sensitivity` reuses a prior sweep only when source hashes, analytics configuration, tactical configuration and deterministic implementation fingerprint agree. Otherwise the sweep reruns. An unavailable reference class never receives invented class precision; class timing summaries and recall are reported both per recording and in aggregates.
+
+## Diagnostics and controlled shot experiments
+
+Run these after evaluation completes:
+
+```bash
+.venv/bin/python -m src.evaluation.diagnostics --output outputs/evaluation
+.venv/bin/python -m src.evaluation.shot_experiments --evaluation outputs/evaluation --configs configs/shots --output outputs/evaluation
+open outputs/evaluation/evaluation_report.html
+open outputs/evaluation/shot_experiments.html
+```
+
+Diagnostics load frozen predictions, validate source hashes, and reconstruct motion from exported CSVs (six-decimal export precision). All 5 shot matches, 41 unmatched candidates and 16 missed references are inspectable. FN attribution reports the best available gate evidence within the timing tolerance, plus the exact reference-frame gates and window counts; it is not a causal diagnosis. FP hypotheses describe nearby BAS context, never verified intent. Links use `?t=<seconds>#pitch` to seek the existing pitch/report; full-half video is unavailable locally. Run diagnostics last if regenerating the evaluation report, since normal evaluation writes the base report.
+
+The eleven JSON configurations in `configs/shots/` perform ten one-factor ablations and a baseline reproduction. Production still uses the original defaults. Velocity/acceleration/goal geometry do not distinguish intentional crosses, clearances and shots reliably from interpolated 2D motion. BAS action context is used only after prediction, never as a classifier feature. [Full results and commands](milestone_evaluation_azure.md).
+
+## Held-out preparation
+
+`configs/evaluation.118575.json` labels both halves development. Its `development_aggregate` contains their performance; `aggregate` is reserved for evaluation recordings and currently has null precision/recall/F1 and zero recordings. No held-out match is installed. `configs/evaluation.heldout.example.json` shows 118575 development and 118576 evaluation; it deliberately cannot run until the files listed above are supplied. A match cannot occupy both splits, known development matches cannot be relabeled evaluation, and overlapping intervals remain rejected. Do not change the frozen detector settings after inspecting the future held-out match.

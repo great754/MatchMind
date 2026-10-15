@@ -1,0 +1,8 @@
+{
+  "status": "PREPARED BOUNDARY; no MCP server connected or executed",
+  "audience": "Authorized deployment operator, never public Ask MatchMind users",
+  "allowed_read_operations": ["Container App revision and health metadata", "Blob bundle names, sizes and content hashes", "Sanitized request/fallback counts", "Deployment configuration with secret values removed"],
+  "forbidden_operations": ["Read API keys or secret values", "Modify resources or role assignments", "Upload/delete artifacts", "Run arbitrary code or queries", "Calculate soccer statistics"],
+  "authentication": "Operator Entra identity with separately scoped read-only Azure RBAC; not application model credentials",
+  "enforcement": "Policy specification only; RBAC and MCP host allowlist must be configured before connecting. This JSON does not enforce Azure permissions."
+}

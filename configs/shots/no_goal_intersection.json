@@ -1,0 +1,8 @@
+{
+  "name": "no_goal_intersection",
+  "description": "Ablation of goal-mouth intersection; not proposed for production.",
+  "analytics_overrides": {},
+  "shot_options": {
+    "require_goal_intersection": false
+  }
+}

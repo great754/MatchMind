@@ -63,7 +63,7 @@ To add another provider, implement `configuration` (public, non-secret model set
 
 ## Verify it
 
-Run `python -m unittest discover -s tests -v`. The intelligence tests cover event JSON/ordering, windows and missing-data denominators, pass sequences, labels, sustained/crossing speed events, cooldown, distance milestones, grouping, requests, unsupported fields, mocked Gemini transport/errors, missing credentials, cache stability and reuse, disabled generation and budgets. The report test executes its generated JavaScript in a Node VM with DOM/video stubs to test seeking, scrubbing, highlighting and mode switching. It omits JavaScript execution if Node is unavailable; Python export checks still run.
+Run `.venv/bin/python -m unittest discover -s tests -t . -v`. The intelligence tests cover event JSON/ordering, windows and missing-data denominators, pass sequences, labels, sustained/crossing speed events, cooldown, distance milestones, grouping, requests, unsupported fields, mocked Gemini transport/errors, missing credentials, cache stability and reuse, disabled generation and budgets. The report test executes its generated JavaScript in a Node VM with DOM/video stubs to test seeking, scrubbing, highlighting and mode switching. It omits JavaScript execution if Node is unavailable; Python export checks still run.
 
 For a visual check, generate the local template preview using the README command and open `report.html`. Switch modes, click a commentary entry, scrub the video, toggle callouts and labels, and check that old plots/tables still work. The four-minute clip has no BAS Shot annotations; use `--scope half --summary-only` to exercise BAS shot exports. Half scope has no synchronized source video in the existing report architecture.
 

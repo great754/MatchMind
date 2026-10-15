@@ -152,12 +152,12 @@
   <header class="shell hero">
     <div class="eyebrow">MatchMind / current repository explorer</div>
     <h1>How the match becomes a model you can inspect.</h1>
-    <p>Follow a SoccerTrack video, tracking files, pitch coordinates, and action annotations through synchronization, geometry, motion, possession, passes, shots, intelligence, and the final review report.</p>
+    <p>Follow a SoccerTrack video, tracking files, pitch coordinates, and action annotations through synchronization, geometry, motion, possession, passes, shots, intelligence, canonical evidence, grounded Ask tools, the artifact API and the Azure deployment boundary.</p>
     <div class="hero-meta">
       <span class="tag">match 118575</span>
       <span class="tag">25 FPS</span>
       <span class="tag">105 x 68 m pitch</span>
-      <span class="tag">offline first</span>
+      <span class="tag">offline analytics / online serving</span><span class="tag">216 tests passed · 2026-10-14</span>
       <span class="tag">GSR-first</span>
       <span class="tag">tactics at 5 Hz</span>
     </div>
@@ -170,7 +170,7 @@
     </div>
     <input class="search" id="search" type="search" placeholder="Search this guide, e.g. pass, homography, speed..." aria-label="Search this guide">
     <a class="toolbar-link" href="#map">Pipeline map</a>
-    <a class="toolbar-link" href="#glossary">Glossary</a>
+    <a class="toolbar-link" href="#online">Online + providers</a><a class="toolbar-link" href="#azure">Azure status</a><a class="toolbar-link" href="#glossary">Glossary</a>
   </div>
 
   <main class="shell">
@@ -229,10 +229,50 @@
             <span class="chart-arrow">-&gt;</span>
             <button class="chart-node" data-stage="audit"><strong>Validity audit</strong><span>projection evidence</span></button>
           </div>
+          <div class="chart-row">
+            <span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span><span class="chart-arrow">&nbsp;</span>
+            <button class="chart-node" data-stage="evaluation"><strong>Evaluation</strong><span>halves, metrics, sensitivity</span></button>
+            <span class="chart-arrow">-&gt;</span>
+            <button class="chart-node" data-stage="query"><strong>Ask MatchMind</strong><span>grounded tools + follow-ups</span></button>
+          </div>
+          <div class="chart-row"><button class="chart-node" data-stage="evidence"><strong>Canonical evidence</strong><span>facts, IDs, sources, uncertainty</span></button><span class="chart-arrow">-&gt;</span><button class="chart-node" data-stage="tools"><strong>Tool layer</strong><span>closed deterministic functions</span></button><span class="chart-arrow">-&gt;</span><button class="chart-node" data-stage="providers"><strong>Microsoft / Gemini / Local</strong><span>bounded presentation</span></button></div>
+          <div class="chart-row"><button class="chart-node" data-stage="ask"><strong>Ask the match</strong><span>answer, why, seek, player</span></button><span class="chart-arrow">-&gt;</span><button class="chart-node" data-stage="api"><strong>FastAPI</strong><span>precomputed artifact serving</span></button><span class="chart-arrow">-&gt;</span><button class="chart-node" data-stage="cloud"><strong>Azure boundary</strong><span>prepared · not deployed</span></button></div>
         </div>
         <p class="chart-caption">The renderer and analytics share synchronized inputs but are separate products. Click any node to inspect its local contract.</p>
       </div>
       <div class="stage-inspector" id="stage-inspector" aria-live="polite"></div>
+    </section>
+
+
+    <section class="section" id="online" data-search="Microsoft Azure provider live mock deployment FastAPI Agent Framework Fabric MCP Docker tests">
+      <div class="section-heading"><div><div class="eyebrow">Current product boundary / 2026-10-14</div><h2>Ask the match, trace the evidence.</h2></div><p>216 tests pass. The local API and Docker container were exercised with actual HTTP requests. Cloud preparation is labeled separately from live verification.</p></div>
+      <div class="grid-2">
+        <article class="panel"><h3>Offline processing</h3><p>Video + MOT/GSR + ball + BAS → deterministic analytics → tactical intelligence → canonical events and source hashes → frozen bundles.</p><p class="fifth">The expensive work happens before you ask a question.</p><p class="technical">GSR-first metric coordinates, existing ownership/transfer/shot gates and tactical rules are preserved. No model is responsible for the measurements.</p></article>
+        <article class="panel"><h3>Online serving</h3><p>Validated Local/Blob ArtifactStore → MatchMind tools → local / Microsoft / Gemini → grounded answer + evidence → report/API.</p><p class="fifth">The answer points back to a measurement and a moment in the match.</p><p class="technical">Bundles load at startup. Requests never run vision/analytics. Follow-ups carry only recording/event/player/time references, validated against current data.</p></article>
+      </div>
+      <div class="grid-3" style="margin-top:18px">
+        <article class="choice"><span class="status">IMPLEMENTED AND VERIFIED</span><h3>Local service + Docker</h3><p>Actual health, readiness, summary, event, player, ask, explain and report requests passed. Docker: 94,649,434 bytes, UID 10001, port 8000, ~4.99 s local readiness.</p></article>
+        <article class="choice"><span class="status caveat">MOCK-VERIFIED ONLY</span><h3>Microsoft + framework</h3><p>Resource OpenAI-v1 REST and optional Agent/FoundryChatClient adapters exist. No live Microsoft request succeeded. The real framework SDK is absent and did not run.</p></article>
+        <article class="choice"><span class="status caveat">PREPARED, NOT DEPLOYED</span><h3>Azure + Fabric + MCP</h3><p>Container Apps Bicep/scripts, Blob adapter and Fabric import instructions exist. No Azure deployment or Fabric upload occurred. MCP has an operator policy only; no server ran.</p></article>
+      </div>
+      <details><summary>Inspect the grounded tool flow</summary><div><p><strong>Question:</strong> “Who was the fastest player?” → agent chooses <code>get_fastest_players(limit=1)</code> → existing dispatcher validates arguments → artifact facts return → closed statement selector → answer with fact IDs, sources and timestamp.</p><p>Provider changes preserve the same canonical facts. Unrelated tools, invalid arguments, invented numbers or provider outages trigger deterministic fallback. SDK prose is discarded. “Why?” resolves a verified prior event; “Take me there” seeks its timestamp. Unknown/stale references stay unknown. Actor IDs never become jersey numbers.</p></div></details>
+    </section>
+    <section class="section" data-search="observed inferred validated heuristic unknown categories evidence limitations">
+      <div class="section-heading"><div><div class="eyebrow">Read the evidence correctly</div><h2>What kind of claim is this?</h2></div></div>
+      <div class="grid-3"><article class="choice"><h3>Observed</h3><p>Source identities, recording metadata and supplied locations. Not proof that every source annotation is physically correct.</p></article><article class="choice"><h3>Inferred</h3><p>Motion, ownership and observable transfers derived from tracking and interpolated ball data.</p></article><article class="choice"><h3>Validated support</h3><p>BAS timing/sender agreement where available. Dependent consistency evidence, never independent accuracy.</p></article><article class="choice"><h3>Heuristic</h3><p>Difficulty, pressure, block and formation estimates. Not calibrated completion probability, coaching intent or causality.</p></article><article class="choice"><h3>Unknown</h3><p>Missing/unmapped evidence, player names/jerseys, coaching instructions, fatigue, authoritative score and causal explanations.</p></article></div>
+    </section>
+    <section class="section" id="azure" data-search="Azure architecture Foundry framework Fabric MCP storage environment configuration service deployment readiness">
+      <div class="section-heading"><div><div class="eyebrow">Cloud architecture / honest boundaries</div><h2>One engine, optional services.</h2></div><p>Container Apps is the prepared hosting target. AKS has no demonstrated requirement for this small artifact API.</p></div>
+      <div class="grid-2"><article class="panel"><h3>Provider and storage controls</h3><p><code>MATCHMIND_PROVIDER=local|gemini|microsoft|microsoft-framework</code>. Microsoft resource settings: <code>AZURE_OPENAI_ENDPOINT</code>, <code>AZURE_OPENAI_DEPLOYMENT</code>, <code>AZURE_OPENAI_API_KEY</code>. Optional framework: <code>FOUNDRY_PROJECT_ENDPOINT</code>, <code>FOUNDRY_MODEL</code> and SDK/Entra authentication.</p><p><code>MATCHMIND_ARTIFACT_STORE</code> selects local or Azure Blob. Local uses <code>MATCHMIND_REGISTRY</code>. Blob uses account URL, container, recording list and startup cache; downloads are allowlisted/hash-verified. API keys stay server-side.</p></article><article class="panel"><h3>Real roles, separate responsibilities</h3><p><strong>Foundry:</strong> bounded tool/statement selection. <strong>Agent Framework:</strong> optional orchestration. <strong>Fabric:</strong> analytical tables and future multi-match dashboards. <strong>Azure MCP:</strong> authorized operator resource/health metadata only; no public football tools, secrets or mutation.</p><p>Container Apps configuration: HTTPS ingress, 8000, 0.5 CPU/1 GiB, 1–2 replicas, startup/readiness <code>/ready</code>, liveness <code>/health</code>, Key Vault secret references. Bicep is statically checked, not deployed or Azure-validated. Hosted browser authentication/media/rate limits remain work.</p></article></div>
+      <details><summary>Fabric export and scientific status</summary><div><p>Verified local CSV rows: Match 3; Player 73; Event 11,707; Transfer 905; TacticalState 60,510; Evaluation 4. Stable types, keys, hashes, recording-local timestamps and separate actor/tracker namespaces are exported. No data reached Fabric. Clip and half recordings overlap: do not aggregate them twice.</p><table><tr><th>Development detector</th><th>TP / FP / FN</th><th>Precision</th><th>Recall</th><th>F1</th></tr><tr><td>Observable transfers</td><td>706 / 161 / 388</td><td>81.4302%</td><td>64.5338%</td><td>72.0041%</td></tr><tr><td>Shot baseline, frozen</td><td>5 / 41 / 16</td><td>10.8696%</td><td>23.8095%</td><td>14.9254%</td></tr></table><p>Both halves of 118575 are development data. No second match is installed; cross-match generalization remains unknown. BAS-anchored 2D ball paths prevent independent validation. GSR stays primary; fallback disagreement is unchanged: mean 11.6831 m, median 10.7398 m, P95 24.9560 m. No shot ablation was promoted.</p></div></details>
+      <details><summary>Run the verified local demo</summary><div><pre>.venv/bin/python -m unittest discover -s tests -t . -v
+.venv/bin/python -m uvicorn src.serving.app:from_environment --factory --host 127.0.0.1 --port 8000 --no-access-log
+# Open http://127.0.0.1:8000/matches/118575_clip/report
+.venv/bin/python scripts/verify_service.py
+.venv/bin/python -m scripts.demo_matchmind
+docker build -f Dockerfile.service -t matchmind-service .
+docker run --rm -p 127.0.0.1:8000:8000 -v "$PWD/outputs:/app/outputs:ro" matchmind-service
+.venv/bin/python scripts/verify_container.py</pre><p>The eight-turn demo includes fastest actor (171.28 s), player follow-up, difficult transfer (78.4 s), why/seek, Team 1 pressure (21.0 s), formation estimates and an explicit unknown for coaching instructions. Set optional <code>MATCHMIND_MEDIA_ROOT</code> to serve the local clip separately. Full-half media and cloud media hosting remain unavailable.</p><p><a href="microsoft_demo.md">Implementation/testing guide</a> · <a href="../deploy/azure/README.md">Exact Azure/Fabric/MCP setup</a> · <a href="current_pipeline_status.md">Current full status</a></p></div></details>
     </section>
 
     <section class="section" data-search="two explanations fifth grader technical overview">
@@ -367,8 +407,30 @@ assignment = argmin(one_to_one_total_cost)</pre></div><p class="small">The saved
       <p>The audit does not subtract the mean error, refit calibration, change the offset, or replace actor mappings. Such changes would optimize in-sample agreement without independent ground contacts. GSR remains primary for all renderer positions; the projection is a fallback and comparison source.</p>
     </section>
 
-    <section class="section" id="outputs" data-search="outputs CSV JSON report HTML files artifacts provenance tactics audit network measurement definitions">
-      <div class="section-heading"><div><div class="eyebrow">15 / What comes out</div><h2>Outputs you can inspect</h2></div><p>Every major inference has a corresponding table, sidecar, plot, or report section.</p></div>
+    <section class="section" id="evaluation" data-search="evaluation manifest halves recordings precision recall timing sensitivity development evaluation split aggregate metrics">
+      <div class="section-heading"><div><div class="eyebrow">15 / Measure without tuning</div><h2>How does evaluation work?</h2></div><p>The new evaluation runner measures several recordings with frozen thresholds and keeps development evidence separate from aggregate evaluation results.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>Instead of looking at one match and guessing whether the program is good, the evaluator checks many recordings, counts correct and missed guesses, and keeps track of which examples were used for development.</p><p>It refuses to count the same piece of a match twice.</p></div><div class="technical"><h3>Technical view</h3><p><code>src/evaluation</code> consumes a manifest containing match ID, scope, half, and split. It rejects duplicate recordings and overlapping intervals, evaluates each recording independently, then aggregates only eligible evaluation-split recordings.</p></div><ol class="steps"><li>Resolve the selected recording and source files.</li><li>Reject duplicate or overlapping time intervals.</li><li>Run analytics with the frozen effective configs.</li><li>Calculate transfer, shot, possession, and tactical diagnostics.</li><li>Run optional one-at-a-time sensitivity variants.</li><li>Write per-recording and aggregate reports.</li></ol></article>
+        <article class="panel"><h3>Current measured numbers</h3><table><tr><th>Detector</th><th>Precision</th><th>Recall</th><th>F1</th></tr><tr><td>Aggregate transfers</td><td>81.4%</td><td>64.5%</td><td>72.0%</td></tr><tr><td>Aggregate shots</td><td>10.9%</td><td>23.8%</td><td>14.9%</td></tr></table><p>Transfer timing error is approximately 0.1037 seconds mean, 0.08 seconds median, and 0.40 seconds at P95.</p><p class="small">These are BAS consistency checks, not independent accuracy: the reconstructed ball path uses BAS anchors. The two downloaded halves are not held-out matches.</p></article>
+      </div>
+      <details><summary>Why are some precision values unavailable?</summary><div><p>Transfer predictions do not carry BAS class labels such as PASS, HIGH PASS, CROSS, or THROW IN. The evaluator reports class recall and matched/reference counts, but refuses to invent class precision by assigning every unmatched transfer to every class. Recordings with zero references retain detections but do not receive fabricated precision or recall.</p></div></details>
+      <details><summary>What is sensitivity analysis?</summary><div><p>The evaluator runs one-at-a-time variants for pressure radius, pressure persistence, block boundaries, formation RMSE, and formation persistence. The variants describe threshold dependence. None is selected because it produces a nicer score.</p></div></details>
+      <details><summary>What is supported for another match?</summary><div><p>The resolver expects synchronized MOT metadata, BAS actions, both ball files, compact GSR halves, and calibration/video files where clip rendering or fallback projection is needed. Missing data is rejected or marked unavailable rather than fabricated.</p></div></details>
+    </section>
+
+    <section class="section" id="query" data-search="Ask MatchMind query question answer local Q&A Explain fact provenance Beginner Fan Analyst tools">
+      <div class="section-heading"><div><div class="eyebrow">16 / Ask the report</div><h2>What is Ask MatchMind?</h2></div><p>The report now has a local, grounded question panel. It answers from exported facts instead of asking Gemini to calculate new numbers.</p></div>
+      <div class="grid-2">
+        <article class="panel"><div class="fifth"><h3>Fifth-grade view</h3><p>You can ask the report questions like “Who was fastest?” or “Which team had more possession?” It looks through the notes the program already made and points back to the exact note and time.</p><p>If the data cannot answer something, it says so.</p></div><div class="technical"><h3>Technical view</h3><p><code>src/query</code> exposes an explicit provider-neutral tool registry. Tools read summaries, events, transfers, tactical states, networks, and pre-event evidence. Closed schemas reject unknown arguments, non-finite values, unexpected fields, and unsupported tools.</p></div><div class="grid-3" style="margin-top:18px"><div class="choice"><h3>Beginner</h3><p>Plain explanations with the same supporting facts.</p></div><div class="choice"><h3>Fan</h3><p>Football language without adding unsupported intent.</p></div><div class="choice"><h3>Analyst</h3><p>Fact IDs, fields, timestamps, sources, and limitations.</p></div></div></article>
+        <article class="panel"><h3>Questions it can answer</h3><ul><li>Which team had more possession?</li><li>Who was the fastest player?</li><li>Show the most difficult completed transfer.</li><li>When was a team under the most pressure?</li><li>Which player connected with the most teammates?</li><li>How did team shape change in possession?</li><li>When did a team use a high block?</li><li>What formation was detected?</li><li>Explain this event.</li></ul><p>Questions about fatigue, coaching instructions, player intention, names, scores, or unsupported causality return an explicit unknown response.</p></article>
+      </div>
+      <div class="formula"><code>question -> finite intent -> validated tool -> closed facts -> formatted answer</code><small>Ask MatchMind is local deterministic Q&amp;A, not a new live Gemini chat service. Gemini commentary remains a separate optional sentence-selection path.</small></div>
+      <details><summary>How do Explain buttons work?</summary><div><p>Explain combines the canonical event, transfer geometry or validation state, strictly earlier tactical evidence, source fields, timestamps, and limitations. It separates earlier observations from later confirmation and realized-endpoint geometry. It never says pressure caused an action or that a player intended a pass or shot.</p></div></details>
+      <details><summary>How is provenance preserved?</summary><div><p>Facts carry stable IDs, record IDs, exact field names, source files, event IDs, and timestamps where available. The browser uses safe text insertion and no browser API credentials.</p></div></details>
+    </section>
+
+    <section class="section" id="outputs" data-search="outputs CSV JSON report HTML files artifacts provenance tactics audit network measurement definitions evaluation query facts">
+      <div class="section-heading"><div><div class="eyebrow">17 / What comes out</div><h2>Outputs you can inspect</h2></div><p>Every major inference has a corresponding table, sidecar, plot, evaluation report, or grounded fact source.</p></div>
       <div class="table-wrap panel"><table><thead><tr><th>Output</th><th>What it contains</th><th>Why it exists</th></tr></thead><tbody>
         <tr><td><code>player_summary.csv</code></td><td>Distance, speed, observation, validity, possession seconds.</td><td>Player-level overview.</td></tr>
         <tr><td><code>player_frames.csv</code></td><td>Raw and smoothed coordinates, velocity, speed, flags, distance.</td><td>Frame-level audit trail.</td></tr>
@@ -388,6 +450,10 @@ assignment = argmin(one_to_one_total_cost)</pre></div><p class="small">The saved
         <tr><td><code>pre_event_evidence.json</code></td><td>Strictly earlier tactical samples linked to original transfer/shot/ownership times.</td><td>Separate prior observed context from later confirmation and realized-target geometry.</td></tr>
         <tr><td><code>tactical_shape.png</code> / <code>tactical_pressure.png</code></td><td>Observed shape and pressure series with unavailable gaps.</td><td>Visual audit of tactical evidence.</td></tr>
         <tr><td><code>projection_evaluation.json</code></td><td>Projection error distributions, region bins, shift/orientation tests, and source hashes.</td><td>Diagnose the unchanged MOT fallback.</td></tr>
+        <tr><td><code>evaluation_summary.json</code></td><td>Per-recording results, aggregate event metrics, possession diagnostics, sensitivity, split policy, and provenance.</td><td>Measure frozen detectors without double-counting overlapping recordings.</td></tr>
+        <tr><td><code>evaluation_report.html</code></td><td>Standalone evaluation overview with aggregate and per-recording expandable results.</td><td>Review metrics and failure modes across recordings.</td></tr>
+        <tr><td><code>ask_matchmind.json</code></td><td>Report-side grounded facts and formatted local answers.</td><td>Support Explain buttons and question provenance.</td></tr>
+        <tr><td><code>evaluation.json</code></td><td>Per-recording transfer, shot, possession, goal, and tactical evaluation data.</td><td>Keep detailed measurements separate from aggregate claims.</td></tr>
         <tr><td><code>report.html</code></td><td>Offline video/pitch review page with plots and tables.</td><td>Human inspection and playback.</td></tr>
       </tbody></table></div>
     </section>
@@ -405,7 +471,7 @@ assignment = argmin(one_to_one_total_cost)</pre></div><p class="small">The saved
     </section>
 
     <section class="section" data-search="commands run reproduce test verify CLI">
-      <div class="section-heading"><div><div class="eyebrow">16 / Try it yourself</div><h2>Useful commands</h2></div></div>
+      <div class="section-heading"><div><div class="eyebrow">18 / Try it yourself</div><h2>Useful commands</h2></div></div>
       <div class="grid-2">
         <article class="panel"><h3>Run the full test suite</h3><pre>.venv/bin/python -m unittest discover -s tests -v</pre><p>The current agent-added test set covers the original analytics/vision behavior plus tactics and projection-audit cases. Check the command output for the current count.</p><h3>Render a preview</h3><pre>python -m src.vision.visualize_pitch \
   --max-frames 250 \
@@ -422,12 +488,17 @@ open outputs/analytics_118575_clip/report.html</pre><h3>Use the local determinis
   --commentary-provider template \
   --tactics-config configs/tactics.default.json \
   --output outputs/analytics_118575_tactics</pre><p>Use <code>--no-tactics</code> to omit tactical calculations. The default tactical sample rate is 5 Hz and must divide the source FPS.</p><h3>Run the projection audit</h3><pre>.venv/bin/python -m src.vision.projection_evaluation \
-  --output outputs/validity_audit/projection</pre></article>
+  --output outputs/validity_audit/projection</pre><h3>Evaluate disjoint recordings</h3><pre>.venv/bin/python -m src.evaluation \
+  --manifest configs/evaluation.118575.json \
+  --output outputs/evaluation</pre><p>Development recordings are visible but excluded from evaluation aggregates. Overlapping recordings are rejected.</p><h3>Ask the grounded report tools</h3><pre>.venv/bin/python -m src.query \
+  --recording outputs/analytics_118575_tactics \
+  --question "Who was the fastest player?" \
+  --mode analyst</pre></article>
       </div>
     </section>
 
-    <section class="section" id="glossary" data-search="glossary terms definitions MOT GSR BAS actor homography">
-      <div class="section-heading"><div><div class="eyebrow">17 / Keep these words straight</div><h2>Glossary</h2></div><p>Search the terms when the names start to blur together.</p></div>
+    <section class="section" id="glossary" data-search="glossary terms definitions MOT GSR BAS actor homography evaluation query">
+      <div class="section-heading"><div><div class="eyebrow">19 / Keep these words straight</div><h2>Glossary</h2></div><p>Search the terms when the names start to blur together.</p></div>
       <div class="panel">
         <div class="glossary-controls"><input class="filter" id="glossary-search" type="search" placeholder="Filter glossary..." aria-label="Filter glossary"></div>
         <dl id="terms">
@@ -451,14 +522,18 @@ open outputs/analytics_118575_clip/report.html</pre><h3>Use the local determinis
           <div class="term"><dt>Transfer network</dt><dd>A directed aggregation of completed observable transfers. It is not an official passing network or proof of tactical causation.</dd></div>
           <div class="term"><dt>Pre-event evidence</dt><dd>The latest tactical sample strictly before an original release or start frame, kept separate from later confirmation and realized-target geometry.</dd></div>
           <div class="term"><dt>Validity audit</dt><dd>A reproducible measurement of the unchanged MOT projection against GSR across regions, offsets, orientations, and paired samples.</dd></div>
+          <div class="term"><dt>Evaluation manifest</dt><dd>A configuration listing recordings, halves, scopes, and development/evaluation splits for reproducible aggregate measurement.</dd></div>
+          <div class="term"><dt>Development split</dt><dd>A visible recording used for development context but excluded from evaluation aggregates.</dd></div>
+          <div class="term"><dt>Fact provenance</dt><dd>The source file, field, record, event ID, and timestamp supporting a grounded query statement.</dd></div>
+          <div class="term"><dt>Closed tool registry</dt><dd>An explicit allowlist of query tools and validated argument schemas; unsupported tools and fields are rejected.</dd></div>
         </dl>
         <div class="no-results" id="no-results">No glossary term matches that search.</div>
       </div>
     </section>
 
     <section class="section" data-search="limitations uncertainty what not know caveats">
-      <div class="section-heading"><div><div class="eyebrow">18 / Honest boundaries</div><h2>What should you be careful about?</h2></div></div>
-      <div class="panel"><ul><li>Ball positions are event-interpolated and have no height.</li><li>Ball speed is a 2D estimate, not measured strike speed.</li><li>MOT IDs are not verified jersey numbers.</li><li>Synchronization and calibration can introduce errors.</li><li>Possession is inferred from proximity, motion, and persistence.</li><li>Transfers can be interceptions, tackles, clearances, or loose balls.</li><li>Difficulty uses a realized endpoint and is not completion probability.</li><li>Shot candidates can be false positives or false negatives.</li><li>Goalkeeper fallback assignment is geometric and can be ambiguous.</li><li>Tactical shape and formation are geometric estimates, not verified tactics or lineups.</li><li>Pressure is observed proximity plus closing evidence, not proof of pressing intent or causation.</li><li>Validity-audit disagreement is relative to GSR, not independently surveyed absolute error.</li><li>Centered smoothing uses later frames and is not causal.</li></ul></div>
+      <div class="section-heading"><div><div class="eyebrow">20 / Honest boundaries</div><h2>What should you be careful about?</h2></div></div>
+      <div class="panel"><ul><li>Ball positions are event-interpolated and have no height.</li><li>Ball speed is a 2D estimate, not measured strike speed.</li><li>MOT IDs are not verified jersey numbers.</li><li>Synchronization and calibration can introduce errors.</li><li>Possession is inferred from proximity, motion, and persistence.</li><li>Transfers can be interceptions, tackles, clearances, or loose balls.</li><li>Difficulty uses a realized endpoint and is not completion probability.</li><li>Shot candidates can be false positives or false negatives.</li><li>Goalkeeper fallback assignment is geometric and can be ambiguous.</li><li>Tactical shape and formation are geometric estimates, not verified tactics or lineups.</li><li>Pressure is observed proximity plus closing evidence, not proof of pressing intent or causation.</li><li>Validity-audit disagreement is relative to GSR, not independently surveyed absolute error.</li><li>Evaluation metrics are not independent validation and do not establish cross-match generalization.</li><li>Ask MatchMind answers only what its structured exports support; a grounded answer does not make the underlying estimate accurate.</li><li>Centered smoothing uses later frames and is not causal.</li></ul></div>
     </section>
   </main>
 
@@ -469,6 +544,12 @@ open outputs/analytics_118575_clip/report.html</pre><h3>Use the local determinis
 
   <script>
     const stageData = {
+      evidence: {title:'Canonical evidence',tag:'observed / inferred / validated / heuristic / unknown',text:'Closed events and scalar facts preserve source fields, event IDs, timestamps and limitations. BAS support remains dependent; no inferred identity becomes a jersey number.'},
+      tools: {title:'Deterministic tool layer',tag:'IMPLEMENTED AND VERIFIED',text:'Validated read-only tools operate on startup-loaded artifacts. Models do not compute authoritative statistics. Schemas reject unknown tools/arguments.'},
+      providers: {title:'Microsoft / Gemini / Local',tag:'hosted paths MOCK-VERIFIED ONLY',text:'Local is network-free. Optional models route tools and select supported statements. Facts remain canonical across providers; invalid or unavailable provider responses fall back.'},
+      ask: {title:'Ask the match',tag:'IMPLEMENTED AND VERIFIED locally',text:'Question suggestions, modes, evidence disclosure, limitations, event explanations, recording-scoped follow-ups, timestamp seeking and actor highlighting. API browser path is script-tested; live Microsoft remains unverified.'},
+      api: {title:'Artifact FastAPI service',tag:'real HTTP and Docker verified',text:'Loads Local/Blob snapshots at startup, never per-question analytics. Health/readiness, closed requests, safe errors, body bounds and structured correlation logs. Docker image runs as UID 10001.'},
+      cloud: {title:'Azure deployment boundary',tag:'PREPARED BUT NOT DEPLOYED',text:'Container Apps Bicep, optional hash-verified Blob store, Fabric analytical exports/importer and operator-only MCP policy. No Azure deployment, Fabric upload, real framework run or MCP execution occurred.'},
       inputs: { title: 'Inputs', tag: 'data contract', text: 'Video, MOT boxes, GSR annotations, ball arrays, BAS actions, and calibration landmarks describe the same match from different perspectives. They are not interchangeable until time, identity, and coordinate conventions are normalized.' },
       sync: { title: 'Synchronization', tag: 'timeline + identity', text: 'The alignment tool finds the GSR half and source offset that best match MOT foot positions, then uses one-to-one assignments and checkpoint votes to connect MOT tracks to GSR actors and team sides.' },
       coordinates: { title: 'Coordinates', tag: 'metric pitch space', text: 'GSR pitch positions are primary. Calibrated MOT positions use a Delaunay triangulation and barycentric interpolation. Missing or out-of-hull points are preserved as unavailable rather than extrapolated.' },
@@ -480,6 +561,8 @@ open outputs/analytics_118575_clip/report.html</pre><h3>Use the local determinis
       tactics: { title: 'Tactical state', tag: '5 Hz deterministic geometry', text: 'The new tactics branch samples raw metric positions every fifth 25 FPS frame. It estimates outfield shape, block bands, local pressure, ball-relative counts, conservative formations, and transfer-network patterns with persistence and explicit unknown states.' },
       intelligence: { title: 'Intelligence', tag: 'grounded language layer', text: 'Existing analytics become versioned canonical events and rolling contexts. Optional providers select from a deterministic sentence catalogue; they do not replace detector logic.' },
       audit: { title: 'Validity audit', tag: 'unchanged-method evidence', text: 'The projection evaluation measures MOT fallback disagreement against synchronized GSR across pitch regions, image regions, landmarks, triangles, offsets, orientations, and exact pairs. It does not fit a correction or claim independent accuracy.' },
+      evaluation: { title: 'Evaluation', tag: 'frozen multi-recording measurement', text: 'The evaluation runner consumes a manifest, rejects duplicate or overlapping recordings, keeps development data out of aggregate evaluation metrics, calculates event and possession diagnostics, and runs descriptive tactical sensitivity variants without selecting nicer thresholds.' },
+      query: { title: 'Ask MatchMind', tag: 'closed local Q&A', text: 'The query layer reads structured exports through an explicit tool allowlist, validates every argument and fact, and formats Beginner, Fan, or Analyst answers with source and event provenance. The deterministic tool core does not access raw tracking or networks. Optional Microsoft/Gemini adapters select tools and supported statements around that core; they never calculate authoritative football statistics.' },
       outputs: { title: 'Outputs', tag: 'audit artifacts', text: 'The pipeline writes CSV metrics, JSON provenance and events, PNG plots, a standalone interactive HTML report, and optional commentary cache files.' }
     };
 

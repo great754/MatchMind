@@ -1,0 +1,8 @@
+{
+  "name": "recent_required",
+  "description": "Require recent team evidence instead of choosing the attacked goal solely from velocity.",
+  "analytics_overrides": {},
+  "shot_options": {
+    "require_recent_possession": true
+  }
+}

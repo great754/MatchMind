@@ -140,7 +140,7 @@ BAS is also the source of anchors used to reconstruct the supplied ball path. Co
 Run known-answer synthetic tests and the existing annotation tests:
 
 ```bash
-python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 Tests cover constant five-m/s movement and exact distance; noise and isolated spikes; missing segments and teleport rejection; persistence, contested control and fast flybys; completed transfers, interceptions, self-recovery, timeouts and gap cancellation; defender geometry and score direction; goal-directed versus slow/wide/away trajectories; partial shot-window coverage; duplicate matching and missing reference data. Synthetic tests do not reuse the match's BAS labels as the expected detector outputs.

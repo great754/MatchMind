@@ -1,3 +1,5 @@
+> Historical baseline results. Current verified suite: 176 discovered/passed, zero failed/skipped. Both halves below are development recordings; see [current milestone](milestone_evaluation_azure.md) for diagnostics, experiments and unavailable held-out metrics.
+
 # Measured evaluation: 118575
 
 Both downloaded halves were evaluated with unchanged detector thresholds and a one-second matching tolerance. Transfer matching requires sender agreement. These are BAS consistency checks, not independent accuracy; ball reconstruction uses BAS anchors. Neither half is a held-out match.

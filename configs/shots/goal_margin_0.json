@@ -1,0 +1,8 @@
+{
+  "name": "goal_margin_0",
+  "description": "Restrict projection to the physical goal mouth; tests wider-margin false intersections.",
+  "analytics_overrides": {
+    "shot_goal_margin_m": 0.0
+  },
+  "shot_options": {}
+}

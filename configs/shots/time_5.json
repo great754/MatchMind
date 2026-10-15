@@ -1,0 +1,8 @@
+{
+  "name": "time_5",
+  "description": "Relax straight-line time-to-goal only.",
+  "analytics_overrides": {
+    "shot_max_time_to_goal_seconds": 5.0
+  },
+  "shot_options": {}
+}

@@ -10,7 +10,7 @@ from src.query import MatchMindTools,query_question,explain_event
 from src.query.answers import answer_result
 from src.query.schema import Fact,QueryResult,Selection
 from src.intelligence.schema import make_event,EventType,EventMetrics
-from test_tactics import tactical_fixture
+from tests.helpers import tactical_fixture
 from src.tactics.engine import analyze_tactics
 from src.analytics.config import AnalyticsConfig
 

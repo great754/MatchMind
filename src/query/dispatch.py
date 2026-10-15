@@ -25,7 +25,7 @@ REGISTRY={
  'get_match_summary':Empty,'get_player_summary':Player,'get_possession_summary':TeamArgs,
  'get_events':Events,'get_transfer':Event,'get_difficult_transfers':TeamLimit,
  'get_tactical_state':Time,'get_pre_event_evidence':Event,'get_pressure_sequences':TeamArgs,
- 'get_formation_timeline':RequiredTeam,'get_transfer_network':Network,'get_fastest_players':Limit,
+ 'get_pressure_peaks':TeamArgs,'get_formation_timeline':RequiredTeam,'get_transfer_network':Network,'get_fastest_players':Limit,
  'get_event_validation':Event,'get_event_sequence':EventWindow}
 
 

@@ -1,0 +1,3 @@
+# Optional artifact storage / Entra authentication. Keep separate from local serving.
+azure-identity>=1.19,<2
+azure-storage-blob>=12.24,<13

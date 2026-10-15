@@ -1,0 +1,6 @@
+{
+  "name": "baseline",
+  "description": "Original production thresholds and velocity fallback; retained for comparison.",
+  "analytics_overrides": {},
+  "shot_options": {}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "speed_6",
+  "description": "Lower minimum estimated 2D speed only; tests whether slow reconstructed trajectories miss shots.",
+  "analytics_overrides": {
+    "shot_min_speed_mps": 6.0
+  },
+  "shot_options": {}
+}

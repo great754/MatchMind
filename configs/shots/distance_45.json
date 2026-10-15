@@ -1,0 +1,8 @@
+{
+  "name": "distance_45",
+  "description": "Expand distance gate only; may also admit long transfers.",
+  "analytics_overrides": {
+    "shot_max_goal_distance_m": 45.0
+  },
+  "shot_options": {}
+}

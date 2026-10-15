@@ -14,7 +14,7 @@ VARIANTS={
 def implementation_signature():
     root=Path(__file__).resolve().parents[1]
     files=list((root/'tactics').glob('*.py'))
-    files += [root/'analytics'/f'{name}.py' for name in ('config','data','motion','passes','possession','quality','shots','validation')]
+    files += [root/'analytics'/f'{name}.py' for name in ('config','data','motion','passes','possession','quality','shots','shot_evidence','validation')]
     files += [root/'intelligence'/f'{name}.py' for name in ('events','labels','schema')]
     digest=hashlib.sha256()
     for path in sorted(files):

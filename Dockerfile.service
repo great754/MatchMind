@@ -1,0 +1,18 @@
+FROM python:3.14-slim
+WORKDIR /app
+COPY requirements-service.txt requirements-azure.txt ./
+ARG WITH_AZURE=false
+RUN pip install --no-cache-dir -r requirements-service.txt && if [ "$WITH_AZURE" = "true" ]; then pip install --no-cache-dir -r requirements-azure.txt; fi
+COPY src/__init__.py ./src/__init__.py
+COPY src/query ./src/query
+COPY src/providers ./src/providers
+COPY src/serving ./src/serving
+COPY src/artifacts ./src/artifacts
+COPY src/intelligence/__init__.py src/intelligence/schema.py ./src/intelligence/
+COPY src/intelligence/commentary ./src/intelligence/commentary
+COPY src/tactics/__init__.py src/tactics/schema.py src/tactics/passing_network.py ./src/tactics/
+COPY configs/serving ./configs/serving
+RUN useradd --uid 10001 --create-home matchmind
+USER 10001
+EXPOSE 8000
+CMD ["uvicorn", "src.serving.app:from_environment", "--factory", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]

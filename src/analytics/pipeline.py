@@ -183,7 +183,7 @@ def main():
     parser.add_argument('--output',type=Path)
     parser.add_argument('--config',type=Path,help='JSON file overriding AnalyticsConfig fields')
     parser.add_argument('--summary-only',action='store_true',help='Skip the large player_frames.csv; other outputs remain')
-    parser.add_argument('--commentary-provider',choices=('none','template','gemini'),default='none')
+    parser.add_argument('--commentary-provider',choices=('none','template','gemini','microsoft'),default='none')
     parser.add_argument('--tactics-config',type=Path,help='JSON overrides for deterministic TacticsConfig')
     parser.add_argument('--no-tactics',action='store_true',help='Skip tactical calculations and report section')
     parser.add_argument('--gemini-model',default='gemini-3.5-flash-lite')
@@ -203,6 +203,13 @@ def main():
         intelligence_config=IntelligenceConfig(**intelligence_values)
         provider=None
         if args.commentary_provider=='template': provider=TemplateProvider()
+        elif args.commentary_provider=='microsoft':
+            from src.providers.microsoft import MicrosoftCommentaryProvider
+            from src.providers.base import ProviderError
+            try:provider=MicrosoftCommentaryProvider()
+            except ProviderError:
+                print('Microsoft provider unavailable; using local template commentary.',flush=True)
+                provider=TemplateProvider()
         elif args.commentary_provider=='gemini':
             from dotenv import load_dotenv
             load_dotenv(Path(__file__).resolve().parents[2]/'.env',override=False)
@@ -213,7 +220,7 @@ def main():
     from src.tactics.config import TacticsConfig
     tactics_config=False if args.no_tactics else TacticsConfig(**(json.loads(args.tactics_config.read_text()) if args.tactics_config else {}))
     values = json.loads(args.config.read_text()) if args.config else {}
-    output = args.output or Path('outputs')/f'analytics_{args.match_id}_{args.scope}'+(f'_h{args.half}' if args.half else '')
+    output = args.output or Path('outputs')/(f'analytics_{args.match_id}_{args.scope}'+(f'_h{args.half}' if args.half else ''))
     print(f'Loading {args.scope} positions from {args.player_source}...',flush=True)
     recording = load_recording(DatasetPaths(args.match_id,args.data_root),args.scope,args.player_source,args.half)
     values.setdefault('left_attack_direction',1 if recording.half == 1 else -1)

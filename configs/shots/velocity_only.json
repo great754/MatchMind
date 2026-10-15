@@ -1,0 +1,8 @@
+{
+  "name": "velocity_only",
+  "description": "Ablate possession direction check; diagnostic only.",
+  "analytics_overrides": {},
+  "shot_options": {
+    "direction_mode": "velocity_only"
+  }
+}

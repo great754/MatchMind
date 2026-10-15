@@ -1,0 +1,8 @@
+{
+  "name": "persistence_1",
+  "description": "Single-frame ablation of persistence; exposes quantization sensitivity.",
+  "analytics_overrides": {
+    "shot_persistence_frames": 1
+  },
+  "shot_options": {}
+}

@@ -5,7 +5,7 @@ Reproduce from the repository root:
 ```bash
 .venv/bin/python -m src.vision.projection_evaluation --output outputs/validity_audit/projection
 .venv/bin/python -m src.analytics.pipeline --summary-only --commentary-provider none --output outputs/validity_audit/baseline_analytics
-.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 ## Projection findings

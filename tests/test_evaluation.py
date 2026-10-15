@@ -75,7 +75,7 @@ class EvaluationTests(unittest.TestCase):
         from src.evaluation.tactical_evaluation import sensitivity
         from src.analytics.config import AnalyticsConfig
         from src.tactics.config import TacticsConfig
-        from test_tactics import tactical_fixture
+        from tests.helpers import tactical_fixture
         recording,result=tactical_fixture(seconds=1)
         with patch('src.intelligence.events.build_events',return_value=[]),patch('src.evaluation.tactical_evaluation.VARIANTS',{'pressure_local_radius_m':(4.,6.)}):
             measured=sensitivity(recording,result,AnalyticsConfig(),TacticsConfig())

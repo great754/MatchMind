@@ -8,7 +8,7 @@ The engine adds deterministic geometric evidence to the existing analytics. It d
 .venv/bin/python -m src.analytics.pipeline --summary-only \
   --commentary-provider template --output outputs/analytics_118575_tactics
 open outputs/analytics_118575_tactics/report.html
-.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
 `template` is an explicitly labeled local preview, with no hosted requests. `none` is still the default. Existing `--commentary-provider gemini`, key configuration, cache and budgets also support tactical facts. Use `--no-tactics` to omit tactical calculations. Use `--tactics-config configs/tactics.default.json` or a JSON file with selected overrides to reproduce or adjust rules. A tactical rate must divide the source FPS exactly; the default is every fifth 25 FPS frame, giving 5 Hz.
