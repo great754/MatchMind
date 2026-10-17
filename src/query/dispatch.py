@@ -22,6 +22,7 @@ class Network(TeamArgs):
 class RequiredTeam(Closed):team:Team
 
 REGISTRY={
+ 'get_team_speed_peaks':TeamArgs,'get_players':Limit,'get_distance_leaders':Limit,'get_current_possession':Time,'get_confirmed_pass_share':TeamArgs,'get_positions':Time,'get_pressure_level':Time,'get_formation_windows':TeamArgs,
  'get_match_summary':Empty,'get_player_summary':Player,'get_possession_summary':TeamArgs,
  'get_events':Events,'get_transfer':Event,'get_difficult_transfers':TeamLimit,
  'get_tactical_state':Time,'get_pre_event_evidence':Event,'get_pressure_sequences':TeamArgs,

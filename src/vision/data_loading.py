@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+import re
+
 import numpy as np
 import pandas as pd
 
@@ -9,6 +11,14 @@ import pandas as pd
 class DatasetPaths:
     match_id: str = "118575"
     root: Path = Path("data/soccertrack")
+
+    def __post_init__(self):
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',str(self.match_id)):
+            raise ValueError('Invalid match ID')
+        self.root=Path(self.root)
+
+    def _existing_alias(self,canonical,alias):
+        return canonical if canonical.exists() or not alias.exists() else alias
 
     @property
     def sync(self):
@@ -30,11 +40,11 @@ class DatasetPaths:
 
     @property
     def mot(self):
-        return self.root / "mot" / f"{self.match_id}.txt"
+        return self._existing_alias(self.root / "mot" / f"{self.match_id}.txt",self.root / "mot" / f"{self.match_id}.txt.txt")
 
     @property
     def video(self):
-        return self.root / "mot" / "clips" / f"{self.match_id}.mp4"
+        return self._existing_alias(self.root / "mot" / "clips" / f"{self.match_id}.mp4",self.root / "mot" / "clips" / f"{self.match_id}.txt.mp4")
 
     @property
     def raw(self):

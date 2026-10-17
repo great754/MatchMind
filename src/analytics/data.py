@@ -36,6 +36,8 @@ def load_recording(paths=None, scope='clip', player_source='gsr', half=None):
     sync = json.loads(sync_path.read_text())
     bas_path = paths.bas
     bas = json.loads(bas_path.read_text())
+    if str(bas.get('match_id',paths.match_id)) != str(paths.match_id):
+        raise ValueError('BAS match ID does not match selected recording')
     fps = float(sync['fps'])
     if bas['fps'] != fps or 'first frame' not in bas.get('clock',''):
         raise ValueError('BAS must use the synchronized released-half clock')

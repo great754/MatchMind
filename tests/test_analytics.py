@@ -13,7 +13,7 @@ from src.analytics.quality import pass_features
 from src.analytics.shots import detect_shots, annotated_shot_windows, speed_window
 from src.analytics.validation import validate_events
 from src.analytics.data import Recording, load_recording
-from src.analytics.pipeline import analyze_recording
+from src.analytics.pipeline import analyze_recording,team_possession_summary
 
 
 CFG = AnalyticsConfig(player_smoothing_frames=3, ball_smoothing_frames=3)
@@ -264,6 +264,18 @@ class ValidationTests(unittest.TestCase):
 
 
 class PipelineTests(unittest.TestCase):
+    def test_displayed_possession_uses_completed_transfer_share(self):
+        possession=pd.DataFrame({'state':['controlled','controlled','controlled','controlled','unknown'],
+                     'possessing_team':['left','left','left','right',None]})
+        transfers=pd.DataFrame({'outcome':['completed','completed','intercepted'],
+                                'sender_team':['left','right','left']})
+        summary=team_possession_summary(possession,transfers,25)
+        self.assertEqual(summary['left']['confirmed_passes'],1)
+        self.assertEqual(summary['right']['confirmed_passes'],1)
+        self.assertEqual(summary['left']['confirmed_pass_share'],.5)
+        self.assertEqual(summary['right']['confirmed_pass_share'],.5)
+        self.assertNotEqual(summary['left']['inferred_control_fraction_of_all_frames'],summary['left']['confirmed_pass_share'])
+
     def test_detectors_do_not_depend_on_bas_labels(self):
         positions,b,p=possession_fixture()
         recording=Recording(positions,b.raw_positions,np.ones(len(b.positions),dtype=int),

@@ -1,14 +1,118 @@
-# MatchMind Current Pipeline Status
+# TactiqAI Current Pipeline Status
 
-Status date: 2026-10-14
+Status date: 2026-10-17
 
-Current repository revision: `89cd0fe` (`main`, pushed to `origin/main`). The current worktree contains a larger uncommitted milestone on top of that commit. It includes updates to the README, analytics/report/evaluation/tactics/intelligence/query tests and configuration, plus new service/deployment files, provider adapters, diagnostics, shot experiments, Azure architecture documentation, and the pipeline explorer/status documents. The local `.env`, datasets, caches, and generated outputs remain ignored.
+Current repository revision inspected: `6e1c02f`. This worktree also adds the React/TypeScript/Vite Match Intelligence frontend, startup-loaded review projection and browser verification, alongside the existing Microsoft hardening milestone. Existing MATCHMIND_* variables and source/module names remain unchanged. Generated output.txt is removed from tracking while its local copy is preserved; .env, datasets and outputs remain ignored. No deployment was performed.
 
-This document describes the current MatchMind repository as implemented now. It covers the input data, synchronization, coordinate systems, tactical video renderer, deterministic analytics, new tactical-state engine, intelligence/commentary layer, projection-validity audit, generated outputs, verification numbers, and limitations.
+This document describes the current TactiqAI repository as implemented now. It covers the input data, synchronization, coordinate systems, tactical video renderer, deterministic analytics, new tactical-state engine, intelligence/commentary layer, projection-validity audit, generated outputs, verification numbers, and limitations.
+
+
+## Local source video cleanup — verified 2026-10-17
+
+Azure mode does not require local source MP4 downloads for playback, tactical review or grounded Ask. After confirming all ten Azure source videos existed with the same byte sizes and served valid MP4 ranges, the ten downloaded `data/soccertrack/mot/clips/*.mp4` files were deleted at the user's request. Azure copies and validated analytics bundles were preserved. Post-deletion verification passed: ten playable Azure videos, ten artifact-ready recordings, `/ready` ready with 10 recordings, and grounded Local Ask 200. Local ignored evidence: `outputs/local_video_cleanup_plan.json`, `outputs/local_video_cleanup_result.json`, and `outputs/local_video_cleanup_smoke.json`.
+
+Source videos would be needed again only to rerun offline processing/real-video checks; download them again when doing that work. Generated rendered videos under outputs were retained. Videos, caches, outputs, credentials and new raw datasets are excluded from the GitHub publication; additional downloaded tracking/annotation paths are ignored. Existing historical tracked dataset files are unchanged.
+
+## Frontend startup repaired — 2026-10-17
+
+The long Vite startup was traced to offloaded dependency files in the cloud-backed Desktop project: `frontend/node_modules/vite/dist/node/cli.js` was marked `compressed,dataless`. The pasted logs showed repeated config/source change events, optimizer rescans and server restarts. The old dependency tree occupied only 31 MB of physical disk despite its installed files; reads required file-provider hydration. The backend remained healthy independently.
+
+`frontend/scripts/runtime.mjs` now installs the unchanged package-lock dependencies into `~/Library/Caches/TactiqAI/frontend/<lock-platform-node-hash>/` on macOS (a user cache directory on other systems), then links `frontend/node_modules` to that local runtime. Installation is staged and published only on success; first preparation installed 111 packages in 2 seconds. The previous dependency directory is preserved as ignored `frontend/node_modules.cloud-backup-<timestamp>`. No source files, .env or credentials are copied. Ordinary `npm run dev`, `npm test`, `npm run build` and `npm run preview` use this helper; a changed lockfile/Node platform gets a fresh runtime automatically. The helper keeps child commands on the caller's Node version. `frontend/.nvmrc` pins the verified Node 22.22.2.
+
+Vite's optimizer cache also lives outside cloud storage. Dependency scanning is limited to index.html with explicit app dependency entries; native file-provider change events are avoided with 500 ms polling while retaining HMR. Test configuration moved to `frontend/vitest.config.ts`, so starting Vite no longer loads Vitest configuration. The previous offloaded dependencies and new symlink are ignored by Git.
+
+Verified results with Node 22.22.2:
+
+- `npm run dev`: Vite ready in **1,099 ms**; frontend left running at **http://127.0.0.1:5173/**.
+- `npm test -- --pool=threads --maxWorkers=1`: **35 passed**, five files, **8.28 seconds**; workers started in about 342 ms each.
+- `npm run build`: TypeScript checks and production build passed; Vite transformed 2,024 modules and bundled in **776 ms**.
+- Actual Chrome: API connected in **581 ms**, all ten recording options present, video readyState=4, playback advancing, no video/page errors, and one navigation during a 15-second reload-stability check. Evidence: `frontend/test-results/frontend-startup.json` and `frontend/test-results/frontend-startup.png`.
+
+These results supersede the earlier frontend worker timeouts, killed type-check processes and stalled production builds. The Azure backend and all ten published recording bundles were not changed by this startup repair. Start normally with `cd frontend && npm run dev`; no Azure configuration change is needed.
+
+## Ten clips fully Azure-ready — approved publication verified 2026-10-17
+
+The user explicitly approved the eight prepared analytics bundles. All eight were published with create-only writes to `tactiqaistorage/tactiq-artifacts/matches/`: **176 canonical artifact files plus eight manifests, 167,490,828 bytes total**. No existing artifact blobs were overwritten; existing videos were not uploaded again. The earlier approval block is resolved.
+
+Each newly published recording then passed the real `verify` workflow: a fresh Azure download, manifest/SHA256/schema validation, private-container check, no unexpected blobs, and real in-process application readiness/view/grounded Local Ask checks. Evidence: `outputs/azure_clip_publication_results.json` and `outputs/azure_clip_readback_results.json`; the exact approved manifests and hashes remain in `outputs/azure_clip_publication_plan.json` (ignored local evidence).
+
+The backend was restarted on **127.0.0.1:8000** with the saved ten-recording configuration and existing private Azure media container `soccertrack-v2`. Live HTTP `/health`, `/ready`, and `/recordings` returned 200. `/ready` is `{"status":"ready","recordings":10}`; all ten catalog rows have status=available, artifact_ready=true and media_available=true. Every clip returned a tactical view/replay with 200, a valid MP4 byte range with 206, and a grounded Local Ask answer with 200/status=ok, match-specific conversation identity, source evidence and no fallback. Evidence: `outputs/azure_all_ten_analysis_verification.json`.
+
+| Recording | Completed transfers | View / Ask / video range |
+| --- | ---: | --- |
+| 117092_clip | 28 | 200 / 200 / 206 |
+| 117093_clip | 28 | 200 / 200 / 206 |
+| 118575_clip | 29 | 200 / 200 / 206 |
+| 118576_clip | 19 | 200 / 200 / 206 |
+| 118577_clip | 18 | 200 / 200 / 206 |
+| 118578_clip | 24 | 200 / 200 / 206 |
+| 128057_clip | 16 | 200 / 200 / 206 |
+| 128058_clip | 26 | 200 / 200 / 206 |
+| 132831_clip | 16 | 200 / 200 / 206 |
+| 132877_clip | 46 | 200 / 200 / 206 |
+
+The verified Ask payload was `{"question":"How many passes were there altogether?","provider":"local"}`. Counts above are existing canonical completed observable transfers, not new detector runs or accuracy claims. No analytics, possession, GSR alignment or grounding semantics changed. No new external model call, role assignment or Container Apps deployment occurred.
+
+All ten videos and analyses are now available; the former eight video-only entries no longer show analysis pending after refreshing discovery. The video-only state remains for future missing/unpublished analytics and does not grant query access to invalid bundles. No further configuration change is needed for this local setup: refresh the frontend tab. The known 50-test backend regression result and frontend unit/build limitations from the implementation stage remain recorded below.
+
+Final post-publication Chrome integration passed in **1.7 minutes**, with `TACTIQAI_AZURE_REQUIRE_ANALYSIS=1`: all ten entries required status=available/artifact_ready=true; every clip selected, loaded its video, played past 0.2 seconds and sought to 20 seconds; all ten returned grounded Ask 200; no page errors. Saved browser results confirm artifact_ready=true, ask_status=200 and video error=null for every recording. Evidence: `frontend/test-results/azure-clips-results.json`; final full-analysis screenshot: `frontend/test-results/azure-clips.png` (visually inspected). This supersedes the earlier two-analysis/eight-video-only browser result.
+
+Implementation-stage verification remains **50 focused backend tests passed**, including private media ranges, authorization, missing media, and video-only analytics gating. Frontend unit verification timed out starting workers; final type checking was killed with exit 137 and bundling stalled. No new successful unit suite or production build is claimed. The earlier ten-video Chrome pass is retained as historical evidence; final publication verification is recorded above.
+
+## Earlier Azure startup-isolation smoke — 2026-10-17
+
+Azure startup now validates configured recordings independently. Only canonical manifest/hash/schema-validated snapshots enter the serving tools. Missing/invalid recordings remain visible with unavailable/error status and fixed diagnostics; no local fallback or relaxed validation. Discovery distinguishes known/configured, processed, bundle availability and validated readiness. The frontend accepts and disables unavailable/error choices. LocalArtifactStore keeps strict startup behavior.
+
+Real DefaultAzureCredential → AzureCliCredential startup against `tactiqaistorage/tactiq-artifacts` succeeded with `118575_clip`, `128058_clip`, and missing `118575_h1` configured together. Both clips are available/ready. The half is unavailable (`azure_bundle_missing`, artifact_available=false, artifact_ready=false; processing unknown), without aborting startup. Eight other locally registered clips remain unconfigured; their Azure availability is unknown.
+
+Actual HTTP checks: `/health` 200 (2 recordings), `/ready` 200 (`ready`, 2 recordings), `/recordings` 200, both clip `/view` routes 200, missing-half `/view` 503. Local grounded Ask for 118575_clip returned 200/status=ok/fallback=false: 29 completed observable transfers, split 16/13, with transfers.csv source-field evidence. Final live recheck used a fresh `/tmp/matchmind-azure-startup-cache` after an observed Desktop-cache PNG read stall; all HTTP assertions passed again. Saved local evidence: `outputs/azure_startup_verification.json` (ignored). No uploads, analytics changes, external model call or cloud deployment occurred in this fix. This supersedes the earlier 403/read-unverified status. [Status contract, exact startup command and verification details](azure_artifacts.md).
+
+Regression verification: the final focused backend suite passed **95 tests** (Azure workflow, recording setup, frontend review API, providers service and Microsoft hardening), including the safe access-error regression. Full discovery completed 331 tests: 330 passed, one existing real-video alignment test errored because OpenCV could not read `data/soccertrack/mot/clips/118575.mp4` (`moov atom not found`). No analytics/video changes were made to conceal this failure. The access-error regression was added after that run.
+
+Frontend TypeScript checking passed during the elevated build retry. Frontend tests/build did not complete: the initial test run timed out starting workers, and the initial TypeScript launcher failed with ETIMEDOUT. A one-thread test retry and production bundling retry remained stalled after four minutes (the bundler had open lucide-react dependency files); they were stopped. No frontend test or production-build pass is claimed.
+
+## Second independent recording — locally verified 2026-10-15
+
+**128058_clip is now processed, registered and locally tested.** The installed CLI accepts a single pattern per `--include`; the original command accidentally skipped its first filename. `scripts.prepare_recording` now generates explicit positional filenames. The seven other dependencies were already installed; the remaining matching MOT file was downloaded successfully. Preflight now reports ready with no missing files.
+
+A complete independent alignment/analytics/tactics/canonical-artifact run succeeded into outputs/analytics_128058_tactics. First-half alignment uses zero-based offset **5950**, mean image assignment disagreement **17.61 px**, 22 unique mapped actors and minimum 18/21 mapping vote agreement. These are inferred alignment diagnostics, not independent ground-truth accuracy. No 118575 calibration, synchronization, actors, ball or annotation data was reused, and no thresholds changed.
+
+The new clip has 5,981 video frames at 25 FPS (239.24 seconds); audio/container length is 239.998 seconds. Outputs contain **26 completed observable transfers, 13 opposite-team receipt candidates, 3 unresolved transfers, 1 heuristic shot candidate and 0 BAS shot references**. Candidate shots remain heuristic/unvalidated. The serving registry preserves all old entries and adds 128058_clip. The recording selector can now select it after API restart/frontend reload.
+
+Verification: **304 backend tests, 32 frontend tests and production build passed**. Actual artifact API smoke checked both clips, independent Ask totals (118575: 29; 128058: 26), recording discovery and MP4 range responses. A dedicated Local-only Chrome check passed actual 128058 selection, playback, grounded Ask and switching back to 118575, with no console/page errors. The seven preparation-era Chrome regressions also passed; the new real-recording test is opt-in. No new external model call or deployment occurred. [Correct CLI syntax, processing and exact browser command](second_recording.md).
+
+## Grounded question paraphrases — verified 2026-10-15
+
+Ask now performs bounded semantic retrieval before declining familiar football questions. `src/query/planning.py` maps wording to approved closed tools; raw analytics/detectors are unchanged. Completed/successful passes and ball transfers use the same canonical completed-transfer records as overall pass-share possession. Counts, both-team comparisons, totals, count differences and team ranks are computed deterministically in the tool, with source-field provenance. Totals and comparisons appear early in the answer preview. Ambiguous “passes” is explicitly interpreted as team-level confirmed completed observable transfers, not every ball movement.
+
+All five requested regressions resolve to **16 vs 13 completed transfers; 29 altogether**, from the same canonical fact set: “How many passes did both teams make?”, “How many completed passes did each side have?”, “Who passed more?”, “Which team completed the most passes?”, and “How many passes were there altogether?”. Highest speed/fastest, pressed/under pressure, formation/shape (unless the question explicitly requests changing geometry), and possession/pass-share wording are supported. Explicit team filters, both-side pressure retrieval, per-team peak-player speeds and bounded top-N speed rankings are covered. Supported combinations retrieve multiple approved tools even in Local mode. Unsupported free-form wording can still use bounded provider planning; known deterministic evidence survives provider failure. If transfer CSV is missing, canonical completed-transfer events are checked before declining. Only absence of both sources is unknown; valid zero counts and ties are answered accurately.
+
+Verified commands: `.venv/bin/python -m unittest discover -s tests -t .` — **297 passed**; `npm --prefix frontend test` — **28 passed**; `npm --prefix frontend run build` — passed. The Local-only Chrome suite passed **6 checks**, including all five typed pass questions against real clip artifacts. No new external Foundry live call was made; prior post-hardening live status is preserved, and new semantic/provider behavior is offline-tested. This does not claim universal natural-language coverage or unsupported intent/causal facts.
+
+## Possession clarification — 2026-10-15
+
+**Overall possession** uses each team's confirmed completed passes divided by both teams' confirmed completed passes (16/29 and 13/29 here: 55.2% / 44.8%). Unconfirmed control does not enter this percentage. `get_possession_summary` and general possession questions use this pass-based proxy; the UI labels its basis explicitly.
+
+**Current possession**, shown below the pitch, is the team/player currently attributed the ball. It uses established control and continuity during flight/short gaps, not the overall percentage. Current/now questions use `get_current_possession`. Unknown is shown only when attribution is unavailable. This clarification supersedes the earlier description of attributed time as the headline possession statistic; attribution remains available as an internal diagnostic.
+
+## Current demo improvements — verified 2026-10-15
+
+This section supersedes older possession-display and frontend descriptions below. **284 backend tests, 27 frontend tests and production build pass**; five Local-only Chrome checks cover the core demo, missing evidence, fallback, responsive layout and saved identity/color/name-question flow. Screenshots were visually inspected; no separate human manual rehearsal or new external model call is claimed.
+
+- Match setup stores validated, match-local team names/colors and player names/jerseys/affiliations in browser localStorage. Internal IDs remain unchanged. Neutral player labels replace long IDs outside setup; user labels resolve throughout the React interface.
+- API/React evidence now uses natural English, including Analyst. Structured IDs/coordinates/enums stay in internal/API evidence and the explicitly technical legacy report.
+- Current possession attributes the most recent established controller during flight, occlusion and ambiguity for at most 20 seconds since control. New established control switches it; timeout/out-of-play clears it. No original detector input/output is retuned. The clip attributes 5,032/6,000 frames (83.9%); team time shares are 53.2% and 30.6%, with 968 unknown frames. Completed transfers remain a separate 16/13 count and 55.2%/44.8% share.
+- Microsoft planning now admits arbitrary supported evidence questions and compound multi-topic questions, with up to three closed readonly tools and validated English-catalogue selection. Empty/invalid selection cannot expose unrelated retrieved claims. Known single-intent grounding and conservative unsupported-intent guards remain. This extension is offline/mock-verified; the prior post-hardening Microsoft REST live verification remains valid historical verification, not a new multi-tool live test.
+- Formation is a dominant estimate across fixed 240-second offline windows (50% clear-fit coverage, 60% known-fit dominance). Both actual clip teams remain unknown: only 24.1%/7.9% clear-fit coverage. No formation is forced; causal pre-event tactical snapshots remain unchanged.
+- Low/moderate/high pressure uses cached geometry around the attributed possessor, separately from the unchanged strict confirmed-carrier sustained-pressure events. During ball flight it describes the previous possessor, not the flying ball. Available pressure levels increase from 291 to 743 of 1,200 snapshots; missing geometry remains unavailable.
+- New sidecars: possession_attribution.json, formation_windows.json and pressure_levels.json. Existing bundles derive them at startup from cached canonical artifacts. The view API adds ownership, pass_share, formation_windows, pressure_levels and pressure_context. New approved tools retrieve players/distance leaders, sampled positions, current possession, pass share, slow formations and pressure levels. No request runs vision/detectors.
+- Shots are unchanged: zero BAS shot references and zero heuristic candidates are acceptable. Foundry retains TLS enabled, automatic certifi, no required SSL_CERT_FILE and the supplied post-hardening microsoft_foundry/grounded_selection/fallback-false live result. Agent Framework, Fabric, Azure MCP and Container Apps are not claimed live.
+
+See [exact implementation, thresholds, files, tests and limits](demo_improvements.md). Remaining limitations: user-entered local identities, a heuristic 20-second continuity timeout, unavailable formation evidence, offline/2D ball inputs, bounded free-form answers and unverified new multi-tool live behavior. Recommended next step is a configured Foundry judge rehearsal; hosted auth/ingress remains separate work.
 
 ## Executive Summary
 
-MatchMind combines an offline soccer-analysis engine and an artifact-only online serving system built around SoccerTrack match `118575`. It has five connected responsibilities:
+TactiqAI combines an offline soccer-analysis engine and an artifact-only online serving system built around SoccerTrack match `118575`. It has five connected responsibilities:
 
 1. **Tactical video rendering**: combine panoramic match footage with a synchronized top-down pitch.
 2. **Deterministic match analytics**: calculate motion, possession, observable transfers, transfer difficulty, and shot candidates.
@@ -38,9 +142,9 @@ The canonical command is:
 .venv/bin/python -m unittest discover -s tests -t . -v
 ```
 
-Verified 2026-10-14: **216 discovered, 216 passed, 0 failed, 0 skipped**. This milestone began with 176 passing tests and added 40 tests. Shared fixtures live in `tests/helpers.py`; evaluation/query modules import correctly in package and discovery contexts. The earlier 117-test claim is stale and superseded by this measured run.
+Verified 2026-10-15: **304 discovered, 304 passed, 0 failed, 0 skipped**. The hardening milestone began with 216 passing tests and added 35 offline tests. The focused provider/service suite passed 92 tests. Actual local-only HTTP smoke also passed without external model calls. Shared fixtures live in `tests/helpers.py`; evaluation/query modules import correctly in package and discovery contexts. The earlier 117-test claim is stale and superseded by this measured run.
 
-See [the current Microsoft demo milestone](microsoft_demo.md) for complete metrics, diagnostic/experiment artifacts, held-out availability, API commands and actual versus planned Microsoft integration. The original baseline remains unchanged. Both halves of 118575 are now correctly labeled development; held-out metrics remain unavailable.
+See [the current Microsoft hardening guide](microsoft_hardening.md) for complete metrics, diagnostic/experiment artifacts, held-out availability, API commands and actual versus planned Microsoft integration. The original baseline remains unchanged. Both halves of 118575 are now correctly labeled development; held-out metrics remain unavailable.
 
 ### Current clip facts
 
@@ -734,7 +838,7 @@ Aggregate transfer timing error is approximately `0.1037 s` mean, `0.08 s` media
 
 Sensitivity variants change pressure and formation outputs, which exposes threshold dependence. No variant is promoted to the default because it looks better. The second-half formation estimate remains unknown under the current fixed-roster requirement because substitutions create more than ten actor identities across the recording.
 
-## Ask MatchMind Query Layer
+## Ask TactiqAI Query Layer
 
 The current worktree adds a local grounded Q&A layer under [`src/query`](../src/query). Its deterministic core reads structured exports without raw tracking, SQL or network access. The optional provider orchestration around that core can call Microsoft or Gemini for bounded tool/statement selection; it does not perform unrestricted natural-language arithmetic.
 
@@ -749,7 +853,7 @@ Example:
 
 The report-side integration in [`src/analytics/report.py`](../src/analytics/report.py) adds:
 
-- An Ask MatchMind question panel.
+- An Ask TactiqAI question panel.
 - Suggested grounded questions.
 - Beginner, Fan, and Analyst presentation modes.
 - Explain buttons keyed to canonical event IDs.
@@ -779,7 +883,7 @@ Explain answers keep three kinds of evidence separate:
 
 No query answer claims that pressure caused a turnover or that a player intended a pass or shot. Gemini commentary remains available; Gemini query presentation now shares the canonical fact and closed-statement boundary with Microsoft and local answers.
 
-The new Q&A tests cover closed dispatch, known answers, unknown questions, modes sharing facts, fact-field traceability, safe HTML text, Explain IDs, and timestamp seeking. These tests are included in the canonical 216-test suite; shared fixtures no longer import another test module.
+The new Q&A tests cover closed dispatch, known answers, unknown questions, modes sharing facts, fact-field traceability, safe HTML text, Explain IDs, and timestamp seeking. These tests are included in the canonical 283-test suite; shared fixtures no longer import another test module.
 
 ## Outputs
 
@@ -864,7 +968,7 @@ It supports:
 - Trailing or whole-recording transfer network.
 - Commentary modes.
 - Speed and distance callouts.
-- Ask MatchMind questions.
+- Ask TactiqAI questions.
 - Beginner, Fan, and Analyst answer modes.
 - Explain buttons linked to canonical event IDs.
 - Fact/source provenance for grounded answers.
@@ -974,7 +1078,7 @@ The system is currently offline because centered smoothing uses future frames, b
 
 ## Bottom Line
 
-MatchMind currently provides a reproducible offline path from SoccerTrack inputs to synchronized tactical video, metric-space motion, conservative possession and transfer inference, shot candidates, tactical geometry, pressure and formation evidence, transfer networks, projection diagnostics, closed intelligence events, optional bounded Gemini commentary, and an interactive review report.
+TactiqAI currently provides a reproducible offline path from SoccerTrack inputs to synchronized tactical video, metric-space motion, conservative possession and transfer inference, shot candidates, tactical geometry, pressure and formation evidence, transfer networks, projection diagnostics, closed intelligence events, optional bounded Gemini commentary, and an interactive review report.
 
 The strongest current design choices are:
 
@@ -1023,6 +1127,27 @@ Offline: video/data → synchronized GSR-first analytics → tactics → canonic
 
 `src/artifacts/store.py` defines ArtifactStore, LocalArtifactStore and AzureBlobArtifactStore. Local bundles are validated at startup. Blob snapshots use allowlisted filenames, per-file hashes, startup download/cache and the same schema validation. Missing/corrupt startup artifacts fail readiness rather than becoming fabricated measurements. Bundle export excludes raw data/video, secrets and caches. IDs include scope/half; clip/half overlap must not be aggregated twice.
 
+### Microsoft TLS, failure diagnostics and live routing status
+
+Microsoft requests now pass verify=certifi.where() explicitly, preserving certificate/hostname verification without a manual SSL_CERT_FILE export or hard-coded developer path. Session injection, no redirects, bounded requests and existing timeouts are preserved. Certifi is already pinned in both dependency sets. Existing .env contents are untouched; a legacy SSL_CERT_FILE entry is not needed by this provider.
+
+Sanitized fixed-code diagnostics distinguish configuration, TLS, network, timeout, HTTP 400/401/403/404/429/5xx, other HTTP statuses, malformed responses and invalid model plans/selections. JSON logs omit raw exceptions, bodies, prompts, tool arguments, URLs, headers and credentials. Agent logs distinguish tool-plan, argument, evidence-overlap and selection rejection. External API failures still retain the deterministic Answer and generic fallback status.
+
+The remaining saved demo fallback is the formation query selecting get_match_summary. That tool does not support the formation answer. Offline replay using valid empty arguments against actual clip artifacts found 740 formation facts and zero matching summary facts, logged unrelated_tool_plan, and never called the selector. This is a tool-plan/grounding failure, not intentional unsupported behavior or a post-plan Microsoft transport failure. Saved arguments were unavailable, so the earliest historical argument-versus-overlap gate cannot be proven. Wrong model routing remains safely rejected; no model usage is forced.
+
+Intentional player/event follow-ups remain local_followup with fallback false. Unsupported coaching questions remain local with fallback false. A metadata bug marking intentional local paths as fallback when the provider is absent was fixed and regression-tested. No statistics or evidence calculations changed.
+
+```bash
+# No network; does not prove authentication or model access.
+.venv/bin/python -m scripts.verify_microsoft --without-ssl-cert-file
+# Actual local-only HTTP checks; no hosted provider invocation.
+MATCHMIND_ARTIFACT_STORE=local MATCHMIND_PROVIDER=local MATCHMIND_API_TOKEN= .venv/bin/python scripts/verify_service.py --local-only
+# Run only after approval to send the bounded query/schemas and fastest-player facts to Microsoft:
+.venv/bin/python -m scripts.verify_microsoft --live --without-ssl-cert-file
+```
+
+The optional verifier prints only configuration validity, CA policy, actual provider/fallback flags and sanitized diagnostic codes. It never prints secrets, endpoint values or fact payloads. Exit codes distinguish configuration/setup failure (2), unverified live response (1), and valid config or grounded live success according to mode (0). The user subsequently supplied a successful post-hardening live verifier result with SSL_CERT_FILE absent, certifi verification enabled, microsoft_foundry / grounded_selection, fallback false, fastest_players / get_fastest_players and empty diagnostics. The frontend task made no new external model calls. See [hardening details](microsoft_hardening.md).
+
 ### Service routes and observability
 
 | Route | Behavior |
@@ -1044,20 +1169,20 @@ Startup loads all registered artifacts once. Requests never rerun analytics. Cor
 | Component | Status | Actual verification |
 |---|---|---|
 | Local API and demo | IMPLEMENTED AND VERIFIED | Actual loopback HTTP requests and eight-turn artifact demo |
-| Docker service | IMPLEMENTED AND VERIFIED | Image built and ran; real container HTTP smoke passed |
-| Microsoft REST provider | IMPLEMENTED BUT MOCK-VERIFIED ONLY | Request/schema/timeout/fallback tests; no configured resource |
+| Docker service | VERIFIED IN PREVIOUS MILESTONE | Earlier image built/ran; hardening image not rebuilt or runtime-rechecked |
+| Microsoft REST provider | POST-HARDENING LIVE-VERIFIED | Saved fastest/difficulty/pressure demo results show microsoft_foundry / fallback false / grounded_selection; user-supplied post-hardening verifier succeeds without SSL_CERT_FILE, using certifi |
 | Agent Framework runtime adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY | Real SDK invocation code exists; fake-SDK unit test; SDK not installed and real agent did not run |
 | Gemini query adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY for hosted calls this milestone | Fact parity/fallback tests; existing commentary remains supported |
 | Local ArtifactStore and bundle packaging | IMPLEMENTED AND VERIFIED | Real bundles and corrupt/missing/traversal tests |
 | Azure Blob adapter | IMPLEMENTED BUT MOCK-VERIFIED ONLY | SDK client injection, hash/cache/error tests; no upload/download against Azure |
-| Container Apps Bicep/script | PREPARED BUT NOT DEPLOYED | Static checks only; no Azure CLI/subscription configured |
+| Container Apps Bicep/script | PREPARED BUT NOT DEPLOYED | Static checks only; no Azure deployment performed or verified in this task |
 | Fabric CSV analytical export | IMPLEMENTED AND VERIFIED locally | Six typed/keyed tables with deterministic row counts and hashes |
 | Fabric Delta import | PREPARED BUT NOT DEPLOYED | Notebook importer exists; Fabric received no data |
 | Azure MCP | PREPARED boundary; real integration NOT IMPLEMENTED | Read-only operator policy; no MCP server ran |
 
-No live Microsoft request succeeded. No Azure deployment occurred. No real Agent Framework execution, Fabric upload or MCP execution is claimed. Official Microsoft docs were checked for current resource OpenAI-v1 structured outputs and the project-backed Agent/FoundryChatClient distinction; setup references are in deploy/azure/README.md.
+Microsoft REST is POST-HARDENING LIVE-VERIFIED per the user-supplied verifier result: configuration_valid true, tls_verification true, certifi, SSL_CERT_FILE absent/not required, live_verified true, microsoft_foundry, fallback false, grounded_selection, fastest_players / get_fastest_players and diagnostics []. This supersedes the earlier blocked-check status. Frontend verification uses Local only; no new model call or deployment occurred. Agent Framework, Fabric, Azure MCP and Container Apps remain unverified as live integrations.
 
-Docker local measurement: image matchmind-service **94,649,434 bytes**, UID **10001**, port **8000/tcp**, readiness about **4.99 seconds**. Three artifact directories were mounted read-only. The optional local clip-media route was verified with an actual HTTP byte-range request; configure MATCHMIND_MEDIA_ROOT for API video playback. The image copies only online code and service dependencies; no raw dataset, outputs, caches, .env or vision packages. Azure Blob dependencies require WITH_AZURE=true; the default verified image is local. Cloud size/startup and load behavior are unmeasured.
+Historical Docker local measurement (prior milestone; not rebuilt here): image matchmind-service **94,649,434 bytes**, UID **10001**, port **8000/tcp**, readiness about **4.99 seconds**. Three artifact directories were mounted read-only. The optional local clip-media route was verified with an actual HTTP byte-range request; configure MATCHMIND_MEDIA_ROOT for API video playback. The image copies only online code and service dependencies; no raw dataset, outputs, caches, .env or vision packages. Azure Blob dependencies require WITH_AZURE=true; the default verified image is local. Cloud size/startup and load behavior are unmeasured.
 
 ### Configuration and exact commands
 
@@ -1078,7 +1203,7 @@ Docker local measurement: image matchmind-service **94,649,434 bytes**, UID **10
 .venv/bin/python -m unittest discover -s tests -t . -v
 .venv/bin/python -m uvicorn src.serving.app:from_environment --factory --host 127.0.0.1 --port 8000 --no-access-log
 # Browser: http://127.0.0.1:8000/matches/118575_clip/report
-.venv/bin/python scripts/verify_service.py
+.venv/bin/python scripts/verify_service.py --local-only
 .venv/bin/python -m scripts.demo_matchmind
 .venv/bin/python -m src.query --recording outputs/analytics_118575_tactics --question 'Who was the fastest player?' --mode analyst
 
@@ -1099,8 +1224,28 @@ MATCHMIND_PROVIDER=microsoft .venv/bin/python -m uvicorn src.serving.app:from_en
 
 Fabric-ready CSV counts: Match **3**, Player **73**, Event **11,707**, Transfer **905**, TacticalState **60,510**, Evaluation **4**. schema.json defines types, primary keys, nullability and hashes. Match records retain source/configuration/limitations. Actor IDs and tracker IDs remain separate. Timestamps are recording-local seconds, never wall-clock timestamps. Evaluation rows remain development only. The importer verifies counts/keys and creates new Delta tables; it has not run against Fabric.
 
-The 40 new product tests cover store loading/corruption/path traversal/hash caching, deterministic Fabric schemas/identity/timing/counts, provider fact parity and outages, optional framework routing with a fake SDK, evidence propagation and rejected fabrication, recording-scoped follow-ups, readiness, body limits, sanitized logs and static deployment/container boundaries. Existing report tests execute offline and API browser-script paths in Node, including provider selection, contextual seeking and source-safe rendering.
+The previous product milestone added 40 tests covering store loading/corruption/path traversal/hash caching, deterministic Fabric schemas/identity/timing/counts, provider fact parity and outages, optional framework routing with a fake SDK, evidence propagation and rejected fabrication, recording-scoped follow-ups, readiness, body limits, sanitized logs and static deployment/container boundaries. Existing report tests execute offline and API browser-script paths in Node, including provider selection, contextual seeking and source-safe rendering.
 
 Frozen development results are unchanged: transfers 706 TP / 161 FP / 388 FN, precision 81.430219%, recall 64.533821%, F1 72.004080%; shots 5 TP / 41 FP / 16 FN, precision 10.869565%, recall 23.809524%, F1 14.925373%. This product milestone reads preserved baseline artifacts and does not tune/recompute detectors. No second match is installed; cross-match generalization remains unknown. GSR remains primary; fallback projection disagreement remains 11.6831065 m mean, 10.7398110 m median, 24.9560484 m P95.
 
-Remaining work: actual Foundry request, optional SDK version resolution/pinning and live framework run; real Blob/Key Vault/Container Apps deployment, browser ingress authentication, media hosting and load/rate-limit verification; Fabric upload/import; authorized MCP connection. Scientific limits remain BAS-dependent 2D ball reconstruction, absent height/verified identities, heuristic possession/tactics/difficulty, full-half formation roster limitations and no independent causal evidence. See docs/microsoft_demo.md and deploy/azure/README.md for implementation choices and setup. No planned cloud capability is counted as live integration.
+Remaining work: judge rehearsal of the frontend with the configured provider, optional SDK version resolution/pinning and live framework run; real Blob/Key Vault/Container Apps deployment, browser ingress authentication, media hosting and load/rate-limit verification; Fabric upload/import; authorized MCP connection. Scientific limits remain BAS-dependent 2D ball reconstruction, absent height/verified identities, heuristic possession/tactics/difficulty, full-half formation roster limitations and no independent causal evidence. See docs/microsoft_demo.md and deploy/azure/README.md for implementation choices and setup. No planned cloud capability is counted as live integration.
+
+The current hardening adds 35 tests for explicit certifi verification (including absent/invalid SSL environment settings and injected sessions), categorized HTTP/TLS/network/timeout errors, malformed responses and secret-safe logs, deterministic fallback, replayed formation routing, intentional local paths and verification CLI behavior. output.txt is generated output, ignored and untracked with its local copy preserved; .env remains ignored/untracked. No Agent Framework live run, Container Apps deployment, Fabric cloud ingestion or MCP execution is newly claimed.
+
+## Match Intelligence frontend — current implemented milestone
+
+React/TypeScript/Vite now provides one clean analysis screen for `118575_clip`, using `apple-design.md` for system typography, restrained color, grouping, press feedback and accessibility. Video, team/ball pitch, possession owner, selected actor, timeline, tactical state and Ask jumps share one current timestamp. Samples use the preceding precomputed observation at 5 Hz without interpolation. Formation/pressure remain estimates, actor IDs remain identifiers, missing evidence stays unknown. Event selection includes source/ID and backend-categorized explanations. Ask supports the existing modes, providers, follow-ups, evidence, limitations, fallback state and jump-to-moment.
+
+Architecture remains offline analytics → artifacts → FastAPI/closed tools → optional provider → frontend. New `GET /matches/{match_id}/view` returns a closed readonly presentation projection; event explain optionally accepts `with_evidence=true` while retaining its default contract. Existing Ask/player/media/report APIs are reused. Startup loads `review_frames.json` or safely parses precomputed JSON from older report bundles; no raw tracking/detection runs during requests. Future reports export the sample artifact and artifact stores allowlist it. The clip provides 1,200 samples, 22 actors, 481 canonical events and 1,200 tactical states.
+
+Verification: **263/263 Python tests**, including 12 new review-contract tests; **20/20 frontend tests**; production build; **4/4 Chrome browser checks** against real local artifacts/media, with no console/page errors in the core demo. Browser tests cover missing media/state, simulated fallback, modes, unsupported requests and laptop/mobile layout. All browser model requests use Local. No secrets are sent to browser storage/bundles, and the dev proxy avoids broad CORS. Existing credentials/env names and deterministic analytics are preserved. No deployment/auth flow was added. See [frontend implementation, exact run/test commands and manual demo](frontend.md). Hosted authentication/media ingress and a Foundry-backed judge rehearsal remain next steps; scientific limitations above remain unchanged.
+
+### Possession display update — 2026-10-15
+
+Headline possession now uses confirmed completed-pass share, not frame-control time: team completed observable transfers / combined team completed observable transfers. The API reads canonical transfers.csv (works with older summaries); failed/intercepted/unresolved transfers and unconfirmed control are excluded. Zero completed transfers yields unavailable shares. Clip counts are 16 vs 13, displayed as 55.2% vs 44.8%. Instantaneous pitch ownership is unchanged. Verification: 265 Python tests, 21 frontend tests and production build passed for this update.
+
+## One-command short-clip batch — 2026-10-15
+
+Run `.venv/bin/python -m scripts.prepare_clips --run` from the repository root. It prepares 117092, 117093, 118575, 118576, 118577, 118578, 128057, 128058, 132831 and 132877 sequentially. Already registered, validated clip bundles with existing media are skipped. Missing dependencies are downloaded by exact filename with huggingface_hub; videos come exclusively from mot/clips, never full-half panorama video paths. Full-half GSR/ball annotation data is still required for synchronization. Each newly completed clip is registered only after processing/validation succeeds. Failures are recorded in outputs/clip_batch_status.json and can be retried by rerunning; known ready clips are preserved.
+
+118575_h1 and 118575_h2 were removed from the default serving registry (their disk artifacts are retained). Restart the API and refresh React to remove them from the visible selector and discover newly registered clips. Pending clip configurations stay disabled. The batch has not been executed on all ten recordings during this change; no unprocessed clip is claimed working. Preview/config creation and existing-bundle checks were run without downloads. Verification: 308 backend tests and 32 frontend tests passed, including mocked exact-file download/processing/skip/failure tests. Existing analytics thresholds are unchanged.

@@ -110,6 +110,14 @@ def create_report(recording,result,summaries,summary,output,intelligence=None):
                    ballSpeed=_nested(ball.smoothed_speed_mps[indices]),
                    owner=[None if str(x)=='<NA>' else int(x) for x in rows.possessing_player_id],
                    states=rows.state.tolist())
+    review_payload={k:payload[k] for k in ('fps','frames','stride','ids','teams','positions','ball','owner','states')}
+    review_payload['side_colors']=payload['sideColors']
+    (output/'review_frames.json').write_text(json.dumps(review_payload,allow_nan=False,separators=(',',':'))+'\n')
+    from types import SimpleNamespace
+    from .possession import attribute_possession
+    from src.tactics.review import review_pressure,pressure_level
+    pressure=review_pressure(SimpleNamespace(**review_payload),attribute_possession(result['possession'].to_dict('records'),recording.fps))
+    (output/'pressure_levels.json').write_text(json.dumps([dict(timestamp=i*review_payload['stride']/recording.fps,level=pressure_level(p),**p.model_dump()) for i,p in enumerate(pressure)],allow_nan=False)+'\n')
     intelligence = intelligence or {'events':{'events':[],'player_labels':{}},'commentary':{'items':[],'provider':{'provider':'none'},'errors':[]}}
     payload['intelligence']=intelligence
     payload['displayLabels']=intelligence['events']['player_labels']

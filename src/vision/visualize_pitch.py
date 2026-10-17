@@ -20,7 +20,9 @@ def valid_pitch_position(x, y):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', default='outputs/match_118575_matchmind.mp4')
+    parser.add_argument('--output')
+    parser.add_argument('--match-id',default='118575')
+    parser.add_argument('--data-root',type=Path,default=Path('data/soccertrack'))
     parser.add_argument('--max-frames', type=int, help='Render only this many frames for a preview')
     parser.add_argument('--inset-width', type=float, default=0.215)
     parser.add_argument('--opacity', type=float, default=0.65)
@@ -32,7 +34,8 @@ def main():
     if not 0.05 <= args.inset_width <= 0.35 or not 0 <= args.opacity <= 1:
         parser.error('inset width must be 0.05–0.35 and opacity must be 0–1')
 
-    paths = DatasetPaths()
+    paths = DatasetPaths(args.match_id,args.data_root)
+    args.output=args.output or f'outputs/match_{args.match_id}_matchmind.mp4'
     mot = load_mot(paths.mot)
     cap = cv2.VideoCapture(str(paths.video))
     if not cap.isOpened():

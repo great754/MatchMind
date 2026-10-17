@@ -1,5 +1,6 @@
 """Start a real local server, execute HTTP smoke checks, and stop it."""
 import json
+import argparse
 from pathlib import Path
 import subprocess
 import sys
@@ -8,6 +9,7 @@ import requests
 from smoke_service import smoke
 
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--local-only',action='store_true');args=parser.parse_args()
     with Path('/tmp/matchmind_http_smoke.log').open('w') as log:
         server=subprocess.Popen([sys.executable,'-m','uvicorn','src.serving.app:from_environment','--factory','--host','127.0.0.1','--port','8766','--no-access-log'],stdout=log,stderr=log)
         try:
@@ -18,7 +20,7 @@ def main():
                     if session.get('http://127.0.0.1:8766/ready',timeout=1).status_code==200:break
                 except requests.RequestException:pass
                 time.sleep(.1)
-            print(json.dumps(smoke('http://127.0.0.1:8766','118575_clip'),indent=2))
+            print(json.dumps(smoke('http://127.0.0.1:8766','118575_clip',not args.local_only),indent=2))
         finally:
             server.terminate();server.wait(timeout=10)
 if __name__=='__main__':main()

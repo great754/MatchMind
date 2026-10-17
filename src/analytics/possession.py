@@ -84,3 +84,24 @@ def detect_possession(player_positions, player_velocities, player_ids, teams, ba
     for field in ('possessing_player_id','candidate_player_id','control_start_frame'):
         result[field] = result[field].astype('Int64')
     return result
+
+
+def attribute_possession(rows, fps, unresolved_seconds=20.0):
+    """Presentation continuity; never feeds the control/pass/shot detectors.
+
+    Confirmed control switches ownership. Short flight, ambiguity and missing
+    observations retain the last controller; timeout and out-of-play clear it.
+    Timeout is measured from last confirmed control, not extended by candidates.
+    """
+    owner = team = last = None
+    output = []
+    for row in rows:
+        frame = int(row['frame'])
+        controlled = row.get('state') == 'controlled' and pd.notna(row.get('possessing_player_id'))
+        if controlled:
+            owner = int(row['possessing_player_id']); team = row.get('possessing_team'); last = frame
+        elif row.get('state') == 'out_of_play' or last is None or (frame-last)/fps > unresolved_seconds:
+            owner = team = last = None
+        output.append(dict(frame=frame, timestamp=frame/fps, player_id=owner, team=team,
+            attribution='controlled' if controlled else 'retained' if owner is not None else 'unknown'))
+    return output

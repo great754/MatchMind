@@ -2,6 +2,7 @@ import argparse
 import json
 from pathlib import Path
 from collections import Counter, defaultdict
+import cv2
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 from src.vision.data_loading import DatasetPaths,load_mot
@@ -26,6 +27,12 @@ def main():
     args=parser.parse_args()
     p=DatasetPaths(args.match_id,args.data_root);mot=load_mot(p.mot)
     clip_count=int(mot.frame.max())+1
+    cap=cv2.VideoCapture(str(p.video))
+    try:
+        fps=cap.get(cv2.CAP_PROP_FPS)
+        if not cap.isOpened() or fps<=0 or int(cap.get(cv2.CAP_PROP_FRAME_COUNT))!=clip_count or mot.frame.min()!=0:
+            raise ValueError('MOT and selected clip must have matching zero-based frame coverage')
+    finally:cap.release()
     checks=sorted(set(range(0,clip_count,max(1,clip_count//20)))|{clip_count-1})
     target=mot[mot.frame==0][['foot_x','foot_y']].to_numpy()
     results=[]
@@ -105,7 +112,7 @@ def main():
                        'votes':v.most_common(1)[0][1], 'samples':sum(v.values())}
                for t,v in votes.items()}
     report = {'match_id':p.match_id, 'half':best_half, 'clip_start_frame_zero_based':offset,
-              'fps':25, 'method':'Player bbox foot-position matching over 21 checkpoints; inferred offset, approximately one-frame precision.',
+              'fps':fps, 'method':f'Player bbox foot-position matching over {len(checks)} checkpoints; inferred offset, approximately one-frame precision.',
               'mean_assignment_error_px':error, 'players':players,
               'side_to_color':{str(s):v.most_common(1)[0][0] for s,v in side_colors.items()}}
     output = p.root/'mot'/f'{p.match_id}_sync.json'

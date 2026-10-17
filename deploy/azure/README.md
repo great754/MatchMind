@@ -1,6 +1,6 @@
 # Azure preparation and verification
 
-Status 2026-10-14: local FastAPI and Docker HTTP verification performed. No Azure subscription/CLI/credentials are configured. **PREPARED BUT NOT DEPLOYED**: Bicep, deployment script, Blob adapter, Fabric import and MCP policy. No resources, agents, role assignments, storage uploads or Fabric tables were created.
+Historical milestone status 2026-10-14: local FastAPI is verified; Docker HTTP verification was performed in the prior milestone. The configured Microsoft REST resource has since been live-verified, corroborated by saved demo output. Automatic TLS/error hardening is unit-tested; the new live recheck awaits explicit approval. See [TactiqAI hardening](../../docs/microsoft_hardening.md). **PREPARED BUT NOT DEPLOYED**: Bicep, deployment script, Blob adapter, Fabric import and MCP policy. Storage account/container are now provisioned externally; see the current Blob verification status below. No agents, role assignments, successful storage uploads or Fabric tables were created by this workflow.
 
 ## Local and container demo
 
@@ -32,16 +32,17 @@ For the optional real framework path, install `requirements-agent-framework.txt`
 
 ## Blob artifact strategy
 
+Current 2026-10-15 workflow: [canonical artifact build/upload/verify guide](../../docs/azure_artifacts.md). Use the safe manifest-based CLI instead of uploading arbitrary output directories:
+
 ```bash
-.venv/bin/python -m src.artifacts
-# Produces outputs/serving_bundle/matches/<recording_id>/bundle.json plus allowlisted files.
-# Authenticate with your operator account before uploading a frozen snapshot:
-az storage blob upload-batch --auth-mode login --account-name "$MATCHMIND_STORAGE_ACCOUNT" --destination "$MATCHMIND_BLOB_CONTAINER" --source outputs/serving_bundle --pattern 'matches/*'
+python -m src.artifacts build --recording 118575_clip
+python -m src.artifacts upload --recording 118575_clip
+python -m src.artifacts verify --recording 118575_clip
 ```
 
-`bundle.json` contains SHA256 hashes. Prefixes include recording identity, so overlapping clip and half scopes cannot overwrite one another. Use a versioned container or versioned deployment snapshot; do not mutate the active snapshot during a demo. `AzureBlobArtifactStore` downloads only known bundle names at startup, verifies hashes and closed schemas, then serves from a local cache. Failure to load startup data fails readiness rather than fabricating empty statistics. Azure availability is not required per question.
+Install requirements-azure.txt; set MATCHMIND_BLOB_ACCOUNT_URL and MATCHMIND_BLOB_CONTAINER. DefaultAzureCredential uses Entra authentication. Existing MATCHMIND_ARTIFACT_STORE, MATCHMIND_RECORDINGS and MATCHMIND_CACHE continue to select Azure serving. Prefixes remain matches/<recording>/bundle.json. Uploads are create-only, allowlisted, hash/schema validated, and manifest-last.
 
-Local defaults: `MATCHMIND_ARTIFACT_STORE=local`, `MATCHMIND_REGISTRY=configs/serving/local.json`. Azure configuration: `MATCHMIND_ARTIFACT_STORE=azure`, `MATCHMIND_BLOB_ACCOUNT_URL`, `MATCHMIND_BLOB_CONTAINER`, `MATCHMIND_RECORDINGS` (JSON list), `MATCHMIND_CACHE` (default `/tmp/matchmind-artifacts`). Install `requirements-azure.txt`; the factory uses Azure Blob `ContainerClient` with `DefaultAzureCredential`. [Official Python Blob guidance](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-python).
+Verified 2026-10-17: all ten configured clips have canonical Azure analytics bundles and private Azure video. Following explicit approval, eight additional bundles were published create-only (184 files including manifests; 167,490,828 bytes), then freshly downloaded and manifest/hash/schema/application-validated. Existing blobs were not overwritten and no videos were reuploaded. The restarted local API reports ten ready recordings. Health/readiness/discovery, all ten tactical views, video byte ranges and grounded Local Ask requests passed live HTTP checks. Missing/corrupt analytics still fail per recording; no local artifact fallback occurs. No role assignment or Container Apps deployment was performed. See the artifact guide for exact evidence and frontend build/unit-check limitations.
 
 ## Container Apps resources
 
@@ -78,3 +79,7 @@ Tables: Match, Player, Event, Transfer, TacticalState, Evaluation. The schema de
 ## MCP operator boundary
 
 `mcp-policy.json` specifies read-only service/revision metadata, artifact hashes and sanitized observability. It forbids secrets, mutation, code execution and football calculations. Configure an operator Entra identity, read-only RBAC and a host tool allowlist before connecting Azure MCP. This policy file does not enforce permissions by itself. MCP stays outside the public Ask tool registry. No MCP server/credential was available, so none ran. [Azure MCP scope](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview).
+
+## Existing Azure clip videos
+
+Set optional `MATCHMIND_MEDIA_BLOB_CONTAINER=soccertrack-v2` with the existing account URL/Entra credential to stream private clips via the API (HEAD and byte-range seeking). The browser receives no Blob credential or SAS. All ten existing clips now have video and validated canonical analytics bundles, following the approved eight-bundle create-only upload and fresh Azure read-back verification. The restarted backend reports ten ready recordings; views, video ranges and grounded Local Ask passed live HTTP checks for each. Future video-only recordings remain explicitly pending for analysis until their bundles validate. Local ignored `.env` is configured for the ten clips. See [current playback and publication status](../../docs/azure_artifacts.md).

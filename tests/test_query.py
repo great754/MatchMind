@@ -15,6 +15,22 @@ from src.tactics.engine import analyze_tactics
 from src.analytics.config import AnalyticsConfig
 
 class QueryTests(unittest.TestCase):
+    def test_pass_possession_ignores_control_and_failed_transfers(self):
+        tools=MatchMindTools(self.path)
+        tools.transfers=[{'outcome':'completed','sender_team':'left'}]*2+[
+            {'outcome':'completed','sender_team':'right'},
+            {'outcome':'intercepted','sender_team':'right'},
+            {'outcome':'unresolved','sender_team':'left'}]
+        result=tools.get_confirmed_pass_share()
+        shares={f.record_id:f.value for f in result.facts if f.field=='confirmed_pass_share'}
+        self.assertAlmostEqual(shares['left'],2/3)
+        self.assertAlmostEqual(shares['right'],1/3)
+        self.assertEqual(result.provenance,['transfers.csv'])
+        self.assertAlmostEqual(sum(shares.values()),1)
+        tools.transfers=[]
+        result=tools.get_confirmed_pass_share()
+        self.assertTrue(all(f.value is None for f in result.facts if f.field=='confirmed_pass_share'))
+
     def setUp(self):
         self.temp=TemporaryDirectory();self.addCleanup(self.temp.cleanup);self.path=Path(self.temp.name)
         recording,result=tactical_fixture(seconds=2)
@@ -103,12 +119,12 @@ class QueryTests(unittest.TestCase):
     def test_explanation_limits_and_validation(self):
         answer=explain_event(self.tools,self.events[0].event_id)
         self.assertIn('not proof',' '.join(answer.limitations))
-        self.assertTrue(any('validation state: estimated' in s.text for s in answer.statements))
+        self.assertTrue(any('estimated from tracking' in s.text for s in answer.statements))
         self.assertFalse(any('forced' in s.text or 'intentionally' in s.text for s in answer.statements))
 
     def test_no_invented_formation(self):
         r=query_question(self.tools,'What formation was detected?')
-        self.assertTrue(all('estimate: unknown' in s.text for s in r.statements))
+        self.assertTrue(all('not enough consistent evidence' in s.text for s in r.statements))
 
     def test_provider_independent_dispatch(self):
         from src.query import dispatch,tool_specifications

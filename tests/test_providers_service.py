@@ -57,7 +57,7 @@ class ProviderServiceTests(unittest.TestCase):
         provider=MicrosoftFoundryProvider('https://test.openai.azure.com','deployment','secret-key',session=session)
         self.assertEqual(provider.plan('summary',contract()['tools']).calls[0].name,'get_match_summary')
         kwargs=session.post.call_args.kwargs
-        self.assertFalse(kwargs['allow_redirects']);self.assertEqual(kwargs['timeout'],(5,30));self.assertFalse(kwargs['json']['parallel_tool_calls'])
+        self.assertFalse(kwargs['allow_redirects']);self.assertEqual(kwargs['timeout'],(5,30));self.assertTrue(kwargs['json']['parallel_tool_calls'])
         self.assertNotIn('secret-key',json.dumps(provider.configuration))
         session.post.return_value=SimpleNamespace(status_code=200,content=b'{}',json=lambda:{'choices':[{'message':{'content':'{\"statement_ids\":[0]}'}}]})
         local=query_question(self.tools,'Which team had more possession?')

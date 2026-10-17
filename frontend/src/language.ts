@@ -1,0 +1,14 @@
+import type {Fact} from './contracts';
+// Only useful supported facts become prose. Internal fields remain in memory.
+export function factSentence(f:Fact,player:(id:number)=>string,team:(side:string)=>string):string|null {
+ const v=f.value;if(v===null)return null;const n=typeof v==='number'?Math.round(v*10)/10:v;
+ const subject=f.record_id==='left'||f.record_id==='right'?team(f.record_id):'The team';
+ const labels:Record<string,string>={max_speed_kmh:`The estimated top speed was ${n} km/h.`,measured_distance_m:`The tracked distance was ${n} metres.`,distance_m:`The ball travelled ${n} metres.`,total_confirmed_passes:`Both teams completed ${n} observable transfers altogether.`,pass_count_difference:`The difference was ${n} completed observable transfers.`,confirmed_passes:`${subject} completed ${n} observable transfers.`,confirmed_pass_share:`${subject} made ${typeof v==='number'?Math.round(v*100):n}% of completed transfers.`,attributed_share:`${subject} was attributed possession for ${typeof v==='number'?Math.round(v*100):n}% of the recording.`,pressure_level:v==='unknown'?'The pressure level is unavailable.':`Pressure was ${n}.`,defenders_within_local:`${n} opponents were close to the ball carrier.`,difficulty_score_0_100:`Retrospective transfer difficulty was ${n} out of 100.`,width_m:`The team was ${n} metres wide.`,depth_m:`The team occupied ${n} metres of pitch depth.`,distinct_teammates:`The player exchanged completed transfers with ${n} teammates.`};
+ if(labels[f.field])return labels[f.field];
+ if(['player_id','actor_id','carrier_actor_id'].includes(f.field)&&typeof v==='number')return `${player(v)} is identified in this evidence.`;
+ if(f.field==='team'&&typeof v==='string')return `This evidence concerns ${team(v)}.`;
+ if(['formation','estimate'].includes(f.field))return v==='unknown'?'There is not enough consistent evidence to identify the formation.':`The estimated formation was ${v}.`;
+ if(f.field==='validated_by_bas'&&v===true)return 'An annotation supports the release timing and sender.';
+ return null;
+}
+export const reasonText=(reason:string|null|undefined)=>({insufficient_history:'Not enough match history is available.',incomplete_roster:'Too few outfield players are tracked consistently.',goalkeeper_unknown:'The goalkeeper has not been identified reliably.',insufficient_coverage:'Too little consistent formation evidence is available.',ambiguous_fit:'More than one formation fits the available evidence.',poor_fit:'The tracked shape does not fit a supported formation.',unstable_membership:'Players changed lines too often for a reliable estimate.',pending_persistence:'The estimate has not remained consistent long enough.',direction_changed:'The teams changed ends; a new window is needed.'}[reason??'']??'The available evidence is insufficient.');

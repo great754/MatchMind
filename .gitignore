@@ -15,6 +15,10 @@ outputs/
 
 # Large downloaded/generated SoccerTrack assets.
 data/soccertrack/gsr/
+data/soccertrack/ball/
+data/soccertrack/bas/
+data/soccertrack/raw/
+data/soccertrack/mot/*.txt
 data/soccertrack/mot/clips/
 data/soccertrack/mot/*_sync.json
 
@@ -22,3 +26,14 @@ data/soccertrack/mot/*_sync.json
 data/raw/
 data/processed/
 *.log
+
+# Generated local demo diagnostics; preserve local copies outside Git.
+/output.txt
+
+# Frontend dependencies/builds and browser test output.
+frontend/node_modules
+frontend/node_modules.cloud-backup*/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+frontend/*.tsbuildinfo

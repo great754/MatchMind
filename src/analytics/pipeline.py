@@ -12,7 +12,7 @@ from src.analytics.config import AnalyticsConfig
 from src.analytics.data import load_recording
 from src.analytics.motion import calculate_motion
 from src.analytics.passes import detect_passes
-from src.analytics.possession import detect_possession
+from src.analytics.possession import detect_possession,attribute_possession
 from src.analytics.quality import score_passes
 from src.analytics.shots import annotated_shot_windows, detect_shots
 from src.analytics.validation import validate_events
@@ -78,9 +78,36 @@ def player_summary(recording, result, config):
     return pd.DataFrame(rows)
 
 
+def team_possession_summary(possession, transfers, fps):
+    """Keep attributed possession and confirmed-transfer share explicitly separate."""
+    rows=[dict(row,frame=row.get('frame',i)) for i,row in enumerate(possession.to_dict('records'))]
+    attributed=attribute_possession(rows,fps)
+    completed = transfers[transfers.outcome == 'completed']
+    total_completed = len(completed)
+    owned = int((possession.state == 'controlled').sum())
+    summary = {}
+    for team in ('left', 'right'):
+        confirmed_passes = int((completed.sender_team == team).sum())
+        summary[team] = dict(
+            attributed_seconds=sum(r['team']==team for r in attributed)/fps,
+            attributed_share=sum(r['team']==team for r in attributed)/len(attributed) if attributed else None,
+            attribution_timeout_seconds=20.,
+            confirmed_passes=confirmed_passes,
+            confirmed_pass_share=(confirmed_passes / total_completed) if total_completed else None,
+            possession_basis='completed_observable_transfers',
+            controlled_seconds=float((possession.possessing_team == team).sum() / fps),
+            inferred_control_fraction_of_all_frames=float((possession.possessing_team == team).mean()),
+            inferred_control_fraction_of_controlled_frames=(
+                float((possession.possessing_team == team).sum() / owned) if owned else None
+            ),
+        )
+    return summary
+
+
 def write_outputs(recording, result, config, output, summary_only=False, intelligence_config=None, commentary_provider=None,tactics_config=None):
     output = Path(output)
     output.mkdir(parents=True,exist_ok=True)
+    (output/'possession_attribution.json').write_text(json.dumps(attribute_possession(result['possession'].to_dict('records'),config.fps),allow_nan=False)+'\n')
     summaries = player_summary(recording,result,config)
     summaries.to_csv(output/'player_summary.csv',index=False)
     if not summary_only:
@@ -126,11 +153,7 @@ def write_outputs(recording, result, config, output, summary_only=False, intelli
         control_confidence='Rule-derived proximity score, not calibrated probability.',bas_matching='Release timing/sender agreement does not validate outcome or intent; not independent of BAS ball anchors.')
     (output/'measurement_definitions.json').write_text(json.dumps(semantics,indent=2)+'\n')
     pd.DataFrame(recording.events,columns=['annotation_id','frame','seconds','half_video_seconds','label','player_id','team']).to_csv(output/'reference_events.csv',index=False)
-    owned = int((possession.state == 'controlled').sum())
-    by_team = {team:dict(controlled_seconds=float((possession.possessing_team == team).sum()/config.fps),
-                         fraction_of_all_frames=float((possession.possessing_team == team).mean()),
-                         fraction_of_controlled_frames=float((possession.possessing_team == team).sum()/owned) if owned else None)
-               for team in ('left','right')}
+    by_team = team_possession_summary(possession, transfers, config.fps)
     sources = []
     for filename in recording.source_files:
         p = Path(filename)

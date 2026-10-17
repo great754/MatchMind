@@ -46,6 +46,7 @@ def write_query_artifacts(path):
     for name,value in [('summary.json',summary),('events.json',dict(events=[event.model_dump(mode='json')],player_labels={}))]:
         (path/name).write_text(json.dumps(value))
     pd.DataFrame([dict(player_id=101,mot_id=2,team='left',max_speed_kmh=20)]).to_csv(path/'player_summary.csv',index=False)
+    pd.DataFrame(columns=['sender_team','outcome']).to_csv(path/'transfers.csv',index=False)
     return event
 
 

@@ -3,7 +3,7 @@ import re
 from typing import Protocol
 from .schema import Answer,Statement,QueryResult,Selection
 
-UNKNOWN='MatchMind cannot determine that from the available tracking data.'
+UNKNOWN="I cannot determine that reliably: I don't have enough evidence from this match."
 
 class StatementSelector(Protocol):
     def select(self,question:str,mode:str,catalogue:list[Statement])->Selection: ...
@@ -15,26 +15,8 @@ def answer_result(result,mode='fan',question='',selector=None):
     for f in result.facts:grouped.setdefault((f.record_id,f.timestamp,f.event_id),[]).append(f)
     statements=[]
     for (_,timestamp,event_id),facts in grouped.items():
-        parts=[]
-        for f in facts:
-            if f.value is None:continue
-            value=f'{f.value:.3f}'.rstrip('0').rstrip('.') if isinstance(f.value,float) else str(f.value)
-            label=f.field.replace('_',' ')
-            if mode=='beginner':
-                label={'compactness_m':'how tightly players grouped (m)','forward_progression_m':'distance gained toward goal (m)',
-                    'passing_lane_defenders':'opponents along the ball route','sender_nearby_defenders':'opponents near the sender',
-                    'fraction_of_all_frames':'share of the full recording','fraction_of_controlled_frames':'share of confirmed ball control'}.get(f.field,label)
-            if f.field=='difficulty_score_0_100':label='retrospective heuristic difficulty (0–100)'
-            if f.field=='max_speed_kmh':label='peak estimated speed (km/h)'
-            if f.field=='ball_speed_peak_kmh':label='peak estimated 2D ball speed (km/h)'
-            if f.field=='ball_speed_kmh':label='estimated 2D ball speed (km/h)'
-            if f.field=='ball_speed_median_kmh':label='median estimated 2D ball speed (km/h)'
-            if f.field=='outcome' and f.value=='intercepted':value='opposite-team receipt (interception candidate)'
-            if f.field=='type':value=value.replace('PASS','TRANSFER')
-            if f.field.startswith('fraction_of_'):label+=' (fraction)'
-            if f.field=='mot_id':label='MOT tracker ID (not verified jersey number)'
-            parts.append(f'{label}: {value}')
-        if parts:statements.append(Statement(text='; '.join(parts),fact_ids=[f.fact_id for f in facts],timestamp=timestamp,event_id=event_id))
+        from .language import sentences
+        statements.append(Statement(text=sentences(facts,mode),fact_ids=[f.fact_id for f in facts],timestamp=timestamp,event_id=event_id))
     if not statements:statements=[Statement(text=UNKNOWN,fact_ids=[])]
     if selector:
         selection=Selection.model_validate(selector.select(question,mode,statements))
@@ -42,9 +24,9 @@ def answer_result(result,mode='fan',question='',selector=None):
             raise ValueError('Provider selected unsupported statements')
         statements=[statements[i] for i in selection.statement_ids]
     explanation={
-        'beginner':'Team possession means inferred control of the ball. A transfer is observed movement between players; it may not be an intentional pass.',
-        'fan':'Transfers are observable ball movements. Difficulty and tactical labels are heuristic estimates.',
-        'analyst':'Facts retain source-field provenance. BAS support checks release time/sender; centered ownership smoothing and BAS-anchored ball interpolation prevent independent causal validation.'}[mode]
+        'beginner':'Overall possession uses confirmed completed-pass share. Current possession follows established control and short ball flights.',
+        'fan':'Transfers are observed ball movements; pressure, formation and difficulty remain estimates.',
+        'analyst':'Evidence comes from offline tracking. Two-dimensional ball reconstruction and smoothing limit causal interpretation.'}[mode]
     return Answer(mode=mode,question_type=result.question_type,status=result.status,statements=statements,
         limitations=list(dict.fromkeys(result.limitations+[explanation])),supporting_fact_ids=[f.fact_id for f in result.facts],facts=result.facts)
 
@@ -73,6 +55,7 @@ def intent(question):
     if re.search(r'\b(tired|fatigue|coach|intent|score|jersey|name|win|predict|weather|cause|caused|causality)\b',q):return 'unsupported'
     if re.search(r'\b(fastest|quickest)\b',q):return 'fastest'
     if re.search(r'\b(hardest|difficult|difficulty)\b',q):return 'difficult'
+    if 'pass share' in q or 'pass ratio' in q:return 'pass_share'
     if 'possession' in q:return 'possession'
     if 'formation' in q:return 'formation'
     if re.search(r'\b(pressure|pressured)\b',q):return 'pressure'
@@ -89,6 +72,20 @@ def query_question(tools,question,mode='fan',timestamp=0,event_id=None):
     team='left' if re.search(r'\b(team\s*1|left|red)\b',q) else 'right' if re.search(r'\b(team\s*2|right|blue)\b',q) else None
     # Color aliases are intentionally excluded: color/team assignments vary by recording.
     if re.search(r'\b(red|blue)\b',q):return answer_result(QueryResult(question_type='unsupported',status='unsupported',limitations=['Use left/right or Team 1/Team 2; color labels depend on the selected match.']),mode)
+    player_match=re.search(r'\bplayer\s+(\d+)\b',q)
+    if player_match and not re.search(r'\b(coach|intent|cause|fatigue|tired|predict|weather)\b',q):return answer_result(tools.get_player_summary(int(player_match[1])),mode,question)
+    from .planning import retrieve_question
+    grounded=retrieve_question(tools,question,timestamp)
+    if grounded is not None:
+        answer=answer_result(grounded,mode,question)
+        priority='total_confirmed_passes' if re.search(r'\b(altogether|total|together|in all)\b',q) else 'team_with_more_confirmed_passes' if re.search(r'\b(more|most|rank|ranking)\b',q) else None
+        if priority:
+            target={f.fact_id for f in grounded.facts if f.field==priority}
+            answer=answer.model_copy(update={'statements':sorted(answer.statements,key=lambda s:not bool(target.intersection(s.fact_ids)))})
+        if any(f.field=='confirmed_passes' for f in grounded.facts):
+            note=Statement(text='I’m comparing team-level counts of confirmed completed observable transfers (completed passes), not every ball movement.',fact_ids=[f.fact_id for f in grounded.facts if f.field=='confirmed_passes'])
+            answer=answer.model_copy(update={'statements':[note]+answer.statements})
+        return answer
     if kind=='unsupported':return answer_result(QueryResult(question_type='unsupported',status='unsupported'),mode)
     if kind=='fastest':result=tools.get_fastest_players(1)
     elif kind=='difficult':
@@ -96,9 +93,10 @@ def query_question(tools,question,mode='fan',timestamp=0,event_id=None):
         if result.facts:
             eid=result.facts[0].event_id
             return explain_event(tools,eid,mode)
-    elif kind=='possession':result=tools.get_possession_summary(team)
+    elif kind=='possession':result=tools.get_current_possession(timestamp) if any(x in q for x in ('now','current','ball')) else tools.get_possession_summary(team)
+    elif kind=='pass_share':result=tools.get_confirmed_pass_share(team)
     elif kind=='formation':result=combine('formation_timeline',*[tools.get_formation_timeline(t) for t in ([team] if team else ['left','right'])])
-    elif kind=='pressure':result=tools.get_pressure_peaks(team)
+    elif kind=='pressure':result=tools.get_pressure_level(timestamp) if any(x in q for x in ('now','current','level')) else tools.get_pressure_peaks(team)
     elif kind=='network':
         network=tools.get_transfer_network(team)
         groups={}

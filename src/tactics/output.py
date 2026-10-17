@@ -41,6 +41,8 @@ def write_tactics(recording,result,tactics,events,output) -> dict:
     files=list(recording.source_files)
     if summary.get('metadata_source'):files.append(summary['metadata_source'])
     summary['source_files']=[dict(path=str(p),sha256=hashlib.sha256(Path(p).read_bytes()).hexdigest()) for p in files]
+    from .review import formation_windows
+    (output/'formation_windows.json').write_text(json.dumps(formation_windows(tactics['states']),allow_nan=False)+'\n')
     states=tactics['states'];serialized=[s.model_dump(mode='json') for s in states]
     pd.json_normalize(serialized,sep='_').to_csv(output/'tactical_states.csv',index=False,float_format='%.6f')
     export=dict(schema_version='1.0',full=tactics['network'],by_team=tactics['network_by_team'],windows=tactics['network_windows'])

@@ -1,0 +1,7 @@
+{
+  "recording_id": "117092_clip",
+  "match_id": "117092",
+  "data_root": "data/soccertrack",
+  "output": "outputs/analytics_117092_tactics",
+  "registry": "configs/serving/local.json"
+}

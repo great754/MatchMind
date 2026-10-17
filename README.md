@@ -1,4 +1,4 @@
-## MatchMind tactical video
+## TactiqAI tactical video
 
 Render the SoccerTrack-v2 `118575` match with the original panoramic footage and a synchronized, translucent top-down pitch at the bottom center:
 
@@ -154,6 +154,59 @@ open outputs/evaluation/evaluation_report.html
 
 Analytics now accepts `--match-id`, `--scope`, `--half`, `--data-root`, and `--output`. Reports include offline Ask MatchMind, grounded event explanations and timestamp links. See [evaluation](docs/evaluation.md) for required files, download/run commands, threshold sensitivity and interpretation, and [Ask MatchMind](docs/ask_matchmind.md) for queries, closed tool schemas, grounding and future provider integration. Only one match is installed; two halves do not establish cross-match generalization. Shot consistency results are poor and reported openly; no accuracy improvement is claimed.
 
-Evaluation diagnostics, controlled shot experiments, held-out preparation and the artifact API are documented in [the evaluation/Azure milestone](docs/milestone_evaluation_azure.md). Final verified suite: 216 discovered/passed, zero failed/skipped. Microsoft integration status and planned cloud roles: [Azure architecture](docs/azure_architecture.md).
+Evaluation diagnostics, controlled shot experiments, held-out preparation and the artifact API are documented in [the evaluation/Azure milestone](docs/milestone_evaluation_azure.md). Current verified suite: 283 discovered/passed, zero failed/skipped. Microsoft integration status and planned cloud roles: [Azure architecture](docs/azure_architecture.md).
 
-The Microsoft/product milestone now includes provider selection, structured evidence and follow-ups, artifact stores, Fabric CSV exports and verified local API/Docker smoke checks. Start with [the current demo guide](docs/microsoft_demo.md) and [Azure preparation](deploy/azure/README.md). Live Microsoft/Agent Framework, Azure deployment, Fabric upload and MCP execution remain unverified.
+The Microsoft/product milestone now includes provider selection, structured evidence and follow-ups, artifact stores, Fabric CSV exports and verified local API/Docker smoke checks. Start with [the current demo guide](docs/microsoft_demo.md) and [Azure preparation](deploy/azure/README.md). Microsoft REST is post-hardening live-verified per the user-supplied verifier result; frontend verification uses Local only. Agent Framework live execution, Azure deployment, Fabric upload and MCP execution remain unverified. See [TactiqAI Microsoft hardening](docs/microsoft_hardening.md).
+
+## Match Intelligence frontend
+
+The polished React/TypeScript/Vite analysis screen pairs the source video with a synchronized tactical pitch, possession and formation estimates, canonical event review, and grounded Ask → evidence → jump interactions. Start the API and Vite using the exact commands in [the frontend guide](docs/frontend.md). Design follows [apple-design.md](docs/apple-design.md).
+
+Current verification: **283 Python tests**, **27 frontend tests**, production build and **5 Chrome browser checks**. Microsoft REST is **post-hardening live-verified per the supplied verifier result**, with SSL_CERT_FILE absent, certifi, grounded selection and no fallback. Frontend checks use Local only.
+
+Terminal 1 (repository root; restart an older API to load the new view route):
+
+```bash
+MATCHMIND_MEDIA_ROOT=data/soccertrack/mot/clips MATCHMIND_PROVIDER=microsoft \
+.venv/bin/python -m uvicorn src.serving.app:from_environment --factory --host 127.0.0.1 --port 8000
+```
+
+Terminal 2 (Node 22.22.2+, 24.15+ or 26+):
+
+```bash
+cd frontend
+# Locked dependencies are prepared outside cloud storage automatically.
+npm run dev
+```
+
+Open **http://127.0.0.1:5173**. Use `MATCHMIND_PROVIDER=local` for a network-free demo. Frontend checks: `npm test`, `npm run build`, `npm run test:browser` (installed Chrome and prepared artifacts/media required).
+
+### Match setup and current possession
+
+The first visit now prompts for team names/colors and player names/jerseys; labels persist locally per match. Current possession retains the last established controller through short flights/gaps and is separate from confirmed-transfer share. Formation is summarized over four-minute windows; pressure levels are separate from sustained-pressure events. English evidence and bounded multi-tool Foundry planning replace raw field summaries. See [rules, artifacts, API changes and limitations](docs/demo_improvements.md). Shot thresholds remain unchanged: this clip has zero BAS shot annotations and zero heuristic candidates.
+
+## Possession clarification — 2026-10-15
+
+**Overall possession** uses each team's confirmed completed passes divided by both teams' confirmed completed passes (16/29 and 13/29 here: 55.2% / 44.8%). Unconfirmed control does not enter this percentage. `get_possession_summary` and general possession questions use this pass-based proxy; the UI labels its basis explicitly.
+
+**Current possession**, shown below the pitch, is the team/player currently attributed the ball. It uses established control and continuity during flight/short gaps, not the overall percentage. Current/now questions use `get_current_possession`. Unknown is shown only when attribution is unavailable. This clarification supersedes the earlier description of attributed time as the headline possession statistic; attribution remains available as an internal diagnostic.
+
+Ask now accepts pass-count/total/comparison paraphrases, highest-speed and pressed/formation synonyms, and supported multi-tool combinations without preset wording. For this clip, completed passes are **16 vs 13, 29 total**. Latest verification: **297 backend tests, 28 frontend tests, production build and 6 local Chrome checks**. See [current query behavior](docs/ask_matchmind.md).
+
+## Second recording: 128058
+
+Now independently processed and registered. The missing MOT download was fixed by using explicit filenames instead of a multi-value --include argument. See [the exact download command and independent processing workflow](docs/second_recording.md). Run `.venv/bin/python -m scripts.prepare_recording --config configs/recordings/128058_clip.json` for preflight, then add `--run` after installing dependencies. Successful processing registers a separate recording; restart the API/reload React to select it. The 128058 clip is now available after restarting the API and reloading React.
+
+## One-command short-clip batch — 2026-10-15
+
+Run `.venv/bin/python -m scripts.prepare_clips --run` from the repository root. It prepares 117092, 117093, 118575, 118576, 118577, 118578, 128057, 128058, 132831 and 132877 sequentially. Already registered, validated clip bundles with existing media are skipped. Missing dependencies are downloaded by exact filename with huggingface_hub; videos come exclusively from mot/clips, never full-half panorama video paths. Full-half GSR/ball annotation data is still required for synchronization. Each newly completed clip is registered only after processing/validation succeeds. Failures are recorded in outputs/clip_batch_status.json and can be retried by rerunning; known ready clips are preserved.
+
+118575_h1 and 118575_h2 were removed from the default serving registry (their disk artifacts are retained). Restart the API and refresh React to remove them from the visible selector and discover newly registered clips. Pending clip configurations stay disabled. The batch has not been executed on all ten recordings during this change; no unprocessed clip is claimed working. Preview/config creation and existing-bundle checks were run without downloads. Verification: 308 backend tests and 32 frontend tests passed, including mocked exact-file download/processing/skip/failure tests. Existing analytics thresholds are unchanged.
+
+### Canonical Azure artifact workflow
+
+Use `python -m src.artifacts build|upload|verify --recording 118575_clip` (select one command). [Exact setup, safe upload rules and live status](docs/azure_artifacts.md). Local build and 327 backend tests pass; the provisioned private container is reachable, but Blob data access returned AuthorizationPermissionMismatch before writes. Upload/read-back/application integration are not live-verified. No Container Apps deployment was performed.
+
+### Azure playback and local video storage
+
+With `MATCHMIND_ARTIFACT_STORE=azure` and `MATCHMIND_MEDIA_BLOB_CONTAINER=soccertrack-v2`, the app streams the private Azure clips and loads validated Azure analytics bundles. Local source MP4 downloads are not required for serving or grounded Ask. The ten local downloaded clips were removed after verifying Azure copies and post-deletion playback/readiness. Download clips again only when rerunning offline processing or real-video tests. Keep videos, .env, generated outputs and downloaded datasets out of Git.

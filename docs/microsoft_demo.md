@@ -1,3 +1,5 @@
+> Historical product-milestone verification. Current TactiqAI status: 251 tests pass, configured Microsoft REST has saved live success, and TLS hardening is unit-tested with a new live recheck pending explicit approval. See [current hardening](microsoft_hardening.md).
+
 # Microsoft-native demo verification — 2026-10-14
 
 The milestone began with 176 passing tests. Current suite: **216 discovered / 216 passed / 0 failed / 0 skipped**. All previous dirty work was preserved. Production detector thresholds were not changed. Both required current-pipeline documents describe the resulting implementation.

@@ -15,6 +15,7 @@ class MatchMindTools:
     def __init__(self,directory):
         self.directory=Path(directory)
         self.summary=self._json('summary.json',{})
+        self.events_available=(self.directory/'events.json').is_file()
         self.event_export=self._json('events.json',{'events':[],'player_labels':{}})
         self.events=[CanonicalEvent.model_validate(e) for e in self.event_export['events']]
         self.states=[TacticalState.model_validate(s) for s in self._json('tactical_states.json',{'states':[]})['states']]
@@ -22,8 +23,16 @@ class MatchMindTools:
         self.evidence=self._json('pre_event_evidence.json',{'items':[]})['items']
         self.players=self._csv('player_summary.csv')
         self.transfers=self._csv('transfers.csv')
+        self.transfers_available=(self.directory/'transfers.csv').is_file()
         self.tactical_summary=self._json('tactical_summary.json',{})
         self.definitions=self._json('measurement_definitions.json',{})
+        from src.analytics.possession import attribute_possession
+        from src.tactics.review import formation_windows
+        self.ownership=self._json('possession_attribution.json',attribute_possession(self._csv('possession.csv'),self.summary.get('fps',25)))
+        self.ownership_source='possession_attribution.json' if (self.directory/'possession_attribution.json').is_file() else 'possession.csv#continuity_20s'
+        self.formation_source='formation_windows.json' if (self.directory/'formation_windows.json').is_file() else 'tactical_states.json#four_minute_aggregation'
+        self.ownership_times=[r['timestamp'] for r in self.ownership]
+        self.formations=self._json('formation_windows.json',formation_windows(self.states))
         self.limitations=self.summary.get('limitations',[])
 
     def _json(self,name,default):
@@ -62,22 +71,107 @@ class MatchMindTools:
         rows=[(str(p['player_id']),'player_summary.csv',p,p.get('peak_speed_seconds'),None) for p in self.players if p['player_id']==player_id]
         return self._result('player_summary',rows,('Actor/tracker IDs are not verified jersey numbers; player names are unavailable.',))
 
+    def get_players(self,limit=25):
+        self._limit(limit)
+        return self._result('player_summary',[(str(p['player_id']),'player_summary.csv',p,None,None)
+            for p in sorted(self.players,key=lambda p:p['player_id'])[:limit]])
+
+    def get_distance_leaders(self,limit=5):
+        self._limit(limit)
+        players=sorted([p for p in self.players if p.get('measured_distance_m') is not None],
+                       key=lambda p:(-p['measured_distance_m'],p['player_id']))[:limit]
+        return self._result('player_summary',[(str(p['player_id']),'player_summary.csv',p,None,None) for p in players])
+
     def get_fastest_players(self,limit=5):
         self._limit(limit)
         players=sorted([p for p in self.players if p.get('max_speed_kmh') is not None],key=lambda p:(-p['max_speed_kmh'],p['player_id']))[:limit]
         return self._result('fastest_players',[(str(p['player_id']),'player_summary.csv',
             {k:p.get(k) for k in ('player_id','mot_id','team','max_speed_kmh','valid_motion_fraction','peak_speed_seconds')},p.get('peak_speed_seconds'),None) for p in players])
 
-    def get_possession_summary(self,team=None):
+    def get_team_speed_peaks(self,team=None):
         self._team(team)
-        sides=self.summary.get('team_possession',{})
-        rows=[(side,'summary.json',dict(team=side,**metrics),None,None) for side,metrics in sides.items() if team is None or side==team]
-        if team is None and all(side in sides for side in ('left','right')):
-            left=sides['left']['controlled_seconds'];right=sides['right']['controlled_seconds']
-            winner='left' if left>right else 'right' if right>left else 'equal'
-            rows.append(('comparison','summary.json',dict(team_with_more_inferred_control=winner,comparison_basis='controlled_seconds; excludes unowned frames'),None,None))
+        rows=[]
+        for side in ([team] if team else ['left','right']):
+            candidates=[p for p in self.players if p.get('team')==side and p.get('max_speed_kmh') is not None]
+            if not candidates:continue
+            p=min(candidates,key=lambda p:(-p['max_speed_kmh'],p['player_id']))
+            rows.append((str(p['player_id']),'player_summary.csv',
+                {k:p.get(k) for k in ('player_id','mot_id','team','max_speed_kmh','valid_motion_fraction','peak_speed_seconds')},p.get('peak_speed_seconds'),None))
+        return self._result('fastest_players',rows,('Each team is represented by its highest observed player peak speed, not an average team speed.',))
+
+    def get_confirmed_pass_share(self,team=None):
+        self._team(team)
+        if self.transfers_available:
+            source='transfers.csv'
+            counts={side:sum(t.get('outcome')=='completed' and t.get('sender_team')==side
+                             for t in self.transfers) for side in ('left','right')}
+        elif self.events_available:
+            source='events.json'
+            counts={side:sum(e.type.value=='PASS_COMPLETED' and e.team==side for e in self.events)
+                    for side in ('left','right')}
+        else:
+            return self._result('possession_summary',[],('Completed-transfer records and canonical events are unavailable for this recording.',))
+        total=sum(counts.values())
+        rows=[(side,source,dict(team=side,confirmed_passes=count,
+            confirmed_pass_share=count/total if total else None,
+            possession_basis='completed_observable_transfers'),None,None)
+            for side,count in counts.items() if team is None or side==team]
+        if team is None:
+            rows.append(('total',source,dict(total_confirmed_passes=total),None,None))
+            winner=('left' if counts['left']>counts['right'] else
+                    'right' if counts['right']>counts['left'] else 'equal') if total else None
+            rows.append(('comparison',source,dict(team_with_more_confirmed_passes=winner,
+                comparison_basis='completed_observable_transfers; unconfirmed control excluded',
+                pass_count_difference=abs(counts['left']-counts['right']),
+                left_pass_rank=1 if counts['left']>=counts['right'] else 2,
+                right_pass_rank=1 if counts['right']>=counts['left'] else 2),None,None))
         return self._result('possession_summary',rows,
-            ('Possession is inferred; percentages of all frames and of controlled frames have different denominators.',))
+            ('Confirmed pass share is the team\'s share of completed observable transfers, separate from possession attribution.',))
+
+    def get_possession_summary(self,team=None):
+        """Overall possession is the user's confirmed-completed-pass proxy."""
+        return self.get_confirmed_pass_share(team)
+
+    def get_attributed_control_summary(self,team=None):
+        self._team(team)
+        total=len(self.ownership)
+        rows=[(side,self.ownership_source,dict(team=side,attributed_seconds=sum(r['team']==side for r in self.ownership)/self.summary.get('fps',25),
+            attributed_share=sum(r['team']==side for r in self.ownership)/total if total else None),None,None)
+            for side in ('left','right') if team is None or team==side]
+        return self._result('possession_summary',rows,('Possession retains the last established controller during gaps up to 20 seconds, then becomes unknown. Completed-pass share is separate.',))
+
+    def get_current_possession(self,timestamp):
+        index=bisect_right(self.ownership_times,timestamp)-1
+        r=self.ownership[index] if 0<=index<len(self.ownership) and timestamp<=self.ownership_times[-1] else None
+        return self._result('possession_summary',[(str(r['frame']),self.ownership_source,r,r['timestamp'],None)] if r else [])
+
+    def get_positions(self,timestamp):
+        # Existing sample projection only, no vision or interpolation.
+        replay=getattr(self,'replay',None)
+        if replay is None:return self._result('tactical_state',[])
+        i=min(len(replay.positions)-1,int(timestamp*replay.fps/replay.stride))
+        if timestamp<0 or timestamp>replay.frames/replay.fps:return self._result('tactical_state',[])
+        rows=[(str(actor),getattr(self,'replay_source','review_frames.json'),dict(actor_id=actor,team=replay.teams[j],x_m=p[0],y_m=p[1]),i*replay.stride/replay.fps,None)
+              for j,(actor,p) in enumerate(zip(replay.ids,replay.positions[i]))]
+        return self._result('tactical_state',rows,('Precomputed metric positions, not live observations.',))
+
+    def get_pressure_level(self,timestamp):
+        from src.tactics.review import pressure_level
+        i=bisect_right(self.times,timestamp)-1
+        if i<0 or timestamp>=self.summary.get('duration_seconds',0):return self._result('pressure_sequences',[])
+        s=self.states[i]
+        display=getattr(self,'review_pressure',[])
+        replay=getattr(self,'replay',None)
+        display_index=int(timestamp*replay.fps/replay.stride) if replay else i
+        p=display[display_index] if display_index<len(display) else s.pressure
+        return self._result('pressure_sequences',[(str(s.frame),'pressure_levels.json' if (self.directory/'pressure_levels.json').is_file() else getattr(self,'replay_source','tactical_states.json')+'#attributed_possessor_pressure',dict(pressure_level=pressure_level(p),
+            team=p.attacking_team,actor_id=p.carrier_actor_id,sustained_press=s.pressure.sustained_press),s.timestamp,None)],
+            ('Pressure level describes opponents around the attributed possessor, including during flight. Sustained events use the separate stricter confirmed-carrier detector.',))
+
+    def get_formation_windows(self,team=None):
+        self._team(team)
+        return self._result('formation_timeline',[(r['team']+str(r['start_seconds']),self.formation_source,r,r['start_seconds'],None)
+            for r in self.formations if team is None or r['team']==team],('Dominant formation over four-minute offline windows; inadequate coverage remains unknown.',))
 
     def get_events(self,event_type=None,team=None,start_time=None,end_time=None):
         self._team(team)
@@ -164,13 +258,7 @@ class MatchMindTools:
     def get_formation_timeline(self,team):
         self._team(team)
         if team is None:raise ValueError('team is required')
-        rows=[];previous=None
-        for s in self.states:
-            f=getattr(s,team).formation
-            signature=(f.estimate,f.reason)
-            if signature!=previous:
-                rows.append((team+':'+str(s.frame),'tactical_states.json',dict(team=team,**f.model_dump()),s.timestamp,None));previous=signature
-        return self._result('formation_timeline',rows,('Formation is a conservative longitudinal line-count estimate; unknown means the evidence gates did not pass.',))
+        return self.get_formation_windows(team)
 
     def get_transfer_network(self,team=None,start_time=None,end_time=None):
         self._team(team)

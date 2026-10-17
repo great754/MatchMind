@@ -3,11 +3,12 @@ import argparse
 import json
 import requests
 
-def smoke(base,recording):
+def smoke(base,recording,hosted=True):
     session=requests.Session();session.trust_env=False
     def get(path,status=200):
         r=session.get(base+path,timeout=20);assert r.status_code==status,(path,r.status_code);return r
     def post(body,status=200):
+        if not hosted:body={**body,'provider':'local'}
         r=session.post(base+'/matches/'+recording+'/ask',json=body,timeout=60);assert r.status_code==status,r.status_code;return r
     prefix='/matches/'+recording
     get('/health');get('/ready');get(prefix+'/summary');events=get(prefix+'/events').json()
@@ -21,7 +22,7 @@ def smoke(base,recording):
     get(prefix+'/players/'+str(actor));assert get(prefix+'/players/999999999').json()['status']=='unknown'
     assert post(dict(question='What did the coach tell the team?')).json()['answer']['status']=='unsupported'
     post(dict(question='',secret='must-not-echo'),422)
-    result=post(dict(question='Who was the fastest player?',provider='microsoft')).json()
+    result=post(dict(question='Who was the fastest player?',provider='microsoft' if hosted else 'local')).json()
     assert result['answer']['facts']==fastest['answer']['facts']
     assert 'must-not-echo' not in post(dict(question='',secret='must-not-echo'),422).text
     report=get(prefix+'/report')
@@ -34,5 +35,5 @@ def smoke(base,recording):
     return dict(status='passed',recording=recording,event_lookup=True,player_lookup=True,provider=result['provider'],fallback=result['fallback'])
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8000');p.add_argument('--recording',default='118575_clip');a=p.parse_args();print(json.dumps(smoke(a.base,a.recording),indent=2))
+    p=argparse.ArgumentParser();p.add_argument('--base',default='http://127.0.0.1:8000');p.add_argument('--recording',default='118575_clip');p.add_argument('--local-only',action='store_true',help='Exercise local HTTP routes without any external provider call.');a=p.parse_args();print(json.dumps(smoke(a.base,a.recording,not a.local_only),indent=2))
 if __name__=='__main__':main()
