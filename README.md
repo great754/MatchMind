@@ -1,5 +1,23 @@
 ## TactiqAI tactical video
 
+
+## Current local Azure + CV demo — 2026-10-26
+
+**CV Milestone 6:** both `test_match · CV Experimental` and `team_goal · CV Experimental` support measured temporal camera review and persistent team evidence. Refresh **http://127.0.0.1:5173** and enable **Camera motion debug**/**Team classification debug**. The marker legend separates direct, relocalized, temporal, partial, bidirectional and historical evidence.
+
+Current model-accepted camera/placement coverage: **test_match21.44%/19.91%;team_goal83.40%/81.99%**. Stricter acceptance reduces coverage and increases unknown-team counts. On matched team_goal pairs, large-jump flags611→284. Near0.058s mapping recovers from measured future evidence; the questionable frame350circle is rejected. These are diagnostics, not independent accuracy. [Full M6 results, commands and limitations](docs/cv_world_model_m6.md).
+
+**506backend tests ran(505pass/one expected skip),71frontend tests and TypeScript/build passed. All five full Chrome suites passed**, including all ten Azure recordings and both CVvideos. Ready200/12usable recordings;existing grounded Local Ask remains working. No Azure settings need changing. Keep both original local CVvideos;SoccerTrack videos stream Azure.
+
+Backend from repo root:
+
+```sh
+MATCHMIND_PROVIDER=local MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
+TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
+```
+
+Frontend(Node22):`cd frontend && npm run dev`. Preserve/recreate the temporary Python runtime if cleared. [Historical M5 source run](docs/cv_team_goal.md).
+
 Render the SoccerTrack-v2 `118575` match with the original panoramic footage and a synchronized, translucent top-down pitch at the bottom center:
 
 ```bash

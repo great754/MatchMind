@@ -7,6 +7,40 @@ beforeEach(()=>{localStorage.clear();localStorage.setItem(IDENTITY_KEY,JSON.stri
 afterEach(()=>{cleanup();vi.clearAllMocks()});
 async function ready(){render(<App/>);await screen.findByText('API connected')}
 describe('Match Intelligence',()=>{
+ it('uses release pre-roll while retaining the canonical event marker and evidence time',async()=>{
+  const data=structuredClone(view);data.events[0].metrics={start_frame:150,end_frame:190};
+  vi.mocked(api.view).mockResolvedValue(data);await ready();
+  const marker=screen.getByRole('button',{name:'Completed transfer at 00:08.00'});
+  const position=marker.style.left;
+  await userEvent.click(marker);
+  expect(screen.getByTestId('current-time')).toHaveTextContent('00:04.00');
+  expect(screen.getByRole('img',{name:'Tactical pitch at 4.00 seconds'})).toBeInTheDocument();
+  expect(marker.style.left).toBe(position);expect(marker).toHaveClass('selected');
+  expect(screen.getAllByRole('button',{name:'00:08.00'}).length).toBeGreaterThan(0);
+  expect(data.events[0].timestamp).toBe(8);
+ });
+ it('Take me there seeks from verified conversation evidence without changing its timestamp',async()=>{
+  const answer={...structuredClone(result),conversation:{recording_id:'118575_clip',last_timestamp:8,last_event_id:'evt_test',last_player_id:101}};
+  vi.mocked(api.ask).mockResolvedValue(answer);await ready();
+  await userEvent.type(screen.getByLabelText('Ask about this match'),'Take me there');
+  await userEvent.click(screen.getByRole('button',{name:'Ask TactiqAI'}));
+  await waitFor(()=>expect(screen.getByTestId('current-time')).toHaveTextContent('00:06.00'));
+  expect(answer.conversation.last_timestamp).toBe(8);expect(answer.answer.statements[0].timestamp).toBe(8);
+ });
+
+ it('seeks canonical insights and preserves facts while switching presentation mode',async()=>{
+  const data=structuredClone(view);const answer=structuredClone(result.answer);
+  data.intelligence={recording_id:data.recording_id,limitations:[],insights:[{insight_id:'speed',title:'Fastest tracked player',classification:'INFERRED',timestamp:8,actor_id:101,event_id:null,presentations:{beginner:{...answer,mode:'beginner'},fan:{...answer,mode:'fan'},analyst:{...answer,mode:'analyst'}}}]};
+  vi.mocked(api.view).mockResolvedValue(data);await ready();
+  await userEvent.click(screen.getByText('Fastest tracked player · inferred'));
+  await userEvent.click(screen.getByRole('button',{name:'Review 00:08.00'}));
+  expect(screen.getByTestId('current-time')).toHaveTextContent('00:06.00');
+  expect(screen.getByRole('img',{name:'Tactical pitch at 6.00 seconds'})).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button',{name:'Analyst'}));
+  expect(screen.getByText('Canonical provenance')).toBeInTheDocument();
+  expect(api.ask).not.toHaveBeenCalled();
+ });
+
  it('renders the recording, unknown formation and missing media honestly',async()=>{await ready();expect(screen.getByRole('button',{name:'Match setup'})).toBeInTheDocument();expect(screen.getByText('Match video unavailable')).toBeInTheDocument();expect(screen.getAllByText(/Unknown/i).length).toBeGreaterThan(0);expect(screen.getByText('66.7%')).toBeInTheDocument()});
  it('shows completed-pass shares without frame-control percentages',async()=>{await ready();expect(screen.getByText('66.7%')).toBeInTheDocument();expect(screen.getByText('33.3%')).toBeInTheDocument();expect(screen.queryByText(/total confirmed control/)).not.toBeInTheDocument();expect(screen.getByText('Share of confirmed completed passes')).toBeInTheDocument()});
  it('uses continuity ownership and slow formations while pressure levels change independently',async()=>{
@@ -24,8 +58,8 @@ describe('Match Intelligence',()=>{
    await waitFor(()=>expect(vi.mocked(api.ask).mock.calls.at(-1)?.[0]).toBe(question));await screen.findByText(/Both teams completed 29 altogether/);expect(screen.queryByText('I don’t have enough evidence from this match to answer that reliably.')).not.toBeInTheDocument();
   }
  });
- it('asks, exposes evidence, jumps and highlights the supported actor',async()=>{await ready();await userEvent.click(screen.getByRole('button',{name:'Who was the fastest player?'}));await screen.findByText('Player 1; peak estimated speed: 20 km/h');await userEvent.click(screen.getByRole('button',{name:/Jump to moment/}));expect(screen.getByTestId('current-time')).toHaveTextContent('00:08.00');await screen.findByRole('heading',{name:'Player 1'});expect(api.ask).toHaveBeenCalledWith('Who was the fastest player?','fan','local',0,{});expect(screen.getByText(/Supporting evidence/)).toBeInTheDocument()});
- it('uses the same timestamp path for timeline events',async()=>{await ready();await userEvent.click(screen.getByRole('button',{name:'Completed transfer at 00:08.00'}));expect(screen.getByTestId('current-time')).toHaveTextContent('00:08.00');expect(screen.getByText('SELECTED EVENT')).toBeInTheDocument();await userEvent.click(screen.getByRole('button',{name:/Explain this event/}));expect(api.explain).toHaveBeenCalledWith('evt_test','fan');await screen.findByText('Event explanation')});
+ it('asks, exposes evidence, jumps and highlights the supported actor',async()=>{await ready();await userEvent.click(screen.getByRole('button',{name:'Who was the fastest player?'}));await screen.findByText('Player 1; peak estimated speed: 20 km/h');await userEvent.click(screen.getByRole('button',{name:/Jump to moment/}));expect(screen.getByTestId('current-time')).toHaveTextContent('00:06.00');await screen.findByRole('heading',{name:'Player 1'});expect(api.ask).toHaveBeenCalledWith('Who was the fastest player?','fan','local',0,{});expect(screen.getByText(/Supporting evidence/)).toBeInTheDocument()});
+ it('uses the same timestamp path for timeline events',async()=>{await ready();await userEvent.click(screen.getByRole('button',{name:'Completed transfer at 00:08.00'}));expect(screen.getByTestId('current-time')).toHaveTextContent('00:06.00');expect(screen.getByText('SELECTED EVENT')).toBeInTheDocument();await userEvent.click(screen.getByRole('button',{name:/Explain this event/}));expect(api.explain).toHaveBeenCalledWith('evt_test','fan');await screen.findByText('Event explanation')});
  it('requests backend presentation when mode changes',async()=>{await ready();await userEvent.click(screen.getByRole('button',{name:'Who was the fastest player?'}));await screen.findByText('Player 1; peak estimated speed: 20 km/h');await userEvent.click(screen.getByRole('button',{name:'Analyst'}));await waitFor(()=>expect(vi.mocked(api.ask).mock.calls.at(-1)?.[1]).toBe('analyst'))});
  it('scrubs the canonical timestamp directly',async()=>{await ready();fireEvent.change(screen.getByRole('slider',{name:'Match timestamp'}),{target:{value:'5'}});expect(screen.getByTestId('current-time')).toHaveTextContent('00:05.00');expect(screen.getByRole('img',{name:'Tactical pitch at 5.00 seconds'})).toBeInTheDocument()});
  it('handles API startup failure and recovery',async()=>{vi.mocked(api.view).mockRejectedValueOnce(new Error('API offline'));render(<App/>);await screen.findByText('Match data is unavailable');await userEvent.click(screen.getByRole('button',{name:/Retry connection/}));await screen.findByText('API connected')});

@@ -183,4 +183,6 @@ function seek(t){slider.value=t;if(video)video.currentTime=t;draw(t);}
     page += tactics_script()
     page += ask_script()
     page += '''slider.addEventListener('input',()=>seek(Number(slider.value)));document.getElementById('labels').addEventListener('change',()=>draw(Number(slider.value)));document.querySelectorAll('[data-seek]').forEach(b=>b.addEventListener('click',()=>seek(Number(b.dataset.seek))));if(video)video.addEventListener('timeupdate',()=>{slider.value=video.currentTime;draw(video.currentTime);});const requestedTime=typeof window==='undefined'?0:Number(new URLSearchParams(window.location.search).get('t')??0);seek(Number.isFinite(requestedTime)?Math.max(0,Math.min((data.frames-1)/data.fps,requestedTime)):0);</script></html>'''
+    from src.serving.playback import report_playback
+    page=report_playback(page,intelligence.get('events',{}).get('events',[]),recording.fps)
     (output/'report.html').write_text(page)

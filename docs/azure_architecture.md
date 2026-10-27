@@ -1,5 +1,9 @@
 # Azure architecture and integration boundary
 
+## Canonical observation boundary — 2026-10-17
+
+The incremental provider-neutral schema and SoccerTrack compatibility adapter are in src/observations. Unknown data remain null; no CV model or Azure service was added. Production source loading remains unchanged. See [contract and verification](intelligence_milestone.md).
+
 Status 2026-10-14: Microsoft REST has saved live verification; post-hardening TLS recheck awaits approval. Local API is verified and Docker was verified in the prior milestone. No Container Apps deployment, real Agent Framework run, Fabric cloud ingestion or MCP execution is claimed. See [TactiqAI hardening](microsoft_hardening.md). Gemini remains supported. Neither provider calculates authoritative football statistics.
 
 ```mermaid

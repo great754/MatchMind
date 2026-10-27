@@ -1,0 +1,2 @@
+Selected MIT-licensed TVCalib camera geometry/optimizer files from MM4SPA/tvcalib commit 1222c5230af2742395d74918ed6f34eb2b9bf7f9.
+Circle sampling uses a local fixed seed (42) for reproducibility. Imports were namespaced and the camera parameter container uses torch.nn.Module instead of LightningModule; it uses no Lightning features. No training, dataset, visualization or segmentation weights are bundled. See LICENSE.

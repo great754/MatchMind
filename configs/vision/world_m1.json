@@ -1,0 +1,19 @@
+{
+  "track_grace_seconds": 0.6,
+  "off_camera_seconds": 1.0,
+  "min_track_hits": 2,
+  "min_iou": 0.05,
+  "max_image_motion_per_second": 1.5,
+  "appearance_gate": 0.9,
+  "association_threshold": 0.9,
+  "ambiguity_margin": 0.08,
+  "max_player_speed_mps": 12.0,
+  "movement_slack_m": 3.0,
+  "position_prior_seconds": 3.0,
+  "allow_appearance_only_reassociation": false,
+  "nms_threshold": 0.5,
+  "team_min_samples": 8,
+  "team_center_separation": 25.0,
+  "team_max_color_distance": 65.0,
+  "team_margin": 0.35
+}

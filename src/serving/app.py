@@ -32,7 +32,7 @@ class AskRequest(Closed):
     conversation:ConversationState=Field(default_factory=ConversationState)
 
 
-def create_app(registry,provider=None,token=None,default_provider='local',media_root=None,recording_catalog=None,media_store=None):
+def create_app(registry,provider=None,token=None,default_provider='local',media_root=None,recording_catalog=None,media_store=None,cv_registry=None):
     # Resolve once before traffic. Azure recordings fail independently; local stays strict.
     store=registry if hasattr(registry,'resolve') and hasattr(registry,'ids') else LocalArtifactStore(registry)
     logger=logging.getLogger('matchmind.requests')
@@ -69,6 +69,34 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             available=bool(key.endswith('_clip') and match and media_store.available(match))
             status.update(media_available=available,media_url=f'/matches/{key}/video.mp4' if available else None)
             if available:media_ids[key]=match
+    cv_reviews={}
+    for key,directory in (cv_registry or {}).items():
+        from .cv import CVReview
+        try:
+            cv_reviews[key]=CVReview(directory)
+            if cv_reviews[key].manifest['recording_id']!=key:raise ValueError('CV registry identity mismatch')
+            if key in loaded:
+                summary=loaded[key].summary;metadata=cv_reviews[key].manifest
+                if summary.get('fps')!=metadata['fps'] or summary.get('frames')!=metadata['frames']:
+                    raise ValueError('CV/analytics recording clocks differ')
+        except (ValueError,OSError) as error:
+            cv_reviews.pop(key,None)
+            logger.warning('CV recording %s unavailable: %s',key,type(error).__name__)
+        if key in statuses:
+            statuses[key]['cv_diagnostic']=None if key in cv_reviews else 'cv_review_unavailable_or_clock_mismatch'
+            if key in cv_reviews and not statuses[key].get('media_available'):
+                statuses[key].update(media_available=True,media_url=f'/matches/{key}/video.mp4')
+            continue
+        statuses[key]=dict(recording_id=key,match_id=key,status='available' if key in cv_reviews else 'unavailable',
+            source='cv_experimental',artifact_ready=False,media_available=key in cv_reviews,
+            media_url=f'/matches/{key}/video.mp4' if key in cv_reviews else None,
+            diagnostic=None if key in cv_reviews else 'cv_review_unavailable')
+    for key,status in statuses.items():
+        cv=cv_reviews.get(key)
+        status.setdefault('source','soccertrack_structured')
+        status['capabilities']=dict(video_available=bool(status.get('media_available')),analytics_available=key in loaded,
+            tactical_view_available=key in loaded,cv_world_model_available=cv is not None,
+            pitch_calibration_available=bool(cv and cv.manifest.get('pitch_calibration_available')),ask_available=key in loaded)
     replays={key:load_replay(tools.directory) for key,tools in loaded.items()}
     from src.tactics.review import review_pressure
     for key,tools in loaded.items():
@@ -93,7 +121,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         logger.info(json.dumps(dict(request_id=correlation,method=request.method,route=getattr(request.scope.get('route'),'path','unmatched'),status=response.status_code,latency_ms=round((time.perf_counter()-start)*1000,3),**getattr(request.state,'query_metrics',{}))))
         return response
     @app.get('/ready')
-    def ready():return dict(status='ready' if loaded else 'empty',recordings=len(loaded)) if loaded else JSONResponse(status_code=503,content={'status':'empty'})
+    def ready():return dict(status='ready',recordings=len(set(loaded)|set(cv_reviews))) if loaded or cv_reviews else JSONResponse(status_code=503,content={'status':'empty'})
     @app.exception_handler(RequestValidationError)
     async def validation_error(request,error):
         return JSONResponse(status_code=422,content={'detail':[{'loc':list(e['loc']),'type':e['type'],'msg':e['msg']} for e in error.errors()]})
@@ -109,6 +137,16 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     @app.get('/recordings',dependencies=secured)
     def recordings():
         return dict(recordings=list(statuses.values()))
+
+    @app.get('/matches/{match_id}/cv',dependencies=secured)
+    def cv_metadata(match_id:str):
+        if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
+        return cv_reviews[match_id].metadata()
+
+    @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+        if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
+        return cv_reviews[match_id].frame(timestamp)
 
     @app.get('/matches/{match_id}/view',response_model=Review,dependencies=secured)
     def match_view(match_id:str):
@@ -154,7 +192,9 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     def report(match_id:str):
         path=recording(match_id).directory/'report.html'
         if not path.is_file():raise HTTPException(404,'Report unavailable')
-        page=path.read_text()
+        from .playback import report_playback
+        tools=recording(match_id)
+        page=report_playback(path.read_text(),tools.events,tools.summary.get('fps',25))
         config='<script>window.MATCHMIND_API_BASE='+json.dumps('/matches/'+match_id)+';window.MATCHMIND_DEFAULT_PROVIDER='+json.dumps(default_provider)+';</script>'
         page=page.replace('<script>',config+'<script>',1)
         if (media_root or media_store) and recording(match_id).summary.get('scope')=='clip':
@@ -163,6 +203,9 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     @app.head('/matches/{match_id}/{asset}',dependencies=secured,include_in_schema=False)
     @app.get('/matches/{match_id}/{asset}',dependencies=secured)
     def image(match_id:str,asset:str,request:Request):
+        if asset=='video.mp4' and match_id in cv_reviews and match_id not in media_ids:
+            cv_reviews[match_id].frame(0)
+            return FileResponse(cv_reviews[match_id].video,media_type='video/mp4')
         if asset=='video.mp4' and media_store and match_id in media_ids:
             return media_store.response(media_ids[match_id],request)
         tools=recording(match_id)
@@ -195,7 +238,9 @@ def from_environment():
         registry=AzureBlobArtifactStore(client,json.loads(os.environ['MATCHMIND_RECORDINGS']),os.environ.get('MATCHMIND_CACHE','/tmp/matchmind-artifacts'))
         if os.environ.get('MATCHMIND_MEDIA_BLOB_CONTAINER'):
             from .media import AzureClipMedia
-            media_store=AzureClipMedia(ContainerClient(account_url=os.environ['MATCHMIND_BLOB_ACCOUNT_URL'],container_name=os.environ['MATCHMIND_MEDIA_BLOB_CONTAINER'],credential=credential))
+            # An open-ended browser range must not buffer the SDK's default
+            # 32 MiB initial GET before response headers can reach the player.
+            media_store=AzureClipMedia(ContainerClient(account_url=os.environ['MATCHMIND_BLOB_ACCOUNT_URL'],container_name=os.environ['MATCHMIND_MEDIA_BLOB_CONTAINER'],credential=credential,max_single_get_size=1024*1024,max_chunk_get_size=1024*1024))
     else:registry=json.loads(Path(os.environ.get('MATCHMIND_REGISTRY','configs/serving/local.json')).read_text())
     logging.basicConfig(level=logging.INFO,format='%(message)s')
     catalog_root=Path(os.environ.get('MATCHMIND_REGISTRY','configs/serving/local.json')).parent.parent/'recordings'
@@ -205,4 +250,6 @@ def from_environment():
     # Registry membership records local processing, never Azure availability.
     known={item['recording_id'] for item in catalog}
     catalog.extend(dict(recording_id=key,match_id='',processed=True) for key in processed if key not in known)
-    return create_app(registry,recording_catalog=catalog,token=os.environ.get('MATCHMIND_API_TOKEN'),default_provider=os.environ.get('MATCHMIND_PROVIDER','local'),media_root=os.environ.get('MATCHMIND_MEDIA_ROOT'),media_store=media_store)
+    cv_path=Path(os.environ.get('MATCHMIND_CV_REGISTRY','configs/serving/cv.json'))
+    cv_registry=json.loads(cv_path.read_text()) if cv_path.is_file() else {}
+    return create_app(registry,recording_catalog=catalog,token=os.environ.get('MATCHMIND_API_TOKEN'),default_provider=os.environ.get('MATCHMIND_PROVIDER','local'),media_root=os.environ.get('MATCHMIND_MEDIA_ROOT'),media_store=media_store,cv_registry=cv_registry)

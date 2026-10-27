@@ -1,5 +1,6 @@
 """Synthetic known-answer tests: no match annotations are used as expected labels."""
 import unittest
+from pathlib import Path
 from dataclasses import replace
 
 import numpy as np
@@ -290,6 +291,7 @@ class PipelineTests(unittest.TestCase):
         pd.testing.assert_frame_equal(first['shots'],second['shots'])
         self.assertEqual(len(second['bas_shots']),1)
 
+    @unittest.skipUnless(Path("data/soccertrack/mot/clips/118575.mp4").is_file(), "Optional local source video absent; Azure playback does not require it")
     def test_real_clip_alignment_and_actor_coverage(self):
         recording=load_recording()
         self.assertEqual(recording.positions.shape,(6000,22,2))

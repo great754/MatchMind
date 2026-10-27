@@ -1,0 +1,11 @@
+import {describe,it,expect} from 'vitest';
+import {render,screen,cleanup,fireEvent} from '@testing-library/react';
+import {z} from 'zod';
+import {WorldModelPanel,TeamDebug,memoryFields} from './PlayerWorld';
+const memory=z.object(memoryFields).parse({memory_state:'off_camera',memory_reason:'No current detection',team_confidence:.9,team_memory:{evidence_count:5,current_observation:null,stable:true,votes:{team_a:4,team_b:0,unknown:1},historical_lab:[90,170,150],recent:[]}});
+const person={...memory,entity_id:'ENTITY_1',track_id:null,team:'team_a',visibility:'off_camera',current_pitch:null};
+describe('persistent player review',()=>{
+ it('counts actual entities separately from current tracks and permits inspection',()=>{let selected='';render(<WorldModelPanel entities={[person]} ambiguous={2} tracks={3} onSelect={id=>selected=id}/>);expect(screen.getByTestId('cv-roster-counts').textContent).toContain('Team A entities: 1');expect(screen.getByText(/Current temporary tracks/).textContent).toContain('3');fireEvent.click(screen.getByRole('button',{name:/ENTITY_1/}));expect(selected).toBe('ENTITY_1');cleanup()});
+ it('keeps learned team distinct from unknown current appearance and historical crop',()=>{render(<TeamDebug person={person} video={null} frame={10}/>);expect(screen.getByText(/Current team observation/).textContent).toContain('Unknown');expect(screen.getByText(/Persistent team/).textContent).toContain('team_a');expect(screen.getByText(/No current torso crop/)).toBeTruthy();expect(screen.queryByLabelText('Current torso crop')).toBeNull();cleanup()});
+});
+it('displays sticky team belief separately from a weak current kit',()=>{render(<TeamDebug person={{...person,team_belief:{current_team:'team_a',source:'temporal_memory',current_observation:null,current_quality:.05,current_strong:false,current_observation_reason:'TEAM_UNKNOWN_LOW_QUALITY_CROP',unknown_reason:null,candidate_team:null,candidate_streak:0,independent_samples:18,last_strong_observation:.4,identity_resolved:true}}} video={null} frame={20}/>);expect(screen.getByTestId('team-belief-evidence').textContent).toContain('temporal_memory');expect(screen.getByTestId('team-belief-evidence').textContent).toContain('Weak/unavailable');expect(screen.getByTestId('team-belief-evidence').textContent).toContain('TEAM_UNKNOWN_LOW_QUALITY_CROP');cleanup()});

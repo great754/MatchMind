@@ -62,6 +62,16 @@ class MatchMindTools:
         return QueryResult(question_type=kind,status='ok' if any(f.value is not None for f in facts) else 'unknown',facts=facts,
             limitations=list(dict.fromkeys(self.limitations+list(extra))),provenance=sorted({f.source.split('#')[0] for f in facts}))
 
+    def get_match_intelligence(self):
+        """Same deterministic review facts for every provider; no generated statistics."""
+        from .intelligence import build_intelligence
+        from .schema import QueryResult
+        summary=build_intelligence(self,str(self.summary.get('match_id'))+':'+str(self.summary.get('source_offset_frames',0)))
+        answers=[i.presentations['fan'] for i in summary.insights]
+        facts=list({f.fact_id:f for a in answers for f in a.facts}.values())
+        return QueryResult(question_type='match_summary',status='ok' if facts else 'unknown',facts=facts,
+            provenance=sorted({f.source for f in facts}),limitations=summary.limitations)
+
     def get_match_summary(self):
         return self._result('match_summary',[('summary','summary.json',{k:self.summary.get(k) for k in
             ('match_id','scope','half','frames','duration_seconds','trajectory_shot_candidates','bas_shots','player_coordinate_source')},None,None)])

@@ -1,5 +1,9 @@
 # Evaluation and recording selection
 
+## Frozen ten-clip artifact report — 2026-10-17
+
+The 2026-10-17 artifact-only report extends this evaluation package with manifest validation, the existing one-to-one matcher, nonoverlap guards, micro counts, null zero-reference metrics and frozen shot-context diagnostics. See [verified milestone and commands](intelligence_milestone.md). The older raw-video evaluation workflow below remains separate historical evidence; do not apply its projection constants or split claims to all ten clips.
+
 The detectors retain their original thresholds. BAS release-time checks are consistency checks, not independent accuracy: the supplied ball path uses BAS anchors. Tracking identities are not verified jersey numbers. The projection audit remains unchanged: 11.6831065 m mean fallback disagreement with GSR, not surveyed ground-contact error. See [validity audit](validity_audit.md).
 
 Run the two downloaded, disjoint halves:

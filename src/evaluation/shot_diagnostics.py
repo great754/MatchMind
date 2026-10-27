@@ -110,3 +110,52 @@ def report_section(payload):
         parts.append(f'<a href="per_match/{key}/report.html?t={timestamp:.4f}#pitch">Inspect event at {timestamp:.2f}s</a>')
         parts.append('<div style="max-width:600px">'+diagnostic_svg(r)+'</div><pre>'+html.escape(json.dumps(r,indent=2))+'</pre></details>')
     return ''.join(parts)
+
+
+def diagnose_exported_shots(exports, evaluation, references, fps):
+    """Post-hoc context for frozen errors; hypotheses are not verified shot intent.
+
+    This adapter deliberately does not re-run detection on rounded CSV exports.
+    Missing geometric/context evidence remains explicit rather than guessed.
+    """
+    import csv
+    from pathlib import Path
+    exports=Path(exports)
+    def rows(name):
+        p=exports/name
+        if not p.is_file():return []
+        with p.open() as f:return list(csv.DictReader(f))
+    candidates=rows('shots.csv');windows=rows('bas_shot_windows.csv')
+    ball=rows('ball_frames.csv')
+    def numeric(value):
+        try:
+            result=float(value)
+            return result if math.isfinite(result) else None
+        except (ValueError,TypeError):return None
+    import math
+    result=[]
+    for match in evaluation.get('matching',[]):
+        status=match['match_status']
+        if status not in ('false_positive','false_negative'):continue
+        pred=match.get('prediction_index');ref=match.get('annotation_id')
+        frame=match.get('prediction_frame') if status=='false_positive' else match.get('annotation_frame')
+        candidate=candidates[int(pred)] if pred is not None and int(pred)<len(candidates) else None
+        window=next((w for w in windows if numeric(w.get('annotation_id'))==ref),None)
+        nearest=min(references,key=lambda r:abs(r['frame']-frame)) if references and frame is not None else None
+        sample=next((b for b in ball if numeric(b.get('frame'))==frame),None)
+        nearby=nearest if nearest and abs(nearest['frame']-frame)<=2*fps else None
+        hypotheses=[]
+        if status=='false_positive' and nearby:
+            label=nearby['label']
+            if label=='CROSS':hypotheses.append('CROSS_CONTEXT')
+            elif label in ('PASS','HIGH PASS'):hypotheses.append('PASS_OR_LONG_BALL_CONTEXT')
+            elif label in ('OUT','THROW IN','CORNER','FREE KICK'):hypotheses.append('OUT_OR_RESTART_CONTEXT')
+            elif label=='SHOT':hypotheses.append('REFERENCE_TIMING_OR_ONE_TO_ONE_DISAGREEMENT')
+        if window and numeric(window.get('window_coverage_fraction'))==0:hypotheses.append('MISSING_USABLE_BALL_WINDOW')
+        if sample and sample.get('position_source') not in ('observed','raw','provided'):hypotheses.append('RECONSTRUCTED_BALL_CONTEXT')
+        result.append(dict(classification='DEPENDENT VALIDATION',match_status=status,frame=frame,timestamp=frame/fps if frame is not None else None,
+            candidate=candidate,reference_window=window,nearest_reference=nearby,ball_sample=sample,
+            hypotheses=hypotheses or ['UNRESOLVED_FROM_FROZEN_EXPORTS'],
+            unavailable=['Actual shot intent','Independent video labels','Verified direction/calibration error','Original unrounded gate/persistence trace'],
+            limitation='Context hypotheses only. No production thresholds or detector output changed.'))
+    return result

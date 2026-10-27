@@ -9,6 +9,7 @@ UNSUPPORTED=re.compile(r'\b(tired|fatigue|coach|intent|score|jersey|name|win|pre
 def semantic_plan(question,timestamp=0):
     q=question.lower()
     if UNSUPPORTED.search(q):return []
+    if re.search(r'\b(match summary|post.match summary|key match insights|summarize (?:this|the) (?:match|clip))\b',q):return [('get_match_intelligence',{})]
     left=bool(re.search(r'\b(team\s*1|left|home(?: side)?)\b',q))
     right=bool(re.search(r'\b(team\s*2|right|away(?: side)?)\b',q))
     both=bool(re.search(r'\b(both|each|altogether|total|together|compare|comparison)\b',q))

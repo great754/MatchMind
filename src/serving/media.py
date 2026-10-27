@@ -55,6 +55,9 @@ class AzureClipMedia:
             # An ETag condition prevents mixing bytes from different revisions.
             from azure.core import MatchConditions
             download=blob.download_blob(offset=start,length=length,etag=properties.etag,match_condition=MatchConditions.IfNotModified)
-        except Exception:
-            raise HTTPException(503,'Azure video download unavailable') from None
+        except Exception as error:
+            # SDK messages can contain signed URLs. Log only safe diagnostic fields.
+            code=getattr(error,'error_code',None)
+            logging.getLogger('matchmind.requests').warning('Azure media read failed for %s: %s code=%s',match_id,type(error).__name__,code)
+            raise HTTPException(503,dict(message='Azure video download unavailable',diagnostic=type(error).__name__,code=str(code) if code else None)) from None
         return StreamingResponse(download.chunks(),status_code=status,headers=headers)

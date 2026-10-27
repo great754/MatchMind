@@ -1,5 +1,49 @@
 # TactiqAI canonical Azure artifacts
 
+## Current M6 regression verification — 2026-10-26
+
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** Fresh final Chrome verified all ten Azure clips in34.9s:selection, playback, seek/range, tactical view, event lead-in and grounded Local Ask. Five full browser suites passed in45.1s;both M6CVreviews and final panel recheck passed. Health200/ten analytics;ready200/12usable recordings;discovery ten Azure-ready plus two local CV-only sources. Fresh118575view200/481events,range206/16bytes,Local Ask200/statusok/14evidence entries. Both CVAsk requests503. No experimental upload, Azure overwrite/infrastructure, local artifact fallback, loosened manifest/hash/schema validation or renamed MATCHMIND variable. CVregistry selects local *_m6_current snapshots. Source CVvideos remain local;SoccerTrack media streams Azure. Existing `.env`/start command unchanged. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
+
+## Historical Milestone 5 regression — 2026-10-25
+
+**LOCALLY VERIFIED.** Existing Azure-backed startup succeeded; health200/ten analytics recordings; ready200/eleven usable recordings; discovery ten validated Azure recordings plus local CV-only test_match. All ten Azure clips passed Chrome selection/play/seek/range/tactical-view/event-lead-in/grounded Local Ask checks. Full four-suite Chrome run passed (reported1.3min); three affected CV suites passed again after final inspection formatting. Fresh 118575 view200, video206/16bytes, Local Ask200/statusok/14 evidence entries. CV Ask remains503. Evidence: `outputs/world_model/m5_verification/`.
+
+The local CV registry selects `outputs/world_model/test_match_m5/`: camera137/541=25.32%, player placement1,208/5,108=23.65%. The30% target was not reached; independent metric accuracy is unavailable. This is a local experimental observation source; no CV bundle was published, no Azure object changed, no local fallback added, no manifest/hash/schema gate loosened and no MATCHMIND variable renamed. Original local test_match.mp4 remains required; the ten SoccerTrack videos stream Azure. Existing `.env` and backend command are unchanged. [Current M5 report and exact commands](cv_world_model_m5.md). Earlier regression sections are historical.
+
+## Historical Milestone 4 regression verification — 2026-10-25
+
+Fresh final Chrome checks passed for all ten Azure recordings in **37.8 s**: selection, metadata, play/advancing time, seeking, tactical views, existing event lead-in, 206 ranges and recording-scoped grounded Local Ask. The CV camera review (2.6 s) and new player/team memory review (1.4 s) also passed; **three tests passed in 42.6 s**. Evidence: `outputs/world_model/m4_verification/`. Live health/readiness/discovery returned 200; readiness counts eleven usable recordings (ten Azure analytics plus local CV-only test_match). One fresh 118575 Local Ask returned status ok with 14 evidence entries.
+
+The local CV registry now selects `outputs/world_model/test_match_m4_verified/`. No Azure blobs, artifact validation, analytics thresholds, GSR, possession/grounding rules or existing MATCHMIND names changed. No experimental upload or video download occurred. Keep the original local test_match source for CV playback; SoccerTrack source videos remain streamed from Azure. The backend command below is unchanged. See [current player/team report](cv_world_model_m4.md). Earlier verification sections are historical.
+
+## Historical Milestone 3 regression verification — 2026-10-24
+
+Fresh final Chrome verification passed for **all ten Azure recordings in 32.8 s**: selection, video metadata, playback/time advances, seeking, tactical views, grouped event navigation with the existing lead-in, 206 ranges and recording-scoped grounded Local Ask. CV review also passed (2.7 s); two browser tests passed in 36.8 s. Evidence is in `outputs/world_model/m3_verification/`. Health is 200 with ten analytics recordings; readiness is 200 with eleven usable recordings including the separate local CV review. No Azure blobs, analytics thresholds, credentials, container settings or existing MATCHMIND variable names changed. No experimental uploads occurred.
+
+`configs/serving/cv.json` now selects the local Milestone 3 camera review. It does not make experimental CV artifacts Azure-backed or grant football Ask readiness. Current CV region coverage is 6.1%, with honest Unknown states; see [current report](cv_world_model_m3.md). Keep the original local `test_match.mp4`; the ten Azure SoccerTrack source MP4s remain unnecessary locally. The backend start command below is unchanged. Earlier playback results below are historical.
+
+## Historical Milestone 2 local playback verification — 2026-10-24
+
+All ten existing Azure videos passed a **fresh Chrome run this turn**: selector, metadata, play/advancing time, seek to 20 seconds, no media error, tactical synchronization, grouped event lead-in, 206 range and recording-scoped grounded Local Ask. The test passed in **34.9 s**; results/screenshot are under `outputs/world_model/m2_verification/`. This supersedes historical playback evidence below.
+
+The old running API advertised videos/returned HEAD 200 but failed actual range GET with 503. Fresh credential/blob reads and a fresh backend succeeded on the same blob/ETag. The suppressed internal exception is unavailable; no exact expired-token/SDK cause is asserted. The API was replaced with an intact runtime, safe exception diagnostics and 1 MiB initial/chunk media downloads. `scripts/start_backend.sh` checks runtime dependencies; React has Retry video. No video redownload or Azure write was needed.
+
+The final API is ready with **ten validated Azure analytics recordings plus one separate local experimental CV review**. `/health` keeps its existing analytics count of ten; `/ready` reports eleven usable recordings. CV capabilities do not grant analytics/Ask readiness and experimental artifacts were not uploaded. Structured video URLs remain the same private API streaming route; no local fallback occurs.
+
+Verified start command from the repository root (existing `.env` retains account/container/media/recording settings):
+
+```sh
+MATCHMIND_PROVIDER=local MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
+TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
+```
+
+The temporary runtime must remain intact; recreate an environment from the service/Azure requirements and set `TACTIQAI_BACKEND_PYTHON` if it is removed. `test_match.mp4` is a separate, explicitly local CV source and must remain for that review. The ten SoccerTrack source MP4s are still unnecessary for Azure playback and remain deleted. See [current CV implementation and limitations](cv_world_model_m3.md).
+
+
+## Runtime intelligence: no new Azure artifacts — 2026-10-17
+
+This milestone derives review insights at runtime from already validated canonical artifacts. The bundle schema, allowlist, hashes and all ten existing Azure bundles are unchanged. Cross-clip quality outputs are generated locally; no uploads or overwrites are proposed. Missing/corrupt bundle readiness semantics remain unchanged. See [verified milestone](intelligence_milestone.md).
+
 ## Local source video cleanup — verified 2026-10-17
 
 Azure mode does not require local source MP4 downloads for playback, tactical review or grounded Ask. After confirming all ten Azure source videos existed with the same byte sizes and served valid MP4 ranges, the ten downloaded `data/soccertrack/mot/clips/*.mp4` files were deleted at the user's request. Azure copies and validated analytics bundles were preserved. Post-deletion verification passed: ten playable Azure videos, ten artifact-ready recordings, `/ready` ready with 10 recordings, and grounded Local Ask 200. Local ignored evidence: `outputs/local_video_cleanup_plan.json`, `outputs/local_video_cleanup_result.json`, and `outputs/local_video_cleanup_smoke.json`.

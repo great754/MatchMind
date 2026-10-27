@@ -5,6 +5,7 @@ from typing import Literal
 from pathlib import Path
 from pydantic import Field,model_validator
 from src.query.schema import Closed,QueryResult
+from src.query.intelligence import MatchIntelligence, build_intelligence
 from src.intelligence.schema import CanonicalEvent
 from src.tactics.schema import TacticalState,Pressure
 from src.tactics.review import pressure_level
@@ -48,6 +49,7 @@ class FormationWindow(Closed):
 
 class Review(Closed):
     recording_id:str
+    intelligence:MatchIntelligence|None=None
     status:Literal['ok','unknown']
     summary:QueryResult
     possession:QueryResult
@@ -95,4 +97,4 @@ def review(tools,recording_id,replay,source,default_provider,media_root):
         p=(root/(match+'.mp4')).resolve()
         if not p.is_file():p=(root/(match+'.txt.mp4')).resolve()
         if re.fullmatch(r'[A-Za-z0-9_-]{1,80}',match) and p.is_relative_to(root) and p.is_file():media=f'/matches/{recording_id}/video.mp4'
-    return Review(recording_id=recording_id,status='ok' if replay else 'unknown',summary=tools.get_match_summary(),possession=tools.get_possession_summary(),pass_share=tools.get_confirmed_pass_share(),ownership=tools.ownership,formation_windows=tools.formations,pressure_levels=[pressure_level(p) for p in tools.review_pressure],pressure_context=tools.review_pressure,unconfirmed_control_fraction=unconfirmed,replay=replay,tactical_states=tools.states,events=tools.events,media_url=media,default_provider=default_provider,sources=sources,limitations=tools.limitations+([] if replay else ['Player/ball review samples unavailable.'])+['Pitch uses precomputed review samples; no browser interpolation or new detection.','Unconfirmed control includes every frame without confirmed ownership; it is not solely missing tracking.'])
+    return Review(recording_id=recording_id,intelligence=build_intelligence(tools,recording_id),status='ok' if replay else 'unknown',summary=tools.get_match_summary(),possession=tools.get_possession_summary(),pass_share=tools.get_confirmed_pass_share(),ownership=tools.ownership,formation_windows=tools.formations,pressure_levels=[pressure_level(p) for p in tools.review_pressure],pressure_context=tools.review_pressure,unconfirmed_control_fraction=unconfirmed,replay=replay,tactical_states=tools.states,events=tools.events,media_url=media,default_provider=default_provider,sources=sources,limitations=tools.limitations+([] if replay else ['Player/ball review samples unavailable.'])+['Pitch uses precomputed review samples; no browser interpolation or new detection.','Unconfirmed control includes every frame without confirmed ownership; it is not solely missing tracking.'])

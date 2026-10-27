@@ -1,5 +1,23 @@
 # Match Intelligence frontend
 
+## Current M6 temporal review — 2026-10-26
+
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CVsources now serve M6snapshots. Visible marker provenance legend, optional Camera motion debug(static points/vectors, accepted/rejected lines, top touchline and derived intersections), previous/predicted/current regions, future/reobserved-anchor diagnostics, readable player jump components and persistent-vs-current team evidence are locally/browser verified. Frame1near0.058s in team_goal is recovered backward;350is rejected. Current coverage is21.44%/19.91%camera/placement for test_match and83.40%/81.99%for team_goal;independent accuracy remains unavailable.71frontend tests/build passed;five full Chrome suites45.1s, final affected panel recheck5.1s. Existing football lead-in, Azure playback and grounded Local Ask remain working. CVfootball Ask remains unavailable. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
+
+## Historical M5 CV camera review — locally verified 2026-10-25
+
+Select `test_match · CV Experimental`. The registry serves `outputs/world_model/test_match_m5/`. Inspect the541-frame camera timeline, hover current reasons/landmarks/support/direct age, click to seek inside the selected frame, enable **Projected pitch geometry**, and click a person for readable camera/foot provenance. Direct solid, temporal hollow, partial dashed and historical ghost positions remain distinct; UNKNOWN has no current metric markers or canonical overlay. M4 team/kit/image memory controls remain available.
+
+Camera25.32% / player placement23.65%; ≥30% not reached. Actual midfield frame216 stays Unknown. Partial provenance is propagated and does not grant CV football analytics or Ask readiness. Diagnostic frame-boundary precision is separate from unchanged football event lead-in. Full59 frontend tests/build pass; four full Chrome suites pass, followed by all three affected CV suites after final formatting. [M5 report, evidence, commands and limitations](cv_world_model_m5.md). Earlier milestone notes are historical.
+
+## Event playback lead-in — 2026-10-17
+
+Moment navigation now uses the shared two-second playback policy while displayed evidence timestamps stay unchanged. Manual scrubbing remains exact. See [timestamp policy and real examples](playback_seeking.md); this supersedes earlier exact-landing demo timestamps.
+
+## Key Match Insights — 2026-10-17
+
+The existing React review now includes deterministic Key Match Insights from the additive view.intelligence projection. Cards reuse Evidence, identity mapping and synchronized seek; Analyst exposes canonical source locators. All modes use identical facts. No additional provider request is needed to render insight modes. See [milestone](intelligence_milestone.md) for tested demo timestamps and verification scope.
+
 ## Frontend startup repaired — 2026-10-17
 
 The long Vite startup was traced to offloaded dependency files in the cloud-backed Desktop project: `frontend/node_modules/vite/dist/node/cli.js` was marked `compressed,dataless`. The pasted logs showed repeated config/source change events, optimizer rescans and server restarts. The old dependency tree occupied only 31 MB of physical disk despite its installed files; reads required file-provider hydration. The backend remained healthy independently.

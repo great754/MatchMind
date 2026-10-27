@@ -1,5 +1,9 @@
 # Match Intelligence implementation and testing
 
+## Deterministic post-match review catalogue — 2026-10-17
+
+The new catalogue reuses MatchMindTools and closed Answer presentations, rather than the separate report commentary renderer described below. get_match_intelligence supplies the same grounded catalogue through the approved provider tool registry. No provider computes new football metrics. See [current milestone](intelligence_milestone.md).
+
 This layer consumes `analyze_recording()` results. It does not change smoothing, possession rules, transfer detection, difficulty scoring, shot detection, GSR/MOT mapping or rendered videos. Existing CSV paths and report sections remain available. The existing explainer HTML is untouched.
 
 ## Data flow and implementation choices
