@@ -1,0 +1,16 @@
+{
+  "version": "m12-m13-v1",
+  "supervision": "original organizer GT, one anchor clip per same-game numeric team/jersey alias; unknown aliases excluded; no tracker pseudo-labels",
+  "fresh_validation": "SN_game4 green/right club only; exclude shared white-blue club",
+  "fresh_test": "SN_game9 both teams, all models sealed before inference",
+  "broadcast_training": "SN_game6 only, distinct audited club/kit scopes",
+  "global_identity_limit": "No independently verified worldwide physical-player registry. Cross-match transfers cannot be certified; do not claim that namespace IDs prove physical-player disjointness.",
+  "retrieval": "Within same match/team; 3 crops from2–9s query and20–30s gallery; >=4 observed samples per window; up to8 per tracklet; identical samples across models",
+  "historical_cross_dataset": "After fresh TEST finalization, evaluate locked M13 models on historical SoccerTrack M10 TEST using its original unchanged protocol; diagnostics only, no selection or tuning",
+  "data_effect": "old_data_triplet versus expanded_triplet, identical generic x0.25 initializer, optimizer, step budget and loss; different identity head sizes necessarily reflect new data",
+  "objective_effect": "expanded_triplet versus expanded_supcon, all other settings equal",
+  "backbone_effect": "expanded_supcon versus expanded_x1_supcon; both MSMT17-person-ReID pretrained, different widths/checkpoints, not a pure parameter-count causal claim",
+  "aggregation": "mean, quality weighted and learned bounded attention; choose checkpoint/method only on fresh VAL",
+  "beat_gate": "M13 selected crop mAP and selected-pool tracklet mAP >=M10+0.03, crop Rank1 nonregression on identical fresh TEST",
+  "production": "No activation without independent broadcast identity evidence and valid calibration; preserve M8/M9 snapshots and uncertainty"
+}

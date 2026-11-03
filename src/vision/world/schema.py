@@ -1,4 +1,6 @@
 """Inspectible prototype state: support scores are not calibrated probabilities."""
+from .player_state import PlayerWorldFrame
+from src.vision.ball.schema import BallFrame
 from typing import Literal
 from pydantic import Field, model_validator
 from src.query.schema import Closed
@@ -129,6 +131,7 @@ class CameraFailure(Closed):
     reason: str
 
 class CameraMemory(Closed):
+    metric_trajectory: dict | None = None
     epoch: int = 0
     last_direct: CameraEstimate | None = None
     last_accepted: CameraEstimate | None = None
@@ -248,6 +251,8 @@ class UnassignedTrack(Closed):
     hypotheses: list[IdentityHypothesis]
 
 class WorldState(Closed):
+    ball_world: BallFrame | None = None
+    player_world: "PlayerWorldFrame | None" = None
     recording_id: str
     frame: int
     timestamp: float
@@ -258,3 +263,13 @@ class WorldState(Closed):
     reconciliations: list[dict] = Field(default_factory=list)
     roster: RosterState = Field(default_factory=RosterState)
     ball: BallWorldState = Field(default_factory=BallWorldState)
+
+    @model_validator(mode='after')
+    def player_world_clock_and_geometry(self):
+        if self.ball_world is not None:
+            if self.ball_world.frame!=self.frame or abs(self.ball_world.timestamp-self.timestamp)>1e-6:raise ValueError('Ball world clock mismatch')
+            if self.ball_world.pitch_position is not None and not self.camera.calibration_valid:raise ValueError('Current ball coordinate requires current M8 geometry')
+        if self.player_world is not None:
+            if self.player_world.frame!=self.frame or abs(self.player_world.timestamp-self.timestamp)>1e-6:raise ValueError('Player world clock mismatch')
+            if not self.camera.calibration_valid and (any(p.current_position is not None for p in self.player_world.players) or any(p.current_position is not None for p in self.player_world.unresolved_detections)):raise ValueError('Current player coordinates require current camera geometry')
+        return self

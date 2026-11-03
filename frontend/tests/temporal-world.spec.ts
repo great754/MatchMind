@@ -1,9 +1,9 @@
 import {test,expect} from '@playwright/test';
 import {writeFile} from 'node:fs/promises';
-test('M6 both CV recordings expose measured camera, marker legend and persistent team evidence',async({page})=>{
+test('both CV recordings expose measured camera, marker legend and persistent team evidence',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const results=[];await page.goto('/');
  for(const id of ['team_goal','test_match']){
-  await page.getByLabel('Recording',{exact:true}).selectOption(id);const video=page.locator('video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState)).toBeGreaterThanOrEqual(2);const meta=await(await page.request.get(`/api/matches/${id}/cv`)).json();expect(meta.camera_model_version).toBe('m6');
+  await page.getByLabel('Recording',{exact:true}).selectOption(id);const video=page.locator('video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState)).toBeGreaterThanOrEqual(2);const meta=await(await page.request.get(`/api/matches/${id}/cv`)).json();expect(['m6','m7','m8']).toContain(meta.camera_model_version);
   await expect(page.getByRole('region',{name:'Player marker legend'})).toContainText('BIDIRECTIONAL');await expect(page.getByRole('region',{name:'Player marker legend'})).toContainText('Position unknown');
   await page.getByLabel('Camera motion debug',{exact:true}).check();await page.getByLabel('Projected pitch geometry',{exact:true}).check();
   const frames=id==='team_goal'?[1,180,250,349,350,400]:[35,100,216,470];
@@ -14,7 +14,11 @@ test('M6 both CV recordings expose measured camera, marker legend and persistent
    if(id==='team_goal'&&frame===350){expect(row.camera.calibration_valid).toBe(false);await expect(page.getByTestId('cv-current-player')).toHaveCount(0);await expect(page.getByTestId('projected-pitch-line')).toHaveCount(0)}
    results.push({id,frame,state:loc.status,reason:loc.outcome,flow_matches:row.camera.motion_evidence.temporal_camera.field_motion.matches,topline:row.camera.motion_evidence.temporal_camera.field_motion.top_touchline_tracked});
   }
-  const target=meta.camera_timeline.find((t:any)=>t.state==='TEMPORAL_CORRECTED')??meta.camera_timeline.find((t:any)=>t.state==='PARTIAL_CONSTRAINED');expect(target).toBeTruthy();await page.locator(`[data-testid="camera-tick"][data-frame="${target.frame}"]`).click();await expect(page.getByTestId('cv-state')).toContainText(`Frame ${target.frame} ·`);await expect(page.getByTestId('predicted-camera-region')).toHaveCount(1);
+  let target:any;
+  // A world-anchor remeasurement may correct a pose without an adjacent-frame
+  // prediction. Exercise the region overlay only where that evidence exists.
+  for(const candidate of meta.camera_timeline.filter((t:any)=>['TEMPORAL_CORRECTED','TEMPORAL_PREDICTED','PARTIAL_CONSTRAINED'].includes(t.state))){const evidence=await(await page.request.get(`/api/matches/${id}/cv/frame?timestamp=${(candidate.frame+.001)/meta.fps}`)).json();if(evidence.camera.motion_evidence.temporal_camera.predicted_region?.length&&evidence.entities.some((e:any)=>e.visibility==='visible'&&e.team_belief)){target=candidate;break}}
+  expect(target).toBeTruthy();await page.locator(`[data-testid="camera-tick"][data-frame="${target.frame}"]`).click();await expect(page.getByTestId('cv-state')).toContainText(`Frame ${target.frame} ·`);await expect(page.getByTestId('predicted-camera-region')).toHaveCount(1);
   const frame=await(await page.request.get(`/api/matches/${id}/cv/frame?timestamp=${(target.frame+.001)/meta.fps}`)).json();const person=frame.entities.find((e:any)=>e.visibility==='visible'&&e.team_belief);expect(person).toBeTruthy();await page.locator(`[aria-label="Inspect ${person.entity_id}"] rect`).click();await page.getByLabel('Team classification debug',{exact:true}).check();await expect(page.getByTestId('team-belief-evidence')).toBeVisible();await expect(page.getByTestId('player-camera-evidence')).toContainText('Temporal direction');await page.getByRole('button',{name:'+1 frame',exact:true}).click();await expect(page.getByTestId('cv-state')).toContainText(`Frame ${target.frame+1} ·`);
   await page.screenshot({path:`test-results/${id}-m6.png`,fullPage:true});
   const ask=await page.request.post(`/api/matches/${id}/ask`,{data:{question:'Who scored?',provider:'local'}});expect(ask.status()).toBe(503);

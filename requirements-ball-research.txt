@@ -1,0 +1,4 @@
+# Optional offline M15 experiment only; API/frontend do not import this package.
+# Install after the existing backend + CV/research requirements, into an isolated runtime.
+# Ultralytics code/models are AGPL-3.0; this experiment does not establish commercial deployment rights.
+ultralytics==8.3.228

@@ -1,0 +1,12 @@
+{
+  "team_goal_01": {
+    "original_assessment": "APPEARS_DIFFERENT",
+    "amended_assessment": "APPEARS_SAME",
+    "reason": "Enlarged source-context review shows the upper-field player in both69and92 frames. The M9 bottom-boundary interpretation was mistaken. This is qualitative, not independent identity GT.",
+    "source_images": [
+      "outputs/world_model/m9_verification/team_goal/reference/case_01.jpg",
+      "outputs/ml/soccer_reid_m10/changed_reconnect_review/team_goal_added_TRACK_00001_TRACK_00012.jpg"
+    ],
+    "changes_to_training_or_test_labels": false
+  }
+}

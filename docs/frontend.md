@@ -1,6 +1,26 @@
 # Match Intelligence frontend
 
-## Current M6 temporal review — 2026-10-26
+## Southampton — new current CV source (2026-10-27)
+
+**LOCALLY VERIFIED / EXPERIMENTAL.** Fresh processing of `data/raw/southampton.mp4`:660frames,29.97FPS,1280×720,22.022s. Current M7 camera coverage **509/660(77.12%)**;current placement **6,114/8,725(70.07%)**.57 frames recovered relative to M6;zero accepted M6frames lost. Longest support9.843s;longest Unknown gap2.302s. Matched jump flags85→126:coverage does not establish accuracy.
+
+**Known limitation:** dark-kit team separation is unreliable;the page visibly warns that A/B labels may mix teams. This is not verified team accuracy. Person/camera evidence remains separate. CV football Ask stays503.
+
+Select **southampton · CV Experimental** at http://127.0.0.1:5173. Playback/seeking/stepping/person and camera/team debug verified;actual Chrome overlay updates **29.91/sec**,no missing samples and at most one-frame lag in the2.5s sample.79frontend tests,TypeScript/build and **all eight Chrome suites passed(1.4m)**;backend528passed/one expected skip. All ten Azure clips and both earlier CV sources remain working. Health200;ready200/**13 usable sources**;video206;existing grounded Local Ask200.
+
+The fresh-video runner now completes M7 by default. Registry:`outputs/world_model/southampton/current/`. Keep the original local MP4;no Azure changes or uploads. Full fresh processing took806.528s;web playback serves precomputed data. [Full results,commands,team limitation and proof](cv_southampton.md). Earlier sections below retain their original verified counts.
+
+## Playback smoothness follow-up — current frontend (2026-10-27)
+
+**IMPLEMENTED / LOCALLY VERIFIED.** CV overlays now follow decoded video frames rather than low-frequency timeupdate events. Buffered look-ahead and a memoized camera timeline keep existing observations synchronized. Chrome measured **23.94 updates/sec test_match** and **24.76 team_goal**, with no missing overlays in the2.5s samples and maximum observed lag one frame. Model coordinates, M7 coverage and Azure artifacts are unchanged.
+
+**79 frontend tests,TypeScript/build and all six affected CV browser suites passed (29.2s).** Exact seeking, stepping, camera/team/player inspection and recording isolation passed. Refresh http://127.0.0.1:5173;no reprocessing/configuration change is required. [Measured proof and implementation](cv_playback_smoothness.md). Earlier M7 camera verification below remains the geometry authority.
+
+## Current M7 persistent camera review — 2026-10-27
+
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CV recordings now serve M7. Camera motion debug adds orange persistent fixed-world feature histories,active anchors,held-out errors,hull/lifetime/survival,uncertainty,measurement route,top-line/circle residuals and explicit ambiguous semantic labels. Current source/provenance,team/identity/visibility and historical position remain separate. Coverage camera/placement:test_match33.64%/32.22%,team_goal91.00%/88.05%;test_match50% target not met.74 frontend tests,TypeScript/build and all six final Chrome suites pass;all ten Azure clips/playback/seeking/tactical/event lead-in/grounded Local Ask remain working. CV football Ask503. [Full M7 report and exact commands](cv_world_model_m7.md). Earlier milestone sections are historical.
+
+## Historical M6 temporal review — 2026-10-26
 
 **LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CVsources now serve M6snapshots. Visible marker provenance legend, optional Camera motion debug(static points/vectors, accepted/rejected lines, top touchline and derived intersections), previous/predicted/current regions, future/reobserved-anchor diagnostics, readable player jump components and persistent-vs-current team evidence are locally/browser verified. Frame1near0.058s in team_goal is recovered backward;350is rejected. Current coverage is21.44%/19.91%camera/placement for test_match and83.40%/81.99%for team_goal;independent accuracy remains unavailable.71frontend tests/build passed;five full Chrome suites45.1s, final affected panel recheck5.1s. Existing football lead-in, Azure playback and grounded Local Ask remain working. CVfootball Ask remains unavailable. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
 
@@ -124,3 +144,12 @@ Verified commands: `.venv/bin/python -m unittest discover -s tests -t .` — **2
 ## Recording selector
 
 React now discovers `GET /recordings`, enables processed recordings and disables pending configurations. Selection remounts the review, resets conversation/time/context, scopes API/report paths and uses a match-specific identity storage key. `118575_clip` remains the default; `128058_clip` is now processed and registered; restart the API/reload React to discover it. See [second-recording requirements](second_recording.md).
+
+
+M8 verification (2026-11-01):all three CV sources now use validated separate M8 snapshots;all ten Azure clips retain playback and grounded Local Ask. Health/ready/catalog200,13usable sources,9Chrome suites passed. CV football Ask stays unavailable. Keep original local CV videos;no Azure upload/configuration change. [Current metric camera report and startup command](cv_world_model_m8.md).
+
+
+M9 (2026-11-01):all three CV sources now expose the Player World Model Inspector with persistent anonymous hypotheses,team belief,visibility timelines and global ReID evidence. M8 camera/position observations remain unchanged. Identity gains are modest and team errors remain;these are experimental scores. 607backend tests pass/one expected skip,86frontend tests and10Chrome suites pass. [Current M9 report,commands and limitations](cv_player_world_model_m9.md).
+
+
+M15 experimental ball comparison:choose a CV recording,then **Ball review → M15 experimental**. M14 remains default. Video observations,distinct expiring predictions,validation-derived image uncertainty regions,candidate scores and explicit pitch unavailability remain synchronized through seeking. Learned verifier/local crops are disabled after validation and their displayed scores are diagnostic. No unsupported pitch markers are drawn.102frontend tests/build and11Chrome suites plus M14 regression passed. [Full measured M15 status and limitations](cv_ball_tracking_m15.md).

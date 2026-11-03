@@ -1,22 +1,27 @@
 ## TactiqAI tactical video
 
 
-## Current local Azure + CV demo — 2026-10-26
+## New Southampton recording — verified 2026-10-27
 
-**CV Milestone 6:** both `test_match · CV Experimental` and `team_goal · CV Experimental` support measured temporal camera review and persistent team evidence. Refresh **http://127.0.0.1:5173** and enable **Camera motion debug**/**Team classification debug**. The marker legend separates direct, relocalized, temporal, partial, bidirectional and historical evidence.
+Select **southampton · CV Experimental** in the frontend. Fresh current-pipeline processing accepts77.12%camera coverage and70.07%current placement across660frames/22.022s. Chrome measured29.91overlay updates/sec. **Team colours are unreliable on this clip's dark kits;the UI flags that limitation.** All8browser suites pass;ready200/13sources. Keep the original local MP4. [Full results and commands](docs/cv_southampton.md).
 
-Current model-accepted camera/placement coverage: **test_match21.44%/19.91%;team_goal83.40%/81.99%**. Stricter acceptance reduces coverage and increases unknown-team counts. On matched team_goal pairs, large-jump flags611→284. Near0.058s mapping recovers from measured future evidence; the questionable frame350circle is rejected. These are diagnostics, not independent accuracy. [Full M6 results, commands and limitations](docs/cv_world_model_m6.md).
+## Current local Azure + CV demo — 2026-10-27
 
-**506backend tests ran(505pass/one expected skip),71frontend tests and TypeScript/build passed. All five full Chrome suites passed**, including all ten Azure recordings and both CVvideos. Ready200/12usable recordings;existing grounded Local Ask remains working. No Azure settings need changing. Keep both original local CVvideos;SoccerTrack videos stream Azure.
+**CV Milestone 7 is implemented and locally verified, with its50% test_match camera target unmet.** Camera/placement coverage: test_match **33.64% /32.22%**, team_goal **91.00% /88.05%**. Persistent field anchors and measured temporal reconstruction recover66/38 frames, losing no accepted M6 frames. test_match matched-pair jitter slightly worsens. Independent real metric accuracy remains unavailable.
+
+Refresh **http://127.0.0.1:5173**, select either CV Experimental recording and enable **Camera motion debug** / **Team classification debug**. Keep both original local CV videos;the ten SoccerTrack clips stream from Azure. No Azure artifact/configuration change is required.
+
+**529 backend run:528 passed/one expected skip;74 frontend tests,TypeScript/build and all six full Chrome suites passed.** Ready200/12 usable recordings;grounded Local Ask remains working;CV football Ask remains503. No ball tracking was added. [Full M7 metrics,commands,proof and limitations](docs/cv_world_model_m7.md).
 
 Backend from repo root:
 
 ```sh
+AZURE_TOKEN_CREDENTIALS=AzureCliCredential \
 MATCHMIND_PROVIDER=local MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
 TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
 ```
 
-Frontend(Node22):`cd frontend && npm run dev`. Preserve/recreate the temporary Python runtime if cleared. [Historical M5 source run](docs/cv_team_goal.md).
+Frontend Node22:`cd frontend && npm run dev`. Preserve/recreate the temporary Python runtime if cleared. [Historical M6 baseline](docs/cv_world_model_m6.md).
 
 Render the SoccerTrack-v2 `118575` match with the original panoramic footage and a synchronized, translucent top-down pitch at the bottom center:
 
@@ -228,3 +233,12 @@ Use `python -m src.artifacts build|upload|verify --recording 118575_clip` (selec
 ### Azure playback and local video storage
 
 With `MATCHMIND_ARTIFACT_STORE=azure` and `MATCHMIND_MEDIA_BLOB_CONTAINER=soccertrack-v2`, the app streams the private Azure clips and loads validated Azure analytics bundles. Local source MP4 downloads are not required for serving or grounded Ask. The ten local downloaded clips were removed after verifying Azure copies and post-deletion playback/readiness. Download clips again only when rerunning offline processing or real-video tests. Keep videos, .env, generated outputs and downloaded datasets out of Git.
+
+
+M8 verification (2026-11-01):all three CV sources now use validated separate M8 snapshots;all ten Azure clips retain playback and grounded Local Ask. Health/ready/catalog200,13usable sources,9Chrome suites passed. CV football Ask stays unavailable. Keep original local CV videos;no Azure upload/configuration change. [Current metric camera report and startup command](docs/cv_world_model_m8.md).
+
+
+M9 (2026-11-01):all three CV sources now expose the Player World Model Inspector with persistent anonymous hypotheses,team belief,visibility timelines and global ReID evidence. M8 camera/position observations remain unchanged. Identity gains are modest and team errors remain;these are experimental scores. 607backend tests pass/one expected skip,86frontend tests and10Chrome suites pass. [Current M9 report,commands and limitations](docs/cv_player_world_model_m9.md).
+
+
+CV ball experiments: [M15 measured report](docs/cv_ball_tracking_m15.md) documents a precision/coverage tradeoff and unmet detection/metric targets. The frontend offers **Ball review → M15 experimental** alongside the defaultM14;M8/M9 and existing analytics/Ask remain unchanged.

@@ -1,0 +1,59 @@
+{
+  "sources": [
+    {
+      "name": "SoccerNet Tracking2023",
+      "status": "ADMITTED_LOCAL_RESEARCH",
+      "access": "public HF repo, HTTP200 metadata and exact206 ranges, no NDA acceptance",
+      "revision": "3777f456d908570e10b19e7354744640e77c351e",
+      "source": "https://github.com/SoccerNet/sn-tracking",
+      "permissions": "https://www.soccer-net.org/faq",
+      "permission_scope": "research training allowed; commercial use not intended; no crop/frame/weight publication or deployment performed",
+      "ids": "original organizer persistent GT track identity within30s clip; numeric team/jersey tags used only to exclude same-match aliases; no global physical-player registry",
+      "camera": "single moving main broadcast camera,1920x1080,25fps; field pans/occlusions",
+      "actual_inventory": "57train clips across games4,6,9;54test-archive clips across games7,8,11; raw12game pack gated and not downloaded",
+      "sampled": "8train-source,3VAL-source,3TEST-source clips; one anchor clip per same-game numeric alias in curated data",
+      "caveat": "worldwide physical-player disjointness cannot be certified; match/hash separation verified and common club/kit overlap excluded conservatively"
+    },
+    {
+      "name": "SoccerNet ReID2023",
+      "status": "AUDITED_NOT_USED",
+      "access": "public HF metadata; train.zip12.11GB; central directory exceeded32MB metadata cap so member download was refused",
+      "source": "https://github.com/SoccerNet/sn-reid",
+      "permissions": "https://www.soccer-net.org/faq",
+      "ids": "human action/replay correspondence IDs, valid only within action; same physical player can have different action IDs",
+      "reason": "few samples per action, cross-action false-negative risk and weak temporal ordering; tracking GT is better suited to this bounded experiment"
+    },
+    {
+      "name": "SoccerNet GSR2024",
+      "status": "METADATA_AUDITED_NOT_USED",
+      "source": "https://github.com/SoccerNet/sn-gamestate",
+      "repository": "SoccerNet/SN-GSR-2024",
+      "access": "HTTP200,public current metadata; no large archives downloaded",
+      "ids": "author documents team/role/jersey track labels, not a global physical registry; potential parent footage overlap requires separate audit",
+      "reason": "selected tracking source already supplies bounded verified boxes; avoid indiscriminate downloads"
+    },
+    {
+      "name": "SportsMOT",
+      "status": "AUDITED_NOT_DOWNLOADED",
+      "source": "https://github.com/MCG-NJU/SportsMOT",
+      "permissions": "official CC BY-NC4.0 plus competition conditions and no redistribution without written permission",
+      "access": "official download through Codalab competition enrollment; no enrollment or third-party mirror download performed",
+      "ids": "persistent player GT within clip, not global person ID; split source-video IDs can repeat",
+      "camera": "football broadcast excerpts, moving camera, no shot changes",
+      "reason": "would require separate access/terms and source-video/player-overlap verification"
+    },
+    {
+      "name": "SoccerTrack-v2",
+      "status": "REUSED_FROZEN_TRAIN_ONLY",
+      "source": "https://huggingface.co/datasets/atomscott/soccertrack-v2",
+      "revision": "325bd4c57ee8e135ab652f3921d274526ada496b",
+      "permissions": "official dataset CC BY4.0; attribution retained",
+      "ids": "organizer within-recording GT; existing inferred registered/team mapping and M10 anchors preserved",
+      "scope": "all10official MOT clips inventoried in M11; original TRAIN5361/51 reused, historicalVAL/TESTnever reallocated",
+      "additional": "longer half video inventory does not establish additional audited paired identity crops; no new long footage downloaded"
+    }
+  ],
+  "quality_correction": "provisional green-HSV filtering failure archived, color-neutral new-source policy fixed across all splits before training; no production quality/gates modified",
+  "new_split_protocol": "new public broadcast games only, not M10/M11 TEST; crop2\u20139s query vs20\u201330s gallery; same match/team; all final model/aggregation choices sealed before TEST",
+  "legal_limit": "This audit is source-policy documentation, not a blanket commercial/redistribution license. No cloud publication, credential sharing or terms acceptance on behalf of user."
+}

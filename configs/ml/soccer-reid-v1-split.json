@@ -1,0 +1,3600 @@
+{
+  "version": "soccer-reid-dataset-v1",
+  "seed": 20261102,
+  "groups": {
+    "train": [
+      "117092",
+      "117093",
+      "118575",
+      "118576",
+      "118577",
+      "118578"
+    ],
+    "validation": [
+      "128058",
+      "132831"
+    ],
+    "test": [
+      "128057",
+      "132877"
+    ]
+  },
+  "allowed_players": {
+    "128057": {
+      "1": {
+        "annotation_identity": "128057:MOT:1",
+        "roster_player_id": 506483,
+        "team_id": "10581",
+        "jersey_metadata": "1",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "2": {
+        "annotation_identity": "128057:MOT:2",
+        "roster_player_id": 506474,
+        "team_id": "10581",
+        "jersey_metadata": "57",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "3": {
+        "annotation_identity": "128057:MOT:3",
+        "roster_player_id": 506475,
+        "team_id": "10581",
+        "jersey_metadata": "45",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "4": {
+        "annotation_identity": "128057:MOT:4",
+        "roster_player_id": 506482,
+        "team_id": "10581",
+        "jersey_metadata": "76",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "128057:MOT:5",
+        "roster_player_id": 506489,
+        "team_id": "10581",
+        "jersey_metadata": "77",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "128057:MOT:6",
+        "roster_player_id": 506492,
+        "team_id": "10581",
+        "jersey_metadata": "98",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "128057:MOT:7",
+        "roster_player_id": 506485,
+        "team_id": "10581",
+        "jersey_metadata": "99",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "128057:MOT:8",
+        "roster_player_id": 506478,
+        "team_id": "10581",
+        "jersey_metadata": "30",
+        "role": "CAM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "128057:MOT:9",
+        "roster_player_id": 506470,
+        "team_id": "10581",
+        "jersey_metadata": "64",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "128057:MOT:10",
+        "roster_player_id": 506491,
+        "team_id": "10581",
+        "jersey_metadata": "68",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "128057:MOT:11",
+        "roster_player_id": 506487,
+        "team_id": "10581",
+        "jersey_metadata": "26",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "128057:MOT:12",
+        "roster_player_id": 506467,
+        "team_id": "34316",
+        "jersey_metadata": "99",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "128057:MOT:13",
+        "roster_player_id": 506463,
+        "team_id": "34316",
+        "jersey_metadata": "9",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "128057:MOT:14",
+        "roster_player_id": 506460,
+        "team_id": "34316",
+        "jersey_metadata": "17",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "128057:MOT:15",
+        "roster_player_id": 506468,
+        "team_id": "34316",
+        "jersey_metadata": "38",
+        "role": "CAM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "16": {
+        "annotation_identity": "128057:MOT:16",
+        "roster_player_id": 506461,
+        "team_id": "34316",
+        "jersey_metadata": "8",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "128057:MOT:17",
+        "roster_player_id": 506459,
+        "team_id": "34316",
+        "jersey_metadata": "15",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "128057:MOT:18",
+        "roster_player_id": 506465,
+        "team_id": "34316",
+        "jersey_metadata": "13",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "128057:MOT:19",
+        "roster_player_id": 506466,
+        "team_id": "34316",
+        "jersey_metadata": "11",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "128057:MOT:20",
+        "roster_player_id": 506464,
+        "team_id": "34316",
+        "jersey_metadata": "14",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "128057:MOT:21",
+        "roster_player_id": 506469,
+        "team_id": "34316",
+        "jersey_metadata": "24",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "128057:MOT:22",
+        "roster_player_id": 506462,
+        "team_id": "34316",
+        "jersey_metadata": "43",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "132877": {
+      "1": {
+        "annotation_identity": "132877:MOT:1",
+        "roster_player_id": 518291,
+        "team_id": "12623",
+        "jersey_metadata": "80",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "2": {
+        "annotation_identity": "132877:MOT:2",
+        "roster_player_id": 518292,
+        "team_id": "12623",
+        "jersey_metadata": "35",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "3": {
+        "annotation_identity": "132877:MOT:3",
+        "roster_player_id": 518290,
+        "team_id": "12623",
+        "jersey_metadata": "26",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "4": {
+        "annotation_identity": "132877:MOT:4",
+        "roster_player_id": 518310,
+        "team_id": "34317",
+        "jersey_metadata": "49",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "132877:MOT:5",
+        "roster_player_id": 518308,
+        "team_id": "34317",
+        "jersey_metadata": "13",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "132877:MOT:6",
+        "roster_player_id": 518295,
+        "team_id": "12623",
+        "jersey_metadata": "6",
+        "role": "CDM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "132877:MOT:7",
+        "roster_player_id": 518320,
+        "team_id": "34317",
+        "jersey_metadata": "40",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "132877:MOT:8",
+        "roster_player_id": 518289,
+        "team_id": "12623",
+        "jersey_metadata": "12",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "132877:MOT:9",
+        "roster_player_id": 510762,
+        "team_id": "34317",
+        "jersey_metadata": "1",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "132877:MOT:10",
+        "roster_player_id": 518296,
+        "team_id": "12623",
+        "jersey_metadata": "45",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "132877:MOT:11",
+        "roster_player_id": 510757,
+        "team_id": "34317",
+        "jersey_metadata": "28",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "132877:MOT:12",
+        "roster_player_id": 518297,
+        "team_id": "12623",
+        "jersey_metadata": "9",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "132877:MOT:13",
+        "roster_player_id": 510756,
+        "team_id": "34317",
+        "jersey_metadata": "22",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "132877:MOT:14",
+        "roster_player_id": 518298,
+        "team_id": "12623",
+        "jersey_metadata": "3",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "132877:MOT:15",
+        "roster_player_id": 518309,
+        "team_id": "34317",
+        "jersey_metadata": "32",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "16": {
+        "annotation_identity": "132877:MOT:16",
+        "roster_player_id": 518293,
+        "team_id": "12623",
+        "jersey_metadata": "29",
+        "role": "LWB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "132877:MOT:17",
+        "roster_player_id": 510763,
+        "team_id": "34317",
+        "jersey_metadata": "43",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "132877:MOT:18",
+        "roster_player_id": 518307,
+        "team_id": "34317",
+        "jersey_metadata": "44",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "132877:MOT:19",
+        "roster_player_id": 518299,
+        "team_id": "12623",
+        "jersey_metadata": "91",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "132877:MOT:20",
+        "roster_player_id": 518306,
+        "team_id": "34317",
+        "jersey_metadata": "56",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "132877:MOT:21",
+        "roster_player_id": 510766,
+        "team_id": "34317",
+        "jersey_metadata": "6",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "132877:MOT:22",
+        "roster_player_id": 518294,
+        "team_id": "12623",
+        "jersey_metadata": "14",
+        "role": "RWB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "128058": {
+      "3": {
+        "annotation_identity": "128058:MOT:3",
+        "roster_player_id": 510743,
+        "team_id": "9834",
+        "jersey_metadata": "23",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "128058:MOT:5",
+        "roster_player_id": 510744,
+        "team_id": "9834",
+        "jersey_metadata": "37",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "128058:MOT:7",
+        "roster_player_id": 467347,
+        "team_id": "9834",
+        "jersey_metadata": "122",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "128058:MOT:8",
+        "roster_player_id": 510745,
+        "team_id": "9834",
+        "jersey_metadata": "13",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "128058:MOT:12",
+        "roster_player_id": 467318,
+        "team_id": "9834",
+        "jersey_metadata": "47",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "128058:MOT:13",
+        "roster_player_id": 510747,
+        "team_id": "9834",
+        "jersey_metadata": "33",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "128058:MOT:15",
+        "roster_player_id": 510746,
+        "team_id": "9834",
+        "jersey_metadata": "32",
+        "role": "CDM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "128058:MOT:17",
+        "roster_player_id": 510748,
+        "team_id": "9834",
+        "jersey_metadata": "22",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "128058:MOT:20",
+        "roster_player_id": 510749,
+        "team_id": "9834",
+        "jersey_metadata": "56",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "128058:MOT:21",
+        "roster_player_id": 467357,
+        "team_id": "9834",
+        "jersey_metadata": "38",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "128058:MOT:22",
+        "roster_player_id": 467360,
+        "team_id": "9834",
+        "jersey_metadata": "12",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "132831": {
+      "1": {
+        "annotation_identity": "132831:MOT:1",
+        "roster_player_id": 520192,
+        "team_id": "15370",
+        "jersey_metadata": "31",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "2": {
+        "annotation_identity": "132831:MOT:2",
+        "roster_player_id": 520185,
+        "team_id": "15370",
+        "jersey_metadata": "15",
+        "role": "RWB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "3": {
+        "annotation_identity": "132831:MOT:3",
+        "roster_player_id": 520188,
+        "team_id": "15370",
+        "jersey_metadata": "16",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "4": {
+        "annotation_identity": "132831:MOT:4",
+        "roster_player_id": 520193,
+        "team_id": "15370",
+        "jersey_metadata": "49",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "132831:MOT:5",
+        "roster_player_id": 520187,
+        "team_id": "15370",
+        "jersey_metadata": "14",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "132831:MOT:6",
+        "roster_player_id": 520186,
+        "team_id": "15370",
+        "jersey_metadata": "28",
+        "role": "LWB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "132831:MOT:7",
+        "roster_player_id": 520184,
+        "team_id": "15370",
+        "jersey_metadata": "8",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "132831:MOT:8",
+        "roster_player_id": 520190,
+        "team_id": "15370",
+        "jersey_metadata": "166",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "132831:MOT:9",
+        "roster_player_id": 520176,
+        "team_id": "30798",
+        "jersey_metadata": "13",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "132831:MOT:10",
+        "roster_player_id": 520189,
+        "team_id": "15370",
+        "jersey_metadata": "27",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "132831:MOT:11",
+        "roster_player_id": 520178,
+        "team_id": "30798",
+        "jersey_metadata": "22",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "132831:MOT:12",
+        "roster_player_id": 520194,
+        "team_id": "15370",
+        "jersey_metadata": "33",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "132831:MOT:13",
+        "roster_player_id": 520177,
+        "team_id": "30798",
+        "jersey_metadata": "55",
+        "role": "RM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "132831:MOT:14",
+        "roster_player_id": 520174,
+        "team_id": "30798",
+        "jersey_metadata": "3",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "132831:MOT:15",
+        "roster_player_id": 520173,
+        "team_id": "30798",
+        "jersey_metadata": "28",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "16": {
+        "annotation_identity": "132831:MOT:16",
+        "roster_player_id": 520172,
+        "team_id": "30798",
+        "jersey_metadata": "46",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "132831:MOT:17",
+        "roster_player_id": 520171,
+        "team_id": "30798",
+        "jersey_metadata": "5",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "132831:MOT:18",
+        "roster_player_id": 520170,
+        "team_id": "30798",
+        "jersey_metadata": "42",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "132831:MOT:19",
+        "roster_player_id": 520169,
+        "team_id": "30798",
+        "jersey_metadata": "20",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "132831:MOT:20",
+        "roster_player_id": 520175,
+        "team_id": "30798",
+        "jersey_metadata": "51",
+        "role": "LM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "132831:MOT:21",
+        "roster_player_id": 520191,
+        "team_id": "15370",
+        "jersey_metadata": "11",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "132831:MOT:22",
+        "roster_player_id": 520168,
+        "team_id": "30798",
+        "jersey_metadata": "17",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "117092": {},
+    "117093": {
+      "4": {
+        "annotation_identity": "117093:MOT:4",
+        "roster_player_id": 306229,
+        "team_id": "9701",
+        "jersey_metadata": "7",
+        "role": "CAM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "117093:MOT:5",
+        "roster_player_id": 172186,
+        "team_id": "9701",
+        "jersey_metadata": "9",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "117093:MOT:6",
+        "roster_player_id": 170961,
+        "team_id": "9701",
+        "jersey_metadata": "51",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "117093:MOT:11",
+        "roster_player_id": 306233,
+        "team_id": "9701",
+        "jersey_metadata": "21",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "117093:MOT:12",
+        "roster_player_id": 170960,
+        "team_id": "9701",
+        "jersey_metadata": "15",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "117093:MOT:13",
+        "roster_player_id": 214983,
+        "team_id": "9701",
+        "jersey_metadata": "49",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "117093:MOT:15",
+        "roster_player_id": 170959,
+        "team_id": "9701",
+        "jersey_metadata": "12",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "117093:MOT:18",
+        "roster_player_id": 253029,
+        "team_id": "9701",
+        "jersey_metadata": "27",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "117093:MOT:19",
+        "roster_player_id": 200211,
+        "team_id": "9701",
+        "jersey_metadata": "18",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "117093:MOT:20",
+        "roster_player_id": 266083,
+        "team_id": "9701",
+        "jersey_metadata": "16",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "117093:MOT:21",
+        "roster_player_id": 473125,
+        "team_id": "9701",
+        "jersey_metadata": "36",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "118575": {
+      "1": {
+        "annotation_identity": "118575:MOT:1",
+        "roster_player_id": 476375,
+        "team_id": "31424",
+        "jersey_metadata": "55",
+        "role": "LM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "2": {
+        "annotation_identity": "118575:MOT:2",
+        "roster_player_id": 476356,
+        "team_id": "31425",
+        "jersey_metadata": "14",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "3": {
+        "annotation_identity": "118575:MOT:3",
+        "roster_player_id": 476354,
+        "team_id": "31425",
+        "jersey_metadata": "29",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "4": {
+        "annotation_identity": "118575:MOT:4",
+        "roster_player_id": 476355,
+        "team_id": "31425",
+        "jersey_metadata": "31",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "118575:MOT:5",
+        "roster_player_id": 476372,
+        "team_id": "31424",
+        "jersey_metadata": "34",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "118575:MOT:6",
+        "roster_player_id": 476374,
+        "team_id": "31424",
+        "jersey_metadata": "2",
+        "role": "RM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "118575:MOT:7",
+        "roster_player_id": 476370,
+        "team_id": "31424",
+        "jersey_metadata": "14",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "118575:MOT:8",
+        "roster_player_id": 476377,
+        "team_id": "31424",
+        "jersey_metadata": "24",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "118575:MOT:9",
+        "roster_player_id": 476373,
+        "team_id": "31424",
+        "jersey_metadata": "39",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "118575:MOT:10",
+        "roster_player_id": 476359,
+        "team_id": "31425",
+        "jersey_metadata": "16",
+        "role": "CDM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "118575:MOT:11",
+        "roster_player_id": 476369,
+        "team_id": "31424",
+        "jersey_metadata": "30",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "118575:MOT:12",
+        "roster_player_id": 476358,
+        "team_id": "31425",
+        "jersey_metadata": "22",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "118575:MOT:13",
+        "roster_player_id": 476371,
+        "team_id": "31424",
+        "jersey_metadata": "5",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "118575:MOT:14",
+        "roster_player_id": 476360,
+        "team_id": "31425",
+        "jersey_metadata": "18",
+        "role": "LM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "118575:MOT:15",
+        "roster_player_id": 476361,
+        "team_id": "31425",
+        "jersey_metadata": "10",
+        "role": "RM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "16": {
+        "annotation_identity": "118575:MOT:16",
+        "roster_player_id": 476357,
+        "team_id": "31425",
+        "jersey_metadata": "17",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "118575:MOT:17",
+        "roster_player_id": 476376,
+        "team_id": "31424",
+        "jersey_metadata": "19",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "118575:MOT:18",
+        "roster_player_id": 476368,
+        "team_id": "31424",
+        "jersey_metadata": "40",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "118575:MOT:19",
+        "roster_player_id": 476362,
+        "team_id": "31425",
+        "jersey_metadata": "9",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "118575:MOT:20",
+        "roster_player_id": 476352,
+        "team_id": "31425",
+        "jersey_metadata": "12",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "118575:MOT:21",
+        "roster_player_id": 476367,
+        "team_id": "31424",
+        "jersey_metadata": "1",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "118575:MOT:22",
+        "roster_player_id": 476353,
+        "team_id": "31425",
+        "jersey_metadata": "47",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "118576": {
+      "3": {
+        "annotation_identity": "118576:MOT:3",
+        "roster_player_id": 476376,
+        "team_id": "31424",
+        "jersey_metadata": "19",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "118576:MOT:7",
+        "roster_player_id": 476374,
+        "team_id": "31424",
+        "jersey_metadata": "46",
+        "role": "RM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "118576:MOT:9",
+        "roster_player_id": 476375,
+        "team_id": "31424",
+        "jersey_metadata": "55",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "118576:MOT:10",
+        "roster_player_id": 476377,
+        "team_id": "31424",
+        "jersey_metadata": "24",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "118576:MOT:13",
+        "roster_player_id": 476369,
+        "team_id": "31424",
+        "jersey_metadata": "30",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "118576:MOT:14",
+        "roster_player_id": 476373,
+        "team_id": "31424",
+        "jersey_metadata": "39",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "118576:MOT:17",
+        "roster_player_id": 476371,
+        "team_id": "31424",
+        "jersey_metadata": "5",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "118576:MOT:18",
+        "roster_player_id": 476368,
+        "team_id": "31424",
+        "jersey_metadata": "40",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "118576:MOT:19",
+        "roster_player_id": 476370,
+        "team_id": "31424",
+        "jersey_metadata": "14",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "118576:MOT:20",
+        "roster_player_id": 480267,
+        "team_id": "31424",
+        "jersey_metadata": "9",
+        "role": "LM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "118576:MOT:22",
+        "roster_player_id": 480264,
+        "team_id": "31424",
+        "jersey_metadata": "21",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "118577": {
+      "1": {
+        "annotation_identity": "118577:MOT:1",
+        "roster_player_id": 481048,
+        "team_id": "31790",
+        "jersey_metadata": "8",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "2": {
+        "annotation_identity": "118577:MOT:2",
+        "roster_player_id": 481052,
+        "team_id": "31790",
+        "jersey_metadata": "1",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "3": {
+        "annotation_identity": "118577:MOT:3",
+        "roster_player_id": 481042,
+        "team_id": "31790",
+        "jersey_metadata": "6",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "4": {
+        "annotation_identity": "118577:MOT:4",
+        "roster_player_id": 481041,
+        "team_id": "31425",
+        "jersey_metadata": "7",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "5": {
+        "annotation_identity": "118577:MOT:5",
+        "roster_player_id": 481045,
+        "team_id": "31790",
+        "jersey_metadata": "2",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "6": {
+        "annotation_identity": "118577:MOT:6",
+        "roster_player_id": 481043,
+        "team_id": "31790",
+        "jersey_metadata": "20",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "7": {
+        "annotation_identity": "118577:MOT:7",
+        "roster_player_id": 481050,
+        "team_id": "31790",
+        "jersey_metadata": "7",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "8": {
+        "annotation_identity": "118577:MOT:8",
+        "roster_player_id": 476362,
+        "team_id": "31425",
+        "jersey_metadata": "9",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "9": {
+        "annotation_identity": "118577:MOT:9",
+        "roster_player_id": 481054,
+        "team_id": "31790",
+        "jersey_metadata": "25",
+        "role": "RM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "10": {
+        "annotation_identity": "118577:MOT:10",
+        "roster_player_id": 481055,
+        "team_id": "31790",
+        "jersey_metadata": "10",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "11": {
+        "annotation_identity": "118577:MOT:11",
+        "roster_player_id": 476355,
+        "team_id": "31425",
+        "jersey_metadata": "31",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "12": {
+        "annotation_identity": "118577:MOT:12",
+        "roster_player_id": 481056,
+        "team_id": "31790",
+        "jersey_metadata": "5",
+        "role": "LB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "13": {
+        "annotation_identity": "118577:MOT:13",
+        "roster_player_id": 481084,
+        "team_id": "31425",
+        "jersey_metadata": "8",
+        "role": "RW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "14": {
+        "annotation_identity": "118577:MOT:14",
+        "roster_player_id": 481037,
+        "team_id": "31425",
+        "jersey_metadata": "3",
+        "role": "CM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "15": {
+        "annotation_identity": "118577:MOT:15",
+        "roster_player_id": 481047,
+        "team_id": "31790",
+        "jersey_metadata": "19",
+        "role": "LM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "16": {
+        "annotation_identity": "118577:MOT:16",
+        "roster_player_id": 476360,
+        "team_id": "31425",
+        "jersey_metadata": "18",
+        "role": "LW",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "17": {
+        "annotation_identity": "118577:MOT:17",
+        "roster_player_id": 476359,
+        "team_id": "31425",
+        "jersey_metadata": "16",
+        "role": "CDM",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "18": {
+        "annotation_identity": "118577:MOT:18",
+        "roster_player_id": 476356,
+        "team_id": "31425",
+        "jersey_metadata": "14",
+        "role": "RB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "19": {
+        "annotation_identity": "118577:MOT:19",
+        "roster_player_id": 481049,
+        "team_id": "31790",
+        "jersey_metadata": "11",
+        "role": "CF",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "20": {
+        "annotation_identity": "118577:MOT:20",
+        "roster_player_id": 481039,
+        "team_id": "31425",
+        "jersey_metadata": "35",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "21": {
+        "annotation_identity": "118577:MOT:21",
+        "roster_player_id": 476365,
+        "team_id": "31425",
+        "jersey_metadata": "44",
+        "role": "CB",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      },
+      "22": {
+        "annotation_identity": "118577:MOT:22",
+        "roster_player_id": 476352,
+        "team_id": "31425",
+        "jersey_metadata": "12",
+        "role": "GK",
+        "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+        "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+      }
+    },
+    "118578": {}
+  },
+  "excluded_roster_players": {
+    "128057": 0,
+    "132877": 0,
+    "128058": 11,
+    "132831": 0,
+    "117092": 22,
+    "117093": 11,
+    "118575": 0,
+    "118576": 11,
+    "118577": 0,
+    "118578": 22
+  },
+  "annotations": {
+    "117092": {
+      "annotation_sha256": "f83db75914cd6f0ba275425dcc8e152a25ddb2228f5105d200dee5a9682145d5",
+      "metadata_sha256": "8025e779d0ce80c3d527e7b2b812ff662261df4cc04079432de04e8161fbfa8b",
+      "mapping_sha256": "03e6944f387c6704974c8763b11a6fb58afdde36160b37791ef928205bd23533",
+      "rows": 132000,
+      "frame_min": 0,
+      "frame_max": 5999,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "117092:MOT:1",
+          "roster_player_id": 467335,
+          "team_id": "9834",
+          "jersey_metadata": "30",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "117092:MOT:2",
+          "roster_player_id": 467319,
+          "team_id": "9834",
+          "jersey_metadata": "65",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "117092:MOT:3",
+          "roster_player_id": 467348,
+          "team_id": "9834",
+          "jersey_metadata": "15",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "117092:MOT:4",
+          "roster_player_id": 467369,
+          "team_id": "9834",
+          "jersey_metadata": "48",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "117092:MOT:5",
+          "roster_player_id": 467324,
+          "team_id": "9834",
+          "jersey_metadata": "25",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "117092:MOT:6",
+          "roster_player_id": 467262,
+          "team_id": "30798",
+          "jersey_metadata": "46",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "117092:MOT:7",
+          "roster_player_id": 467372,
+          "team_id": "9834",
+          "jersey_metadata": "18",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "117092:MOT:8",
+          "roster_player_id": 467259,
+          "team_id": "30798",
+          "jersey_metadata": "40",
+          "role": "CAM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "117092:MOT:9",
+          "roster_player_id": 467367,
+          "team_id": "9834",
+          "jersey_metadata": "8",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "117092:MOT:10",
+          "roster_player_id": 467250,
+          "team_id": "30798",
+          "jersey_metadata": "52",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "117092:MOT:11",
+          "roster_player_id": 467343,
+          "team_id": "9834",
+          "jersey_metadata": "2",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "117092:MOT:12",
+          "roster_player_id": 467238,
+          "team_id": "30798",
+          "jersey_metadata": "23",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "117092:MOT:13",
+          "roster_player_id": 467258,
+          "team_id": "30798",
+          "jersey_metadata": "15",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "117092:MOT:14",
+          "roster_player_id": 467327,
+          "team_id": "9834",
+          "jersey_metadata": "32",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "117092:MOT:15",
+          "roster_player_id": 467351,
+          "team_id": "9834",
+          "jersey_metadata": "11",
+          "role": "CAM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "117092:MOT:16",
+          "roster_player_id": 467251,
+          "team_id": "30798",
+          "jersey_metadata": "7",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "117092:MOT:17",
+          "roster_player_id": 467249,
+          "team_id": "30798",
+          "jersey_metadata": "13",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "117092:MOT:18",
+          "roster_player_id": 467350,
+          "team_id": "9834",
+          "jersey_metadata": "41",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "117092:MOT:19",
+          "roster_player_id": 467256,
+          "team_id": "30798",
+          "jersey_metadata": "44",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "117092:MOT:20",
+          "roster_player_id": 467248,
+          "team_id": "30798",
+          "jersey_metadata": "22",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "117092:MOT:21",
+          "roster_player_id": 467241,
+          "team_id": "30798",
+          "jersey_metadata": "65",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "117092:MOT:22",
+          "roster_player_id": 467247,
+          "team_id": "30798",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "117093": {
+      "annotation_sha256": "f081ed8f4c7feb76e0fb0982c645fe6ae2039cf69bf2ffeaa787896fa01e2331",
+      "metadata_sha256": "715d1699ba9a06326c30ddd05e149941ad7ef392043d4b3d88cd4ac40d59d9d5",
+      "mapping_sha256": "607e7c42979024ba77b28bfec293f247d6862ec294ee17dc4c7a09bf6ea4cd2b",
+      "rows": 131472,
+      "frame_min": 0,
+      "frame_max": 5975,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "117093:MOT:1",
+          "roster_player_id": 467351,
+          "team_id": "9834",
+          "jersey_metadata": "11",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "117093:MOT:2",
+          "roster_player_id": 467343,
+          "team_id": "9834",
+          "jersey_metadata": "99",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "117093:MOT:3",
+          "roster_player_id": 467331,
+          "team_id": "9834",
+          "jersey_metadata": "6",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "117093:MOT:4",
+          "roster_player_id": 306229,
+          "team_id": "9701",
+          "jersey_metadata": "7",
+          "role": "CAM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "117093:MOT:5",
+          "roster_player_id": 172186,
+          "team_id": "9701",
+          "jersey_metadata": "9",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "117093:MOT:6",
+          "roster_player_id": 170961,
+          "team_id": "9701",
+          "jersey_metadata": "51",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "117093:MOT:7",
+          "roster_player_id": 467348,
+          "team_id": "9834",
+          "jersey_metadata": "15",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "117093:MOT:8",
+          "roster_player_id": 467372,
+          "team_id": "9834",
+          "jersey_metadata": "18",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "117093:MOT:9",
+          "roster_player_id": 176485,
+          "team_id": "9834",
+          "jersey_metadata": "40",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "117093:MOT:10",
+          "roster_player_id": 467318,
+          "team_id": "9834",
+          "jersey_metadata": "47",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "117093:MOT:11",
+          "roster_player_id": 306233,
+          "team_id": "9701",
+          "jersey_metadata": "21",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "117093:MOT:12",
+          "roster_player_id": 170960,
+          "team_id": "9701",
+          "jersey_metadata": "15",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "117093:MOT:13",
+          "roster_player_id": 214983,
+          "team_id": "9701",
+          "jersey_metadata": "49",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "117093:MOT:14",
+          "roster_player_id": 467367,
+          "team_id": "9834",
+          "jersey_metadata": "8",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "117093:MOT:15",
+          "roster_player_id": 170959,
+          "team_id": "9701",
+          "jersey_metadata": "12",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "117093:MOT:16",
+          "roster_player_id": 467327,
+          "team_id": "9834",
+          "jersey_metadata": "23",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "117093:MOT:17",
+          "roster_player_id": 176476,
+          "team_id": "9834",
+          "jersey_metadata": "29",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "117093:MOT:18",
+          "roster_player_id": 253029,
+          "team_id": "9701",
+          "jersey_metadata": "27",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "117093:MOT:19",
+          "roster_player_id": 200211,
+          "team_id": "9701",
+          "jersey_metadata": "18",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "117093:MOT:20",
+          "roster_player_id": 266083,
+          "team_id": "9701",
+          "jersey_metadata": "16",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "117093:MOT:21",
+          "roster_player_id": 473125,
+          "team_id": "9701",
+          "jersey_metadata": "36",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "117093:MOT:22",
+          "roster_player_id": 467324,
+          "team_id": "9834",
+          "jersey_metadata": "50",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "118575": {
+      "annotation_sha256": "bf6c6d38e697d6cf9a4e045a7af2e8d33f7a99146517d10213852c9f556f0936",
+      "metadata_sha256": "14f331cbf91f1b6c4b6080280eb4c2d8317587a830f861caa3fcb103998e4cd6",
+      "mapping_sha256": "130efce1cc492b4cd23a2dafb3d9a0e2df500657aafa59ef6075c54fff4dd93a",
+      "rows": 132000,
+      "frame_min": 0,
+      "frame_max": 5999,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "118575:MOT:1",
+          "roster_player_id": 476375,
+          "team_id": "31424",
+          "jersey_metadata": "55",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "118575:MOT:2",
+          "roster_player_id": 476356,
+          "team_id": "31425",
+          "jersey_metadata": "14",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "118575:MOT:3",
+          "roster_player_id": 476354,
+          "team_id": "31425",
+          "jersey_metadata": "29",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "118575:MOT:4",
+          "roster_player_id": 476355,
+          "team_id": "31425",
+          "jersey_metadata": "31",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "118575:MOT:5",
+          "roster_player_id": 476372,
+          "team_id": "31424",
+          "jersey_metadata": "34",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "118575:MOT:6",
+          "roster_player_id": 476374,
+          "team_id": "31424",
+          "jersey_metadata": "2",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "118575:MOT:7",
+          "roster_player_id": 476370,
+          "team_id": "31424",
+          "jersey_metadata": "14",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "118575:MOT:8",
+          "roster_player_id": 476377,
+          "team_id": "31424",
+          "jersey_metadata": "24",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "118575:MOT:9",
+          "roster_player_id": 476373,
+          "team_id": "31424",
+          "jersey_metadata": "39",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "118575:MOT:10",
+          "roster_player_id": 476359,
+          "team_id": "31425",
+          "jersey_metadata": "16",
+          "role": "CDM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "118575:MOT:11",
+          "roster_player_id": 476369,
+          "team_id": "31424",
+          "jersey_metadata": "30",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "118575:MOT:12",
+          "roster_player_id": 476358,
+          "team_id": "31425",
+          "jersey_metadata": "22",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "118575:MOT:13",
+          "roster_player_id": 476371,
+          "team_id": "31424",
+          "jersey_metadata": "5",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "118575:MOT:14",
+          "roster_player_id": 476360,
+          "team_id": "31425",
+          "jersey_metadata": "18",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "118575:MOT:15",
+          "roster_player_id": 476361,
+          "team_id": "31425",
+          "jersey_metadata": "10",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "118575:MOT:16",
+          "roster_player_id": 476357,
+          "team_id": "31425",
+          "jersey_metadata": "17",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "118575:MOT:17",
+          "roster_player_id": 476376,
+          "team_id": "31424",
+          "jersey_metadata": "19",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "118575:MOT:18",
+          "roster_player_id": 476368,
+          "team_id": "31424",
+          "jersey_metadata": "40",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "118575:MOT:19",
+          "roster_player_id": 476362,
+          "team_id": "31425",
+          "jersey_metadata": "9",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "118575:MOT:20",
+          "roster_player_id": 476352,
+          "team_id": "31425",
+          "jersey_metadata": "12",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "118575:MOT:21",
+          "roster_player_id": 476367,
+          "team_id": "31424",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "118575:MOT:22",
+          "roster_player_id": 476353,
+          "team_id": "31425",
+          "jersey_metadata": "47",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "118576": {
+      "annotation_sha256": "902483d9b029bb69c692da8fe0120f593615faf6d17ae2d4db22165247307310",
+      "metadata_sha256": "3327572931d7f233ee7671580a2d4bd179f0e00e12cef2a9605873ca0335c530",
+      "mapping_sha256": "26c3043e5b15b73660c40ca14a7b53fb28b48df5d8154075327129e9d9718cb3",
+      "rows": 131450,
+      "frame_min": 0,
+      "frame_max": 5974,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "118576:MOT:1",
+          "roster_player_id": 467330,
+          "team_id": "9834",
+          "jersey_metadata": "4",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "118576:MOT:2",
+          "roster_player_id": 467331,
+          "team_id": "9834",
+          "jersey_metadata": "11",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "118576:MOT:3",
+          "roster_player_id": 476376,
+          "team_id": "31424",
+          "jersey_metadata": "19",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "118576:MOT:4",
+          "roster_player_id": 480601,
+          "team_id": "9834",
+          "jersey_metadata": "15",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "118576:MOT:5",
+          "roster_player_id": 467335,
+          "team_id": "9834",
+          "jersey_metadata": "17",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "118576:MOT:6",
+          "roster_player_id": 467338,
+          "team_id": "9834",
+          "jersey_metadata": "36",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "118576:MOT:7",
+          "roster_player_id": 476374,
+          "team_id": "31424",
+          "jersey_metadata": "46",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "118576:MOT:8",
+          "roster_player_id": 480606,
+          "team_id": "9834",
+          "jersey_metadata": "48",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "118576:MOT:9",
+          "roster_player_id": 476375,
+          "team_id": "31424",
+          "jersey_metadata": "55",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "118576:MOT:10",
+          "roster_player_id": 476377,
+          "team_id": "31424",
+          "jersey_metadata": "24",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "118576:MOT:11",
+          "roster_player_id": 480603,
+          "team_id": "9834",
+          "jersey_metadata": "26",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "118576:MOT:12",
+          "roster_player_id": 480600,
+          "team_id": "9834",
+          "jersey_metadata": "6",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "118576:MOT:13",
+          "roster_player_id": 476369,
+          "team_id": "31424",
+          "jersey_metadata": "30",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "118576:MOT:14",
+          "roster_player_id": 476373,
+          "team_id": "31424",
+          "jersey_metadata": "39",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "118576:MOT:15",
+          "roster_player_id": 467345,
+          "team_id": "9834",
+          "jersey_metadata": "21",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "118576:MOT:16",
+          "roster_player_id": 467347,
+          "team_id": "9834",
+          "jersey_metadata": "52",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "118576:MOT:17",
+          "roster_player_id": 476371,
+          "team_id": "31424",
+          "jersey_metadata": "5",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "118576:MOT:18",
+          "roster_player_id": 476368,
+          "team_id": "31424",
+          "jersey_metadata": "40",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "118576:MOT:19",
+          "roster_player_id": 476370,
+          "team_id": "31424",
+          "jersey_metadata": "14",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "118576:MOT:20",
+          "roster_player_id": 480267,
+          "team_id": "31424",
+          "jersey_metadata": "9",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "118576:MOT:21",
+          "roster_player_id": 467318,
+          "team_id": "9834",
+          "jersey_metadata": "47",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "118576:MOT:22",
+          "roster_player_id": 480264,
+          "team_id": "31424",
+          "jersey_metadata": "21",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "118577": {
+      "annotation_sha256": "425c9fa97e14f50298150f366828854639cfa52529470bd6ed95b8ac278dd2e7",
+      "metadata_sha256": "7c021785dcb0485c89f468c34d25c9d09ea5ffe40167c762b9d8ff744abde6dc",
+      "mapping_sha256": "f016129e026d7654492a7754a4ade4961754c01922aad9eda3f54bbd133abef2",
+      "rows": 132000,
+      "frame_min": 0,
+      "frame_max": 5999,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "118577:MOT:1",
+          "roster_player_id": 481048,
+          "team_id": "31790",
+          "jersey_metadata": "8",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "118577:MOT:2",
+          "roster_player_id": 481052,
+          "team_id": "31790",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "118577:MOT:3",
+          "roster_player_id": 481042,
+          "team_id": "31790",
+          "jersey_metadata": "6",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "118577:MOT:4",
+          "roster_player_id": 481041,
+          "team_id": "31425",
+          "jersey_metadata": "7",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "118577:MOT:5",
+          "roster_player_id": 481045,
+          "team_id": "31790",
+          "jersey_metadata": "2",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "118577:MOT:6",
+          "roster_player_id": 481043,
+          "team_id": "31790",
+          "jersey_metadata": "20",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "118577:MOT:7",
+          "roster_player_id": 481050,
+          "team_id": "31790",
+          "jersey_metadata": "7",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "118577:MOT:8",
+          "roster_player_id": 476362,
+          "team_id": "31425",
+          "jersey_metadata": "9",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "118577:MOT:9",
+          "roster_player_id": 481054,
+          "team_id": "31790",
+          "jersey_metadata": "25",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "118577:MOT:10",
+          "roster_player_id": 481055,
+          "team_id": "31790",
+          "jersey_metadata": "10",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "118577:MOT:11",
+          "roster_player_id": 476355,
+          "team_id": "31425",
+          "jersey_metadata": "31",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "118577:MOT:12",
+          "roster_player_id": 481056,
+          "team_id": "31790",
+          "jersey_metadata": "5",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "118577:MOT:13",
+          "roster_player_id": 481084,
+          "team_id": "31425",
+          "jersey_metadata": "8",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "118577:MOT:14",
+          "roster_player_id": 481037,
+          "team_id": "31425",
+          "jersey_metadata": "3",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "118577:MOT:15",
+          "roster_player_id": 481047,
+          "team_id": "31790",
+          "jersey_metadata": "19",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "118577:MOT:16",
+          "roster_player_id": 476360,
+          "team_id": "31425",
+          "jersey_metadata": "18",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "118577:MOT:17",
+          "roster_player_id": 476359,
+          "team_id": "31425",
+          "jersey_metadata": "16",
+          "role": "CDM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "118577:MOT:18",
+          "roster_player_id": 476356,
+          "team_id": "31425",
+          "jersey_metadata": "14",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "118577:MOT:19",
+          "roster_player_id": 481049,
+          "team_id": "31790",
+          "jersey_metadata": "11",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "118577:MOT:20",
+          "roster_player_id": 481039,
+          "team_id": "31425",
+          "jersey_metadata": "35",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "118577:MOT:21",
+          "roster_player_id": 476365,
+          "team_id": "31425",
+          "jersey_metadata": "44",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "118577:MOT:22",
+          "roster_player_id": 476352,
+          "team_id": "31425",
+          "jersey_metadata": "12",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "118578": {
+      "annotation_sha256": "b340a011b8157209c259cd46af55f078a323900885521be3eedef4b421134c94",
+      "metadata_sha256": "120ce2486c7b82f7c271051a7c5ff2cf94304da24d56ac08738728f19300d0ab",
+      "mapping_sha256": "f587ca91c092a412b9fc868588290b15d98357f2e0319e0f8bea5a8cc19bdce4",
+      "rows": 132000,
+      "frame_min": 0,
+      "frame_max": 5999,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "118578:MOT:1",
+          "roster_player_id": 467335,
+          "team_id": "9834",
+          "jersey_metadata": "30",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "118578:MOT:2",
+          "roster_player_id": 480601,
+          "team_id": "9834",
+          "jersey_metadata": "15",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "118578:MOT:3",
+          "roster_player_id": 467330,
+          "team_id": "9834",
+          "jersey_metadata": "4",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "118578:MOT:4",
+          "roster_player_id": 467331,
+          "team_id": "9834",
+          "jersey_metadata": "11",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "118578:MOT:5",
+          "roster_player_id": 467242,
+          "team_id": "30798",
+          "jersey_metadata": "16",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "118578:MOT:6",
+          "roster_player_id": 480603,
+          "team_id": "9834",
+          "jersey_metadata": "26",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "118578:MOT:7",
+          "roster_player_id": 467246,
+          "team_id": "30798",
+          "jersey_metadata": "40",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "118578:MOT:8",
+          "roster_player_id": 467338,
+          "team_id": "9834",
+          "jersey_metadata": "36",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "118578:MOT:9",
+          "roster_player_id": 481550,
+          "team_id": "30798",
+          "jersey_metadata": "37",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "118578:MOT:10",
+          "roster_player_id": 467243,
+          "team_id": "30798",
+          "jersey_metadata": "42",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "118578:MOT:11",
+          "roster_player_id": 480606,
+          "team_id": "9834",
+          "jersey_metadata": "48",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "118578:MOT:12",
+          "roster_player_id": 467263,
+          "team_id": "30798",
+          "jersey_metadata": "38",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "118578:MOT:13",
+          "roster_player_id": 481548,
+          "team_id": "30798",
+          "jersey_metadata": "9",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "118578:MOT:14",
+          "roster_player_id": 467249,
+          "team_id": "30798",
+          "jersey_metadata": "13",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "118578:MOT:15",
+          "roster_player_id": 467259,
+          "team_id": "30798",
+          "jersey_metadata": "7",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "118578:MOT:16",
+          "roster_player_id": 467357,
+          "team_id": "9834",
+          "jersey_metadata": "19",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "118578:MOT:17",
+          "roster_player_id": 481549,
+          "team_id": "30798",
+          "jersey_metadata": "43",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "118578:MOT:18",
+          "roster_player_id": 467345,
+          "team_id": "9834",
+          "jersey_metadata": "21",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "118578:MOT:19",
+          "roster_player_id": 467347,
+          "team_id": "9834",
+          "jersey_metadata": "52",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "118578:MOT:20",
+          "roster_player_id": 481547,
+          "team_id": "30798",
+          "jersey_metadata": "2",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "118578:MOT:21",
+          "roster_player_id": 467318,
+          "team_id": "9834",
+          "jersey_metadata": "47",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "118578:MOT:22",
+          "roster_player_id": 481546,
+          "team_id": "30798",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "128057": {
+      "annotation_sha256": "31bbd50e0a728626ca3b3863f8272995bfbd42ab7a5849eb5bc7ccc5df2acd17",
+      "metadata_sha256": "bd8138180319853e9c8f95da063c0fffcbc977b20c0736b67d8a95347c429d9e",
+      "mapping_sha256": "f2e89cb7c49a4280686d5f57473a91f733a6c449c933341aaa3eb12a52030258",
+      "rows": 131472,
+      "frame_min": 0,
+      "frame_max": 5975,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "128057:MOT:1",
+          "roster_player_id": 506483,
+          "team_id": "10581",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "128057:MOT:2",
+          "roster_player_id": 506474,
+          "team_id": "10581",
+          "jersey_metadata": "57",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "128057:MOT:3",
+          "roster_player_id": 506475,
+          "team_id": "10581",
+          "jersey_metadata": "45",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "128057:MOT:4",
+          "roster_player_id": 506482,
+          "team_id": "10581",
+          "jersey_metadata": "76",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "128057:MOT:5",
+          "roster_player_id": 506489,
+          "team_id": "10581",
+          "jersey_metadata": "77",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "128057:MOT:6",
+          "roster_player_id": 506492,
+          "team_id": "10581",
+          "jersey_metadata": "98",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "128057:MOT:7",
+          "roster_player_id": 506485,
+          "team_id": "10581",
+          "jersey_metadata": "99",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "128057:MOT:8",
+          "roster_player_id": 506478,
+          "team_id": "10581",
+          "jersey_metadata": "30",
+          "role": "CAM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "128057:MOT:9",
+          "roster_player_id": 506470,
+          "team_id": "10581",
+          "jersey_metadata": "64",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "128057:MOT:10",
+          "roster_player_id": 506491,
+          "team_id": "10581",
+          "jersey_metadata": "68",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "128057:MOT:11",
+          "roster_player_id": 506487,
+          "team_id": "10581",
+          "jersey_metadata": "26",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "128057:MOT:12",
+          "roster_player_id": 506467,
+          "team_id": "34316",
+          "jersey_metadata": "99",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "128057:MOT:13",
+          "roster_player_id": 506463,
+          "team_id": "34316",
+          "jersey_metadata": "9",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "128057:MOT:14",
+          "roster_player_id": 506460,
+          "team_id": "34316",
+          "jersey_metadata": "17",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "128057:MOT:15",
+          "roster_player_id": 506468,
+          "team_id": "34316",
+          "jersey_metadata": "38",
+          "role": "CAM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "128057:MOT:16",
+          "roster_player_id": 506461,
+          "team_id": "34316",
+          "jersey_metadata": "8",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "128057:MOT:17",
+          "roster_player_id": 506459,
+          "team_id": "34316",
+          "jersey_metadata": "15",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "128057:MOT:18",
+          "roster_player_id": 506465,
+          "team_id": "34316",
+          "jersey_metadata": "13",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "128057:MOT:19",
+          "roster_player_id": 506466,
+          "team_id": "34316",
+          "jersey_metadata": "11",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "128057:MOT:20",
+          "roster_player_id": 506464,
+          "team_id": "34316",
+          "jersey_metadata": "14",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "128057:MOT:21",
+          "roster_player_id": 506469,
+          "team_id": "34316",
+          "jersey_metadata": "24",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "128057:MOT:22",
+          "roster_player_id": 506462,
+          "team_id": "34316",
+          "jersey_metadata": "43",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "128058": {
+      "annotation_sha256": "7956d817930cb2e1388913ae1ae4db71f5ab873321a613e523dc3f5810c5e37d",
+      "metadata_sha256": "1a8cd81476d2e0dfa7e27eb3aadbdbbfc2b37ffda10a89e8dbbfcd2ddaac9632",
+      "mapping_sha256": "90cce74828dfbc5facbcdfa1d370f2a28de80b552fd23a4abfe853d3db2fd762",
+      "rows": 131582,
+      "frame_min": 0,
+      "frame_max": 5980,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "128058:MOT:1",
+          "roster_player_id": 510762,
+          "team_id": "34317",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "128058:MOT:2",
+          "roster_player_id": 510785,
+          "team_id": "34317",
+          "jersey_metadata": "42",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "128058:MOT:3",
+          "roster_player_id": 510743,
+          "team_id": "9834",
+          "jersey_metadata": "23",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "128058:MOT:4",
+          "roster_player_id": 510754,
+          "team_id": "34317",
+          "jersey_metadata": "51",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "128058:MOT:5",
+          "roster_player_id": 510744,
+          "team_id": "9834",
+          "jersey_metadata": "37",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "128058:MOT:6",
+          "roster_player_id": 510755,
+          "team_id": "34317",
+          "jersey_metadata": "12",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "128058:MOT:7",
+          "roster_player_id": 467347,
+          "team_id": "9834",
+          "jersey_metadata": "122",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "128058:MOT:8",
+          "roster_player_id": 510745,
+          "team_id": "9834",
+          "jersey_metadata": "13",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "128058:MOT:9",
+          "roster_player_id": 510767,
+          "team_id": "34317",
+          "jersey_metadata": "15",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "128058:MOT:10",
+          "roster_player_id": 510763,
+          "team_id": "34317",
+          "jersey_metadata": "65",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "128058:MOT:11",
+          "roster_player_id": 510756,
+          "team_id": "34317",
+          "jersey_metadata": "22",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "128058:MOT:12",
+          "roster_player_id": 467318,
+          "team_id": "9834",
+          "jersey_metadata": "47",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "128058:MOT:13",
+          "roster_player_id": 510747,
+          "team_id": "9834",
+          "jersey_metadata": "33",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "128058:MOT:14",
+          "roster_player_id": 510764,
+          "team_id": "34317",
+          "jersey_metadata": "7",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "128058:MOT:15",
+          "roster_player_id": 510746,
+          "team_id": "9834",
+          "jersey_metadata": "32",
+          "role": "CDM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "128058:MOT:16",
+          "roster_player_id": 510766,
+          "team_id": "34317",
+          "jersey_metadata": "6",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "128058:MOT:17",
+          "roster_player_id": 510748,
+          "team_id": "9834",
+          "jersey_metadata": "22",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "128058:MOT:18",
+          "roster_player_id": 510757,
+          "team_id": "34317",
+          "jersey_metadata": "28",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "128058:MOT:19",
+          "roster_player_id": 510760,
+          "team_id": "34317",
+          "jersey_metadata": "27",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "128058:MOT:20",
+          "roster_player_id": 510749,
+          "team_id": "9834",
+          "jersey_metadata": "56",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "128058:MOT:21",
+          "roster_player_id": 467357,
+          "team_id": "9834",
+          "jersey_metadata": "38",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "128058:MOT:22",
+          "roster_player_id": 467360,
+          "team_id": "9834",
+          "jersey_metadata": "12",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "132831": {
+      "annotation_sha256": "f3528f3b535879aef72e811687a145dbee6928e89315f449b24387fba5b745d8",
+      "metadata_sha256": "f9189fb243f43f664ce43981b8372f127993a316b4d52615e8a6decbb7dea97a",
+      "mapping_sha256": "4972c65074380e0e1802d875401909f26870dae1881cf096ad9232a4df3b1046",
+      "rows": 131472,
+      "frame_min": 0,
+      "frame_max": 5975,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "132831:MOT:1",
+          "roster_player_id": 520192,
+          "team_id": "15370",
+          "jersey_metadata": "31",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "132831:MOT:2",
+          "roster_player_id": 520185,
+          "team_id": "15370",
+          "jersey_metadata": "15",
+          "role": "RWB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "132831:MOT:3",
+          "roster_player_id": 520188,
+          "team_id": "15370",
+          "jersey_metadata": "16",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "132831:MOT:4",
+          "roster_player_id": 520193,
+          "team_id": "15370",
+          "jersey_metadata": "49",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "132831:MOT:5",
+          "roster_player_id": 520187,
+          "team_id": "15370",
+          "jersey_metadata": "14",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "132831:MOT:6",
+          "roster_player_id": 520186,
+          "team_id": "15370",
+          "jersey_metadata": "28",
+          "role": "LWB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "132831:MOT:7",
+          "roster_player_id": 520184,
+          "team_id": "15370",
+          "jersey_metadata": "8",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "132831:MOT:8",
+          "roster_player_id": 520190,
+          "team_id": "15370",
+          "jersey_metadata": "166",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "132831:MOT:9",
+          "roster_player_id": 520176,
+          "team_id": "30798",
+          "jersey_metadata": "13",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "132831:MOT:10",
+          "roster_player_id": 520189,
+          "team_id": "15370",
+          "jersey_metadata": "27",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "132831:MOT:11",
+          "roster_player_id": 520178,
+          "team_id": "30798",
+          "jersey_metadata": "22",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "132831:MOT:12",
+          "roster_player_id": 520194,
+          "team_id": "15370",
+          "jersey_metadata": "33",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "132831:MOT:13",
+          "roster_player_id": 520177,
+          "team_id": "30798",
+          "jersey_metadata": "55",
+          "role": "RM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "132831:MOT:14",
+          "roster_player_id": 520174,
+          "team_id": "30798",
+          "jersey_metadata": "3",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "132831:MOT:15",
+          "roster_player_id": 520173,
+          "team_id": "30798",
+          "jersey_metadata": "28",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "132831:MOT:16",
+          "roster_player_id": 520172,
+          "team_id": "30798",
+          "jersey_metadata": "46",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "132831:MOT:17",
+          "roster_player_id": 520171,
+          "team_id": "30798",
+          "jersey_metadata": "5",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "132831:MOT:18",
+          "roster_player_id": 520170,
+          "team_id": "30798",
+          "jersey_metadata": "42",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "132831:MOT:19",
+          "roster_player_id": 520169,
+          "team_id": "30798",
+          "jersey_metadata": "20",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "132831:MOT:20",
+          "roster_player_id": 520175,
+          "team_id": "30798",
+          "jersey_metadata": "51",
+          "role": "LM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "132831:MOT:21",
+          "roster_player_id": 520191,
+          "team_id": "15370",
+          "jersey_metadata": "11",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "132831:MOT:22",
+          "roster_player_id": 520168,
+          "team_id": "30798",
+          "jersey_metadata": "17",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    },
+    "132877": {
+      "annotation_sha256": "a9526bfe7925971ec21a79867de02be9251abfd006402136c72a60fe3236a04e",
+      "metadata_sha256": "45a712188e1e6222edba13a568047ffb55ea9752079542b9fe2a86d4fb4d7758",
+      "mapping_sha256": "18611ddade2537b72b6745b491a159424e59a1418af7fb0bd272b779bce67f66",
+      "rows": 131076,
+      "frame_min": 0,
+      "frame_max": 5957,
+      "frame_base": 0,
+      "ids": 22,
+      "last_columns_unique": [
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ],
+        [
+          -1.0
+        ]
+      ],
+      "players": {
+        "1": {
+          "annotation_identity": "132877:MOT:1",
+          "roster_player_id": 518291,
+          "team_id": "12623",
+          "jersey_metadata": "80",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "2": {
+          "annotation_identity": "132877:MOT:2",
+          "roster_player_id": 518292,
+          "team_id": "12623",
+          "jersey_metadata": "35",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "3": {
+          "annotation_identity": "132877:MOT:3",
+          "roster_player_id": 518290,
+          "team_id": "12623",
+          "jersey_metadata": "26",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "4": {
+          "annotation_identity": "132877:MOT:4",
+          "roster_player_id": 518310,
+          "team_id": "34317",
+          "jersey_metadata": "49",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "5": {
+          "annotation_identity": "132877:MOT:5",
+          "roster_player_id": 518308,
+          "team_id": "34317",
+          "jersey_metadata": "13",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "6": {
+          "annotation_identity": "132877:MOT:6",
+          "roster_player_id": 518295,
+          "team_id": "12623",
+          "jersey_metadata": "6",
+          "role": "CDM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "7": {
+          "annotation_identity": "132877:MOT:7",
+          "roster_player_id": 518320,
+          "team_id": "34317",
+          "jersey_metadata": "40",
+          "role": "LW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "8": {
+          "annotation_identity": "132877:MOT:8",
+          "roster_player_id": 518289,
+          "team_id": "12623",
+          "jersey_metadata": "12",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "9": {
+          "annotation_identity": "132877:MOT:9",
+          "roster_player_id": 510762,
+          "team_id": "34317",
+          "jersey_metadata": "1",
+          "role": "GK",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "10": {
+          "annotation_identity": "132877:MOT:10",
+          "roster_player_id": 518296,
+          "team_id": "12623",
+          "jersey_metadata": "45",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "11": {
+          "annotation_identity": "132877:MOT:11",
+          "roster_player_id": 510757,
+          "team_id": "34317",
+          "jersey_metadata": "28",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "12": {
+          "annotation_identity": "132877:MOT:12",
+          "roster_player_id": 518297,
+          "team_id": "12623",
+          "jersey_metadata": "9",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "13": {
+          "annotation_identity": "132877:MOT:13",
+          "roster_player_id": 510756,
+          "team_id": "34317",
+          "jersey_metadata": "22",
+          "role": "RW",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "14": {
+          "annotation_identity": "132877:MOT:14",
+          "roster_player_id": 518298,
+          "team_id": "12623",
+          "jersey_metadata": "3",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "15": {
+          "annotation_identity": "132877:MOT:15",
+          "roster_player_id": 518309,
+          "team_id": "34317",
+          "jersey_metadata": "32",
+          "role": "CM",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "16": {
+          "annotation_identity": "132877:MOT:16",
+          "roster_player_id": 518293,
+          "team_id": "12623",
+          "jersey_metadata": "29",
+          "role": "LWB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "17": {
+          "annotation_identity": "132877:MOT:17",
+          "roster_player_id": 510763,
+          "team_id": "34317",
+          "jersey_metadata": "43",
+          "role": "RB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "18": {
+          "annotation_identity": "132877:MOT:18",
+          "roster_player_id": 518307,
+          "team_id": "34317",
+          "jersey_metadata": "44",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "19": {
+          "annotation_identity": "132877:MOT:19",
+          "roster_player_id": 518299,
+          "team_id": "12623",
+          "jersey_metadata": "91",
+          "role": "CF",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "20": {
+          "annotation_identity": "132877:MOT:20",
+          "roster_player_id": 518306,
+          "team_id": "34317",
+          "jersey_metadata": "56",
+          "role": "CB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "21": {
+          "annotation_identity": "132877:MOT:21",
+          "roster_player_id": 510766,
+          "team_id": "34317",
+          "jersey_metadata": "6",
+          "role": "LB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        },
+        "22": {
+          "annotation_identity": "132877:MOT:22",
+          "roster_player_id": 518294,
+          "team_id": "12623",
+          "jersey_metadata": "14",
+          "role": "RWB",
+          "mapping_source": "Hash-validated existing artifact player_summary MOT-to-GSR synchronization; inferred, not independent annotation",
+          "identity_source": "Organizer MOT ground-truth persistent sequence ID; NOT generated M9 tracker ID"
+        }
+      },
+      "annotation_revision": "325bd4c57ee8e135ab652f3921d274526ada496b"
+    }
+  },
+  "evaluation_video_exclusions": [
+    "test_match",
+    "team_goal",
+    "southampton"
+  ],
+  "policy": "Match-level split plus conservative held-out team/registered-player exclusion; test roster metadata used only for leakage prevention, never model selection",
+  "identity_scope": "Ground-truth MOT ID within released clip, not a global identity assertion. No cross-match positive pairs. Mapping to GSR metadata is inferred and retained separately."
+}

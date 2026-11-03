@@ -1,5 +1,7 @@
 # TactiqAI CV Milestone 6 — temporal camera stability and persistent team belief
 
+> Historical M6 baseline. Current serving selects M7;see [M7 results and limitations](cv_world_model_m7.md). M6 snapshots remain immutable.
+
 Verified **2026-10-26**. **IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL.** Known-geometry tests are **REFERENCE-EVALUATED (synthetic)**. Independent metric camera, team and identity accuracy remain **UNAVAILABLE**.
 
 M6 adds measured camera prediction/correction, named-line validation, bounded offline forward/backward checks, explicit team-belief evidence and readable review diagnostics. It is more conservative: both videos lose accepted coverage; unknown-team assignments increase. The strongest measured improvement is lower matched-pair position jitter in team_goal. The frame near0.058s is recovered from measured future evidence; the questionable frame350 geometry is suppressed. These are not claims of full-video geometric accuracy.

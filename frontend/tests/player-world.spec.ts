@@ -6,7 +6,7 @@ test('persistent player, team and projection evidence survives camera loss and r
  const metadata=await(await page.request.get('/api/matches/test_match/cv')).json();const fps=metadata.fps;
  async function seek(frame:number){await video.evaluate((v:HTMLVideoElement,t)=>{v.pause();v.currentTime=t},(frame+.001)/fps);await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.seeking)).toBe(false);await expect(page.getByTestId('cv-state')).toContainText(`Frame ${frame} ·`);return (await(await page.request.get(`/api/matches/test_match/cv/frame?timestamp=${(frame+.001)/fps}`)).json())}
  const row=await seek(100);const visible=row.entities.filter((e:any)=>e.visibility==='visible');
- await expect(page.getByRole('region',{name:'World Model'})).toContainText(`Visible: ${visible.length}`);
+ await expect(page.getByRole('region',{name:'World Model',exact:true})).toContainText(`Visible: ${visible.length}`);
  expect(await page.locator('.cv-video-overlay [role="button"]').count()).toBe(visible.length+row.unassigned.length);
  const green=visible.find((e:any)=>e.team==='team_b'&&e.image_bbox[0]<800);expect(green).toBeTruthy();
  await page.getByLabel('Team classification debug',{exact:true}).check();await page.locator(`[aria-label="Inspect ${green.entity_id}"] rect`).click();
@@ -16,7 +16,7 @@ test('persistent player, team and projection evidence survives camera loss and r
  expect(await page.locator('.cv-video-overlay [role="button"]').count()).toBeGreaterThan(0);await expect(page.getByTestId('cv-current-player')).toHaveCount(0);
  await page.getByText('Visible projection diagnostics',{exact:true}).click();await expect(page.getByText(/NO_CAMERA_GEOMETRY/).first()).toBeVisible();
  const historical=center.entities.find((e:any)=>e.visibility==='off_camera'&&e.team);expect(historical).toBeTruthy();expect(historical.current_pitch).toBeNull();expect(historical.team_memory.current_observation).toBeNull();
- const panel=page.getByRole('region',{name:'World Model'});await panel.getByText('Inspect persistent entities',{exact:true}).click();await panel.getByRole('button',{name:new RegExp('^'+historical.entity_id+' ·')}).click();
+ const panel=page.getByRole('region',{name:'World Model',exact:true});await panel.getByText('Inspect persistent entities',{exact:true}).click();await panel.getByRole('button',{name:new RegExp('^'+historical.entity_id+' ·')}).click();
  await expect(inspection).toContainText(historical.team);await expect(inspection).toContainText('off_camera');await expect(inspection).toContainText('Position: Unknown');await expect(inspection).toContainText('No current torso crop');
  await panel.getByText('Inspect persistent entities',{exact:true}).click();await page.getByText('Visible projection diagnostics',{exact:true}).click();
  await seek(100);await page.locator(`[aria-label="Inspect ${green.entity_id}"] rect`).click();await page.screenshot({path:'test-results/player-world-m4.png',fullPage:true});

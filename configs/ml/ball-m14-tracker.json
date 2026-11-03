@@ -1,0 +1,11 @@
+{
+  "minimum_confidence": 0.5,
+  "birth_hits": 2,
+  "prediction_seconds": 0.35,
+  "ambiguity_margin": 0.12,
+  "max_image_diagonals_per_second": 2.0,
+  "movement_slack_px": 12,
+  "maximum_metric_speed_mps": 60,
+  "camera_compensation": true,
+  "physical_constraints": true
+}

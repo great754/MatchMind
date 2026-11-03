@@ -1,0 +1,48 @@
+{
+  "seed": 20261105,
+  "epochs": 4,
+  "steps_per_epoch": 60,
+  "batch": 2,
+  "lr": 0.0001,
+  "optimizer": "AdamW",
+  "weight_decay": 0.0005,
+  "trainable": "pretrained RPN + ROI heads; frozen MobileNet/FPN backbone and BN",
+  "head": "background/ball, transferred COCO37 and background0 weights",
+  "fine_anchor_sizes": [
+    [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    [
+      8,
+      16,
+      32,
+      64,
+      128
+    ],
+    [
+      16,
+      32,
+      64,
+      128,
+      256
+    ]
+  ],
+  "input": 384,
+  "training_tile": 320,
+  "inference_tile": 480,
+  "overlap": 0.2,
+  "validation_sample": "every8th validation frame (20frames), identical for all configurations; no TEST inference",
+  "selection": "maximum validation F1 at IoU0.25, confidence grid0.05,0.1,0.2,0.35,0.5; ties favor precision and full-frame lower cost",
+  "comparison": [
+    "generic_full",
+    "generic_tiled",
+    "fine_full",
+    "fine_tiled"
+  ],
+  "test": "locked model and operating point evaluated once; original matched frame list for all ablations",
+  "ground_plane": "automatic ground contact is a conservative heuristic, not true3D; otherwise image-only"
+}

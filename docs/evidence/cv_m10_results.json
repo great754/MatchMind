@@ -1,0 +1,642 @@
+{
+  "date": "2026-11-02",
+  "classification": "LOCALLY VERIFIED / EXPERIMENTAL",
+  "conclusion": {
+    "conclusion": "SOCCER-ReID v1 BEATS GENERIC OSNET BUT INTEGRATION IS NOT YET JUSTIFIED",
+    "representation_gate_passed": true,
+    "integration_approved": false,
+    "lost_plausible_reference_links": 1,
+    "reason": "Representation gate passed, but it is not a calibrated drop-in replacement at the frozen0.82 gate: held-out same-team pair false-nonmatch rate rises63.31%to87.08%. Shadow reconnects rise8to11 but a plausible test_match link becomes ambiguous. Legacy qualitative references required an amendment. Do not tune against TEST; keep generic M9 active pending validation-only score/assignment calibration and stronger references.",
+    "reference_not_independent_ground_truth": true,
+    "active_registry_unchanged": true,
+    "new_apparent_false_reference_links_after_audit": 0,
+    "reference_amendment": "team_goal_01: original qualitative negative label corrected; do not treat it as a false positive",
+    "frozen_082_pairwise_false_nonmatch_rate": {
+      "generic": 0.6330749354005168,
+      "soccer": 0.8708010335917312
+    }
+  },
+  "dataset": {
+    "train": {
+      "samples": 5361,
+      "identities": 51,
+      "buckets": {
+        "small": 2347,
+        "medium": 2755,
+        "large": 259
+      }
+    },
+    "validation": {
+      "samples": 3612,
+      "identities": 32,
+      "buckets": {
+        "medium": 1589,
+        "large": 247,
+        "small": 1776
+      }
+    },
+    "test": {
+      "samples": 4867,
+      "identities": 44,
+      "buckets": {
+        "small": 1571,
+        "medium": 2833,
+        "large": 463
+      }
+    },
+    "estimate": {
+      "steps_per_epoch": 168,
+      "max_epochs_per_run": 6,
+      "runs": 2,
+      "measured_mps_batch_seconds": 0.0423,
+      "raw_compute_estimate_seconds": 85.2768,
+      "budget": "Pilot expected 5\u201315minutes including CPU crop preparation,validation and3crop-strategy baselines;below1GB training working memory target;checkpoint/crop assets below1GB;temporary video\u2264605MB"
+    }
+  },
+  "split_manifest": "configs/ml/soccer-reid-v1-split.json",
+  "model": {
+    "model_name": "tactiqai-soccer-reid-v1",
+    "version": "v1",
+    "architecture": "OSNet x0.25,512D,late-stage fine-tuning",
+    "checkpoint_sha256": "584568ee5b04237fdf4893b20d8e1eb7f3de2ff2086e10d6f0993981a0ab47cb",
+    "training_manifest_sha256": "6cb957ed439cb580af5fa826cc3726881f15aac4af73304d59e194c0f8d74eb3",
+    "training_configuration_sha256": "c1097c1af82ee299dda54282737d5683d7c27a2929a4f681fe2080a18f3531a3",
+    "version_fingerprint": "9070a48a8e28856f50ccc61c54cd1916b3ad7fcc1ded0cc75085b097d91904a5"
+  },
+  "heldout_table": [
+    {
+      "metric": "Crop Rank-1",
+      "generic": 0.2868217054263566,
+      "soccer": 0.37209302325581395
+    },
+    {
+      "metric": "Crop Rank-5",
+      "generic": 0.6511627906976745,
+      "soccer": 0.7751937984496124
+    },
+    {
+      "metric": "Crop mAP",
+      "generic": 0.3150236206081553,
+      "soccer": 0.4222772830385891
+    },
+    {
+      "metric": "Same-team crop Rank-1",
+      "generic": 0.2868217054263566,
+      "soccer": 0.3798449612403101
+    },
+    {
+      "metric": "Same-team crop Rank-5",
+      "generic": 0.6821705426356589,
+      "soccer": 0.7984496124031008
+    },
+    {
+      "metric": "Same-team crop mAP",
+      "generic": 0.33712833026134276,
+      "soccer": 0.43876994341704095
+    },
+    {
+      "metric": "Same-team mean-tracklet Rank-1",
+      "generic": 0.5813953488372093,
+      "soccer": 0.8837209302325582
+    },
+    {
+      "metric": "Same-team mean-tracklet mAP",
+      "generic": 0.6904300479881875,
+      "soccer": 0.9219269102990034
+    },
+    {
+      "metric": "Same-team quality-weighted tracklet Rank-1",
+      "generic": 0.6046511627906976,
+      "soccer": 0.9069767441860465
+    },
+    {
+      "metric": "Same-team quality-weighted tracklet Rank-5",
+      "generic": 0.8604651162790697,
+      "soccer": 0.9534883720930233
+    },
+    {
+      "metric": "Same-team quality-weighted tracklet mAP",
+      "generic": 0.7113233665559247,
+      "soccer": 0.9368770764119602
+    },
+    {
+      "metric": "Same-team pair ROC-AUC",
+      "generic": 0.653448381936754,
+      "soccer": 0.7493943371204352
+    },
+    {
+      "metric": "Same-team pair false-match rate at fixed0.82",
+      "generic": 0.18968253968253967,
+      "soccer": 0.01904761904761905
+    },
+    {
+      "metric": "Same-team pair false-nonmatch rate at fixed0.82",
+      "generic": 0.6330749354005168,
+      "soccer": 0.8708010335917312
+    }
+  ],
+  "same_team_size_buckets": {
+    "generic": {
+      "small": {
+        "queries": 43,
+        "rank1": 0.27906976744186046,
+        "map": 0.34313840482563707
+      },
+      "medium": {
+        "queries": 74,
+        "rank1": 0.28378378378378377,
+        "map": 0.3276177808225106
+      },
+      "large": {
+        "queries": 12,
+        "rank1": 0.3333333333333333,
+        "map": 0.3742406179454199
+      }
+    },
+    "soccer": {
+      "small": {
+        "queries": 43,
+        "rank1": 0.32558139534883723,
+        "map": 0.4389728872874164
+      },
+      "medium": {
+        "queries": 74,
+        "rank1": 0.4189189189189189,
+        "map": 0.44485757836513956
+      },
+      "large": {
+        "queries": 12,
+        "rank1": 0.3333333333333333,
+        "map": 0.4005023123682545
+      }
+    }
+  },
+  "outfield_diagnostic": {
+    "generic": {
+      "rank1": 0.23333333333333334,
+      "map": 0.267834462708047,
+      "same_team_rank1": 0.23333333333333334,
+      "same_team_map": 0.2904995054662851,
+      "tracklet_map": 0.689672619047619,
+      "queries": 120
+    },
+    "soccer": {
+      "rank1": 0.325,
+      "map": 0.3815698421485552,
+      "same_team_rank1": 0.3333333333333333,
+      "same_team_map": 0.39854358927189326,
+      "tracklet_map": 0.9321428571428572,
+      "queries": 120
+    }
+  },
+  "shadow": {
+    "test_match": {
+      "generic": {
+        "accepted_reconnects": 1,
+        "ambiguous_reconnects": 1,
+        "rejected_reconnect_targets": 85,
+        "persistent_entities": 98,
+        "fragments_per_entity": 1.010204081632653,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.14275099861260188
+        ]
+      },
+      "soccer_shadow": {
+        "accepted_reconnects": 1,
+        "ambiguous_reconnects": 3,
+        "rejected_reconnect_targets": 83,
+        "persistent_entities": 98,
+        "fragments_per_entity": 1.010204081632653,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.07869419499332153
+        ]
+      },
+      "team_inputs_and_thresholds_frozen": true,
+      "m8_and_m9_snapshots_changed": false
+    },
+    "team_goal": {
+      "generic": {
+        "accepted_reconnects": 1,
+        "ambiguous_reconnects": 4,
+        "rejected_reconnect_targets": 30,
+        "persistent_entities": 42,
+        "fragments_per_entity": 1.0238095238095237,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.0659158062605556
+        ]
+      },
+      "soccer_shadow": {
+        "accepted_reconnects": 2,
+        "ambiguous_reconnects": 2,
+        "rejected_reconnect_targets": 31,
+        "persistent_entities": 41,
+        "fragments_per_entity": 1.048780487804878,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.0881159745440332,
+          0.07758232557696587
+        ]
+      },
+      "team_inputs_and_thresholds_frozen": true,
+      "m8_and_m9_snapshots_changed": false
+    },
+    "southampton": {
+      "generic": {
+        "accepted_reconnects": 6,
+        "ambiguous_reconnects": 1,
+        "rejected_reconnect_targets": 28,
+        "persistent_entities": 42,
+        "fragments_per_entity": 1.1428571428571428,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.14041997361901792,
+          0.07049892118732615,
+          0.06223208392549573,
+          0.09171517886068337,
+          0.11106816289274413,
+          0.08467560715186373
+        ]
+      },
+      "soccer_shadow": {
+        "accepted_reconnects": 8,
+        "ambiguous_reconnects": 0,
+        "rejected_reconnect_targets": 27,
+        "persistent_entities": 40,
+        "fragments_per_entity": 1.2,
+        "duplicate_violations": 0,
+        "impossible_metric_links": 0,
+        "global_assignment_margins": [
+          0.16832753414982626,
+          0.08402340149533671,
+          0.07782774851665941,
+          0.06740260707457679,
+          0.11387881980035353,
+          0.08309044189599213,
+          0.1315399167956226,
+          0.0976108417818704
+        ]
+      },
+      "team_inputs_and_thresholds_frozen": true,
+      "m8_and_m9_snapshots_changed": false
+    }
+  },
+  "reference_summary": {
+    "m9_decision": {
+      "APPEARS_SAME": 4,
+      "INDETERMINATE": 4,
+      "APPEARS_DIFFERENT": 0
+    },
+    "m10_shadow_decision": {
+      "APPEARS_SAME": 4,
+      "INDETERMINATE": 4,
+      "APPEARS_DIFFERENT": 0
+    }
+  },
+  "baseline_preservation": {
+    "m9_and_m8_snapshots_unchanged": true,
+    "m9_team_reachability_assignment_code_unchanged": true,
+    "analytics_code_unchanged": true,
+    "generic_checkpoint_unchanged": true,
+    "active_registry_unchanged": true
+  },
+  "tests": {
+    "backend_run": 642,
+    "backend_passed": 641,
+    "expected_skip": 1,
+    "frontend_tests_passed": 86,
+    "application_cv_browser_suites_passed": 9,
+    "azure_suite_passed_on_retry": true,
+    "research_browser_suite_passed": true
+  },
+  "live_regression": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 10,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 13
+      }
+    },
+    "recordings": {
+      "status": 200,
+      "body": {
+        "recordings": [
+          {
+            "recording_id": "117092_clip",
+            "match_id": "117092",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117092_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "117093_clip",
+            "match_id": "117093",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117093_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118575_clip",
+            "match_id": "118575",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118575_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118576_clip",
+            "match_id": "118576",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118576_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118577_clip",
+            "match_id": "118577",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118577_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118578_clip",
+            "match_id": "118578",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118578_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128057_clip",
+            "match_id": "128057",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128057_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128058_clip",
+            "match_id": "128058",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128058_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132831_clip",
+            "match_id": "132831",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132831_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132877_clip",
+            "match_id": "132877",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132877_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "test_match",
+            "match_id": "test_match",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/test_match/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "team_goal",
+            "match_id": "team_goal",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/team_goal/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "southampton",
+            "match_id": "southampton",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/southampton/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          }
+        ]
+      }
+    },
+    "test_match": {
+      "status": 200,
+      "camera_model_version": "m8",
+      "player_model_version": "m9"
+    },
+    "team_goal": {
+      "status": 200,
+      "camera_model_version": "m8",
+      "player_model_version": "m9"
+    },
+    "southampton": {
+      "status": 200,
+      "camera_model_version": "m8",
+      "player_model_version": "m9"
+    },
+    "azure_view": {
+      "status": 200,
+      "recording_id": "118575_clip"
+    },
+    "ask": {
+      "status": 200,
+      "answer_status": "ok",
+      "evidence_rows": 14,
+      "recording_id": "118575_clip"
+    }
+  }
+}

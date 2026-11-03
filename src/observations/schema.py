@@ -13,6 +13,9 @@ class Provenance(Closed):
     confidence: float | None = Field(default=None,ge=0,le=1)
 
 class CameraProjectionEvidence(Closed):
+    placement_provenance: Literal['DIRECT_PROJECTED','LANDMARK_RELOCALIZED_PROJECTED','MOTION_PROPAGATED_PROJECTED','MOTION_LANDMARK_FUSED_PROJECTED','PARTIAL_CONSTRAINED_PROJECTED','UNKNOWN'] | None = None
+    uncertainty_pitch_m_proxy: float | None = None
+    metric_view_shift_m: tuple[float,float] | None = None
     image_foot: tuple[float,float] | None = None
     epoch: int
     state: str

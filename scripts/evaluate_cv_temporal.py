@@ -41,6 +41,8 @@ def evaluate(before,after,output):
     before,after,output=map(Path,(before,after,output));output.mkdir(parents=True,exist_ok=True);old_review=CVReview(before);new_review=CVReview(after);m=new_review.manifest
     if m['source_baseline_frames_sha256']!=old_review.manifest['frames_sha256'] or m['video_sha256']!=old_review.manifest['video_sha256']:raise ValueError('Baseline/source identity changed')
     a=[WorldState.model_validate_json(l) for l in (before/'frames.jsonl').open()];b=[WorldState.model_validate_json(l) for l in (after/'frames.jsonl').open()];assert len(a)==len(b)==m['frames'];eligible=0;projected=0;unknown_teams=Counter();provenance=Counter();identity_rows=0
+    m7=m.get('camera_model_version')=='m7'
+    routes={mode:[WorldState.model_validate_json(l) for l in (after/'routes'/mode/'frames.jsonl').open()] for mode in ('sparse','dense')} if m7 else {}
     frozen=('entity_id','track_id','last_track_id','track_history','visibility','identity_status','identity_confidence','image_bbox','image_foot','detection_confidence','appearance','appearance_evidence_count')
     with (after/'observations.jsonl').open() as observations:
         for index,(old,new,line) in enumerate(zip(a,b,observations,strict=True)):
@@ -48,12 +50,30 @@ def evaluate(before,after,output):
             assert len(old.entities)==len(new.entities);assert len(old.unassigned)==len(new.unassigned)
             for e,f in zip(old.entities,new.entities,strict=True):
                 assert all(getattr(e,k)==getattr(f,k) for k in frozen);identity_rows+=1
+                if m7:assert e.team==f.team and e.team_belief==f.team_belief and e.team_memory==f.team_memory and e.history==f.history
                 if f.visibility!='visible':assert f.current_pitch is None
             for u,v in zip(old.unassigned,new.unassigned,strict=True):assert u.observation.track_id==v.observation.track_id and u.observation.bbox==v.observation.bbox and u.hypotheses==v.hypotheses
             if new.camera.calibration_valid and new.camera.calibration_source_kind=='direct_calibrated':
-                assert old.camera.calibration_valid and old.camera.calibration_source_kind=='direct_calibrated';np.testing.assert_allclose(new.camera.calibration.image_to_pitch,old.camera.calibration.image_to_pitch)
+                if m7:
+                    window=new.camera.motion_evidence['temporal_camera'].get('absolute_window',{})
+                    if not (old.camera.calibration_valid and old.camera.calibration_source_kind=='direct_calibrated'):assert window.get('accepted') and min(window['line_families'])>=2
+                    if window.get('accepted'):assert window['valid_starts']>=2 and window['hypothesis_spread_p90_m']<=4 and window['heldout']['accepted']
+                else:
+                    assert old.camera.calibration_valid and old.camera.calibration_source_kind=='direct_calibrated';np.testing.assert_allclose(new.camera.calibration.image_to_pitch,old.camera.calibration.image_to_pitch)
             if new.camera.memory and new.camera.memory.last_direct:
-                anchor=a[new.camera.memory.last_direct.frame].camera;assert anchor.calibration_valid and anchor.calibration_source_kind=='direct_calibrated';assert anchor.epoch==new.camera.epoch
+                if m7:
+                    proof=new.camera.motion_evidence['temporal_camera']['independent_anchor_proof'];anchor_frame=new.camera.memory.last_direct.frame
+                    assert proof['frame']==anchor_frame;np.testing.assert_allclose(proof['transform'],new.camera.memory.last_direct.transform)
+                    if proof['kind']=='M6_PRESERVED_INDEPENDENT':
+                        original=a[anchor_frame].camera.memory.last_direct;assert original.frame==anchor_frame;np.testing.assert_allclose(original.transform,proof['transform'])
+                    elif proof['kind']=='M6_CURRENT_INDEPENDENT':
+                        original=a[anchor_frame].camera;assert original.calibration_valid and original.calibration_source_kind=='direct_calibrated';np.testing.assert_allclose(original.calibration.image_to_pitch,proof['transform'])
+                    else:
+                        source_route=routes[new.camera.motion_evidence['temporal_camera']['measurement_route']['selected']]
+                        certificate=source_route[anchor_frame].camera.motion_evidence['temporal_camera']['absolute_window'];assert certificate['accepted'] and certificate['valid_starts']>=2 and certificate['heldout']['accepted']
+                    assert new.camera.memory.last_direct.epoch==new.camera.epoch
+                else:
+                    anchor=a[new.camera.memory.last_direct.frame].camera;assert anchor.calibration_valid and anchor.calibration_source_kind=='direct_calibrated';assert anchor.epoch==new.camera.epoch
             for p in canonical.players:
                 if p.visibility=='visible':
                     eligible+=1

@@ -1,6 +1,237 @@
 # TactiqAI Current Pipeline Status
 
-## CV Milestone 6 — current authority: measured temporal camera and persistent team belief (2026-10-26)
+## CV Milestone 15 — evaluated experiment; overall detection and metric targets NOT achieved (2026-11-02)
+
+**IMPLEMENTED / LOCALLY VERIFIED / REFERENCE-EVALUATED / EXPERIMENTAL. M14 REMAINS THE DEFAULT BALL REVIEW.** M15 adds a separately selectable detector/motion experiment, bounded soccer YOLO fine-tuning, GRU and logistic verification trials, confidence calibration, uncertainty-guided local/global search, explicit predicted/observed provenance and synchronized comparison UI. M8 camera/M9 player authority, SoccerTrack analytics, Azure and grounded Ask are unchanged. No possession/passing/shots/commentary changes.
+
+Fresh match-disjoint M15 dataset:240train/160VAL/200TESTframes, new nonadjacent SoccerNet clips in the same three publicly available games; original M14 TEST not tuned against. Additional source-only Codex annotation:27clear boxes/14uncertain exclusions across your3videos, not external adjudication or surveyed metric truth. Frozen original M14 metrics reproduce exactly. Same fresh200frame comparison:
+
+|Metric|M14 frozen|M15 selected|
+|---|---:|---:|
+|Detector precision / recall|76.84% /36.50%|75.00% /24.00%|
+|Detector F1 / FP per frame|49.49% /.110|36.36% /.080|
+|Observed tracker center-consistency≤12px|66/80 (82.50%)|37/39 (94.87%)|
+|GT-inconsistent predictions|28/52 (53.85%)|0/15 (upper Wilson95%20.39%)|
+|Observed / predicted coverage|40.0% /26.0%|19.5% /7.5%|
+|Independently validated metric ball|0|0|
+
+This demonstrates a precision/coverage tradeoff, **not better overall detection or solved tracking**. Historical M14 F1=57.66% is a different200frame protocol. The fine-tune regresses VAL; generic YOLO11n320tiles/confidence.65 ties frozen M14 on VAL and is retained as the measured experiment. GRU, learned verifier and local search each regress the selection criterion and are disabled. No better-looking TEST ablation is promoted afterward. Nominal GRU regions are excessively broad;100%containment is not good calibration. Prospective visual confidence Brier .05636→.04518 improves.
+
+|Real video|M14→M15 observed|M14→M15 predicted only|Supported metric|
+|---|---:|---:|---:|
+|test_match|214→163 /541|199→51|0|
+|team_goal|39→60 /500|98→18|0|
+|southampton|163→134 /660|181→44|0|
+
+Coverage is not accuracy. Actual sidecars on27clear source-only reference frames:8/27M14 versus6/27M15correct observations;wrong predictions4/8versus0/2. The main video accuracy/metric targets remain **NOT ACHIEVED**. M14 had zero near-foot contacts; new perspective/foot cues do not independently resolve height. Ground/airborne calibration and independent metric references are missing, so pitch coordinates remain withheld. **PLANNED / NOT IMPLEMENTED:**reliable learned zero-height estimator, nonzero independently validated metric trajectories and predicted pitch markers.
+
+**Verified:**780backend run/779passed/one expected skip (37newM15),102frontend tests,production build;all11Chrome application suites pass plus separate M14 ball browser test. All1,701preexisting world frames identical excluding the additive ball layer;camera counts269/456/600 unchanged. Live health/ready/catalog200,ready13;both ball versions queryable;Azureview200/range206/grounded Local Ask200/statusok/6evidence;CV Ask503. Fresh processing89.64/38.50/103.62s (~6.04/12.99/6.37fps),not source-rate real time. Research~236MiB plus~43MiBball sidecars before final reports/logs;peak RSS unmeasured.
+
+At http://127.0.0.1:5173 select a CV recording, then **Ball review → M15 experimental**. Default stays M14;`?ball_pipeline=m15` is explicit API opt-in. Keep local CV videos. No environment or Azure change required. [Full M15 results, failed components, figures, source audit, commands and limitations](cv_ball_tracking_m15.md) · [portable results](evidence/cv_m15_results.json). Stopped at M15;earlier sections below retain historical verification.
+
+
+## CV Milestone 14 — experimental image-ball evidence; metric reconstruction unproven (2026-11-02)
+
+**IMPLEMENTED / LOCALLY VERIFIED / REFERENCE-EVALUATED / EXPERIMENTAL.** Real pretrained Faster R-CNN MobileNetV3 detector, small overlapping tiles, bounded ball-head fine-tuning comparison, causal Kalman association, M8 camera compensation, physical gates, explicit ambiguity/occlusion hypotheses and expiring predictions. Separate VIDEO_CV canonical ball sidecars attach to the synchronized frontend for test_match, team_goal and southampton. Original M8 camera/M9 player fields are unchanged across all1,701frames; SoccerTrack analytics, Azure and Ask grounding retain their semantics.
+
+Match-disjoint original SoccerNet image-ball GT:124train/160validation/200TESTframes. Validation-only sealed selection chose generic256tiles/confidence0.5 rather than the fine-tune. Held-out IoU.25 precision60.0%,recall55.5%,F1.5766;480tiles precision98.1%/recall25.5% is a reported tradeoff, not a post-TEST selection. Fine-tune precision27.81%/recall75.5% has excessive false positives. Physical constraints improve accepted center-consistency82.79%→85.19% while reducing coverage; camera compensation worsens prediction consistency. Installed tracker predictions are GT-inconsistent34/50times on this small reference protocol. This is not production-grade tracking.
+
+|Real video|Direct image observations|Predicted only|Supported metric ball frames|
+|---|---:|---:|---:|
+|test_match|214/541 (39.56%)|199/541|0|
+|team_goal|39/500 (7.80%)|98/500|0|
+|southampton|163/660 (24.70%)|181/660|0|
+
+Coverage is not accuracy; these three videos have no independent ball GT. **NOT DEMONSTRATED: reliable real-video metric ball reconstruction (acceptance criterion5).** Conditional M8 ground-contact mapping is implemented/tested, but no real frame passes; airborne/unknown-height points never become authoritative pitch balls. **NOT IMPLEMENTED:**true3D height, ball possession/passes/shots/commentary or CV football Ask. **PLANNED:**independent visibility/height labels, stronger tiny-ball localization and prediction calibration.
+
+**Verified:**743backend tests run/742passed/one expected skip (55newM14);96frontend tests;production build;all11Chrome application suites passed in a settled full run, including10Azure clips and3CVsources. Initial browser run hit502 during backend restart and was interrupted. Health/ready/catalog200,ready13;Azureview200/video206/grounded Local Ask200/statusok/6evidence rows. Neural offline end-to-end338.48/88.39/502.38s for the three videos;not real time. Research root~1.62GiB plus~57.9MiBball sidecars;MPS snapshots are not peak memory.
+
+Use http://127.0.0.1:5173 and select a CV recording;refresh to see Ball evidence/navigation. No environment setting change or Azure upload required. Keep local CV videos for playback. [M14 architecture, source audit, metrics, failures, commands and limits](cv_ball_tracking_m14.md) · [portable verified results](evidence/cv_m14_results.json). Originalregistry:`configs/serving/cv.json`;optionalballregistry:`configs/serving/cv_ball.json`. Earlier sections below retain historical verification. Stopped at M14.
+
+
+## CV Milestones 12–13 — expanded-data pilot evaluated; M8/M9 remain active (2026-11-02)
+
+**M13 DOES NOT BEAT M10 UNDER THE LOCKED ACCEPTANCE GATE. Integration is not justified.** IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL. Public SoccerNet Tracking data expanded training from5,361crops/51annotated identities to6,592/75 (+47.1%identities). New validation535crops/11identities; new TEST966/21, with8/20eligible retrieval identities. Original M10/M11 TEST/results are preserved historical benchmarks, never reallocated for selection.
+
+**Source/legal/split limits:** audited SoccerNet Tracking/ReID/GSR, SportsMOT and further SoccerTrack availability before large payloads. Used a bounded public SoccerNet Tracking sample under research-only source scope; no full archives/cloud writes/deployment. Original within-clip GT and same-game numeric team/jersey alias guards; no tracker pseudo-labels or OCR. Match/identity-key/team-scope/crop/source-hash checks pass; repeated white-blue club excluded from validation. **Independent worldwide physical-player split certification is NOT VERIFIED**, because no global registry/rosters were supplied. This strict acceptance guarantee is not claimed complete. Green-uniform bias in an inherited HSV quality filter was found and fixed uniformly before training; provisional extraction archived.
+
+|Identical fresh broadcast TEST|Crop same-team Rank-1|Crop mAP|Weighted tracklet mAP|
+|---|---|---|---|
+|M9 generic OSNet|26.67%|27.06%|47.21%|
+|M10 Soccer-OSNet|38.33%|39.88%|66.57%|
+|M11 best ViT|23.33%|28.78%|50.91%|
+|M13 old-data control|33.33%|37.31%|63.38%|
+|M13 expanded triplet|48.33%|45.92%|68.67%|
+|M13 selected contrastive x0.25|38.33%|44.11%|63.42%|
+|M13 alternative x1.0|50.00%|47.90%|73.92%|
+
+Fresh VAL selected contrastive x0.25epoch6 and quality-weighted aggregation, before TEST. Added data improves its controlled triplet comparison, but the selected model fails the combined crop/tracklet gain rule. x1.0 scores better on TEST but is not promoted post hoc. Learned pooling does not help. New one-game broadcast evaluation shows partial crop transfer; consistent reassociation/broad generalization is unproven. Original historical protocols are reported separately. Selected model VAL-calibrated TEST precision57.14%/recall4.44% is not deployment-grade calibration.
+
+**Actual shadow accepted / ambiguous / rejected targets:** test_match M9=1/1/85,M10=1/3/83,M13median=2/0/85,M13selectedpool=1/2/84; team_goal1/4/30,2/2/31,1/2/32,2/2/31; Southampton6/1/28,8/0/27,5/2/28,4/3/28. Accepted totals8/11/8/7. Original M8 geometry/M9 teams/physical gates/global assignment/uncertainty retained. Zero measured duplicate/impossible accepted links is not identity accuracy. All26existing references compared;9changed connections visually reviewed, with indeterminate cases and an internally conflicting source fragment retained explicitly. Independent incorrect-reconnect accuracy unavailable.
+
+**Verified:**688backend tests run/687passed/one expected skip, including22M12/M13tests;86frontend tests and TypeScript/build pass. **All10Chrome application suites passed in one run (2.1min)**, including all10Azure clips and all3CVsources. Live health/ready/catalog200,ready13;Azure118575view200/range206/grounded Ask200with6evidence rows. CV metadata remain cameraM8/playerM9;CV Ask503. Baseline hashes preserve M8/M9 and frozen M10/M11 inputs. Visual selection343.13s on MPS;294.32straining/44.13svalidation timers. ~0.4GBresearch artifacts at report generation; peak memory unmeasured.
+
+Use http://127.0.0.1:5173; **no setting change required**. Production stays M8/M9. [M12 source permissions, identity/quality/split audit and dataset commands](cv_soccer_reid_m12_dataset.md) · [M13 models, hashes, ablations, protocols, shadow review and startup/reproduction commands](cv_soccer_reid_m13_training.md) · [portable results](evidence/cv_m13_results.json) · [changed-connection review](evidence/cv_m13_changed_connections.json). Offline code:`ml/reid13`; heavy artifacts remain ignored. **PLANNED:** registry-certified physical identities, more independent games/validation, prospective broadcast GT and validation-only calibration. **NOT INTEGRATED:**Soccer-ReIDv2. Stopped after M12–M13; no ball,tactics,camera retraining,commentary,face recognition,jersey OCR or unrelated features. Earlier sections below retain historical verification.
+
+
+## CV Milestone 11 — temporal multi-cue experiment complete; M9 remains active (2026-11-02)
+
+**M11 DOES NOT BEAT M10.** IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL. Trained a pretrained DINO ViT-S/16 candidate on tracklets, a quality-aware temporal Transformer and an interpretable multi-cue logistic reassociation model. No M11 model is activated; production remains M8 camera/M9 player world. Frozen M10 datasets/checkpoints/results and deterministic production code remain unchanged.
+
+|Same-team retrieval on identical 8–12-frame tracklets|Rank-1|mAP|
+|---|---|---|
+|M9 generic OSNet|58.14%|70.14%|
+|M10 Soccer-OSNet|86.05%|91.03%|
+|M11 pretrained ViT|58.14%|69.41%|
+|M11 soccer-fine-tuned ViT|60.47%|74.50%|
+|M11 temporal|58.14%|73.26%|
+|M11 temporal + geometry proxy|58.14%|73.26%|
+|M11 temporal + learned scorer|58.14%|72.95%|
+
+Original M10 weighted 10–30-frame tracklet mAP93.69% remains unchanged;91.03% above uses the new matched observations. Fine-tuning improves its ViT baseline, but temporal attention and learned scoring add no successful improvement. No TEST-driven retraining or threshold tuning followed the result.
+
+**Data and limits:** all10official MOT sequences audited. The66eligible raw train sequence IDs correspond to51unique registered players, already covered by M10 anchors. No additional disjoint supervision verified without weakening match/player/team isolation. Retained5,361train crops/51identities and294training tracklets; validation3,612/32, TEST4,867/44. Retrieval43paired identities. Actual camera uncertainty and visibility are missing in training; explicit missingness is preserved. Supplied pitch calibration is a proxy, not independent geometry truth. Substantial identity-count expansion was not achieved.
+
+**Real-video shadow accepted / ambiguous:** test_match M9=1/1, M10=1/3, temporal=1/1, temporal+scorer=0/2; team_goal1/4,2/2,1/2,1/1; Southampton6/1,8/0,2/2,1/0. Totals8→11→4→2accepted. Zero measured duplicate/impossible accepted metric links; independent incorrect-reconnect accuracy remains unavailable. Learned evidence cannot override physical/epoch/team constraints, and global assignment stays deterministic. Identity/team/position uncertainty remains explicit in the unchanged app.
+
+**Verified:**666backend tests run/665passed/one expected skip, including24M11tests;86frontend tests and TypeScript/build passed. Nine CV Chrome suites passed; Azure initially hit a first-video readiness timeout, then the unchanged isolated retry passed all10clips (36.4s). Live health/ready/catalog200, ready13usable; all3CV metadata m8/m9. Azure118575view200, range206, grounded Local Ask200/6evidence rows. Frozen-baseline hashes pass. Model-selection wall86.14s on MPS, plus84.40s total prefix inference across splits (separate phases); peak memory unmeasured.
+
+No settings change required. Continue using http://127.0.0.1:5173 with M9. [Full M11 architecture, checkpoints/hashes, commands, failures and integration decision](cv_temporal_soccer_reid_m11.md) · [portable results](evidence/cv_m11_results.json). Research code is offline-only in `ml/reid11`; heavy artifacts remain ignored under `outputs/ml/soccer_reid_m11`. More legitimate identities, fresh broadcast labels and missing-cue supervision are future work, not completed. **Stopped after M11.** No ball perception, camera retraining, analytics, commentary, face recognition or jersey OCR changes. Earlier milestone sections below retain historical verification and baseline context.
+
+
+## CV Milestone 10 — Soccer-ReID research complete; M9 remains active (2026-11-02)
+
+**SOCCER-ReID v1 BEATS GENERIC OSNET BUT INTEGRATION IS NOT YET JUSTIFIED.** Dedicated OSNet fine-tuning and independent recording-level retrieval evaluation are complete. No production model, M8 camera, M9 player snapshot, team/fusion logic, analytics or Azure configuration was changed by M10.
+
+|Held-out same-team metric|Generic M9 OSNet|Soccer-ReID v1|
+|---|---|---|
+|Crop Rank-1|28.68%|37.98%|
+|Crop mAP|33.71%|43.88%|
+|Quality-weighted tracklet mAP|71.13%|93.69%|
+|Pair false-nonmatch rate at unchanged cosine 0.82|63.31%|87.08%|
+
+**Measured scope:** 5,361 training crops/51 identities; 3,612 validation crops/32 identities; 4,867 test crops/44 identities from two unseen matches. Fixed retrieval uses 129 queries/43 identities. Tracklet metrics use annotation-defined temporal windows, not independently recovered player identities. Selected moderate-augmentation epoch 6 before TEST. Actual training 174 seconds, validation 95 seconds; configuration-to-selection wall time about 5m20s on M4/MPS.
+
+**Integration withheld:** the preregistered representation gate passes, but similarity calibration changes materially at the frozen application threshold. Shadow-only accepted reconnects rise 8→11 while a plausible existing link becomes ambiguous; qualitative broadcast references are insufficient to establish improved identity accuracy. One erroneous historical reference label is transparently amended in the M10 report. M9 remains the active frontend authority. No threshold tuning against TEST, no new model serving, no ball perception.
+
+**Verified:** 642 backend tests run, 641 passed/one expected skip (including 34 M10 tests); 86 frontend tests; TypeScript/build. Nine CV browser suites passed; the Azure suite initially timed out and passed on its isolated retry across all 10 clips. The separate research explorer passed Chrome verification. Live health/ready/catalog returned 200; ready reports 13 usable recordings. Azure 118575 view and grounded Local Ask returned 200 (14 evidence rows); CV Ask remains 503. Hash checks preserve baseline snapshots, deterministic code, analytics, registry and generic checkpoint.
+
+Use the existing application at http://127.0.0.1:5173 with M9; no setting change is required. Research retrieval comparison: http://127.0.0.1:5174/retrieval_explorer.html. To serve that local research artifact again:
+
+```bash
+python3 -m http.server 5174 --bind 127.0.0.1 --directory outputs/ml/soccer_reid_m10
+```
+
+[Full M10 report, reproduction commands and limitations](cv_soccer_reid_m10.md) · [portable measured results](evidence/cv_m10_results.json) · [reference amendment](evidence/cv_m10_reference_amendments.json). Frozen dataset metadata has a documented clipping-fraction rounding defect; frozen comparisons were not rewritten. Further calibration and independent references are future work. **Stopped after M10.** The following M9 section describes the retained production baseline and its historical verification.
+
+
+## CV Milestone 9 — current player authority; M8 camera retained (2026-11-01)
+
+**IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL.** Three `*_m9_ready` snapshots now supply the authoritative `player_world` layer. Persistent anonymous entities are separate from raw temporary tracks. OSNet body embeddings, video-learned kit populations, sticky five-way team/role beliefs, metric reachability and global one-to-one assignment support reconnects. The Player World Model Inspector exposes independent identity/team/position confidence, visibility history, team probabilities and candidate evidence. The original M8 association layer remains available for comparison.
+
+|Source|M8 camera = M9|M8 placement = M9|Confirmed fragments → persistent hypotheses|Accepted reconnects|Unknown-team observations M8 → M9|
+|---|---|---|---|---|---|
+|test_match|269/541 (49.72%)|2,179/5,108 (42.66%)|99 → 98|1|1,383 → 1,107|
+|team_goal|456/500 (91.20%)|4,861/5,515 (88.14%)|43 → 42|1|826 → 411|
+|southampton|600/660 (90.91%)|7,419/8,725 (85.03%)|48 → 42|6|1,376 → 1,269|
+
+All camera matrices, raw tracks/boxes, current footpoints/positions and existing canonical observations remain identical to M8. Raw temporary tracks are151/56/57;52/13/9short fragments remain unresolved. Their removal from the persistent-entity count is **not** a successful reconnect. No count is forced toward22. Fragmentation gains are modest on the first two clips. Independent identity/team accuracy is unavailable; stable-but-wrong team labels remain. Known labels include official/other roles; these are not extra soccer teams.
+
+Weak crops do not erase established team belief. Sustained strong contradictions are required; accepted model-belief changes0/2/1 remain recorded. Established→unknown and true one-observation unknown flickers were already zero in M8 and stay zero. Current position is UNKNOWN when unseen or unsupported by the camera; last position is explicitly historical. Footprint evidence distinguishes off-camera from possible occlusion. Future-assisted offline associations and ambiguities are explicit. Optional OCR attempted86crops,with no accepted number evidence.
+
+**REFERENCE-EVALUATED (qualitative development-set review):**26source-context cases plus7team/role examples,with apparent successes,misses and indeterminate cases retained. This is not independent identity ground truth. **Verified:**608backend tests run/607pass/one expected skip;86frontend tests;TypeScript/build;all three full snapshot evaluations;**10Chrome suites passed (1.9m)**. Health200/10analytics;ready200/13usable;catalog13available. All10Azure clips retain play/seek/range206/grounded Local Ask200. All3CV sources expose M9 controls and retain CV football Ask503. Overlay samples23.94/25.13/29.87updates/sec,max1/1/0frame lag,no missing samples.
+
+Refresh http://127.0.0.1:5173,select a CV source,and use **Player World Model Inspector · M9**. Keep local CV videos. No Azure setting change or upload is needed. Backend command from repository root:
+
+```sh
+AZURE_TOKEN_CREDENTIALS=AzureCliCredential MATCHMIND_PROVIDER=local \
+ MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
+ TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
+```
+
+[M9 architecture,metrics,commands,tests and limitations](cv_player_world_model_m9.md) · [machine-readable results](evidence/cv_m9_results.json) · [reference review](evidence/cv_m9_reference.json). **PLANNED:**independent labels,better long-gap/small-crop identity and team reliability,broader fresh-video integration. Ball perception,new production CV analytics and face recognition are NOT IMPLEMENTED. Stopped after M9. Earlier M8 sections remain the camera baseline;earlier team/player counts are historical.
+
+
+## CV Milestone8 — current camera authority (2026-11-01)
+
+**IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL.** Registry now selects separate `test_match_m8_release`, `team_goal_m8_release`, `southampton_m8_release` snapshots. M7 baselines and original videos remain intact. No independently measured real-video metric accuracy is available.
+
+|Source|Camera M7→M8|Current placement M7→M8|
+|---|---|---|
+|test_match|182/541(33.64%)→**269/541(49.72%)**|1,646/5,108(32.22%)→**2,179/5,108(42.66%)**|
+|team_goal|455/500(91.00%)→**456/500(91.20%)**|4,856/5,515(88.05%)→**4,861/5,515(88.14%)**|
+|southampton|509/660(77.12%)→**600/660(90.91%)**|6,114/8,725(70.07%)→**7,419/8,725(85.03%)**|
+
+**Target≥50%test_match NOT reached.** Frame216 remains Unknown:circle+touchline without halfway is insufficient;unsupported motion is not bridged. Longest test Unknown305→156frames(6.507s). New current circle certificates52test/84Southampton;no new real penalty relocalization accepted. Zero M7 accepted frames lost;all prior accepted transforms and team/identity evidence unchanged. More observed pairs add jump flags;coverage is not measured accuracy or improved smoothing.
+
+Measured static-field image motion updates H via `H_next=H_previous inverse(M)`. Metric viewing-ray intersections produce incremental/accumulated framing shifts with local perspective scale,separate zoom/rotation,uncertainty and footprint history. Current circle/halfway/named geometry can independently relocalize and reset motion lineage;ambiguous candidates remain rejected. Current player coordinates always come from current footpoints through accepted H. Debug UI exposes conic,candidates,motion/metric trajectory,regions and provenance. This is viewing movement,not physical3Dcamera XYZ.
+
+**Verification:**559backend tests run/558pass/one expected skip;82frontend tests;TypeScript/build;all3full saved-data evaluations;**9Chrome suites passed/1.5m**. Real Azure health200/10analytics;ready200/13usable;catalog13available. All10Azure clips play/seek/range206/grounded Local Ask200;all3CV clips play/step/debug/range206 and CV football Ask503. Overlay rates23.85/24.66/29.83sec⁻¹ respectively,max1frame lag,no missing samples. Southampton dark-kit team warning retained;82crops plus selected pixel/LAB/HSV/vote/prototype evidence preserved for a separate future milestone.
+
+Refresh http://127.0.0.1:5173 and select a CV recording. Keep local CV videos. No Azure upload or configuration change is needed. Start backend from repository root with:
+
+```sh
+AZURE_TOKEN_CREDENTIALS=AzureCliCredential MATCHMIND_PROVIDER=local \
+ MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
+ TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
+```
+
+The temporary runtime was restored after OS-cleared/cloud-offloaded dependencies stalled imports;no models downloaded. Full commands,all3state/run/uncertainty/jump/runtime tables,center151–455evidence,limitations and proof:[M8report](cv_world_model_m8.md). **PLANNED:**independent metric labels,remaining ambiguous gaps and separate team work. Ball/new ReID are NOT IMPLEMENTED. Earlier dated sections are historical and their “current” labels describe that earlier verification only.
+
+
+## Southampton — new current CV source (2026-10-27)
+
+**LOCALLY VERIFIED / EXPERIMENTAL.** Fresh processing of `data/raw/southampton.mp4`:660frames,29.97FPS,1280×720,22.022s. Current M7 camera coverage **509/660(77.12%)**;current placement **6,114/8,725(70.07%)**.57 frames recovered relative to M6;zero accepted M6frames lost. Longest support9.843s;longest Unknown gap2.302s. Matched jump flags85→126:coverage does not establish accuracy.
+
+**Known limitation:** dark-kit team separation is unreliable;the page visibly warns that A/B labels may mix teams. This is not verified team accuracy. Person/camera evidence remains separate. CV football Ask stays503.
+
+Select **southampton · CV Experimental** at http://127.0.0.1:5173. Playback/seeking/stepping/person and camera/team debug verified;actual Chrome overlay updates **29.91/sec**,no missing samples and at most one-frame lag in the2.5s sample.79frontend tests,TypeScript/build and **all eight Chrome suites passed(1.4m)**;backend528passed/one expected skip. All ten Azure clips and both earlier CV sources remain working. Health200;ready200/**13 usable sources**;video206;existing grounded Local Ask200.
+
+The fresh-video runner now completes M7 by default. Registry:`outputs/world_model/southampton/current/`. Keep the original local MP4;no Azure changes or uploads. Full fresh processing took806.528s;web playback serves precomputed data. [Full results,commands,team limitation and proof](cv_southampton.md). Earlier sections below retain their original verified counts.
+
+## Playback smoothness follow-up — current frontend (2026-10-27)
+
+**IMPLEMENTED / LOCALLY VERIFIED.** CV overlays now follow decoded video frames rather than low-frequency timeupdate events. Buffered look-ahead and a memoized camera timeline keep existing observations synchronized. Chrome measured **23.94 updates/sec test_match** and **24.76 team_goal**, with no missing overlays in the2.5s samples and maximum observed lag one frame. Model coordinates, M7 coverage and Azure artifacts are unchanged.
+
+**79 frontend tests,TypeScript/build and all six affected CV browser suites passed (29.2s).** Exact seeking, stepping, camera/team/player inspection and recording isolation passed. Refresh http://127.0.0.1:5173;no reprocessing/configuration change is required. [Measured proof and implementation](cv_playback_smoothness.md). Earlier M7 camera verification below remains the geometry authority.
+
+## CV Milestone 7 — current authority: persistent field-camera localization (2026-10-27)
+
+**IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL.** Synthetic geometry is REFERENCE-EVALUATED; independent real-video metric accuracy remains UNAVAILABLE. **The 50% test_match camera target was not reached.**
+
+| Metric | test_match M6 → M7 | team_goal M6 → M7 |
+|---|---:|---:|
+| Camera coverage | 116/541 (21.44%) → **182/541 (33.64%)** | 417/500 (83.40%) → **455/500 (91.00%)** |
+| Current player placement | 1,017/5,108 (19.91%) → **1,646/5,108 (32.22%)** | 4,522/5,515 (81.99%) → **4,856/5,515 (88.05%)** |
+| Newly recovered / previously accepted lost | **66 / 0** | **38 / 0** |
+| Longest supported run | 37 frames / 1.543s → **110 frames / 4.588s** | 117 frames / 4.68s → **140 frames / 5.60s** |
+| Longest Unknown run | 349 frames / 14.556s → **305 frames / 12.721s** | 38 frames / 1.52s → **38 frames / 1.52s** |
+| Matched-pair large-jump flags | 22 → **26** (650 pairs) | 294 → **217** (4,224 pairs) |
+| Matched-pair displacement P90 | 0.502 → **0.546m** | 0.796 → **0.726m** |
+
+- Fixed-world field tracks, masked original/contrast image routes, measured rolling camera state, top-line/intersection/circle constraints, local robust temporal-window anchor optimization, bounded uncertainty and conservative forward/backward reconstruction are implemented. No homography/player-coordinate interpolation. Full-epoch bundle adjustment is NOT IMPLEMENTED.
+- Real bidirectional recoveries26/9; relocalizations11/69; compatible absolute drift corrections3/2; zero cuts and one epoch in both actual clips. Per-frame field features, world coordinates/trajectories, held-out errors, hull/lifetime/survival, pan/scale history and origin/uncertainty are recorded. Derived intersections are correlated line evidence.
+- Long test_match gap shrinks110–458→151–455. At151, contrast world consensus0.715566 falls below0.8 and adjacent field motion fails. Backward original tracking stops at455 with five anchors and rejected motion. The two paths do not meet. Residual gates were not loosened. No source-specific frame thresholds.
+- test_match matched displacement P90 worsens0.502→0.546m and flags22→26; team_goal P90 improves0.796→0.726m and flags294→217. Camera motion-compensated tails also worsen. Coverage is not independent accuracy.
+- Team/detection/identity/visibility data is frozen from M6. No M6 accepted frame lost; current Unknown positions3,462/659. goal350 remains Unknown; the frame near0.058s remains supported with explicit future origin2.
+- Manual before/after inspection:67 sampled frames including recovered runs, top line/box/goal/circle context, pan/zoom and Unknown transitions. Plausible sampled alignment; no independent metric truth.
+- **529 backend run:528 passed/one expected skip;74 frontend tests, TypeScript/build passed;all six full Chrome suites passed (1.4m).** Both affected CV suites also passed after the final future-anchor display fix (two passed/7.4s). All ten live Azure clips and both CV recordings work. Health200;ready200/12;catalog available;118575 view200/481events, ranges206, grounded Local Ask200/14evidence;CV Ask503.
+- Final offline cached replay83.657s/109.715s includes both routes; neural inference excluded.4,660,183,542 redundant generated pilot bytes removed. Originals/models/M4/M5/M6/final M7 and pilot reports retained. Existing Azure objects, analytics, possession/transfers/GSR, grounding and MATCHMIND names unchanged.
+- Final registry:`outputs/world_model/{test_match,team_goal}_m7_current/`. Proof:`outputs/world_model/m7_verification/<video>/release/`;before Unknown reports, exact long-gap routes, proxy comparisons, images, HTTP proof and browser screenshots/logs alongside.
+
+Refresh http://127.0.0.1:5173;select either CV Experimental recording;enable Camera motion debug and Team classification debug. Keep both original local CV videos. Backend:
+
+```sh
+AZURE_TOKEN_CREDENTIALS=AzureCliCredential \
+MATCHMIND_PROVIDER=local MATCHMIND_CACHE=/tmp/matchmind-azure-startup-cache \
+TACTIQAI_BACKEND_PYTHON=/tmp/tactiq-cv-m1/bin/python scripts/start_backend.sh
+```
+
+Frontend Node22:`cd frontend && npm run dev`. Reproduction/test commands, all exact metrics and architecture limitations: [M7 report](cv_world_model_m7.md).
+
+**PLANNED:** independent geometry evaluation, reliable correspondence/relocalization through the remaining gap and lower hypothesis-switch jitter. **NOT IMPLEMENTED:** ball tracking, new CV football inference, full-epoch bundle adjustment, ReID or independently verified global metric accuracy. Stopped after camera coverage. Older milestone sections below are historical.
+
+## Historical CV Milestone 6 baseline: measured temporal camera and persistent team belief (2026-10-26)
 
 **IMPLEMENTED / LOCALLY VERIFIED / EXPERIMENTAL.** Synthetic known geometry is REFERENCE-EVALUATED; independent real-video metric accuracy remains UNAVAILABLE. Coverage decreased under stricter acceptance; that is not proof every rejection is necessary.
 

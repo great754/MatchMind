@@ -1,0 +1,19 @@
+{
+  "test": "frozen M10 two matches; no new tuning",
+  "models": [
+    "m9_generic_osnet",
+    "m10_soccer_osnet",
+    "m11_pretrained_vit",
+    "m11_finetuned_vit",
+    "m11_temporal",
+    "m11_temporal_geometry",
+    "m11_temporal_learned_scorer"
+  ],
+  "tracklets": "8\u201312 frames from10\u201370s and170\u2013250s, same frames for every model; original M10 crop/10\u201330-frame windows additionally for image models",
+  "geometry_ablation": ".8 cosine+.2 exp(-pitch_distance/(12*elapsed+3)); fixed supplied-calibration proxy, not certified geometry",
+  "scorer_training": "all chronological40s windows with positive elapsed<=130s; no ID/absolute-coordinate inputs",
+  "scorer_selection": "L2 logistic C1, fixed model; probability threshold on same-team VALIDATION only at empirical FMR<=.01",
+  "primary_beat": "temporal vs M10 matched tracklets: same-team Rank1 and mAP both >=+0.03",
+  "shadow": "all three sources; physical constraints/epochs/teams/global one-to-one assignment and ambiguity margin retained; probability only replaces appearance evidence in scorer variant",
+  "integration": "requires successful heldout gate and reliable independently verified player-decision gains; no automatic activation from retrieval"
+}

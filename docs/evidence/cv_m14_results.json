@@ -1,0 +1,1024 @@
+{
+  "milestone": "m14",
+  "date": "2026-11-02",
+  "status": "EXPERIMENTAL; metric reconstruction not demonstrated",
+  "dataset": {
+    "splits": {
+      "train": {
+        "frames": 124,
+        "annotated_ball_boxes": 116,
+        "frames_without_ball_annotation": 8,
+        "matches": [
+          "SN_game6"
+        ],
+        "clips": [
+          "SNMOT-097",
+          "SNMOT-098",
+          "SNMOT-099",
+          "SNMOT-100"
+        ]
+      },
+      "validation": {
+        "frames": 160,
+        "annotated_ball_boxes": 160,
+        "frames_without_ball_annotation": 0,
+        "matches": [
+          "SN_game4"
+        ],
+        "clips": [
+          "SNMOT-060",
+          "SNMOT-061"
+        ]
+      },
+      "test": {
+        "frames": 200,
+        "annotated_ball_boxes": 200,
+        "frames_without_ball_annotation": 0,
+        "matches": [
+          "SN_game9"
+        ],
+        "clips": [
+          "SNMOT-151",
+          "SNMOT-152"
+        ]
+      }
+    },
+    "network_bytes": 113582408,
+    "full_archive_downloaded": false,
+    "match_disjoint": true,
+    "source_terms": "SoccerNet FAQ permits research training, not intended commercial use; artifacts remain local",
+    "source_uri": "https://www.soccer-net.org/faq"
+  },
+  "initializer": {
+    "url": "https://download.pytorch.org/models/fasterrcnn_mobilenet_v3_large_320_fpn-907ea3f9.pth",
+    "sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+    "bytes": 77844807,
+    "architecture": "torchvision FasterRCNN MobileNetV3-Large FPN320,COCO pretrained",
+    "ball_class": 37,
+    "code_license": "torchvision BSD-3-Clause; pretrained weight use follows source data conditions",
+    "source": "https://docs.pytorch.org/vision/main/models/generated/torchvision.models.detection.fasterrcnn_mobilenet_v3_large_320_fpn.html"
+  },
+  "selection": {
+    "selected": {
+      "kind": "generic",
+      "tiled": true,
+      "threshold": 0.5,
+      "metrics": {
+        "frames": 20,
+        "tp": 8,
+        "fp": 1,
+        "fn": 12,
+        "precision": 0.8888888888888888,
+        "recall": 0.4,
+        "f1": 0.5517241379310346,
+        "false_positives_per_frame": 0.05,
+        "localization_median_px": 2.23682361438956,
+        "localization_p90_px": 4.728686933685877,
+        "detected_gt_frame_coverage": 0.4,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 12,
+            "tp": 5,
+            "recall": 0.4166666666666667
+          },
+          "medium12_24px": {
+            "gt": 8,
+            "tp": 3,
+            "recall": 0.375
+          },
+          "large_over24px": {
+            "gt": 0,
+            "tp": 0,
+            "recall": null
+          },
+          "low_sharpness_proxy": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 19,
+            "tp": 8,
+            "recall": 0.42105263157894735
+          }
+        },
+        "visibility_or_occlusion_gt_available": false
+      },
+      "inference_seconds": 19.606603625463322,
+      "checkpoint": "outputs/ml/ball_m14/generic_fasterrcnn_mobilenet320.pth",
+      "checkpoint_sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+      "tile_size": 256,
+      "trial_root": "outputs/ml/ball_m14/trial_small",
+      "trial_settings": {
+        "profile": "small-object-targeted",
+        "roi_batch": 16,
+        "training_tile": 192,
+        "inference_tile": 256,
+        "preserve_anchor_sizes": true,
+        "bounded_budget": "same4epochs60steps; validation only, no TEST observed"
+      }
+    },
+    "best_finetuned": {
+      "kind": "finetuned",
+      "tiled": true,
+      "threshold": 0.5,
+      "metrics": {
+        "frames": 20,
+        "tp": 10,
+        "fp": 64,
+        "fn": 10,
+        "precision": 0.13513513513513514,
+        "recall": 0.5,
+        "f1": 0.21276595744680854,
+        "false_positives_per_frame": 3.2,
+        "localization_median_px": 3.774438469732984,
+        "localization_p90_px": 6.360076773350714,
+        "detected_gt_frame_coverage": 0.5,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 12,
+            "tp": 5,
+            "recall": 0.4166666666666667
+          },
+          "medium12_24px": {
+            "gt": 8,
+            "tp": 5,
+            "recall": 0.625
+          },
+          "large_over24px": {
+            "gt": 0,
+            "tp": 0,
+            "recall": null
+          },
+          "low_sharpness_proxy": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 19,
+            "tp": 10,
+            "recall": 0.5263157894736842
+          }
+        },
+        "visibility_or_occlusion_gt_available": false
+      },
+      "inference_seconds": 16.865172500372864,
+      "checkpoint": "outputs/ml/ball_m14/trial_small/fine_epoch_03.pth",
+      "checkpoint_sha256": "31c5a7a8e77383df93e5bd179a5cc6e3803015c6ecc7c642bb4c0631a08c3472",
+      "epoch": 3,
+      "tile_size": 256,
+      "trial_root": "outputs/ml/ball_m14/trial_small",
+      "trial_settings": {
+        "profile": "small-object-targeted",
+        "roi_batch": 16,
+        "training_tile": 192,
+        "inference_tile": 256,
+        "preserve_anchor_sizes": true,
+        "bounded_budget": "same4epochs60steps; validation only, no TEST observed"
+      }
+    },
+    "validation_only": true,
+    "test_seen": false,
+    "trial_selection_sha256": [
+      "39f38c7d23918a78128877e4742ecc4b09769aa77c6f7a0f5763839e63aae01d",
+      "80f9a1f4b923c8b073de0165b8d3e77933639392cf274f42737e62fadff94a58"
+    ],
+    "tracker_config_sha256": "259b0b8daf9dcf655dca3d2fdc9868ba2b02fa6cfc43e5f5ef2f8fe2a38707db",
+    "dataset_sha256": "c0244014252d6e4307ab17e9d7469d5f436ae24791044919f43c9b96ab89bbe4",
+    "benchmark": "all200TESTframes, match-disjoint; detector full/tile480/tile256 and best fine selected only with20VALframes; tracker-only, camera,physics ablations on identical samples",
+    "primary_detector_iou": 0.25,
+    "strict_detector_iou": 0.5,
+    "ground_truth_limits": "original GT visibility/occlusion/airborne/in-play identity unannotated; do not convert absent labels into invisible truth"
+  },
+  "test": {
+    "detectors": {
+      "generic_full": {
+        "primary": {
+          "frames": 200,
+          "tp": 0,
+          "fp": 1,
+          "fn": 200,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives_per_frame": 0.005,
+          "localization_median_px": null,
+          "localization_p90_px": null,
+          "detected_gt_frame_coverage": 0.0,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 0,
+              "recall": 0.0
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "strict_iou05": {
+          "frames": 200,
+          "tp": 0,
+          "fp": 1,
+          "fn": 200,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives_per_frame": 0.005,
+          "localization_median_px": null,
+          "localization_p90_px": null,
+          "detected_gt_frame_coverage": 0.0,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.5,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 0,
+              "recall": 0.0
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "inference_seconds": 11.142000637948513,
+        "source": "organizer ball GT boxes, visibility unannotated"
+      },
+      "generic_tile480": {
+        "primary": {
+          "frames": 200,
+          "tp": 51,
+          "fp": 1,
+          "fn": 149,
+          "precision": 0.9807692307692307,
+          "recall": 0.255,
+          "f1": 0.40476190476190477,
+          "false_positives_per_frame": 0.005,
+          "localization_median_px": 1.7439970945220236,
+          "localization_p90_px": 3.229154634685622,
+          "detected_gt_frame_coverage": 0.255,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 51,
+              "recall": 0.255
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 51,
+              "recall": 0.25888324873096447
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "strict_iou05": {
+          "frames": 200,
+          "tp": 24,
+          "fp": 28,
+          "fn": 176,
+          "precision": 0.46153846153846156,
+          "recall": 0.12,
+          "f1": 0.19047619047619047,
+          "false_positives_per_frame": 0.14,
+          "localization_median_px": 2.0436875540814556,
+          "localization_p90_px": 3.2762079856673707,
+          "detected_gt_frame_coverage": 0.12,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.5,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 24,
+              "recall": 0.12
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 24,
+              "recall": 0.1218274111675127
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "inference_seconds": 76.82528628909495,
+        "source": "organizer ball GT boxes, visibility unannotated"
+      },
+      "generic_tile256": {
+        "primary": {
+          "frames": 200,
+          "tp": 111,
+          "fp": 74,
+          "fn": 89,
+          "precision": 0.6,
+          "recall": 0.555,
+          "f1": 0.5766233766233766,
+          "false_positives_per_frame": 0.37,
+          "localization_median_px": 1.2267531927912452,
+          "localization_p90_px": 2.478456218610186,
+          "detected_gt_frame_coverage": 0.555,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 111,
+              "recall": 0.555
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 111,
+              "recall": 0.5634517766497462
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "strict_iou05": {
+          "frames": 200,
+          "tp": 107,
+          "fp": 78,
+          "fn": 93,
+          "precision": 0.5783783783783784,
+          "recall": 0.535,
+          "f1": 0.5558441558441559,
+          "false_positives_per_frame": 0.39,
+          "localization_median_px": 1.2109564630512308,
+          "localization_p90_px": 2.377517310859285,
+          "detected_gt_frame_coverage": 0.535,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.5,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 107,
+              "recall": 0.535
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 107,
+              "recall": 0.5431472081218274
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "inference_seconds": 233.89221516624093,
+        "source": "organizer ball GT boxes, visibility unannotated"
+      },
+      "best_finetuned": {
+        "primary": {
+          "frames": 200,
+          "tp": 151,
+          "fp": 392,
+          "fn": 49,
+          "precision": 0.27808471454880296,
+          "recall": 0.755,
+          "f1": 0.4064602960969045,
+          "false_positives_per_frame": 1.96,
+          "localization_median_px": 1.9735278517810932,
+          "localization_p90_px": 4.251396740301055,
+          "detected_gt_frame_coverage": 0.755,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 151,
+              "recall": 0.755
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 151,
+              "recall": 0.766497461928934
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "strict_iou05": {
+          "frames": 200,
+          "tp": 137,
+          "fp": 406,
+          "fn": 63,
+          "precision": 0.2523020257826888,
+          "recall": 0.685,
+          "f1": 0.36877523553162855,
+          "false_positives_per_frame": 2.03,
+          "localization_median_px": 1.8711594693129343,
+          "localization_p90_px": 3.9862491840573755,
+          "detected_gt_frame_coverage": 0.685,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.5,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 200,
+              "tp": 137,
+              "recall": 0.685
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "low_sharpness_proxy": {
+              "gt": 3,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 197,
+              "tp": 137,
+              "recall": 0.6954314720812182
+            }
+          },
+          "visibility_or_occlusion_gt_available": false
+        },
+        "inference_seconds": 309.35140025394503,
+        "source": "organizer ball GT boxes, visibility unannotated"
+      }
+    },
+    "tracking_ablations": {
+      "tracking_only": {
+        "counts": {
+          "LOST": 24,
+          "observed": 123,
+          "predicted": 38,
+          "DETECTED": 9,
+          "accepted_matched_gt": 101,
+          "accepted_unmatched_gt": 22,
+          "TRACKED": 119,
+          "PREDICTED": 38,
+          "AMBIGUOUS": 10
+        },
+        "frames": 200,
+        "observed_coverage": 0.615,
+        "predicted_only_coverage": 0.19,
+        "accepted_gt_consistency_precision": 0.8211382113821138,
+        "accepted_unmatched_per_frame": 0.11,
+        "associations_with_both_gt_endpoints": 95,
+        "same_gt_object_associations": 95,
+        "same_gt_association_fraction": 1.0,
+        "recovery_after_tracker_observation_gap": 9,
+        "occlusion_recovery_ground_truth": null,
+        "prediction_gt_consistent": 15,
+        "prediction_gt_comparable": 38,
+        "false_prediction_gt_inconsistency_rate": 0.6052631578947368,
+        "localization_median_px": 1.2946343244319332,
+        "tracking_seconds": 0.03181712131481618,
+        "metric_supported_frames": 0,
+        "metric_error_ground_truth": null,
+        "limitation": "GT annotated coordinates are not independent visibility or in-play-ball identity truth; same-GT association fraction is conditioned on matched endpoints and not full tracking accuracy"
+      },
+      "tracking_camera": {
+        "counts": {
+          "LOST": 24,
+          "observed": 122,
+          "predicted": 38,
+          "DETECTED": 9,
+          "accepted_matched_gt": 101,
+          "accepted_unmatched_gt": 21,
+          "TRACKED": 118,
+          "PREDICTED": 38,
+          "AMBIGUOUS": 11
+        },
+        "frames": 200,
+        "observed_coverage": 0.61,
+        "predicted_only_coverage": 0.19,
+        "accepted_gt_consistency_precision": 0.8278688524590164,
+        "accepted_unmatched_per_frame": 0.105,
+        "associations_with_both_gt_endpoints": 95,
+        "same_gt_object_associations": 95,
+        "same_gt_association_fraction": 1.0,
+        "recovery_after_tracker_observation_gap": 9,
+        "occlusion_recovery_ground_truth": null,
+        "prediction_gt_consistent": 9,
+        "prediction_gt_comparable": 38,
+        "false_prediction_gt_inconsistency_rate": 0.7631578947368421,
+        "localization_median_px": 1.2939126304535442,
+        "tracking_seconds": 0.041989299235865474,
+        "metric_supported_frames": 0,
+        "metric_error_ground_truth": null,
+        "limitation": "GT annotated coordinates are not independent visibility or in-play-ball identity truth; same-GT association fraction is conditioned on matched endpoints and not full tracking accuracy"
+      },
+      "tracking_camera_physics": {
+        "counts": {
+          "LOST": 32,
+          "observed": 108,
+          "predicted": 50,
+          "DETECTED": 15,
+          "accepted_matched_gt": 92,
+          "accepted_unmatched_gt": 16,
+          "TRACKED": 102,
+          "PREDICTED": 50,
+          "AMBIGUOUS": 1
+        },
+        "frames": 200,
+        "observed_coverage": 0.54,
+        "predicted_only_coverage": 0.25,
+        "accepted_gt_consistency_precision": 0.8518518518518519,
+        "accepted_unmatched_per_frame": 0.08,
+        "associations_with_both_gt_endpoints": 89,
+        "same_gt_object_associations": 89,
+        "same_gt_association_fraction": 1.0,
+        "recovery_after_tracker_observation_gap": 7,
+        "occlusion_recovery_ground_truth": null,
+        "prediction_gt_consistent": 16,
+        "prediction_gt_comparable": 50,
+        "false_prediction_gt_inconsistency_rate": 0.6799999999999999,
+        "localization_median_px": 1.2563276614028593,
+        "tracking_seconds": 0.04270662786439061,
+        "metric_supported_frames": 0,
+        "metric_error_ground_truth": null,
+        "limitation": "GT annotated coordinates are not independent visibility or in-play-ball identity truth; same-GT association fraction is conditioned on matched endpoints and not full tracking accuracy"
+      }
+    },
+    "detector_only": "all thresholded raw candidates; no forced highest candidate assignment",
+    "camera_motion_measurement_seconds": 10.917589734192006,
+    "camera_motion_accepted_frames": 198,
+    "world_mapping": "No independent metric camera/ball-height GT on these clips; image-only tracking, metric positions remain unavailable",
+    "wall_seconds": 648.7143813340226,
+    "model_selected_on_test": false,
+    "evaluation_samples": [
+      "SNMOT-151:300",
+      "SNMOT-151:301",
+      "SNMOT-151:302",
+      "SNMOT-151:303",
+      "SNMOT-151:304",
+      "SNMOT-151:305",
+      "SNMOT-151:306",
+      "SNMOT-151:307",
+      "SNMOT-151:308",
+      "SNMOT-151:309",
+      "SNMOT-151:310",
+      "SNMOT-151:311",
+      "SNMOT-151:312",
+      "SNMOT-151:313",
+      "SNMOT-151:314",
+      "SNMOT-151:315",
+      "SNMOT-151:316",
+      "SNMOT-151:317",
+      "SNMOT-151:318",
+      "SNMOT-151:319",
+      "SNMOT-151:320",
+      "SNMOT-151:321",
+      "SNMOT-151:322",
+      "SNMOT-151:323",
+      "SNMOT-151:324",
+      "SNMOT-151:325",
+      "SNMOT-151:326",
+      "SNMOT-151:327",
+      "SNMOT-151:328",
+      "SNMOT-151:329",
+      "SNMOT-151:330",
+      "SNMOT-151:331",
+      "SNMOT-151:332",
+      "SNMOT-151:333",
+      "SNMOT-151:334",
+      "SNMOT-151:335",
+      "SNMOT-151:336",
+      "SNMOT-151:337",
+      "SNMOT-151:338",
+      "SNMOT-151:339",
+      "SNMOT-151:340",
+      "SNMOT-151:341",
+      "SNMOT-151:342",
+      "SNMOT-151:343",
+      "SNMOT-151:344",
+      "SNMOT-151:345",
+      "SNMOT-151:346",
+      "SNMOT-151:347",
+      "SNMOT-151:348",
+      "SNMOT-151:349",
+      "SNMOT-151:350",
+      "SNMOT-151:351",
+      "SNMOT-151:352",
+      "SNMOT-151:353",
+      "SNMOT-151:354",
+      "SNMOT-151:355",
+      "SNMOT-151:356",
+      "SNMOT-151:357",
+      "SNMOT-151:358",
+      "SNMOT-151:359",
+      "SNMOT-151:360",
+      "SNMOT-151:361",
+      "SNMOT-151:362",
+      "SNMOT-151:363",
+      "SNMOT-151:364",
+      "SNMOT-151:365",
+      "SNMOT-151:366",
+      "SNMOT-151:367",
+      "SNMOT-151:368",
+      "SNMOT-151:369",
+      "SNMOT-151:370",
+      "SNMOT-151:371",
+      "SNMOT-151:372",
+      "SNMOT-151:373",
+      "SNMOT-151:374",
+      "SNMOT-151:375",
+      "SNMOT-151:376",
+      "SNMOT-151:377",
+      "SNMOT-151:378",
+      "SNMOT-151:379",
+      "SNMOT-151:380",
+      "SNMOT-151:381",
+      "SNMOT-151:382",
+      "SNMOT-151:383",
+      "SNMOT-151:384",
+      "SNMOT-151:385",
+      "SNMOT-151:386",
+      "SNMOT-151:387",
+      "SNMOT-151:388",
+      "SNMOT-151:389",
+      "SNMOT-151:390",
+      "SNMOT-151:391",
+      "SNMOT-151:392",
+      "SNMOT-151:393",
+      "SNMOT-151:394",
+      "SNMOT-151:395",
+      "SNMOT-151:396",
+      "SNMOT-151:397",
+      "SNMOT-151:398",
+      "SNMOT-151:399",
+      "SNMOT-152:300",
+      "SNMOT-152:301",
+      "SNMOT-152:302",
+      "SNMOT-152:303",
+      "SNMOT-152:304",
+      "SNMOT-152:305",
+      "SNMOT-152:306",
+      "SNMOT-152:307",
+      "SNMOT-152:308",
+      "SNMOT-152:309",
+      "SNMOT-152:310",
+      "SNMOT-152:311",
+      "SNMOT-152:312",
+      "SNMOT-152:313",
+      "SNMOT-152:314",
+      "SNMOT-152:315",
+      "SNMOT-152:316",
+      "SNMOT-152:317",
+      "SNMOT-152:318",
+      "SNMOT-152:319",
+      "SNMOT-152:320",
+      "SNMOT-152:321",
+      "SNMOT-152:322",
+      "SNMOT-152:323",
+      "SNMOT-152:324",
+      "SNMOT-152:325",
+      "SNMOT-152:326",
+      "SNMOT-152:327",
+      "SNMOT-152:328",
+      "SNMOT-152:329",
+      "SNMOT-152:330",
+      "SNMOT-152:331",
+      "SNMOT-152:332",
+      "SNMOT-152:333",
+      "SNMOT-152:334",
+      "SNMOT-152:335",
+      "SNMOT-152:336",
+      "SNMOT-152:337",
+      "SNMOT-152:338",
+      "SNMOT-152:339",
+      "SNMOT-152:340",
+      "SNMOT-152:341",
+      "SNMOT-152:342",
+      "SNMOT-152:343",
+      "SNMOT-152:344",
+      "SNMOT-152:345",
+      "SNMOT-152:346",
+      "SNMOT-152:347",
+      "SNMOT-152:348",
+      "SNMOT-152:349",
+      "SNMOT-152:350",
+      "SNMOT-152:351",
+      "SNMOT-152:352",
+      "SNMOT-152:353",
+      "SNMOT-152:354",
+      "SNMOT-152:355",
+      "SNMOT-152:356",
+      "SNMOT-152:357",
+      "SNMOT-152:358",
+      "SNMOT-152:359",
+      "SNMOT-152:360",
+      "SNMOT-152:361",
+      "SNMOT-152:362",
+      "SNMOT-152:363",
+      "SNMOT-152:364",
+      "SNMOT-152:365",
+      "SNMOT-152:366",
+      "SNMOT-152:367",
+      "SNMOT-152:368",
+      "SNMOT-152:369",
+      "SNMOT-152:370",
+      "SNMOT-152:371",
+      "SNMOT-152:372",
+      "SNMOT-152:373",
+      "SNMOT-152:374",
+      "SNMOT-152:375",
+      "SNMOT-152:376",
+      "SNMOT-152:377",
+      "SNMOT-152:378",
+      "SNMOT-152:379",
+      "SNMOT-152:380",
+      "SNMOT-152:381",
+      "SNMOT-152:382",
+      "SNMOT-152:383",
+      "SNMOT-152:384",
+      "SNMOT-152:385",
+      "SNMOT-152:386",
+      "SNMOT-152:387",
+      "SNMOT-152:388",
+      "SNMOT-152:389",
+      "SNMOT-152:390",
+      "SNMOT-152:391",
+      "SNMOT-152:392",
+      "SNMOT-152:393",
+      "SNMOT-152:394",
+      "SNMOT-152:395",
+      "SNMOT-152:396",
+      "SNMOT-152:397",
+      "SNMOT-152:398",
+      "SNMOT-152:399"
+    ]
+  },
+  "detector_only_center": {
+    "frames": 200,
+    "observed": 97,
+    "matched": 80,
+    "unmatched": 17,
+    "ambiguous": 41,
+    "coverage": 0.485,
+    "accepted_gt_consistency_precision": 0.8247422680412371,
+    "protocol": "Exactly one candidate >=0.5, center <=12px organizer GT. No temporal state. Diagnostic computed from sealed TEST cache; no retuning."
+  },
+  "real_videos": {
+    "test_match": {
+      "frames": 541,
+      "LOST": 105,
+      "directly_observed": 214,
+      "predicted_only": 199,
+      "metric_supported": 0,
+      "raw_candidate_frames": 541,
+      "METRIC_UNAVAILABLE": 449,
+      "DETECTED": 33,
+      "TRACKED": 203,
+      "OCCLUDED": 122,
+      "PREDICTED": 77,
+      "HEIGHT_UNKNOWN": 92,
+      "AMBIGUOUS": 1,
+      "observed_coverage": 0.3955637707948244,
+      "predicted_only_coverage": 0.3678373382624769,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds_cached_or_measured": 333.08861934242304,
+      "tracking_seconds": 0.12270136980805546,
+      "end_to_end_seconds": 338.47836025001016,
+      "independent_ball_accuracy": null,
+      "coordinate_error_m": null,
+      "ground_height_ground_truth_available": false,
+      "model_experimental": true
+    },
+    "team_goal": {
+      "frames": 500,
+      "LOST": 340,
+      "directly_observed": 39,
+      "predicted_only": 98,
+      "metric_supported": 0,
+      "raw_candidate_frames": 500,
+      "METRIC_UNAVAILABLE": 466,
+      "DETECTED": 31,
+      "HEIGHT_UNKNOWN": 34,
+      "AMBIGUOUS": 3,
+      "TRACKED": 28,
+      "OCCLUDED": 19,
+      "PREDICTED": 79,
+      "observed_coverage": 0.078,
+      "predicted_only_coverage": 0.196,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds_cached_or_measured": 84.26614162034821,
+      "tracking_seconds": 0.09048029419500381,
+      "end_to_end_seconds": 88.39068420906551,
+      "independent_ball_accuracy": null,
+      "coordinate_error_m": null,
+      "ground_height_ground_truth_available": false,
+      "model_experimental": true
+    },
+    "southampton": {
+      "frames": 660,
+      "DETECTED": 25,
+      "directly_observed": 163,
+      "predicted_only": 181,
+      "metric_supported": 0,
+      "raw_candidate_frames": 660,
+      "METRIC_UNAVAILABLE": 517,
+      "HEIGHT_UNKNOWN": 143,
+      "TRACKED": 153,
+      "PREDICTED": 128,
+      "LOST": 297,
+      "OCCLUDED": 53,
+      "AMBIGUOUS": 4,
+      "observed_coverage": 0.24696969696969698,
+      "predicted_only_coverage": 0.27424242424242423,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds_cached_or_measured": 495.24238270532805,
+      "tracking_seconds": 0.2284962012199685,
+      "end_to_end_seconds": 502.3775055829901,
+      "independent_ball_accuracy": null,
+      "coordinate_error_m": null,
+      "ground_height_ground_truth_available": false,
+      "model_experimental": true
+    }
+  },
+  "preservation": {
+    "test_match": {
+      "all_frames_compared": 541,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted_frames": 269,
+      "player_model_version": "m9",
+      "ball_model_version": "m14",
+      "metric_ball_frames": 0
+    },
+    "team_goal": {
+      "all_frames_compared": 500,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted_frames": 456,
+      "player_model_version": "m9",
+      "ball_model_version": "m14",
+      "metric_ball_frames": 0
+    },
+    "southampton": {
+      "all_frames_compared": 660,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted_frames": 600,
+      "player_model_version": "m9",
+      "ball_model_version": "m14",
+      "metric_ball_frames": 0
+    }
+  },
+  "hardware": {
+    "device": "mps",
+    "batch": 2,
+    "step_seconds": [
+      3.2163813749793917,
+      0.054486416978761554,
+      0.8223154579754919
+    ],
+    "torch": "2.14.1",
+    "mps_current_allocated_bytes": 254136576,
+    "mps_driver_allocated_bytes": 1180778496,
+    "peak_memory_measured": false
+  },
+  "live": {
+    "health": 200,
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 13
+      }
+    },
+    "catalog_rows": 13,
+    "azure_view": {
+      "status": 200
+    },
+    "azure_video_range": {
+      "status": 206,
+      "bytes": 1024
+    },
+    "ask": {
+      "http_status": 200,
+      "answer_status": "ok",
+      "evidence_rows": 6
+    }
+  },
+  "verification": {
+    "backend_run": 743,
+    "backend_passed": 742,
+    "backend_expected_skip": 1,
+    "new_backend_tests": 55,
+    "frontend_passed": 96,
+    "production_build": "passed",
+    "ball_browser_sources": 3,
+    "browser_full_suite": "11 passed; initial run interrupted after startup-race 502, settled full rerun passed"
+  }
+}

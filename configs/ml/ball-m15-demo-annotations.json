@@ -1,0 +1,1109 @@
+{
+  "rows": [
+    {
+      "sample_id": "test_match:20",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 20,
+      "timestamp": 0.8341666666666666,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "AIRBORNE",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0020.jpg",
+      "source_sha256": "b70a34c14057888bbc12072183a097241a373268a5ae889a7e54354148220f45",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            37,
+            581,
+            23,
+            21
+          ],
+          "height_state": "AIRBORNE",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:60",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 60,
+      "timestamp": 2.5025,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0060.jpg",
+      "source_sha256": "a124cb8671f2c1554b800c9bcec897969cb0393702b5d80ca2dc2120eaaaea0f",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            549,
+            703,
+            19,
+            18
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:100",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 100,
+      "timestamp": 4.170833333333333,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0100.jpg",
+      "source_sha256": "de39844681407a324e0412becbbda63b321614979200908a0bcbfb788753febb",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "test_match:140",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 140,
+      "timestamp": 5.839166666666666,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0140.jpg",
+      "source_sha256": "4da51585031a35479bb839e849aca6838a89eda8959d3183d578ea3aed92987e",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used",
+      "annotation_note": "Source-only audit cannot establish a clean tiny box without boot overlap or a reliable center"
+    },
+    {
+      "sample_id": "test_match:180",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 180,
+      "timestamp": 7.507499999999999,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0180.jpg",
+      "source_sha256": "75752efcd48d7c69f77f03a1165f9675cef0b71c13fa5573a1b312f4efd10b83",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used",
+      "annotation_note": "Source-only audit cannot establish a clean tiny box without boot overlap or a reliable center"
+    },
+    {
+      "sample_id": "test_match:220",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 220,
+      "timestamp": 9.175833333333333,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "AIRBORNE",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0220.jpg",
+      "source_sha256": "e89a77ab18b55ccf235ef0f250ecb33f2616f34711188e5967979f755e3c025f",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            571,
+            391,
+            14,
+            13
+          ],
+          "height_state": "AIRBORNE",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:260",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 260,
+      "timestamp": 10.844166666666666,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0260.jpg",
+      "source_sha256": "55bea6ecdabcbef0189274886d2bfe3addf8f8b2179aedf28a9514490a6b4bb1",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            472,
+            315,
+            15,
+            12
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:300",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 300,
+      "timestamp": 12.5125,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0300.jpg",
+      "source_sha256": "86c8e88f0bc9df3cae69ec3246a731f4232f1227b1b7bda2275ae8e6b8d9237e",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            741,
+            298,
+            13,
+            11
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:340",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 340,
+      "timestamp": 14.180833333333332,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0340.jpg",
+      "source_sha256": "cea008d51e05677d7095045a78526d3f805b3c7f5b9a2fe32b49de4ea381017e",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used",
+      "annotation_note": "Source-only audit cannot establish a clean tiny box without boot overlap or a reliable center"
+    },
+    {
+      "sample_id": "test_match:380",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 380,
+      "timestamp": 15.849166666666665,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0380.jpg",
+      "source_sha256": "1b330c4602f257c69846a2427d800a9c164158529bd11299bd3522b7e1e9b181",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            673,
+            433,
+            14,
+            13
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:420",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 420,
+      "timestamp": 17.5175,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0420.jpg",
+      "source_sha256": "e1f84e51fb1c69a24a06f2511c1188f3dd3bf5494cbfd19c4039450d4357abe6",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            600,
+            589,
+            16,
+            15
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:460",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 460,
+      "timestamp": 19.18583333333333,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0460.jpg",
+      "source_sha256": "42de337fa985445d24968c0939dd07e16632897f7dddf9e2e0f4ae9e231f6778",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            620,
+            541,
+            22,
+            13
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "test_match:500",
+      "split": "test",
+      "recording_id": "test_match",
+      "frame": 500,
+      "timestamp": 20.854166666666664,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": "AIRBORNE",
+      "path": "outputs/ml/ball_m15/source_review/test_match_0500.jpg",
+      "source_sha256": "efa4f3cd9a40be87c072ea57d1d179d7fdeb20c9f4652755338afcc60d85b3a4",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            867,
+            521,
+            18,
+            14
+          ],
+          "height_state": "AIRBORNE",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:20",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 20,
+      "timestamp": 0.8,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0020.jpg",
+      "source_sha256": "134f2c5c8d36753babfed9a177353ac8a1d7062a85509d723e0ab05dd8d7ed31",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            452,
+            186,
+            5,
+            4
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:60",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 60,
+      "timestamp": 2.4,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0060.jpg",
+      "source_sha256": "f07a13724c14e84f63808e9191253a0128c72c7d6f4b57e4e6fa9e244cafb5dc",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            460,
+            226,
+            6,
+            5
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:100",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 100,
+      "timestamp": 4.0,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0100.jpg",
+      "source_sha256": "54e726bf32c1735852b0d9659dfd22555d171eea0ed5a3d297de89d053e19478",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "team_goal:140",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 140,
+      "timestamp": 5.6,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0140.jpg",
+      "source_sha256": "e07ab3c1c3bf6fc51d30b04b041bf529cdb936ec4f0917678d7d7399a4f10f3c",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            422,
+            261,
+            5,
+            5
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:180",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 180,
+      "timestamp": 7.2,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0180.jpg",
+      "source_sha256": "a55fa547a58a649c06faaf9d18a1d5239d8741458d35938426e302eb87548a31",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "team_goal:220",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 220,
+      "timestamp": 8.8,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0220.jpg",
+      "source_sha256": "d33f160e3d66bc1f819160a2f2d8363acf04ae589aab458cc766f93ca0f240dd",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "team_goal:260",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 260,
+      "timestamp": 10.4,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0260.jpg",
+      "source_sha256": "0eec9ac4e70fabace744789c8c835fc9f4ec434979646a83e044cf42fb25cf7f",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            429,
+            122,
+            6,
+            4
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:300",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 300,
+      "timestamp": 12.0,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0300.jpg",
+      "source_sha256": "7f4f05b8b2417723ca1df990bbed0600b931f7e4eb5afdb721f4ccce76303234",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            415,
+            128,
+            6,
+            3
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:340",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 340,
+      "timestamp": 13.6,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0340.jpg",
+      "source_sha256": "448e59cc58af9a6320dac0afad067f0db278d5f2149fe6c01d3684d6019fbd30",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            438,
+            128,
+            5,
+            4
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:380",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 380,
+      "timestamp": 15.2,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0380.jpg",
+      "source_sha256": "13164144e2335693532a4f8811efc9995aa82704752dcb33cd50ec2ce536cdc3",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            508,
+            147,
+            6,
+            4
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:420",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 420,
+      "timestamp": 16.8,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0420.jpg",
+      "source_sha256": "e69fc2cb397626c929692be74dea19d9b61933eec1034b63db68c567eba1a7a9",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            286,
+            211,
+            6,
+            5
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 1.5
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "team_goal:460",
+      "split": "test",
+      "recording_id": "team_goal",
+      "frame": 460,
+      "timestamp": 18.4,
+      "fps": 25.0,
+      "width": 640,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/team_goal_0460.jpg",
+      "source_sha256": "771c956a4739c9b78ecf0784da38d347bed1f34d3bdaae76e94b67993aae8a7b",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:20",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 20,
+      "timestamp": 0.6673333333333333,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0020.jpg",
+      "source_sha256": "3ed25e1b7f025815e3ed0cec70e5f102979b6422054b9b5dfb12f290e4754e92",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            424,
+            307,
+            4,
+            3
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:60",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 60,
+      "timestamp": 2.0020000000000002,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0060.jpg",
+      "source_sha256": "8400af4e4d27ce4e722e46d8f6bf49eb6d8fe840880d8f320bf2f63af5ed8ddf",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:100",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 100,
+      "timestamp": 3.336666666666667,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0100.jpg",
+      "source_sha256": "e97716ed4399b12aa268e361c1e58585b01098dbeeb7108516d1613a38063537",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:140",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 140,
+      "timestamp": 4.671333333333333,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0140.jpg",
+      "source_sha256": "e0e27df9a51dabcc3403d37698893157be46c5e69ca2dbd694004d974f8f8413",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            330,
+            292,
+            8,
+            5
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:180",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 180,
+      "timestamp": 6.006,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0180.jpg",
+      "source_sha256": "5a901a83d644b0e227e96a95fc7c72d491c3cf90857502bd8c26992535e21ecb",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            335,
+            298,
+            5,
+            3
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:220",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 220,
+      "timestamp": 7.3406666666666665,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0220.jpg",
+      "source_sha256": "4060a413167cdeb4986a30c29506e1e8ae191bba68a771e2c388a5ad2967fd0e",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            229,
+            419,
+            9,
+            9
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:260",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 260,
+      "timestamp": 8.675333333333333,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0260.jpg",
+      "source_sha256": "380826b9704de96de30423a18ee53337cc8acc7770198b38ae29331557777688",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:300",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 300,
+      "timestamp": 10.01,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0300.jpg",
+      "source_sha256": "25f37388783109235d872dd08894901bdd2c3d9f8ce44f0715b84cf92b4d4e67",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:340",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 340,
+      "timestamp": 11.344666666666667,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0340.jpg",
+      "source_sha256": "06bc65366396b3250099454794f5d859429ac7c9fe527d29091ab53c1c3b26fe",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null
+    },
+    {
+      "sample_id": "southampton:380",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 380,
+      "timestamp": 12.679333333333334,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0380.jpg",
+      "source_sha256": "1a1fd2bb68c10b96afee6ba1677ab1180a1fd176050f265b3551d54a2d536fd9",
+      "balls": [],
+      "visibility": "UNCERTAIN",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": false,
+      "metric_gt": null,
+      "annotation_note": "Source-only audit cannot establish a clean tiny box without boot overlap or a reliable center"
+    },
+    {
+      "sample_id": "southampton:420",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 420,
+      "timestamp": 14.014000000000001,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0420.jpg",
+      "source_sha256": "41c92d1a40ccef9e7326dd7568f7c345a5f8fb38e0d02c1fac21f9407b084fd0",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            625,
+            535,
+            12,
+            9
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:460",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 460,
+      "timestamp": 15.348666666666666,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0460.jpg",
+      "source_sha256": "8047bfbb3530428c3cf36bfa7a008ac4822b8cd0d0fc4a5027ccd3c954920f1f",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            910,
+            567,
+            12,
+            10
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:500",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 500,
+      "timestamp": 16.683333333333334,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0500.jpg",
+      "source_sha256": "5cdbc5cf9702229abf1f0981cdffa8d232816012b851a5ce3aca68b07059e685",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            977,
+            543,
+            11,
+            8
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:540",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 540,
+      "timestamp": 18.018,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0540.jpg",
+      "source_sha256": "7cf6d0b1c201a5fd106f069271cefe884c67937a2084159d7304ef5590ad2c8e",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            1009,
+            481,
+            9,
+            7
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:580",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 580,
+      "timestamp": 19.352666666666668,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "UNKNOWN",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0580.jpg",
+      "source_sha256": "bb75156211aeb1fd6c073ed77bd7e753ee26dbbc9b14580082de1e290ae5d9ae",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            1024,
+            452,
+            8,
+            6
+          ],
+          "height_state": "UNKNOWN",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null,
+      "annotation_assistance": "Source color connected-component box, nearest manually identified ball; visually audited, no learned detector used"
+    },
+    {
+      "sample_id": "southampton:620",
+      "split": "test",
+      "recording_id": "southampton",
+      "frame": 620,
+      "timestamp": 20.687333333333335,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": "AIRBORNE",
+      "path": "outputs/ml/ball_m15/source_review/southampton_0620.jpg",
+      "source_sha256": "00c10b36feaf3b8564d5e6353d4058183daa7075c1ee3f912eac8e91d2b4ee28",
+      "balls": [
+        {
+          "track_id": 1,
+          "bbox": [
+            682.0,
+            294.0,
+            24,
+            10
+          ],
+          "height_state": "AIRBORNE",
+          "center_uncertainty_px": 2
+        }
+      ],
+      "visibility": "VISIBLE",
+      "camera_cut": "NO_VISIBLE_CUT_AT_SAMPLED_FRAME; full-clip source review no cuts seen",
+      "player_proximity": "NOT_ANNOTATED",
+      "scorable": true,
+      "metric_gt": null
+    }
+  ],
+  "source_video_sha256": {
+    "test_match": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+    "team_goal": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+    "southampton": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6"
+  },
+  "annotator": "Codex visual inspection of original source frames without model/camera overlays; single annotator, no external adjudication",
+  "scope": "visible in-play ball manually identified; uncertain frames excluded, not labelled true negatives; no independent metric GT; unknown height remains unknown",
+  "legal": "User-supplied local videos used locally as requested; rights beyond that not established",
+  "training": "none of these videos or labels used for model/threshold selection",
+  "limitations": "Sparse, approximate 1.5\u20132px centers/boxes, not dense tracking/occlusion or independently surveyed metric truth"
+}

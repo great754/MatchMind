@@ -6,14 +6,14 @@ from src.vision.world.pitch_geometry import PitchGeometry
 
 
 def render(before,after,output,frames):
-    output=Path(output);output.mkdir(parents=True,exist_ok=True);a=[json.loads(l) for l in (Path(before)/'frames.jsonl').open()];b=[json.loads(l) for l in (Path(after)/'frames.jsonl').open()];m=json.loads((Path(after)/'manifest.json').read_text());cap=cv2.VideoCapture(m['source_video']);geo=PitchGeometry();tiles=[]
+    output=Path(output);output.mkdir(parents=True,exist_ok=True);a=[json.loads(l) for l in (Path(before)/'frames.jsonl').open()];b=[json.loads(l) for l in (Path(after)/'frames.jsonl').open()];m=json.loads((Path(after)/'manifest.json').read_text());cap=cv2.VideoCapture(m['source_video']);geo=PitchGeometry();tiles=[];before_label=json.loads((Path(before)/'manifest.json').read_text()).get('camera_model_version','m5').upper();after_label=m.get('camera_model_version','m6').upper()
     for index in frames:
         cap.set(cv2.CAP_PROP_POS_FRAMES,index);ok,image=cap.read();assert ok;panels=[]
-        for label,row in [('M5',a[index]),('M6',b[index])]:
+        for label,row in [(before_label,a[index]),(after_label,b[index])]:
             panel=image.copy();c=row['camera'];loc=c['motion_evidence']['localization']
             if c['calibration_valid']:
                 for line in geo.overlay(np.array(c['calibration']['image_to_pitch']).reshape(3,3),m['width'],m['height']):cv2.line(panel,tuple(line['start']),tuple(line['end']),(255,220,40),max(1,m['width']//540),cv2.LINE_AA)
-            if label=='M6':
+            if label==after_label:
                 motion=c['motion_evidence']['temporal_camera']['field_motion']
                 for v in motion.get('vectors',[]):
                     p=tuple(map(round,v['previous']));q=tuple(map(round,v['current']));color=(140,240,110) if v['inlier'] else (100,80,255);cv2.line(panel,p,q,color,1);cv2.circle(panel,q,2,color,1)

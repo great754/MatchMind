@@ -1,0 +1,8 @@
+{
+  "profile": "small-object-targeted",
+  "roi_batch": 16,
+  "training_tile": 192,
+  "inference_tile": 256,
+  "preserve_anchor_sizes": true,
+  "bounded_budget": "same4epochs60steps; validation only, no TEST observed"
+}

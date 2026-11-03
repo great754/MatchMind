@@ -1,0 +1,3342 @@
+{
+  "milestone": "m15",
+  "status": "EXPERIMENTAL; targets not achieved; M14 remains default",
+  "dataset": {
+    "plan": {
+      "train": {
+        "game": "6",
+        "clips": [
+          "SNMOT-109",
+          "SNMOT-110"
+        ],
+        "frames": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220
+        ]
+      },
+      "validation": {
+        "game": "4",
+        "clips": [
+          "SNMOT-070",
+          "SNMOT-071"
+        ],
+        "frames": [
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          276,
+          277,
+          278,
+          279,
+          280
+        ]
+      },
+      "test": {
+        "game": "9",
+        "clips": [
+          "SNMOT-159",
+          "SNMOT-160"
+        ],
+        "frames": [
+          401,
+          402,
+          403,
+          404,
+          405,
+          406,
+          407,
+          408,
+          409,
+          410,
+          411,
+          412,
+          413,
+          414,
+          415,
+          416,
+          417,
+          418,
+          419,
+          420,
+          421,
+          422,
+          423,
+          424,
+          425,
+          426,
+          427,
+          428,
+          429,
+          430,
+          431,
+          432,
+          433,
+          434,
+          435,
+          436,
+          437,
+          438,
+          439,
+          440,
+          441,
+          442,
+          443,
+          444,
+          445,
+          446,
+          447,
+          448,
+          449,
+          450,
+          451,
+          452,
+          453,
+          454,
+          455,
+          456,
+          457,
+          458,
+          459,
+          460,
+          461,
+          462,
+          463,
+          464,
+          465,
+          466,
+          467,
+          468,
+          469,
+          470,
+          471,
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485,
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496,
+          497,
+          498,
+          499,
+          500
+        ]
+      }
+    },
+    "network_bytes": 132297426,
+    "visibility_airborne_occlusion_gt": "unavailable",
+    "split": "match disjoint within M15; games same as M14 but new nonadjacent clips/frames, no old exposed TEST tuning",
+    "demo_videos": "never used for training or selection"
+  },
+  "manual_annotation_seal": {
+    "sha256": "678578221a6c0b893363342902ea54e850cd0227c3f9107c0ee7b31533e79fc9",
+    "before_model_selection": true,
+    "scorable": 27,
+    "review": "31 initially proposed, four ambiguous boot/center cases excluded on source-only audit; no predictions viewed"
+  },
+  "initializer": {
+    "url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt",
+    "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "bytes": 5613764,
+    "architecture": "YOLO11n COCO, 2.6M parameters",
+    "license": "Ultralytics AGPL-3.0; offline research only, no commercial deployment approval",
+    "package": "ultralytics==8.3.228"
+  },
+  "detector_training": {
+    "seconds": 654.8890177909052,
+    "best": "outputs/ml/ball_m15/training/soccer11n/weights/best.pt",
+    "sha256": "e5adf3e90e0274c1f2bff396ec4df05e9f7d89289718e01d06887d91041f1551",
+    "initializer_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "dataset_sha256": "e680c711596687b9bc6151dc41447284efc0ee269ac1433e5c1c73cc1cf1a526",
+    "mps_allocated_bytes_snapshot": 53035776,
+    "peak_memory_measured": false
+  },
+  "selected_detector": {
+    "kind": "generic",
+    "checkpoint": "outputs/ml/ball_m15/yolo11n.pt",
+    "checkpoint_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "tile": 320,
+    "threshold": 0.65,
+    "metrics": {
+      "frames": 40,
+      "tp": 6,
+      "fp": 6,
+      "fn": 34,
+      "precision": 0.5,
+      "recall": 0.15,
+      "f1": 0.23076923076923075,
+      "false_positives_per_frame": 0.15,
+      "localization_median_px": 3.5108711843632423,
+      "localization_p90_px": 6.867090306486101,
+      "detected_gt_frame_coverage": 0.15,
+      "threshold": 0.65,
+      "iou_match_threshold": 0.25,
+      "strata": {
+        "small_under12px": {
+          "gt": 16,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "medium12_24px": {
+          "gt": 23,
+          "tp": 6,
+          "recall": 0.2608695652173913
+        },
+        "large_over24px": {
+          "gt": 1,
+          "tp": 0,
+          "recall": 0.0
+        }
+      },
+      "visibility_or_occlusion_gt_available": false,
+      "sharpness_strata_available": false
+    },
+    "inference_seconds": 11.779263874748722
+  },
+  "frozen_m14_validation_comparison": {
+    "kind": "m14",
+    "checkpoint": "outputs/ml/ball_m14/generic_fasterrcnn_mobilenet320.pth",
+    "checkpoint_sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+    "tile": 256,
+    "threshold": 0.5,
+    "metrics": {
+      "frames": 40,
+      "tp": 6,
+      "fp": 6,
+      "fn": 34,
+      "precision": 0.5,
+      "recall": 0.15,
+      "f1": 0.23076923076923075,
+      "false_positives_per_frame": 0.15,
+      "localization_median_px": 4.431881173522228,
+      "localization_p90_px": 6.232305842190923,
+      "detected_gt_frame_coverage": 0.15,
+      "threshold": 0.5,
+      "iou_match_threshold": 0.25,
+      "strata": {
+        "small_under12px": {
+          "gt": 16,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "medium12_24px": {
+          "gt": 23,
+          "tp": 6,
+          "recall": 0.2608695652173913
+        },
+        "large_over24px": {
+          "gt": 1,
+          "tp": 0,
+          "recall": 0.0
+        }
+      },
+      "visibility_or_occlusion_gt_available": false,
+      "sharpness_strata_available": false
+    },
+    "inference_seconds": 35.147986289230175
+  },
+  "selected_pipeline": {
+    "config": {
+      "minimum_visual": 0.65,
+      "prediction_seconds": 0.12,
+      "margin": 0.08,
+      "score_threshold": 0.5,
+      "association_kind": "logistic",
+      "association_model": {
+        "mean": [
+          0.1443074161216813,
+          15.208517136324733,
+          0.09392755150171661,
+          0.30218173664102255,
+          0.41099057315482895,
+          0.5711334651219495,
+          0.9560761346998536,
+          0.040000000000002076,
+          0.5573353348351677
+        ],
+        "scale": [
+          0.17301427009490936,
+          6.71075555188821,
+          0.690321094131184,
+          0.06263674619766221,
+          0.3313719402505045,
+          0.3740868261893503,
+          0.2049257410801262,
+          1.0,
+          0.2092295196789884
+        ],
+        "coef": [
+          0.04836682755212372,
+          -6.261215944688373,
+          0.6120449650771375,
+          1.7952635909101775,
+          -1.8053570110991504,
+          1.727296386927601,
+          0.4809834988959471,
+          1.4642754499719274e-14,
+          -0.8771043690383856
+        ],
+        "intercept": -14.569989420445893
+      },
+      "motion_mode": "velocity",
+      "motion_kind": "velocity",
+      "radius90_px": 14.320284451484985,
+      "ground_validation_passed": false,
+      "confidence_calibration": {
+        "score_knots": [
+          0.02000296115875244,
+          0.020113274455070496,
+          0.02012130245566368,
+          0.021496959030628204,
+          0.021501051262021065,
+          0.04138774052262306,
+          0.04139119014143944,
+          0.0491519533097744,
+          0.04930456727743149,
+          0.07117144763469696,
+          0.0713985487818718,
+          0.08557873219251633,
+          0.08566079288721085,
+          0.09081120789051056,
+          0.09084341675043106,
+          0.1229129433631897,
+          0.12293721735477448,
+          0.5168350338935852,
+          0.5178132653236389,
+          0.5461344718933105,
+          0.5520532131195068,
+          0.6014973521232605,
+          0.6029573678970337,
+          0.7465610504150391,
+          0.7563266754150391,
+          0.7796419858932495,
+          0.7884368896484375,
+          0.7903609275817871,
+          0.7930614948272705,
+          0.8528889417648315,
+          0.8615983128547668,
+          0.8796898722648621,
+          0.8812190890312195,
+          0.9140170216560364
+        ],
+        "probability_knots": [
+          0.0,
+          0.0,
+          0.00819672131147541,
+          0.00819672131147541,
+          0.008264462809917356,
+          0.008264462809917356,
+          0.0111731843575419,
+          0.0111731843575419,
+          0.012853470437017995,
+          0.012853470437017995,
+          0.015037593984962405,
+          0.015037593984962405,
+          0.022222222222222223,
+          0.022222222222222223,
+          0.026737967914438502,
+          0.026737967914438502,
+          0.027607361963190184,
+          0.027607361963190184,
+          0.0625,
+          0.0625,
+          0.07142857142857142,
+          0.07142857142857142,
+          0.1702127659574468,
+          0.1702127659574468,
+          0.4,
+          0.4,
+          0.5,
+          0.5,
+          0.5833333333333334,
+          0.5833333333333334,
+          0.8,
+          0.8,
+          1.0,
+          1.0
+        ],
+        "validation_brier_raw": 0.04678448215819541,
+        "validation_brier_calibrated": 0.020474144380039867,
+        "note": "in-sample VAL calibration diagnostic, prospective TEST Brier reported separately; low-threshold raw proposals, GT visibility unknown"
+      }
+    },
+    "metrics": {
+      "tp": 23,
+      "fp": 11,
+      "fn": 137,
+      "precision": 0.6764705882352942,
+      "recall": 0.14375,
+      "f1": 0.23711340206185566,
+      "predicted": 7,
+      "prediction_inconsistent": 4,
+      "selection_score": 0.23461340206185566
+    }
+  },
+  "verification_enabled": false,
+  "best_verifier_validation": {
+    "tp": 21,
+    "fp": 1,
+    "fn": 139,
+    "precision": 0.9545454545454546,
+    "recall": 0.13125,
+    "f1": 0.23076923076923078,
+    "predicted": 6,
+    "prediction_inconsistent": 2,
+    "selection_score": 0.22951923076923078
+  },
+  "local_search": {
+    "local_enabled": false,
+    "global_validation": {
+      "tp": 23,
+      "fp": 11,
+      "fn": 137,
+      "precision": 0.6764705882352942,
+      "recall": 0.14375,
+      "f1": 0.23711340206185566,
+      "predicted": 7,
+      "prediction_inconsistent": 4,
+      "selection_score": 0.23461340206185566
+    },
+    "local_validation": {
+      "frames": 160,
+      "counts": {
+        "LOST": 104,
+        "observed": 34,
+        "predicted": 7,
+        "metric_supported": 0,
+        "DETECTED": 21,
+        "observed_iou_matched": 22,
+        "observed_iou_unmatched": 12,
+        "observed_center_matched": 24,
+        "observed_center_unmatched": 10,
+        "TRACKED": 28,
+        "OCCLUDED": 3,
+        "prediction_gt_comparable": 7,
+        "prediction_gt_inconsistent": 4,
+        "PREDICTED": 4
+      },
+      "observed_coverage": 0.2125,
+      "predicted_coverage": 0.04375,
+      "accepted_iou_precision": 0.6470588235294118,
+      "accepted_center_consistency": 0.7058823529411765,
+      "accepted_center_wilson95": [
+        0.5383077411853625,
+        0.8316554739006805
+      ],
+      "prediction_inconsistency_rate": 0.5714285714285714,
+      "prediction_inconsistency_wilson95": [
+        0.2504542304090258,
+        0.8417830777373732
+      ],
+      "localization_median_px": 5.7003501419749005,
+      "localization_p90_px": 311.43847696214004,
+      "longest_predicted_continuation_seconds": 0.12,
+      "matched_track_fragmentations": 2,
+      "reacquisition_attempts_after_matched_gap": 4,
+      "reacquisition_correct_iou": 2,
+      "reacquisition_precision": 0.5,
+      "reacquisition_recall": null,
+      "metric_error_m": null,
+      "invalid_ground_acceptance_rate": null,
+      "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+    },
+    "local_selection_score": 0.2243041237113402,
+    "local_observed_f1": 0.2268041237113402,
+    "criterion": "strictly improve observed IoU F1 minus .1*inconsistent-predictions/frame over global verifier; no TEST tuning",
+    "pipeline_sha256": "ba5f30db13837212a80c11ffce2da322ff6f2d10b314b58df4a1138febd0be37",
+    "dataset_sha256": "e680c711596687b9bc6151dc41447284efc0ee269ac1433e5c1c73cc1cf1a526",
+    "test_seen": false
+  },
+  "motion_selection": {
+    "selected": "velocity",
+    "train_samples": 190,
+    "validation_samples": 119,
+    "training_seconds": 0.48349529097322375,
+    "checkpoint_sha256": "b32103a86c256aa755e6acff6046bbadd311498a221348d850ca91921a0a4545"
+  },
+  "test": {
+    "detectors": {
+      "m14": {
+        "frames": 200,
+        "tp": 73,
+        "fp": 22,
+        "fn": 127,
+        "precision": 0.7684210526315789,
+        "recall": 0.365,
+        "f1": 0.49491525423728805,
+        "false_positives_per_frame": 0.11,
+        "localization_median_px": 1.6549690245876845,
+        "localization_p90_px": 3.569423804192796,
+        "detected_gt_frame_coverage": 0.365,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 70,
+            "tp": 21,
+            "recall": 0.3
+          },
+          "medium12_24px": {
+            "gt": 129,
+            "tp": 52,
+            "recall": 0.40310077519379844
+          },
+          "large_over24px": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_strata_available": false
+      },
+      "m15": {
+        "frames": 200,
+        "tp": 48,
+        "fp": 16,
+        "fn": 152,
+        "precision": 0.75,
+        "recall": 0.24,
+        "f1": 0.36363636363636365,
+        "false_positives_per_frame": 0.08,
+        "localization_median_px": 1.5303244197011276,
+        "localization_p90_px": 3.26256280545927,
+        "detected_gt_frame_coverage": 0.24,
+        "threshold": 0.65,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 70,
+            "tp": 15,
+            "recall": 0.21428571428571427
+          },
+          "medium12_24px": {
+            "gt": 129,
+            "tp": 33,
+            "recall": 0.2558139534883721
+          },
+          "large_over24px": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_strata_available": false
+      }
+    },
+    "tracking_ablations": {
+      "m14_frozen": {
+        "frames": 200,
+        "counts": {
+          "LOST": 60,
+          "observed": 80,
+          "predicted": 52,
+          "metric_supported": 0,
+          "DETECTED": 13,
+          "observed_iou_matched": 66,
+          "observed_iou_unmatched": 14,
+          "observed_center_matched": 66,
+          "observed_center_unmatched": 14,
+          "TRACKED": 75,
+          "PREDICTED": 48,
+          "prediction_gt_comparable": 52,
+          "prediction_gt_inconsistent": 28,
+          "OCCLUDED": 4
+        },
+        "observed_coverage": 0.4,
+        "predicted_coverage": 0.26,
+        "accepted_iou_precision": 0.825,
+        "accepted_center_consistency": 0.825,
+        "accepted_center_wilson95": [
+          0.7274225612441251,
+          0.8927946101839012
+        ],
+        "prediction_inconsistency_rate": 0.5384615384615384,
+        "prediction_inconsistency_wilson95": [
+          0.405033783976834,
+          0.6665974013760211
+        ],
+        "localization_median_px": 2.0235125273742476,
+        "localization_p90_px": 662.8052269407433,
+        "longest_predicted_continuation_seconds": 0.32,
+        "matched_track_fragmentations": 7,
+        "reacquisition_attempts_after_matched_gap": 7,
+        "reacquisition_correct_iou": 7,
+        "reacquisition_precision": 1.0,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims.",
+        "tracking_seconds": 0.012712124967947602
+      },
+      "new_detector_only": {
+        "frames": 200,
+        "counts": {
+          "LOST": 139,
+          "observed": 58,
+          "predicted": 0,
+          "metric_supported": 0,
+          "DETECTED": 58,
+          "observed_iou_matched": 45,
+          "observed_iou_unmatched": 13,
+          "observed_center_matched": 45,
+          "observed_center_unmatched": 13,
+          "AMBIGUOUS": 3
+        },
+        "observed_coverage": 0.29,
+        "predicted_coverage": 0.0,
+        "accepted_iou_precision": 0.7758620689655172,
+        "accepted_center_consistency": 0.7758620689655172,
+        "accepted_center_wilson95": [
+          0.6533863695244156,
+          0.8640646666712842
+        ],
+        "prediction_inconsistency_rate": null,
+        "prediction_inconsistency_wilson95": null,
+        "localization_median_px": 1.847532287640845,
+        "localization_p90_px": 832.5009493216985,
+        "longest_predicted_continuation_seconds": 0,
+        "matched_track_fragmentations": 14,
+        "reacquisition_attempts_after_matched_gap": 23,
+        "reacquisition_correct_iou": 14,
+        "reacquisition_precision": 0.6086956521739131,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims.",
+        "tracking_seconds": 0.004422583035193384
+      },
+      "new_kalman": {
+        "frames": 200,
+        "counts": {
+          "LOST": 105,
+          "observed": 45,
+          "predicted": 43,
+          "metric_supported": 0,
+          "DETECTED": 9,
+          "observed_iou_matched": 45,
+          "observed_iou_unmatched": 0,
+          "observed_center_matched": 45,
+          "observed_center_unmatched": 0,
+          "TRACKED": 43,
+          "PREDICTED": 36,
+          "prediction_gt_comparable": 43,
+          "prediction_gt_inconsistent": 2,
+          "OCCLUDED": 7
+        },
+        "observed_coverage": 0.225,
+        "predicted_coverage": 0.215,
+        "accepted_iou_precision": 1.0,
+        "accepted_center_consistency": 1.0,
+        "accepted_center_wilson95": [
+          0.9213457380593594,
+          1.0000000000000002
+        ],
+        "prediction_inconsistency_rate": 0.046511627906976744,
+        "prediction_inconsistency_wilson95": [
+          0.012848990317319689,
+          0.15455775923863058
+        ],
+        "localization_median_px": 1.5239090807811535,
+        "localization_p90_px": 3.3326235125806356,
+        "longest_predicted_continuation_seconds": 0.32,
+        "matched_track_fragmentations": 14,
+        "reacquisition_attempts_after_matched_gap": 14,
+        "reacquisition_correct_iou": 14,
+        "reacquisition_precision": 1.0,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims.",
+        "tracking_seconds": 0.008861250011250377
+      },
+      "learned_motion": {
+        "frames": 200,
+        "counts": {
+          "LOST": 130,
+          "observed": 39,
+          "predicted": 15,
+          "metric_supported": 0,
+          "DETECTED": 22,
+          "observed_iou_matched": 37,
+          "observed_iou_unmatched": 2,
+          "observed_center_matched": 37,
+          "observed_center_unmatched": 2,
+          "TRACKED": 33,
+          "PREDICTED": 15,
+          "prediction_gt_comparable": 15,
+          "prediction_gt_inconsistent": 1
+        },
+        "observed_coverage": 0.195,
+        "predicted_coverage": 0.075,
+        "accepted_iou_precision": 0.9487179487179487,
+        "accepted_center_consistency": 0.9487179487179487,
+        "accepted_center_wilson95": [
+          0.8311406095436208,
+          0.9858223423536004
+        ],
+        "prediction_inconsistency_rate": 0.06666666666666667,
+        "prediction_inconsistency_wilson95": [
+          0.011866588606194856,
+          0.2981707755242399
+        ],
+        "localization_median_px": 1.5156929960833352,
+        "localization_p90_px": 2.7199296153488737,
+        "longest_predicted_continuation_seconds": 0.12,
+        "matched_track_fragmentations": 9,
+        "reacquisition_attempts_after_matched_gap": 11,
+        "reacquisition_correct_iou": 9,
+        "reacquisition_precision": 0.8181818181818182,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims.",
+        "tracking_seconds": 0.06739062501583248
+      },
+      "candidate_verification": {
+        "frames": 200,
+        "counts": {
+          "LOST": 154,
+          "observed": 28,
+          "predicted": 7,
+          "metric_supported": 0,
+          "DETECTED": 15,
+          "observed_iou_matched": 28,
+          "observed_iou_unmatched": 0,
+          "observed_center_matched": 28,
+          "observed_center_unmatched": 0,
+          "TRACKED": 24,
+          "PREDICTED": 7,
+          "prediction_gt_comparable": 7,
+          "prediction_gt_inconsistent": 0
+        },
+        "observed_coverage": 0.14,
+        "predicted_coverage": 0.035,
+        "accepted_iou_precision": 1.0,
+        "accepted_center_consistency": 1.0,
+        "accepted_center_wilson95": [
+          0.8793527963418923,
+          1.0
+        ],
+        "prediction_inconsistency_rate": 0.0,
+        "prediction_inconsistency_wilson95": [
+          0.0,
+          0.35433884297520657
+        ],
+        "localization_median_px": 1.354159676605045,
+        "localization_p90_px": 2.102235414761091,
+        "longest_predicted_continuation_seconds": 0.12,
+        "matched_track_fragmentations": 6,
+        "reacquisition_attempts_after_matched_gap": 6,
+        "reacquisition_correct_iou": 6,
+        "reacquisition_precision": 1.0,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims.",
+        "tracking_seconds": 0.12990958301816136
+      },
+      "motion_guided_local_search": {
+        "frames": 200,
+        "counts": {
+          "LOST": 130,
+          "observed": 40,
+          "predicted": 14,
+          "metric_supported": 0,
+          "DETECTED": 22,
+          "observed_iou_matched": 38,
+          "observed_iou_unmatched": 2,
+          "observed_center_matched": 38,
+          "observed_center_unmatched": 2,
+          "TRACKED": 34,
+          "PREDICTED": 14,
+          "prediction_gt_comparable": 14,
+          "prediction_gt_inconsistent": 0
+        },
+        "observed_coverage": 0.2,
+        "predicted_coverage": 0.07,
+        "accepted_iou_precision": 0.95,
+        "accepted_center_consistency": 0.95,
+        "accepted_center_wilson95": [
+          0.834958291820748,
+          0.9861796228538989
+        ],
+        "prediction_inconsistency_rate": 0.0,
+        "prediction_inconsistency_wilson95": [
+          0.0,
+          0.21531701192718142
+        ],
+        "localization_median_px": 1.42681830951708,
+        "localization_p90_px": 3.239284359902255,
+        "longest_predicted_continuation_seconds": 0.12,
+        "matched_track_fragmentations": 9,
+        "reacquisition_attempts_after_matched_gap": 11,
+        "reacquisition_correct_iou": 9,
+        "reacquisition_precision": 0.8181818181818182,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+      },
+      "complete_selected": {
+        "frames": 200,
+        "counts": {
+          "LOST": 130,
+          "observed": 39,
+          "predicted": 15,
+          "metric_supported": 0,
+          "DETECTED": 22,
+          "observed_iou_matched": 37,
+          "observed_iou_unmatched": 2,
+          "observed_center_matched": 37,
+          "observed_center_unmatched": 2,
+          "TRACKED": 33,
+          "PREDICTED": 15,
+          "prediction_gt_comparable": 15,
+          "prediction_gt_inconsistent": 0
+        },
+        "observed_coverage": 0.195,
+        "predicted_coverage": 0.075,
+        "accepted_iou_precision": 0.9487179487179487,
+        "accepted_center_consistency": 0.9487179487179487,
+        "accepted_center_wilson95": [
+          0.8311406095436208,
+          0.9858223423536004
+        ],
+        "prediction_inconsistency_rate": 0.0,
+        "prediction_inconsistency_wilson95": [
+          -1.3877787807814457e-17,
+          0.20388926630434784
+        ],
+        "localization_median_px": 1.5156929960833352,
+        "localization_p90_px": 2.7199296153488737,
+        "longest_predicted_continuation_seconds": 0.12,
+        "matched_track_fragmentations": 9,
+        "reacquisition_attempts_after_matched_gap": 11,
+        "reacquisition_correct_iou": 9,
+        "reacquisition_precision": 0.8181818181818182,
+        "reacquisition_recall": null,
+        "metric_error_m": null,
+        "invalid_ground_acceptance_rate": null,
+        "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+      }
+    },
+    "motion": {
+      "velocity": {
+        "samples": 166,
+        "horizons": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "mean_error_px": [
+          3.586383663089489,
+          9.642074486906491,
+          17.836071047528257,
+          40.11109609429841
+        ],
+        "median_error_px": [
+          2.4037008503093,
+          7.340905181847964,
+          12.90989858492559,
+          26.522023855396043
+        ],
+        "p90_error_px": [
+          6.361370221621788,
+          17.115861237091103,
+          30.56637134702808,
+          86.62051572216288
+        ],
+        "inside_validation_radius90_fraction": [
+          0.963855421686747,
+          0.9759036144578314,
+          0.9397590361445783,
+          0.9759036144578314
+        ],
+        "sudden_change_samples": 47,
+        "sudden_change_mean_error_px": [
+          5.018872100604439,
+          11.17252704434387,
+          18.480555599645456,
+          35.08171667079887
+        ]
+      },
+      "acceleration": {
+        "samples": 166,
+        "horizons": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "mean_error_px": [
+          4.167190587040829,
+          14.373195901484285,
+          32.072866162065715,
+          101.902176879856
+        ],
+        "median_error_px": [
+          2.61913512483674,
+          10.006038143741684,
+          20.652453788267195,
+          69.67166245586495
+        ],
+        "p90_error_px": [
+          8.088278771045719,
+          27.335521366231138,
+          70.48537172700901,
+          230.0687751356907
+        ],
+        "inside_validation_radius90_fraction": [
+          0.9457831325301205,
+          0.9578313253012049,
+          0.9457831325301205,
+          0.9457831325301205
+        ],
+        "sudden_change_samples": 47,
+        "sudden_change_mean_error_px": [
+          6.112144648038886,
+          16.7228607603183,
+          32.22848509581788,
+          88.90638746014044
+        ]
+      },
+      "gru": {
+        "samples": 166,
+        "horizons": [
+          1,
+          3,
+          5,
+          10
+        ],
+        "mean_error_px": [
+          5.867001152351165,
+          13.844333395038252,
+          22.903772585069817,
+          39.59898076766541
+        ],
+        "median_error_px": [
+          4.048832462923084,
+          6.828003121666893,
+          14.59087657119271,
+          27.60013236205492
+        ],
+        "p90_error_px": [
+          15.120514111978304,
+          44.81039548746415,
+          66.63365838862231,
+          91.19449044452065
+        ],
+        "inside_validation_radius90_fraction": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "sudden_change_samples": 47,
+        "sudden_change_mean_error_px": [
+          4.977847769334775,
+          10.705221480164711,
+          17.209319442735115,
+          31.56672258660783
+        ]
+      }
+    },
+    "manual_demo": {
+      "test_match": {
+        "m14": {
+          "frames": 9,
+          "tp": 7,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.7777777777777778,
+          "f1": 0.8750000000000001,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.6703544205169518,
+          "localization_p90_px": 2.684382043140633,
+          "detected_gt_frame_coverage": 0.7777777777777778,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 9,
+              "tp": 7,
+              "recall": 0.7777777777777778
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "m15": {
+          "frames": 9,
+          "tp": 5,
+          "fp": 0,
+          "fn": 4,
+          "precision": 1.0,
+          "recall": 0.5555555555555556,
+          "f1": 0.7142857142857143,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.2508213640200614,
+          "localization_p90_px": 1.875535599966759,
+          "detected_gt_frame_coverage": 0.5555555555555556,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "medium12_24px": {
+              "gt": 9,
+              "tp": 5,
+              "recall": 0.5555555555555556
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "scope": "single-annotator source-only boxes; uncertain frames excluded; no independent height/metric GT"
+      },
+      "team_goal": {
+        "m14": {
+          "frames": 8,
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": null,
+          "localization_p90_px": null,
+          "detected_gt_frame_coverage": 0.0,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 8,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "medium12_24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "m15": {
+          "frames": 8,
+          "tp": 1,
+          "fp": 2,
+          "fn": 7,
+          "precision": 0.3333333333333333,
+          "recall": 0.125,
+          "f1": 0.18181818181818182,
+          "false_positives_per_frame": 0.25,
+          "localization_median_px": 0.3483884072252644,
+          "localization_p90_px": 0.3483884072252644,
+          "detected_gt_frame_coverage": 0.125,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 8,
+              "tp": 1,
+              "recall": 0.125
+            },
+            "medium12_24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "scope": "single-annotator source-only boxes; uncertain frames excluded; no independent height/metric GT"
+      },
+      "southampton": {
+        "m14": {
+          "frames": 10,
+          "tp": 3,
+          "fp": 0,
+          "fn": 7,
+          "precision": 1.0,
+          "recall": 0.3,
+          "f1": 0.4615384615384615,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.1578224746545758,
+          "localization_p90_px": 1.597630126951211,
+          "detected_gt_frame_coverage": 0.3,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 7,
+              "tp": 1,
+              "recall": 0.14285714285714285
+            },
+            "medium12_24px": {
+              "gt": 3,
+              "tp": 2,
+              "recall": 0.6666666666666666
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "m15": {
+          "frames": 10,
+          "tp": 2,
+          "fp": 0,
+          "fn": 8,
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.1901965096061815,
+          "localization_p90_px": 1.6079864733408158,
+          "detected_gt_frame_coverage": 0.2,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 7,
+              "tp": 1,
+              "recall": 0.14285714285714285
+            },
+            "medium12_24px": {
+              "gt": 3,
+              "tp": 1,
+              "recall": 0.3333333333333333
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "scope": "single-annotator source-only boxes; uncertain frames excluded; no independent height/metric GT"
+      },
+      "all": {
+        "m14": {
+          "frames": 27,
+          "tp": 10,
+          "fp": 0,
+          "fn": 17,
+          "precision": 1.0,
+          "recall": 0.37037037037037035,
+          "f1": 0.5405405405405406,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.4968889516796637,
+          "localization_p90_px": 2.3687222191008,
+          "detected_gt_frame_coverage": 0.37037037037037035,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 15,
+              "tp": 1,
+              "recall": 0.06666666666666667
+            },
+            "medium12_24px": {
+              "gt": 12,
+              "tp": 9,
+              "recall": 0.75
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "m15": {
+          "frames": 27,
+          "tp": 8,
+          "fp": 2,
+          "fn": 19,
+          "precision": 0.8,
+          "recall": 0.2962962962962963,
+          "f1": 0.43243243243243246,
+          "false_positives_per_frame": 0.07407407407407407,
+          "localization_median_px": 1.1172628390076462,
+          "localization_p90_px": 1.8244971765236235,
+          "detected_gt_frame_coverage": 0.2962962962962963,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 15,
+              "tp": 2,
+              "recall": 0.13333333333333333
+            },
+            "medium12_24px": {
+              "gt": 12,
+              "tp": 6,
+              "recall": 0.5
+            },
+            "large_over24px": {
+              "gt": 0,
+              "tp": 0,
+              "recall": null
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_strata_available": false
+        },
+        "scope": "single-annotator source-only boxes; uncertain frames excluded; no independent height/metric GT"
+      }
+    },
+    "calibration_test": {
+      "raw_brier": 0.056361308645260996,
+      "calibrated_brier": 0.045177167632153716
+    },
+    "seconds": 301.1816659589531,
+    "test_samples": [
+      "SNMOT-159:401",
+      "SNMOT-159:402",
+      "SNMOT-159:403",
+      "SNMOT-159:404",
+      "SNMOT-159:405",
+      "SNMOT-159:406",
+      "SNMOT-159:407",
+      "SNMOT-159:408",
+      "SNMOT-159:409",
+      "SNMOT-159:410",
+      "SNMOT-159:411",
+      "SNMOT-159:412",
+      "SNMOT-159:413",
+      "SNMOT-159:414",
+      "SNMOT-159:415",
+      "SNMOT-159:416",
+      "SNMOT-159:417",
+      "SNMOT-159:418",
+      "SNMOT-159:419",
+      "SNMOT-159:420",
+      "SNMOT-159:421",
+      "SNMOT-159:422",
+      "SNMOT-159:423",
+      "SNMOT-159:424",
+      "SNMOT-159:425",
+      "SNMOT-159:426",
+      "SNMOT-159:427",
+      "SNMOT-159:428",
+      "SNMOT-159:429",
+      "SNMOT-159:430",
+      "SNMOT-159:431",
+      "SNMOT-159:432",
+      "SNMOT-159:433",
+      "SNMOT-159:434",
+      "SNMOT-159:435",
+      "SNMOT-159:436",
+      "SNMOT-159:437",
+      "SNMOT-159:438",
+      "SNMOT-159:439",
+      "SNMOT-159:440",
+      "SNMOT-159:441",
+      "SNMOT-159:442",
+      "SNMOT-159:443",
+      "SNMOT-159:444",
+      "SNMOT-159:445",
+      "SNMOT-159:446",
+      "SNMOT-159:447",
+      "SNMOT-159:448",
+      "SNMOT-159:449",
+      "SNMOT-159:450",
+      "SNMOT-159:451",
+      "SNMOT-159:452",
+      "SNMOT-159:453",
+      "SNMOT-159:454",
+      "SNMOT-159:455",
+      "SNMOT-159:456",
+      "SNMOT-159:457",
+      "SNMOT-159:458",
+      "SNMOT-159:459",
+      "SNMOT-159:460",
+      "SNMOT-159:461",
+      "SNMOT-159:462",
+      "SNMOT-159:463",
+      "SNMOT-159:464",
+      "SNMOT-159:465",
+      "SNMOT-159:466",
+      "SNMOT-159:467",
+      "SNMOT-159:468",
+      "SNMOT-159:469",
+      "SNMOT-159:470",
+      "SNMOT-159:471",
+      "SNMOT-159:472",
+      "SNMOT-159:473",
+      "SNMOT-159:474",
+      "SNMOT-159:475",
+      "SNMOT-159:476",
+      "SNMOT-159:477",
+      "SNMOT-159:478",
+      "SNMOT-159:479",
+      "SNMOT-159:480",
+      "SNMOT-159:481",
+      "SNMOT-159:482",
+      "SNMOT-159:483",
+      "SNMOT-159:484",
+      "SNMOT-159:485",
+      "SNMOT-159:486",
+      "SNMOT-159:487",
+      "SNMOT-159:488",
+      "SNMOT-159:489",
+      "SNMOT-159:490",
+      "SNMOT-159:491",
+      "SNMOT-159:492",
+      "SNMOT-159:493",
+      "SNMOT-159:494",
+      "SNMOT-159:495",
+      "SNMOT-159:496",
+      "SNMOT-159:497",
+      "SNMOT-159:498",
+      "SNMOT-159:499",
+      "SNMOT-159:500",
+      "SNMOT-160:401",
+      "SNMOT-160:402",
+      "SNMOT-160:403",
+      "SNMOT-160:404",
+      "SNMOT-160:405",
+      "SNMOT-160:406",
+      "SNMOT-160:407",
+      "SNMOT-160:408",
+      "SNMOT-160:409",
+      "SNMOT-160:410",
+      "SNMOT-160:411",
+      "SNMOT-160:412",
+      "SNMOT-160:413",
+      "SNMOT-160:414",
+      "SNMOT-160:415",
+      "SNMOT-160:416",
+      "SNMOT-160:417",
+      "SNMOT-160:418",
+      "SNMOT-160:419",
+      "SNMOT-160:420",
+      "SNMOT-160:421",
+      "SNMOT-160:422",
+      "SNMOT-160:423",
+      "SNMOT-160:424",
+      "SNMOT-160:425",
+      "SNMOT-160:426",
+      "SNMOT-160:427",
+      "SNMOT-160:428",
+      "SNMOT-160:429",
+      "SNMOT-160:430",
+      "SNMOT-160:431",
+      "SNMOT-160:432",
+      "SNMOT-160:433",
+      "SNMOT-160:434",
+      "SNMOT-160:435",
+      "SNMOT-160:436",
+      "SNMOT-160:437",
+      "SNMOT-160:438",
+      "SNMOT-160:439",
+      "SNMOT-160:440",
+      "SNMOT-160:441",
+      "SNMOT-160:442",
+      "SNMOT-160:443",
+      "SNMOT-160:444",
+      "SNMOT-160:445",
+      "SNMOT-160:446",
+      "SNMOT-160:447",
+      "SNMOT-160:448",
+      "SNMOT-160:449",
+      "SNMOT-160:450",
+      "SNMOT-160:451",
+      "SNMOT-160:452",
+      "SNMOT-160:453",
+      "SNMOT-160:454",
+      "SNMOT-160:455",
+      "SNMOT-160:456",
+      "SNMOT-160:457",
+      "SNMOT-160:458",
+      "SNMOT-160:459",
+      "SNMOT-160:460",
+      "SNMOT-160:461",
+      "SNMOT-160:462",
+      "SNMOT-160:463",
+      "SNMOT-160:464",
+      "SNMOT-160:465",
+      "SNMOT-160:466",
+      "SNMOT-160:467",
+      "SNMOT-160:468",
+      "SNMOT-160:469",
+      "SNMOT-160:470",
+      "SNMOT-160:471",
+      "SNMOT-160:472",
+      "SNMOT-160:473",
+      "SNMOT-160:474",
+      "SNMOT-160:475",
+      "SNMOT-160:476",
+      "SNMOT-160:477",
+      "SNMOT-160:478",
+      "SNMOT-160:479",
+      "SNMOT-160:480",
+      "SNMOT-160:481",
+      "SNMOT-160:482",
+      "SNMOT-160:483",
+      "SNMOT-160:484",
+      "SNMOT-160:485",
+      "SNMOT-160:486",
+      "SNMOT-160:487",
+      "SNMOT-160:488",
+      "SNMOT-160:489",
+      "SNMOT-160:490",
+      "SNMOT-160:491",
+      "SNMOT-160:492",
+      "SNMOT-160:493",
+      "SNMOT-160:494",
+      "SNMOT-160:495",
+      "SNMOT-160:496",
+      "SNMOT-160:497",
+      "SNMOT-160:498",
+      "SNMOT-160:499",
+      "SNMOT-160:500"
+    ],
+    "selected_on_test": false,
+    "metric_gt_available": false,
+    "metric_reconstruction_independently_validated": false
+  },
+  "real_videos": {
+    "test_match": {
+      "DETECTED": 83,
+      "directly_observed": 163,
+      "predicted_only": 51,
+      "metric_supported": 0,
+      "METRIC_UNAVAILABLE": 475,
+      "LOST": 269,
+      "HEIGHT_UNKNOWN": 66,
+      "TRACKED": 137,
+      "PREDICTED": 25,
+      "OCCLUDED": 26,
+      "AMBIGUOUS": 1,
+      "frames": 541,
+      "observed_coverage": 0.30129390018484287,
+      "predicted_only_coverage": 0.09426987060998152,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds": 84.41301349527203,
+      "search_and_tracking_wall_seconds": 87.86519574990962,
+      "end_to_end_seconds": 89.63841374998447,
+      "fps_end_to_end": 6.03535891999309,
+      "cached_inference": false,
+      "independent_ball_accuracy": null,
+      "metric_error_m": null,
+      "independent_ground_validated": false,
+      "m14_observed_frames": 214,
+      "m14_predicted_frames": 199
+    },
+    "team_goal": {
+      "LOST": 361,
+      "directly_observed": 60,
+      "predicted_only": 18,
+      "metric_supported": 0,
+      "METRIC_UNAVAILABLE": 441,
+      "DETECTED": 88,
+      "HEIGHT_UNKNOWN": 59,
+      "TRACKED": 32,
+      "PREDICTED": 15,
+      "AMBIGUOUS": 1,
+      "OCCLUDED": 3,
+      "frames": 500,
+      "observed_coverage": 0.12,
+      "predicted_only_coverage": 0.036,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds": 33.89849504432641,
+      "search_and_tracking_wall_seconds": 36.65321445907466,
+      "end_to_end_seconds": 38.495988375041634,
+      "fps_end_to_end": 12.988366349470544,
+      "cached_inference": false,
+      "independent_ball_accuracy": null,
+      "metric_error_m": null,
+      "independent_ground_validated": false,
+      "m14_observed_frames": 39,
+      "m14_predicted_frames": 98
+    },
+    "southampton": {
+      "DETECTED": 45,
+      "directly_observed": 134,
+      "predicted_only": 44,
+      "metric_supported": 0,
+      "METRIC_UNAVAILABLE": 532,
+      "HEIGHT_UNKNOWN": 128,
+      "TRACKED": 121,
+      "PREDICTED": 26,
+      "OCCLUDED": 18,
+      "LOST": 450,
+      "frames": 660,
+      "observed_coverage": 0.20303030303030303,
+      "predicted_only_coverage": 0.06666666666666667,
+      "supported_metric_coverage": 0.0,
+      "detector_seconds": 97.6512251246022,
+      "search_and_tracking_wall_seconds": 101.71569587499835,
+      "end_to_end_seconds": 103.61701962503139,
+      "fps_end_to_end": 6.369609957788825,
+      "cached_inference": false,
+      "independent_ball_accuracy": null,
+      "metric_error_m": null,
+      "independent_ground_validated": false,
+      "m14_observed_frames": 163,
+      "m14_predicted_frames": 181
+    }
+  },
+  "sparse_demo_sidecars": {
+    "results": {
+      "test_match": {
+        "m14": {
+          "counts": {
+            "frames": 9,
+            "observed": 5,
+            "predicted": 2,
+            "predicted_gt_inconsistent": 1,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "observed_iou_correct": 5,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 5
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.5555555555555556,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.5655085052479191,
+            1.0000000000000002
+          ],
+          "prediction_inconsistency": 0.5,
+          "median_observed_center_error_px": 1.2224417185150291,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "test_match",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "test_match",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "test_match",
+              "tracking_status": "DETECTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        },
+        "m15": {
+          "counts": {
+            "frames": 9,
+            "observed": 4,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "observed_iou_correct": 4,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 4,
+            "predicted": 1,
+            "predicted_gt_inconsistent": 0
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.4444444444444444,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.5100999795960008,
+            1.0
+          ],
+          "prediction_inconsistency": 0.0,
+          "median_observed_center_error_px": 1.1941058831831448,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "test_match",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "test_match",
+              "tracking_status": "DETECTED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        }
+      },
+      "team_goal": {
+        "m14": {
+          "counts": {
+            "frames": 8,
+            "observed": 0,
+            "predicted": 4,
+            "predicted_gt_inconsistent": 3,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0
+          },
+          "observed_precision_iou": null,
+          "observed_visible_recall_iou": 0.0,
+          "observed_center_consistency": null,
+          "observed_center_wilson95": null,
+          "prediction_inconsistency": 0.75,
+          "median_observed_center_error_px": null,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "team_goal",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 340,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            }
+          ]
+        },
+        "m15": {
+          "counts": {
+            "frames": 8,
+            "observed": 0,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0
+          },
+          "observed_precision_iou": null,
+          "observed_visible_recall_iou": 0.0,
+          "observed_center_consistency": null,
+          "observed_center_wilson95": null,
+          "prediction_inconsistency": null,
+          "median_observed_center_error_px": null,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "team_goal",
+              "tracking_status": "DETECTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 340,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            }
+          ]
+        }
+      },
+      "southampton": {
+        "m14": {
+          "counts": {
+            "frames": 10,
+            "observed": 3,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "predicted": 2,
+            "predicted_gt_inconsistent": 0,
+            "observed_iou_correct": 3,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 3
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.3,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.43849391955098227,
+            1.0
+          ],
+          "prediction_inconsistency": 0.0,
+          "median_observed_center_error_px": 1.1339777103498365,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 180,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 540,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 580,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 620,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        },
+        "m15": {
+          "counts": {
+            "frames": 10,
+            "observed": 2,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "observed_iou_correct": 2,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 2,
+            "predicted": 1,
+            "predicted_gt_inconsistent": 0
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.2,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.34237195288961925,
+            1.0
+          ],
+          "prediction_inconsistency": 0.0,
+          "median_observed_center_error_px": 1.7337882793799306,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 180,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 540,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 580,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 620,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        }
+      },
+      "all": {
+        "m14": {
+          "counts": {
+            "frames": 27,
+            "observed": 8,
+            "predicted": 8,
+            "predicted_gt_inconsistent": 4,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "observed_iou_correct": 8,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 8
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.2962962962962963,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.6755843804891231,
+            1.0
+          ],
+          "prediction_inconsistency": 0.5,
+          "median_observed_center_error_px": 1.2224417185150291,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "test_match",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "test_match",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "test_match",
+              "tracking_status": "DETECTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 20,
+              "recording_id": "team_goal",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 340,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "team_goal",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 20,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 180,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 540,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 580,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 620,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        },
+        "m15": {
+          "counts": {
+            "frames": 27,
+            "observed": 6,
+            "metric_supported": 0,
+            "airborne_metric_acceptance": 0,
+            "observed_iou_correct": 6,
+            "observed_iou_incorrect": 0,
+            "observed_center_correct": 6,
+            "predicted": 2,
+            "predicted_gt_inconsistent": 0
+          },
+          "observed_precision_iou": 1.0,
+          "observed_visible_recall_iou": 0.2222222222222222,
+          "observed_center_consistency": 1.0,
+          "observed_center_wilson95": [
+            0.6096569663469354,
+            0.9999999999999999
+          ],
+          "prediction_inconsistency": 0.0,
+          "median_observed_center_error_px": 1.1941058831831448,
+          "metric_error_m": null,
+          "frames": [
+            {
+              "frame": 20,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "test_match",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "test_match",
+              "tracking_status": "OCCLUDED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "test_match",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "test_match",
+              "tracking_status": "DETECTED",
+              "observed": true,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            },
+            {
+              "frame": 20,
+              "recording_id": "team_goal",
+              "tracking_status": "DETECTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 60,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 260,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 300,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 340,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 380,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "team_goal",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 20,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 140,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 180,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 220,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 420,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 460,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 500,
+              "recording_id": "southampton",
+              "tracking_status": "PREDICTED",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 540,
+              "recording_id": "southampton",
+              "tracking_status": "TRACKED",
+              "observed": true,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 580,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "UNKNOWN",
+              "metric": null
+            },
+            {
+              "frame": 620,
+              "recording_id": "southampton",
+              "tracking_status": "LOST",
+              "observed": false,
+              "source_only_height_label": "AIRBORNE",
+              "metric": null
+            }
+          ]
+        }
+      }
+    },
+    "scope": "27 source-only manually/color-assisted visible boxes, 14 uncertain frames excluded. Single Codex annotator, not external adjudication; no surveyed ground truth. Exact full-video sidecar clocks. Sparse sample cannot measure true occlusion/reacquisition recall or dense tracking accuracy."
+  },
+  "ground_audit": {
+    "test_match": {
+      "observed": 214,
+      "accepted_m8_camera": 100,
+      "supported_plane": 92,
+      "near_foot": 0,
+      "physical_radius_compatible": 91,
+      "camera_uncertainty_under2_5": 100,
+      "all_three_contact_and_camera": 0,
+      "longest_consecutive_near_foot_observations": 0,
+      "explanation": "M14 needs repeated tiny foot-contact tolerance plus supported camera and uncertainty <=2.5m; sparse/mistaken observations and broad player boxes do not establish contact. Image apparent diameter alone does not certify zero height."
+    },
+    "team_goal": {
+      "observed": 39,
+      "accepted_m8_camera": 34,
+      "supported_plane": 34,
+      "near_foot": 0,
+      "physical_radius_compatible": 16,
+      "camera_uncertainty_under2_5": 31,
+      "all_three_contact_and_camera": 0,
+      "longest_consecutive_near_foot_observations": 0,
+      "explanation": "M14 needs repeated tiny foot-contact tolerance plus supported camera and uncertainty <=2.5m; sparse/mistaken observations and broad player boxes do not establish contact. Image apparent diameter alone does not certify zero height."
+    },
+    "southampton": {
+      "observed": 163,
+      "accepted_m8_camera": 144,
+      "supported_plane": 143,
+      "near_foot": 0,
+      "physical_radius_compatible": 142,
+      "camera_uncertainty_under2_5": 98,
+      "all_three_contact_and_camera": 0,
+      "longest_consecutive_near_foot_observations": 0,
+      "explanation": "M14 needs repeated tiny foot-contact tolerance plus supported camera and uncertainty <=2.5m; sparse/mistaken observations and broad player boxes do not establish contact. Image apparent diameter alone does not certify zero height."
+    }
+  },
+  "preservation": {
+    "test_match": {
+      "all_frames_compared": 541,
+      "old_fields_identical": true,
+      "m8_accepted_camera_frames": 269,
+      "camera_model": "m8",
+      "player_model": "m9",
+      "ball_model": "m15"
+    },
+    "team_goal": {
+      "all_frames_compared": 500,
+      "old_fields_identical": true,
+      "m8_accepted_camera_frames": 456,
+      "camera_model": "m8",
+      "player_model": "m9",
+      "ball_model": "m15"
+    },
+    "southampton": {
+      "all_frames_compared": 660,
+      "old_fields_identical": true,
+      "m8_accepted_camera_frames": 600,
+      "camera_model": "m8",
+      "player_model": "m9",
+      "ball_model": "m15"
+    }
+  },
+  "camera_prediction_diagnostic": {
+    "validation": {
+      "samples": 119,
+      "accepted_past_camera_chain_samples": 102,
+      "horizons": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "mean_error_px": [
+        8.178181440245217,
+        17.252229478203354,
+        29.52204754261254,
+        76.03662663264907
+      ],
+      "median_error_px": [
+        3.867626409334641,
+        8.342155001209534,
+        15.781110400348252,
+        48.41449674026887
+      ],
+      "p90_error_px": [
+        14.605977400967761,
+        38.45422095869301,
+        51.35729905420376,
+        183.02097880270108
+      ],
+      "protocol": "Past-only accepted M8 image warps align history, constant last warp extrapolated to future; unsupported chains fall back to CV. No future images/GT used for forecasting. Diagnostic comparison, no post-TEST selection."
+    },
+    "test": {
+      "samples": 166,
+      "accepted_past_camera_chain_samples": 94,
+      "horizons": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "mean_error_px": [
+        3.623756109067139,
+        9.6771519433985,
+        17.96155226028258,
+        40.91407512097927
+      ],
+      "median_error_px": [
+        2.5280914537385617,
+        7.352239596653222,
+        13.458223986221915,
+        26.281703737260656
+      ],
+      "p90_error_px": [
+        6.254201975096089,
+        17.21055354834308,
+        32.720864950813365,
+        87.07424217475406
+      ],
+      "protocol": "Past-only accepted M8 image warps align history, constant last warp extrapolated to future; unsupported chains fall back to CV. No future images/GT used for forecasting. Diagnostic comparison, no post-TEST selection."
+    }
+  },
+  "motion_region_sizes": {
+    "velocity": {
+      "mean_radius90_px": [
+        14.320284451484941,
+        37.78017458405248,
+        49.754781691978735,
+        184.72503027180213
+      ],
+      "p90_radius90_px": [
+        14.320284451484985,
+        37.7801745840525,
+        49.75478169197884,
+        184.72503027180215
+      ]
+    },
+    "acceleration": {
+      "mean_radius90_px": [
+        16.141340331575055,
+        52.51323862316915,
+        109.0734208315957,
+        336.2713920312838
+      ],
+      "p90_radius90_px": [
+        16.141340331575016,
+        52.51323862316935,
+        109.07342083159614,
+        336.2713920312849
+      ]
+    },
+    "gru": {
+      "mean_radius90_px": [
+        88.65361559012928,
+        654.5666044149185,
+        2311.032282170124,
+        8923.23057604063
+      ],
+      "p90_radius90_px": [
+        230.09335254851328,
+        1704.9043549608948,
+        6201.279456620981,
+        23331.937633843005
+      ]
+    }
+  },
+  "live": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 10,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 13
+      }
+    },
+    "recordings": {
+      "status": 200,
+      "body": {
+        "recordings": [
+          {
+            "recording_id": "117092_clip",
+            "match_id": "117092",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117092_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "117093_clip",
+            "match_id": "117093",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117093_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118575_clip",
+            "match_id": "118575",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118575_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118576_clip",
+            "match_id": "118576",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118576_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118577_clip",
+            "match_id": "118577",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118577_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118578_clip",
+            "match_id": "118578",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118578_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128057_clip",
+            "match_id": "128057",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128057_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128058_clip",
+            "match_id": "128058",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128058_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132831_clip",
+            "match_id": "132831",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132831_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132877_clip",
+            "match_id": "132877",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132877_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "test_match",
+            "match_id": "test_match",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/test_match/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "team_goal",
+            "match_id": "team_goal",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/team_goal/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "southampton",
+            "match_id": "southampton",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/southampton/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          }
+        ]
+      }
+    },
+    "test_match": {
+      "m14": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m14",
+        "frames": 541
+      },
+      "m15": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m15",
+        "frames": 541
+      }
+    },
+    "team_goal": {
+      "m14": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m14",
+        "frames": 500
+      },
+      "m15": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m15",
+        "frames": 500
+      }
+    },
+    "southampton": {
+      "m14": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m14",
+        "frames": 660
+      },
+      "m15": {
+        "status": 200,
+        "camera": "m8",
+        "player": "m9",
+        "ball": "m15",
+        "frames": 660
+      }
+    },
+    "azure_view": {
+      "status": 200
+    },
+    "azure_range": {
+      "status": 206,
+      "bytes": 1024
+    },
+    "ask": {
+      "status": 200,
+      "answer_status": "ok",
+      "evidence_rows": 6
+    },
+    "cv_ask": {
+      "status": 503,
+      "grounding_still_unavailable": true
+    }
+  },
+  "limitations": [
+    "Original organizer ball GT lacks independent visibility/height/metric labels; manual demo audit is source-only Codex annotation, not external adjudication.",
+    "Detection evaluator inherits an unavailable-sharpness default bucket: blur strata are NOT measured; do not interpret that bucket as blur truth.",
+    "Tracking center consistency uses12px, distinct from detector IoU.25. Adjacent samples are correlated.",
+    "No reliable learned ground classifier, surveyed metric references or predicted pitch coordinates; supported metric frames0.",
+    "No learned discrete motion-state classifier; image velocity/direction-change diagnostics only.",
+    "No demonstration of improved overall detection; lower predicted-error rate comes with less observed/predicted coverage."
+  ],
+  "verification": {
+    "backend_run": 780,
+    "backend_passed": 779,
+    "expected_skip": 1,
+    "new_m15_tests": 37,
+    "frontend_passed": 102,
+    "production_build": "passed",
+    "chrome_application_suites": 11,
+    "m14_ball_regression_suites": 1
+  }
+}

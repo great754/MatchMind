@@ -1,4 +1,5 @@
 """Read-only service. Paths come from a trusted startup registry, never requests."""
+import copy
 import hmac
 import json
 import os
@@ -69,11 +70,15 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             available=bool(key.endswith('_clip') and match and media_store.available(match))
             status.update(media_available=available,media_url=f'/matches/{key}/video.mp4' if available else None)
             if available:media_ids[key]=match
+    from .ball import read_ball_registry
+    ball_registry=read_ball_registry(Path('configs/serving/cv_ball.json'))
+    ball_m15_registry=read_ball_registry(Path('configs/serving/cv_ball_m15.json'))
     cv_reviews={}
     for key,directory in (cv_registry or {}).items():
         from .cv import CVReview
         try:
             cv_reviews[key]=CVReview(directory)
+            if key in ball_registry:cv_reviews[key].attach_ball(ball_registry[key])
             if cv_reviews[key].manifest['recording_id']!=key:raise ValueError('CV registry identity mismatch')
             if key in loaded:
                 summary=loaded[key].summary;metadata=cv_reviews[key].manifest
@@ -91,6 +96,11 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             source='cv_experimental',artifact_ready=False,media_available=key in cv_reviews,
             media_url=f'/matches/{key}/video.mp4' if key in cv_reviews else None,
             diagnostic=None if key in cv_reviews else 'cv_review_unavailable')
+    cv_m15_reviews={}
+    for key,directory in ball_m15_registry.items():
+        if key in cv_reviews:
+            alternative=copy.copy(cv_reviews[key]);alternative.attach_ball(directory)
+            if alternative.ball_review is not None and alternative.metadata()['ball_model_version']=='m15':cv_m15_reviews[key]=alternative
     for key,status in statuses.items():
         cv=cv_reviews.get(key)
         status.setdefault('source','soccertrack_structured')
@@ -139,14 +149,18 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return dict(recordings=list(statuses.values()))
 
     @app.get('/matches/{match_id}/cv',dependencies=secured)
-    def cv_metadata(match_id:str):
+    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        return cv_reviews[match_id].metadata()
+        review=cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if review is None:raise HTTPException(503,'M15 experimental ball review unavailable or invalid')
+        return review.metadata()|{'ball_pipeline_versions':['m14','m15'] if match_id in cv_m15_reviews else ['m14']}
 
     @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
-    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        return cv_reviews[match_id].frame(timestamp)
+        review=cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if review is None:raise HTTPException(503,'M15 experimental ball review unavailable or invalid')
+        return review.frame(timestamp)
 
     @app.get('/matches/{match_id}/view',response_model=Review,dependencies=secured)
     def match_view(match_id:str):

@@ -1,0 +1,5 @@
+{
+  "test_match": "outputs/world_model/ball_m15/test_match",
+  "team_goal": "outputs/world_model/ball_m15/team_goal",
+  "southampton": "outputs/world_model/ball_m15/southampton"
+}

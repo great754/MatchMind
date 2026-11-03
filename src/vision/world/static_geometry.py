@@ -28,7 +28,7 @@ def line_measurements(before,after,h,width,height,scale=1.):
     return result
 
 
-def measure(previous,current,before_groups=None,after_groups=None,width=None,height=None):
+def measure(previous,current,before_groups=None,after_groups=None,width=None,height=None,interval_frames=1):
     before,mask,scale=previous;after,current_mask,next_scale=current
     result={'accepted':False,'reason':'INSUFFICIENT_FIELD_FEATURES','matches':0,'scale_to_source':1/scale,'vectors':[],'lines':[]}
     if before.shape!=after.shape or scale!=next_scale:return result
@@ -40,7 +40,7 @@ def measure(previous,current,before_groups=None,after_groups=None,width=None,hei
     if back is None:return result
     fb=np.linalg.norm(back[:,0]-pts[:,0],axis=1);xy=np.round(nxt[:,0]).astype(int);inside=(xy[:,0]>=0)&(xy[:,1]>=0)&(xy[:,0]<after.shape[1])&(xy[:,1]<after.shape[0]);supported=np.zeros(len(pts),bool);supported[inside]=current_mask[xy[inside,1],xy[inside,0]]>0
     good=(status[:,0]>0)&(reverse[:,0]>0)&(fb<1)&supported;a=pts[good,0];b=nxt[good,0]
-    measured=validate_motion(a,b,previous,current);result.update(measured)
+    measured=validate_motion(a,b,previous,current,interval_frames=interval_frames);result.update(measured)
     if len(a):result['lk_forward_backward_p90_small_px']=float(np.quantile(fb[good],.9))
     if 'homography' in result:
         h=np.array(result['homography']);pred=cv2.perspectiveTransform((a/scale)[None].astype(float),h)[0];errors=np.linalg.norm(pred-b/scale,axis=1)*scale
@@ -63,3 +63,56 @@ def with_lines(motion,before_groups,after_groups,width,height):
     count=sum(l['accepted'] for l in result['lines']);result['tracked_line_count']=count;result['top_touchline_tracked']=any(l['kind']=='Side line top' and l['accepted'] for l in result['lines'])
     if len(result['lines'])>=2 and count<len(result['lines'])/2:result.update(accepted=False,reason='STATIC_LINES_CONTRADICT_MOTION')
     return result
+
+
+def tracked_line_intersections(lines):
+    """Derived from line fits; never counted as independent motion evidence."""
+    result=[]
+    def intersect(a,b):
+        a,b=np.asarray(a,float),np.asarray(b,float);u=a[1]-a[0];v=b[1]-b[0];d=b[0]-a[0];cross=lambda p,q:p[0]*q[1]-p[1]*q[0];den=cross(u,v)
+        if abs(den)/max(1,np.linalg.norm(u)*np.linalg.norm(v))<.1:return None
+        t,r=cross(d,v)/den,cross(d,u)/den
+        if not -.1<=t<=1.1 or not -.1<=r<=1.1:return None
+        return a[0]+t*u
+    for i,a in enumerate(lines):
+        for b in lines[i+1:]:
+            previous=intersect(a['previous'],b['previous']);current=intersect(a['current'],b['current'])
+            if previous is not None and current is not None:result.append({'features':[a['kind'],b['kind']],'previous':previous.tolist(),'current':current.tolist(),'delta_source_px':(current-previous).tolist(),'source':'derived intersection of observed line fits; correlated with line evidence'})
+    return result
+
+
+def semantic_line_migrations(previous,current,motion,width,height,scale):
+    """Detect measured pixels changing *named line* class across adjacent images.
+
+    This is semantic ambiguity evidence, not a new world constraint. Require 70%
+    of a current line to match a differently named prior line within 2 working
+    pixels. Never relabel pixels, and never use this for absolute acquisition.
+    """
+    from scipy.spatial import cKDTree
+    if not motion.get('accepted'):return {}
+    geometry=PitchGeometry();h=np.array(motion['homography']);result={}
+    for name,raw in current.items():
+        if name not in geometry.segments:continue
+        points=np.asarray(raw)*[width,height];matches=[]
+        for old,old_raw in previous.items():
+            if old not in geometry.segments or old==name:continue
+            predicted=cv2.perspectiveTransform((np.asarray(old_raw)*[width,height])[None].astype(float),h)[0]
+            distances,_=cKDTree(predicted*scale).query(points*scale);fraction=float(np.mean(distances<=2))
+            if fraction>=.7:matches.append((fraction,old))
+        if matches:
+            fraction,old=max(matches);result[name]={'previous_name':old,'matched_fraction':fraction,'reason':'MEASURED_LINE_PIXELS_CHANGED_SEMANTIC_NAME','independent_evidence':False}
+    return result
+
+
+def pitch_interior_field(field,groups,width,height):
+    """Exclude boards/stands beyond an observed far touchline before tracking.
+
+    The grass-supported half-plane is image evidence, not a guessed camera pose.
+    Named touchline measurements remain available separately from texture tracks.
+    """
+    if 'Side line top' not in groups:return field
+    gray,mask,scale=field;points=np.asarray(groups['Side line top'])*[width*scale,height*scale]
+    vx,vy,x,y=cv2.fitLine(points.astype(np.float32),cv2.DIST_HUBER,0,.01,.01).ravel();line=np.array([-vy,vx,vy*x-vx*y]);dist=np.column_stack([points,np.ones(len(points))])@line
+    if np.quantile(np.abs(dist),.9)>4:return field
+    yy,xx=np.indices(mask.shape);signed=line[0]*xx+line[1]*yy+line[2];positive=np.count_nonzero((signed>2)&(mask>0));negative=np.count_nonzero((signed<-2)&(mask>0));side=1 if positive>=negative else -1
+    return gray,np.where(signed*side>=2,mask,0).astype(np.uint8),scale

@@ -1,0 +1,50 @@
+{
+  "version": "soccer-reid-v2-m13",
+  "seed": 20261104,
+  "epochs": 6,
+  "steps_per_epoch": 100,
+  "batch_identities": 8,
+  "observations_per_identity": 4,
+  "optimizer": "AdamW",
+  "lr": 0.0003,
+  "weight_decay": 0.0005,
+  "gradient_clip": 5,
+  "loss": "CE + same-team-prioritized batch-hard triplet margin0.3; optional0.2 supervised contrastive temperature0.1",
+  "trainable": "conv4,conv5,fc + new identity head; earlier layers/BN frozen",
+  "augmentation": "moderate illumination/saturation, blur, down-up resolution, flip, partial occlusion, mild scale padding; head masked",
+  "selection": "fresh broadcast VAL0.5same-team crop mAP+0.5weighted tracklet mAP",
+  "patience": 2,
+  "variants": [
+    {
+      "name": "old_data_triplet",
+      "data": "old",
+      "width": "x0_25",
+      "supcon": false
+    },
+    {
+      "name": "expanded_triplet",
+      "data": "expanded",
+      "width": "x0_25",
+      "supcon": false
+    },
+    {
+      "name": "expanded_supcon",
+      "data": "expanded",
+      "width": "x0_25",
+      "supcon": true
+    },
+    {
+      "name": "expanded_x1_supcon",
+      "data": "expanded",
+      "width": "x1_0",
+      "supcon": true
+    }
+  ],
+  "pool_epochs": 8,
+  "pool_steps": 40,
+  "pool_lr": 0.0001,
+  "threshold": "visual0.82 fixed descriptive; separate validation-only precision/recall operating point; no TEST calibration",
+  "test_policy": "Only new SN_game9 TEST, once after all model/pooling selections. Historical M10/M11 TEST not used for selection.",
+  "primary_beat": "same-team crop mAP and selected-pool tracklet mAP each >=M10+0.03, crop Rank1 nonregression; no automatic production activation",
+  "supervision_limit": "original sequence GT; source match/team+numeric alias exclusion, not an independently verified worldwide player registry"
+}

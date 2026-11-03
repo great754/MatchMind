@@ -1,0 +1,8 @@
+# Optional offline M11 experiment only; never required by API/frontend startup.
+# Install into an isolated CV runtime after requirements-cv.txt and backend requirements.
+torch==2.14.1
+torchvision==0.29.1
+timm==1.0.22
+scikit-learn==1.9.1
+matplotlib==3.10.8
+huggingface-hub==2.4.0

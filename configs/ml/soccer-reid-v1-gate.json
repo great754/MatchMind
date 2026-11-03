@@ -1,0 +1,12 @@
+{
+  "version": "soccer-reid-integration-gate-v1",
+  "declared_before_test_evaluation": true,
+  "same_team_rank1_gain": 0.03,
+  "same_team_map_gain": 0.03,
+  "same_team_quality_weighted_tracklet_map_gain": 0.03,
+  "overall_map_max_regression": 0.005,
+  "required_comparators": ["generic_m9_body", "generic_validation_selected_crop"],
+  "model_selection": "validation only; no threshold changes based on test results",
+  "world_model_safety": "No duplicate or impossible accepted links; existing physical/global gates must remain unchanged",
+  "learned_candidate_scorer": "not part of v1 experiment"
+}

@@ -23,7 +23,12 @@ class CVReview:
                 row=WorldState.model_validate_json(f.readline())
                 if row.frame!=i or row.recording_id!=m['recording_id'] or abs(row.timestamp-i/m['fps'])>1e-6:raise ValueError('CV clock/recording mismatch')
             if f.read(1):raise ValueError('Unindexed CV frames')
+        self.ball_review=None;self.ball_diagnostic=None
         self.data_stamp=self.data.stat().st_mtime_ns;self.video_stamp=self.video.stat().st_mtime_ns
+    def attach_ball(self,directory):
+        from .ball import BallReview
+        try:self.ball_review=BallReview(directory,self.manifest);self.ball_diagnostic=None
+        except (ValueError,OSError,KeyError,TypeError):self.ball_review=None;self.ball_diagnostic='Ball layer unavailable or invalid; M9 review remains available'
     def frame(self,timestamp):
         try:
             changed=self.data.stat().st_mtime_ns!=self.data_stamp or self.video.stat().st_mtime_ns!=self.video_stamp
@@ -32,6 +37,12 @@ class CVReview:
         if changed:raise HTTPException(503,'CV source changed; restart and revalidate')
         m=self.manifest;i=min(m['frames']-1,max(0,math.floor(timestamp*m['fps']+1e-8)))
         with self.data.open('rb') as f:
-            f.seek(m['frame_offsets'][i]);return WorldState.model_validate_json(f.readline())
+            f.seek(m['frame_offsets'][i]);row=WorldState.model_validate_json(f.readline())
+        if self.ball_review is not None:
+            try:row=WorldState.model_validate({**row.model_dump(),'ball_world':self.ball_review.frame(i).model_dump()})
+            except (ValueError,OSError):raise HTTPException(503,'Ball layer changed or invalid; restart validation') from None
+        return row
     def metadata(self):
-        return {k:v for k,v in self.manifest.items() if k not in ('source_video','frame_offsets','frames_sha256') }|{'media_url':f"/matches/{self.manifest['recording_id']}/video.mp4"}
+        metadata={k:v for k,v in self.manifest.items() if k not in ('source_video','frame_offsets','frames_sha256') }|{'media_url':f"/matches/{self.manifest['recording_id']}/video.mp4",'ball_examples':self.ball_review.examples if self.ball_review else [],'ball_model_version':self.ball_review.manifest.get('version','m14') if self.ball_review else None,'ball_diagnostic':self.ball_diagnostic,'ball_statistics':self.ball_review.manifest.get('statistics') if self.ball_review else None}
+        if self.ball_review is not None:metadata['review_notes']=[note.replace(' or ball perception','') for note in metadata.get('review_notes',[])]
+        return metadata

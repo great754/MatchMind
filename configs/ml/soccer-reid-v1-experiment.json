@@ -1,0 +1,37 @@
+{
+  "version": "tactiqai-soccer-reid-v1",
+  "seed": 20261102,
+  "epochs": 6,
+  "batch_identities": 8,
+  "crops_per_identity": 4,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0005,
+  "optimizer": "AdamW",
+  "loss": "identity_cross_entropy + same-team-prioritized batch-hard cosine triplet",
+  "triplet_margin": 0.3,
+  "patience": 3,
+  "trainable": "conv4, conv5, fc + new identity head; earlier layers and their BN statistics frozen",
+  "augmentation_runs": [
+    "none",
+    "moderate"
+  ],
+  "selection": "0.7 validation same-team quality-weighted tracklet mAP +0.3 validation same-team crop mAP",
+  "integration_gate": {
+    "same_team_rank1_gain": 0.03,
+    "same_team_map_gain": 0.03,
+    "tracklet_map_gain": 0.03,
+    "overall_map_max_regression": 0.005
+  },
+  "test_policy": "No TEST embeddings/metrics before selection_lock; evaluate generic and selected model once after lock",
+  "manifest_sha256": "6cb957ed439cb580af5fa826cc3726881f15aac4af73304d59e194c0f8d74eb3",
+  "sample_count": 5361,
+  "steps_per_epoch": 168,
+  "packages": {
+    "python": "3.12.14",
+    "torch": "2.14.1",
+    "numpy": "2.5.4",
+    "opencv": "5.0.0"
+  },
+  "dataset_version": "soccer-reid-v1-curated",
+  "generic_checkpoint_sha256": "cf55163d78fc44c62c82f85ab62d39f10438679b5abe8c698ae08cfa84aa6e18"
+}

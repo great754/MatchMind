@@ -1,6 +1,14 @@
 # TactiqAI canonical Azure artifacts
 
-## Current M6 regression verification — 2026-10-26
+## Southampton local CV addition — verified 2026-10-27
+
+All ten existing Azure clips passed live browser playback/seek/range/tactical/event-lead-in/grounded Local Ask checks in the full eight-suite run. Ready200/13available sources:ten Azure artifacts plus test_match,team_goal,southampton local CV reviews. Southampton remains `artifact_ready:false`,CV/video available,football analytics/Ask unavailable;its video206,metadata/frame200,CV Ask503. Existing118575view/Local Ask200. No Azure writes,validation changes or renamed MATCHMIND variables. [Source results and commands](cv_southampton.md).
+
+## Current M7 regression — 2026-10-27
+
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** All ten existing Azure recordings passed final Chrome selection/play/seek/range/tactical/event-lead-in/grounded Local Ask. Health200;ready200/12;all ten Azure artifacts validated/ready plus two local CV-only sources.118575 view200/481events,range206,Local Ask200/statusok/14evidence. CV Ask503. No Azure writes,manifest/hash/schema loosening,unrelated local fallback or renamed MATCHMIND variables. Current CVregistry selects local *_m7_current snapshots. On this Mac,standard AZURE_TOKEN_CREDENTIALS=AzureCliCredential avoids a stalled managed-identity discovery probe;the working credential and existing Azure .env are retained. [Full M7 report and exact commands](cv_world_model_m7.md). Earlier milestone sections are historical.
+
+## Historical M6 regression verification — 2026-10-26
 
 **LOCALLY VERIFIED / EXPERIMENTAL CV.** Fresh final Chrome verified all ten Azure clips in34.9s:selection, playback, seek/range, tactical view, event lead-in and grounded Local Ask. Five full browser suites passed in45.1s;both M6CVreviews and final panel recheck passed. Health200/ten analytics;ready200/12usable recordings;discovery ten Azure-ready plus two local CV-only sources. Fresh118575view200/481events,range206/16bytes,Local Ask200/statusok/14evidence entries. Both CVAsk requests503. No experimental upload, Azure overwrite/infrastructure, local artifact fallback, loosened manifest/hash/schema validation or renamed MATCHMIND variable. CVregistry selects local *_m6_current snapshots. Source CVvideos remain local;SoccerTrack media streams Azure. Existing `.env`/start command unchanged. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
 
@@ -239,3 +247,11 @@ python -m unittest discover -s tests -t .
 ```
 
 No frontend changes/tests, Docker rebuild, cloud deployment or external model invocation were part of this verification. Mocked Azure success does not establish live Azure success.
+
+
+M8 verification (2026-11-01):all three CV sources now use validated separate M8 snapshots;all ten Azure clips retain playback and grounded Local Ask. Health/ready/catalog200,13usable sources,9Chrome suites passed. CV football Ask stays unavailable. Keep original local CV videos;no Azure upload/configuration change. [Current metric camera report and startup command](cv_world_model_m8.md).
+
+M14 local ball review (2026-11-02): optional `configs/serving/cv_ball.json` attaches validated VIDEO_CV ball sidecars to the three existing local CV recordings. Azure artifact bundles and SoccerTrack ball analytics are unchanged; keep original CV videos for local playback. Missing/corrupt optional ball data reports diagnostics while retaining usable M9 review. Live Azure view200, video range206 and grounded Local Ask200/statusok/6evidence rows were reverified; ready200/13. M14 has no verified metric ball positions and does not feed Ask. [Experimental ball report](cv_ball_tracking_m14.md).
+
+
+M15 verification (2026-11-02): Azure bundles/media and SoccerTrack/Ask semantics remain unchanged. Optional local `configs/serving/cv_ball_m15.json` supplies a separately validated ball review selected explicitly with `?ball_pipeline=m15`;default staysM14. Missing/corrupt M15 returns503 for explicit requests while preserving usable M9/default review. Health/ready/catalog200,ready13;Azure118575view200,video206/1024bytes,grounded Local Ask200/statusok/6evidence. All10Azure clips passed live Chrome playback/analysis regression. M15 does not achieve improved overall detection or independently validated pitch coordinates. Keep local CV videos;no upload or environment change required. [M15 experiment and commands](cv_ball_tracking_m15.md).

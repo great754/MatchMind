@@ -17,3 +17,8 @@ describe('camera diagnostics',()=>{
 
 it('shows readable per-player camera and source foot provenance',()=>{render(<CameraProjectionDetails evidence={{state:'PARTIAL_CONSTRAINED',source:'partial_constrained',epoch:2,support:.812345,last_direct_age_seconds:1.125,current_semantic_support:true,image_foot:[150.1234,700.5678]}}/>);expect(screen.getByTestId('player-camera-evidence').textContent).toContain('150.12, 700.57 pixels');expect(screen.getByTestId('player-camera-evidence').textContent).toContain('0.812 (heuristic)');cleanup()});
 it.each(['TEMPORAL_PREDICTED','TEMPORAL_CORRECTED','BIDIRECTIONAL_INTERPOLATED'])('renders M6 %s state without collapsing evidence',status=>{render(<CameraDebug motion={motion(status)}/>);expect(screen.getByTestId('cv-camera-debug').getAttribute('data-status')).toBe(status);cleanup()});
+
+it('labels offline future independent anchors without a negative past age',()=>{
+ cleanup();const evidence=motion('TEMPORAL_PREDICTED');evidence.localization.last_absolute_age_seconds=-.04;render(<CameraDebug motion={evidence}/>);expect(screen.getByText(/Last absolute calibration/)).toHaveTextContent('future evidence in 0.040s');cleanup();
+ render(<CameraProjectionDetails evidence={{state:'TEMPORAL_PREDICTED',source:'temporal_predicted',epoch:0,support:.8,last_direct_age_seconds:-.04,current_semantic_support:true}}/>);expect(screen.getByTestId('player-camera-evidence')).toHaveTextContent('Last direct: future evidence in 0.040s');cleanup();
+});

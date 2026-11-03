@@ -1,0 +1,516 @@
+{
+  "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW",
+  "reviewer": "Codex visual source-context inspection",
+  "independent_identity_ground_truth": false,
+  "cases": [
+    {
+      "case_id": "test_match_00",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        516,
+        521
+      ],
+      "tracks": [
+        "TRACK_00106",
+        "TRACK_00144"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "APPEARS_SAME",
+      "note": "Short5frame gap; same yellow/green player in the same group. Qualitative continuity only.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_00.jpg"
+    },
+    {
+      "case_id": "test_match_01",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        25,
+        31
+      ],
+      "tracks": [
+        "TRACK_00010",
+        "TRACK_00017"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "APPEARS_DIFFERENT",
+      "note": "Similar red kits but distinctly different depth/location in the short gap.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_01.jpg"
+    },
+    {
+      "case_id": "test_match_02",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        18,
+        32
+      ],
+      "tracks": [
+        "TRACK_00005",
+        "TRACK_00018"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Overlapping people and motion blur; endpoint crops do not resolve identity.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_02.jpg"
+    },
+    {
+      "case_id": "test_match_03",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        18,
+        33
+      ],
+      "tracks": [
+        "TRACK_00005",
+        "TRACK_00019"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "APPEARS_SAME",
+      "note": "Potential missed continuity of the upper red player; no accepted metric support at the early endpoint.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_03.jpg"
+    },
+    {
+      "case_id": "test_match_04",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        18,
+        35
+      ],
+      "tracks": [
+        "TRACK_00005",
+        "TRACK_00020"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Similar kit and partial overlap; insufficient identity detail.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_04.jpg"
+    },
+    {
+      "case_id": "test_match_05",
+      "recording_id": "test_match",
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": [
+        18,
+        37
+      ],
+      "tracks": [
+        "TRACK_00005",
+        "TRACK_00021"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Similar teammates near each other; crop similarity does not resolve identity.",
+      "image": "outputs/world_model/m9_verification/test_match/reference/case_05.jpg"
+    },
+    {
+      "case_id": "team_goal_00",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        233,
+        256
+      ],
+      "tracks": [
+        "TRACK_00013",
+        "TRACK_00037"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "INDETERMINATE",
+      "note": "Both endpoints are severely truncated at the right boundary; plausible reconnect but identity is not visually established.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_00.jpg"
+    },
+    {
+      "case_id": "team_goal_01",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        69,
+        92
+      ],
+      "tracks": [
+        "TRACK_00001",
+        "TRACK_00012"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "APPEARS_DIFFERENT",
+      "note": "Bottom-boundary source and upper-field target are different spatial players.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_01.jpg"
+    },
+    {
+      "case_id": "team_goal_02",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        69,
+        95
+      ],
+      "tracks": [
+        "TRACK_00001",
+        "TRACK_00014"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "APPEARS_DIFFERENT",
+      "note": "The candidate at the opposite depth/edge is not supported as the same player.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_02.jpg"
+    },
+    {
+      "case_id": "team_goal_03",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        100,
+        145
+      ],
+      "tracks": [
+        "TRACK_00004",
+        "TRACK_00020"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Camera pan and similar jerseys; endpoint evidence insufficient.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_03.jpg"
+    },
+    {
+      "case_id": "team_goal_04",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        121,
+        150
+      ],
+      "tracks": [
+        "TRACK_00003",
+        "TRACK_00022"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Possible crossing/overlap and similar kit; no reliable number evidence.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_04.jpg"
+    },
+    {
+      "case_id": "team_goal_05",
+      "recording_id": "team_goal",
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": [
+        69,
+        159
+      ],
+      "tracks": [
+        "TRACK_00001",
+        "TRACK_00024"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Longer gap and changing framing; appearance alone insufficient.",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/case_05.jpg"
+    },
+    {
+      "case_id": "southampton_00",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        79,
+        123
+      ],
+      "tracks": [
+        "TRACK_00001",
+        "TRACK_00016"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "INDETERMINATE",
+      "note": "Boundary-truncated red player after pan; metric/appearance match is plausible but not visually proved.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_00.jpg"
+    },
+    {
+      "case_id": "southampton_01",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        469,
+        549
+      ],
+      "tracks": [
+        "TRACK_00020",
+        "TRACK_00048"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "INDETERMINATE",
+      "note": "2.67s disappearance with large framing change and similar red teammates.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_01.jpg"
+    },
+    {
+      "case_id": "southampton_02",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        484,
+        552
+      ],
+      "tracks": [
+        "TRACK_00025",
+        "TRACK_00049"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "INDETERMINATE",
+      "note": "2.27s disappearance among similar dark jerseys; no independently verified identity.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_02.jpg"
+    },
+    {
+      "case_id": "southampton_03",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        411,
+        417
+      ],
+      "tracks": [
+        "TRACK_00026",
+        "TRACK_00038"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "APPEARS_SAME",
+      "note": "Six-frame midfield gap with matching local context and red player.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_03.jpg"
+    },
+    {
+      "case_id": "southampton_04",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        568,
+        572
+      ],
+      "tracks": [
+        "TRACK_00038",
+        "TRACK_00052"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "APPEARS_SAME",
+      "note": "Four-frame continuation of the red player near the penalty arc; falling/rising body shape changes.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_04.jpg"
+    },
+    {
+      "case_id": "southampton_05",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        436,
+        471
+      ],
+      "tracks": [
+        "TRACK_00040",
+        "TRACK_00045"
+      ],
+      "model_decision": "ACCEPTED_RECONNECT",
+      "assessment": "APPEARS_SAME",
+      "note": "Short reappearance with plausible lane and red kit continuity.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_05.jpg"
+    },
+    {
+      "case_id": "southampton_06",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        177,
+        206
+      ],
+      "tracks": [
+        "TRACK_00007",
+        "TRACK_00018"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Pan and similar jerseys; rejected match may be a missed recovery.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_06.jpg"
+    },
+    {
+      "case_id": "southampton_07",
+      "recording_id": "southampton",
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": [
+        116,
+        213
+      ],
+      "tracks": [
+        "TRACK_00014",
+        "TRACK_00020"
+      ],
+      "model_decision": "REJECTED_OR_UNRESOLVED",
+      "assessment": "INDETERMINATE",
+      "note": "Longer camera pan; source-to-target identity cannot be resolved visually.",
+      "image": "outputs/world_model/m9_verification/southampton/reference/case_07.jpg"
+    }
+  ],
+  "team_cases": [
+    {
+      "recording_id": "test_match",
+      "frame": 100,
+      "track_id": "TRACK_00017",
+      "assessment": "APPEARS_CORRECT_WITH_CONFLICTING_CURRENT_CROP",
+      "note": "Persistent red-team label retained while current visual population says official; crop alone is unreliable.",
+      "image": "outputs/world_model/m9_verification/test_match/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "test_match",
+      "frame": 100,
+      "track_id": "TRACK_00043",
+      "assessment": "UNCERTAIN_REMAINS_UNKNOWN",
+      "note": "Visible yellow/green kit but persistent evidence is not established; kept unknown.",
+      "image": "outputs/world_model/m9_verification/test_match/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "team_goal",
+      "frame": 100,
+      "track_id": "TRACK_00012",
+      "assessment": "APPEARS_WRONG",
+      "note": "Blue-kit player is labelled with the red-kit population. Stable belief is not team accuracy.",
+      "image": "outputs/world_model/m9_verification/team_goal/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "team_goal",
+      "frame": 100,
+      "track_id": "TRACK_00004",
+      "assessment": "ROLE_UNRESOLVED",
+      "note": "Goal-area distinct kit is OTHER rather than an asserted third team or referee identity.",
+      "image": "outputs/world_model/m9_verification/team_goal/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "southampton",
+      "frame": 100,
+      "track_id": "TRACK_00007",
+      "assessment": "OFFICIAL_HYPOTHESIS_PLAUSIBLE",
+      "note": "Bright official-like kit on touchline; role hypothesis only, not referee identity.",
+      "image": "outputs/world_model/m9_verification/southampton/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "southampton",
+      "frame": 100,
+      "track_id": "TRACK_00005",
+      "assessment": "UNCERTAIN_REMAINS_UNKNOWN",
+      "note": "Red kit under shadow/weak crop remains unknown in this sample.",
+      "image": "outputs/world_model/m9_verification/southampton/team_reference/frame_100.jpg"
+    },
+    {
+      "recording_id": "southampton",
+      "frame": 100,
+      "track_id": "TRACK_00013",
+      "assessment": "APPEARS_WRONG",
+      "note": "Red-kit player in the right-side context appears mixed into dark-kit team. Known team errors remain.",
+      "image": "outputs/world_model/m9_verification/southampton/team_reference/frame_100.jpg"
+    }
+  ],
+  "held_out_from_development": false,
+  "supplementary_cases": [
+    {
+      "recording_id": "test_match",
+      "kind": "zoom_framing",
+      "frames": [
+        258,
+        270
+      ],
+      "tracks": [
+        "TRACK_00017",
+        "TRACK_00017"
+      ],
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "image": "outputs/world_model/m9_verification/test_match/reference/zoom_framing.jpg",
+      "assessment": "APPEARS_SAME",
+      "independent_ground_truth": false,
+      "note": "Same local person appears continuous through the measured framing/scale-change window; physical optical zoom is not independently labelled.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    },
+    {
+      "recording_id": "test_match",
+      "kind": "long_disappearance",
+      "frames": [
+        170,
+        330
+      ],
+      "tracks": [
+        "TRACK_00031",
+        "TRACK_00091"
+      ],
+      "source_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "image": "outputs/world_model/m9_verification/test_match/reference/long_disappearance.jpg",
+      "assessment": "INDETERMINATE",
+      "independent_ground_truth": false,
+      "note": "Long gap and similar kits; endpoint images do not establish identity. Retained as unresolved, not promoted by appearance alone.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    },
+    {
+      "recording_id": "team_goal",
+      "kind": "zoom_framing",
+      "frames": [
+        357,
+        369
+      ],
+      "tracks": [
+        "TRACK_00016",
+        "TRACK_00016"
+      ],
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/zoom_framing.jpg",
+      "assessment": "APPEARS_SAME",
+      "independent_ground_truth": false,
+      "note": "Same local person appears continuous through the measured framing/scale-change window; physical optical zoom is not independently labelled.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    },
+    {
+      "recording_id": "team_goal",
+      "kind": "long_disappearance",
+      "frames": [
+        212,
+        410
+      ],
+      "tracks": [
+        "TRACK_00006",
+        "TRACK_00044"
+      ],
+      "source_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "image": "outputs/world_model/m9_verification/team_goal/reference/long_disappearance.jpg",
+      "assessment": "INDETERMINATE",
+      "independent_ground_truth": false,
+      "note": "Long gap and similar kits; endpoint images do not establish identity. Retained as unresolved, not promoted by appearance alone.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    },
+    {
+      "recording_id": "southampton",
+      "kind": "zoom_framing",
+      "frames": [
+        183,
+        195
+      ],
+      "tracks": [
+        "TRACK_00003",
+        "TRACK_00003"
+      ],
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "image": "outputs/world_model/m9_verification/southampton/reference/zoom_framing.jpg",
+      "assessment": "APPEARS_SAME",
+      "independent_ground_truth": false,
+      "note": "Same local person appears continuous through the measured framing/scale-change window; physical optical zoom is not independently labelled.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    },
+    {
+      "recording_id": "southampton",
+      "kind": "long_disappearance",
+      "frames": [
+        347,
+        552
+      ],
+      "tracks": [
+        "TRACK_00006",
+        "TRACK_00049"
+      ],
+      "source_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "image": "outputs/world_model/m9_verification/southampton/reference/long_disappearance.jpg",
+      "assessment": "INDETERMINATE",
+      "independent_ground_truth": false,
+      "note": "Long gap and similar kits; endpoint images do not establish identity. Retained as unresolved, not promoted by appearance alone.",
+      "classification": "REFERENCE-EVALUATED QUALITATIVE SOURCE-IMAGE REVIEW"
+    }
+  ]
+}

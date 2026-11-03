@@ -1,4 +1,4 @@
-# Optional OFFLINE semantic pitch/camera inference; tested with Python 3.12 arm64.
+# Optional OFFLINE pitch/camera and M9 player-appearance inference; tested with Python 3.12 arm64.
 # Install project vision requirements separately. Serving does not need these.
 # No checkpoint is downloaded by installation or application startup.
 torch==2.14.1

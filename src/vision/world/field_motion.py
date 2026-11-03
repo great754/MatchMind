@@ -96,14 +96,14 @@ class FieldMotionTracker:
     Past consensus determines static membership, not the current held-out fit.
     New features mature for three observations. No metric player locations used.
     """
-    def __init__(self,debug=False):self.debug=debug;self.measurements=None;self.previous=None;self.points=None;self.ids=np.array([],int);self.ages=np.array([],int);self.static=np.array([],bool);self.next_id=0
+    def __init__(self,debug=False,capacity=800,min_distance=5,min_eig=.001):self.capacity=capacity;self.min_distance=min_distance;self.min_eig=min_eig;self.debug=debug;self.measurements=None;self.previous=None;self.points=None;self.ids=np.array([],int);self.ages=np.array([],int);self.static=np.array([],bool);self.next_id=0
     def update(self,current):
         self.measurements=None
         result={'accepted':False,'reason':'FIRST_FRAME','matches':0}
         if self.previous is not None and self.points is not None and len(self.points):
             before,_,_=self.previous;after,mask,_=current
-            nxt,status,_=cv2.calcOpticalFlowPyrLK(before,after,self.points,None,winSize=(21,21),maxLevel=3,minEigThreshold=.001)
-            back,reverse,_=cv2.calcOpticalFlowPyrLK(after,before,nxt,None,winSize=(21,21),maxLevel=3,minEigThreshold=.001) if nxt is not None else (None,None,None)
+            nxt,status,_=cv2.calcOpticalFlowPyrLK(before,after,self.points,None,winSize=(21,21),maxLevel=3,minEigThreshold=self.min_eig)
+            back,reverse,_=cv2.calcOpticalFlowPyrLK(after,before,nxt,None,winSize=(21,21),maxLevel=3,minEigThreshold=self.min_eig) if nxt is not None else (None,None,None)
             if back is not None:
                 xy=np.round(nxt[:,0]).astype(int);inside=(xy[:,0]>=0)&(xy[:,1]>=0)&(xy[:,0]<after.shape[1])&(xy[:,1]<after.shape[0]);supported=np.zeros(len(xy),bool);supported[inside]=mask[xy[inside,1],xy[inside,0]]>0
                 good=(status[:,0]>0)&(reverse[:,0]>0)&(np.linalg.norm(back[:,0]-self.points[:,0],axis=1)<1)&supported
@@ -126,8 +126,8 @@ class FieldMotionTracker:
         # Replenish without resetting stable feature identities or their held-out split.
         mask=current[1].copy()
         if self.points is not None:
-            for x,y in self.points[:,0]:cv2.circle(mask,(int(round(x)),int(round(y))),6,0,-1)
-        count=len(self.ids);new=cv2.goodFeaturesToTrack(current[0],max(1,800-count),.001,5,mask=mask) if count<700 else None
+            for x,y in self.points[:,0]:cv2.circle(mask,(int(round(x)),int(round(y))),self.min_distance+1,0,-1)
+        count=len(self.ids);new=cv2.goodFeaturesToTrack(current[0],max(1,self.capacity-count),.001,self.min_distance,mask=mask) if count<self.capacity*.875 else None
         if new is not None:
             n=len(new);self.points=np.concatenate([self.points,new]) if self.points is not None else new;self.ids=np.concatenate([self.ids,np.arange(self.next_id,self.next_id+n)]);self.ages=np.concatenate([self.ages,np.zeros(n,int)]);self.static=np.concatenate([self.static,np.zeros(n,bool)]);self.next_id+=n
         self.previous=current
