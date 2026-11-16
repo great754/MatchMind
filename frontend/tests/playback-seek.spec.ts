@@ -15,9 +15,9 @@ test('real Azure event lead-in, watching through action, Ask followup and report
  await page.goto('/');await page.getByLabel('Recording',{exact:true}).selectOption('132877_clip');
  await expect(page.getByText('API connected')).toBeVisible();
  if(await page.getByRole('dialog').isVisible())await page.getByRole('button',{name:'Use neutral labels'}).click();
- await page.getByLabel('Answer provider').selectOption('local');
+ await page.route('**/api/matches/*/assistant',route=>route.continue({postData:JSON.stringify({...route.request().postDataJSON(),provider:'local'})}));
  await page.getByLabel('Filter timeline').selectOption('all');
- const video=page.locator('video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:45000}).toBeGreaterThanOrEqual(2);
+ const video=page.locator('.video-stage video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:45000}).toBeGreaterThanOrEqual(2);
  for(const event of examples){
   await page.getByLabel('Filter timeline').selectOption(event.source==='transfer'?'transfers':event.source==='trajectory'?'shots':'shape');
   const seek=getPlaybackSeekTime(event.timestamp,event,fps,(view.replay.frames-1)/fps);
@@ -42,13 +42,8 @@ test('real Azure event lead-in, watching through action, Ask followup and report
   await video.screenshot({path:`test-results/playback-${event.event_id}-video-after.png`});
   results.push({recording_id:'132877_clip',event_id:event.event_id,type:event.type,canonical:event.timestamp,start:getPlaybackAnchorTime(event.timestamp,event,fps),end:typeof event.metrics.end_frame==='number'?event.metrics.end_frame/fps:null,published:event.timestamp,seek,video_played_past_event:true});
  }
- await page.getByRole('button',{name:'Show the most difficult completed transfer.'}).click();
- await expect(page.getByText('Looking up grounded match evidence…')).not.toBeVisible();
- await page.getByRole('button',{name:'Jump to moment',exact:false}).last().click();
- const before=await page.getByTestId('current-time').textContent();
- await page.getByLabel('Ask about this match').fill('Take me there');await page.getByRole('button',{name:'Ask TactiqAI',exact:true}).click();
- await expect(page.getByText('Looking up grounded match evidence…')).not.toBeVisible();
- await expect(page.getByTestId('current-time')).toHaveText(before!);
+ await page.getByLabel('Ask about this match').fill('Show me the most difficult pass.');await page.getByRole('button',{name:'Ask TactiqAI',exact:true}).click();await expect(page.getByRole('button',{name:'Ask TactiqAI',exact:true})).toBeEnabled({timeout:90000});await expect(page.getByRole('alert').filter({hasText:'verify the timing'})).toBeVisible({timeout:60000});await page.getByRole('button',{name:'Open original footage'}).last().click();const before=await page.getByTestId('current-time').textContent();
+ await page.getByLabel('Ask about this match').fill('Take me there');await page.getByRole('button',{name:'Ask TactiqAI',exact:true}).click();await expect(page.getByRole('button',{name:'Ask TactiqAI',exact:true})).toBeEnabled({timeout:90000});await expect(page.getByRole('alert').filter({hasText:'verify the timing'})).toHaveCount(2,{timeout:60000});await page.getByRole('button',{name:'Open original footage'}).last().click();await expect(page.getByTestId('current-time')).toHaveText(before!);
  await page.getByLabel('Recording',{exact:true}).selectOption('128058_clip');
  await expect(page.getByText('API connected')).toBeVisible();
  await expect.poll(async()=>Number(await page.getByRole('slider',{name:'Match timestamp'}).inputValue())).toBeLessThanOrEqual(1/fps);

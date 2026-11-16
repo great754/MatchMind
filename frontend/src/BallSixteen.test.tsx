@@ -1,0 +1,10 @@
+import {afterEach,describe,it,expect} from 'vitest';
+import {render,screen,cleanup} from '@testing-library/react';
+import {BallPitchOverlay,BallVideoOverlay,type BallState} from './BallDebug';
+afterEach(cleanup);
+const evidence=(extra:Partial<BallState>={}):BallState=>({version:'m16',frame:30,timestamp:1.2,camera_epoch:0,detection_status:'MISSING',tracking_status:'LOST',image_position:null,image_bbox:null,predicted_image_position:null,prediction_uncertainty_px:null,prediction_age_seconds:null,last_confirmed_image:null,last_confirmed_timestamp:null,detection_confidence:null,tracking_confidence:0,pitch_position:null,pitch_position_confidence:null,coordinate_state:'HEIGHT_UNKNOWN',coordinate_provenance:'Independent ground evidence unavailable',coordinate_uncertainty_m:null,plane_hypothesis:[10,20],estimated_velocity:null,velocity_provenance:'UNKNOWN',camera_compensation:'NONE',candidate_count:0,candidates:[],ambiguity_reason:null,reason:'No observation',directly_observed:false,trail:[],...extra});
+describe('M16 visualization provenance',()=>{
+ it('uses a white ball when supported metric evidence is supplied',()=>{render(<svg><BallPitchOverlay ball={evidence({directly_observed:true,coordinate_state:'GROUND_SUPPORTED',pitch_position:[10,20]})}/></svg>);expect(screen.getByTestId('ball-pitch-observed')).toHaveAttribute('fill','#fff')});
+ it('does not turn an unknown-height plane hypothesis into a mini-pitch ball',()=>{render(<svg><BallPitchOverlay ball={evidence()}/></svg>);expect(screen.queryByTestId('ball-pitch-observed')).toBeNull()});
+ it('draws an explicitly unvalidated image uncertainty proxy at the source prediction',()=>{render(<svg><BallVideoOverlay ball={evidence({tracking_status:'PREDICTED',predicted_image_position:[20,30],prediction_uncertainty_px:8})}/></svg>);expect(screen.getByTestId('ball-uncertainty-proxy')).toHaveAttribute('r','8');expect(screen.getByTestId('ball-image-predicted')).toHaveAttribute('cx','20');expect(screen.queryByTestId('ball-image-observed')).toBeNull()});
+});

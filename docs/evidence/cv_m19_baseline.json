@@ -1,0 +1,328 @@
+{
+  "schema_version": "m19-baseline-v1",
+  "date": "2026-11-15",
+  "clips": {
+    "test_match": {
+      "frames": 541,
+      "fps": 23.976023976023978,
+      "video_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "world_frames_sha256": "cde55040f4f06aaca2b79bac2f8cfd7be0f6441a58184ae149db2686b3dabc9d",
+      "players": {
+        "visible_samples": 5025,
+        "ambiguous_identity_samples": 0,
+        "unknown_team_samples": 1440,
+        "appearance_segments": 98,
+        "entity_hypotheses": 97,
+        "identity_switch_accuracy": null
+      },
+      "ball": {
+        "m14": {
+          "frames_sha256": "f9d83f15829b546ad5cd86a871d998681a7e73df5ecadcf8e1ba6b05ae4456da",
+          "detector_sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+          "direct_observed_frames": 214,
+          "raw_candidate_frames": 541,
+          "predicted_only_frames": 199,
+          "states": {
+            "LOST": 105,
+            "DETECTED": 33,
+            "TRACKED": 203,
+            "OCCLUDED": 122,
+            "PREDICTED": 77,
+            "AMBIGUOUS": 1
+          },
+          "track_ids": 11,
+          "observed_track_changes": 10,
+          "longest_direct_run_frames": 28,
+          "direct_runs": 54,
+          "inference_seconds": 333.08861934242304,
+          "passes": {
+            "frames": 541,
+            "ball_observed_frames": 214,
+            "ball_observed_fraction": 0.3955637707948244,
+            "stable_contact_runs": 19,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 5,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 327,
+              "NO_PLAYER_CONTACT": 105,
+              "CLEAR_LOWER_BODY_PROXIMITY": 109
+            },
+            "candidate_reasons": {
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 4,
+              "BALL_OBSERVATION_GAP": 3,
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 1,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 1,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "m16": {
+          "frames_sha256": "a51ef5f35b7408c02e74db33e4b7e825099e155c44db3a2412d219076cdb4fa1",
+          "detector_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+          "direct_observed_frames": 393,
+          "raw_candidate_frames": 541,
+          "predicted_only_frames": 63,
+          "states": {
+            "LOST": 56,
+            "DETECTED": 47,
+            "TRACKED": 373,
+            "OCCLUDED": 53,
+            "AMBIGUOUS": 2,
+            "PREDICTED": 10
+          },
+          "track_ids": 20,
+          "observed_track_changes": 19,
+          "longest_direct_run_frames": 35,
+          "direct_runs": 45,
+          "inference_seconds": 49.89024309953675,
+          "passes": {
+            "frames": 541,
+            "ball_observed_frames": 393,
+            "ball_observed_fraction": 0.7264325323475046,
+            "stable_contact_runs": 22,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 8,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 148,
+              "NO_PLAYER_CONTACT": 201,
+              "CLEAR_LOWER_BODY_PROXIMITY": 192
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 4,
+              "BALL_OBSERVATION_GAP": 3,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 3,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 1,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    },
+    "team_goal": {
+      "frames": 500,
+      "fps": 25.0,
+      "video_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "world_frames_sha256": "49fa39be90dd5d3c1774d38d28e5103b9a4aafe32c1d453d909f68b5da1f3799",
+      "players": {
+        "visible_samples": 5339,
+        "ambiguous_identity_samples": 0,
+        "unknown_team_samples": 702,
+        "appearance_segments": 39,
+        "entity_hypotheses": 38,
+        "identity_switch_accuracy": null
+      },
+      "ball": {
+        "m14": {
+          "frames_sha256": "422e310ec6e72458b7938a3b0da96f3c38b71422c3767c5e605e5b752fde20c2",
+          "detector_sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+          "direct_observed_frames": 39,
+          "raw_candidate_frames": 500,
+          "predicted_only_frames": 98,
+          "states": {
+            "LOST": 340,
+            "DETECTED": 31,
+            "AMBIGUOUS": 3,
+            "TRACKED": 28,
+            "OCCLUDED": 19,
+            "PREDICTED": 79
+          },
+          "track_ids": 11,
+          "observed_track_changes": 10,
+          "longest_direct_run_frames": 6,
+          "direct_runs": 20,
+          "inference_seconds": 84.26614162034821,
+          "passes": {
+            "frames": 500,
+            "ball_observed_frames": 39,
+            "ball_observed_fraction": 0.078,
+            "stable_contact_runs": 4,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 1,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 461,
+              "CLEAR_LOWER_BODY_PROXIMITY": 20,
+              "NO_PLAYER_CONTACT": 19
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 1,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 1,
+              "BALL_OBSERVATION_GAP": 1,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 1,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "m16": {
+          "frames_sha256": "2219a40996b7a8d4ac44b618ebc07da5888a08d814b23c4c6fc5f450b54092db",
+          "detector_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+          "direct_observed_frames": 6,
+          "raw_candidate_frames": 491,
+          "predicted_only_frames": 9,
+          "states": {
+            "LOST": 468,
+            "DETECTED": 20,
+            "OCCLUDED": 8,
+            "PREDICTED": 1,
+            "TRACKED": 3
+          },
+          "track_ids": 3,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 3,
+          "direct_runs": 3,
+          "inference_seconds": 9.605663796537556,
+          "passes": {
+            "frames": 500,
+            "ball_observed_frames": 6,
+            "ball_observed_fraction": 0.012,
+            "stable_contact_runs": 0,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 0,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 494,
+              "NO_PLAYER_CONTACT": 6
+            },
+            "candidate_reasons": {},
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    },
+    "southampton": {
+      "frames": 660,
+      "fps": 29.97002997002997,
+      "video_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "world_frames_sha256": "9941f605719d2b4c80ffd96c2fca5f7154560a6863d1ef4a73204442c3922f20",
+      "players": {
+        "visible_samples": 8700,
+        "ambiguous_identity_samples": 0,
+        "unknown_team_samples": 1956,
+        "appearance_segments": 47,
+        "entity_hypotheses": 42,
+        "identity_switch_accuracy": null
+      },
+      "ball": {
+        "m14": {
+          "frames_sha256": "99c9e42b169e81d91df091e4b42882d80a0978456637cac000b71f16a2a61991",
+          "detector_sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+          "direct_observed_frames": 163,
+          "raw_candidate_frames": 660,
+          "predicted_only_frames": 181,
+          "states": {
+            "DETECTED": 25,
+            "TRACKED": 153,
+            "PREDICTED": 128,
+            "LOST": 297,
+            "OCCLUDED": 53,
+            "AMBIGUOUS": 4
+          },
+          "track_ids": 10,
+          "observed_track_changes": 9,
+          "longest_direct_run_frames": 16,
+          "direct_runs": 38,
+          "inference_seconds": 495.24238270532805,
+          "passes": {
+            "frames": 660,
+            "ball_observed_frames": 163,
+            "ball_observed_fraction": 0.24696969696969698,
+            "stable_contact_runs": 5,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 497,
+              "NO_PLAYER_CONTACT": 110,
+              "CLEAR_LOWER_BODY_PROXIMITY": 52,
+              "AMBIGUOUS_CONTACT": 1
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+              "BALL_OBSERVATION_GAP": 2,
+              "TEAM_UNCERTAIN": 2,
+              "CONTESTED_LOWER_BODY_CONTACT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "m16": {
+          "frames_sha256": "34e76c2dfd85d458f70ea624fb0b9fea883fdb614248f6167c463fad6de9209c",
+          "detector_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+          "direct_observed_frames": 77,
+          "raw_candidate_frames": 660,
+          "predicted_only_frames": 56,
+          "states": {
+            "LOST": 479,
+            "DETECTED": 61,
+            "OCCLUDED": 26,
+            "PREDICTED": 30,
+            "TRACKED": 63,
+            "AMBIGUOUS": 1
+          },
+          "track_ids": 14,
+          "observed_track_changes": 13,
+          "longest_direct_run_frames": 13,
+          "direct_runs": 24,
+          "inference_seconds": 83.6928604147397,
+          "passes": {
+            "frames": 660,
+            "ball_observed_frames": 77,
+            "ball_observed_fraction": 0.11666666666666667,
+            "stable_contact_runs": 4,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 583,
+              "NO_PLAYER_CONTACT": 45,
+              "CLEAR_LOWER_BODY_PROXIMITY": 32
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+              "BALL_OBSERVATION_GAP": 2,
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    }
+  },
+  "independent_human_labels": 0,
+  "source_code_sha256": {
+    "src/vision/events/passes.py": "f13f297aec91e8732d7777fbf033a4bbc27720b8c7429cf61be3e6e6b1e7a378",
+    "src/vision/ball/tracker.py": "117a74b5b9c86c7bc942e182060f72478d67212836e22bada13752443d58fde2",
+    "src/vision/ball16/tracker.py": "6481169f458f54396274b3b5147f1cebfd19babb9129cf6a6fab7bb7c567d94b",
+    "src/vision/world/player_identity.py": "cb5bb626e4e2b231e4f7d25aeac771bb3a58d3223f5a4bf9575f3ad2f7df5b57",
+    "src/vision/world/player_teams.py": "d935bb80d94d8933d03670bdd941d4a6bc42ae10a2d50a72f01dc6a6d40f34e3"
+  }
+}

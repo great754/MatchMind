@@ -1,0 +1,18 @@
+{
+  "schema_version": "cv-m19-evaluation-v1",
+  "recordings": ["test_match", "team_goal", "southampton"],
+  "selection": "uniform_time_without_model_candidate_selection",
+  "ball_frames_per_clip": 12,
+  "pass_windows_per_clip": 4,
+  "pass_window_seconds": 3.0,
+  "identity_pairs_per_clip": 4,
+  "identity_gap_seconds": 0.2,
+  "ball_box_match_iou": 0.25,
+  "pass_endpoint_tolerance_seconds": 0.25,
+  "labels_required": "independent_human_review",
+  "unknown_ball_visibility": "exclude_from_precision_recall_denominators_and_report",
+  "pass_recall_requires_exhaustively_reviewed_windows": true,
+  "minimum_independent_reviewers": 1,
+  "prohibited_reference_sources": ["model_candidates", "synthetic_tests", "agent_visual_review"],
+  "confidence_reporting": "sample_counts_and_wilson_intervals_where_defined"
+}

@@ -1,0 +1,1 @@
+export function assistantSession(){const key='tactiqai:assistant-session:v1';try{let id=localStorage.getItem(key);if(!id){id=crypto.randomUUID();localStorage.setItem(key,id)}return id}catch{return crypto.randomUUID()}}

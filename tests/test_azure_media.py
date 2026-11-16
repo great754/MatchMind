@@ -85,3 +85,9 @@ class AzureMediaTests(unittest.TestCase):
         self.assertEqual(c.get('/matches/new_clip/view').status_code,503)
         self.assertEqual(c.post('/matches/new_clip/ask',json={'question':'How many passes?'}).status_code,503)
         self.assertEqual(c.get('/ready').status_code,503)
+
+class FullHalfMediaTests(unittest.TestCase):
+ def test_explicit_half_registration_uses_panorama_blob_and_preserves_clip_paths(self):
+  m=AzureClipMedia(Mock());m.register_half('118575_h1','118575',1);m.register_half('118575_h2','118575',2)
+  self.assertEqual(m.blob_name('118575_h1'),'videos/118575/118575_panorama_1st_half.mp4');self.assertEqual(m.blob_name('118575_h2'),'videos/118575/118575_panorama_2nd_half.mp4');self.assertEqual(m.blob_name('118575'),'mot/clips/118575.mp4')
+  with self.assertRaises(ValueError):m.register_half('bad','../private',1)

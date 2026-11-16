@@ -1,0 +1,5 @@
+# Optional M18 player pictures and sustained-run analysis; no model weights.
+# Existing serving/Azure dependencies are installed separately.
+# The ordinary API still starts if these helpers are absent.
+opencv-python-headless>=4.10,<6
+scipy>=1.13,<2

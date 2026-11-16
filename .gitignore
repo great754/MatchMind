@@ -37,3 +37,16 @@ frontend/dist/
 frontend/test-results/
 frontend/playwright-report/
 frontend/*.tsbuildinfo
+
+# Root-level browser output and downloaded model/video binaries.
+/test-results/
+/playwright-report/
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
+*.webm
+*.m4v
+*.mpeg
+*.mpg

@@ -45,16 +45,17 @@ test('all Azure clips select, play and seek while analysis remains gated by vali
   if(ready){const answer=await response.json();expect(answer.answer.status).toBe('ok');expect(answer.conversation.recording_id).toBe(id);expect(answer.evidence.length).toBeGreaterThan(0)}
   else await expect(page.getByText('Match analysis is not available yet')).toBeVisible();
   if(ready&&id==='132877_clip'){
-   await page.getByLabel('Answer provider').selectOption('local');
+
    const section=page.getByRole('region',{name:'Key Match Insights'});
    await section.getByText('Fastest tracked player · inferred',{exact:true}).click();
    await section.getByRole('button',{name:'Review 03:29.00'}).click();
    await expect(page.getByTestId('current-time')).toHaveText('03:27.00');
    await expect(page.getByRole('img',{name:'Tactical pitch at 207.00 seconds'})).toBeVisible();
    await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.currentTime),{timeout:30000}).toBeCloseTo(207,1);
-   await page.getByRole('button',{name:'Who was the fastest player?'}).click();
+
    await expect(page.getByText('Looking up grounded match evidence…')).not.toBeVisible();
-   await page.getByRole('button',{name:'Analyst',exact:true}).click();
+   await page.getByText('Evidence display',{exact:true}).click();
+   await page.getByRole('group',{name:'Explanation mode'}).getByRole('button',{name:'Analyst',exact:true}).click();
    const fastest=section.locator(':scope > details').filter({has:page.getByText('Fastest tracked player · inferred',{exact:true})});
    await expect(fastest.getByText('Canonical provenance')).toBeVisible();
    await fastest.getByText('Canonical provenance').click();
@@ -63,7 +64,7 @@ test('all Azure clips select, play and seek while analysis remains gated by vali
    await section.getByRole('button',{name:'Review 02:21.28'}).click();
    await expect(page.getByTestId('current-time')).toHaveText('02:19.28');
    await expect(page.getByRole('img',{name:'Tactical pitch at 139.28 seconds'})).toBeVisible();
-   await page.getByRole('button',{name:'Beginner',exact:true}).click();
+   await page.getByRole('group',{name:'Explanation mode'}).getByRole('button',{name:'Beginner',exact:true}).click();
   }
   results.push({recording_id:id,artifact_ready:ready,ask_status:response.status(),byte_range_status:range.status(),event_timestamp:event.timestamp,event_seek:eventSeek,tactical_loaded:true,...await video.evaluate((v:HTMLVideoElement)=>({duration:v.duration,readyState:v.readyState,currentTime:v.currentTime,error:v.error?.message??null}))});
   await writeFile('test-results/azure-clips-results.json',JSON.stringify(results,null,2));console.info(id,'verified');

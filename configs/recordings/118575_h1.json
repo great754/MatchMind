@@ -1,0 +1,8 @@
+{
+  "recording_id": "118575_h1",
+  "match_id": "118575",
+  "half": 1,
+  "data_root": "data/soccertrack",
+  "output": "outputs/full_match_118575/h1",
+  "registry": "configs/serving/local.json"
+}

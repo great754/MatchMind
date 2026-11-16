@@ -1,0 +1,1 @@
+export default async function ready(){const start=Date.now();while(Date.now()-start<360000){try{const r=await fetch('http://127.0.0.1:8000/ready');if(r.ok)return}catch{}await new Promise(resolve=>setTimeout(resolve,500))}throw new Error('Start the Azure-backed API on port 8000 before running M18 browser checks')}

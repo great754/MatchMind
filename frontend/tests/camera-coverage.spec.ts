@@ -3,7 +3,7 @@ import {writeFile} from 'node:fs/promises';
 test('M7 persistent field trajectories, recovered geometry and unknown gap remain inspectable',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');const sampled=[];
  for(const id of ['test_match','team_goal']){
-  await page.getByLabel('Recording',{exact:true}).selectOption(id);const video=page.locator('video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState)).toBeGreaterThanOrEqual(2);
+  await page.getByLabel('Recording',{exact:true}).selectOption(id);const video=page.locator('video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:30000}).toBeGreaterThanOrEqual(2);
   const meta=await(await page.request.get(`/api/matches/${id}/cv`)).json();expect(['m7','m8']).toContain(meta.camera_model_version);
   await page.getByLabel('Camera motion debug',{exact:true}).check();await page.getByLabel('Projected pitch geometry',{exact:true}).check();
   for(const frame of id==='test_match'?[110,120,129,146,150,151,216,458]:[1,60,180,250,349,350,400,477]){

@@ -1,0 +1,35 @@
+{
+  "verified_date": "2026-11-13",
+  "source_filename": "Tottenham_vs_Arsenal_Full_Match_Replay_-_Premier_League.ts.mp4",
+  "azure": {
+    "account": "tactiqaistorage",
+    "container": "soccertrack-v2",
+    "blob": "external_matches/vibuxer_z4ny0atm95s8/full_match.mp4",
+    "bytes": 759278077,
+    "content_type": "video/mp4",
+    "etag": "\"0x8DF41BE9BE376A5\"",
+    "sha256_metadata": "2c6310d984110604bf753f69336916c41d3d03886f60a80d1123e8cbd32675e8"
+  },
+  "block_count": 91,
+  "per_block_content_md5_checked": true,
+  "stream_length_matched": true,
+  "source_stream_sha256_matches_blob_metadata": true,
+  "source_azure_range_checks": [
+    {
+      "offset": 0,
+      "bytes": 4096,
+      "source_http": 206,
+      "identical": true
+    },
+    {
+      "offset": 759273981,
+      "bytes": 4096,
+      "source_http": 206,
+      "identical": true
+    }
+  ],
+  "complete_source_saved_locally": false,
+  "analytics_processing_or_frontend_registration": false,
+  "regression_tests_passed": 8,
+  "whole_blob_independently_rehashed": false
+}

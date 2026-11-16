@@ -1,0 +1,22 @@
+[
+["Give me every scoring play",{"event_types":["goal"],"selection":"all"}],
+["Can I see each attempt on goal?",{"event_types":["shot"],"selection":"all"}],
+["All shots for the right team",{"event_types":["shot"],"team":"right"}],
+["Show the second goal only",{"event_types":["goal"],"selection":"ordinal","ordinal":2}],
+["What was the furthest completed pass?",{"event_types":["pass"],"selection":"maximum","metric":"distance_m"}],
+["Give me a minute of highlights",{"selection":"recap","duration":60}],
+["Make a 45 second highlights reel",{"selection":"recap","duration":45}],
+["Show all goal clips after 00:30",{"event_types":["goal"],"start":30}],
+["Watch player 7's goals",{"event_types":["goal"],"player":7,"player_namespace":"jersey"}],
+["Let me watch tracked player 12's passes",{"event_types":["pass"],"player":12,"player_namespace":"tracker"}],
+["I want every save in a video",{"event_types":["save"],"selection":"all"}],
+["Show the first cross",{"event_types":["cross"],"selection":"ordinal","ordinal":1}],
+["All goals and crosses before 03:00",{"event_types":["goal","cross"],"end":180}],
+["Which shot was the most powerful?",{"event_types":["shot"],"metric":"shot_speed","selection":"maximum"}],
+["Replay the third strike",{"event_types":["shot"],"selection":"ordinal","ordinal":3}],
+["A video of goals from 00:10 until 01:10",{"event_types":["goal"],"start":10,"end":70}],
+["Show the away side's passes",{"event_types":["pass"],"team":"away"}],
+["Show the crosses by Team 1",{"event_types":["cross"],"team":"left"}],
+["Tell me tomorrow's weather",{"intent":"unsupported"}],
+["Create a video of goals by Chelsea",{"intent":"unsupported"}]
+]

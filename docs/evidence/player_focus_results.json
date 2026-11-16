@@ -1,0 +1,119 @@
+{
+  "verified_date": "2026-11-11",
+  "ready": {
+    "status": "ready",
+    "recordings": 15
+  },
+  "recording": "118575_h1",
+  "player": "Player D",
+  "tests": {
+    "backend_run": 920,
+    "backend_passed": 919,
+    "backend_expected_skips": 1,
+    "frontend_passed": 119,
+    "typed_build_passed": true,
+    "chrome_cases_passed": 4
+  },
+  "browser": {
+    "latest_pitch_selection": true,
+    "player_scope_persisted": true,
+    "one_answer_at_a_time": true,
+    "one_video_at_a_time": true,
+    "developer_details_hidden_by_default": true,
+    "player_marker_before_event": true,
+    "marked_pass_playback": true,
+    "fastest_run_video": true,
+    "shorter_goal_video": true,
+    "mobile_no_overflow": true,
+    "page_errors": []
+  },
+  "hosted_llm_checks": 0,
+  "azure_writes": 0,
+  "source_video_deletions": 0,
+  "pass": {
+    "state": "COMPLETED",
+    "text": "Player D took 0 shots, scored 0 goals, completed 12 of 15 passes (80.0% estimated accuracy). The records also show 0 tackles and 3 estimated interceptions. These figures cover the available footage; passes and interceptions are tracking estimates. Here’s the video of their pass.",
+    "duration_seconds": 8.054667,
+    "output_sha256": "962d9da492854a02c8be0d61f071357dce7e229cadbbe8fabb9fb701d46c7db7",
+    "source_range_bytes_read": 35966689,
+    "segments": [
+      {
+        "start": 362.76,
+        "end": 370.79333333333335,
+        "lead_in_seconds": 3.0,
+        "post_event_seconds": 2.9933333333333394
+      }
+    ],
+    "marker": {
+      "version": "player-focus-overlay-v2",
+      "label": "Player D",
+      "drawn_frames": 241,
+      "hidden_frames": 0,
+      "pre_event_drawn_frames": 90,
+      "provenance": "Frame-specific source boxes or hash-verified image foot points; overlap/truncation/loss suppresses marker; no propagation across identities or cuts."
+    }
+  },
+  "sprint": {
+    "state": "COMPLETED",
+    "text": "Player D’s fastest measured run averaged 7.50 meters per second over one second. It doesn’t meet the sustained sprint criteria, so this is labelled as a run.",
+    "duration_seconds": 8.021333,
+    "output_sha256": "ae0c0d35b33f8b9e279eb441cb7537efd71ba0e473fd2c5a3fe74b541e40aad7",
+    "source_range_bytes_read": 40160993,
+    "segments": [
+      {
+        "start": 315.36,
+        "end": 323.36,
+        "lead_in_seconds": 4.0,
+        "post_event_seconds": 3.0
+      }
+    ],
+    "marker": {
+      "version": "player-focus-overlay-v2",
+      "label": "Player D",
+      "drawn_frames": 213,
+      "hidden_frames": 27,
+      "pre_event_drawn_frames": 120,
+      "provenance": "Frame-specific source boxes or hash-verified image foot points; overlap/truncation/loss suppresses marker; no propagation across identities or cuts."
+    }
+  },
+  "goals": {
+    "state": "COMPLETED",
+    "text": "Here are 3 goals from this footage.",
+    "duration_seconds": 75.021333,
+    "output_sha256": "002f873223b0e7c3b565dd489b40d67130c8e745929078fcaf34a37a1ba8c1c9",
+    "source_range_bytes_read": 145228663,
+    "segments": [
+      {
+        "start": 393.88,
+        "end": 418.88,
+        "lead_in_seconds": 20.0,
+        "post_event_seconds": 5.0
+      },
+      {
+        "start": 1845.6,
+        "end": 1870.6,
+        "lead_in_seconds": 20.0,
+        "post_event_seconds": 5.0
+      },
+      {
+        "start": 2576.52,
+        "end": 2601.52,
+        "lead_in_seconds": 20.0,
+        "post_event_seconds": 5.0
+      }
+    ]
+  },
+  "final_service": {
+    "health_http": 200,
+    "ready_http": 200,
+    "usable_recordings": 15,
+    "catalog_http": 200,
+    "all_15_available": true,
+    "score": [
+      0,
+      3
+    ],
+    "video_range_http": 206,
+    "frontend_http": 200
+  }
+}

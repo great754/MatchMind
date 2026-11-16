@@ -1,12 +1,64 @@
-# Match Intelligence frontend
+# TactiqAI Match Intelligence frontend
+
+## Short-clip CV pass analysis (2026-11-13)
+
+Refresh http://127.0.0.1:5173 and select **test_match**, **team_goal** or **southampton**. The new **Pass analysis** card separates completed-pass estimates from possible transfers. Current results are 0 qualified passes and 5/1/2 possible transfers respectively. This is not a statement that the footage has no passes; reliable ball/identity/team evidence is insufficient. Goals, shots and pass accuracy remain unavailable.
+
+Expand **Review possible transfers** to watch source lead-in footage. Choose a player in **CV player focus** or click a source box/pitch marker for their report and available heatmap. Focus persists across missing frames. **Create a candidate review video** submits the request and produces a playable, visibly labelled review video with pre-event player marks. The assistant supports pass counts/profiles and explicit candidate review; ordinary canonical CV Ask stays unavailable. Developer mode retains detailed per-event evidence without cluttering normal video answers.
+
+122 frontend tests/build and five real Chrome cases pass, including all three CV clips, marked review videos and prior SoccerTrack/full-half flows. Readiness remains 15. Existing Azure settings are unchanged; keep the original local CV videos. [Actual results, images, structured exports and limits](cv_pass_detection_v1.md).
+
+
+## Player focus and one answer at a time (2026-11-11)
+
+Click a player on the mini-map to focus the page and assistant on that player. The heading/banner confirm the selection; **Ask about this player** uses the current card. Ask without repeating their name. Selecting someone else clears the old answer and context. **Back to match** exits player focus. Each new question replaces the previous answer/video and cancels unfinished old rendering.
+
+Video answers show the answer and video. Enable **Developer mode** to inspect per-event timestamps/source links, detailed metrics, diagrams and raw evidence. Stats answers retain the player report. Player videos automatically add a labelled marker from verified visible source observations before the action. Goal clips now request 15 seconds of lead-in normally, 20 for explicit buildup; the real three-goal compilation lasts 75.021333 seconds. Fastest-run requests show an honestly labelled measured run when no sustained sprint qualifies.
+
+Verified: 119 frontend tests/build, four Chrome cases, live Azure pass/run/goals and /ready 200 with 15 usable sources. No setting change is needed; refresh localhost:5173. [Actual results, marker images and limits](player_focus_update.md). Earlier UI instructions/durations below are historical.
+
+
+## Current workspace — score, player cards and goal videos (2026-11-11)
+
+Refresh http://127.0.0.1:5173. The focused match screen shows the recorded score, original video, live pitch and one Ask input. Click a player on the pitch or choose one in **Player report** for shots, goals, completed/attempted passes, estimated pass accuracy, tackles, interceptions, receptions, crosses, distance and peak speed. **Heatmap** shows observed position occupancy; **Pass map** filters endpoint arrows and opens their original footage. Unavailable measurements stay unavailable; no fabricated rating or portrait is added. Names/jerseys need explicit confirmation in Match setup.
+
+The loaded full match displays **Team A 0–3 Team B**. **Key moments → Goals** starts 30 seconds before a goal when available. Ask “Show me all the goals with buildup” for a playable compilation: the verified three-goal video has33.96 seconds of lead-in per goal and lasts120.021333 seconds. Requests from the second half correctly use the first-half goal source. The configured LLM interprets requests first; deterministic evidence supplies facts, and model failure is visibly identified as fallback.
+
+Verified: 116 frontend tests, TypeScript/build, three real Chrome cases plus a final focused pitch-click/goal-lead-in check. Score, complete profile/stat chat, heatmap, pass filters, goal video playback/seeking, correct source navigation and mobile overflow passed. The current main API is ready with 15 usable recordings. The workspace requests a compact view (~80.45% smaller for 118575_h1), while full evidence remains available. No Azure configuration change is needed. [Actual results, limitations and exact start commands](match_experience_update.md).
+
+Earlier sections below retain their milestone-specific verification results; this section supersedes their UI/highlight restrictions.
+
+
+## Full match 118575 — select either half (2026-11-11)
+
+Refresh localhost:5173 and choose **118575_h1** or **118575_h2**. Full Azure playback, seeking to25 minutes, tactical replay and grounded pass-count answers301/297 passed real Chrome verification. Both halves are already registered; no manual Azure setting change is needed. The final server has15 usable recordings, including all previous clips/CV sources. Half-local playback clocks remain explicit. Temporary labels continue A–Z, AA, AB, AC for the second-half roster.
+
+Full-half generated compilations are now supported through bounded Azure ranges (see the current update above). Full-half player photo cards still require checked boxes; clip-only boxes are not reused. Keep local CV originals. [Full-match report, counts, startup and limitations](full_match_118575.md).
+
+
+## M18 — one Ask TactiqAI conversation (2026-11-11)
+
+The current production interface has one **Ask TactiqAI** input for questions, statistics, explanations and highlight requests. The older separate Highlight Creator instructions below are historical. Responses show readable answers, supported metrics, playable videos, source moments and follow-ups; raw IDs and JSON stay in the collapsed evidence inspector. Provider selection is under **Assistant settings**. Existing detailed evidence modes are under **Evidence display**.
+
+**Match setup** now offers source player photos, three alternative views, enlargement, shirt swatches, jersey/name/team/role confirmation and undo. Tracker IDs are never assumed to be jersey numbers. Old browser labels need explicit server confirmation. CV labels apply only to the exact supported appearance segment, not uncertain merges. Many panoramic crops are small; no independent 80% jersey-readability result is claimed.
+
+Verified: 113 frontend tests and typed build; 24 current Chrome cases across the full run and focused rechecks. Real goal/sprint/pass videos, original playback/seek, photo setup and recording isolation passed. Azure-backed readiness is 13. 132877_clip original playback works, but generated clips are safely rejected because its video frame count differs from the analytics. No source retiming or validation relaxation.
+
+Run `npm --prefix frontend run dev` and open http://127.0.0.1:5173. Keep the existing Azure settings and local CV videos. [M18 architecture, exact backend command, evaluations, failures/rechecks and limitations](unified_match_assistant_m18.md).
+
+
+## M17 — Highlight Creator (2026-11-08)
+
+Use **AI Highlight Creator**, or type an explicit video request into **Ask TactiqAI**. The existing Ask form routes video requests to the creator and scrolls to it. Real MP4s support play/pause/seek, individual moments, original-footage links, more/shorter context and session-scoped follow-ups. Try goals or the longest pass on 118575_clip; annotated shots on 117093_clip. CV-only videos explain that verified football events are unavailable. Downloads require the explicit server rights setting and remain disabled by default. Current 23-test Chrome suite, 109 unit tests and typed build pass. Fresh language score 18/20 remains below 95%; see the documented supported phrasings. [M17 capability matrix, measured videos, limitations and startup](ai_highlight_creator_m17.md).
+
 
 ## Southampton — new current CV source (2026-10-27)
 
 **LOCALLY VERIFIED / EXPERIMENTAL.** Fresh processing of `data/raw/southampton.mp4`:660frames,29.97FPS,1280×720,22.022s. Current M7 camera coverage **509/660(77.12%)**;current placement **6,114/8,725(70.07%)**.57 frames recovered relative to M6;zero accepted M6frames lost. Longest support9.843s;longest Unknown gap2.302s. Matched jump flags85→126:coverage does not establish accuracy.
 
-**Known limitation:** dark-kit team separation is unreliable;the page visibly warns that A/B labels may mix teams. This is not verified team accuracy. Person/camera evidence remains separate. CV football Ask stays503.
+**Known limitation:** dark-kit team separation is unreliable;the page visibly warns that A/B labels may mix teams. This is not verified team accuracy. Person/camera evidence remains separate. CV football Ask stays 503.
 
-Select **southampton · CV Experimental** at http://127.0.0.1:5173. Playback/seeking/stepping/person and camera/team debug verified;actual Chrome overlay updates **29.91/sec**,no missing samples and at most one-frame lag in the2.5s sample.79frontend tests,TypeScript/build and **all eight Chrome suites passed(1.4m)**;backend528passed/one expected skip. All ten Azure clips and both earlier CV sources remain working. Health200;ready200/**13 usable sources**;video206;existing grounded Local Ask200.
+Select **southampton · CV Experimental** at http://127.0.0.1:5173. Playback/seeking/stepping/person and camera/team debug verified;actual Chrome overlay updates **29.91/sec**,no missing samples and at most one-frame lag in the2.5s sample.79frontend tests,TypeScript/build and **all eight Chrome suites passed(1.4m)**;backend528passed/one expected skip. All ten Azure clips and both earlier CV sources remain working. Health200;ready 200/**13 usable sources**;video 206;existing grounded Local Ask 200.
 
 The fresh-video runner now completes M7 by default. Registry:`outputs/world_model/southampton/current/`. Keep the original local MP4;no Azure changes or uploads. Full fresh processing took806.528s;web playback serves precomputed data. [Full results,commands,team limitation and proof](cv_southampton.md). Earlier sections below retain their original verified counts.
 
@@ -18,11 +70,11 @@ The fresh-video runner now completes M7 by default. Registry:`outputs/world_mode
 
 ## Current M7 persistent camera review — 2026-10-27
 
-**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CV recordings now serve M7. Camera motion debug adds orange persistent fixed-world feature histories,active anchors,held-out errors,hull/lifetime/survival,uncertainty,measurement route,top-line/circle residuals and explicit ambiguous semantic labels. Current source/provenance,team/identity/visibility and historical position remain separate. Coverage camera/placement:test_match33.64%/32.22%,team_goal91.00%/88.05%;test_match50% target not met.74 frontend tests,TypeScript/build and all six final Chrome suites pass;all ten Azure clips/playback/seeking/tactical/event lead-in/grounded Local Ask remain working. CV football Ask503. [Full M7 report and exact commands](cv_world_model_m7.md). Earlier milestone sections are historical.
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CV recordings now serve M7. Camera motion debug adds orange persistent fixed-world feature histories,active anchors,held-out errors,hull/lifetime/survival,uncertainty,measurement route,top-line/circle residuals and explicit ambiguous semantic labels. Current source/provenance,team/identity/visibility and historical position remain separate. Coverage camera/placement:test_match33.64%/32.22%,team_goal91.00%/88.05%;test_match50% target not met.74 frontend tests,TypeScript/build and all six final Chrome suites pass;all ten Azure clips/playback/seeking/tactical/event lead-in/grounded Local Ask remain working. CV football Ask 503. [Full M7 report and exact commands](cv_world_model_m7.md). Earlier milestone sections are historical.
 
 ## Historical M6 temporal review — 2026-10-26
 
-**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CVsources now serve M6snapshots. Visible marker provenance legend, optional Camera motion debug(static points/vectors, accepted/rejected lines, top touchline and derived intersections), previous/predicted/current regions, future/reobserved-anchor diagnostics, readable player jump components and persistent-vs-current team evidence are locally/browser verified. Frame1near0.058s in team_goal is recovered backward;350is rejected. Current coverage is21.44%/19.91%camera/placement for test_match and83.40%/81.99%for team_goal;independent accuracy remains unavailable.71frontend tests/build passed;five full Chrome suites45.1s, final affected panel recheck5.1s. Existing football lead-in, Azure playback and grounded Local Ask remain working. CVfootball Ask remains unavailable. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
+**LOCALLY VERIFIED / EXPERIMENTAL CV.** Both CVsources now serve M6snapshots. Visible marker provenance legend, optional Camera motion debug(static points/vectors, accepted/rejected lines, top touchline and derived intersections), previous/predicted/current regions, future/reobserved-anchor diagnostics, readable player jump components and persistent-vs-current team evidence are locally/browser verified. Frame1near0.058s in team_goal is recovered backward;350is rejected. Current coverage is21.44%/19.91%camera/placement for test_match and83.40%/81.99%for team_goal;independent accuracy remains unavailable.71frontend tests/ build passed;five full Chrome suites45.1s, final affected panel recheck5.1s. Existing football lead-in, Azure playback and grounded Local Ask remain working. CVfootball Ask remains unavailable. [Full M6 report and commands](cv_world_model_m6.md). Earlier milestone sections are historical.
 
 ## Historical M5 CV camera review — locally verified 2026-10-25
 
@@ -153,3 +205,16 @@ M9 (2026-11-01):all three CV sources now expose the Player World Model Inspector
 
 
 M15 experimental ball comparison:choose a CV recording,then **Ball review → M15 experimental**. M14 remains default. Video observations,distinct expiring predictions,validation-derived image uncertainty regions,candidate scores and explicit pitch unavailability remain synchronized through seeking. Learned verifier/local crops are disabled after validation and their displayed scores are diagnostic. No unsupported pitch markers are drawn.102frontend tests/build and11Chrome suites plus M14 regression passed. [Full measured M15 status and limitations](cv_ball_tracking_m15.md).
+
+## M16 comparison review — 2026-11-03
+
+For `test_match`, `team_goal` or `southampton`, **Ball review** now offers M14, M15 and **M16 experimental**. M14 remains the default. The M16 selector is enabled only when its separate sidecar has passed source/hash/schema/clock validation; explicit invalid M16 requests return 503 instead of silently changing models. Observations, image-only predictions, uncertainty proxies and unavailable pitch coordinates remain distinct and synchronized to source frames.
+
+M16 improves fresh organizer-box TEST F1 to 54.04% (M14 28.43%, M15 18.84% on identical samples), but does not reach the 85% target and regresses on team_goal and southampton. It is an optional comparison, not a production replacement. The complete validated frame now serializes directly to JSON to reduce playback latency without dropping evidence. Local CV videos remain needed. Start the existing backend and `npm --prefix frontend run dev`; no Azure configuration change is required. [M16 measurements and commands](cv_ball_tracking_m16.md).
+
+
+## M19 optional CV review (2026-11-15)
+
+M19 is a local, versioned CV sidecar experiment, selected through **Ball review → M19 association · opt-in**. Azure canonical bundles, media settings and existing MATCHMIND_* names are unchanged. Missing/invalid optional M19 sources do not remove valid baseline recordings; explicit M19 queries return unavailable instead of silently using another source. The pass panel, profile and unified assistant use the same selected version and reset prior question/video context on changes. Keep the local test_match/team_goal/southampton originals; current CV review and independent annotation need them.
+
+A model-blind independent source-review page is available at `/?recording=test_match&review=m19` (also team_goal/southampton). There are 60 sealed tasks and currently zero human labels; no accuracy claim is made. Labels are separate from model candidates and manual player identities, exported through `/cv/review/export`, and stored under ignored outputs. Do not commit labels, videos, checkpoints, caches or credentials. M19 performed no Azure uploads or long-video processing. Actual live health/readiness and all three clip playback ranges were verified; readiness has 15 usable recordings. [Measured M19 results, test evidence and reproduction commands](cv_tracking_passes_m19.md).

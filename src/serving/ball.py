@@ -18,7 +18,7 @@ class BallReview:
    for i,offset in enumerate(self.offsets):
     if offset!=f.tell():raise ValueError('Ball index mismatch')
     ball=BallFrame.model_validate_json(f.readline());obs=VideoBallObservation.model_validate_json(canonical.readline())
-    if ball.version!=m.get('version','m14') or obs.schema_version!=('ball-m15-v1' if ball.version=='m15' else 'ball-m14-v1'):raise ValueError('Ball model/schema version mismatch')
+    if ball.version!=m.get('version','m14') or obs.schema_version!=f'ball-{ball.version}-v1':raise ValueError('Ball model/schema version mismatch')
     signature=(ball.tracking_status,ball.directly_observed,ball.coordinate_state)
     if signature not in seen:self.examples.append({'frame':i,'timestamp':ball.timestamp,'status':ball.tracking_status,'directly_observed':ball.directly_observed,'coordinate_state':ball.coordinate_state});seen.add(signature)
     if ball.frame!=i or abs(ball.timestamp-i/m['fps'])>1e-6 or obs.frame!=i or obs.recording_id!=m['recording_id']:raise ValueError('Ball canonical/frame clock mismatch')

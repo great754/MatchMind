@@ -1,0 +1,425 @@
+{
+  "milestone": "TactiqAI M18",
+  "verified_date": "2026-11-11",
+  "protocol": "Development language/identity fixtures and source-consistency checks; not independent scientific validation. Private session and media job URLs omitted.",
+  "language": {
+    "correct": 50,
+    "total": 50,
+    "independent": false
+  },
+  "identity_resolution": {
+    "correct": 25,
+    "total": 25,
+    "independent": false
+  },
+  "source_event_retrieval": {
+    "tp": 50,
+    "fp": 0,
+    "fn": 0
+  },
+  "source_actor_attribution": {
+    "correct": 50,
+    "total": 50
+  },
+  "pass_attempt_counts": {
+    "correct": 220,
+    "total": 220
+  },
+  "completed_pass_counts": {
+    "correct": 220,
+    "total": 220
+  },
+  "pass_rankings": {
+    "correct": 20,
+    "total": 20
+  },
+  "crop_source_pixel_checks": {
+    "correct": 66,
+    "total": 66,
+    "players": 22,
+    "human_readability_review": null
+  },
+  "overlay_source_box_checks": {
+    "correct": 169,
+    "total": 169,
+    "hidden_frames": 81,
+    "total_video_frames": 250
+  },
+  "sprint_sensitivity": [
+    {
+      "smoothing_frames": 15,
+      "qualifying_runs": 1,
+      "fastest": {
+        "event_id": "run_338326e1078538769cfaaabd",
+        "player_ref": "actor:476353",
+        "actor_id": 476353,
+        "player": 22,
+        "team": "left",
+        "start": 171.0,
+        "end": 172.36,
+        "speed_mps": 9.000987620007233,
+        "peak_window_start": 171.24,
+        "peak_window_end": 172.24,
+        "samples": 34,
+        "source_hash": "d86b2b45a546e393f89dac75f78c2b3a9db7b389ae627bc0aa8d028b99ad1f38",
+        "definition": "Highest 1-second mean speed in a continuous run above 7 m/s lasting at least 1 seconds; speed-limit-rejected derivatives excluded and net/path consistency at least 0.8; raw annotation jumps are audited, not interpreted as sprint peaks.",
+        "support": "estimated",
+        "raw_speed_flag_fraction": 0.38235294117647056,
+        "net_to_path_ratio": 0.9445117293143425
+      },
+      "diagnostic": null
+    },
+    {
+      "smoothing_frames": 25,
+      "qualifying_runs": 2,
+      "fastest": {
+        "event_id": "run_cc065b59d58d84523966ceb7",
+        "player_ref": "actor:476353",
+        "actor_id": 476353,
+        "player": 22,
+        "team": "left",
+        "start": 171.04,
+        "end": 172.44,
+        "speed_mps": 8.81201879402019,
+        "peak_window_start": 171.2,
+        "peak_window_end": 172.2,
+        "samples": 35,
+        "source_hash": "d86b2b45a546e393f89dac75f78c2b3a9db7b389ae627bc0aa8d028b99ad1f38",
+        "definition": "Highest 1-second mean speed in a continuous run above 7 m/s lasting at least 1 seconds; speed-limit-rejected derivatives excluded and net/path consistency at least 0.8; raw annotation jumps are audited, not interpreted as sprint peaks.",
+        "support": "estimated",
+        "raw_speed_flag_fraction": 0.4,
+        "net_to_path_ratio": 0.9655409341821167
+      },
+      "diagnostic": null
+    },
+    {
+      "smoothing_frames": 35,
+      "qualifying_runs": 6,
+      "fastest": {
+        "event_id": "run_f4727a039361daf79d0cb4a7",
+        "player_ref": "actor:476353",
+        "actor_id": 476353,
+        "player": 22,
+        "team": "left",
+        "start": 170.84,
+        "end": 172.4,
+        "speed_mps": 8.770238791381427,
+        "peak_window_start": 171.24,
+        "peak_window_end": 172.24,
+        "samples": 39,
+        "source_hash": "d86b2b45a546e393f89dac75f78c2b3a9db7b389ae627bc0aa8d028b99ad1f38",
+        "definition": "Highest 1-second mean speed in a continuous run above 7 m/s lasting at least 1 seconds; speed-limit-rejected derivatives excluded and net/path consistency at least 0.8; raw annotation jumps are audited, not interpreted as sprint peaks.",
+        "support": "estimated",
+        "raw_speed_flag_fraction": 0.41025641025641024,
+        "net_to_path_ratio": 0.9726153053967979
+      },
+      "diagnostic": null
+    }
+  ],
+  "response_audit": {
+    "responses": 16,
+    "code_free": 16,
+    "numeric_consistency_checks": [
+      {
+        "question": "Show me all the goals.",
+        "check": "reported eligible count equals selected evidence rows",
+        "correct": true
+      },
+      {
+        "question": "Show me the fastest sprint and highlight the player.",
+        "check": "rounded sustained mean equals returned source-derived estimate",
+        "correct": true
+      },
+      {
+        "question": "Show me the most difficult pass and explain why.",
+        "check": "distance/lane/sender factors from selected pass",
+        "correct": true
+      },
+      {
+        "question": "Show me his other actions.",
+        "check": "reported eligible count equals selected evidence rows",
+        "correct": true
+      },
+      {
+        "question": "Who ran the farthest?",
+        "check": "rounded source distance",
+        "correct": true
+      },
+      {
+        "question": "Who had the most possession?",
+        "check": "rounded source direct-control time",
+        "correct": true
+      },
+      {
+        "question": "Who made the longest pass and show me it.",
+        "check": "rounded selected-pass distance",
+        "correct": true
+      },
+      {
+        "question": "Make a 60-second highlight video.",
+        "check": "reported eligible count equals selected evidence rows",
+        "correct": true
+      }
+    ],
+    "independent": false
+  },
+  "demonstrations": [
+    {
+      "question": "Show me all the goals.",
+      "recording": "118575_clip",
+      "text": "I found 1 recorded or supported action. These are the actions available in the records, not every movement in the match.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Show me the fastest sprint and highlight the player.",
+      "recording": "118575_clip",
+      "text": "The fastest qualifying recorded sprint was by Player B, at an estimated sustained speed of 9.00 meters per second. This is an estimate over a continuous run, not a single-frame peak.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Who was that?",
+      "recording": "118575_clip",
+      "text": "That was Player B. You haven\u2019t confirmed their number yet; you can do that in Match setup.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Show me all the actions of player 7.",
+      "recording": "118575_clip",
+      "text": "Please confirm that player\u2019s number in Match setup first. If both teams use that number, select the player\u2019s card.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "How many shots did player 7 take?",
+      "recording": "118575_clip",
+      "text": "Please confirm that player\u2019s number in Match setup first. If both teams use that number, select the player\u2019s card.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Show me the most difficult pass and explain why.",
+      "recording": "118575_clip",
+      "text": "The most difficult recorded completed pass was made by Player R, according to the estimated difficulty score. Its difficulty is an estimate based on recorded distance, forward movement and nearby defenders. It covered about 34.1 meters; 1 opponent was near the straight line between its start and finish; the nearest defender was about 17.3 meters from its eventual destination when the pass began; 2 opponents were near the passer. This does not measure the probability of completing the pass.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Show me that pass again.",
+      "recording": "118575_clip",
+      "text": "Here is that recorded play again.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Who was the player in that clip?",
+      "recording": "118575_clip",
+      "text": "That was Player R. You haven\u2019t confirmed their number yet; you can do that in Match setup.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Show me his other actions.",
+      "recording": "118575_clip",
+      "text": "I found 9 recorded or supported actions for Player R. These are the actions available in the records, not every movement in the match.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Compare the two teams\u2019 shots.",
+      "recording": "118575_clip",
+      "text": "Team A has 0 recorded shot entries and Team B has 0 in this footage. These are recorded entries; this is not a claim that every action was recorded. Goals are listed separately.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Who ran the farthest?",
+      "recording": "118575_clip",
+      "text": "Player T covered the farthest tracked distance in the available footage: about 729.8 meters. Missing observations are not filled in.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Who had the most possession?",
+      "recording": "118575_clip",
+      "text": "Player M has the highest estimated direct ball control in the available records: 9.88 s. This covers the available footage only. This counts estimated direct ball control, not a complete possession sequence.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Who made the longest pass and show me it.",
+      "recording": "118575_clip",
+      "text": "The longest recorded completed pass was made by Player J and covered about 44.0 meters. This is an estimated start-to-finish distance.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Make a 60-second highlight video.",
+      "recording": "118575_clip",
+      "text": "I found 12 recorded moments for a short recap. It prioritizes recorded goals, shots and other available plays; it is not an objective excitement rating.",
+      "video_state": "COMPLETED",
+      "video_range_status": 206
+    },
+    {
+      "question": "Show me all the goals.",
+      "recording": "test_match",
+      "text": "I can show this footage, but I don\u2019t have confirmed football actions for it yet.",
+      "video_state": null,
+      "video_range_status": null
+    },
+    {
+      "question": "Show me the fastest shot.",
+      "recording": "118575_clip",
+      "text": "I don\u2019t have reliable records for that action or measurement in this footage.",
+      "video_state": null,
+      "video_range_status": null
+    }
+  ],
+  "gemini_live": {
+    "provider": "gemini",
+    "diagnostic": null,
+    "user_approved": true
+  },
+  "microsoft_live_verified": false,
+  "tests": {
+    "backend_run": 887,
+    "backend_passed": 886,
+    "backend_skipped": 1,
+    "frontend_passed": 113,
+    "frontend_files": 20,
+    "build_passed": true,
+    "browser_effective_cases_passed": 24,
+    "browser_full_initial": {
+      "passed": 21,
+      "failed": 3
+    },
+    "browser_final_recheck": {
+      "passed": 4,
+      "failed": 0,
+      "includes": "three failed cases and unified demonstration"
+    }
+  },
+  "final_runtime": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 10,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 13
+      }
+    },
+    "ordinary_ask": {
+      "status": 200,
+      "grounding": "ok",
+      "evidence_rows": 14
+    },
+    "video_range": {
+      "status": 206,
+      "bytes": 16
+    },
+    "recordings": [
+      {
+        "recording_id": "117092_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "117093_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "118575_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "118576_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "118577_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "118578_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "128057_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "128058_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "132831_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "132877_clip",
+        "status": "available",
+        "artifact_ready": true,
+        "media_available": true
+      },
+      {
+        "recording_id": "test_match",
+        "status": "available",
+        "artifact_ready": false,
+        "media_available": true
+      },
+      {
+        "recording_id": "team_goal",
+        "status": "available",
+        "artifact_ready": false,
+        "media_available": true
+      },
+      {
+        "recording_id": "southampton",
+        "status": "available",
+        "artifact_ready": false,
+        "media_available": true
+      }
+    ]
+  },
+  "preserved_input_audit": {
+    "verified": 199,
+    "changed": 0
+  },
+  "known_source_limit": {
+    "recording": "132877_clip",
+    "video_decoded_frames": 5958,
+    "analytics_frames": 6000,
+    "generated_clip": "rejected: source_clock_not_verified",
+    "original_playback": "verified"
+  },
+  "independent_speed_error": null,
+  "independent_sprint_interval_error": null,
+  "independent_jersey_readability": null,
+  "independent_general_language_or_jersey_accuracy": null
+}

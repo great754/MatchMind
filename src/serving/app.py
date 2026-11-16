@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 from typing import Literal
 from fastapi import FastAPI,HTTPException,Depends,Header,Query,Request
-from fastapi.responses import FileResponse,JSONResponse,HTMLResponse
+from fastapi.responses import FileResponse,JSONResponse,HTMLResponse,Response
 from fastapi.exceptions import RequestValidationError
 from pydantic import Field
 from src.query import MatchMindTools,explain_event
@@ -67,17 +67,29 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     if media_store:
         for key,status in statuses.items():
             match=status['match_id']
-            available=bool(key.endswith('_clip') and match and media_store.available(match))
+            full_half=key in loaded and loaded[key].summary.get('scope')=='half'
+            media_key=match
+            if full_half:
+                media_store.register_half(key,match,int(loaded[key].summary['half']))
+                media_key=key
+            available=bool((full_half or key.endswith('_clip')) and match and media_store.available(media_key))
             status.update(media_available=available,media_url=f'/matches/{key}/video.mp4' if available else None)
-            if available:media_ids[key]=match
+            if available:media_ids[key]=media_key
     from .ball import read_ball_registry
     ball_registry=read_ball_registry(Path('configs/serving/cv_ball.json'))
     ball_m15_registry=read_ball_registry(Path('configs/serving/cv_ball_m15.json'))
+    ball_m16_registry=read_ball_registry(Path('configs/serving/cv_ball_m16.json'))
     cv_reviews={}
     for key,directory in (cv_registry or {}).items():
         from .cv import CVReview
         try:
-            cv_reviews[key]=CVReview(directory)
+            try:
+                cv_reviews[key]=CVReview(directory)
+            except TimeoutError:
+                # Cloud-synced local files can time out during hydration. Retry
+                # complete validation once; corrupt hashes/schemas still fail.
+                logger.warning('CV recording %s file read timed out; retrying validation',key)
+                cv_reviews[key]=CVReview(directory)
             if key in ball_registry:cv_reviews[key].attach_ball(ball_registry[key])
             if cv_reviews[key].manifest['recording_id']!=key:raise ValueError('CV registry identity mismatch')
             if key in loaded:
@@ -96,17 +108,43 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             source='cv_experimental',artifact_ready=False,media_available=key in cv_reviews,
             media_url=f'/matches/{key}/video.mp4' if key in cv_reviews else None,
             diagnostic=None if key in cv_reviews else 'cv_review_unavailable')
+    from .ball import read_ball_registry
+    from .cv_events import CVEventReview
+    event_registry=read_ball_registry(Path(os.environ.get('MATCHMIND_CV_EVENTS_REGISTRY','configs/serving/cv_events.json')))
+    for key,cv in cv_reviews.items():
+        cv.event_review=None;cv.event_diagnostic=None
+        if key in event_registry:
+            try:cv.event_review=CVEventReview(event_registry[key],cv)
+            except (OSError,ValueError,KeyError,TypeError) as error:
+                cv.event_diagnostic='Experimental pass events unavailable or invalid'
+                logger.warning('CV events %s unavailable: %s',key,type(error).__name__)
     cv_m15_reviews={}
     for key,directory in ball_m15_registry.items():
         if key in cv_reviews:
             alternative=copy.copy(cv_reviews[key]);alternative.attach_ball(directory)
             if alternative.ball_review is not None and alternative.metadata()['ball_model_version']=='m15':cv_m15_reviews[key]=alternative
+    cv_m16_reviews={}
+    for key,directory in ball_m16_registry.items():
+        if key in cv_reviews:
+            alternative=copy.copy(cv_reviews[key]);alternative.attach_ball(directory)
+            if alternative.ball_review is not None and alternative.metadata()['ball_model_version']=='m16':cv_m16_reviews[key]=alternative
+    cv_m19_reviews={}
+    m19_events=read_ball_registry(Path('configs/serving/cv_events_m19.json'))
+    for key,directory in read_ball_registry(Path('configs/serving/cv_ball_m19.json')).items():
+        if key not in cv_reviews:continue
+        try:
+            alternative=copy.copy(cv_reviews[key]);alternative.event_review=None;alternative.attach_ball(directory)
+            if alternative.ball_review is None or alternative.metadata()['ball_model_version']!='m19':continue
+            alternative.event_review=CVEventReview(m19_events[key],alternative)
+            cv_m19_reviews[key]=alternative
+        except (OSError,ValueError,KeyError,TypeError) as error:
+            logger.warning('Optional M19 review %s unavailable: %s',key,type(error).__name__)
     for key,status in statuses.items():
         cv=cv_reviews.get(key)
         status.setdefault('source','soccertrack_structured')
         status['capabilities']=dict(video_available=bool(status.get('media_available')),analytics_available=key in loaded,
             tactical_view_available=key in loaded,cv_world_model_available=cv is not None,
-            pitch_calibration_available=bool(cv and cv.manifest.get('pitch_calibration_available')),ask_available=key in loaded)
+            pitch_calibration_available=bool(cv and cv.manifest.get('pitch_calibration_available')),ask_available=key in loaded,experimental_events_available=bool(cv and getattr(cv,'event_review',None)),assistant_available=key in loaded or bool(cv and getattr(cv,'event_review',None)))
     replays={key:load_replay(tools.directory) for key,tools in loaded.items()}
     from src.tactics.review import review_pressure
     for key,tools in loaded.items():
@@ -149,25 +187,41 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return dict(recordings=list(statuses.values()))
 
     @app.get('/matches/{match_id}/cv',dependencies=secured)
-    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15']='m14'):
+    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
-        if review is None:raise HTTPException(503,'M15 experimental ball review unavailable or invalid')
-        return review.metadata()|{'ball_pipeline_versions':['m14','m15'] if match_id in cv_m15_reviews else ['m14']}
+        review=cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
+        return review.metadata()|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])}
+
+    @app.get('/matches/{match_id}/cv/events',dependencies=secured)
+    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19']='m14'):
+        cv=(cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
+        if cv is None:raise HTTPException(503 if ball_pipeline=='m19' else 404,'Selected CV review unavailable')
+        layer=getattr(cv,'event_review',None)
+        if layer is None:raise HTTPException(503,getattr(cv,'event_diagnostic',None) or 'Experimental pass events not processed')
+        cat=assistant.catalog(match_id)
+        return layer.public({p['player_ref']:p['label'] for p in cat.players})|{'players':cat.players}
 
     @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
-    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15']='m14'):
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
-        if review is None:raise HTTPException(503,'M15 experimental ball review unavailable or invalid')
-        return review.frame(timestamp)
+        review=cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
+        # The frame is already schema-validated. Pydantic serializes its large
+        # nested evidence directly, avoiding FastAPI's second recursive walk.
+        return Response(content=review.frame(timestamp).model_dump_json(),media_type="application/json")
 
     @app.get('/matches/{match_id}/view',response_model=Review,dependencies=secured)
-    def match_view(match_id:str):
+    def match_view(match_id:str,workspace:str|None=Header(default=None,alias='X-TactiqAI-View')):
         tools=recording(match_id);replay,source=replays[match_id]
         result=review(tools,match_id,replay,source,default_provider,media_root if not media_store else None)
-        if media_store and tools.summary.get('scope')=='clip' and media_store.available(str(tools.summary.get('match_id',''))):
+        if media_store and (match_id in media_ids or tools.summary.get('scope')=='clip' and media_store.available(str(tools.summary.get('match_id','')))):
             result=result.model_copy(update={'media_url':f'/matches/{match_id}/video.mp4'})
+        if workspace=='workspace':
+            stride=replay.stride if replay is not None else 1
+            result=result.model_copy(update={'tactical_states':[],'pressure_context':[],'pressure_levels':[],
+                'ownership':result.ownership[::stride],
+                'limitations':result.limitations+['Workspace ownership uses the same source sample rate as the pitch; full tactical histories remain in the detailed report/API.']})
         return result
     @app.get('/matches/{match_id}/summary',dependencies=secured)
     def summary(match_id:str):return recording(match_id).get_match_summary()
@@ -236,6 +290,23 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         path=tools.directory/asset
         if not path.is_file():raise HTTPException(404,'Asset unavailable')
         return FileResponse(path,media_type='image/png')
+    from src.highlights.service import HighlightService
+    highlights=HighlightService(loaded,cv_reviews,media_store,media_root)
+    app.state.highlights=highlights
+    app.include_router(highlights.router(authorize))
+    from src.assistant.service import UnifiedMatchAssistant
+    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews})
+    from .cv_review_labels import review_router
+    annotation_router,app.state.cv_human_review=review_router(authorize,cv_reviews)
+    app.include_router(annotation_router)
+    app.state.assistant=assistant
+    # Static roster/picture routes precede the legacy integer-player route.
+    route_start=len(app.router.routes)
+    app.include_router(assistant.router(authorize))
+    assistant_routes=app.router.routes[route_start:]
+    del app.router.routes[route_start:]
+    player_route=next(i for i,r in enumerate(app.router.routes) if getattr(r,'path',None)=='/matches/{match_id}/players/{player_id}')
+    app.router.routes[player_route:player_route]=assistant_routes
     return app
 
 

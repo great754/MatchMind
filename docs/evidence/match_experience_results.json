@@ -1,0 +1,357 @@
+{
+  "verified_date": "2026-11-11",
+  "recorded_score": {
+    "recording_id": "118575_h1",
+    "left": 0,
+    "right": 3,
+    "scope": "full_match",
+    "label": "Recorded match score",
+    "unassigned_goals": 0,
+    "goals": [
+      {
+        "team": "right",
+        "timestamp": 413.88,
+        "recording_id": "118575_h1",
+        "event_id": "evt_117746bad40d05f165f8"
+      },
+      {
+        "team": "right",
+        "timestamp": 1865.6,
+        "recording_id": "118575_h1",
+        "event_id": "evt_96bc8142ec7ae2aff0d0"
+      },
+      {
+        "team": "right",
+        "timestamp": 2596.52,
+        "recording_id": "118575_h1",
+        "event_id": "evt_3854937443c40da977a6"
+      }
+    ],
+    "definition": "Distinct validated goal annotations, attributed to their recorded team; not a live or externally verified final score."
+  },
+  "ready": {
+    "status": "ready",
+    "recordings": 15
+  },
+  "health": {
+    "status": "ok",
+    "recordings": 12,
+    "processing": "precomputed_artifacts"
+  },
+  "payload_measurements": [
+    {
+      "workspace": false,
+      "bytes": 62731201,
+      "wall_seconds": 0.2589965839870274
+    },
+    {
+      "workspace": true,
+      "bytes": 12263480,
+      "wall_seconds": 0.12211187498178333
+    }
+  ],
+  "payload_reduction_fraction": 0.8045074890244808,
+  "goal_compilation": {
+    "state": "COMPLETED",
+    "event_count": 3,
+    "source": {
+      "origin": "registered_azure_stream",
+      "blob_name": "videos/118575/118575_panorama_1st_half.mp4",
+      "etag": "\"0x8DF4028ABC22B41\"",
+      "size_bytes": 3550087937,
+      "identity_sha256": "aa7ca9b261a1f00f1fbf40d72ac0cedc97aac7f0b44be49dbc6bddec8392f75a",
+      "integrity": "ETag-conditioned Azure ranges; no whole-source byte hash claimed",
+      "registered_media_access": true
+    },
+    "source_sha256": null,
+    "source_identity_sha256": "aa7ca9b261a1f00f1fbf40d72ac0cedc97aac7f0b44be49dbc6bddec8392f75a",
+    "render": {
+      "duration": 120.021333,
+      "expected_duration": 120.0,
+      "size_bytes": 6537200,
+      "sha256": "587111c8fc02eed133395ab9f8ec816e76b59d4e41b69287cbfe96a36b843340",
+      "render_seconds": 16.451798834023066,
+      "audio": true,
+      "original_audio": true,
+      "download_permitted": false,
+      "source_probe": {
+        "duration": 2874.015,
+        "audio": true,
+        "width": 4096,
+        "height": 1080,
+        "start_time": 0.0,
+        "video_start_time": 0.0,
+        "fps": "25/1",
+        "nb_frames": "71850"
+      },
+      "output_streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "start_time": "0.021029",
+          "duration": "120.000000",
+          "avg_frame_rate": "30/1",
+          "sample_rate": null
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "start_time": "0.000000",
+          "duration": "120.021333",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000"
+        }
+      ],
+      "source_range_bytes_read": 196608887
+    },
+    "segments": [
+      {
+        "start": 379.92,
+        "end": 419.92,
+        "event_ids": [
+          "evt_117746bad40d05f165f8"
+        ],
+        "event_start": 413.88,
+        "event_end": 413.88,
+        "period": 1,
+        "reason": "annotated goal; fixed context window, not a reconstructed possession sequence",
+        "output_start": 0.0,
+        "output_end": 40.0
+      },
+      {
+        "start": 1831.64,
+        "end": 1871.64,
+        "event_ids": [
+          "evt_96bc8142ec7ae2aff0d0"
+        ],
+        "event_start": 1865.6,
+        "event_end": 1865.6,
+        "period": 1,
+        "reason": "annotated goal; fixed context window, not a reconstructed possession sequence",
+        "output_start": 40.0,
+        "output_end": 80.0
+      },
+      {
+        "start": 2562.56,
+        "end": 2602.56,
+        "event_ids": [
+          "evt_3854937443c40da977a6"
+        ],
+        "event_start": 2596.52,
+        "event_end": 2596.52,
+        "period": 1,
+        "reason": "annotated goal; fixed context window, not a reconstructed possession sequence",
+        "output_start": 80.0,
+        "output_end": 120.0
+      }
+    ],
+    "source_timebase": {
+      "fps": 25.0,
+      "frames": 71850,
+      "source_offset_frames": 0,
+      "period": 1,
+      "period_start_match_seconds": 0.0,
+      "alignment_sources": [
+        {
+          "name": "118575_sync.json",
+          "sha256": "d39612dedef2e83bf08d0b128f9cb802980aa2366f3ce40db69ce4cdf458607f"
+        },
+        {
+          "name": "118575_12_class_events.json",
+          "sha256": "0a9cafadb15a6728f1dd14d28cd24d535d5cd70f00faa6bfa6c1651c77527692"
+        }
+      ]
+    },
+    "first_half_source_from_second_half": "118575_h1"
+  },
+  "player_example": {
+    "label": "Player R",
+    "recording_id": "118575_h1",
+    "stats": [
+      {
+        "key": "shots",
+        "label": "Shots",
+        "value": 1.0,
+        "unit": "events",
+        "support": "recorded",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "goals",
+        "label": "Goals",
+        "value": 0.0,
+        "unit": "events",
+        "support": "recorded",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "passes",
+        "label": "Passes completed",
+        "value": 22.0,
+        "unit": "events",
+        "support": "estimated",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "pass_attempts",
+        "label": "Pass attempts",
+        "value": 31.0,
+        "unit": "events",
+        "support": "estimated",
+        "definition": "Coverage-qualified transfer attempts, including completed, intercepted, unresolved and out-of-play outcomes."
+      },
+      {
+        "key": "pass_accuracy",
+        "label": "Pass accuracy",
+        "value": 70.96774193548387,
+        "unit": "%",
+        "support": "estimated",
+        "definition": "Completed qualifying transfers divided by all qualifying attempts; not an independently verified match completion rate."
+      },
+      {
+        "key": "tackles",
+        "label": "Tackles",
+        "value": 1.0,
+        "unit": "events",
+        "support": "recorded",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "interceptions",
+        "label": "Interceptions",
+        "value": 5.0,
+        "unit": "events",
+        "support": "estimated",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "receptions",
+        "label": "Passes received",
+        "value": 24.0,
+        "unit": "events",
+        "support": "estimated",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "crosses",
+        "label": "Crosses",
+        "value": 1.0,
+        "unit": "events",
+        "support": "recorded",
+        "definition": "Entries explicitly assigned to this player in the available footage; not exhaustive match coverage."
+      },
+      {
+        "key": "distance",
+        "label": "Distance covered",
+        "value": 7523.188404757552,
+        "unit": "m",
+        "support": "estimated",
+        "definition": "Existing player summary over observed source segments; peak speed is not a sustained sprint ranking."
+      },
+      {
+        "key": "peak_speed",
+        "label": "Peak speed",
+        "value": 9.096593503193846,
+        "unit": "m/s",
+        "support": "estimated",
+        "definition": "Existing player summary over observed source segments; peak speed is not a sustained sprint ranking."
+      }
+    ],
+    "tracked_minutes": 47.822,
+    "pass_map_count": 30,
+    "heatmap_samples": 71733,
+    "heatmap_seconds": 2869.32,
+    "heatmap_seconds_sum": 2869.32,
+    "limitations": [
+      "Only actions in the available records are counted.",
+      "Shots and goals are separate annotation categories.",
+      "Passes, completion, interceptions, speed and distance include tracking-derived estimates.",
+      "Tracked minutes describe observed position coverage, not verified playing time."
+    ]
+  },
+  "llm_live": [
+    {
+      "question": "Could you splice the scoring moments into one reel and keep the attacking move before each one?",
+      "provider": "gemini",
+      "operation": "actions",
+      "video": true,
+      "diagnostic": null
+    },
+    {
+      "question": "Walk me through Player R’s numbers: distribution accuracy, shots, goals, tackles and interceptions.",
+      "provider": "gemini",
+      "operation": "player_profile",
+      "video": false,
+      "diagnostic": null
+    }
+  ],
+  "approved_followup": {
+    "provider": "local_fallback",
+    "operation": "actions",
+    "diagnostic": "The language model could not interpret this request, so the built-in fallback was used.",
+    "goal_count": 3,
+    "video_state": "COMPLETED",
+    "user_approved": true
+  },
+  "tests": {
+    "backend_run": 905,
+    "backend_passed": 904,
+    "backend_skipped": 1,
+    "frontend_passed": 116,
+    "build_passed": true,
+    "chrome_cases_passed": 3,
+    "chrome_wall_seconds": 23.7,
+    "final_focused_chrome_cases_passed": 1,
+    "final_focused_chrome_wall_seconds": 9.3
+  },
+  "browser": {
+    "score": "0–3",
+    "player_stats": true,
+    "pitch_click_opens_stats": true,
+    "goal_moment_has_buildup": true,
+    "heatmap": true,
+    "pass_map": true,
+    "statistic_chat": true,
+    "goal_compilation_play_seek": true,
+    "other_half_goal_request": true,
+    "correct_source_navigation": true,
+    "mobile_no_overflow": true,
+    "page_errors": []
+  },
+  "limits": [
+    "Three development language examples do not establish universal natural-language accuracy.",
+    "One approved hosted followup used the visible built-in fallback; its exact failure category was not recorded.",
+    "Goal buildup is bounded lead-in footage, not verified possession-sequence reconstruction.",
+    "Heatmap uses observed source pitch positions; tracked minutes are not independently verified playing time.",
+    "Pass arrows join endpoints and do not reconstruct actual ball trajectories.",
+    "Jerseys/names require explicit confirmation.",
+    "No independent score, event, speed or spatial ground-truth re-evaluation was performed."
+  ],
+  "final_service_recheck": {
+    "health_http": 200,
+    "ready_http": 200,
+    "usable_recordings": 15,
+    "catalog_http": 200,
+    "available_recordings": [
+      "117092_clip",
+      "117093_clip",
+      "118575_clip",
+      "118575_h1",
+      "118575_h2",
+      "118576_clip",
+      "118577_clip",
+      "118578_clip",
+      "128057_clip",
+      "128058_clip",
+      "132831_clip",
+      "132877_clip",
+      "test_match",
+      "team_goal",
+      "southampton"
+    ],
+    "score_http": 200,
+    "video_range_http": 206,
+    "video_range_bytes": 16,
+    "frontend_http": 200
+  }
+}

@@ -32,3 +32,13 @@ class GeminiCommentaryProvider:
             return ''.join(p['text'] for p in parts if 'text' in p and not p.get('thought'))
         except Exception:
             raise CommentaryError('Gemini request failed or returned an unusable response; check connectivity, model access and API quota.') from None
+
+    def generate_structured(self,instruction,payload,schema):
+        """Closed plan JSON; application validation still resolves all evidence."""
+        import json
+        body={'systemInstruction':{'parts':[{'text':instruction}]},'contents':[{'role':'user','parts':[{'text':json.dumps(payload,allow_nan=False)}]}],'generationConfig':{'temperature':0.1,'maxOutputTokens':1024,'responseMimeType':'application/json','responseJsonSchema':schema}}
+        try:
+            response=self._session.post(f'https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent',headers={'x-goog-api-key':self._key,'Content-Type':'application/json'},json=body,timeout=(5,30),allow_redirects=False)
+            if response.status_code!=200 or len(response.content)>1_000_000:raise ValueError()
+            return ''.join(p['text'] for p in response.json()['candidates'][0]['content']['parts'] if 'text' in p and not p.get('thought'))
+        except Exception:raise CommentaryError('Structured planning was unavailable.') from None

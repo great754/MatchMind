@@ -1,0 +1,881 @@
+{
+  "detector": {
+    "resolution": 640,
+    "threshold": 0.35,
+    "metrics": {
+      "frames": 72,
+      "tp": 42,
+      "fp": 26,
+      "fn": 30,
+      "precision": 0.6176470588235294,
+      "recall": 0.5833333333333334,
+      "f1": 0.6,
+      "false_positives_per_frame": 0.3611111111111111,
+      "localization_median_px": 1.9810862411715071,
+      "localization_p90_px": 5.465775684696298,
+      "detected_gt_frame_coverage": 0.5833333333333334,
+      "threshold": 0.35,
+      "iou_match_threshold": 0.25,
+      "strata": {
+        "small_under12px": {
+          "gt": 35,
+          "tp": 19,
+          "recall": 0.5428571428571428
+        },
+        "medium12_24px": {
+          "gt": 35,
+          "tp": 23,
+          "recall": 0.6571428571428571
+        },
+        "large_over24px": {
+          "gt": 2,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "low_sharpness_proxy": {
+          "gt": 2,
+          "tp": 0,
+          "recall": 0.0
+        },
+        "higher_sharpness_proxy": {
+          "gt": 70,
+          "tp": 42,
+          "recall": 0.6
+        }
+      },
+      "visibility_or_occlusion_gt_available": false,
+      "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+    },
+    "seconds": 15.10385808115825
+  },
+  "candidates": [
+    {
+      "resolution": 640,
+      "threshold": 0.1,
+      "metrics": {
+        "frames": 72,
+        "tp": 47,
+        "fp": 244,
+        "fn": 25,
+        "precision": 0.16151202749140894,
+        "recall": 0.6527777777777778,
+        "f1": 0.25895316804407714,
+        "false_positives_per_frame": 3.388888888888889,
+        "localization_median_px": 2.0228927829097274,
+        "localization_p90_px": 5.544925922495444,
+        "detected_gt_frame_coverage": 0.6527777777777778,
+        "threshold": 0.1,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 22,
+            "recall": 0.6285714285714286
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 25,
+            "recall": 0.7142857142857143
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 47,
+            "recall": 0.6714285714285714
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    {
+      "resolution": 640,
+      "threshold": 0.2,
+      "metrics": {
+        "frames": 72,
+        "tp": 45,
+        "fp": 86,
+        "fn": 27,
+        "precision": 0.3435114503816794,
+        "recall": 0.625,
+        "f1": 0.4433497536945813,
+        "false_positives_per_frame": 1.1944444444444444,
+        "localization_median_px": 2.00581137800319,
+        "localization_p90_px": 5.416008163230056,
+        "detected_gt_frame_coverage": 0.625,
+        "threshold": 0.2,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 21,
+            "recall": 0.6
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 24,
+            "recall": 0.6857142857142857
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 45,
+            "recall": 0.6428571428571429
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    {
+      "resolution": 640,
+      "threshold": 0.35,
+      "metrics": {
+        "frames": 72,
+        "tp": 42,
+        "fp": 26,
+        "fn": 30,
+        "precision": 0.6176470588235294,
+        "recall": 0.5833333333333334,
+        "f1": 0.6,
+        "false_positives_per_frame": 0.3611111111111111,
+        "localization_median_px": 1.9810862411715071,
+        "localization_p90_px": 5.465775684696298,
+        "detected_gt_frame_coverage": 0.5833333333333334,
+        "threshold": 0.35,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 19,
+            "recall": 0.5428571428571428
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 23,
+            "recall": 0.6571428571428571
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 42,
+            "recall": 0.6
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    {
+      "resolution": 640,
+      "threshold": 0.5,
+      "metrics": {
+        "frames": 72,
+        "tp": 24,
+        "fp": 8,
+        "fn": 48,
+        "precision": 0.75,
+        "recall": 0.3333333333333333,
+        "f1": 0.46153846153846156,
+        "false_positives_per_frame": 0.1111111111111111,
+        "localization_median_px": 1.764267998310523,
+        "localization_p90_px": 3.609756934842786,
+        "detected_gt_frame_coverage": 0.3333333333333333,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 13,
+            "recall": 0.37142857142857144
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 11,
+            "recall": 0.3142857142857143
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 24,
+            "recall": 0.34285714285714286
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    {
+      "resolution": 640,
+      "threshold": 0.65,
+      "metrics": {
+        "frames": 72,
+        "tp": 2,
+        "fp": 0,
+        "fn": 70,
+        "precision": 1.0,
+        "recall": 0.027777777777777776,
+        "f1": 0.05405405405405406,
+        "false_positives_per_frame": 0.0,
+        "localization_median_px": 1.6862344544967183,
+        "localization_p90_px": 1.773055275648582,
+        "detected_gt_frame_coverage": 0.027777777777777776,
+        "threshold": 0.65,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 2,
+            "recall": 0.05714285714285714
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 2,
+            "recall": 0.02857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    {
+      "resolution": 960,
+      "threshold": 0.1,
+      "metrics": {
+        "frames": 72,
+        "tp": 52,
+        "fp": 458,
+        "fn": 20,
+        "precision": 0.10196078431372549,
+        "recall": 0.7222222222222222,
+        "f1": 0.17869415807560138,
+        "false_positives_per_frame": 6.361111111111111,
+        "localization_median_px": 2.2624972024170296,
+        "localization_p90_px": 5.980995174853805,
+        "detected_gt_frame_coverage": 0.7222222222222222,
+        "threshold": 0.1,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 24,
+            "recall": 0.6857142857142857
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 28,
+            "recall": 0.8
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 52,
+            "recall": 0.7428571428571429
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 32.568942629615776
+    },
+    {
+      "resolution": 960,
+      "threshold": 0.2,
+      "metrics": {
+        "frames": 72,
+        "tp": 51,
+        "fp": 222,
+        "fn": 21,
+        "precision": 0.18681318681318682,
+        "recall": 0.7083333333333334,
+        "f1": 0.2956521739130435,
+        "false_positives_per_frame": 3.0833333333333335,
+        "localization_median_px": 2.247703333770239,
+        "localization_p90_px": 5.771967012316151,
+        "detected_gt_frame_coverage": 0.7083333333333334,
+        "threshold": 0.2,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 24,
+            "recall": 0.6857142857142857
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 27,
+            "recall": 0.7714285714285715
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 51,
+            "recall": 0.7285714285714285
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 32.568942629615776
+    },
+    {
+      "resolution": 960,
+      "threshold": 0.35,
+      "metrics": {
+        "frames": 72,
+        "tp": 48,
+        "fp": 63,
+        "fn": 24,
+        "precision": 0.43243243243243246,
+        "recall": 0.6666666666666666,
+        "f1": 0.5245901639344263,
+        "false_positives_per_frame": 0.875,
+        "localization_median_px": 2.0701247394812303,
+        "localization_p90_px": 5.8416430664953705,
+        "detected_gt_frame_coverage": 0.6666666666666666,
+        "threshold": 0.35,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 22,
+            "recall": 0.6285714285714286
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 26,
+            "recall": 0.7428571428571429
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 48,
+            "recall": 0.6857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 32.568942629615776
+    },
+    {
+      "resolution": 960,
+      "threshold": 0.5,
+      "metrics": {
+        "frames": 72,
+        "tp": 30,
+        "fp": 6,
+        "fn": 42,
+        "precision": 0.8333333333333334,
+        "recall": 0.4166666666666667,
+        "f1": 0.5555555555555556,
+        "false_positives_per_frame": 0.08333333333333333,
+        "localization_median_px": 1.8606783957629067,
+        "localization_p90_px": 6.571176855748332,
+        "detected_gt_frame_coverage": 0.4166666666666667,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 14,
+            "recall": 0.4
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 16,
+            "recall": 0.45714285714285713
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 30,
+            "recall": 0.42857142857142855
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 32.568942629615776
+    },
+    {
+      "resolution": 960,
+      "threshold": 0.65,
+      "metrics": {
+        "frames": 72,
+        "tp": 2,
+        "fp": 0,
+        "fn": 70,
+        "precision": 1.0,
+        "recall": 0.027777777777777776,
+        "f1": 0.05405405405405406,
+        "false_positives_per_frame": 0.0,
+        "localization_median_px": 1.7202703482798265,
+        "localization_p90_px": 1.834420795974878,
+        "detected_gt_frame_coverage": 0.027777777777777776,
+        "threshold": 0.65,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 2,
+            "recall": 0.05714285714285714
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 2,
+            "recall": 0.02857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 32.568942629615776
+    },
+    {
+      "resolution": 1280,
+      "threshold": 0.1,
+      "metrics": {
+        "frames": 72,
+        "tp": 55,
+        "fp": 717,
+        "fn": 17,
+        "precision": 0.07124352331606218,
+        "recall": 0.7638888888888888,
+        "f1": 0.13033175355450238,
+        "false_positives_per_frame": 9.958333333333334,
+        "localization_median_px": 1.990683165273851,
+        "localization_p90_px": 5.542362690476799,
+        "detected_gt_frame_coverage": 0.7638888888888888,
+        "threshold": 0.1,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 28,
+            "recall": 0.8
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 27,
+            "recall": 0.7714285714285715
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 55,
+            "recall": 0.7857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 57.95906675362494
+    },
+    {
+      "resolution": 1280,
+      "threshold": 0.2,
+      "metrics": {
+        "frames": 72,
+        "tp": 51,
+        "fp": 356,
+        "fn": 21,
+        "precision": 0.12530712530712532,
+        "recall": 0.7083333333333334,
+        "f1": 0.2129436325678497,
+        "false_positives_per_frame": 4.944444444444445,
+        "localization_median_px": 2.087788094910508,
+        "localization_p90_px": 5.577677580665515,
+        "detected_gt_frame_coverage": 0.7083333333333334,
+        "threshold": 0.2,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 24,
+            "recall": 0.6857142857142857
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 27,
+            "recall": 0.7714285714285715
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 51,
+            "recall": 0.7285714285714285
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 57.95906675362494
+    },
+    {
+      "resolution": 1280,
+      "threshold": 0.35,
+      "metrics": {
+        "frames": 72,
+        "tp": 47,
+        "fp": 97,
+        "fn": 25,
+        "precision": 0.3263888888888889,
+        "recall": 0.6527777777777778,
+        "f1": 0.4351851851851851,
+        "false_positives_per_frame": 1.3472222222222223,
+        "localization_median_px": 2.087788094910508,
+        "localization_p90_px": 5.7260782636652054,
+        "detected_gt_frame_coverage": 0.6527777777777778,
+        "threshold": 0.35,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 21,
+            "recall": 0.6
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 26,
+            "recall": 0.7428571428571429
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 47,
+            "recall": 0.6714285714285714
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 57.95906675362494
+    },
+    {
+      "resolution": 1280,
+      "threshold": 0.5,
+      "metrics": {
+        "frames": 72,
+        "tp": 20,
+        "fp": 16,
+        "fn": 52,
+        "precision": 0.5555555555555556,
+        "recall": 0.2777777777777778,
+        "f1": 0.3703703703703704,
+        "false_positives_per_frame": 0.2222222222222222,
+        "localization_median_px": 2.0392356300921795,
+        "localization_p90_px": 6.919359582107638,
+        "detected_gt_frame_coverage": 0.2777777777777778,
+        "threshold": 0.5,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 5,
+            "recall": 0.14285714285714285
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 15,
+            "recall": 0.42857142857142855
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 20,
+            "recall": 0.2857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 57.95906675362494
+    },
+    {
+      "resolution": 1280,
+      "threshold": 0.65,
+      "metrics": {
+        "frames": 72,
+        "tp": 2,
+        "fp": 0,
+        "fn": 70,
+        "precision": 1.0,
+        "recall": 0.027777777777777776,
+        "f1": 0.05405405405405406,
+        "false_positives_per_frame": 0.0,
+        "localization_median_px": 2.424308734648607,
+        "localization_p90_px": 2.9818161109463324,
+        "detected_gt_frame_coverage": 0.027777777777777776,
+        "threshold": 0.65,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 2,
+            "recall": 0.05714285714285714
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 2,
+            "recall": 0.02857142857142857
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 57.95906675362494
+    }
+  ],
+  "multi_enabled": false,
+  "validation_multi": {
+    "frames": 288,
+    "counts": {
+      "LOST": 69,
+      "observed": 166,
+      "predicted": 28,
+      "metric_supported": 0,
+      "DETECTED": 29,
+      "AMBIGUOUS": 8,
+      "observed_iou_matched": 134,
+      "observed_iou_unmatched": 32,
+      "observed_center_matched": 142,
+      "observed_center_unmatched": 24,
+      "PREDICTED": 28,
+      "prediction_gt_comparable": 28,
+      "prediction_gt_inconsistent": 14,
+      "TRACKED": 154
+    },
+    "observed_coverage": 0.5763888888888888,
+    "predicted_coverage": 0.09722222222222222,
+    "accepted_iou_precision": 0.8072289156626506,
+    "accepted_center_consistency": 0.8554216867469879,
+    "accepted_center_wilson95": [
+      0.7938847585788191,
+      0.9008802459901439
+    ],
+    "prediction_inconsistency_rate": 0.5,
+    "prediction_inconsistency_wilson95": [
+      0.3263284683244634,
+      0.6736715316755366
+    ],
+    "localization_median_px": 2.1348639526634456,
+    "localization_p90_px": 15.932033898088271,
+    "longest_predicted_continuation_seconds": 0.12,
+    "matched_track_fragmentations": 14,
+    "reacquisition_attempts_after_matched_gap": 27,
+    "reacquisition_correct_iou": 14,
+    "reacquisition_precision": 0.5185185185185185,
+    "reacquisition_recall": null,
+    "metric_error_m": null,
+    "invalid_ground_acceptance_rate": null,
+    "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+  },
+  "validation_kalman": {
+    "frames": 288,
+    "counts": {
+      "DETECTED": 31,
+      "observed": 190,
+      "predicted": 31,
+      "metric_supported": 0,
+      "observed_iou_matched": 157,
+      "observed_iou_unmatched": 33,
+      "observed_center_matched": 165,
+      "observed_center_unmatched": 25,
+      "TRACKED": 179,
+      "PREDICTED": 31,
+      "prediction_gt_comparable": 31,
+      "prediction_gt_inconsistent": 16,
+      "LOST": 47
+    },
+    "observed_coverage": 0.6597222222222222,
+    "predicted_coverage": 0.1076388888888889,
+    "accepted_iou_precision": 0.8263157894736842,
+    "accepted_center_consistency": 0.868421052631579,
+    "accepted_center_wilson95": [
+      0.8129754229745219,
+      0.9092637661365874
+    ],
+    "prediction_inconsistency_rate": 0.5161290322580645,
+    "prediction_inconsistency_wilson95": [
+      0.34840118286973176,
+      0.6803001396872117
+    ],
+    "localization_median_px": 2.3042235511190317,
+    "localization_p90_px": 15.392363468849107,
+    "longest_predicted_continuation_seconds": 0.12,
+    "matched_track_fragmentations": 18,
+    "reacquisition_attempts_after_matched_gap": 37,
+    "reacquisition_correct_iou": 18,
+    "reacquisition_precision": 0.4864864864864865,
+    "reacquisition_recall": null,
+    "metric_error_m": null,
+    "invalid_ground_acceptance_rate": null,
+    "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+  },
+  "temporal_enabled": false,
+  "temporal_blocker": "No independent match-disjoint verified-negative temporal validation labels; organizer positives have unverified visibility. Cannot certify validation F1/coverage improvement. Training loss is not accuracy.",
+  "local_enabled": false,
+  "local_policy": "Additive recovery implemented; remains diagnostic unless prospective validation shows higher candidate recall and accepted correct coverage. No global proposal replacement.",
+  "dataset_sha256": "6524d99f34176a5ce9ca23c2f00102e8cc1569c280c8771c8f02869ffa0035ad",
+  "checkpoint_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+  "test_seen": false
+}

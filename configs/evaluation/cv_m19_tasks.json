@@ -1,0 +1,525 @@
+{
+  "schema_version": "cv-m19-review-tasks-v1",
+  "protocol": {
+    "schema_version": "cv-m19-evaluation-v1",
+    "recordings": [
+      "test_match",
+      "team_goal",
+      "southampton"
+    ],
+    "selection": "uniform_time_without_model_candidate_selection",
+    "ball_frames_per_clip": 12,
+    "pass_windows_per_clip": 4,
+    "pass_window_seconds": 3.0,
+    "identity_pairs_per_clip": 4,
+    "identity_gap_seconds": 0.2,
+    "ball_box_match_iou": 0.25,
+    "pass_endpoint_tolerance_seconds": 0.25,
+    "labels_required": "independent_human_review",
+    "unknown_ball_visibility": "exclude_from_precision_recall_denominators_and_report",
+    "pass_recall_requires_exhaustively_reviewed_windows": true,
+    "minimum_independent_reviewers": 1,
+    "prohibited_reference_sources": [
+      "model_candidates",
+      "synthetic_tests",
+      "agent_visual_review"
+    ],
+    "confidence_reporting": "sample_counts_and_wilson_intervals_where_defined"
+  },
+  "sources": {
+    "test_match": {
+      "video_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "frames": 541,
+      "fps": 23.976023976023978,
+      "width": 1080,
+      "height": 1080
+    },
+    "team_goal": {
+      "video_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "frames": 500,
+      "fps": 25.0,
+      "width": 640,
+      "height": 360
+    },
+    "southampton": {
+      "video_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "frames": 660,
+      "fps": 29.97002997002997,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "tasks": [
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 22,
+      "timestamp": 0.9175833333333333,
+      "task_id": "m19_e901a092ea6f167264c23c94"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 67,
+      "timestamp": 2.794458333333333,
+      "task_id": "m19_c03a6c88a8e1a27d7694b1e3"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 112,
+      "timestamp": 4.671333333333333,
+      "task_id": "m19_3f6dc3f2d127fbffe91b657f"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 157,
+      "timestamp": 6.548208333333333,
+      "task_id": "m19_1644e922b2325d6cd3f291cc"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 202,
+      "timestamp": 8.425083333333333,
+      "task_id": "m19_531d22b46536312a2f812b87"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 247,
+      "timestamp": 10.301958333333333,
+      "task_id": "m19_9afe434636a1cd8d1ebd4ca3"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 293,
+      "timestamp": 12.220541666666666,
+      "task_id": "m19_f77c9e074e28adf5424399b9"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 338,
+      "timestamp": 14.097416666666666,
+      "task_id": "m19_87caeebbb5a38bc3c02efc4d"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 383,
+      "timestamp": 15.974291666666666,
+      "task_id": "m19_49d6077a5f54f58cd4301184"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 428,
+      "timestamp": 17.851166666666664,
+      "task_id": "m19_ad457b9c8595f82424152701"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 473,
+      "timestamp": 19.728041666666666,
+      "task_id": "m19_074b1e32dd345450d3387853"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "test_match",
+      "frame": 518,
+      "timestamp": 21.604916666666664,
+      "task_id": "m19_15f3eb3e6c0054325203ce50"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "test_match",
+      "start_frame": 31,
+      "end_frame": 103,
+      "start": 1.2929583333333332,
+      "end": 4.295958333333333,
+      "task_id": "m19_b543ca4bceadec3115695038"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "test_match",
+      "start_frame": 166,
+      "end_frame": 238,
+      "start": 6.923583333333333,
+      "end": 9.926583333333333,
+      "task_id": "m19_2f7c54a9366cacd3c798d0bb"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "test_match",
+      "start_frame": 302,
+      "end_frame": 374,
+      "start": 12.595916666666666,
+      "end": 15.598916666666666,
+      "task_id": "m19_de76c8ef01cb026cbaa11d2a"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "test_match",
+      "start_frame": 437,
+      "end_frame": 509,
+      "start": 18.226541666666666,
+      "end": 21.229541666666666,
+      "task_id": "m19_417de546a1c03af7ba7c11c8"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "test_match",
+      "frame": 67,
+      "other_frame": 72,
+      "timestamp": 2.794458333333333,
+      "other_timestamp": 3.0029999999999997,
+      "task_id": "m19_37a4ccbfcf3c3e7cf250beaf"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "test_match",
+      "frame": 202,
+      "other_frame": 207,
+      "timestamp": 8.425083333333333,
+      "other_timestamp": 8.633624999999999,
+      "task_id": "m19_55b5851356ee75fd13f6e741"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "test_match",
+      "frame": 338,
+      "other_frame": 343,
+      "timestamp": 14.097416666666666,
+      "other_timestamp": 14.305958333333333,
+      "task_id": "m19_d9d532ffe365030d45db533e"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "test_match",
+      "frame": 473,
+      "other_frame": 478,
+      "timestamp": 19.728041666666666,
+      "other_timestamp": 19.93658333333333,
+      "task_id": "m19_7415c3ffa60f4e62fe7d1178"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 20,
+      "timestamp": 0.8,
+      "task_id": "m19_06a7c3c84e029020069d7293"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 62,
+      "timestamp": 2.48,
+      "task_id": "m19_b4cfd7c32679d7a50c9be996"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 104,
+      "timestamp": 4.16,
+      "task_id": "m19_ac26bf960c146a4604537208"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 145,
+      "timestamp": 5.8,
+      "task_id": "m19_17ca1501511a1d2886683886"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 187,
+      "timestamp": 7.48,
+      "task_id": "m19_32b7aa8724308b5b1d390f59"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 229,
+      "timestamp": 9.16,
+      "task_id": "m19_cfbbe728563f483026f344ff"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 270,
+      "timestamp": 10.8,
+      "task_id": "m19_000ad0f0dfb5d218b1ba5ffc"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 312,
+      "timestamp": 12.48,
+      "task_id": "m19_b6903e37a676a10c8c656ea4"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 354,
+      "timestamp": 14.16,
+      "task_id": "m19_6b8c0cfe7ab57d16409ed9b4"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 395,
+      "timestamp": 15.8,
+      "task_id": "m19_66f0ea95b6c658e0404282c3"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 437,
+      "timestamp": 17.48,
+      "task_id": "m19_e5f377bbc232046403c24e17"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "team_goal",
+      "frame": 479,
+      "timestamp": 19.16,
+      "task_id": "m19_b015416da17204d74cd34c9b"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "team_goal",
+      "start_frame": 25,
+      "end_frame": 100,
+      "start": 1.0,
+      "end": 4.0,
+      "task_id": "m19_5c4e05b88409483e882a91ba"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "team_goal",
+      "start_frame": 150,
+      "end_frame": 225,
+      "start": 6.0,
+      "end": 9.0,
+      "task_id": "m19_2f91945d3de70f7d3830f8c0"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "team_goal",
+      "start_frame": 275,
+      "end_frame": 350,
+      "start": 11.0,
+      "end": 14.0,
+      "task_id": "m19_4f645db5e4613c6d5d2559b7"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "team_goal",
+      "start_frame": 400,
+      "end_frame": 475,
+      "start": 16.0,
+      "end": 19.0,
+      "task_id": "m19_62a2318aeff7a80e2c1e63b1"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "team_goal",
+      "frame": 62,
+      "other_frame": 67,
+      "timestamp": 2.48,
+      "other_timestamp": 2.68,
+      "task_id": "m19_2c85d438586362b01993c440"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "team_goal",
+      "frame": 187,
+      "other_frame": 192,
+      "timestamp": 7.48,
+      "other_timestamp": 7.68,
+      "task_id": "m19_e71f086fc57ce42b57c498a2"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "team_goal",
+      "frame": 312,
+      "other_frame": 317,
+      "timestamp": 12.48,
+      "other_timestamp": 12.68,
+      "task_id": "m19_cf7254bc11f856f0c062a686"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "team_goal",
+      "frame": 437,
+      "other_frame": 442,
+      "timestamp": 17.48,
+      "other_timestamp": 17.68,
+      "task_id": "m19_6b4569b2872ebb1b835b568c"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 27,
+      "timestamp": 0.9009,
+      "task_id": "m19_48ae4a57e7fbed7699c2fe74"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 82,
+      "timestamp": 2.736066666666667,
+      "task_id": "m19_28776405bd76b5f8382b8dcd"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 137,
+      "timestamp": 4.571233333333334,
+      "task_id": "m19_8fa37d1ebbba2ef589787d6c"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 192,
+      "timestamp": 6.4064000000000005,
+      "task_id": "m19_bd6f6c8c965165a04df820cb"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 247,
+      "timestamp": 8.241566666666667,
+      "task_id": "m19_7edc0b7c8a1537423ea11263"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 302,
+      "timestamp": 10.076733333333333,
+      "task_id": "m19_a7fcbc7861058257217ff7ec"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 357,
+      "timestamp": 11.911900000000001,
+      "task_id": "m19_78dd53aea7b4828dc905aef1"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 412,
+      "timestamp": 13.747066666666667,
+      "task_id": "m19_4e517993025b151d5152867b"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 467,
+      "timestamp": 15.582233333333333,
+      "task_id": "m19_093d05aef8dc2b2789c58231"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 522,
+      "timestamp": 17.4174,
+      "task_id": "m19_bcf614158fab994f6f423e69"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 577,
+      "timestamp": 19.252566666666667,
+      "task_id": "m19_ad30d56c76e290ed644cd74e"
+    },
+    {
+      "kind": "ball",
+      "recording_id": "southampton",
+      "frame": 632,
+      "timestamp": 21.087733333333333,
+      "task_id": "m19_9cafb647419cfcecfd708f2a"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "southampton",
+      "start_frame": 37,
+      "end_frame": 127,
+      "start": 1.2345666666666666,
+      "end": 4.237566666666667,
+      "task_id": "m19_fc233d2699b552be522f579f"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "southampton",
+      "start_frame": 202,
+      "end_frame": 292,
+      "start": 6.740066666666666,
+      "end": 9.743066666666667,
+      "task_id": "m19_d2cb7776e84a02e55f5b4aad"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "southampton",
+      "start_frame": 367,
+      "end_frame": 457,
+      "start": 12.245566666666667,
+      "end": 15.248566666666667,
+      "task_id": "m19_0c96960d2e5613db2237c296"
+    },
+    {
+      "kind": "passes",
+      "recording_id": "southampton",
+      "start_frame": 532,
+      "end_frame": 622,
+      "start": 17.751066666666667,
+      "end": 20.754066666666667,
+      "task_id": "m19_c0aa7005fece5c9b27c74791"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "southampton",
+      "frame": 82,
+      "other_frame": 88,
+      "timestamp": 2.736066666666667,
+      "other_timestamp": 2.9362666666666666,
+      "task_id": "m19_68d0b37aa06b32c4783e4efd"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "southampton",
+      "frame": 247,
+      "other_frame": 253,
+      "timestamp": 8.241566666666667,
+      "other_timestamp": 8.441766666666666,
+      "task_id": "m19_6e3d7e72bd3c5a5ad79e40e3"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "southampton",
+      "frame": 412,
+      "other_frame": 418,
+      "timestamp": 13.747066666666667,
+      "other_timestamp": 13.947266666666668,
+      "task_id": "m19_93dfc3acf25ca5c5267e573f"
+    },
+    {
+      "kind": "identity",
+      "recording_id": "southampton",
+      "frame": 577,
+      "other_frame": 583,
+      "timestamp": 19.252566666666667,
+      "other_timestamp": 19.452766666666665,
+      "task_id": "m19_5e9f1418b76ac9969ad52574"
+    }
+  ],
+  "selection_uses_model_candidates": false,
+  "human_labels_created": 0,
+  "fingerprint": "d09ac4321745a6373fa8f9291f67bd206322bf5655bbc5b2a80ed2300afc0ade"
+}

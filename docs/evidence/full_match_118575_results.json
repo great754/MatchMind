@@ -1,0 +1,816 @@
+{
+  "match_id": "118575",
+  "processing": "existing full-half GSR analytics, no new model training",
+  "source_checks": [
+    {
+      "blob": "bas/118575/118575_12_class_events.json",
+      "local_sha256_matches": true
+    },
+    {
+      "blob": "ball/118575_1st_ball.npz",
+      "local_sha256_matches": true
+    },
+    {
+      "blob": "ball/118575_2nd_ball.npz",
+      "local_sha256_matches": true
+    }
+  ],
+  "halves": [
+    {
+      "recording_id": "118575_h1",
+      "summary": {
+        "schema_version": 1,
+        "match_id": "118575",
+        "scope": "half",
+        "half": 1,
+        "player_coordinate_source": "gsr",
+        "fps": 25.0,
+        "frames": 71850,
+        "duration_seconds": 2874.0,
+        "source_offset_frames": 0,
+        "players": 22,
+        "ball_position_fraction": 0.7295059151009047,
+        "ball_motion_fraction": 0.7275156576200418,
+        "ball_raw_speed_flag_frames": 129,
+        "ball_rejected_speed_frames": 85,
+        "possession_state_frames": {
+          "free": 24252,
+          "controlled": 20047,
+          "unknown": 19560,
+          "candidate": 4342,
+          "contested": 2795,
+          "out_of_play": 854
+        },
+        "team_possession": {
+          "left": {
+            "attributed_seconds": 845.92,
+            "attributed_share": 0.29433542101600557,
+            "attribution_timeout_seconds": 20.0,
+            "confirmed_passes": 84,
+            "confirmed_pass_share": 0.27906976744186046,
+            "possession_basis": "completed_observable_transfers",
+            "controlled_seconds": 242.88,
+            "inferred_control_fraction_of_all_frames": 0.08450939457202505,
+            "inferred_control_fraction_of_controlled_frames": 0.30288821270015465
+          },
+          "right": {
+            "attributed_seconds": 1496.2,
+            "attributed_share": 0.520598469032707,
+            "attribution_timeout_seconds": 20.0,
+            "confirmed_passes": 217,
+            "confirmed_pass_share": 0.7209302325581395,
+            "possession_basis": "completed_observable_transfers",
+            "controlled_seconds": 559.0,
+            "inferred_control_fraction_of_all_frames": 0.19450243562978428,
+            "inferred_control_fraction_of_controlled_frames": 0.6971117872998454
+          }
+        },
+        "measurement_definitions": "measurement_definitions.json",
+        "tactics_enabled": true,
+        "tactical_summary": "tactical_summary.json",
+        "transfer_completion_rate": 0.6967592592592593,
+        "transfer_completion_rate_definition": "Completed observable transfers / all detected transfer candidates; not official pass accuracy.",
+        "transfer_outcomes": {
+          "completed": 301,
+          "intercepted": 104,
+          "unresolved": 15,
+          "out_of_play": 12
+        },
+        "trajectory_shot_candidates": 25,
+        "bas_shots": 10,
+        "bas_shot_windows_with_speed": 6,
+        "bas_shot_windows_without_speed": 4,
+        "pass_validation": {
+          "status": "evaluated",
+          "detections": 432,
+          "reference_events": 556,
+          "matched": 344,
+          "false_positives": 88,
+          "false_negatives": 212,
+          "precision": 0.7962962962962963,
+          "recall": 0.6187050359712231,
+          "f1": 0.6963562753036436,
+          "tolerance_seconds": 1.0,
+          "actor_required": true,
+          "independent_validation": false,
+          "caveat": "Ball paths are reconstructed from BAS event anchors; this is a consistency check, not independent detector accuracy."
+        },
+        "shot_validation": {
+          "status": "evaluated",
+          "detections": 25,
+          "reference_events": 10,
+          "matched": 3,
+          "false_positives": 22,
+          "false_negatives": 7,
+          "precision": 0.12,
+          "recall": 0.3,
+          "f1": 0.17142857142857143,
+          "tolerance_seconds": 1.0,
+          "actor_required": false,
+          "independent_validation": false,
+          "caveat": "Ball paths are reconstructed from BAS event anchors; this is a consistency check, not independent detector accuracy."
+        },
+        "config": {
+          "fps": 25.0,
+          "player_smoothing_frames": 15,
+          "ball_smoothing_frames": 11,
+          "median_frames": 3,
+          "player_speed_limit_mps": 14.0,
+          "ball_speed_limit_mps": 50.0,
+          "acquisition_radius_m": 2.5,
+          "retention_radius_m": 3.5,
+          "ambiguity_margin_m": 0.5,
+          "control_ball_speed_mps": 8.0,
+          "control_relative_speed_mps": 4.0,
+          "possession_frames": 5,
+          "pass_min_flight_frames": 3,
+          "pass_min_distance_m": 3.0,
+          "pass_min_speed_mps": 3.0,
+          "pass_timeout_seconds": 8.0,
+          "defender_radius_m": 5.0,
+          "lane_radius_m": 2.0,
+          "shot_min_speed_mps": 8.0,
+          "shot_max_goal_distance_m": 35.0,
+          "shot_goal_margin_m": 3.0,
+          "shot_max_time_to_goal_seconds": 3.0,
+          "shot_persistence_frames": 3,
+          "shot_window_seconds": 1.2,
+          "validation_tolerance_seconds": 1.0,
+          "left_attack_direction": 1
+        },
+        "source_files": [
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/mot/118575_sync.json",
+            "bytes": 2568,
+            "sha256": "d39612dedef2e83bf08d0b128f9cb802980aa2366f3ce40db69ce4cdf458607f"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/bas/118575/118575_12_class_events.json",
+            "bytes": 450853,
+            "sha256": "0a9cafadb15a6728f1dd14d28cd24d535d5cd70f00faa6bfa6c1651c77527692"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/ball/118575_1st_ball.npz",
+            "bytes": 133733,
+            "sha256": "a87b9a9c0d1b41b2f8c0eccc822f88aef4b9ca358639d07974d1290c1daeda00"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/gsr/118575/1st_compact.npz",
+            "bytes": 4830725,
+            "sha256": "d86b2b45a546e393f89dac75f78c2b3a9db7b389ae627bc0aa8d028b99ad1f38"
+          }
+        ],
+        "sync_method": "Player bbox foot-position matching over 21 checkpoints; inferred offset, approximately one-frame precision.",
+        "limitations": [
+          "Ball positions are event-anchored and interpolated; speeds are 2D estimates, not measured strike speeds.",
+          "Centered smoothing uses future frames: this pipeline is offline and adds no claim of live latency.",
+          "Missing/rejected intervals contribute no distance; measured distance is partial coverage, not full ground truth.",
+          "Ownership and transfer detections are heuristic; opposite-team transfers can be interceptions, tackles or clearances.",
+          "Difficulty is a retrospective heuristic with a realized endpoint, not calibrated completion probability.",
+          "BAS-based checks are not independent because the supplied ball reconstruction uses those event anchors.",
+          "Clip alignment is inferred at approximately one-frame precision; goal direction is configurable.",
+          "Ball height is unavailable. Tracker IDs are not verified jersey numbers or player identities.",
+          "Goalkeeper/team assignment and panoramic calibration can introduce errors; GSR labels are preferred when available."
+        ]
+      },
+      "video_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_type": "video",
+            "width": 4096,
+            "height": 1080,
+            "avg_frame_rate": "25/1",
+            "nb_frames": "71850"
+          },
+          {
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0",
+            "nb_frames": "134720"
+          }
+        ],
+        "format": {
+          "duration": "2874.015000",
+          "size": "3550087937"
+        }
+      }
+    },
+    {
+      "recording_id": "118575_h2",
+      "summary": {
+        "schema_version": 1,
+        "match_id": "118575",
+        "scope": "half",
+        "half": 2,
+        "player_coordinate_source": "gsr",
+        "fps": 25.0,
+        "frames": 73425,
+        "duration_seconds": 2937.0,
+        "source_offset_frames": 0,
+        "players": 29,
+        "ball_position_fraction": 0.7030847803881511,
+        "ball_motion_fraction": 0.7020224719101124,
+        "ball_raw_speed_flag_frames": 40,
+        "ball_rejected_speed_frames": 20,
+        "possession_state_frames": {
+          "free": 22413,
+          "unknown": 21854,
+          "controlled": 20468,
+          "candidate": 4445,
+          "contested": 3367,
+          "out_of_play": 878
+        },
+        "team_possession": {
+          "left": {
+            "attributed_seconds": 1647.76,
+            "attributed_share": 0.5610350697991148,
+            "attribution_timeout_seconds": 20.0,
+            "confirmed_passes": 221,
+            "confirmed_pass_share": 0.7441077441077442,
+            "possession_basis": "completed_observable_transfers",
+            "controlled_seconds": 575.04,
+            "inferred_control_fraction_of_all_frames": 0.19579162410623085,
+            "inferred_control_fraction_of_controlled_frames": 0.7023646667969513
+          },
+          "right": {
+            "attributed_seconds": 788.48,
+            "attributed_share": 0.2684644194756554,
+            "attribution_timeout_seconds": 20.0,
+            "confirmed_passes": 76,
+            "confirmed_pass_share": 0.2558922558922559,
+            "possession_basis": "completed_observable_transfers",
+            "controlled_seconds": 243.68,
+            "inferred_control_fraction_of_all_frames": 0.08296901600272387,
+            "inferred_control_fraction_of_controlled_frames": 0.29763533320304864
+          }
+        },
+        "measurement_definitions": "measurement_definitions.json",
+        "tactics_enabled": true,
+        "tactical_summary": "tactical_summary.json",
+        "transfer_completion_rate": 0.6827586206896552,
+        "transfer_completion_rate_definition": "Completed observable transfers / all detected transfer candidates; not official pass accuracy.",
+        "transfer_outcomes": {
+          "completed": 297,
+          "intercepted": 103,
+          "unresolved": 22,
+          "out_of_play": 13
+        },
+        "trajectory_shot_candidates": 21,
+        "bas_shots": 11,
+        "bas_shot_windows_with_speed": 11,
+        "bas_shot_windows_without_speed": 0,
+        "pass_validation": {
+          "status": "evaluated",
+          "detections": 435,
+          "reference_events": 538,
+          "matched": 362,
+          "false_positives": 73,
+          "false_negatives": 176,
+          "precision": 0.832183908045977,
+          "recall": 0.6728624535315985,
+          "f1": 0.7440904419321684,
+          "tolerance_seconds": 1.0,
+          "actor_required": true,
+          "independent_validation": false,
+          "caveat": "Ball paths are reconstructed from BAS event anchors; this is a consistency check, not independent detector accuracy."
+        },
+        "shot_validation": {
+          "status": "evaluated",
+          "detections": 21,
+          "reference_events": 11,
+          "matched": 2,
+          "false_positives": 19,
+          "false_negatives": 9,
+          "precision": 0.09523809523809523,
+          "recall": 0.18181818181818182,
+          "f1": 0.125,
+          "tolerance_seconds": 1.0,
+          "actor_required": false,
+          "independent_validation": false,
+          "caveat": "Ball paths are reconstructed from BAS event anchors; this is a consistency check, not independent detector accuracy."
+        },
+        "config": {
+          "fps": 25.0,
+          "player_smoothing_frames": 15,
+          "ball_smoothing_frames": 11,
+          "median_frames": 3,
+          "player_speed_limit_mps": 14.0,
+          "ball_speed_limit_mps": 50.0,
+          "acquisition_radius_m": 2.5,
+          "retention_radius_m": 3.5,
+          "ambiguity_margin_m": 0.5,
+          "control_ball_speed_mps": 8.0,
+          "control_relative_speed_mps": 4.0,
+          "possession_frames": 5,
+          "pass_min_flight_frames": 3,
+          "pass_min_distance_m": 3.0,
+          "pass_min_speed_mps": 3.0,
+          "pass_timeout_seconds": 8.0,
+          "defender_radius_m": 5.0,
+          "lane_radius_m": 2.0,
+          "shot_min_speed_mps": 8.0,
+          "shot_max_goal_distance_m": 35.0,
+          "shot_goal_margin_m": 3.0,
+          "shot_max_time_to_goal_seconds": 3.0,
+          "shot_persistence_frames": 3,
+          "shot_window_seconds": 1.2,
+          "validation_tolerance_seconds": 1.0,
+          "left_attack_direction": -1
+        },
+        "source_files": [
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/mot/118575_sync.json",
+            "bytes": 2568,
+            "sha256": "d39612dedef2e83bf08d0b128f9cb802980aa2366f3ce40db69ce4cdf458607f"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/bas/118575/118575_12_class_events.json",
+            "bytes": 450853,
+            "sha256": "0a9cafadb15a6728f1dd14d28cd24d535d5cd70f00faa6bfa6c1651c77527692"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/ball/118575_2nd_ball.npz",
+            "bytes": 134346,
+            "sha256": "796f52db6b97ca759993318d571da8c4d11f26f9db92ae92b2c643d1ceb9bc90"
+          },
+          {
+            "path": "/Users/greatabhieyighan/Desktop/Projects/matchmind/data/soccertrack/gsr/118575/2nd_compact.npz",
+            "bytes": 4922654,
+            "sha256": "2ffcb6faf421cbcb18310ca05433f2810aa114031752e4c552c18df4e22d492c"
+          }
+        ],
+        "sync_method": "Player bbox foot-position matching over 21 checkpoints; inferred offset, approximately one-frame precision.",
+        "limitations": [
+          "Ball positions are event-anchored and interpolated; speeds are 2D estimates, not measured strike speeds.",
+          "Centered smoothing uses future frames: this pipeline is offline and adds no claim of live latency.",
+          "Missing/rejected intervals contribute no distance; measured distance is partial coverage, not full ground truth.",
+          "Ownership and transfer detections are heuristic; opposite-team transfers can be interceptions, tackles or clearances.",
+          "Difficulty is a retrospective heuristic with a realized endpoint, not calibrated completion probability.",
+          "BAS-based checks are not independent because the supplied ball reconstruction uses those event anchors.",
+          "Clip alignment is inferred at approximately one-frame precision; goal direction is configurable.",
+          "Ball height is unavailable. Tracker IDs are not verified jersey numbers or player identities.",
+          "Goalkeeper/team assignment and panoramic calibration can introduce errors; GSR labels are preferred when available."
+        ]
+      },
+      "video_probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_type": "video",
+            "width": 4096,
+            "height": 1080,
+            "avg_frame_rate": "25/1",
+            "nb_frames": "73425"
+          },
+          {
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0",
+            "nb_frames": "137672"
+          }
+        ],
+        "format": {
+          "duration": "2937.018000",
+          "size": "3637099121"
+        }
+      }
+    }
+  ],
+  "azure_verification": [
+    {
+      "application_ask_verified": true,
+      "application_ready": true,
+      "application_view_verified": true,
+      "cache": "/Users/greatabhieyighan/Desktop/Projects/matchmind/outputs/full_match_118575/verify_cache/recordings/118575_h1",
+      "completed_transfers": 301,
+      "files": 22,
+      "fresh_download_verified": true,
+      "hashes_verified": true,
+      "listed_blobs": 23,
+      "manifest_verified": true,
+      "operation": "verify",
+      "prefix": "matches/118575_h1/",
+      "private_container_verified": true,
+      "recording_id": "118575_h1",
+      "schemas_verified": true,
+      "unexpected_blobs": []
+    },
+    {
+      "application_ask_verified": true,
+      "application_ready": true,
+      "application_view_verified": true,
+      "cache": "/Users/greatabhieyighan/Desktop/Projects/matchmind/outputs/full_match_118575/verify_cache/recordings/118575_h2",
+      "completed_transfers": 297,
+      "files": 22,
+      "fresh_download_verified": true,
+      "hashes_verified": true,
+      "listed_blobs": 23,
+      "manifest_verified": true,
+      "operation": "verify",
+      "prefix": "matches/118575_h2/",
+      "private_container_verified": true,
+      "recording_id": "118575_h2",
+      "schemas_verified": true,
+      "unexpected_blobs": []
+    }
+  ],
+  "azure_upload": [
+    {
+      "files": 22,
+      "manifest_published": true,
+      "operation": "upload",
+      "prefix": "matches/118575_h1/",
+      "private_container_verified": true,
+      "recording_id": "118575_h1",
+      "uploaded": 9
+    },
+    {
+      "files": 22,
+      "manifest_published": true,
+      "operation": "upload",
+      "prefix": "matches/118575_h2/",
+      "private_container_verified": true,
+      "recording_id": "118575_h2",
+      "uploaded": 9
+    }
+  ],
+  "final_api": {
+    "ready": {
+      "status": "ready",
+      "recordings": 15
+    },
+    "halves": [
+      {
+        "recording_id": "118575_h1",
+        "view_status": 200,
+        "media_url": "/matches/118575_h1/video.mp4",
+        "frames": 71850,
+        "players": 22,
+        "ask_status": 200,
+        "grounding": "ok",
+        "evidence_rows": 14,
+        "video_status": 206,
+        "video_bytes": 16,
+        "highlight_state": "FAILED",
+        "highlight_diagnostic": "full_half_highlight_not_supported",
+        "recorded_goal_entries": 3
+      },
+      {
+        "recording_id": "118575_h2",
+        "view_status": 200,
+        "media_url": "/matches/118575_h2/video.mp4",
+        "frames": 73425,
+        "players": 29,
+        "ask_status": 200,
+        "grounding": "ok",
+        "evidence_rows": 14,
+        "video_status": 206,
+        "video_bytes": 16,
+        "highlight_state": null,
+        "highlight_diagnostic": null,
+        "recorded_goal_entries": 0
+      }
+    ],
+    "recordings": {
+      "recordings": [
+        {
+          "recording_id": "117092_clip",
+          "match_id": "117092",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/117092_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "117093_clip",
+          "match_id": "117093",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/117093_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118575_clip",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118575_h1",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_h1/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118575_h2",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_h2/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118576_clip",
+          "match_id": "118576",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118576_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118577_clip",
+          "match_id": "118577",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118577_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "118578_clip",
+          "match_id": "118578",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118578_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "128057_clip",
+          "match_id": "128057",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/128057_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "128058_clip",
+          "match_id": "128058",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/128058_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "132831_clip",
+          "match_id": "132831",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/132831_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "132877_clip",
+          "match_id": "132877",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/132877_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true
+          }
+        },
+        {
+          "recording_id": "test_match",
+          "match_id": "test_match",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/test_match/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false
+          }
+        },
+        {
+          "recording_id": "team_goal",
+          "match_id": "team_goal",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/team_goal/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false
+          }
+        },
+        {
+          "recording_id": "southampton",
+          "match_id": "southampton",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/southampton/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false
+          }
+        }
+      ]
+    }
+  },
+  "browser": {
+    "protocol": "Actual Chrome checks against final running API; original full-match test result was read before the subsequent team_goal run cleared the browser output directory. Pass logs retained under /tmp.",
+    "full_match_test_passed": true,
+    "team_goal_regression_passed": true,
+    "verified_half_seek_seconds": 1500,
+    "page_errors": []
+  },
+  "tests": {
+    "backend_run": 892,
+    "backend_passed": 891,
+    "backend_expected_skip": 1,
+    "focused_timeout_media_assistant_passed": 81,
+    "artifact_media_highlight_passed": 67,
+    "frontend_passed": 113,
+    "typed_build_passed": true,
+    "full_match_browser_passed": true,
+    "existing_team_goal_browser_passed": true
+  }
+}

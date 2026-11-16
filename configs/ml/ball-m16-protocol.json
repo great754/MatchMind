@@ -1,0 +1,15 @@
+{
+  "dataset_sha256": "6524d99f34176a5ce9ca23c2f00102e8cc1569c280c8771c8f02869ffa0035ad",
+  "train_visibility_status": "organizer labels only, manually reviewed subset reported separately",
+  "test": "sealed before any final TEST detector inference; matches7+11 never used in M14/M15 training or VAL",
+  "detector": "bounded soccer YOLO11s fine tune, max4epochs early stopping; compare640/960/1280 image inference on identical VAL sample",
+  "threshold_grid": [
+    0.1,
+    0.2,
+    0.35,
+    0.5,
+    0.65
+  ],
+  "selection": "VAL F1 then correct center coverage, reject learned components if VAL regresses; M14 default retained",
+  "metric_gate": "No authoritative ground coordinates without independently verified ground/metric references"
+}

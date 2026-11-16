@@ -1,0 +1,1 @@
+{"sprint_threshold_mps":7.0,"minimum_sprint_seconds":1.0,"sustained_window_seconds":1.0,"smoothing_frames":15,"minimum_motion_coverage":0.9,"portrait_candidates":10,"portrait_options":3,"maximum_turns_per_session":100}

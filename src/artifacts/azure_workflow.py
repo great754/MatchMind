@@ -24,7 +24,7 @@ def client_from_environment():
     from azure.identity import DefaultAzureCredential
     from azure.storage.blob import ContainerClient
     credential=DefaultAzureCredential(exclude_interactive_browser_credential=True)
-    return ContainerClient(account_url=account,container_name=container,credential=credential,connection_timeout=10,read_timeout=60,retry_total=2),credential
+    return ContainerClient(account_url=account,container_name=container,credential=credential,connection_timeout=10,read_timeout=60,retry_total=2,max_single_put_size=4*1024*1024,max_block_size=4*1024*1024),credential
 
 
 def _read_if_present(client,name):

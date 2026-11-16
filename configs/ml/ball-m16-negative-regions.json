@@ -1,0 +1,391 @@
+{
+  "rows": [
+    {
+      "id": 0,
+      "source_sample": "SNMOT-109:101",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000101.jpg",
+      "source_sha256": "4d850acd5ebc409e424e92bf6b08eef8911577c95344869a70b4c7847ff6002e",
+      "crop": [
+        1078,
+        557,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 6,
+      "source_sample": "SNMOT-109:102",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000102.jpg",
+      "source_sha256": "e9e2c39cfe7eaac8085a7078487a115766269ae077edd84fc28ae9439214953b",
+      "crop": [
+        879,
+        411,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 7,
+      "source_sample": "SNMOT-109:102",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000102.jpg",
+      "source_sha256": "e9e2c39cfe7eaac8085a7078487a115766269ae077edd84fc28ae9439214953b",
+      "crop": [
+        1070,
+        613,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 8,
+      "source_sample": "SNMOT-109:103",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000103.jpg",
+      "source_sha256": "20e7c36a314db6070c30bb21ba999558661cfcdabd817279f4d925e87caed04a",
+      "crop": [
+        1070,
+        612,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 12,
+      "source_sample": "SNMOT-109:103",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000103.jpg",
+      "source_sha256": "20e7c36a314db6070c30bb21ba999558661cfcdabd817279f4d925e87caed04a",
+      "crop": [
+        1067,
+        550,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 13,
+      "source_sample": "SNMOT-109:104",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000104.jpg",
+      "source_sha256": "8cd9ad81e21bcdfaeba53e6e4583161026db51b7f89eb824dbc9a0fadfbc011e",
+      "crop": [
+        1143,
+        564,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 14,
+      "source_sample": "SNMOT-109:104",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000104.jpg",
+      "source_sha256": "8cd9ad81e21bcdfaeba53e6e4583161026db51b7f89eb824dbc9a0fadfbc011e",
+      "crop": [
+        1266,
+        503,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 17,
+      "source_sample": "SNMOT-109:104",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000104.jpg",
+      "source_sha256": "8cd9ad81e21bcdfaeba53e6e4583161026db51b7f89eb824dbc9a0fadfbc011e",
+      "crop": [
+        1067,
+        552,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 18,
+      "source_sample": "SNMOT-109:104",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000104.jpg",
+      "source_sha256": "8cd9ad81e21bcdfaeba53e6e4583161026db51b7f89eb824dbc9a0fadfbc011e",
+      "crop": [
+        1106,
+        562,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 20,
+      "source_sample": "SNMOT-109:105",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000105.jpg",
+      "source_sha256": "64efb20fa8e919699c1e89c8350f0305ccd258dbf0a0bb1c542347d8f0ef5c0a",
+      "crop": [
+        877,
+        411,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 22,
+      "source_sample": "SNMOT-109:105",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000105.jpg",
+      "source_sha256": "64efb20fa8e919699c1e89c8350f0305ccd258dbf0a0bb1c542347d8f0ef5c0a",
+      "crop": [
+        1268,
+        526,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 24,
+      "source_sample": "SNMOT-109:105",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000105.jpg",
+      "source_sha256": "64efb20fa8e919699c1e89c8350f0305ccd258dbf0a0bb1c542347d8f0ef5c0a",
+      "crop": [
+        1070,
+        612,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 25,
+      "source_sample": "SNMOT-109:106",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000106.jpg",
+      "source_sha256": "28f678f6ab2b27dfa7c9775ab4749f34df95b551c3a463e5013d170724e8fe96",
+      "crop": [
+        1120,
+        550,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 28,
+      "source_sample": "SNMOT-109:107",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000107.jpg",
+      "source_sha256": "4ab8a630d132edbf94bfeb5dc1bdfd0afcb630902f8a3815395ef41d6394d692",
+      "crop": [
+        877,
+        411,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 30,
+      "source_sample": "SNMOT-109:108",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000108.jpg",
+      "source_sha256": "a297dbb5c8a3d665446cb00ad05a74aa149f09a4639b445fc55fbfbfcc2d4a94",
+      "crop": [
+        1140,
+        546,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 33,
+      "source_sample": "SNMOT-109:109",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000109.jpg",
+      "source_sha256": "47f9728abccc5e2e6d4347365a4253a4fa51cd8f908d2d7162d521cfb4de2a41",
+      "crop": [
+        1147,
+        566,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 34,
+      "source_sample": "SNMOT-109:110",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000110.jpg",
+      "source_sha256": "c5a1aacc9bf846d0c820aba17e27414f0d376c7490293075836ded4070c8b2ed",
+      "crop": [
+        877,
+        411,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 36,
+      "source_sample": "SNMOT-109:110",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000110.jpg",
+      "source_sha256": "c5a1aacc9bf846d0c820aba17e27414f0d376c7490293075836ded4070c8b2ed",
+      "crop": [
+        924,
+        405,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 37,
+      "source_sample": "SNMOT-109:110",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000110.jpg",
+      "source_sha256": "c5a1aacc9bf846d0c820aba17e27414f0d376c7490293075836ded4070c8b2ed",
+      "crop": [
+        1166,
+        551,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 39,
+      "source_sample": "SNMOT-109:111",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000111.jpg",
+      "source_sha256": "0180ffa5846aec934a37c008a198380332ed96f6560e0d0856c17293e47cc1cc",
+      "crop": [
+        1059,
+        561,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 40,
+      "source_sample": "SNMOT-109:111",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000111.jpg",
+      "source_sha256": "0180ffa5846aec934a37c008a198380332ed96f6560e0d0856c17293e47cc1cc",
+      "crop": [
+        1180,
+        553,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 44,
+      "source_sample": "SNMOT-109:112",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000112.jpg",
+      "source_sha256": "20b01fce3928ee565e38cf712c74dd3c9ae873ec9c41988f7f410673929432ac",
+      "crop": [
+        1012,
+        601,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 45,
+      "source_sample": "SNMOT-109:112",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000112.jpg",
+      "source_sha256": "20b01fce3928ee565e38cf712c74dd3c9ae873ec9c41988f7f410673929432ac",
+      "crop": [
+        1156,
+        553,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    },
+    {
+      "id": 46,
+      "source_sample": "SNMOT-109:112",
+      "match_id": "SN_game6",
+      "path": "outputs/ml/ball_m15/frames/SNMOT-109/000112.jpg",
+      "source_sha256": "20b01fce3928ee565e38cf712c74dd3c9ae873ec9c41988f7f410673929432ac",
+      "crop": [
+        1192,
+        554,
+        32,
+        32
+      ],
+      "suggestion": "neural FP proposal, not a label until reviewed",
+      "label": "NOT_BALL_AT_CANDIDATE_CENTER",
+      "review": "Codex source-only visual review: recognizable shoe/leg/uniform; ambiguous circular blobs excluded"
+    }
+  ],
+  "verified_full_negative_frames": 0,
+  "unique_reviewed_regions": 24,
+  "limits": "24correlated crops from game6, not external adjudication; cannot certify full-frame no-visible-ball cases"
+}

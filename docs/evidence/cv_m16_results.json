@@ -1,0 +1,4687 @@
+{
+  "milestone": "m16",
+  "status": "EXPERIMENTAL; defaultM14retained",
+  "date": "2026-11-03",
+  "dataset_summary": {
+    "train": {
+      "frames": 3040,
+      "organizer_positive_boxes": 3078,
+      "games": [
+        "SN_game6",
+        "SN_game8"
+      ],
+      "independently_visibility_verified_frames": 0,
+      "verified_no_visible_ball_frames": 0
+    },
+    "validation": {
+      "frames": 288,
+      "organizer_positive_boxes": 288,
+      "games": [
+        "SN_game4"
+      ],
+      "independently_visibility_verified_frames": 0,
+      "verified_no_visible_ball_frames": 0
+    },
+    "test": {
+      "frames": 1073,
+      "organizer_positive_boxes": 1073,
+      "games": [
+        "SN_game11",
+        "SN_game7"
+      ],
+      "independently_visibility_verified_frames": 0,
+      "verified_no_visible_ball_frames": 0
+    }
+  },
+  "data_integrity": {
+    "dataset_sha256": "6524d99f34176a5ce9ca23c2f00102e8cc1569c280c8771c8f02869ffa0035ad",
+    "exact_unique_source_images": 4401,
+    "frames": 4401,
+    "source_jpeg_bytes_sealed_samples": 948307955,
+    "all_cached_jpeg_files": 5199,
+    "all_cached_jpeg_bytes": 1138080804,
+    "historical_test_excluded_from_training": true,
+    "whole_matches_disjoint": true,
+    "ground_reference_frames": 0,
+    "verified_full_negative_frames": 0,
+    "reviewed_negative_regions": 24,
+    "new_source_only_demo_boxes": 13,
+    "source_only_demo_boxes_total": 40
+  },
+  "annotation_contracts": {
+    "frames_checked": 4401,
+    "all_source_hashes_match": true,
+    "whole_match_splits_pass": true,
+    "historical_test_exclusion_pass": true,
+    "no_unknown_negative_labels": true,
+    "ground_metric_reference_count": 0
+  },
+  "failure_taxonomy": {
+    "validation_counts": {
+      "gt": 160,
+      "raw_candidate_match": 74,
+      "operating_match": 25,
+      "tiny_under12": 63,
+      "no_candidate": 78,
+      "localization_failure_near_center": 8,
+      "threshold_loss": 49,
+      "local_raw_match": 73,
+      "local_operating_match": 24,
+      "global_recovered_local_lost": 1,
+      "local_recovered_global_lost": 0
+    },
+    "threshold_grid": {
+      "0.02": {
+        "tp": 74,
+        "fp": 2613,
+        "fn": 86,
+        "precision": 0.027540007443245255,
+        "recall": 0.4625,
+        "f1": 0.05198454513523006
+      },
+      "0.1": {
+        "tp": 53,
+        "fp": 848,
+        "fn": 107,
+        "precision": 0.058823529411764705,
+        "recall": 0.33125,
+        "f1": 0.0999057492931197
+      },
+      "0.2": {
+        "tp": 41,
+        "fp": 470,
+        "fn": 119,
+        "precision": 0.08023483365949119,
+        "recall": 0.25625,
+        "f1": 0.12220566318926974
+      },
+      "0.35": {
+        "tp": 35,
+        "fp": 227,
+        "fn": 125,
+        "precision": 0.13358778625954199,
+        "recall": 0.21875,
+        "f1": 0.16587677725118483
+      },
+      "0.5": {
+        "tp": 33,
+        "fp": 103,
+        "fn": 127,
+        "precision": 0.2426470588235294,
+        "recall": 0.20625,
+        "f1": 0.22297297297297297
+      },
+      "0.65": {
+        "tp": 25,
+        "fp": 33,
+        "fn": 135,
+        "precision": 0.43103448275862066,
+        "recall": 0.15625,
+        "f1": 0.2293577981651376
+      }
+    },
+    "training": {
+      "frames": 240,
+      "clips": 2,
+      "games": 1,
+      "ball_boxes": 238,
+      "unique_ball_appearance_8x8_hashes": 202,
+      "median_ball_extent_px": 22.0
+    },
+    "measured_local_failure": "Compare raw candidate recall before scoring; M15 replaced global proposals with local-only proposals and reused high visual thresholds; local crops change apparent scale and lack verified crop-specific calibration. Global recovery prevents permanent lock but cannot recover visually unproposed balls. Exact counters above quantify losses without assigning unverified causes.",
+    "gru_failure": "VAL mean endpoint error worse at all horizons; TEST region radii extremely broad. Only199 train histories from one game, overlapping frames, no visual input, exposure/domain shift; these are design limitations, not experimentally isolated causes.",
+    "ground": "M14 accepted416 image observations, zero near-foot contact; no independent metric references/height calibration. Camera alone cannot determine ball height.",
+    "training_quality": "One game/two short clips; positive repeated stationary balls; random and person crops are not verified negatives. M16 must not repeat unknown-visibility negative labeling.",
+    "larger_experiment_authorized_after_diagnosis": true
+  },
+  "initializer": {
+    "architecture": "YOLO11s COCO, soccer fine-tune",
+    "url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11s.pt",
+    "sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5",
+    "bytes": 19313732,
+    "license": "Ultralytics AGPL-3.0 local experiment, no commercial deployment right asserted"
+  },
+  "training_config": {
+    "epochs": 4,
+    "patience": 2,
+    "batch": 8,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "lr0": 0.0005,
+    "lrf": 0.1,
+    "weight_decay": 0.0005,
+    "seed": 20261116,
+    "workers": 0,
+    "amp": false,
+    "mosaic": 0.1,
+    "close_mosaic": 1,
+    "hsv_h": 0.01,
+    "hsv_s": 0.2,
+    "hsv_v": 0.2,
+    "scale": 0.35,
+    "fliplr": 0.5,
+    "plots": false,
+    "cache": false
+  },
+  "training": {
+    "seconds": 1309.2830739580095,
+    "checkpoint": "outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+    "checkpoint_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+    "dataset_sha256": "6524d99f34176a5ce9ca23c2f00102e8cc1569c280c8771c8f02869ffa0035ad",
+    "mps_allocated_snapshot_bytes": 195133184,
+    "process_max_rss_bytes_macos": 980860928,
+    "rss_scope": "whole isolated training process on macOS; MPS unified-memory allocations separately reported"
+  },
+  "selection": {
+    "detector": {
+      "resolution": 640,
+      "threshold": 0.35,
+      "metrics": {
+        "frames": 72,
+        "tp": 42,
+        "fp": 26,
+        "fn": 30,
+        "precision": 0.6176470588235294,
+        "recall": 0.5833333333333334,
+        "f1": 0.6,
+        "false_positives_per_frame": 0.3611111111111111,
+        "localization_median_px": 1.9810862411715071,
+        "localization_p90_px": 5.465775684696298,
+        "detected_gt_frame_coverage": 0.5833333333333334,
+        "threshold": 0.35,
+        "iou_match_threshold": 0.25,
+        "strata": {
+          "small_under12px": {
+            "gt": 35,
+            "tp": 19,
+            "recall": 0.5428571428571428
+          },
+          "medium12_24px": {
+            "gt": 35,
+            "tp": 23,
+            "recall": 0.6571428571428571
+          },
+          "large_over24px": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "low_sharpness_proxy": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "higher_sharpness_proxy": {
+            "gt": 70,
+            "tp": 42,
+            "recall": 0.6
+          }
+        },
+        "visibility_or_occlusion_gt_available": false,
+        "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+      },
+      "seconds": 15.10385808115825
+    },
+    "candidates": [
+      {
+        "resolution": 640,
+        "threshold": 0.1,
+        "metrics": {
+          "frames": 72,
+          "tp": 47,
+          "fp": 244,
+          "fn": 25,
+          "precision": 0.16151202749140894,
+          "recall": 0.6527777777777778,
+          "f1": 0.25895316804407714,
+          "false_positives_per_frame": 3.388888888888889,
+          "localization_median_px": 2.0228927829097274,
+          "localization_p90_px": 5.544925922495444,
+          "detected_gt_frame_coverage": 0.6527777777777778,
+          "threshold": 0.1,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 22,
+              "recall": 0.6285714285714286
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 25,
+              "recall": 0.7142857142857143
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 47,
+              "recall": 0.6714285714285714
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 15.10385808115825
+      },
+      {
+        "resolution": 640,
+        "threshold": 0.2,
+        "metrics": {
+          "frames": 72,
+          "tp": 45,
+          "fp": 86,
+          "fn": 27,
+          "precision": 0.3435114503816794,
+          "recall": 0.625,
+          "f1": 0.4433497536945813,
+          "false_positives_per_frame": 1.1944444444444444,
+          "localization_median_px": 2.00581137800319,
+          "localization_p90_px": 5.416008163230056,
+          "detected_gt_frame_coverage": 0.625,
+          "threshold": 0.2,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 21,
+              "recall": 0.6
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 24,
+              "recall": 0.6857142857142857
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 45,
+              "recall": 0.6428571428571429
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 15.10385808115825
+      },
+      {
+        "resolution": 640,
+        "threshold": 0.35,
+        "metrics": {
+          "frames": 72,
+          "tp": 42,
+          "fp": 26,
+          "fn": 30,
+          "precision": 0.6176470588235294,
+          "recall": 0.5833333333333334,
+          "f1": 0.6,
+          "false_positives_per_frame": 0.3611111111111111,
+          "localization_median_px": 1.9810862411715071,
+          "localization_p90_px": 5.465775684696298,
+          "detected_gt_frame_coverage": 0.5833333333333334,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 19,
+              "recall": 0.5428571428571428
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 23,
+              "recall": 0.6571428571428571
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 42,
+              "recall": 0.6
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 15.10385808115825
+      },
+      {
+        "resolution": 640,
+        "threshold": 0.5,
+        "metrics": {
+          "frames": 72,
+          "tp": 24,
+          "fp": 8,
+          "fn": 48,
+          "precision": 0.75,
+          "recall": 0.3333333333333333,
+          "f1": 0.46153846153846156,
+          "false_positives_per_frame": 0.1111111111111111,
+          "localization_median_px": 1.764267998310523,
+          "localization_p90_px": 3.609756934842786,
+          "detected_gt_frame_coverage": 0.3333333333333333,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 13,
+              "recall": 0.37142857142857144
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 11,
+              "recall": 0.3142857142857143
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 24,
+              "recall": 0.34285714285714286
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 15.10385808115825
+      },
+      {
+        "resolution": 640,
+        "threshold": 0.65,
+        "metrics": {
+          "frames": 72,
+          "tp": 2,
+          "fp": 0,
+          "fn": 70,
+          "precision": 1.0,
+          "recall": 0.027777777777777776,
+          "f1": 0.05405405405405406,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.6862344544967183,
+          "localization_p90_px": 1.773055275648582,
+          "detected_gt_frame_coverage": 0.027777777777777776,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 2,
+              "recall": 0.05714285714285714
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 2,
+              "recall": 0.02857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 15.10385808115825
+      },
+      {
+        "resolution": 960,
+        "threshold": 0.1,
+        "metrics": {
+          "frames": 72,
+          "tp": 52,
+          "fp": 458,
+          "fn": 20,
+          "precision": 0.10196078431372549,
+          "recall": 0.7222222222222222,
+          "f1": 0.17869415807560138,
+          "false_positives_per_frame": 6.361111111111111,
+          "localization_median_px": 2.2624972024170296,
+          "localization_p90_px": 5.980995174853805,
+          "detected_gt_frame_coverage": 0.7222222222222222,
+          "threshold": 0.1,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 24,
+              "recall": 0.6857142857142857
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 28,
+              "recall": 0.8
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 52,
+              "recall": 0.7428571428571429
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 32.568942629615776
+      },
+      {
+        "resolution": 960,
+        "threshold": 0.2,
+        "metrics": {
+          "frames": 72,
+          "tp": 51,
+          "fp": 222,
+          "fn": 21,
+          "precision": 0.18681318681318682,
+          "recall": 0.7083333333333334,
+          "f1": 0.2956521739130435,
+          "false_positives_per_frame": 3.0833333333333335,
+          "localization_median_px": 2.247703333770239,
+          "localization_p90_px": 5.771967012316151,
+          "detected_gt_frame_coverage": 0.7083333333333334,
+          "threshold": 0.2,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 24,
+              "recall": 0.6857142857142857
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 27,
+              "recall": 0.7714285714285715
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 51,
+              "recall": 0.7285714285714285
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 32.568942629615776
+      },
+      {
+        "resolution": 960,
+        "threshold": 0.35,
+        "metrics": {
+          "frames": 72,
+          "tp": 48,
+          "fp": 63,
+          "fn": 24,
+          "precision": 0.43243243243243246,
+          "recall": 0.6666666666666666,
+          "f1": 0.5245901639344263,
+          "false_positives_per_frame": 0.875,
+          "localization_median_px": 2.0701247394812303,
+          "localization_p90_px": 5.8416430664953705,
+          "detected_gt_frame_coverage": 0.6666666666666666,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 22,
+              "recall": 0.6285714285714286
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 26,
+              "recall": 0.7428571428571429
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 48,
+              "recall": 0.6857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 32.568942629615776
+      },
+      {
+        "resolution": 960,
+        "threshold": 0.5,
+        "metrics": {
+          "frames": 72,
+          "tp": 30,
+          "fp": 6,
+          "fn": 42,
+          "precision": 0.8333333333333334,
+          "recall": 0.4166666666666667,
+          "f1": 0.5555555555555556,
+          "false_positives_per_frame": 0.08333333333333333,
+          "localization_median_px": 1.8606783957629067,
+          "localization_p90_px": 6.571176855748332,
+          "detected_gt_frame_coverage": 0.4166666666666667,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 14,
+              "recall": 0.4
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 16,
+              "recall": 0.45714285714285713
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 30,
+              "recall": 0.42857142857142855
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 32.568942629615776
+      },
+      {
+        "resolution": 960,
+        "threshold": 0.65,
+        "metrics": {
+          "frames": 72,
+          "tp": 2,
+          "fp": 0,
+          "fn": 70,
+          "precision": 1.0,
+          "recall": 0.027777777777777776,
+          "f1": 0.05405405405405406,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 1.7202703482798265,
+          "localization_p90_px": 1.834420795974878,
+          "detected_gt_frame_coverage": 0.027777777777777776,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 2,
+              "recall": 0.05714285714285714
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 2,
+              "recall": 0.02857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 32.568942629615776
+      },
+      {
+        "resolution": 1280,
+        "threshold": 0.1,
+        "metrics": {
+          "frames": 72,
+          "tp": 55,
+          "fp": 717,
+          "fn": 17,
+          "precision": 0.07124352331606218,
+          "recall": 0.7638888888888888,
+          "f1": 0.13033175355450238,
+          "false_positives_per_frame": 9.958333333333334,
+          "localization_median_px": 1.990683165273851,
+          "localization_p90_px": 5.542362690476799,
+          "detected_gt_frame_coverage": 0.7638888888888888,
+          "threshold": 0.1,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 28,
+              "recall": 0.8
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 27,
+              "recall": 0.7714285714285715
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 55,
+              "recall": 0.7857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 57.95906675362494
+      },
+      {
+        "resolution": 1280,
+        "threshold": 0.2,
+        "metrics": {
+          "frames": 72,
+          "tp": 51,
+          "fp": 356,
+          "fn": 21,
+          "precision": 0.12530712530712532,
+          "recall": 0.7083333333333334,
+          "f1": 0.2129436325678497,
+          "false_positives_per_frame": 4.944444444444445,
+          "localization_median_px": 2.087788094910508,
+          "localization_p90_px": 5.577677580665515,
+          "detected_gt_frame_coverage": 0.7083333333333334,
+          "threshold": 0.2,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 24,
+              "recall": 0.6857142857142857
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 27,
+              "recall": 0.7714285714285715
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 51,
+              "recall": 0.7285714285714285
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 57.95906675362494
+      },
+      {
+        "resolution": 1280,
+        "threshold": 0.35,
+        "metrics": {
+          "frames": 72,
+          "tp": 47,
+          "fp": 97,
+          "fn": 25,
+          "precision": 0.3263888888888889,
+          "recall": 0.6527777777777778,
+          "f1": 0.4351851851851851,
+          "false_positives_per_frame": 1.3472222222222223,
+          "localization_median_px": 2.087788094910508,
+          "localization_p90_px": 5.7260782636652054,
+          "detected_gt_frame_coverage": 0.6527777777777778,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 21,
+              "recall": 0.6
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 26,
+              "recall": 0.7428571428571429
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 47,
+              "recall": 0.6714285714285714
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 57.95906675362494
+      },
+      {
+        "resolution": 1280,
+        "threshold": 0.5,
+        "metrics": {
+          "frames": 72,
+          "tp": 20,
+          "fp": 16,
+          "fn": 52,
+          "precision": 0.5555555555555556,
+          "recall": 0.2777777777777778,
+          "f1": 0.3703703703703704,
+          "false_positives_per_frame": 0.2222222222222222,
+          "localization_median_px": 2.0392356300921795,
+          "localization_p90_px": 6.919359582107638,
+          "detected_gt_frame_coverage": 0.2777777777777778,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 5,
+              "recall": 0.14285714285714285
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 15,
+              "recall": 0.42857142857142855
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 20,
+              "recall": 0.2857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 57.95906675362494
+      },
+      {
+        "resolution": 1280,
+        "threshold": 0.65,
+        "metrics": {
+          "frames": 72,
+          "tp": 2,
+          "fp": 0,
+          "fn": 70,
+          "precision": 1.0,
+          "recall": 0.027777777777777776,
+          "f1": 0.05405405405405406,
+          "false_positives_per_frame": 0.0,
+          "localization_median_px": 2.424308734648607,
+          "localization_p90_px": 2.9818161109463324,
+          "detected_gt_frame_coverage": 0.027777777777777776,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 35,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "medium12_24px": {
+              "gt": 35,
+              "tp": 2,
+              "recall": 0.05714285714285714
+            },
+            "large_over24px": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "low_sharpness_proxy": {
+              "gt": 2,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 70,
+              "tp": 2,
+              "recall": 0.02857142857142857
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "seconds": 57.95906675362494
+      }
+    ],
+    "multi_enabled": false,
+    "validation_multi": {
+      "frames": 288,
+      "counts": {
+        "LOST": 69,
+        "observed": 166,
+        "predicted": 28,
+        "metric_supported": 0,
+        "DETECTED": 29,
+        "AMBIGUOUS": 8,
+        "observed_iou_matched": 134,
+        "observed_iou_unmatched": 32,
+        "observed_center_matched": 142,
+        "observed_center_unmatched": 24,
+        "PREDICTED": 28,
+        "prediction_gt_comparable": 28,
+        "prediction_gt_inconsistent": 14,
+        "TRACKED": 154
+      },
+      "observed_coverage": 0.5763888888888888,
+      "predicted_coverage": 0.09722222222222222,
+      "accepted_iou_precision": 0.8072289156626506,
+      "accepted_center_consistency": 0.8554216867469879,
+      "accepted_center_wilson95": [
+        0.7938847585788191,
+        0.9008802459901439
+      ],
+      "prediction_inconsistency_rate": 0.5,
+      "prediction_inconsistency_wilson95": [
+        0.3263284683244634,
+        0.6736715316755366
+      ],
+      "localization_median_px": 2.1348639526634456,
+      "localization_p90_px": 15.932033898088271,
+      "longest_predicted_continuation_seconds": 0.12,
+      "matched_track_fragmentations": 14,
+      "reacquisition_attempts_after_matched_gap": 27,
+      "reacquisition_correct_iou": 14,
+      "reacquisition_precision": 0.5185185185185185,
+      "reacquisition_recall": null,
+      "metric_error_m": null,
+      "invalid_ground_acceptance_rate": null,
+      "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+    },
+    "validation_kalman": {
+      "frames": 288,
+      "counts": {
+        "DETECTED": 31,
+        "observed": 190,
+        "predicted": 31,
+        "metric_supported": 0,
+        "observed_iou_matched": 157,
+        "observed_iou_unmatched": 33,
+        "observed_center_matched": 165,
+        "observed_center_unmatched": 25,
+        "TRACKED": 179,
+        "PREDICTED": 31,
+        "prediction_gt_comparable": 31,
+        "prediction_gt_inconsistent": 16,
+        "LOST": 47
+      },
+      "observed_coverage": 0.6597222222222222,
+      "predicted_coverage": 0.1076388888888889,
+      "accepted_iou_precision": 0.8263157894736842,
+      "accepted_center_consistency": 0.868421052631579,
+      "accepted_center_wilson95": [
+        0.8129754229745219,
+        0.9092637661365874
+      ],
+      "prediction_inconsistency_rate": 0.5161290322580645,
+      "prediction_inconsistency_wilson95": [
+        0.34840118286973176,
+        0.6803001396872117
+      ],
+      "localization_median_px": 2.3042235511190317,
+      "localization_p90_px": 15.392363468849107,
+      "longest_predicted_continuation_seconds": 0.12,
+      "matched_track_fragmentations": 18,
+      "reacquisition_attempts_after_matched_gap": 37,
+      "reacquisition_correct_iou": 18,
+      "reacquisition_precision": 0.4864864864864865,
+      "reacquisition_recall": null,
+      "metric_error_m": null,
+      "invalid_ground_acceptance_rate": null,
+      "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+    },
+    "temporal_enabled": false,
+    "temporal_blocker": "No independent match-disjoint verified-negative temporal validation labels; organizer positives have unverified visibility. Cannot certify validation F1/coverage improvement. Training loss is not accuracy.",
+    "local_enabled": false,
+    "local_policy": "Additive recovery implemented; remains diagnostic unless prospective validation shows higher candidate recall and accepted correct coverage. No global proposal replacement.",
+    "dataset_sha256": "6524d99f34176a5ce9ca23c2f00102e8cc1569c280c8771c8f02869ffa0035ad",
+    "checkpoint_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+    "test_seen": false
+  },
+  "temporal_visual": {
+    "positive_pairs": 235,
+    "reviewed_negative_regions": 23,
+    "seconds": 7.561569417011924,
+    "checkpoint_sha256": "203be9128306f08a60ec3ab0df28fa86c50d49c4855ec1db51e87da3fb66c270",
+    "activated": false,
+    "blocker": "No independent match-disjoint verified-negative temporal validation labels; organizer positives have unverified visibility. Cannot certify validation F1/coverage improvement. Training loss is not accuracy.",
+    "final_training_loss": 0.06723521649837494
+  },
+  "metric_geometry_reference": {
+    "protocol": {
+      "minimum_views": 3,
+      "minimum_calibration_JaC005": 0.75,
+      "max_other_view_reprojection_px": 3.0,
+      "near_ground_abs_z_m": 0.15,
+      "airborne_abs_z_m": 0.5,
+      "scope": "Near-ground triangulated reference, not verified physical contact; held-out image point excluded from reference triangulation; supplied cameras, not estimated M8 pose."
+    },
+    "source_sha256": "bc1847d1d4f3e7c27825d965db737f2922f398157859bf12b32c9b3f430eb96e",
+    "counts": {
+      "multiview_groups": 171,
+      "quality_reference_views": 95,
+      "near_ground_reference_views": 18,
+      "mapper_rejected_OUTSIDE_CALIBRATION_REGION": 7
+    },
+    "unique_near_ground_actions": 16,
+    "near_ground_mapped_views": 11,
+    "near_ground_mapping_coverage": 0.6111111111111112,
+    "median_error_m": 1.10211802254344,
+    "p90_error_m": 1.7143055053304266,
+    "ungated_airborne_plane_projection_examples": 23,
+    "ungated_airborne_median_error_m": 5.506911787707767,
+    "examples": [
+      {
+        "source_row": "164",
+        "match": "2015-02-21 - 18-00 Barcelona 0 - 1 Malaga",
+        "action": "3",
+        "heldout_source_point": [
+          917.01,
+          496.83
+        ],
+        "reference_from_other_views_xyz_m": [
+          40.73749732306846,
+          6.27312936210417,
+          -0.13527021565703687
+        ],
+        "other_view_max_reprojection_px": 2.4585881625719095,
+        "mapped_pitch_xy": [
+          94.9401047633782,
+          40.47305752372253
+        ],
+        "reference_pitch_xy": [
+          93.23749732306845,
+          40.27312936210417
+        ],
+        "error_m": 1.7143055053304266,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "165",
+        "match": "2015-02-21 - 18-00 Barcelona 0 - 1 Malaga",
+        "action": "3",
+        "heldout_source_point": [
+          658.29,
+          494.755
+        ],
+        "reference_from_other_views_xyz_m": [
+          40.684705515200854,
+          6.394470391456364,
+          -0.12046963111687202
+        ],
+        "other_view_max_reprojection_px": 0.42894764223542275,
+        "mapped_pitch_xy": [
+          93.49686024847543,
+          39.78619338977839
+        ],
+        "reference_pitch_xy": [
+          93.18470551520085,
+          40.394470391456366
+        ],
+        "error_m": 0.6836969272097645,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "166",
+        "match": "2015-02-21 - 18-00 Barcelona 0 - 1 Malaga",
+        "action": "3",
+        "heldout_source_point": [
+          406.46500000000003,
+          526.94
+        ],
+        "reference_from_other_views_xyz_m": [
+          40.690527830521035,
+          6.390285414571245,
+          -0.13586680631715495
+        ],
+        "other_view_max_reprojection_px": 2.545454220649656,
+        "mapped_pitch_xy": [
+          93.39178088268463,
+          39.668992205071426
+        ],
+        "reference_pitch_xy": [
+          93.19052783052103,
+          40.390285414571245
+        ],
+        "error_m": 0.7488435651561096,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "1078",
+        "match": "2015-11-07 - 18-00 Manchester United 2 - 0 West Brom",
+        "action": "2",
+        "heldout_source_point": [
+          284.575,
+          312.605
+        ],
+        "reference_from_other_views_xyz_m": [
+          40.90219928616821,
+          13.810880878302084,
+          -0.09000605378105984
+        ],
+        "other_view_max_reprojection_px": 1.4041393130234197,
+        "mapped_pitch_xy": [
+          93.04882991292764,
+          47.719718690564235
+        ],
+        "reference_pitch_xy": [
+          93.40219928616821,
+          47.810880878302086
+        ],
+        "error_m": 0.36493897903291045,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "1154",
+        "match": "2015-11-21 - 20-30 Manchester City 1 - 4 Liverpool",
+        "action": "2",
+        "heldout_source_point": [
+          281.115,
+          387.525
+        ],
+        "reference_from_other_views_xyz_m": [
+          -52.301502983026374,
+          3.018072345078467,
+          -0.1448338307987556
+        ],
+        "other_view_max_reprojection_px": 0.16927391201274275,
+        "mapped_pitch_xy": [
+          0.43781331381467836,
+          36.707720643583826
+        ],
+        "reference_pitch_xy": [
+          0.19849701697362576,
+          37.018072345078465
+        ],
+        "error_m": 0.3919061986679113,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "1264",
+        "match": "2015-11-25 - 22-45 Shakhtar Donetsk 3 - 4 Real Madrid",
+        "action": "19",
+        "heldout_source_point": [
+          699.64,
+          344.61
+        ],
+        "reference_from_other_views_xyz_m": [
+          40.294352002840746,
+          -11.080322617014387,
+          -0.007373706992302091
+        ],
+        "other_view_max_reprojection_px": 1.7305054662975055,
+        "mapped_pitch_xy": [
+          93.13191717388852,
+          23.128769934769
+        ],
+        "reference_pitch_xy": [
+          92.79435200284075,
+          22.91967738298561
+        ],
+        "error_m": 0.397076743106166,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "1799",
+        "match": "2016-09-09 - 21-45 Paris SG 1 - 1 St Etienne",
+        "action": "12",
+        "heldout_source_point": [
+          398.90999999999997,
+          512.035
+        ],
+        "reference_from_other_views_xyz_m": [
+          -34.052368736928194,
+          -12.496487166508913,
+          -0.11316273251578395
+        ],
+        "other_view_max_reprojection_px": 0.830057824516198,
+        "mapped_pitch_xy": [
+          13.245629790409373,
+          27.888052132592374
+        ],
+        "reference_pitch_xy": [
+          18.447631263071806,
+          21.503512833491087
+        ],
+        "error_m": 8.235481854958511,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "3269",
+        "match": "2017-02-26 - 23-00 Marseille 1 - 5 Paris SG",
+        "action": "16",
+        "heldout_source_point": [
+          500.68500000000006,
+          555.56
+        ],
+        "reference_from_other_views_xyz_m": [
+          -41.36263406971426,
+          8.146793568851528,
+          -0.14329736353198363
+        ],
+        "other_view_max_reprojection_px": 0.6459254996254991,
+        "mapped_pitch_xy": [
+          10.067403816930604,
+          41.88251112221597
+        ],
+        "reference_pitch_xy": [
+          11.137365930285739,
+          42.14679356885153
+        ],
+        "error_m": 1.10211802254344,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "3323",
+        "match": "2017-03-01 - 23-30 Real Madrid 3 - 3 Las Palmas",
+        "action": "2",
+        "heldout_source_point": [
+          640.9449999999999,
+          881.735
+        ],
+        "reference_from_other_views_xyz_m": [
+          52.20684576943461,
+          2.849407328612623,
+          -0.08774590907075727
+        ],
+        "other_view_max_reprojection_px": 0.48321675371061984,
+        "mapped_pitch_xy": [
+          103.6962670755929,
+          37.31688915960487
+        ],
+        "reference_pitch_xy": [
+          104.70684576943461,
+          36.84940732861262
+        ],
+        "error_m": 1.1134669095912453,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "3726",
+        "match": "2017-04-22 - 18-00 Paris SG 2 - 0 Montpellier",
+        "action": "22",
+        "heldout_source_point": [
+          852.905,
+          538.915
+        ],
+        "reference_from_other_views_xyz_m": [
+          -44.066465903616255,
+          -13.11949797450051,
+          -0.12501901317095082
+        ],
+        "other_view_max_reprojection_px": 2.7709048449521068,
+        "mapped_pitch_xy": [
+          7.691354749637068,
+          22.332153358442504
+        ],
+        "reference_pitch_xy": [
+          8.433534096383745,
+          20.88050202549949
+        ],
+        "error_m": 1.6303747345848312,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      },
+      {
+        "source_row": "3758",
+        "match": "2017-04-26 - 21-45 Arsenal 1 - 0 Leicester",
+        "action": "1",
+        "heldout_source_point": [
+          568.2249999999999,
+          464.68
+        ],
+        "reference_from_other_views_xyz_m": [
+          -41.064439177118594,
+          9.215063793964873,
+          -0.09515306164616931
+        ],
+        "other_view_max_reprojection_px": 0.7642561295909206,
+        "mapped_pitch_xy": [
+          10.236162289323767,
+          42.104566211746864
+        ],
+        "reference_pitch_xy": [
+          11.435560822881406,
+          43.21506379396487
+        ],
+        "error_m": 1.6345524532459215,
+        "source": "published SoccerNet-v3D annotations; held-out input excluded from DLT reference"
+      }
+    ],
+    "region_note": "World pitch clipped against positive camera depth and image frustum; raw full-pitch quadrilaterals can cross the projective horizon and are invalid support polygons. Mapper thresholds unchanged; initial diagnostic retained separately.",
+    "limits": [
+      "Triangulation-derived reference, not surveyed ground truth or verified physical ground contact.",
+      "Supplied PnLCalib camera geometry shared by reference construction, not evaluation of M8 camera estimation.",
+      "Multiple images per action and reused calibration are correlated.",
+      "No raw images/footage downloaded; cannot train/validate a visual ground classifier or transfer labels to the three user videos.",
+      "These external reference mappings are not served as user-video observations."
+    ]
+  },
+  "metric_reference_source": [
+    {
+      "name": "ISSIA-3D.csv",
+      "bytes": 451850,
+      "sha256": "7f4b33068498d537186f6541a232c0959a23ed0af5bc3bd1ec924ffe8270ddc4",
+      "url": "https://github.com/mguti97/SoccerNet-v3D/releases/download/v1.0.0/ISSIA-3D.csv"
+    },
+    {
+      "name": "issia_calibration.json",
+      "bytes": 7508,
+      "sha256": "480903a1cc88dfc4afe437977f14c0556349929cf1f98cc0c22392cb927b4dfd",
+      "url": "https://github.com/mguti97/SoccerNet-v3D/releases/download/v1.0.0/issia_calibration.json"
+    },
+    {
+      "name": "SNv3D.csv",
+      "bytes": 3801107,
+      "sha256": "bc1847d1d4f3e7c27825d965db737f2922f398157859bf12b32c9b3f430eb96e",
+      "url": "https://github.com/mguti97/SoccerNet-v3D/releases/download/v1.0.0/SNv3D.csv"
+    }
+  ],
+  "local_recovery": {
+    "frames": 288,
+    "global_raw_gt_matches": 205,
+    "additive_raw_gt_matches": 206,
+    "extra_local_calls": 245,
+    "extra_local_seconds": 5.62043258047197,
+    "selected": false,
+    "reason": "Proposal ceiling diagnostic only; not selected without separate calibrated accepted-tracking coverage improvement. Global candidates preserved by construction."
+  },
+  "test": {
+    "results": {
+      "m14": {
+        "detection": {
+          "frames": 1073,
+          "tp": 208,
+          "fp": 182,
+          "fn": 865,
+          "precision": 0.5333333333333333,
+          "recall": 0.19384902143522834,
+          "f1": 0.2843472317156528,
+          "false_positives_per_frame": 0.16961789375582478,
+          "localization_median_px": 2.708001506372997,
+          "localization_p90_px": 6.873681370579041,
+          "detected_gt_frame_coverage": 0.19384902143522834,
+          "threshold": 0.5,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 35,
+              "recall": 0.1724137931034483
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 166,
+              "recall": 0.20418204182041821
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 7,
+              "recall": 0.12280701754385964
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 208,
+              "recall": 0.1982840800762631
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "LOST": 442,
+            "observed": 220,
+            "predicted": 325,
+            "metric_supported": 0,
+            "DETECTED": 114,
+            "observed_iou_matched": 157,
+            "observed_iou_unmatched": 63,
+            "observed_center_matched": 161,
+            "observed_center_unmatched": 59,
+            "PREDICTED": 325,
+            "prediction_gt_comparable": 325,
+            "prediction_gt_inconsistent": 202,
+            "TRACKED": 188,
+            "AMBIGUOUS": 4
+          },
+          "observed_coverage": 0.20503261882572227,
+          "predicted_coverage": 0.30288909599254427,
+          "accepted_iou_precision": 0.7136363636363636,
+          "accepted_center_consistency": 0.7318181818181818,
+          "accepted_center_wilson95": [
+            0.6696668843582488,
+            0.78601248891285
+          ],
+          "prediction_inconsistency_rate": 0.6215384615384615,
+          "prediction_inconsistency_wilson95": [
+            0.5676781233262914,
+            0.672559121596492
+          ],
+          "localization_median_px": 4.33677184128286,
+          "localization_p90_px": 292.21047539245734,
+          "longest_predicted_continuation_seconds": 0.32,
+          "matched_track_fragmentations": 57,
+          "reacquisition_attempts_after_matched_gap": 96,
+          "reacquisition_correct_iou": 57,
+          "reacquisition_precision": 0.59375,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "per_match": {
+          "SN_game11": {
+            "detection": {
+              "frames": 500,
+              "tp": 108,
+              "fp": 87,
+              "fn": 392,
+              "precision": 0.5538461538461539,
+              "recall": 0.216,
+              "f1": 0.31079136690647485,
+              "false_positives_per_frame": 0.174,
+              "localization_median_px": 2.5184360060315445,
+              "localization_p90_px": 5.604929899772223,
+              "detected_gt_frame_coverage": 0.216,
+              "threshold": 0.5,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 149,
+                  "tp": 24,
+                  "recall": 0.1610738255033557
+                },
+                "medium12_24px": {
+                  "gt": 350,
+                  "tp": 84,
+                  "recall": 0.24
+                },
+                "large_over24px": {
+                  "gt": 1,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "low_sharpness_proxy": {
+                  "gt": 6,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 494,
+                  "tp": 108,
+                  "recall": 0.21862348178137653
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 500,
+              "counts": {
+                "LOST": 181,
+                "observed": 94,
+                "predicted": 176,
+                "metric_supported": 0,
+                "DETECTED": 64,
+                "observed_iou_matched": 76,
+                "observed_iou_unmatched": 18,
+                "observed_center_matched": 78,
+                "observed_center_unmatched": 16,
+                "TRACKED": 77,
+                "PREDICTED": 176,
+                "prediction_gt_comparable": 176,
+                "prediction_gt_inconsistent": 95,
+                "AMBIGUOUS": 2
+              },
+              "observed_coverage": 0.188,
+              "predicted_coverage": 0.352,
+              "accepted_iou_precision": 0.8085106382978723,
+              "accepted_center_consistency": 0.8297872340425532,
+              "accepted_center_wilson95": [
+                0.7412525861920534,
+                0.8924247044491462
+              ],
+              "prediction_inconsistency_rate": 0.5397727272727273,
+              "prediction_inconsistency_wilson95": [
+                0.4660727025222357,
+                0.6117735799841477
+              ],
+              "localization_median_px": 3.4794558621214464,
+              "localization_p90_px": 405.02709534501093,
+              "longest_predicted_continuation_seconds": 0.32,
+              "matched_track_fragmentations": 32,
+              "reacquisition_attempts_after_matched_gap": 44,
+              "reacquisition_correct_iou": 32,
+              "reacquisition_precision": 0.7272727272727273,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          },
+          "SN_game7": {
+            "detection": {
+              "frames": 573,
+              "tp": 100,
+              "fp": 95,
+              "fn": 473,
+              "precision": 0.5128205128205128,
+              "recall": 0.17452006980802792,
+              "f1": 0.26041666666666663,
+              "false_positives_per_frame": 0.16579406631762653,
+              "localization_median_px": 3.0414768870700533,
+              "localization_p90_px": 8.363145097155963,
+              "detected_gt_frame_coverage": 0.17452006980802792,
+              "threshold": 0.5,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 54,
+                  "tp": 11,
+                  "recall": 0.2037037037037037
+                },
+                "medium12_24px": {
+                  "gt": 463,
+                  "tp": 82,
+                  "recall": 0.1771058315334773
+                },
+                "large_over24px": {
+                  "gt": 56,
+                  "tp": 7,
+                  "recall": 0.125
+                },
+                "low_sharpness_proxy": {
+                  "gt": 18,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 555,
+                  "tp": 100,
+                  "recall": 0.18018018018018017
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 573,
+              "counts": {
+                "LOST": 261,
+                "observed": 126,
+                "predicted": 149,
+                "metric_supported": 0,
+                "DETECTED": 50,
+                "observed_iou_matched": 81,
+                "observed_iou_unmatched": 45,
+                "observed_center_matched": 83,
+                "observed_center_unmatched": 43,
+                "PREDICTED": 149,
+                "prediction_gt_comparable": 149,
+                "prediction_gt_inconsistent": 107,
+                "TRACKED": 111,
+                "AMBIGUOUS": 2
+              },
+              "observed_coverage": 0.2198952879581152,
+              "predicted_coverage": 0.2600349040139616,
+              "accepted_iou_precision": 0.6428571428571429,
+              "accepted_center_consistency": 0.6587301587301587,
+              "accepted_center_wilson95": [
+                0.5723434921846445,
+                0.7357241841224865
+              ],
+              "prediction_inconsistency_rate": 0.7181208053691275,
+              "prediction_inconsistency_wilson95": [
+                0.6410991625125295,
+                0.7841777254551441
+              ],
+              "localization_median_px": 6.483272366180821,
+              "localization_p90_px": 242.92021535578516,
+              "longest_predicted_continuation_seconds": 0.32,
+              "matched_track_fragmentations": 25,
+              "reacquisition_attempts_after_matched_gap": 52,
+              "reacquisition_correct_iou": 25,
+              "reacquisition_precision": 0.4807692307692308,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          }
+        }
+      },
+      "m15": {
+        "detection": {
+          "frames": 1073,
+          "tp": 141,
+          "fp": 283,
+          "fn": 932,
+          "precision": 0.33254716981132076,
+          "recall": 0.13140726933830382,
+          "f1": 0.18837675350701402,
+          "false_positives_per_frame": 0.2637465051258155,
+          "localization_median_px": 2.8178537302572093,
+          "localization_p90_px": 8.436428248710962,
+          "detected_gt_frame_coverage": 0.13140726933830382,
+          "threshold": 0.65,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 14,
+              "recall": 0.06896551724137931
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 118,
+              "recall": 0.14514145141451415
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 9,
+              "recall": 0.15789473684210525
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 0,
+              "recall": 0.0
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 141,
+              "recall": 0.1344137273593899
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "DETECTED": 222,
+            "observed": 164,
+            "predicted": 60,
+            "metric_supported": 0,
+            "LOST": 676,
+            "observed_iou_matched": 77,
+            "observed_iou_unmatched": 87,
+            "observed_center_matched": 75,
+            "observed_center_unmatched": 89,
+            "TRACKED": 110,
+            "PREDICTED": 60,
+            "prediction_gt_comparable": 60,
+            "prediction_gt_inconsistent": 43,
+            "AMBIGUOUS": 5
+          },
+          "observed_coverage": 0.15284249767008387,
+          "predicted_coverage": 0.05591798695246971,
+          "accepted_iou_precision": 0.4695121951219512,
+          "accepted_center_consistency": 0.4573170731707317,
+          "accepted_center_wilson95": [
+            0.38291949486520394,
+            0.5336685262213444
+          ],
+          "prediction_inconsistency_rate": 0.7166666666666667,
+          "prediction_inconsistency_wilson95": [
+            0.5923247495026482,
+            0.8149332139569141
+          ],
+          "localization_median_px": 16.314695802698658,
+          "localization_p90_px": 644.8627601897156,
+          "longest_predicted_continuation_seconds": 0.12,
+          "matched_track_fragmentations": 25,
+          "reacquisition_attempts_after_matched_gap": 81,
+          "reacquisition_correct_iou": 25,
+          "reacquisition_precision": 0.30864197530864196,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "per_match": {
+          "SN_game11": {
+            "detection": {
+              "frames": 500,
+              "tp": 56,
+              "fp": 139,
+              "fn": 444,
+              "precision": 0.28717948717948716,
+              "recall": 0.112,
+              "f1": 0.16115107913669066,
+              "false_positives_per_frame": 0.278,
+              "localization_median_px": 2.5939930750255966,
+              "localization_p90_px": 5.422208255516972,
+              "detected_gt_frame_coverage": 0.112,
+              "threshold": 0.65,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 149,
+                  "tp": 6,
+                  "recall": 0.040268456375838924
+                },
+                "medium12_24px": {
+                  "gt": 350,
+                  "tp": 50,
+                  "recall": 0.14285714285714285
+                },
+                "large_over24px": {
+                  "gt": 1,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "low_sharpness_proxy": {
+                  "gt": 6,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 494,
+                  "tp": 56,
+                  "recall": 0.11336032388663968
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 500,
+              "counts": {
+                "DETECTED": 113,
+                "observed": 62,
+                "predicted": 23,
+                "metric_supported": 0,
+                "observed_iou_matched": 22,
+                "observed_iou_unmatched": 40,
+                "observed_center_matched": 23,
+                "observed_center_unmatched": 39,
+                "LOST": 328,
+                "TRACKED": 34,
+                "PREDICTED": 23,
+                "prediction_gt_comparable": 23,
+                "prediction_gt_inconsistent": 17,
+                "AMBIGUOUS": 2
+              },
+              "observed_coverage": 0.124,
+              "predicted_coverage": 0.046,
+              "accepted_iou_precision": 0.3548387096774194,
+              "accepted_center_consistency": 0.3709677419354839,
+              "accepted_center_wilson95": [
+                0.26156988879274196,
+                0.49542265087822607
+              ],
+              "prediction_inconsistency_rate": 0.7391304347826086,
+              "prediction_inconsistency_wilson95": [
+                0.5352960945624944,
+                0.8745155411075104
+              ],
+              "localization_median_px": 281.15479242341326,
+              "localization_p90_px": 718.6380832033049,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 12,
+              "reacquisition_attempts_after_matched_gap": 35,
+              "reacquisition_correct_iou": 12,
+              "reacquisition_precision": 0.34285714285714286,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          },
+          "SN_game7": {
+            "detection": {
+              "frames": 573,
+              "tp": 85,
+              "fp": 144,
+              "fn": 488,
+              "precision": 0.37117903930131,
+              "recall": 0.14834205933682373,
+              "f1": 0.21197007481296756,
+              "false_positives_per_frame": 0.2513089005235602,
+              "localization_median_px": 3.2428591110514597,
+              "localization_p90_px": 9.690563706066671,
+              "detected_gt_frame_coverage": 0.14834205933682373,
+              "threshold": 0.65,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 54,
+                  "tp": 8,
+                  "recall": 0.14814814814814814
+                },
+                "medium12_24px": {
+                  "gt": 463,
+                  "tp": 68,
+                  "recall": 0.1468682505399568
+                },
+                "large_over24px": {
+                  "gt": 56,
+                  "tp": 9,
+                  "recall": 0.16071428571428573
+                },
+                "low_sharpness_proxy": {
+                  "gt": 18,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 555,
+                  "tp": 85,
+                  "recall": 0.15315315315315314
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 573,
+              "counts": {
+                "DETECTED": 109,
+                "observed": 102,
+                "predicted": 37,
+                "metric_supported": 0,
+                "LOST": 348,
+                "observed_iou_matched": 55,
+                "observed_iou_unmatched": 47,
+                "observed_center_matched": 52,
+                "observed_center_unmatched": 50,
+                "TRACKED": 76,
+                "PREDICTED": 37,
+                "prediction_gt_comparable": 37,
+                "prediction_gt_inconsistent": 26,
+                "AMBIGUOUS": 3
+              },
+              "observed_coverage": 0.17801047120418848,
+              "predicted_coverage": 0.06457242582897033,
+              "accepted_iou_precision": 0.5392156862745098,
+              "accepted_center_consistency": 0.5098039215686274,
+              "accepted_center_wilson95": [
+                0.4142085151226479,
+                0.6046876466889649
+              ],
+              "prediction_inconsistency_rate": 0.7027027027027027,
+              "prediction_inconsistency_wilson95": [
+                0.5421656082795643,
+                0.825106976535918
+              ],
+              "localization_median_px": 10.9405153799413,
+              "localization_p90_px": 471.39658358479267,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 13,
+              "reacquisition_attempts_after_matched_gap": 46,
+              "reacquisition_correct_iou": 13,
+              "reacquisition_precision": 0.2826086956521739,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          }
+        }
+      },
+      "new_detector_motion": {
+        "detection": {
+          "frames": 1073,
+          "tp": 498,
+          "fp": 272,
+          "fn": 575,
+          "precision": 0.6467532467532467,
+          "recall": 0.4641192917054986,
+          "f1": 0.5404232230059686,
+          "false_positives_per_frame": 0.2534948741845294,
+          "localization_median_px": 2.306323551497859,
+          "localization_p90_px": 7.087059328894315,
+          "detected_gt_frame_coverage": 0.4641192917054986,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 76,
+              "recall": 0.37438423645320196
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 405,
+              "recall": 0.4981549815498155
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 17,
+              "recall": 0.2982456140350877
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 1,
+              "recall": 0.041666666666666664
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 497,
+              "recall": 0.47378455672068637
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "LOST": 297,
+            "observed": 530,
+            "predicted": 150,
+            "metric_supported": 0,
+            "DETECTED": 145,
+            "observed_iou_matched": 429,
+            "observed_iou_unmatched": 101,
+            "observed_center_matched": 452,
+            "observed_center_unmatched": 78,
+            "PREDICTED": 150,
+            "prediction_gt_comparable": 150,
+            "prediction_gt_inconsistent": 55,
+            "TRACKED": 481
+          },
+          "observed_coverage": 0.4939422180801491,
+          "predicted_coverage": 0.13979496738117428,
+          "accepted_iou_precision": 0.809433962264151,
+          "accepted_center_consistency": 0.8528301886792453,
+          "accepted_center_wilson95": [
+            0.8201309243520439,
+            0.8804514206731472
+          ],
+          "prediction_inconsistency_rate": 0.36666666666666664,
+          "prediction_inconsistency_wilson95": [
+            0.293773196710732,
+            0.4462191070614596
+          ],
+          "localization_median_px": 2.9736186714878627,
+          "localization_p90_px": 20.94880359837418,
+          "longest_predicted_continuation_seconds": 0.12,
+          "matched_track_fragmentations": 77,
+          "reacquisition_attempts_after_matched_gap": 144,
+          "reacquisition_correct_iou": 77,
+          "reacquisition_precision": 0.5347222222222222,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "per_match": {
+          "SN_game11": {
+            "detection": {
+              "frames": 500,
+              "tp": 219,
+              "fp": 137,
+              "fn": 281,
+              "precision": 0.6151685393258427,
+              "recall": 0.438,
+              "f1": 0.5116822429906541,
+              "false_positives_per_frame": 0.274,
+              "localization_median_px": 2.4022279095536225,
+              "localization_p90_px": 5.246377660135296,
+              "detected_gt_frame_coverage": 0.438,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 149,
+                  "tp": 44,
+                  "recall": 0.2953020134228188
+                },
+                "medium12_24px": {
+                  "gt": 350,
+                  "tp": 175,
+                  "recall": 0.5
+                },
+                "large_over24px": {
+                  "gt": 1,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "low_sharpness_proxy": {
+                  "gt": 6,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 494,
+                  "tp": 219,
+                  "recall": 0.4433198380566802
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 500,
+              "counts": {
+                "LOST": 168,
+                "observed": 201,
+                "predicted": 79,
+                "metric_supported": 0,
+                "DETECTED": 78,
+                "observed_iou_matched": 173,
+                "observed_iou_unmatched": 28,
+                "observed_center_matched": 174,
+                "observed_center_unmatched": 27,
+                "TRACKED": 175,
+                "PREDICTED": 79,
+                "prediction_gt_comparable": 79,
+                "prediction_gt_inconsistent": 27
+              },
+              "observed_coverage": 0.402,
+              "predicted_coverage": 0.158,
+              "accepted_iou_precision": 0.8606965174129353,
+              "accepted_center_consistency": 0.8656716417910447,
+              "accepted_center_wilson95": [
+                0.8116139966633064,
+                0.9060136727163507
+              ],
+              "prediction_inconsistency_rate": 0.34177215189873417,
+              "prediction_inconsistency_wilson95": [
+                0.24670818573119846,
+                0.4515110664319659
+              ],
+              "localization_median_px": 2.5500990890965936,
+              "localization_p90_px": 566.2349936317092,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 31,
+              "reacquisition_attempts_after_matched_gap": 53,
+              "reacquisition_correct_iou": 31,
+              "reacquisition_precision": 0.5849056603773585,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          },
+          "SN_game7": {
+            "detection": {
+              "frames": 573,
+              "tp": 279,
+              "fp": 135,
+              "fn": 294,
+              "precision": 0.6739130434782609,
+              "recall": 0.4869109947643979,
+              "f1": 0.5653495440729484,
+              "false_positives_per_frame": 0.2356020942408377,
+              "localization_median_px": 2.18221686200735,
+              "localization_p90_px": 7.872840003804139,
+              "detected_gt_frame_coverage": 0.4869109947643979,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 54,
+                  "tp": 32,
+                  "recall": 0.5925925925925926
+                },
+                "medium12_24px": {
+                  "gt": 463,
+                  "tp": 230,
+                  "recall": 0.49676025917926564
+                },
+                "large_over24px": {
+                  "gt": 56,
+                  "tp": 17,
+                  "recall": 0.30357142857142855
+                },
+                "low_sharpness_proxy": {
+                  "gt": 18,
+                  "tp": 1,
+                  "recall": 0.05555555555555555
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 555,
+                  "tp": 278,
+                  "recall": 0.5009009009009009
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 573,
+              "counts": {
+                "LOST": 129,
+                "observed": 329,
+                "predicted": 71,
+                "metric_supported": 0,
+                "DETECTED": 67,
+                "observed_iou_matched": 256,
+                "observed_iou_unmatched": 73,
+                "observed_center_matched": 278,
+                "observed_center_unmatched": 51,
+                "PREDICTED": 71,
+                "prediction_gt_comparable": 71,
+                "prediction_gt_inconsistent": 28,
+                "TRACKED": 306
+              },
+              "observed_coverage": 0.5741710296684118,
+              "predicted_coverage": 0.12390924956369982,
+              "accepted_iou_precision": 0.7781155015197568,
+              "accepted_center_consistency": 0.8449848024316109,
+              "accepted_center_wilson95": [
+                0.8019176779832453,
+                0.8800884174086767
+              ],
+              "prediction_inconsistency_rate": 0.39436619718309857,
+              "prediction_inconsistency_wilson95": [
+                0.28893226488668644,
+                0.5106444411163921
+              ],
+              "localization_median_px": 3.4804376952394604,
+              "localization_p90_px": 19.12650632723212,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 46,
+              "reacquisition_attempts_after_matched_gap": 91,
+              "reacquisition_correct_iou": 46,
+              "reacquisition_precision": 0.5054945054945055,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          }
+        }
+      },
+      "new_multi": {
+        "detection": {
+          "frames": 1073,
+          "tp": 498,
+          "fp": 272,
+          "fn": 575,
+          "precision": 0.6467532467532467,
+          "recall": 0.4641192917054986,
+          "f1": 0.5404232230059686,
+          "false_positives_per_frame": 0.2534948741845294,
+          "localization_median_px": 2.306323551497859,
+          "localization_p90_px": 7.087059328894315,
+          "detected_gt_frame_coverage": 0.4641192917054986,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 76,
+              "recall": 0.37438423645320196
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 405,
+              "recall": 0.4981549815498155
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 17,
+              "recall": 0.2982456140350877
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 1,
+              "recall": 0.041666666666666664
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 497,
+              "recall": 0.47378455672068637
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "LOST": 405,
+            "observed": 462,
+            "predicted": 116,
+            "metric_supported": 0,
+            "DETECTED": 108,
+            "observed_iou_matched": 384,
+            "observed_iou_unmatched": 78,
+            "observed_center_matched": 403,
+            "observed_center_unmatched": 59,
+            "TRACKED": 419,
+            "PREDICTED": 116,
+            "prediction_gt_comparable": 116,
+            "prediction_gt_inconsistent": 38,
+            "AMBIGUOUS": 25
+          },
+          "observed_coverage": 0.43056849953401677,
+          "predicted_coverage": 0.10810810810810811,
+          "accepted_iou_precision": 0.8311688311688312,
+          "accepted_center_consistency": 0.8722943722943723,
+          "accepted_center_wilson95": [
+            0.838759987159788,
+            0.8996884468143356
+          ],
+          "prediction_inconsistency_rate": 0.3275862068965517,
+          "prediction_inconsistency_wilson95": [
+            0.248901672115787,
+            0.41732441298321027
+          ],
+          "localization_median_px": 2.825001494515404,
+          "localization_p90_px": 14.948094811347652,
+          "longest_predicted_continuation_seconds": 0.12,
+          "matched_track_fragmentations": 65,
+          "reacquisition_attempts_after_matched_gap": 116,
+          "reacquisition_correct_iou": 65,
+          "reacquisition_precision": 0.5603448275862069,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "per_match": {
+          "SN_game11": {
+            "detection": {
+              "frames": 500,
+              "tp": 219,
+              "fp": 137,
+              "fn": 281,
+              "precision": 0.6151685393258427,
+              "recall": 0.438,
+              "f1": 0.5116822429906541,
+              "false_positives_per_frame": 0.274,
+              "localization_median_px": 2.4022279095536225,
+              "localization_p90_px": 5.246377660135296,
+              "detected_gt_frame_coverage": 0.438,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 149,
+                  "tp": 44,
+                  "recall": 0.2953020134228188
+                },
+                "medium12_24px": {
+                  "gt": 350,
+                  "tp": 175,
+                  "recall": 0.5
+                },
+                "large_over24px": {
+                  "gt": 1,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "low_sharpness_proxy": {
+                  "gt": 6,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 494,
+                  "tp": 219,
+                  "recall": 0.4433198380566802
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 500,
+              "counts": {
+                "LOST": 221,
+                "observed": 162,
+                "predicted": 59,
+                "metric_supported": 0,
+                "DETECTED": 62,
+                "observed_iou_matched": 148,
+                "observed_iou_unmatched": 14,
+                "observed_center_matched": 149,
+                "observed_center_unmatched": 13,
+                "TRACKED": 137,
+                "PREDICTED": 59,
+                "prediction_gt_comparable": 59,
+                "prediction_gt_inconsistent": 19,
+                "AMBIGUOUS": 21
+              },
+              "observed_coverage": 0.324,
+              "predicted_coverage": 0.118,
+              "accepted_iou_precision": 0.9135802469135802,
+              "accepted_center_consistency": 0.9197530864197531,
+              "accepted_center_wilson95": [
+                0.8675535175700917,
+                0.9525061055883921
+              ],
+              "prediction_inconsistency_rate": 0.3220338983050847,
+              "prediction_inconsistency_wilson95": [
+                0.21687410829652445,
+                0.44895235060967775
+              ],
+              "localization_median_px": 2.4231573520498118,
+              "localization_p90_px": 7.587306361316424,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 27,
+              "reacquisition_attempts_after_matched_gap": 36,
+              "reacquisition_correct_iou": 27,
+              "reacquisition_precision": 0.75,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          },
+          "SN_game7": {
+            "detection": {
+              "frames": 573,
+              "tp": 279,
+              "fp": 135,
+              "fn": 294,
+              "precision": 0.6739130434782609,
+              "recall": 0.4869109947643979,
+              "f1": 0.5653495440729484,
+              "false_positives_per_frame": 0.2356020942408377,
+              "localization_median_px": 2.18221686200735,
+              "localization_p90_px": 7.872840003804139,
+              "detected_gt_frame_coverage": 0.4869109947643979,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 54,
+                  "tp": 32,
+                  "recall": 0.5925925925925926
+                },
+                "medium12_24px": {
+                  "gt": 463,
+                  "tp": 230,
+                  "recall": 0.49676025917926564
+                },
+                "large_over24px": {
+                  "gt": 56,
+                  "tp": 17,
+                  "recall": 0.30357142857142855
+                },
+                "low_sharpness_proxy": {
+                  "gt": 18,
+                  "tp": 1,
+                  "recall": 0.05555555555555555
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 555,
+                  "tp": 278,
+                  "recall": 0.5009009009009009
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 573,
+              "counts": {
+                "LOST": 184,
+                "observed": 300,
+                "predicted": 57,
+                "metric_supported": 0,
+                "DETECTED": 46,
+                "observed_iou_matched": 236,
+                "observed_iou_unmatched": 64,
+                "observed_center_matched": 254,
+                "observed_center_unmatched": 46,
+                "TRACKED": 282,
+                "PREDICTED": 57,
+                "prediction_gt_comparable": 57,
+                "prediction_gt_inconsistent": 19,
+                "AMBIGUOUS": 4
+              },
+              "observed_coverage": 0.5235602094240838,
+              "predicted_coverage": 0.09947643979057591,
+              "accepted_iou_precision": 0.7866666666666666,
+              "accepted_center_consistency": 0.8466666666666667,
+              "accepted_center_wilson95": [
+                0.8015330360133669,
+                0.8830341858548697
+              ],
+              "prediction_inconsistency_rate": 0.3333333333333333,
+              "prediction_inconsistency_wilson95": [
+                0.2249363598222627,
+                0.4627773097722252
+              ],
+              "localization_median_px": 3.4858511057426895,
+              "localization_p90_px": 17.837727051501908,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 38,
+              "reacquisition_attempts_after_matched_gap": 80,
+              "reacquisition_correct_iou": 38,
+              "reacquisition_precision": 0.475,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          }
+        }
+      },
+      "new_temporal_visual": {
+        "detection": {
+          "frames": 1073,
+          "tp": 498,
+          "fp": 272,
+          "fn": 575,
+          "precision": 0.6467532467532467,
+          "recall": 0.4641192917054986,
+          "f1": 0.5404232230059686,
+          "false_positives_per_frame": 0.2534948741845294,
+          "localization_median_px": 2.306323551497859,
+          "localization_p90_px": 7.087059328894315,
+          "detected_gt_frame_coverage": 0.4641192917054986,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 76,
+              "recall": 0.37438423645320196
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 405,
+              "recall": 0.4981549815498155
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 17,
+              "recall": 0.2982456140350877
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 1,
+              "recall": 0.041666666666666664
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 497,
+              "recall": 0.47378455672068637
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "LOST": 553,
+            "observed": 332,
+            "predicted": 97,
+            "metric_supported": 0,
+            "DETECTED": 102,
+            "observed_iou_matched": 278,
+            "observed_iou_unmatched": 54,
+            "observed_center_matched": 299,
+            "observed_center_unmatched": 33,
+            "TRACKED": 296,
+            "PREDICTED": 97,
+            "prediction_gt_comparable": 97,
+            "prediction_gt_inconsistent": 36,
+            "AMBIGUOUS": 25
+          },
+          "observed_coverage": 0.30941286113699906,
+          "predicted_coverage": 0.09040074557315937,
+          "accepted_iou_precision": 0.8373493975903614,
+          "accepted_center_consistency": 0.9006024096385542,
+          "accepted_center_wilson95": [
+            0.863694082939147,
+            0.9283459740400956
+          ],
+          "prediction_inconsistency_rate": 0.3711340206185567,
+          "prediction_inconsistency_wilson95": [
+            0.2816222547757322,
+            0.47046418574088
+          ],
+          "localization_median_px": 2.50916267076349,
+          "localization_p90_px": 11.832408238024856,
+          "longest_predicted_continuation_seconds": 0.12,
+          "matched_track_fragmentations": 42,
+          "reacquisition_attempts_after_matched_gap": 79,
+          "reacquisition_correct_iou": 42,
+          "reacquisition_precision": 0.5316455696202531,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "status": "unselected diagnostic, fixed0.5probability; no validated negative sequence calibration"
+      },
+      "new_detector_only": {
+        "detection": {
+          "frames": 1073,
+          "tp": 498,
+          "fp": 272,
+          "fn": 575,
+          "precision": 0.6467532467532467,
+          "recall": 0.4641192917054986,
+          "f1": 0.5404232230059686,
+          "false_positives_per_frame": 0.2534948741845294,
+          "localization_median_px": 2.306323551497859,
+          "localization_p90_px": 7.087059328894315,
+          "detected_gt_frame_coverage": 0.4641192917054986,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 76,
+              "recall": 0.37438423645320196
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 405,
+              "recall": 0.4981549815498155
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 17,
+              "recall": 0.2982456140350877
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 1,
+              "recall": 0.041666666666666664
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 497,
+              "recall": 0.47378455672068637
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": null
+      },
+      "complete_m16": {
+        "detection": {
+          "frames": 1073,
+          "tp": 498,
+          "fp": 272,
+          "fn": 575,
+          "precision": 0.6467532467532467,
+          "recall": 0.4641192917054986,
+          "f1": 0.5404232230059686,
+          "false_positives_per_frame": 0.2534948741845294,
+          "localization_median_px": 2.306323551497859,
+          "localization_p90_px": 7.087059328894315,
+          "detected_gt_frame_coverage": 0.4641192917054986,
+          "threshold": 0.35,
+          "iou_match_threshold": 0.25,
+          "strata": {
+            "small_under12px": {
+              "gt": 203,
+              "tp": 76,
+              "recall": 0.37438423645320196
+            },
+            "medium12_24px": {
+              "gt": 813,
+              "tp": 405,
+              "recall": 0.4981549815498155
+            },
+            "large_over24px": {
+              "gt": 57,
+              "tp": 17,
+              "recall": 0.2982456140350877
+            },
+            "low_sharpness_proxy": {
+              "gt": 24,
+              "tp": 1,
+              "recall": 0.041666666666666664
+            },
+            "higher_sharpness_proxy": {
+              "gt": 1049,
+              "tp": 497,
+              "recall": 0.47378455672068637
+            }
+          },
+          "visibility_or_occlusion_gt_available": false,
+          "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+        },
+        "tracking": {
+          "frames": 1073,
+          "counts": {
+            "LOST": 297,
+            "observed": 530,
+            "predicted": 150,
+            "metric_supported": 0,
+            "DETECTED": 145,
+            "observed_iou_matched": 429,
+            "observed_iou_unmatched": 101,
+            "observed_center_matched": 452,
+            "observed_center_unmatched": 78,
+            "PREDICTED": 150,
+            "prediction_gt_comparable": 150,
+            "prediction_gt_inconsistent": 55,
+            "TRACKED": 481
+          },
+          "observed_coverage": 0.4939422180801491,
+          "predicted_coverage": 0.13979496738117428,
+          "accepted_iou_precision": 0.809433962264151,
+          "accepted_center_consistency": 0.8528301886792453,
+          "accepted_center_wilson95": [
+            0.8201309243520439,
+            0.8804514206731472
+          ],
+          "prediction_inconsistency_rate": 0.36666666666666664,
+          "prediction_inconsistency_wilson95": [
+            0.293773196710732,
+            0.4462191070614596
+          ],
+          "localization_median_px": 2.9736186714878627,
+          "localization_p90_px": 20.94880359837418,
+          "longest_predicted_continuation_seconds": 0.12,
+          "matched_track_fragmentations": 77,
+          "reacquisition_attempts_after_matched_gap": 144,
+          "reacquisition_correct_iou": 77,
+          "reacquisition_precision": 0.5347222222222222,
+          "reacquisition_recall": null,
+          "metric_error_m": null,
+          "invalid_ground_acceptance_rate": null,
+          "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+        },
+        "per_match": {
+          "SN_game11": {
+            "detection": {
+              "frames": 500,
+              "tp": 219,
+              "fp": 137,
+              "fn": 281,
+              "precision": 0.6151685393258427,
+              "recall": 0.438,
+              "f1": 0.5116822429906541,
+              "false_positives_per_frame": 0.274,
+              "localization_median_px": 2.4022279095536225,
+              "localization_p90_px": 5.246377660135296,
+              "detected_gt_frame_coverage": 0.438,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 149,
+                  "tp": 44,
+                  "recall": 0.2953020134228188
+                },
+                "medium12_24px": {
+                  "gt": 350,
+                  "tp": 175,
+                  "recall": 0.5
+                },
+                "large_over24px": {
+                  "gt": 1,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "low_sharpness_proxy": {
+                  "gt": 6,
+                  "tp": 0,
+                  "recall": 0.0
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 494,
+                  "tp": 219,
+                  "recall": 0.4433198380566802
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 500,
+              "counts": {
+                "LOST": 168,
+                "observed": 201,
+                "predicted": 79,
+                "metric_supported": 0,
+                "DETECTED": 78,
+                "observed_iou_matched": 173,
+                "observed_iou_unmatched": 28,
+                "observed_center_matched": 174,
+                "observed_center_unmatched": 27,
+                "TRACKED": 175,
+                "PREDICTED": 79,
+                "prediction_gt_comparable": 79,
+                "prediction_gt_inconsistent": 27
+              },
+              "observed_coverage": 0.402,
+              "predicted_coverage": 0.158,
+              "accepted_iou_precision": 0.8606965174129353,
+              "accepted_center_consistency": 0.8656716417910447,
+              "accepted_center_wilson95": [
+                0.8116139966633064,
+                0.9060136727163507
+              ],
+              "prediction_inconsistency_rate": 0.34177215189873417,
+              "prediction_inconsistency_wilson95": [
+                0.24670818573119846,
+                0.4515110664319659
+              ],
+              "localization_median_px": 2.5500990890965936,
+              "localization_p90_px": 566.2349936317092,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 31,
+              "reacquisition_attempts_after_matched_gap": 53,
+              "reacquisition_correct_iou": 31,
+              "reacquisition_precision": 0.5849056603773585,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          },
+          "SN_game7": {
+            "detection": {
+              "frames": 573,
+              "tp": 279,
+              "fp": 135,
+              "fn": 294,
+              "precision": 0.6739130434782609,
+              "recall": 0.4869109947643979,
+              "f1": 0.5653495440729484,
+              "false_positives_per_frame": 0.2356020942408377,
+              "localization_median_px": 2.18221686200735,
+              "localization_p90_px": 7.872840003804139,
+              "detected_gt_frame_coverage": 0.4869109947643979,
+              "threshold": 0.35,
+              "iou_match_threshold": 0.25,
+              "strata": {
+                "small_under12px": {
+                  "gt": 54,
+                  "tp": 32,
+                  "recall": 0.5925925925925926
+                },
+                "medium12_24px": {
+                  "gt": 463,
+                  "tp": 230,
+                  "recall": 0.49676025917926564
+                },
+                "large_over24px": {
+                  "gt": 56,
+                  "tp": 17,
+                  "recall": 0.30357142857142855
+                },
+                "low_sharpness_proxy": {
+                  "gt": 18,
+                  "tp": 1,
+                  "recall": 0.05555555555555555
+                },
+                "higher_sharpness_proxy": {
+                  "gt": 555,
+                  "tp": 278,
+                  "recall": 0.5009009009009009
+                }
+              },
+              "visibility_or_occlusion_gt_available": false,
+              "sharpness_covariate": "Measured source-box Laplacian variance; proxy, not independently labelled motion blur"
+            },
+            "tracking": {
+              "frames": 573,
+              "counts": {
+                "LOST": 129,
+                "observed": 329,
+                "predicted": 71,
+                "metric_supported": 0,
+                "DETECTED": 67,
+                "observed_iou_matched": 256,
+                "observed_iou_unmatched": 73,
+                "observed_center_matched": 278,
+                "observed_center_unmatched": 51,
+                "PREDICTED": 71,
+                "prediction_gt_comparable": 71,
+                "prediction_gt_inconsistent": 28,
+                "TRACKED": 306
+              },
+              "observed_coverage": 0.5741710296684118,
+              "predicted_coverage": 0.12390924956369982,
+              "accepted_iou_precision": 0.7781155015197568,
+              "accepted_center_consistency": 0.8449848024316109,
+              "accepted_center_wilson95": [
+                0.8019176779832453,
+                0.8800884174086767
+              ],
+              "prediction_inconsistency_rate": 0.39436619718309857,
+              "prediction_inconsistency_wilson95": [
+                0.28893226488668644,
+                0.5106444411163921
+              ],
+              "localization_median_px": 3.4804376952394604,
+              "localization_p90_px": 19.12650632723212,
+              "longest_predicted_continuation_seconds": 0.12,
+              "matched_track_fragmentations": 46,
+              "reacquisition_attempts_after_matched_gap": 91,
+              "reacquisition_correct_iou": 46,
+              "reacquisition_precision": 0.5054945054945055,
+              "reacquisition_recall": null,
+              "metric_error_m": null,
+              "invalid_ground_acceptance_rate": null,
+              "limits": "Organizer visibility/true occlusion/active-ball and independent metric GT absent; reacquisition is matched tracker-gap recovery, not visibility-conditioned recall. Wilson intervals descriptive only: adjacent frames correlated, two test clips insufficient for broad uncertainty claims."
+            }
+          }
+        }
+      }
+    },
+    "test_frames": 1073,
+    "selected": "new_detector_motion",
+    "temporal_ablation": "Trained visual CNN, not activated or claimed validated: no independent match-disjoint reviewed negative sequences",
+    "local_ablation": "Additive candidate recovery diagnosed separately; not selected without validated gain",
+    "limits": "Organizer boxes do not certify visibility/absence; correct-visible coverage, true occlusion recall and metric accuracy are unavailable. Per-match results reported; two test matches do not justify broad generalization CI.",
+    "metric_supported": 0,
+    "test_samples": [
+      "SNMOT-116:301",
+      "SNMOT-116:302",
+      "SNMOT-116:303",
+      "SNMOT-116:304",
+      "SNMOT-116:305",
+      "SNMOT-116:306",
+      "SNMOT-116:307",
+      "SNMOT-116:308",
+      "SNMOT-116:309",
+      "SNMOT-116:310",
+      "SNMOT-116:311",
+      "SNMOT-116:312",
+      "SNMOT-116:313",
+      "SNMOT-116:314",
+      "SNMOT-116:315",
+      "SNMOT-116:316",
+      "SNMOT-116:317",
+      "SNMOT-116:318",
+      "SNMOT-116:319",
+      "SNMOT-116:320",
+      "SNMOT-116:321",
+      "SNMOT-116:322",
+      "SNMOT-116:323",
+      "SNMOT-116:324",
+      "SNMOT-116:338",
+      "SNMOT-116:339",
+      "SNMOT-116:340",
+      "SNMOT-116:341",
+      "SNMOT-116:342",
+      "SNMOT-116:343",
+      "SNMOT-116:344",
+      "SNMOT-116:345",
+      "SNMOT-116:346",
+      "SNMOT-116:347",
+      "SNMOT-116:348",
+      "SNMOT-116:349",
+      "SNMOT-116:350",
+      "SNMOT-116:351",
+      "SNMOT-116:352",
+      "SNMOT-116:353",
+      "SNMOT-116:354",
+      "SNMOT-116:355",
+      "SNMOT-116:356",
+      "SNMOT-116:357",
+      "SNMOT-116:358",
+      "SNMOT-116:359",
+      "SNMOT-116:360",
+      "SNMOT-116:361",
+      "SNMOT-116:362",
+      "SNMOT-116:363",
+      "SNMOT-116:364",
+      "SNMOT-116:365",
+      "SNMOT-116:366",
+      "SNMOT-116:367",
+      "SNMOT-116:368",
+      "SNMOT-116:369",
+      "SNMOT-116:370",
+      "SNMOT-116:371",
+      "SNMOT-116:372",
+      "SNMOT-116:373",
+      "SNMOT-116:374",
+      "SNMOT-116:375",
+      "SNMOT-116:376",
+      "SNMOT-116:377",
+      "SNMOT-116:378",
+      "SNMOT-116:379",
+      "SNMOT-116:380",
+      "SNMOT-116:381",
+      "SNMOT-116:382",
+      "SNMOT-116:383",
+      "SNMOT-116:384",
+      "SNMOT-116:385",
+      "SNMOT-116:386",
+      "SNMOT-116:387",
+      "SNMOT-116:388",
+      "SNMOT-116:389",
+      "SNMOT-116:390",
+      "SNMOT-116:391",
+      "SNMOT-116:392",
+      "SNMOT-116:393",
+      "SNMOT-116:394",
+      "SNMOT-116:395",
+      "SNMOT-116:396",
+      "SNMOT-116:397",
+      "SNMOT-116:398",
+      "SNMOT-116:399",
+      "SNMOT-116:400",
+      "SNMOT-117:301",
+      "SNMOT-117:302",
+      "SNMOT-117:303",
+      "SNMOT-117:304",
+      "SNMOT-117:305",
+      "SNMOT-117:306",
+      "SNMOT-117:307",
+      "SNMOT-117:308",
+      "SNMOT-117:309",
+      "SNMOT-117:310",
+      "SNMOT-117:311",
+      "SNMOT-117:312",
+      "SNMOT-117:313",
+      "SNMOT-117:314",
+      "SNMOT-117:315",
+      "SNMOT-117:316",
+      "SNMOT-117:317",
+      "SNMOT-117:318",
+      "SNMOT-117:319",
+      "SNMOT-117:320",
+      "SNMOT-117:321",
+      "SNMOT-117:322",
+      "SNMOT-117:323",
+      "SNMOT-117:324",
+      "SNMOT-117:325",
+      "SNMOT-117:326",
+      "SNMOT-117:327",
+      "SNMOT-117:328",
+      "SNMOT-117:329",
+      "SNMOT-117:330",
+      "SNMOT-117:331",
+      "SNMOT-117:332",
+      "SNMOT-117:333",
+      "SNMOT-117:334",
+      "SNMOT-117:335",
+      "SNMOT-117:336",
+      "SNMOT-117:337",
+      "SNMOT-117:338",
+      "SNMOT-117:339",
+      "SNMOT-117:340",
+      "SNMOT-117:341",
+      "SNMOT-117:342",
+      "SNMOT-117:343",
+      "SNMOT-117:344",
+      "SNMOT-117:345",
+      "SNMOT-117:346",
+      "SNMOT-117:347",
+      "SNMOT-117:348",
+      "SNMOT-117:349",
+      "SNMOT-117:350",
+      "SNMOT-117:351",
+      "SNMOT-117:352",
+      "SNMOT-117:353",
+      "SNMOT-117:354",
+      "SNMOT-117:355",
+      "SNMOT-117:356",
+      "SNMOT-117:357",
+      "SNMOT-117:358",
+      "SNMOT-117:359",
+      "SNMOT-117:360",
+      "SNMOT-117:361",
+      "SNMOT-117:362",
+      "SNMOT-117:363",
+      "SNMOT-117:364",
+      "SNMOT-117:365",
+      "SNMOT-117:366",
+      "SNMOT-117:367",
+      "SNMOT-117:368",
+      "SNMOT-117:369",
+      "SNMOT-117:370",
+      "SNMOT-117:371",
+      "SNMOT-117:372",
+      "SNMOT-117:373",
+      "SNMOT-117:374",
+      "SNMOT-117:375",
+      "SNMOT-117:376",
+      "SNMOT-117:377",
+      "SNMOT-117:378",
+      "SNMOT-117:379",
+      "SNMOT-117:380",
+      "SNMOT-117:381",
+      "SNMOT-117:382",
+      "SNMOT-117:383",
+      "SNMOT-117:384",
+      "SNMOT-117:385",
+      "SNMOT-117:386",
+      "SNMOT-117:387",
+      "SNMOT-117:388",
+      "SNMOT-117:389",
+      "SNMOT-117:390",
+      "SNMOT-117:391",
+      "SNMOT-117:392",
+      "SNMOT-117:393",
+      "SNMOT-117:394",
+      "SNMOT-117:395",
+      "SNMOT-117:396",
+      "SNMOT-117:397",
+      "SNMOT-117:398",
+      "SNMOT-117:399",
+      "SNMOT-117:400",
+      "SNMOT-118:301",
+      "SNMOT-118:302",
+      "SNMOT-118:303",
+      "SNMOT-118:304",
+      "SNMOT-118:305",
+      "SNMOT-118:306",
+      "SNMOT-118:307",
+      "SNMOT-118:308",
+      "SNMOT-118:309",
+      "SNMOT-118:310",
+      "SNMOT-118:311",
+      "SNMOT-118:312",
+      "SNMOT-118:313",
+      "SNMOT-118:314",
+      "SNMOT-118:315",
+      "SNMOT-118:316",
+      "SNMOT-118:317",
+      "SNMOT-118:318",
+      "SNMOT-118:319",
+      "SNMOT-118:320",
+      "SNMOT-118:321",
+      "SNMOT-118:322",
+      "SNMOT-118:323",
+      "SNMOT-118:324",
+      "SNMOT-118:325",
+      "SNMOT-118:326",
+      "SNMOT-118:327",
+      "SNMOT-118:328",
+      "SNMOT-118:329",
+      "SNMOT-118:330",
+      "SNMOT-118:331",
+      "SNMOT-118:332",
+      "SNMOT-118:333",
+      "SNMOT-118:334",
+      "SNMOT-118:335",
+      "SNMOT-118:336",
+      "SNMOT-118:337",
+      "SNMOT-118:338",
+      "SNMOT-118:339",
+      "SNMOT-118:340",
+      "SNMOT-118:341",
+      "SNMOT-118:342",
+      "SNMOT-118:343",
+      "SNMOT-118:344",
+      "SNMOT-118:345",
+      "SNMOT-118:346",
+      "SNMOT-118:347",
+      "SNMOT-118:348",
+      "SNMOT-118:349",
+      "SNMOT-118:350",
+      "SNMOT-118:351",
+      "SNMOT-118:352",
+      "SNMOT-118:353",
+      "SNMOT-118:354",
+      "SNMOT-118:355",
+      "SNMOT-118:356",
+      "SNMOT-118:357",
+      "SNMOT-118:358",
+      "SNMOT-118:359",
+      "SNMOT-118:360",
+      "SNMOT-118:361",
+      "SNMOT-118:362",
+      "SNMOT-118:363",
+      "SNMOT-118:364",
+      "SNMOT-118:365",
+      "SNMOT-118:366",
+      "SNMOT-118:367",
+      "SNMOT-118:368",
+      "SNMOT-118:369",
+      "SNMOT-118:370",
+      "SNMOT-118:371",
+      "SNMOT-118:372",
+      "SNMOT-118:373",
+      "SNMOT-118:374",
+      "SNMOT-118:375",
+      "SNMOT-118:376",
+      "SNMOT-118:377",
+      "SNMOT-118:378",
+      "SNMOT-118:379",
+      "SNMOT-118:380",
+      "SNMOT-118:381",
+      "SNMOT-118:382",
+      "SNMOT-118:383",
+      "SNMOT-118:384",
+      "SNMOT-118:385",
+      "SNMOT-118:386",
+      "SNMOT-118:387",
+      "SNMOT-118:388",
+      "SNMOT-118:389",
+      "SNMOT-118:390",
+      "SNMOT-118:391",
+      "SNMOT-118:392",
+      "SNMOT-118:393",
+      "SNMOT-118:394",
+      "SNMOT-118:395",
+      "SNMOT-118:396",
+      "SNMOT-118:397",
+      "SNMOT-118:398",
+      "SNMOT-118:399",
+      "SNMOT-118:400",
+      "SNMOT-119:301",
+      "SNMOT-119:302",
+      "SNMOT-119:303",
+      "SNMOT-119:304",
+      "SNMOT-119:305",
+      "SNMOT-119:306",
+      "SNMOT-119:307",
+      "SNMOT-119:308",
+      "SNMOT-119:309",
+      "SNMOT-119:310",
+      "SNMOT-119:311",
+      "SNMOT-119:317",
+      "SNMOT-119:318",
+      "SNMOT-119:319",
+      "SNMOT-119:320",
+      "SNMOT-119:321",
+      "SNMOT-119:322",
+      "SNMOT-119:323",
+      "SNMOT-119:324",
+      "SNMOT-119:325",
+      "SNMOT-119:326",
+      "SNMOT-119:327",
+      "SNMOT-119:328",
+      "SNMOT-119:329",
+      "SNMOT-119:330",
+      "SNMOT-119:331",
+      "SNMOT-119:332",
+      "SNMOT-119:333",
+      "SNMOT-119:334",
+      "SNMOT-119:335",
+      "SNMOT-119:336",
+      "SNMOT-119:337",
+      "SNMOT-119:338",
+      "SNMOT-119:339",
+      "SNMOT-119:340",
+      "SNMOT-119:341",
+      "SNMOT-119:342",
+      "SNMOT-119:343",
+      "SNMOT-119:344",
+      "SNMOT-119:345",
+      "SNMOT-119:346",
+      "SNMOT-119:347",
+      "SNMOT-119:348",
+      "SNMOT-119:349",
+      "SNMOT-119:350",
+      "SNMOT-119:351",
+      "SNMOT-119:352",
+      "SNMOT-119:353",
+      "SNMOT-119:354",
+      "SNMOT-119:355",
+      "SNMOT-119:356",
+      "SNMOT-119:357",
+      "SNMOT-119:358",
+      "SNMOT-119:359",
+      "SNMOT-119:360",
+      "SNMOT-119:361",
+      "SNMOT-119:362",
+      "SNMOT-119:363",
+      "SNMOT-119:364",
+      "SNMOT-119:365",
+      "SNMOT-119:366",
+      "SNMOT-119:367",
+      "SNMOT-119:368",
+      "SNMOT-119:369",
+      "SNMOT-119:370",
+      "SNMOT-119:371",
+      "SNMOT-119:372",
+      "SNMOT-119:373",
+      "SNMOT-119:374",
+      "SNMOT-119:375",
+      "SNMOT-119:376",
+      "SNMOT-119:377",
+      "SNMOT-119:378",
+      "SNMOT-119:379",
+      "SNMOT-119:380",
+      "SNMOT-119:381",
+      "SNMOT-119:382",
+      "SNMOT-119:383",
+      "SNMOT-119:384",
+      "SNMOT-119:385",
+      "SNMOT-119:386",
+      "SNMOT-119:387",
+      "SNMOT-119:388",
+      "SNMOT-119:389",
+      "SNMOT-119:390",
+      "SNMOT-119:391",
+      "SNMOT-119:392",
+      "SNMOT-119:393",
+      "SNMOT-119:394",
+      "SNMOT-119:395",
+      "SNMOT-119:396",
+      "SNMOT-119:397",
+      "SNMOT-120:301",
+      "SNMOT-120:302",
+      "SNMOT-120:303",
+      "SNMOT-120:304",
+      "SNMOT-120:305",
+      "SNMOT-120:306",
+      "SNMOT-120:307",
+      "SNMOT-120:308",
+      "SNMOT-120:309",
+      "SNMOT-120:310",
+      "SNMOT-120:311",
+      "SNMOT-120:312",
+      "SNMOT-120:313",
+      "SNMOT-120:314",
+      "SNMOT-120:315",
+      "SNMOT-120:316",
+      "SNMOT-120:317",
+      "SNMOT-120:318",
+      "SNMOT-120:319",
+      "SNMOT-120:320",
+      "SNMOT-120:321",
+      "SNMOT-120:322",
+      "SNMOT-120:323",
+      "SNMOT-120:324",
+      "SNMOT-120:325",
+      "SNMOT-120:326",
+      "SNMOT-120:327",
+      "SNMOT-120:328",
+      "SNMOT-120:329",
+      "SNMOT-120:330",
+      "SNMOT-120:331",
+      "SNMOT-120:332",
+      "SNMOT-120:333",
+      "SNMOT-120:334",
+      "SNMOT-120:335",
+      "SNMOT-120:336",
+      "SNMOT-120:337",
+      "SNMOT-120:338",
+      "SNMOT-120:339",
+      "SNMOT-120:340",
+      "SNMOT-120:341",
+      "SNMOT-120:342",
+      "SNMOT-120:343",
+      "SNMOT-120:344",
+      "SNMOT-120:345",
+      "SNMOT-120:346",
+      "SNMOT-120:347",
+      "SNMOT-120:348",
+      "SNMOT-120:349",
+      "SNMOT-120:350",
+      "SNMOT-120:351",
+      "SNMOT-120:352",
+      "SNMOT-120:353",
+      "SNMOT-120:354",
+      "SNMOT-120:355",
+      "SNMOT-120:356",
+      "SNMOT-120:357",
+      "SNMOT-120:358",
+      "SNMOT-120:359",
+      "SNMOT-120:360",
+      "SNMOT-120:361",
+      "SNMOT-120:362",
+      "SNMOT-120:363",
+      "SNMOT-120:364",
+      "SNMOT-120:365",
+      "SNMOT-120:366",
+      "SNMOT-120:367",
+      "SNMOT-120:368",
+      "SNMOT-120:369",
+      "SNMOT-120:370",
+      "SNMOT-120:371",
+      "SNMOT-120:372",
+      "SNMOT-120:373",
+      "SNMOT-120:374",
+      "SNMOT-120:375",
+      "SNMOT-120:376",
+      "SNMOT-120:377",
+      "SNMOT-120:378",
+      "SNMOT-120:379",
+      "SNMOT-120:380",
+      "SNMOT-120:381",
+      "SNMOT-120:382",
+      "SNMOT-120:383",
+      "SNMOT-120:384",
+      "SNMOT-120:385",
+      "SNMOT-120:386",
+      "SNMOT-120:387",
+      "SNMOT-120:388",
+      "SNMOT-120:389",
+      "SNMOT-120:390",
+      "SNMOT-120:391",
+      "SNMOT-120:392",
+      "SNMOT-120:393",
+      "SNMOT-120:394",
+      "SNMOT-120:395",
+      "SNMOT-120:396",
+      "SNMOT-120:397",
+      "SNMOT-120:398",
+      "SNMOT-120:399",
+      "SNMOT-120:400",
+      "SNMOT-121:301",
+      "SNMOT-121:302",
+      "SNMOT-121:303",
+      "SNMOT-121:304",
+      "SNMOT-121:305",
+      "SNMOT-121:306",
+      "SNMOT-121:307",
+      "SNMOT-121:308",
+      "SNMOT-121:309",
+      "SNMOT-121:310",
+      "SNMOT-121:311",
+      "SNMOT-121:312",
+      "SNMOT-121:313",
+      "SNMOT-121:314",
+      "SNMOT-121:315",
+      "SNMOT-121:316",
+      "SNMOT-121:317",
+      "SNMOT-121:318",
+      "SNMOT-121:325",
+      "SNMOT-121:326",
+      "SNMOT-121:327",
+      "SNMOT-121:328",
+      "SNMOT-121:329",
+      "SNMOT-121:330",
+      "SNMOT-121:331",
+      "SNMOT-121:332",
+      "SNMOT-121:333",
+      "SNMOT-121:334",
+      "SNMOT-121:335",
+      "SNMOT-121:336",
+      "SNMOT-121:337",
+      "SNMOT-121:338",
+      "SNMOT-121:339",
+      "SNMOT-121:340",
+      "SNMOT-121:341",
+      "SNMOT-121:342",
+      "SNMOT-121:343",
+      "SNMOT-121:344",
+      "SNMOT-121:345",
+      "SNMOT-121:346",
+      "SNMOT-121:347",
+      "SNMOT-121:348",
+      "SNMOT-121:349",
+      "SNMOT-121:350",
+      "SNMOT-121:351",
+      "SNMOT-121:352",
+      "SNMOT-121:353",
+      "SNMOT-121:354",
+      "SNMOT-121:355",
+      "SNMOT-121:356",
+      "SNMOT-121:357",
+      "SNMOT-121:358",
+      "SNMOT-121:359",
+      "SNMOT-121:360",
+      "SNMOT-121:361",
+      "SNMOT-121:362",
+      "SNMOT-121:363",
+      "SNMOT-121:364",
+      "SNMOT-121:365",
+      "SNMOT-121:366",
+      "SNMOT-121:367",
+      "SNMOT-121:368",
+      "SNMOT-121:369",
+      "SNMOT-121:370",
+      "SNMOT-121:371",
+      "SNMOT-121:372",
+      "SNMOT-121:373",
+      "SNMOT-121:374",
+      "SNMOT-121:375",
+      "SNMOT-121:376",
+      "SNMOT-121:377",
+      "SNMOT-121:378",
+      "SNMOT-121:379",
+      "SNMOT-121:380",
+      "SNMOT-121:381",
+      "SNMOT-121:382",
+      "SNMOT-121:383",
+      "SNMOT-121:384",
+      "SNMOT-121:385",
+      "SNMOT-121:386",
+      "SNMOT-121:387",
+      "SNMOT-121:388",
+      "SNMOT-121:389",
+      "SNMOT-121:390",
+      "SNMOT-121:391",
+      "SNMOT-121:392",
+      "SNMOT-121:393",
+      "SNMOT-121:394",
+      "SNMOT-121:395",
+      "SNMOT-121:396",
+      "SNMOT-121:397",
+      "SNMOT-121:398",
+      "SNMOT-121:399",
+      "SNMOT-121:400",
+      "SNMOT-187:301",
+      "SNMOT-187:302",
+      "SNMOT-187:303",
+      "SNMOT-187:304",
+      "SNMOT-187:305",
+      "SNMOT-187:306",
+      "SNMOT-187:307",
+      "SNMOT-187:308",
+      "SNMOT-187:309",
+      "SNMOT-187:310",
+      "SNMOT-187:311",
+      "SNMOT-187:312",
+      "SNMOT-187:313",
+      "SNMOT-187:314",
+      "SNMOT-187:315",
+      "SNMOT-187:316",
+      "SNMOT-187:317",
+      "SNMOT-187:318",
+      "SNMOT-187:319",
+      "SNMOT-187:320",
+      "SNMOT-187:321",
+      "SNMOT-187:322",
+      "SNMOT-187:323",
+      "SNMOT-187:324",
+      "SNMOT-187:325",
+      "SNMOT-187:326",
+      "SNMOT-187:327",
+      "SNMOT-187:328",
+      "SNMOT-187:329",
+      "SNMOT-187:330",
+      "SNMOT-187:331",
+      "SNMOT-187:332",
+      "SNMOT-187:333",
+      "SNMOT-187:334",
+      "SNMOT-187:335",
+      "SNMOT-187:336",
+      "SNMOT-187:337",
+      "SNMOT-187:338",
+      "SNMOT-187:339",
+      "SNMOT-187:340",
+      "SNMOT-187:341",
+      "SNMOT-187:342",
+      "SNMOT-187:343",
+      "SNMOT-187:344",
+      "SNMOT-187:345",
+      "SNMOT-187:346",
+      "SNMOT-187:347",
+      "SNMOT-187:348",
+      "SNMOT-187:349",
+      "SNMOT-187:350",
+      "SNMOT-187:351",
+      "SNMOT-187:352",
+      "SNMOT-187:353",
+      "SNMOT-187:354",
+      "SNMOT-187:355",
+      "SNMOT-187:356",
+      "SNMOT-187:357",
+      "SNMOT-187:358",
+      "SNMOT-187:359",
+      "SNMOT-187:360",
+      "SNMOT-187:361",
+      "SNMOT-187:362",
+      "SNMOT-187:363",
+      "SNMOT-187:364",
+      "SNMOT-187:365",
+      "SNMOT-187:366",
+      "SNMOT-187:367",
+      "SNMOT-187:368",
+      "SNMOT-187:369",
+      "SNMOT-187:370",
+      "SNMOT-187:371",
+      "SNMOT-187:372",
+      "SNMOT-187:373",
+      "SNMOT-187:374",
+      "SNMOT-187:375",
+      "SNMOT-187:376",
+      "SNMOT-187:377",
+      "SNMOT-187:378",
+      "SNMOT-187:379",
+      "SNMOT-187:380",
+      "SNMOT-187:381",
+      "SNMOT-187:382",
+      "SNMOT-187:383",
+      "SNMOT-187:384",
+      "SNMOT-187:385",
+      "SNMOT-187:386",
+      "SNMOT-187:387",
+      "SNMOT-187:388",
+      "SNMOT-187:389",
+      "SNMOT-187:390",
+      "SNMOT-187:391",
+      "SNMOT-187:392",
+      "SNMOT-187:393",
+      "SNMOT-187:394",
+      "SNMOT-187:395",
+      "SNMOT-187:396",
+      "SNMOT-187:397",
+      "SNMOT-187:398",
+      "SNMOT-187:399",
+      "SNMOT-187:400",
+      "SNMOT-188:301",
+      "SNMOT-188:302",
+      "SNMOT-188:303",
+      "SNMOT-188:304",
+      "SNMOT-188:305",
+      "SNMOT-188:306",
+      "SNMOT-188:307",
+      "SNMOT-188:308",
+      "SNMOT-188:309",
+      "SNMOT-188:310",
+      "SNMOT-188:311",
+      "SNMOT-188:312",
+      "SNMOT-188:313",
+      "SNMOT-188:314",
+      "SNMOT-188:315",
+      "SNMOT-188:316",
+      "SNMOT-188:317",
+      "SNMOT-188:318",
+      "SNMOT-188:319",
+      "SNMOT-188:320",
+      "SNMOT-188:321",
+      "SNMOT-188:322",
+      "SNMOT-188:323",
+      "SNMOT-188:324",
+      "SNMOT-188:325",
+      "SNMOT-188:326",
+      "SNMOT-188:327",
+      "SNMOT-188:328",
+      "SNMOT-188:329",
+      "SNMOT-188:330",
+      "SNMOT-188:331",
+      "SNMOT-188:332",
+      "SNMOT-188:333",
+      "SNMOT-188:334",
+      "SNMOT-188:335",
+      "SNMOT-188:336",
+      "SNMOT-188:337",
+      "SNMOT-188:338",
+      "SNMOT-188:339",
+      "SNMOT-188:340",
+      "SNMOT-188:341",
+      "SNMOT-188:342",
+      "SNMOT-188:343",
+      "SNMOT-188:344",
+      "SNMOT-188:345",
+      "SNMOT-188:346",
+      "SNMOT-188:347",
+      "SNMOT-188:348",
+      "SNMOT-188:349",
+      "SNMOT-188:350",
+      "SNMOT-188:351",
+      "SNMOT-188:352",
+      "SNMOT-188:353",
+      "SNMOT-188:354",
+      "SNMOT-188:355",
+      "SNMOT-188:356",
+      "SNMOT-188:357",
+      "SNMOT-188:358",
+      "SNMOT-188:359",
+      "SNMOT-188:360",
+      "SNMOT-188:361",
+      "SNMOT-188:362",
+      "SNMOT-188:363",
+      "SNMOT-188:364",
+      "SNMOT-188:365",
+      "SNMOT-188:366",
+      "SNMOT-188:367",
+      "SNMOT-188:368",
+      "SNMOT-188:369",
+      "SNMOT-188:370",
+      "SNMOT-188:371",
+      "SNMOT-188:372",
+      "SNMOT-188:373",
+      "SNMOT-188:374",
+      "SNMOT-188:375",
+      "SNMOT-188:376",
+      "SNMOT-188:377",
+      "SNMOT-188:378",
+      "SNMOT-188:379",
+      "SNMOT-188:380",
+      "SNMOT-188:381",
+      "SNMOT-188:382",
+      "SNMOT-188:383",
+      "SNMOT-188:384",
+      "SNMOT-188:385",
+      "SNMOT-188:386",
+      "SNMOT-188:387",
+      "SNMOT-188:388",
+      "SNMOT-188:389",
+      "SNMOT-188:390",
+      "SNMOT-188:391",
+      "SNMOT-188:392",
+      "SNMOT-188:393",
+      "SNMOT-188:394",
+      "SNMOT-188:395",
+      "SNMOT-188:396",
+      "SNMOT-188:397",
+      "SNMOT-188:398",
+      "SNMOT-188:399",
+      "SNMOT-188:400",
+      "SNMOT-189:301",
+      "SNMOT-189:302",
+      "SNMOT-189:303",
+      "SNMOT-189:304",
+      "SNMOT-189:305",
+      "SNMOT-189:306",
+      "SNMOT-189:307",
+      "SNMOT-189:308",
+      "SNMOT-189:309",
+      "SNMOT-189:310",
+      "SNMOT-189:311",
+      "SNMOT-189:312",
+      "SNMOT-189:313",
+      "SNMOT-189:314",
+      "SNMOT-189:315",
+      "SNMOT-189:316",
+      "SNMOT-189:317",
+      "SNMOT-189:318",
+      "SNMOT-189:319",
+      "SNMOT-189:320",
+      "SNMOT-189:321",
+      "SNMOT-189:322",
+      "SNMOT-189:323",
+      "SNMOT-189:324",
+      "SNMOT-189:325",
+      "SNMOT-189:326",
+      "SNMOT-189:327",
+      "SNMOT-189:328",
+      "SNMOT-189:329",
+      "SNMOT-189:330",
+      "SNMOT-189:331",
+      "SNMOT-189:332",
+      "SNMOT-189:333",
+      "SNMOT-189:334",
+      "SNMOT-189:335",
+      "SNMOT-189:336",
+      "SNMOT-189:337",
+      "SNMOT-189:338",
+      "SNMOT-189:339",
+      "SNMOT-189:340",
+      "SNMOT-189:341",
+      "SNMOT-189:342",
+      "SNMOT-189:343",
+      "SNMOT-189:344",
+      "SNMOT-189:345",
+      "SNMOT-189:346",
+      "SNMOT-189:347",
+      "SNMOT-189:348",
+      "SNMOT-189:349",
+      "SNMOT-189:350",
+      "SNMOT-189:351",
+      "SNMOT-189:352",
+      "SNMOT-189:353",
+      "SNMOT-189:354",
+      "SNMOT-189:355",
+      "SNMOT-189:356",
+      "SNMOT-189:357",
+      "SNMOT-189:358",
+      "SNMOT-189:359",
+      "SNMOT-189:360",
+      "SNMOT-189:361",
+      "SNMOT-189:362",
+      "SNMOT-189:363",
+      "SNMOT-189:364",
+      "SNMOT-189:365",
+      "SNMOT-189:366",
+      "SNMOT-189:367",
+      "SNMOT-189:368",
+      "SNMOT-189:369",
+      "SNMOT-189:370",
+      "SNMOT-189:371",
+      "SNMOT-189:372",
+      "SNMOT-189:373",
+      "SNMOT-189:374",
+      "SNMOT-189:375",
+      "SNMOT-189:376",
+      "SNMOT-189:377",
+      "SNMOT-189:378",
+      "SNMOT-189:379",
+      "SNMOT-189:380",
+      "SNMOT-189:381",
+      "SNMOT-189:382",
+      "SNMOT-189:383",
+      "SNMOT-189:384",
+      "SNMOT-189:385",
+      "SNMOT-189:386",
+      "SNMOT-189:387",
+      "SNMOT-189:388",
+      "SNMOT-189:389",
+      "SNMOT-189:390",
+      "SNMOT-189:391",
+      "SNMOT-189:392",
+      "SNMOT-189:393",
+      "SNMOT-189:394",
+      "SNMOT-189:395",
+      "SNMOT-189:396",
+      "SNMOT-189:397",
+      "SNMOT-189:398",
+      "SNMOT-189:399",
+      "SNMOT-189:400",
+      "SNMOT-190:301",
+      "SNMOT-190:302",
+      "SNMOT-190:303",
+      "SNMOT-190:304",
+      "SNMOT-190:305",
+      "SNMOT-190:306",
+      "SNMOT-190:307",
+      "SNMOT-190:308",
+      "SNMOT-190:309",
+      "SNMOT-190:310",
+      "SNMOT-190:311",
+      "SNMOT-190:312",
+      "SNMOT-190:313",
+      "SNMOT-190:314",
+      "SNMOT-190:315",
+      "SNMOT-190:316",
+      "SNMOT-190:317",
+      "SNMOT-190:318",
+      "SNMOT-190:319",
+      "SNMOT-190:320",
+      "SNMOT-190:321",
+      "SNMOT-190:322",
+      "SNMOT-190:323",
+      "SNMOT-190:324",
+      "SNMOT-190:325",
+      "SNMOT-190:326",
+      "SNMOT-190:327",
+      "SNMOT-190:328",
+      "SNMOT-190:329",
+      "SNMOT-190:330",
+      "SNMOT-190:331",
+      "SNMOT-190:332",
+      "SNMOT-190:333",
+      "SNMOT-190:334",
+      "SNMOT-190:335",
+      "SNMOT-190:336",
+      "SNMOT-190:337",
+      "SNMOT-190:338",
+      "SNMOT-190:339",
+      "SNMOT-190:340",
+      "SNMOT-190:341",
+      "SNMOT-190:342",
+      "SNMOT-190:343",
+      "SNMOT-190:344",
+      "SNMOT-190:345",
+      "SNMOT-190:346",
+      "SNMOT-190:347",
+      "SNMOT-190:348",
+      "SNMOT-190:349",
+      "SNMOT-190:350",
+      "SNMOT-190:351",
+      "SNMOT-190:352",
+      "SNMOT-190:353",
+      "SNMOT-190:354",
+      "SNMOT-190:355",
+      "SNMOT-190:356",
+      "SNMOT-190:357",
+      "SNMOT-190:358",
+      "SNMOT-190:359",
+      "SNMOT-190:360",
+      "SNMOT-190:361",
+      "SNMOT-190:362",
+      "SNMOT-190:363",
+      "SNMOT-190:364",
+      "SNMOT-190:365",
+      "SNMOT-190:366",
+      "SNMOT-190:367",
+      "SNMOT-190:368",
+      "SNMOT-190:369",
+      "SNMOT-190:370",
+      "SNMOT-190:371",
+      "SNMOT-190:372",
+      "SNMOT-190:373",
+      "SNMOT-190:374",
+      "SNMOT-190:375",
+      "SNMOT-190:376",
+      "SNMOT-190:377",
+      "SNMOT-190:378",
+      "SNMOT-190:379",
+      "SNMOT-190:380",
+      "SNMOT-190:381",
+      "SNMOT-190:382",
+      "SNMOT-190:383",
+      "SNMOT-190:384",
+      "SNMOT-190:385",
+      "SNMOT-190:386",
+      "SNMOT-190:387",
+      "SNMOT-190:388",
+      "SNMOT-190:389",
+      "SNMOT-190:390",
+      "SNMOT-190:391",
+      "SNMOT-190:392",
+      "SNMOT-190:393",
+      "SNMOT-190:394",
+      "SNMOT-190:395",
+      "SNMOT-190:396",
+      "SNMOT-190:397",
+      "SNMOT-190:398",
+      "SNMOT-190:399",
+      "SNMOT-190:400",
+      "SNMOT-191:301",
+      "SNMOT-191:302",
+      "SNMOT-191:303",
+      "SNMOT-191:304",
+      "SNMOT-191:305",
+      "SNMOT-191:306",
+      "SNMOT-191:307",
+      "SNMOT-191:308",
+      "SNMOT-191:309",
+      "SNMOT-191:310",
+      "SNMOT-191:311",
+      "SNMOT-191:312",
+      "SNMOT-191:313",
+      "SNMOT-191:314",
+      "SNMOT-191:315",
+      "SNMOT-191:316",
+      "SNMOT-191:317",
+      "SNMOT-191:318",
+      "SNMOT-191:319",
+      "SNMOT-191:320",
+      "SNMOT-191:321",
+      "SNMOT-191:322",
+      "SNMOT-191:323",
+      "SNMOT-191:324",
+      "SNMOT-191:325",
+      "SNMOT-191:326",
+      "SNMOT-191:327",
+      "SNMOT-191:328",
+      "SNMOT-191:329",
+      "SNMOT-191:330",
+      "SNMOT-191:331",
+      "SNMOT-191:332",
+      "SNMOT-191:333",
+      "SNMOT-191:334",
+      "SNMOT-191:335",
+      "SNMOT-191:336",
+      "SNMOT-191:337",
+      "SNMOT-191:338",
+      "SNMOT-191:339",
+      "SNMOT-191:340",
+      "SNMOT-191:341",
+      "SNMOT-191:342",
+      "SNMOT-191:343",
+      "SNMOT-191:344",
+      "SNMOT-191:345",
+      "SNMOT-191:346",
+      "SNMOT-191:347",
+      "SNMOT-191:348",
+      "SNMOT-191:349",
+      "SNMOT-191:350",
+      "SNMOT-191:351",
+      "SNMOT-191:352",
+      "SNMOT-191:353",
+      "SNMOT-191:354",
+      "SNMOT-191:355",
+      "SNMOT-191:356",
+      "SNMOT-191:357",
+      "SNMOT-191:358",
+      "SNMOT-191:359",
+      "SNMOT-191:360",
+      "SNMOT-191:361",
+      "SNMOT-191:362",
+      "SNMOT-191:363",
+      "SNMOT-191:364",
+      "SNMOT-191:365",
+      "SNMOT-191:366",
+      "SNMOT-191:367",
+      "SNMOT-191:368",
+      "SNMOT-191:369",
+      "SNMOT-191:370",
+      "SNMOT-191:371",
+      "SNMOT-191:372",
+      "SNMOT-191:373",
+      "SNMOT-191:374",
+      "SNMOT-191:375",
+      "SNMOT-191:376",
+      "SNMOT-191:377",
+      "SNMOT-191:378",
+      "SNMOT-191:379",
+      "SNMOT-191:380",
+      "SNMOT-191:381",
+      "SNMOT-191:382",
+      "SNMOT-191:383",
+      "SNMOT-191:384",
+      "SNMOT-191:385",
+      "SNMOT-191:386",
+      "SNMOT-191:387",
+      "SNMOT-191:388",
+      "SNMOT-191:389",
+      "SNMOT-191:390",
+      "SNMOT-191:391",
+      "SNMOT-191:392",
+      "SNMOT-191:393",
+      "SNMOT-191:394",
+      "SNMOT-191:395",
+      "SNMOT-191:396",
+      "SNMOT-191:397",
+      "SNMOT-191:398",
+      "SNMOT-191:399",
+      "SNMOT-191:400"
+    ],
+    "selected_on_test": false
+  },
+  "exploratory_match_cluster_intervals": {
+    "m14": {
+      "precision": [
+        0.5128205128205128,
+        0.5538461538461539
+      ],
+      "recall": [
+        0.17452006980802792,
+        0.216
+      ],
+      "f1": [
+        0.2604166666666667,
+        0.3107913669064748
+      ],
+      "clusters": 2,
+      "method": "5000whole-match bootstrap resamples, adjacent frames retained together; only2matches, exploratory intervals do not certify broad generalization"
+    },
+    "m15": {
+      "precision": [
+        0.28717948717948716,
+        0.37117903930131
+      ],
+      "recall": [
+        0.112,
+        0.14834205933682373
+      ],
+      "f1": [
+        0.16115107913669063,
+        0.2119700748129676
+      ],
+      "clusters": 2,
+      "method": "5000whole-match bootstrap resamples, adjacent frames retained together; only2matches, exploratory intervals do not certify broad generalization"
+    },
+    "new_detector_motion": {
+      "precision": [
+        0.6151685393258427,
+        0.6739130434782609
+      ],
+      "recall": [
+        0.438,
+        0.4869109947643979
+      ],
+      "f1": [
+        0.5116822429906542,
+        0.5653495440729484
+      ],
+      "clusters": 2,
+      "method": "5000whole-match bootstrap resamples, adjacent frames retained together; only2matches, exploratory intervals do not certify broad generalization"
+    },
+    "new_multi": {
+      "precision": [
+        0.6151685393258427,
+        0.6739130434782609
+      ],
+      "recall": [
+        0.438,
+        0.4869109947643979
+      ],
+      "f1": [
+        0.5116822429906542,
+        0.5653495440729484
+      ],
+      "clusters": 2,
+      "method": "5000whole-match bootstrap resamples, adjacent frames retained together; only2matches, exploratory intervals do not certify broad generalization"
+    }
+  },
+  "real_videos": {
+    "test_match": {
+      "LOST": 56,
+      "directly_observed": 393,
+      "predicted_only": 63,
+      "metric_supported": 0,
+      "DETECTED": 47,
+      "TRACKED": 373,
+      "OCCLUDED": 53,
+      "AMBIGUOUS": 2,
+      "PREDICTED": 10,
+      "frames": 541,
+      "observed_coverage": 0.7264325323475046,
+      "predicted_only_coverage": 0.11645101663585952,
+      "supported_metric_coverage": 0,
+      "detector_seconds": 49.89024309953675,
+      "cached_candidate_frames": 0,
+      "end_to_end_seconds": 55.692139541963115,
+      "fps_end_to_end": 9.71411772737453,
+      "process_max_rss_bytes_macos": 1665089536,
+      "independent_visible_accuracy": null,
+      "metric_error_m": null
+    },
+    "team_goal": {
+      "LOST": 468,
+      "directly_observed": 6,
+      "predicted_only": 9,
+      "metric_supported": 0,
+      "DETECTED": 20,
+      "OCCLUDED": 8,
+      "PREDICTED": 1,
+      "TRACKED": 3,
+      "frames": 500,
+      "observed_coverage": 0.012,
+      "predicted_only_coverage": 0.018,
+      "supported_metric_coverage": 0,
+      "detector_seconds": 9.605663796537556,
+      "cached_candidate_frames": 0,
+      "end_to_end_seconds": 13.447571625001729,
+      "fps_end_to_end": 37.18143423533807,
+      "process_max_rss_bytes_macos": 2336342016,
+      "independent_visible_accuracy": null,
+      "metric_error_m": null
+    },
+    "southampton": {
+      "LOST": 479,
+      "directly_observed": 77,
+      "predicted_only": 56,
+      "metric_supported": 0,
+      "DETECTED": 61,
+      "OCCLUDED": 26,
+      "PREDICTED": 30,
+      "TRACKED": 63,
+      "AMBIGUOUS": 1,
+      "frames": 660,
+      "observed_coverage": 0.11666666666666667,
+      "predicted_only_coverage": 0.08484848484848485,
+      "supported_metric_coverage": 0,
+      "detector_seconds": 83.6928604147397,
+      "cached_candidate_frames": 0,
+      "end_to_end_seconds": 90.85004158399533,
+      "fps_end_to_end": 7.264718744127348,
+      "process_max_rss_bytes_macos": 2383708160,
+      "independent_visible_accuracy": null,
+      "metric_error_m": null
+    }
+  },
+  "source_only_demo": {
+    "results": {
+      "test_match": {
+        "m14": {
+          "frames": 15,
+          "observed": 10,
+          "metric": 0,
+          "predicted": 3,
+          "prediction_inconsistent": 1,
+          "correct_iou": 10,
+          "correct_center": 10
+        },
+        "m15": {
+          "frames": 15,
+          "observed": 5,
+          "metric": 0,
+          "correct_iou": 5,
+          "correct_center": 5,
+          "predicted": 1,
+          "prediction_inconsistent": 0
+        },
+        "m16": {
+          "frames": 15,
+          "observed": 15,
+          "metric": 0,
+          "correct_iou": 15,
+          "correct_center": 15
+        }
+      },
+      "team_goal": {
+        "m14": {
+          "frames": 11,
+          "observed": 0,
+          "metric": 0,
+          "predicted": 5,
+          "prediction_inconsistent": 3
+        },
+        "m15": {
+          "frames": 11,
+          "observed": 0,
+          "metric": 0
+        },
+        "m16": {
+          "frames": 11,
+          "observed": 0,
+          "metric": 0,
+          "predicted": 1,
+          "prediction_inconsistent": 1
+        }
+      },
+      "southampton": {
+        "m14": {
+          "frames": 14,
+          "observed": 4,
+          "metric": 0,
+          "predicted": 4,
+          "prediction_inconsistent": 0,
+          "correct_iou": 4,
+          "correct_center": 4
+        },
+        "m15": {
+          "frames": 14,
+          "observed": 2,
+          "metric": 0,
+          "correct_iou": 2,
+          "correct_center": 2,
+          "predicted": 1,
+          "prediction_inconsistent": 0
+        },
+        "m16": {
+          "frames": 14,
+          "observed": 2,
+          "metric": 0,
+          "correct_iou": 2,
+          "correct_center": 2,
+          "predicted": 2,
+          "prediction_inconsistent": 1
+        }
+      },
+      "all": {
+        "m14": {
+          "frames": 40,
+          "observed": 14,
+          "metric": 0,
+          "predicted": 12,
+          "prediction_inconsistent": 4,
+          "correct_iou": 14,
+          "correct_center": 14
+        },
+        "m15": {
+          "frames": 40,
+          "observed": 7,
+          "metric": 0,
+          "correct_iou": 7,
+          "correct_center": 7,
+          "predicted": 2,
+          "prediction_inconsistent": 0
+        },
+        "m16": {
+          "frames": 40,
+          "observed": 17,
+          "metric": 0,
+          "correct_iou": 17,
+          "correct_center": 17,
+          "predicted": 3,
+          "prediction_inconsistent": 2
+        }
+      }
+    },
+    "annotation_source": "M16 sealed source-only40clear boxes (27historical+13new),uncertainframesexcluded. Single Codex visual/color-assisted audit, not independently adjudicated human GT. No verified metric coordinates or new labels inferred from detections.",
+    "expanded_visibility_or_ground_reference_available": false
+  },
+  "preservation": {
+    "test_match": {
+      "frames": 541,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted": 269,
+      "ball_version": "m16"
+    },
+    "team_goal": {
+      "frames": 500,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted": 456,
+      "ball_version": "m16"
+    },
+    "southampton": {
+      "frames": 660,
+      "old_world_fields_unchanged": true,
+      "m8_camera_accepted": 600,
+      "ball_version": "m16"
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "ultralytics": "8.3.228",
+    "mps_available": false
+  },
+  "acceptance": {
+    "detector_reference_f1_at_least85": false,
+    "independent_correct_visible_coverage_established": false,
+    "independent_ground_coverage_established": false,
+    "verified_negative_test_frames": 0,
+    "precision_at_least90": false,
+    "recall_at_least80": false,
+    "accepted_center_consistency_at_least95": false,
+    "prediction_inconsistency_at_most5": false,
+    "production_promotion": false,
+    "blockers": [
+      "Organizer visibility/occlusion/height unavailable; no verified no-visible-ball final TEST cases.",
+      "Only2fresh TEST matches; source-only40box demo audit not externally adjudicated.",
+      "No independent ground/metric references; user confirmed none available.",
+      "Learned visual verifier has no independent reviewed negative sequence calibration; diagnostic only."
+    ]
+  },
+  "live": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 10,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "ready": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 13
+      }
+    },
+    "recordings": {
+      "status": 200,
+      "body": {
+        "recordings": [
+          {
+            "recording_id": "117092_clip",
+            "match_id": "117092",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117092_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "117093_clip",
+            "match_id": "117093",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/117093_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118575_clip",
+            "match_id": "118575",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118575_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118576_clip",
+            "match_id": "118576",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118576_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118577_clip",
+            "match_id": "118577",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118577_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "118578_clip",
+            "match_id": "118578",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/118578_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128057_clip",
+            "match_id": "128057",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128057_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "128058_clip",
+            "match_id": "128058",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/128058_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132831_clip",
+            "match_id": "132831",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132831_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "132877_clip",
+            "match_id": "132877",
+            "known": true,
+            "configured": true,
+            "processed": true,
+            "artifact_store": "azure",
+            "status": "available",
+            "artifact_available": true,
+            "artifact_ready": true,
+            "media_available": true,
+            "media_url": "/matches/132877_clip/video.mp4",
+            "source": "soccertrack_structured",
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": true,
+              "tactical_view_available": true,
+              "cv_world_model_available": false,
+              "pitch_calibration_available": false,
+              "ask_available": true
+            }
+          },
+          {
+            "recording_id": "test_match",
+            "match_id": "test_match",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/test_match/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "team_goal",
+            "match_id": "team_goal",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/team_goal/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          },
+          {
+            "recording_id": "southampton",
+            "match_id": "southampton",
+            "status": "available",
+            "source": "cv_experimental",
+            "artifact_ready": false,
+            "media_available": true,
+            "media_url": "/matches/southampton/video.mp4",
+            "diagnostic": null,
+            "capabilities": {
+              "video_available": true,
+              "analytics_available": false,
+              "tactical_view_available": false,
+              "cv_world_model_available": true,
+              "pitch_calibration_available": true,
+              "ask_available": false
+            }
+          }
+        ]
+      }
+    },
+    "test_match": {
+      "m14": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m15": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m16": {
+        "metadata": 200,
+        "frame50": 200
+      }
+    },
+    "team_goal": {
+      "m14": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m15": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m16": {
+        "metadata": 200,
+        "frame50": 200
+      }
+    },
+    "southampton": {
+      "m14": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m15": {
+        "metadata": 200,
+        "frame50": 200
+      },
+      "m16": {
+        "metadata": 200,
+        "frame50": 200
+      }
+    },
+    "azure_view": 200,
+    "azure_video": {
+      "status": 206,
+      "bytes": 1024
+    },
+    "ask": {
+      "status": 200,
+      "answer_status": "ok",
+      "evidence_rows": 6
+    }
+  },
+  "frame_api_timing": {
+    "before": {
+      "8000": 3.6791121249552816,
+      "5173": 5.665254499996081
+    },
+    "after": {
+      "8000": {
+        "sequential_requests": 30,
+        "seconds": 0.33998541603796184,
+        "mean_payload_bytes": 441608
+      },
+      "5173": {
+        "sequential_requests": 30,
+        "seconds": 0.223262874991633,
+        "mean_payload_bytes": 441608
+      }
+    },
+    "limits": "Small local sequential sample; original requests overlapped browser checks; this is not a controlled throughput benchmark."
+  },
+  "presentation_correction": {
+    "test_match": {
+      "frames": 541,
+      "seconds": 4.201839750050567,
+      "observation_hashes_unchanged": true,
+      "reason": "Correct inherited M15 panel title to M16; no detector/tracker rerun or runtime replacement"
+    },
+    "team_goal": {
+      "frames": 500,
+      "seconds": 2.994350416935049,
+      "observation_hashes_unchanged": true,
+      "reason": "Correct inherited M15 panel title to M16; no detector/tracker rerun or runtime replacement"
+    },
+    "southampton": {
+      "frames": 660,
+      "seconds": 4.498983082943596,
+      "observation_hashes_unchanged": true,
+      "reason": "Correct inherited M15 panel title to M16; no detector/tracker rerun or runtime replacement"
+    }
+  },
+  "verification": {
+    "backend": {
+      "run": 811,
+      "passed": 810,
+      "expected_skips": 1,
+      "new_m16_tests": 31
+    },
+    "frontend": {
+      "passed": 105,
+      "files": 18,
+      "build": "passed"
+    },
+    "browser": {
+      "current_application_passed": 22,
+      "historical_world_passed": 1,
+      "historical_reid_passed": 1,
+      "historical_m5_failed": 1,
+      "m5_reason": "Historical camera-placement.spec.ts requires m5; current authoritative service correctly returns m8. No rollback or relaxed assertion.",
+      "final_smoothing": [
+        {
+          "recording_id": "test_match",
+          "updates_per_second": 23.530350163739733,
+          "missing_fraction": 0,
+          "max_lag_frames": 1
+        },
+        {
+          "recording_id": "team_goal",
+          "updates_per_second": 25.0966020002377,
+          "missing_fraction": 0,
+          "max_lag_frames": 1
+        },
+        {
+          "recording_id": "southampton",
+          "updates_per_second": 29.97002997002997,
+          "missing_fraction": 0,
+          "max_lag_frames": 1
+        }
+      ]
+    },
+    "live": "health/ready/catalog200,ready13; 3CV x 3ballversions metadata/frame50; Azureview200/range206/1024bytes; groundedLocalAsk200/statusok/6evidence",
+    "historical_hashes": "verified unchanged",
+    "model_promotion": false
+  }
+}

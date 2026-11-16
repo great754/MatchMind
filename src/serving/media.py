@@ -9,13 +9,23 @@ class AzureClipMedia:
     def __init__(self,client):
         self.client=client
         self.metadata={}
+        self.sources={}
+
+    def register_half(self,recording_id,match_id,half):
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',recording_id) or not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',match_id) or half not in (1,2):raise ValueError('Invalid half media registration')
+        suffix='1st' if half==1 else '2nd'
+        self.sources[recording_id]=f'videos/{match_id}/{match_id}_panorama_{suffix}_half.mp4'
+        self.metadata.pop(recording_id,None)
+
+    def blob_name(self,match_id):
+        return self.sources.get(match_id,f'mot/clips/{match_id}.mp4')
 
     def properties(self,match_id):
         if not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',match_id):
             return None
         if match_id not in self.metadata:
             try:
-                self.metadata[match_id]=self.client.get_blob_client(f'mot/clips/{match_id}.mp4').get_blob_properties()
+                self.metadata[match_id]=self.client.get_blob_client(self.blob_name(match_id)).get_blob_properties()
             except Exception:
                 logging.getLogger('matchmind.requests').warning('Azure video unavailable for %s',match_id)
                 self.metadata[match_id]=None
@@ -51,7 +61,7 @@ class AzureClipMedia:
         length=end-start+1;headers['Content-Length']=str(length)
         if request.method=='HEAD':return Response(status_code=status,headers=headers)
         try:
-            blob=self.client.get_blob_client(f'mot/clips/{match_id}.mp4')
+            blob=self.client.get_blob_client(self.blob_name(match_id))
             # An ETag condition prevents mixing bytes from different revisions.
             from azure.core import MatchConditions
             download=blob.download_blob(offset=start,length=length,etag=properties.etag,match_condition=MatchConditions.IfNotModified)
