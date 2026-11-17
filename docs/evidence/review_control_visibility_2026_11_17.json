@@ -1,0 +1,181 @@
+{
+  "desktop": [
+    {
+      "label": "Reviewer ID",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 440,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "1 \u00b7 ball2 \u00b7 ball3 \u00b7 ball4 \u00b7 ball5 \u00b7 ball6 \u00b7 ball7 \u00b7 ball8 \u00b7 ball9 \u00b7 ball10 \u00b7 ball11 \u00b7 ball12 \u00b7 ball13 \u00b7 passes14 \u00b7 passes15 \u00b7 passes16 \u00b7 passes17 \u00b7 identity18 \u00b7 identity19 \u00b7 identity20 \u00b7 identity",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 1330,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Replay window",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 134.765625,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Mark release frame",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 163.90625,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Mark receipt and add pass",
+      "contrast": 7.828330734305863,
+      "opacity": "1",
+      "width": 212.15625,
+      "withinViewport": true,
+      "disabled": true
+    },
+    {
+      "label": "uncertainreviewed",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 1330,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "TEXTAREA",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 1330,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Previous",
+      "contrast": 8.488715781443611,
+      "opacity": "1",
+      "width": 92.453125,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Save human reference",
+      "contrast": 7.828330734305863,
+      "opacity": "1",
+      "width": 184.390625,
+      "withinViewport": true,
+      "disabled": true
+    },
+    {
+      "label": "Next",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 65.421875,
+      "withinViewport": true,
+      "disabled": false
+    }
+  ],
+  "mobile": [
+    {
+      "label": "Reviewer ID",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "1 \u00b7 ball2 \u00b7 ball3 \u00b7 ball4 \u00b7 ball5 \u00b7 ball6 \u00b7 ball7 \u00b7 ball8 \u00b7 ball9 \u00b7 ball10 \u00b7 ball11 \u00b7 ball12 \u00b7 ball13 \u00b7 passes14 \u00b7 passes15 \u00b7 passes16 \u00b7 passes17 \u00b7 identity18 \u00b7 identity19 \u00b7 identity20 \u00b7 identity",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Replay window",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Mark release frame",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Mark receipt and add pass",
+      "contrast": 7.828330734305863,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "uncertainreviewed",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "TEXTAREA",
+      "contrast": 16.45715508237448,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Previous",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 152,
+      "withinViewport": true,
+      "disabled": false
+    },
+    {
+      "label": "Save human reference",
+      "contrast": 7.828330734305863,
+      "opacity": "1",
+      "width": 316,
+      "withinViewport": true,
+      "disabled": true
+    },
+    {
+      "label": "Next",
+      "contrast": 11.88187132243122,
+      "opacity": "1",
+      "width": 152,
+      "withinViewport": true,
+      "disabled": false
+    }
+  ],
+  "page_errors": [],
+  "human_labels_written": 0,
+  "date": "2026-11-17",
+  "frontend_existing_review_tests_passed": 2,
+  "typed_production_build": "passed",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1100
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ]
+}

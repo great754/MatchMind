@@ -1,5 +1,10 @@
 # TactiqAI Current Pipeline Status
 
+## Review control visibility fix (2026-11-17)
+
+The independent review page now uses explicit dark button/input/textarea surfaces, readable enabled and disabled text, separated field labels and responsive action rows. This fixes inherited pale text on browser-default white controls. Verified in Chrome at 1440px and 390px widths: ten controls have a minimum measured text contrast of 7.83:1, no horizontal control overflow and no page errors. Both existing review form tests and the typed production build pass. No human annotations were written. [Verification](evidence/review_control_visibility_2026_11_17.json).
+
+
 ## Current M19 tracking and independent review workflow (2026-11-15)
 
 **OPT-IN EXPERIMENT IMPLEMENTED / HUMAN ACCURACY EVALUATION PENDING.** All three clips processed reproducibly; 30 output hash comparisons match and 18 original video/world/ball/model/upstream hashes remain unchanged. M19 on frozen M16 detections changes direct observations **393→408**, **6→6**, **77→96** (test_match/team_goal/southampton). Qualified pass estimates: **1/0/0**, review candidates **9/0/2**. The one test_match estimate uses direct ball frames 66–75,79,83 and unchanged pass gates. It is unreviewed. M14 remains the default; M14 has better coverage on two clips and its M19 association has worse fragmentation. A matched shorter-TTL ablation removes the new estimate. No measured player-ID/team accuracy improvement is claimed; conservative player links remain zero.

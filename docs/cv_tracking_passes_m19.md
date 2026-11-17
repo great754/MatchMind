@@ -97,3 +97,10 @@ Backend: **989 run, 988 passed, one expected skip**. Frontend: **125 passed**, T
 ![Actual model-blind source-review page](evidence/cv_m19_independent_review.png)
 
 Core new files are `src/vision/ball19/`, `src/vision/events/{m19_players,passes_m19}.py`, `src/evaluation/cv_m19.py`, `src/serving/cv_review_labels.py`, `frontend/src/CVHumanReview.tsx`, the M19 configs and preparation/benchmark/replay/install/evaluation scripts. Integration updates `passes.py`, `cv_events.py`, ball schema, serving app, assistant request/service/profile paths, CV/player/assistant frontend components and recording routing. Tests, evidence, this report, pipeline status/explorer and Azure/frontend documentation accompany them. The GitHub push also needs the previously uncommitted M16/M17/M18 and pass-v1 dependencies; no videos, weights, outputs, credentials or human-label stores belong in Git.
+
+
+## Review control visibility correction — 2026-11-17
+
+Native buttons inherited the page's pale text but retained browser-default light backgrounds; unstyled fields and inline labels also crowded together. Scoped `.human-review` styles now define button/field surfaces, text, disabled states and focus treatment. Action groups, checkbox labels, reviewer setup, notes and navigation have explicit spacing and mobile wrapping. Review behavior and annotation data are unchanged.
+
+The existing two review form tests and typed production build passed. Live Chrome checks at 1440×1100 and 390×844 verified all ten pass-review controls, minimum text contrast **7.83:1**, readable disabled controls, receipt-button enabling and no horizontal control overflow or page errors. Desktop/mobile screenshots were inspected locally. No annotation-save endpoint was called. [Measured visibility results](evidence/review_control_visibility_2026_11_17.json).
