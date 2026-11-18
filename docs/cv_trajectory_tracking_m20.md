@@ -178,3 +178,8 @@ Final real service verification: **health 200**, **ready 200 / 15 usable recordi
 New core files: `src/vision/ball20/{motion,tracker,detector,schema}.py`, `src/serving/ball20.py`; M20 run/install/ablation/benchmark/evaluation scripts and configs; frontend trajectory contracts/overlay/inspector and tests; portable evidence and this report. Integration changes the optional hooks in `ball19/tracker.py`, version literals, strict ball serving, optional app routes, assistant/profile version selection and CV UI. The M19 browser test now checks that existing annotations are preserved instead of assuming there are none. No source video, weight, raw output cache or private annotation file belongs in Git.
 
 The next justified research work is a completed independent source review set, targeted bright-object/player/background negatives, and stronger small-ball visual verification. A reduced-frequency global schedule should be assessed separately after association errors can be measured. This report does not start another milestone.
+
+
+## CV workspace startup routing (2026-11-18)
+
+The backend was healthy (health/ready 200, 15 usable recordings), but a direct `?recording=test_match` link briefly mounted the analytics dashboard before recording capabilities arrived. That sent unsupported `/score` (404) and `/view` (503) requests for a CV-only recording. The frontend now waits for discovery before mounting a workspace and offers retry for unresolved nondefault links. Eight recording-router tests and the typed production build passed. A live Chrome check delayed discovery deliberately, loaded M20 and observed zero unsupported test_match score/view requests or page errors. No backend analytics availability or score semantics were changed.

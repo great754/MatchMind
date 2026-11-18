@@ -1,5 +1,11 @@
 # TactiqAI Current Pipeline Status
 
+
+## CV workspace startup routing (2026-11-18)
+
+The backend was healthy (health/ready 200, 15 usable recordings), but a direct `?recording=test_match` link briefly mounted the analytics dashboard before recording capabilities arrived. That sent unsupported `/score` (404) and `/view` (503) requests for a CV-only recording. The frontend now waits for discovery before mounting a workspace and offers retry for unresolved nondefault links. Eight recording-router tests and the typed production build passed. A live Chrome check delayed discovery deliberately, loaded M20 and observed zero unsupported test_match score/view requests or page errors. No backend analytics availability or score semantics were changed.
+
+
 ## M20 trajectory-guided visual ball tracking (2026-11-18)
 
 **ENGINEERING COMPLETE / OPT-IN EXPERIMENT / INDEPENDENT ACCURACY PENDING HUMAN REVIEW.** Fresh YOLO global/tiled inference ran on all 1,701 short-clip frames plus **1,199 actual trajectory-guided crop views**. A four-mode IMM reuses M8 camera transforms and M19 one-to-one association/pass gates. Direct observations against the same-input M19 control: **408→410 / 541**, **6→30 / 500**, **96→147 / 660** (test_match/team_goal/southampton). Qualified pass estimates remain **1/0/0**, candidates **9/0/2**; the one estimate is the existing unreviewed M19 source event. Predictions and ambiguity never count as observed flight.
