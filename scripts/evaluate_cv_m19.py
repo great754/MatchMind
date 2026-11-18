@@ -5,7 +5,9 @@ from src.evaluation.cv_m19 import evaluate
 from src.serving.cv_review_labels import HumanReviewStore,HumanAnnotation
 
 
-def run(root,labels_path=None,reviewer=None):
+def run(root,labels_path=None,reviewer=None,output=None):
+    target=Path(output) if output else Path(root)/'independent_evaluation.json'
+    if output and target.exists():raise ValueError('Use a fresh evaluation output; preserve prior measurements')
     store=HumanReviewStore();dataset=store.dataset
     protocol=dict(dataset['protocol'])
     protocol['sources']=dataset['sources']
@@ -46,7 +48,7 @@ def run(root,labels_path=None,reviewer=None):
         from src.vision.events.passes import detect_passes
         events={name:detect_passes(name,compact_worlds(Path('outputs/world_model')/(name+'_m9_ready')/'frames.jsonl'),balls[name],dataset['sources'][name]['fps'])[0] for name in dataset['sources']}
         report['variants']['baseline_'+variant]=evaluate(dataset['tasks'],annotations,balls,events,protocol,players)
-    target=Path(root)/'independent_evaluation.json';target.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+    target.parent.mkdir(parents=True,exist_ok=True);target.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--root',default='outputs/m19/run_v3');parser.add_argument('--labels');parser.add_argument('--reviewer');args=parser.parse_args();run(args.root,args.labels,args.reviewer)
+    parser=argparse.ArgumentParser();parser.add_argument('--root',default='outputs/m19/run_v3');parser.add_argument('--labels');parser.add_argument('--reviewer');parser.add_argument('--output');args=parser.parse_args();run(args.root,args.labels,args.reviewer,args.output)

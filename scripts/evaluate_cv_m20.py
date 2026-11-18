@@ -22,8 +22,11 @@ def localization(tasks,labels,balls,protocol):
     return {'matched_human_boxes':len(errors),'median_pixel_error':float(np.median(errors)) if errors else None,'mean_pixel_error':float(np.mean(errors)) if errors else None,'p90_pixel_error':float(np.quantile(errors,.9)) if errors else None,'definition':'Center error only for selected direct observations matched to independently boxed source balls.'}
 
 
-def run(root,label_path=None,reviewer=None):
-    root=Path(root);store=HumanReviewStore();dataset=store.dataset;protocol=dict(dataset['protocol']);protocol['sources']=dataset['sources'];labels=[]
+def run(root,label_path=None,reviewer=None,output=None):
+    root=Path(root)
+    target=Path(output) if output else root/'independent_evaluation.json'
+    if output and target.exists():raise ValueError('Use a fresh evaluation output; preserve prior measurements')
+    store=HumanReviewStore();dataset=store.dataset;protocol=dict(dataset['protocol']);protocol['sources']=dataset['sources'];labels=[]
     if label_path:
         document=json.loads(Path(label_path).read_text())
         if document['dataset_fingerprint']!=dataset['fingerprint']:raise ValueError('Reference task fingerprint changed')
@@ -47,13 +50,27 @@ def run(root,label_path=None,reviewer=None):
             for task in dataset['tasks']:
                 if task['recording_id']==name and task['kind']=='identity':
                     for frame in [task['frame'],task['other_frame']]:players[name][frame]=list(visible_players(worlds[frame]).values())
-    report={'dataset_fingerprint':dataset['fingerprint'],'annotation_file_supplied':label_path is not None,'independent_accuracy_acceptance':'pending_human_review','annotations_used':len(labels),'existing_saved_annotations_preserved':len(store.labels()),'variants':{}}
+    reviewed={row['task_id'] for row in labels}
+    report={'dataset_fingerprint':dataset['fingerprint'],'annotation_file_supplied':label_path is not None,
+            'independent_evaluation_status':'human_sample_evaluation_available' if labels else 'pending_human_review',
+            'independent_accuracy_acceptance':'not_established_from_this_sample' if labels else 'pending_human_review',
+            'annotations_used':len(labels),'existing_saved_annotations_preserved':len(store.labels()),
+            'reference_review':{'reviewed_tasks':len(reviewed),'sealed_tasks':len(dataset['tasks']),
+                                'all_tasks_reviewed':len(reviewed)==len(dataset['tasks'])},'variants':{}}
     for version in ['m19','m20']:
         result=evaluate(dataset['tasks'],labels,ball_sets[version],event_sets[version],protocol,players)
         result['localization']=localization(dataset['tasks'],labels,ball_sets[version],protocol)
         result.update(independent_reacquisition_success=None,incorrect_ball_associations=None,temporal_ball_reference_limitation='Sparse visibility/box tasks do not provide exhaustive ball identity and reacquisition truth. Temporal ball reference tracks are still required.')
+        result['per_recording']={}
+        for name in dataset['sources']:
+            tasks=[task for task in dataset['tasks'] if task['recording_id']==name]
+            ids={task['task_id'] for task in tasks};references=[row for row in labels if row['task_id'] in ids]
+            subset=evaluate(tasks,references,ball_sets[version],event_sets[version],protocol,players)
+            subset['localization']=localization(tasks,references,ball_sets[version],protocol)
+            result['per_recording'][name]=subset
         report['variants'][version]=result
-    (root/'independent_evaluation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2));return report
+    target.parent.mkdir(parents=True,exist_ok=True)
+    target.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2));return report
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--labels');p.add_argument('--reviewer');a=p.parse_args();run(a.root,a.labels,a.reviewer)
+    p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--labels');p.add_argument('--reviewer');p.add_argument('--output');a=p.parse_args();run(a.root,a.labels,a.reviewer,a.output)

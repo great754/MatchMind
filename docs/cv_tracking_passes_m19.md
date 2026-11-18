@@ -1,5 +1,7 @@
 # TactiqAI M19 — Video-only tracking and pass evidence
 
+**Current follow-up, 2026-11-18:** all 60 human reviews are saved and the frozen outputs have been evaluated. M19 ball precision/recall are **81.8%/29.0%** (nine correct, two false, 22 missed); passes match **one of seven** completed references. M20 adds one correct ball and two false detections with no pass improvement. Accuracy acceptance is not established. [Completed sample evaluation and limits](cv_human_evaluation_2026_11_18.md). Earlier zero-label statements below are historical implementation snapshots.
+
 Verified 2026-11-15. **Opt-in experiment and independent review workflow implemented. Independent accuracy acceptance remains pending human labels.** The user confirmed no labels exist. The three short clips processed successfully; the full Tottenham–Arsenal CV run remains deferred.
 
 ## Actual findings

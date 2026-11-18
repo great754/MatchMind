@@ -1,5 +1,20 @@
 # TactiqAI Current Pipeline Status
 
+## Completed human-review evaluation (2026-11-18)
+
+**ALL 60 REVIEWS RECEIVED / FROZEN OUTPUTS EVALUATED / ACCURACY ACCEPTANCE NOT ESTABLISHED.** Each short clip has 20 saved reviews. Eligible references are 34 known ball frames (31 visible), six exhaustive pass windows containing seven completed passes, and 12 same-person continuity pairs. Two uncertain ball frames and six uncertain/incomplete pass windows are excluded and counted.
+
+| Version | Ball correct / false / missed | Ball precision / recall | Pass matches / reference passes |
+|---|---:|---:|---:|
+| Original M14 | 6 / 3 / 25 | 66.7% / 19.4% | 0 / 7 |
+| Original M16 | 9 / 2 / 22 | 81.8% / 29.0% | 0 / 7 |
+| M19 | 9 / 2 / 22 | 81.8% / 29.0% | 1 / 7 |
+| M20 | 10 / 4 / 21 | 71.4% / 32.3% | 1 / 7 |
+
+M20 gains one correct ball and two false detections over M19; it misses all 11 reviewed visible balls on team_goal. The sole matched pass is the existing test_match event, with no pass improvement over M19. Only three of 12 continuity pairs match unique model boxes; all three agree, but nine excluded pairs and no different-person negatives prevent an overall identity-accuracy claim. One reviewer, sparse development samples and wide intervals do not establish generalization. **M14 remains default; M20 stays opt-in.**
+
+Live annotations remain byte-for-byte identical to the private evaluation snapshot. No raw labels/reviewer details, source videos or weights are published. No training, threshold change, Azure upload or long-video processing occurred. **82 focused backend tests passed; frontend/health/recordings 200; ready 200 / 15 usable recordings.** No Azure configuration change is needed. [Evaluation, per-clip findings and commands](cv_human_evaluation_2026_11_18.md) · [Aggregate evidence](evidence/cv_human_evaluation_2026_11_18.json). Earlier label counts and pending statuses below describe their original verification snapshots.
+
 ## Review save validation fixed (2026-11-18)
 
 The review form now blocks incomplete submissions and shows **To save this task** guidance before any request. Both player boxes are required for same/different continuity labels; visible balls require valid boxes; pending releases, same-frame/reversed/out-of-window pass marks and invalid reviewer fields cannot be submitted. A browser timestamp precision bug that could turn pass-window start frame 31 into frame 30 is corrected. The exact field behind the user's original 422 is not available from the console trace alone; these client-side failures were independently reproduced.

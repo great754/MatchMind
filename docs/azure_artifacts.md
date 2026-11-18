@@ -1,5 +1,10 @@
 # TactiqAI canonical Azure artifacts
 
+## Completed short-clip human evaluation (2026-11-18)
+
+All 60 local source reviews were received and used to evaluate frozen CV outputs. M20 detects 10 of 31 reviewed visible balls with four false detections and matches one of seven completed reference passes. This sample does not establish accuracy acceptance or canonical Azure analytics readiness. Human labels and inference outputs remain local; no source video, annotation file or new artifact bundle was uploaded. Source/world/ball/event hashes remain enforced, M14 remains default and M20 stays opt-in. Live `/health`, `/ready` and `/recordings` returned 200; readiness has 15 usable recordings. Existing Azure settings require no change; keep the three local CV source videos for playback. [Evaluation and limits](cv_human_evaluation_2026_11_18.md).
+
+
 ## Local CV pass sidecars — separate from Azure artifact readiness (2026-11-13)
 
 The three existing short CV clips now have locally validated experimental pass sidecars and structured JSON/CSV exports. M14 results: **0 qualified completed-pass estimates; 5/1/2 possible transfers** for test_match/team_goal/southampton. Candidates remain excluded from completed-pass counts and generated review videos visibly require review. Goal/shot/attempt/accuracy values stay unknown. No SoccerTrack annotation, pass/possession calculation, GSR alignment or canonical bundle validation was changed.

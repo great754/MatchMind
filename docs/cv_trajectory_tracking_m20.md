@@ -1,6 +1,8 @@
 # TactiqAI M20 — Trajectory-guided ball detection and tracking
 
-Verified **2026-11-18**. **Engineering complete as an opt-in experiment; independent accuracy acceptance is pending human review.** No manual labels were required to implement or run M20. The four saved M19 annotations were preserved, not promoted into a complete reference set. No expensive training, checkpoint download, paid model call, Azure upload or long-match CV run was performed.
+Verified **2026-11-18**. **Engineering complete as an opt-in experiment; completed human-sample evaluation does not establish accuracy acceptance.** All 60 source reviews are now saved and evaluated: M20 ball precision/recall **71.4%/32.3%** versus M19 **81.8%/29.0%** on 34 known frames (31 visible). M20 gains one correct detection and two false detections; both versions match **one of seven** reference passes. M20 misses all 11 reviewed visible balls on team_goal. M14 remains default. [Completed human evaluation, counts and limits](cv_human_evaluation_2026_11_18.md) · [Aggregate evidence](evidence/cv_human_evaluation_2026_11_18.json).
+
+The engineering measurements below retain their original snapshot: only four reviews had been saved at implementation verification. Those four were preserved then; the user subsequently completed the remaining reviews. No expensive training, checkpoint download, paid model call, Azure upload or long-match CV run was performed.
 
 ## Demonstrated result
 
@@ -103,7 +105,7 @@ The team_goal denominator is only six model observations. These percentages must
 
 M20 uses the existing `detect_m19` and original `PassConfig` without changing numeric gates, player references, team uncertainty, observed release/flight, coverage, gap or epoch requirements. Serving replays those gates and recomputes every evidence frame from validated ball/world sources. Prediction-only and ambiguous positions cannot satisfy ball coverage. Attempts, accuracy, shots, goals, tackles and verified possession remain unavailable/null.
 
-The sole qualified estimate is **the existing unreviewed M19 event** in test_match: release frame **66**, receipt frame **83**, direct ball frames **66–75,79,83**, **12/18** observed coverage. Sender `segment:0:TRACK_00018:32`; receiver `segment:0:TRACK_00017:31`. It is not an additional discovered or human-confirmed pass. All rejected transfers retain their reasons and source frames.
+The sole qualified estimate is **the existing M19 event** in test_match, unreviewed at implementation time and now endpoint-matched in the completed human sample: release frame **66**, receipt frame **83**, direct ball frames **66–75,79,83**, **12/18** observed coverage. Sender `segment:0:TRACK_00018:32`; receiver `segment:0:TRACK_00017:31`. It is not an additional M20 discovery; the later human sample verifies a temporal endpoint match without independently checking participant attribution. All rejected transfers retain their reasons and source frames.
 
 Actual frontend source examples, not generated illustrations or evaluation labels:
 
@@ -127,7 +129,9 @@ The M19/M20 table shows matched coverage, fragmentation, longest observed runs a
 
 M20 UI code loads on demand (6.70 kB), keeping the default production entry at 497.43 kB. Existing MATCHMIND_* variables keep their meanings. No Azure artifacts, media mappings or authentication settings were changed, and no cloud model was called. Keep the three local CV source videos. The full Tottenham–Arsenal video remains outside this short-clip run.
 
-## Independent evaluation preparation
+## Independent evaluation preparation and completed follow-up
+
+**Follow-up:** all 60 tasks are saved; the unchanged metric rules have now measured the frozen versions against a private snapshot. See the [2026-11-18 human evaluation](cv_human_evaluation_2026_11_18.md). The descriptions of four annotations and pending measurements below refer to the earlier engineering verification. Sparse/uncertain references still limit what can be measured; completed reviews do not imply accuracy acceptance.
 
 The existing M19 model-blind workflow and sealed 60-task protocol are reused. **Four saved human annotations remain byte-for-byte unchanged**; they were not used as a complete independent test set or as tuning targets. The default M20 evaluation requires no annotations and leaves precision/recall/F1/localization/association accuracy unavailable. Engineering completion is independent of annotation completion.
 
@@ -151,8 +155,8 @@ m20_python=/Users/greatabhieyighan/Library/Caches/TactiqAI/backend-m17/bin/pytho
 "$m20_python" -X pycache_prefix=/tmp/tactiq-m20-pycache -m scripts.benchmark_cv_m20_crops --root outputs/m20/new_run
 # No labels required; actual independent accuracy remains pending.
 "$m20_python" -X pycache_prefix=/tmp/tactiq-m20-pycache -m scripts.evaluate_cv_m20 --root outputs/m20/new_run
-# Later, only with actual source-reviewed labels:
-"$m20_python" -X pycache_prefix=/tmp/tactiq-m20-pycache -m scripts.evaluate_cv_m20 --root outputs/m20/new_run --labels outputs/m19/human_review/labels.json --reviewer YOUR_ID
+# With actual source-reviewed labels, preserve previous evaluation reports:
+"$m20_python" -X pycache_prefix=/tmp/tactiq-m20-pycache -m scripts.evaluate_cv_m20 --root outputs/m20/new_run --labels outputs/m19/human_review/labels.json --reviewer YOUR_ID --output outputs/m20/new_evaluation/results.json
 ```
 
 Exact verified backend command (no Azure configuration change):
@@ -177,7 +181,7 @@ Final real service verification: **health 200**, **ready 200 / 15 usable recordi
 
 New core files: `src/vision/ball20/{motion,tracker,detector,schema}.py`, `src/serving/ball20.py`; M20 run/install/ablation/benchmark/evaluation scripts and configs; frontend trajectory contracts/overlay/inspector and tests; portable evidence and this report. Integration changes the optional hooks in `ball19/tracker.py`, version literals, strict ball serving, optional app routes, assistant/profile version selection and CV UI. The M19 browser test now checks that existing annotations are preserved instead of assuming there are none. No source video, weight, raw output cache or private annotation file belongs in Git.
 
-The next justified research work is a completed independent source review set, targeted bright-object/player/background negatives, and stronger small-ball visual verification. A reduced-frequency global schedule should be assessed separately after association errors can be measured. This report does not start another milestone.
+The completed source review now identifies stronger small-ball visual verification, targeted bright-object/player/background negatives and improved player-box coverage as research priorities. New held-out references will be needed to assess changes tuned using these development findings. A reduced-frequency global schedule should be assessed separately after association errors can be measured. This report does not start another milestone.
 
 
 ## CV workspace startup routing (2026-11-18)
