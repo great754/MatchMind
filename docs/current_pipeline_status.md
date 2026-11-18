@@ -1,5 +1,14 @@
 # TactiqAI Current Pipeline Status
 
+## M20 trajectory-guided visual ball tracking (2026-11-18)
+
+**ENGINEERING COMPLETE / OPT-IN EXPERIMENT / INDEPENDENT ACCURACY PENDING HUMAN REVIEW.** Fresh YOLO global/tiled inference ran on all 1,701 short-clip frames plus **1,199 actual trajectory-guided crop views**. A four-mode IMM reuses M8 camera transforms and M19 one-to-one association/pass gates. Direct observations against the same-input M19 control: **408→410 / 541**, **6→30 / 500**, **96→147 / 660** (test_match/team_goal/southampton). Qualified pass estimates remain **1/0/0**, candidates **9/0/2**; the one estimate is the existing unreviewed M19 source event. Predictions and ambiguity never count as observed flight.
+
+The result is mixed: track-change proxies worsen **11→17** and **11→21** on test_match/southampton; M14 still has better coverage on two clips. Motion-only ablation gives **402/7/90** observed frames, showing a contribution from real crop detections. Neither higher coverage, covariance probabilities nor a higher-resolution model establishes independent accuracy. No training, large checkpoint download, Azure upload, canonical analytics change or long-video processing occurred.
+
+Select **Ball review → M20 Trajectory Tracking · opt-in**. The synchronized overlay distinguishes observations, predictions/covariance, search crops, rejected candidates and motion hypotheses; comparison, seeking, player focus and version-isolated assistant facts work. M14 remains the default. **33 original-file hashes**, including four saved annotations, remain unchanged; 15 replay output hashes match. **1,028 backend run / 1,027 passed / one skip; 130 frontend passed; typed build and seven Chrome cases passed.** Real Azure-backed readiness is **200 / 15 usable recordings**; source ranges 206, existing grounded Ask/view 200. No Azure settings change is needed. [M20 report, architecture, measured failures and commands](cv_trajectory_tracking_m20.md) · [Portable results](evidence/cv_m20_results.json). Earlier sections are historical snapshots.
+
+
 ## Review control visibility fix (2026-11-17)
 
 The independent review page now uses explicit dark button/input/textarea surfaces, readable enabled and disabled text, separated field labels and responsive action rows. This fixes inherited pale text on browser-default white controls. Verified in Chrome at 1440px and 390px widths: ten controls have a minimum measured text contrast of 7.83:1, no horizontal control overflow and no page errors. Both existing review form tests and the typed production build pass. No human annotations were written. [Verification](evidence/review_control_visibility_2026_11_17.json).

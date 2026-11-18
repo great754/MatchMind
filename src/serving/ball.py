@@ -28,6 +28,10 @@ class BallReview:
     if any(c.bbox[0]+c.bbox[2]>m['width']+1e-5 or c.bbox[1]+c.bbox[3]>m['height']+1e-5 for c in ball.candidates):raise ValueError('Ball source bounds mismatch')
    if f.read(1) or canonical.read(1):raise ValueError('Unindexed ball data')
   self.stamps=(self.path.stat().st_mtime_ns,self.canonical.stat().st_mtime_ns)
+  self.trajectory=None
+  if m.get('version')=='m20':
+   from .ball20 import TrajectoryReview
+   self.trajectory=TrajectoryReview(self)
  def frame(self,index):
   if (self.path.stat().st_mtime_ns,self.canonical.stat().st_mtime_ns)!=self.stamps:raise ValueError('Ball sidecar changed; restart validation')
   with self.path.open('rb') as f:f.seek(self.offsets[index]);return BallFrame.model_validate_json(f.readline())

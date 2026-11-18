@@ -261,7 +261,7 @@ class UnifiedMatchAssistant:
         @r.get('/matches/{recording}/score')
         def score(recording:str):return self.presentation.score(recording)
         @r.get('/matches/{recording}/players/profile')
-        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19']='m14'):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
+        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19','m20']='m14'):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
         @r.get('/matches/{recording}/players/roster')
         def roster(recording:str,session_id:uuid.UUID):
             cat=self.catalog(recording);return {**cat.public(),'identities':self.identities.load(recording,session_id,cat),'pictures':self.portraits.public(recording)}

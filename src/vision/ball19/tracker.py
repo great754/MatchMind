@@ -23,7 +23,7 @@ class VisualBallTracker:
         if self.cfg.maximum_hypotheses<1 or not 0<self.cfg.prediction_seconds<=.35 or not 0<=self.cfg.ambiguity_margin<=1 or self.cfg.max_image_diagonals_per_second<=0 or self.cfg.movement_slack_px<0:raise ValueError('Invalid association bounds')
         self.diagonal=math.hypot(width,height);self.hypotheses=[];self.next_id=0
         self.previous_camera=None;self.previous_time=None;self.last_selected=None;self.last_confirmed=None;self.last_confirmed_time=None
-    def step(self,frame,timestamp,candidates,camera,people=()):
+    def step(self,frame,timestamp,candidates,camera,people=(),*,association_priors=None,association_cost=None):
         cs=[BallCandidate.model_validate(c) for c in candidates]
         if any(c.bbox[0]+c.bbox[2]>self.width+1e-5 or c.bbox[1]+c.bbox[3]>self.height+1e-5 for c in cs):raise ValueError('Ball box outside source')
         if self.previous_time is not None and timestamp<=self.previous_time:raise ValueError('Ball clock must increase')
@@ -43,12 +43,20 @@ class VisualBallTracker:
                     if observed is not None:h['last_observed_warped']=observed
             h['prior']=h['point'].copy();h['point']=h['point']+h['velocity']*dt
             h['sigma']+=self.diagonal*.025*dt;h['candidate']=None
+            # Optional M20 motion priors; the default M19 path is unchanged.
+            if association_priors is not None and h['id'] in association_priors:
+                point,sigma=association_priors[h['id']]
+                if not np.isfinite(point).all() or not math.isfinite(sigma) or sigma<=0:raise ValueError('Invalid external association prior')
+                h['point']=np.asarray(point,float);h['sigma']=sigma
         costs=np.full((len(self.hypotheses),len(viable)),1e6)
         for i,h in enumerate(self.hypotheses):
             age=timestamp-h['observed_at'];gate=self.cfg.movement_slack_px+3*h['sigma']+self.diagonal*self.cfg.max_image_diagonals_per_second*max(dt,.001)
             for j,c in enumerate(viable):
                 error=float(np.linalg.norm(np.asarray(c.center)-h['point']))
-                if error<=gate:costs[i,j]=error/max(gate,1)+.5*(1-c.confidence)
+                if error<=gate:
+                    cost=error/max(gate,1)+.5*(1-c.confidence)
+                    costs[i,j]=cost if association_cost is None else association_cost(h,c,cost)
+                    if not math.isfinite(costs[i,j]) or costs[i,j]<0:raise ValueError('Association cost must be finite and nonnegative')
         used=set()
         if costs.size:
             for i,j in zip(*linear_sum_assignment(costs)):

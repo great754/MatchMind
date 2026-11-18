@@ -44,6 +44,7 @@ class CVReview:
         return row
     def metadata(self):
         metadata={k:v for k,v in self.manifest.items() if k not in ('source_video','frame_offsets','frames_sha256') }|{'media_url':f"/matches/{self.manifest['recording_id']}/video.mp4",'ball_examples':self.ball_review.examples if self.ball_review else [],'ball_model_version':self.ball_review.manifest.get('version','m14') if self.ball_review else None,'ball_diagnostic':self.ball_diagnostic,'ball_statistics':self.ball_review.manifest.get('statistics') if self.ball_review else None}
+        if self.ball_review is not None and 'comparison' in self.ball_review.manifest:metadata['trajectory_comparison']=self.ball_review.manifest['comparison']
         if self.ball_review is not None:metadata['review_notes']=[note.replace(' or ball perception','') for note in metadata.get('review_notes',[])]
         metadata['experimental_events_available']=bool(getattr(self,'event_review',None));metadata['event_diagnostic']=getattr(self,'event_diagnostic',None)
         return metadata

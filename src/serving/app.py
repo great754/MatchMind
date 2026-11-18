@@ -139,6 +139,17 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             cv_m19_reviews[key]=alternative
         except (OSError,ValueError,KeyError,TypeError) as error:
             logger.warning('Optional M19 review %s unavailable: %s',key,type(error).__name__)
+    cv_m20_reviews={}
+    m20_events=read_ball_registry(Path('configs/serving/cv_events_m20.json'))
+    for key,directory in read_ball_registry(Path('configs/serving/cv_ball_m20.json')).items():
+        if key not in cv_reviews:continue
+        try:
+            alternative=copy.copy(cv_reviews[key]);alternative.event_review=None;alternative.attach_ball(directory)
+            if alternative.ball_review is None or alternative.metadata()['ball_model_version']!='m20':continue
+            alternative.event_review=CVEventReview(m20_events[key],alternative)
+            cv_m20_reviews[key]=alternative
+        except (OSError,ValueError,KeyError,TypeError) as error:
+            logger.warning('Optional M20 review %s unavailable: %s',key,type(error).__name__)
     for key,status in statuses.items():
         cv=cv_reviews.get(key)
         status.setdefault('source','soccertrack_structured')
@@ -187,29 +198,37 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return dict(recordings=list(statuses.values()))
 
     @app.get('/matches/{match_id}/cv',dependencies=secured)
-    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19']='m14'):
+    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19','m20']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        review=cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
-        return review.metadata()|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])}
+        return review.metadata()|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])}
 
     @app.get('/matches/{match_id}/cv/events',dependencies=secured)
-    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19']='m14'):
-        cv=(cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
-        if cv is None:raise HTTPException(503 if ball_pipeline=='m19' else 404,'Selected CV review unavailable')
+    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20']='m14'):
+        cv=(cv_m20_reviews if ball_pipeline=='m20' else cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
+        if cv is None:raise HTTPException(503 if ball_pipeline!='m14' else 404,'Selected CV review unavailable')
         layer=getattr(cv,'event_review',None)
         if layer is None:raise HTTPException(503,getattr(cv,'event_diagnostic',None) or 'Experimental pass events not processed')
         cat=assistant.catalog(match_id)
         return layer.public({p['player_ref']:p['label'] for p in cat.players})|{'players':cat.players}
 
     @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
-    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19']='m14'):
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19','m20']='m14'):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        review=cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
         # The frame is already schema-validated. Pydantic serializes its large
         # nested evidence directly, avoiding FastAPI's second recursive walk.
         return Response(content=review.frame(timestamp).model_dump_json(),media_type="application/json")
+
+    @app.get('/matches/{match_id}/cv/trajectory',dependencies=secured)
+    def cv_trajectory(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+        review=cv_m20_reviews.get(match_id)
+        if review is None:raise HTTPException(503,'M20 trajectory review unavailable or invalid')
+        frame=review.frame(timestamp)
+        row=review.ball_review.trajectory.frame(frame.frame)
+        return Response(content=row.model_dump_json(),media_type='application/json')
 
     @app.get('/matches/{match_id}/view',response_model=Review,dependencies=secured)
     def match_view(match_id:str,workspace:str|None=Header(default=None,alias='X-TactiqAI-View')):
@@ -295,7 +314,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     app.state.highlights=highlights
     app.include_router(highlights.router(authorize))
     from src.assistant.service import UnifiedMatchAssistant
-    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews})
+    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews,'m20':cv_m20_reviews})
     from .cv_review_labels import review_router
     annotation_router,app.state.cv_human_review=review_router(authorize,cv_reviews)
     app.include_router(annotation_router)

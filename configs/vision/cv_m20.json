@@ -1,0 +1,38 @@
+{
+  "version": "cv-m20-v1",
+  "detector": {
+    "checkpoint": "outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+    "sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+    "global_resolution": 640,
+    "crop_resolution": 640,
+    "threshold": 0.35,
+    "global_interval_frames": 1,
+    "maximum_regions": 3,
+    "minimum_region_px": 160,
+    "maximum_region_px": 512
+  },
+  "association": {
+    "minimum_birth_hits": 2,
+    "maximum_hypotheses": 4,
+    "prediction_seconds": 0.35,
+    "ambiguity_margin": 0.12,
+    "max_image_diagonals_per_second": 2.0,
+    "movement_slack_px": 12.0
+  },
+  "motion": {
+    "models": ["constant_velocity", "curved_acceleration", "maneuver", "occlusion_diffuse"],
+    "initial_probabilities": [0.55, 0.20, 0.15, 0.10],
+    "process_acceleration_diagonals": [0.12, 0.40, 1.50, 2.50],
+    "switch_rate_per_second": 1.2,
+    "measurement_sigma_px": 4.0,
+    "initial_position_sigma_px": 8.0,
+    "initial_velocity_diagonals": 0.2,
+    "maximum_mahalanobis_squared": 16.0,
+    "minimum_appearance_similarity": 0.25,
+    "camera_unknown_inflation_px": 4.0,
+    "maximum_covariance_radius_diagonals": 0.30
+  },
+  "pass_policy": "reuse_m19_unchanged",
+  "independent_accuracy": "pending_human_review",
+  "promotion": "experimental_opt_in"
+}

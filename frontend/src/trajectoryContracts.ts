@@ -1,0 +1,8 @@
+import {z} from 'zod';
+const point=z.tuple([z.number(),z.number()]);
+const box=z.tuple([z.number(),z.number(),z.number(),z.number()]);
+export const trajectorySchema=z.object({schema_version:z.literal('ball-m20-debug-v1'),frame:z.number(),timestamp:z.number(),camera_epoch:z.number(),state:z.enum(['OBSERVED','PREDICTED','AMBIGUOUS','UNKNOWN']),selected_candidate_id:z.string().nullable(),prediction_only:z.boolean(),hypotheses:z.array(z.object({track_id:z.number(),mean:point,velocity:point,acceleration:point,covariance:z.tuple([point,point]),radius90_px:z.number(),motion_probabilities:z.record(z.string(),z.number()),age_seconds:z.number(),camera_status:z.string(),confirmed:z.boolean()})),search_regions:z.array(z.object({track_id:z.number(),bbox:box,radius90_px:z.number()})),candidates:z.array(z.object({candidate_id:z.string(),decision:z.enum(['OBSERVED','COMPETING','REJECTED']),reason:z.string(),visual_confidence:z.number(),appearance_similarity:z.number().nullable(),mahalanobis_squared:z.number().nullable(),association_score:z.number().nullable()})),events:z.array(z.string()),global_inference:z.boolean(),inference_seconds:z.number(),crop_inference_seconds:z.number(),tracking_confidence:z.number(),independent_accuracy:z.literal('pending_human_review')});
+export type Trajectory=z.infer<typeof trajectorySchema>;
+const comparisonRow=z.object({direct_observed_frames:z.number(),frames:z.number(),observed_track_changes:z.number(),longest_direct_run_frames:z.number(),qualified_pass_estimates:z.number(),transfer_candidates:z.number()});
+export const trajectoryComparisonSchema=z.object({m19:comparisonRow,m20:comparisonRow});
+export type TrajectoryComparison=z.infer<typeof trajectoryComparisonSchema>;

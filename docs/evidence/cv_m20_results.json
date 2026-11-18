@@ -1,0 +1,2760 @@
+{
+  "milestone": "M20",
+  "date": "2026-11-18",
+  "engineering_status": "implemented_and_experimentally_evaluated",
+  "independent_accuracy_acceptance": "pending_human_review",
+  "default_changed": false,
+  "primary_run": "outputs/m20/run_v1",
+  "comparison": [
+    {
+      "recording_id": "test_match",
+      "frames": 541,
+      "m14": {
+        "frames": 541,
+        "direct_observed_frames": 214,
+        "direct_observed_fraction": 0.3955637707948244,
+        "predicted_only_frames": 199,
+        "track_ids": 11,
+        "observed_track_changes": 10,
+        "longest_direct_run_frames": 28,
+        "states": {
+          "LOST": 105,
+          "DETECTED": 33,
+          "TRACKED": 203,
+          "OCCLUDED": 122,
+          "PREDICTED": 77,
+          "AMBIGUOUS": 1
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m16": {
+        "frames": 541,
+        "direct_observed_frames": 393,
+        "direct_observed_fraction": 0.7264325323475046,
+        "predicted_only_frames": 63,
+        "track_ids": 20,
+        "observed_track_changes": 19,
+        "longest_direct_run_frames": 35,
+        "states": {
+          "LOST": 56,
+          "DETECTED": 47,
+          "TRACKED": 373,
+          "OCCLUDED": 53,
+          "AMBIGUOUS": 2,
+          "PREDICTED": 10
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19": {
+        "frames": 541,
+        "direct_observed_frames": 408,
+        "direct_observed_fraction": 0.7541589648798521,
+        "predicted_only_frames": 101,
+        "track_ids": 8,
+        "observed_track_changes": 11,
+        "longest_direct_run_frames": 37,
+        "states": {
+          "LOST": 16,
+          "DETECTED": 5,
+          "TRACKED": 408,
+          "AMBIGUOUS": 11,
+          "OCCLUDED": 78,
+          "PREDICTED": 23
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m20": {
+        "frames": 541,
+        "direct_observed_frames": 410,
+        "direct_observed_fraction": 0.7578558225508318,
+        "predicted_only_frames": 93,
+        "track_ids": 11,
+        "observed_track_changes": 17,
+        "longest_direct_run_frames": 36,
+        "states": {
+          "LOST": 20,
+          "DETECTED": 5,
+          "TRACKED": 410,
+          "AMBIGUOUS": 13,
+          "OCCLUDED": 77,
+          "PREDICTED": 16
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19_passes": {
+        "frames": 541,
+        "ball_observed_frames": 408,
+        "ball_observed_fraction": 0.7541589648798521,
+        "stable_contact_runs": 22,
+        "completed_pass_estimates": 1,
+        "transfer_candidates": 9,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 133,
+          "NO_PLAYER_CONTACT": 200,
+          "CLEAR_LOWER_BODY_PROXIMITY": 208
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+          "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+          "TEAM_UNCERTAIN": 3,
+          "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m20_passes": {
+        "frames": 541,
+        "ball_observed_frames": 410,
+        "ball_observed_fraction": 0.7578558225508318,
+        "stable_contact_runs": 19,
+        "completed_pass_estimates": 1,
+        "transfer_candidates": 9,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 131,
+          "NO_PLAYER_CONTACT": 200,
+          "CLEAR_LOWER_BODY_PROXIMITY": 210
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 3,
+          "BALL_OBSERVATION_GAP": 2,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+          "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+          "TEAM_UNCERTAIN": 3,
+          "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    },
+    {
+      "recording_id": "team_goal",
+      "frames": 500,
+      "m14": {
+        "frames": 500,
+        "direct_observed_frames": 39,
+        "direct_observed_fraction": 0.078,
+        "predicted_only_frames": 98,
+        "track_ids": 11,
+        "observed_track_changes": 10,
+        "longest_direct_run_frames": 6,
+        "states": {
+          "LOST": 340,
+          "DETECTED": 31,
+          "AMBIGUOUS": 3,
+          "TRACKED": 28,
+          "OCCLUDED": 19,
+          "PREDICTED": 79
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m16": {
+        "frames": 500,
+        "direct_observed_frames": 6,
+        "direct_observed_fraction": 0.012,
+        "predicted_only_frames": 9,
+        "track_ids": 3,
+        "observed_track_changes": 2,
+        "longest_direct_run_frames": 3,
+        "states": {
+          "LOST": 468,
+          "DETECTED": 20,
+          "OCCLUDED": 8,
+          "PREDICTED": 1,
+          "TRACKED": 3
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19": {
+        "frames": 500,
+        "direct_observed_frames": 6,
+        "direct_observed_fraction": 0.012,
+        "predicted_only_frames": 24,
+        "track_ids": 3,
+        "observed_track_changes": 2,
+        "longest_direct_run_frames": 3,
+        "states": {
+          "LOST": 455,
+          "DETECTED": 15,
+          "TRACKED": 6,
+          "OCCLUDED": 21,
+          "PREDICTED": 3
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m20": {
+        "frames": 500,
+        "direct_observed_frames": 30,
+        "direct_observed_fraction": 0.06,
+        "predicted_only_frames": 32,
+        "track_ids": 3,
+        "observed_track_changes": 2,
+        "longest_direct_run_frames": 7,
+        "states": {
+          "LOST": 423,
+          "DETECTED": 14,
+          "TRACKED": 30,
+          "OCCLUDED": 25,
+          "AMBIGUOUS": 1,
+          "PREDICTED": 7
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19_passes": {
+        "frames": 500,
+        "ball_observed_frames": 6,
+        "ball_observed_fraction": 0.012,
+        "stable_contact_runs": 0,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 0,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 494,
+          "NO_PLAYER_CONTACT": 6
+        },
+        "candidate_reasons": {},
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m20_passes": {
+        "frames": 500,
+        "ball_observed_frames": 30,
+        "ball_observed_fraction": 0.06,
+        "stable_contact_runs": 0,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 0,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 470,
+          "NO_PLAYER_CONTACT": 29,
+          "CLEAR_LOWER_BODY_PROXIMITY": 1
+        },
+        "candidate_reasons": {},
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    },
+    {
+      "recording_id": "southampton",
+      "frames": 660,
+      "m14": {
+        "frames": 660,
+        "direct_observed_frames": 163,
+        "direct_observed_fraction": 0.24696969696969698,
+        "predicted_only_frames": 181,
+        "track_ids": 10,
+        "observed_track_changes": 9,
+        "longest_direct_run_frames": 16,
+        "states": {
+          "DETECTED": 25,
+          "TRACKED": 153,
+          "PREDICTED": 128,
+          "LOST": 297,
+          "OCCLUDED": 53,
+          "AMBIGUOUS": 4
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m16": {
+        "frames": 660,
+        "direct_observed_frames": 77,
+        "direct_observed_fraction": 0.11666666666666667,
+        "predicted_only_frames": 56,
+        "track_ids": 14,
+        "observed_track_changes": 13,
+        "longest_direct_run_frames": 13,
+        "states": {
+          "LOST": 479,
+          "DETECTED": 61,
+          "OCCLUDED": 26,
+          "PREDICTED": 30,
+          "TRACKED": 63,
+          "AMBIGUOUS": 1
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19": {
+        "frames": 660,
+        "direct_observed_frames": 96,
+        "direct_observed_fraction": 0.14545454545454545,
+        "predicted_only_frames": 130,
+        "track_ids": 11,
+        "observed_track_changes": 11,
+        "longest_direct_run_frames": 13,
+        "states": {
+          "LOST": 408,
+          "DETECTED": 22,
+          "TRACKED": 96,
+          "OCCLUDED": 64,
+          "PREDICTED": 66,
+          "AMBIGUOUS": 4
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m20": {
+        "frames": 660,
+        "direct_observed_frames": 147,
+        "direct_observed_fraction": 0.22272727272727272,
+        "predicted_only_frames": 117,
+        "track_ids": 14,
+        "observed_track_changes": 21,
+        "longest_direct_run_frames": 19,
+        "states": {
+          "LOST": 372,
+          "DETECTED": 12,
+          "TRACKED": 147,
+          "OCCLUDED": 58,
+          "PREDICTED": 59,
+          "AMBIGUOUS": 12
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "m19_passes": {
+        "frames": 660,
+        "ball_observed_frames": 96,
+        "ball_observed_fraction": 0.14545454545454545,
+        "stable_contact_runs": 4,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 2,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 564,
+          "NO_PLAYER_CONTACT": 62,
+          "CLEAR_LOWER_BODY_PROXIMITY": 34
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "TEAM_UNCERTAIN": 2
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m20_passes": {
+        "frames": 660,
+        "ball_observed_frames": 147,
+        "ball_observed_fraction": 0.22272727272727272,
+        "stable_contact_runs": 7,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 2,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 513,
+          "NO_PLAYER_CONTACT": 60,
+          "CLEAR_LOWER_BODY_PROXIMITY": 86,
+          "AMBIGUOUS_CONTACT": 1
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "BALL_OBSERVATION_GAP": 1,
+          "TEAM_UNCERTAIN": 2,
+          "CONTESTED_LOWER_BODY_CONTACT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    }
+  ],
+  "frozen_baseline_passes": {
+    "test_match": {
+      "m14": {
+        "frames": 541,
+        "ball_observed_frames": 214,
+        "ball_observed_fraction": 0.3955637707948244,
+        "stable_contact_runs": 19,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 5,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 327,
+          "NO_PLAYER_CONTACT": 105,
+          "CLEAR_LOWER_BODY_PROXIMITY": 109
+        },
+        "candidate_reasons": {
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 4,
+          "BALL_OBSERVATION_GAP": 3,
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "NO_OBSERVED_RELEASE_AND_FLIGHT": 1,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 1,
+          "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 1,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m16": {
+        "frames": 541,
+        "ball_observed_frames": 393,
+        "ball_observed_fraction": 0.7264325323475046,
+        "stable_contact_runs": 22,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 8,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 148,
+          "NO_PLAYER_CONTACT": 201,
+          "CLEAR_LOWER_BODY_PROXIMITY": 192
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 4,
+          "BALL_OBSERVATION_GAP": 3,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+          "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 3,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+          "TEAM_UNCERTAIN": 1,
+          "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m19": {
+        "frames": 541,
+        "ball_observed_frames": 408,
+        "ball_observed_fraction": 0.7541589648798521,
+        "stable_contact_runs": 22,
+        "completed_pass_estimates": 1,
+        "transfer_candidates": 9,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 133,
+          "NO_PLAYER_CONTACT": 200,
+          "CLEAR_LOWER_BODY_PROXIMITY": 208
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+          "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+          "TEAM_UNCERTAIN": 3,
+          "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    },
+    "team_goal": {
+      "m14": {
+        "frames": 500,
+        "ball_observed_frames": 39,
+        "ball_observed_fraction": 0.078,
+        "stable_contact_runs": 4,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 1,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 461,
+          "CLEAR_LOWER_BODY_PROXIMITY": 20,
+          "NO_PLAYER_CONTACT": 19
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 1,
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 1,
+          "BALL_OBSERVATION_GAP": 1,
+          "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 1,
+          "RECEIVER_NOT_VISIBLE_AT_RELEASE": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m16": {
+        "frames": 500,
+        "ball_observed_frames": 6,
+        "ball_observed_fraction": 0.012,
+        "stable_contact_runs": 0,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 0,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 494,
+          "NO_PLAYER_CONTACT": 6
+        },
+        "candidate_reasons": {},
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m19": {
+        "frames": 500,
+        "ball_observed_frames": 6,
+        "ball_observed_fraction": 0.012,
+        "stable_contact_runs": 0,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 0,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 494,
+          "NO_PLAYER_CONTACT": 6
+        },
+        "candidate_reasons": {},
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    },
+    "southampton": {
+      "m14": {
+        "frames": 660,
+        "ball_observed_frames": 163,
+        "ball_observed_fraction": 0.24696969696969698,
+        "stable_contact_runs": 5,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 2,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 497,
+          "NO_PLAYER_CONTACT": 110,
+          "CLEAR_LOWER_BODY_PROXIMITY": 52,
+          "AMBIGUOUS_CONTACT": 1
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "TEAM_UNCERTAIN": 2,
+          "CONTESTED_LOWER_BODY_CONTACT": 1
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m16": {
+        "frames": 660,
+        "ball_observed_frames": 77,
+        "ball_observed_fraction": 0.11666666666666667,
+        "stable_contact_runs": 4,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 2,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 583,
+          "NO_PLAYER_CONTACT": 45,
+          "CLEAR_LOWER_BODY_PROXIMITY": 32
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "TEAM_UNCERTAIN": 2
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      },
+      "m19": {
+        "frames": 660,
+        "ball_observed_frames": 96,
+        "ball_observed_fraction": 0.14545454545454545,
+        "stable_contact_runs": 4,
+        "completed_pass_estimates": 0,
+        "transfer_candidates": 2,
+        "frame_diagnostics": {
+          "BALL_NOT_DIRECTLY_OBSERVED": 564,
+          "NO_PLAYER_CONTACT": 62,
+          "CLEAR_LOWER_BODY_PROXIMITY": 34
+        },
+        "candidate_reasons": {
+          "BALL_TRACK_DISCONTINUITY": 2,
+          "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+          "BALL_OBSERVATION_GAP": 2,
+          "TEAM_UNCERTAIN": 2
+        },
+        "goal_count": null,
+        "shot_count": null,
+        "pass_attempts": null,
+        "pass_accuracy": null,
+        "independent_event_accuracy": null
+      }
+    }
+  },
+  "experiment": {
+    "version": "cv-m20-v1",
+    "config": {
+      "version": "cv-m20-v1",
+      "detector": {
+        "checkpoint": "outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+        "sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+        "global_resolution": 640,
+        "crop_resolution": 640,
+        "threshold": 0.35,
+        "global_interval_frames": 1,
+        "maximum_regions": 3,
+        "minimum_region_px": 160,
+        "maximum_region_px": 512
+      },
+      "association": {
+        "minimum_birth_hits": 2,
+        "maximum_hypotheses": 4,
+        "prediction_seconds": 0.35,
+        "ambiguity_margin": 0.12,
+        "max_image_diagonals_per_second": 2.0,
+        "movement_slack_px": 12.0
+      },
+      "motion": {
+        "models": [
+          "constant_velocity",
+          "curved_acceleration",
+          "maneuver",
+          "occlusion_diffuse"
+        ],
+        "initial_probabilities": [
+          0.55,
+          0.2,
+          0.15,
+          0.1
+        ],
+        "process_acceleration_diagonals": [
+          0.12,
+          0.4,
+          1.5,
+          2.5
+        ],
+        "switch_rate_per_second": 1.2,
+        "measurement_sigma_px": 4.0,
+        "initial_position_sigma_px": 8.0,
+        "initial_velocity_diagonals": 0.2,
+        "maximum_mahalanobis_squared": 16.0,
+        "minimum_appearance_similarity": 0.25,
+        "camera_unknown_inflation_px": 4.0,
+        "maximum_covariance_radius_diagonals": 0.3
+      },
+      "pass_policy": "reuse_m19_unchanged",
+      "independent_accuracy": "pending_human_review",
+      "promotion": "experimental_opt_in"
+    },
+    "config_sha256": "02dade0caf0de61ba32df4c4f13aa6a36e70784f830c7acd3aecc785b1670d43",
+    "clips": {
+      "test_match": {
+        "source": {
+          "video_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+          "frames_sha256": "cde55040f4f06aaca2b79bac2f8cfd7be0f6441a58184ae149db2686b3dabc9d",
+          "frames": 541,
+          "fps": 23.976023976023978,
+          "width": 1080,
+          "height": 1080
+        },
+        "source_pts_sha256": "591228265a4153cd4a40e3fbe700b46fb253dc14912142676507970eca7fc165",
+        "frozen_baselines": {
+          "m14": {
+            "frames": 541,
+            "direct_observed_frames": 214,
+            "direct_observed_fraction": 0.3955637707948244,
+            "predicted_only_frames": 199,
+            "track_ids": 11,
+            "observed_track_changes": 10,
+            "longest_direct_run_frames": 28,
+            "states": {
+              "LOST": 105,
+              "DETECTED": 33,
+              "TRACKED": 203,
+              "OCCLUDED": 122,
+              "PREDICTED": 77,
+              "AMBIGUOUS": 1
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m16": {
+            "frames": 541,
+            "direct_observed_frames": 393,
+            "direct_observed_fraction": 0.7264325323475046,
+            "predicted_only_frames": 63,
+            "track_ids": 20,
+            "observed_track_changes": 19,
+            "longest_direct_run_frames": 35,
+            "states": {
+              "LOST": 56,
+              "DETECTED": 47,
+              "TRACKED": 373,
+              "OCCLUDED": 53,
+              "AMBIGUOUS": 2,
+              "PREDICTED": 10
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m19": {
+            "frames": 541,
+            "direct_observed_frames": 408,
+            "direct_observed_fraction": 0.7541589648798521,
+            "predicted_only_frames": 101,
+            "track_ids": 8,
+            "observed_track_changes": 11,
+            "longest_direct_run_frames": 37,
+            "states": {
+              "LOST": 16,
+              "DETECTED": 5,
+              "TRACKED": 408,
+              "AMBIGUOUS": 11,
+              "OCCLUDED": 78,
+              "PREDICTED": 23
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          }
+        },
+        "m19_same_global_inputs": {
+          "ball": {
+            "frames": 541,
+            "direct_observed_frames": 408,
+            "direct_observed_fraction": 0.7541589648798521,
+            "predicted_only_frames": 101,
+            "track_ids": 8,
+            "observed_track_changes": 11,
+            "longest_direct_run_frames": 37,
+            "states": {
+              "LOST": 16,
+              "DETECTED": 5,
+              "TRACKED": 408,
+              "AMBIGUOUS": 11,
+              "OCCLUDED": 78,
+              "PREDICTED": 23
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 541,
+            "ball_observed_frames": 408,
+            "ball_observed_fraction": 0.7541589648798521,
+            "stable_contact_runs": 22,
+            "completed_pass_estimates": 1,
+            "transfer_candidates": 9,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 133,
+              "NO_PLAYER_CONTACT": 200,
+              "CLEAR_LOWER_BODY_PROXIMITY": 208
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "BALL_OBSERVATION_GAP": 2,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 3,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "inference_seconds": 51.26792950707022
+        },
+        "m20": {
+          "ball": {
+            "frames": 541,
+            "direct_observed_frames": 410,
+            "direct_observed_fraction": 0.7578558225508318,
+            "predicted_only_frames": 93,
+            "track_ids": 11,
+            "observed_track_changes": 17,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "LOST": 20,
+              "DETECTED": 5,
+              "TRACKED": 410,
+              "AMBIGUOUS": 13,
+              "OCCLUDED": 77,
+              "PREDICTED": 16
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 541,
+            "ball_observed_frames": 410,
+            "ball_observed_fraction": 0.7578558225508318,
+            "stable_contact_runs": 19,
+            "completed_pass_estimates": 1,
+            "transfer_candidates": 9,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 131,
+              "NO_PLAYER_CONTACT": 200,
+              "CLEAR_LOWER_BODY_PROXIMITY": 210
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 3,
+              "BALL_OBSERVATION_GAP": 2,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 3,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "trajectory": {
+            "states": {
+              "UNKNOWN": 25,
+              "OBSERVED": 410,
+              "AMBIGUOUS": 13,
+              "PREDICTED": 93
+            },
+            "events": {
+              "COMPETING_VISUAL_HYPOTHESES": 13,
+              "REACQUIRED_WITH_FRESH_VISUAL_EVIDENCE": 49,
+              "TRACK_LOST": 3
+            },
+            "candidate_decisions": {
+              "REJECTED": 3988,
+              "COMPETING": 75,
+              "OBSERVED": 410
+            },
+            "candidate_reasons": {
+              "BELOW_FROZEN_VISUAL_THRESHOLD": 3977,
+              "WAIT_VISUAL_BIRTH_OR_RESOLVE_COMPETITION": 75,
+              "ACCEPTED_CURRENT_VISUAL_MEASUREMENT": 410,
+              "INNOVATION_OR_APPEARANCE_GATE": 11
+            },
+            "ambiguity_frame_fraction": 0.024029574861367836,
+            "global_detection_frames": 541,
+            "real_crop_views": 686,
+            "frames_with_regions": 517,
+            "mean_sum_crop_area_fraction": 0.038104298674658775,
+            "mean_prediction_radius_px": 59.544198531248696,
+            "inference_seconds": 64.79702679102775,
+            "inference_median_seconds": 0.11266787489876151,
+            "inference_p95_seconds": 0.13673716608900577,
+            "crop_inference_seconds": 13.529097283957526,
+            "tracker_seconds": 0.41389837651513517,
+            "next_frame_search_proxy": {
+              "reference": "frozen_M19_model_observations_not_human_truth",
+              "reference_frames": 408,
+              "reference_frames_with_regions": 405,
+              "hits": 398,
+              "hit_fraction_all_reference_frames": 0.9754901960784313,
+              "hit_fraction_when_regions_exist": 0.9827160493827161
+            },
+            "independent_detection_precision": null,
+            "independent_detection_recall": null,
+            "independent_localization_error": null,
+            "independent_reacquisition_success": null,
+            "incorrect_ball_associations": null,
+            "pass_precision_recall_f1": null
+          },
+          "processing_wall_seconds": 67.36499799997546,
+          "processing_fps": 8.030876806382405
+        }
+      },
+      "team_goal": {
+        "source": {
+          "video_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+          "frames_sha256": "49fa39be90dd5d3c1774d38d28e5103b9a4aafe32c1d453d909f68b5da1f3799",
+          "frames": 500,
+          "fps": 25.0,
+          "width": 640,
+          "height": 360
+        },
+        "source_pts_sha256": "83df920aad0dc103c8316b68ac3ea995e1fb3f06339cf3ad4ff3815a0044d794",
+        "frozen_baselines": {
+          "m14": {
+            "frames": 500,
+            "direct_observed_frames": 39,
+            "direct_observed_fraction": 0.078,
+            "predicted_only_frames": 98,
+            "track_ids": 11,
+            "observed_track_changes": 10,
+            "longest_direct_run_frames": 6,
+            "states": {
+              "LOST": 340,
+              "DETECTED": 31,
+              "AMBIGUOUS": 3,
+              "TRACKED": 28,
+              "OCCLUDED": 19,
+              "PREDICTED": 79
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m16": {
+            "frames": 500,
+            "direct_observed_frames": 6,
+            "direct_observed_fraction": 0.012,
+            "predicted_only_frames": 9,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 3,
+            "states": {
+              "LOST": 468,
+              "DETECTED": 20,
+              "OCCLUDED": 8,
+              "PREDICTED": 1,
+              "TRACKED": 3
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m19": {
+            "frames": 500,
+            "direct_observed_frames": 6,
+            "direct_observed_fraction": 0.012,
+            "predicted_only_frames": 24,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 3,
+            "states": {
+              "LOST": 455,
+              "DETECTED": 15,
+              "TRACKED": 6,
+              "OCCLUDED": 21,
+              "PREDICTED": 3
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          }
+        },
+        "m19_same_global_inputs": {
+          "ball": {
+            "frames": 500,
+            "direct_observed_frames": 6,
+            "direct_observed_fraction": 0.012,
+            "predicted_only_frames": 24,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 3,
+            "states": {
+              "LOST": 455,
+              "DETECTED": 15,
+              "TRACKED": 6,
+              "OCCLUDED": 21,
+              "PREDICTED": 3
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 500,
+            "ball_observed_frames": 6,
+            "ball_observed_fraction": 0.012,
+            "stable_contact_runs": 0,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 0,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 494,
+              "NO_PLAYER_CONTACT": 6
+            },
+            "candidate_reasons": {},
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "inference_seconds": 8.107696287916042
+        },
+        "m20": {
+          "ball": {
+            "frames": 500,
+            "direct_observed_frames": 30,
+            "direct_observed_fraction": 0.06,
+            "predicted_only_frames": 32,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 7,
+            "states": {
+              "LOST": 423,
+              "DETECTED": 14,
+              "TRACKED": 30,
+              "OCCLUDED": 25,
+              "AMBIGUOUS": 1,
+              "PREDICTED": 7
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 500,
+            "ball_observed_frames": 30,
+            "ball_observed_fraction": 0.06,
+            "stable_contact_runs": 0,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 0,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 470,
+              "NO_PLAYER_CONTACT": 29,
+              "CLEAR_LOWER_BODY_PROXIMITY": 1
+            },
+            "candidate_reasons": {},
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "trajectory": {
+            "states": {
+              "UNKNOWN": 437,
+              "OBSERVED": 30,
+              "PREDICTED": 32,
+              "AMBIGUOUS": 1
+            },
+            "events": {
+              "REACQUIRED_WITH_FRESH_VISUAL_EVIDENCE": 10,
+              "COMPETING_VISUAL_HYPOTHESES": 1,
+              "TRACK_LOST": 2
+            },
+            "candidate_decisions": {
+              "REJECTED": 1005,
+              "COMPETING": 20,
+              "OBSERVED": 30
+            },
+            "candidate_reasons": {
+              "BELOW_FROZEN_VISUAL_THRESHOLD": 1003,
+              "WAIT_VISUAL_BIRTH_OR_RESOLVE_COMPETITION": 20,
+              "ACCEPTED_CURRENT_VISUAL_MEASUREMENT": 30,
+              "INNOVATION_OR_APPEARANCE_GATE": 2
+            },
+            "ambiguity_frame_fraction": 0.002,
+            "global_detection_frames": 500,
+            "real_crop_views": 71,
+            "frames_with_regions": 61,
+            "mean_sum_crop_area_fraction": 0.01577777777777778,
+            "mean_prediction_radius_px": 38.01812205178411,
+            "inference_seconds": 9.698546705767512,
+            "inference_median_seconds": 0.016711395990569144,
+            "inference_p95_seconds": 0.044758530211402095,
+            "crop_inference_seconds": 1.5908504178514704,
+            "tracker_seconds": 0.08083709934726357,
+            "next_frame_search_proxy": {
+              "reference": "frozen_M19_model_observations_not_human_truth",
+              "reference_frames": 6,
+              "reference_frames_with_regions": 4,
+              "hits": 4,
+              "hit_fraction_all_reference_frames": 0.6666666666666666,
+              "hit_fraction_when_regions_exist": 1.0
+            },
+            "independent_detection_precision": null,
+            "independent_detection_recall": null,
+            "independent_localization_error": null,
+            "independent_reacquisition_success": null,
+            "incorrect_ball_associations": null,
+            "pass_precision_recall_f1": null
+          },
+          "processing_wall_seconds": 10.153375333058648,
+          "processing_fps": 49.244707656185675
+        }
+      },
+      "southampton": {
+        "source": {
+          "video_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+          "frames_sha256": "9941f605719d2b4c80ffd96c2fca5f7154560a6863d1ef4a73204442c3922f20",
+          "frames": 660,
+          "fps": 29.97002997002997,
+          "width": 1280,
+          "height": 720
+        },
+        "source_pts_sha256": "30afc54ba4a9091cdc7e2f9a50b21cd96050224f11c1f5cc53056e30279fd5ae",
+        "frozen_baselines": {
+          "m14": {
+            "frames": 660,
+            "direct_observed_frames": 163,
+            "direct_observed_fraction": 0.24696969696969698,
+            "predicted_only_frames": 181,
+            "track_ids": 10,
+            "observed_track_changes": 9,
+            "longest_direct_run_frames": 16,
+            "states": {
+              "DETECTED": 25,
+              "TRACKED": 153,
+              "PREDICTED": 128,
+              "LOST": 297,
+              "OCCLUDED": 53,
+              "AMBIGUOUS": 4
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m16": {
+            "frames": 660,
+            "direct_observed_frames": 77,
+            "direct_observed_fraction": 0.11666666666666667,
+            "predicted_only_frames": 56,
+            "track_ids": 14,
+            "observed_track_changes": 13,
+            "longest_direct_run_frames": 13,
+            "states": {
+              "LOST": 479,
+              "DETECTED": 61,
+              "OCCLUDED": 26,
+              "PREDICTED": 30,
+              "TRACKED": 63,
+              "AMBIGUOUS": 1
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "m19": {
+            "frames": 660,
+            "direct_observed_frames": 96,
+            "direct_observed_fraction": 0.14545454545454545,
+            "predicted_only_frames": 130,
+            "track_ids": 11,
+            "observed_track_changes": 11,
+            "longest_direct_run_frames": 13,
+            "states": {
+              "LOST": 408,
+              "DETECTED": 22,
+              "TRACKED": 96,
+              "OCCLUDED": 64,
+              "PREDICTED": 66,
+              "AMBIGUOUS": 4
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          }
+        },
+        "m19_same_global_inputs": {
+          "ball": {
+            "frames": 660,
+            "direct_observed_frames": 96,
+            "direct_observed_fraction": 0.14545454545454545,
+            "predicted_only_frames": 130,
+            "track_ids": 11,
+            "observed_track_changes": 11,
+            "longest_direct_run_frames": 13,
+            "states": {
+              "LOST": 408,
+              "DETECTED": 22,
+              "TRACKED": 96,
+              "OCCLUDED": 64,
+              "PREDICTED": 66,
+              "AMBIGUOUS": 4
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 660,
+            "ball_observed_frames": 96,
+            "ball_observed_fraction": 0.14545454545454545,
+            "stable_contact_runs": 4,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 564,
+              "NO_PLAYER_CONTACT": 62,
+              "CLEAR_LOWER_BODY_PROXIMITY": 34
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+              "BALL_OBSERVATION_GAP": 2,
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "inference_seconds": 84.7795329556102
+        },
+        "m20": {
+          "ball": {
+            "frames": 660,
+            "direct_observed_frames": 147,
+            "direct_observed_fraction": 0.22272727272727272,
+            "predicted_only_frames": 117,
+            "track_ids": 14,
+            "observed_track_changes": 21,
+            "longest_direct_run_frames": 19,
+            "states": {
+              "LOST": 372,
+              "DETECTED": 12,
+              "TRACKED": 147,
+              "OCCLUDED": 58,
+              "PREDICTED": 59,
+              "AMBIGUOUS": 12
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes": {
+            "frames": 660,
+            "ball_observed_frames": 147,
+            "ball_observed_fraction": 0.22272727272727272,
+            "stable_contact_runs": 7,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 513,
+              "NO_PLAYER_CONTACT": 60,
+              "CLEAR_LOWER_BODY_PROXIMITY": 86,
+              "AMBIGUOUS_CONTACT": 1
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "BALL_OBSERVATION_GAP": 1,
+              "TEAM_UNCERTAIN": 2,
+              "CONTESTED_LOWER_BODY_CONTACT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          },
+          "trajectory": {
+            "states": {
+              "UNKNOWN": 384,
+              "OBSERVED": 147,
+              "PREDICTED": 117,
+              "AMBIGUOUS": 12
+            },
+            "events": {
+              "REACQUIRED_WITH_FRESH_VISUAL_EVIDENCE": 46,
+              "COMPETING_VISUAL_HYPOTHESES": 12,
+              "TRACK_LOST": 2
+            },
+            "candidate_decisions": {
+              "REJECTED": 4551,
+              "COMPETING": 75,
+              "OBSERVED": 147
+            },
+            "candidate_reasons": {
+              "BELOW_FROZEN_VISUAL_THRESHOLD": 4545,
+              "WAIT_VISUAL_BIRTH_OR_RESOLVE_COMPETITION": 75,
+              "ACCEPTED_CURRENT_VISUAL_MEASUREMENT": 147,
+              "INNOVATION_OR_APPEARANCE_GATE": 6
+            },
+            "ambiguity_frame_fraction": 0.01818181818181818,
+            "global_detection_frames": 660,
+            "real_crop_views": 442,
+            "frames_with_regions": 273,
+            "mean_sum_crop_area_fraction": 0.02341266835016835,
+            "mean_prediction_radius_px": 61.66312110123597,
+            "inference_seconds": 93.73918945051264,
+            "inference_median_seconds": 0.13187989545986056,
+            "inference_p95_seconds": 0.1814232913602609,
+            "crop_inference_seconds": 8.959656494902447,
+            "tracker_seconds": 0.3691580817103386,
+            "next_frame_search_proxy": {
+              "reference": "frozen_M19_model_observations_not_human_truth",
+              "reference_frames": 96,
+              "reference_frames_with_regions": 93,
+              "hits": 82,
+              "hit_fraction_all_reference_frames": 0.8541666666666666,
+              "hit_fraction_when_regions_exist": 0.8817204301075269
+            },
+            "independent_detection_precision": null,
+            "independent_detection_recall": null,
+            "independent_localization_error": null,
+            "independent_reacquisition_success": null,
+            "incorrect_ball_associations": null,
+            "pass_precision_recall_f1": null
+          },
+          "processing_wall_seconds": 96.41128662507981,
+          "processing_fps": 6.845671529792777
+        }
+      }
+    },
+    "runtime": {
+      "torch": "2.15.0",
+      "opencv": "5.0.0",
+      "device": "mps",
+      "model_load_seconds": 2.606773625011556
+    },
+    "detector_inference": "fresh_global_and_prediction_crops",
+    "independent_accuracy": "pending_human_review",
+    "default_changed": false
+  },
+  "motion_only_ablation": {
+    "source": "outputs/m20/run_v1",
+    "config_sha256": "02dade0caf0de61ba32df4c4f13aa6a36e70784f830c7acd3aecc785b1670d43",
+    "detector_inference": "reused_verified_global_detections_only",
+    "local_crop_candidates_enabled": false,
+    "independent_accuracy": null,
+    "clips": {
+      "test_match": {
+        "ball": {
+          "frames": 541,
+          "direct_observed_frames": 402,
+          "direct_observed_fraction": 0.7430683918669131,
+          "predicted_only_frames": 108,
+          "track_ids": 9,
+          "observed_track_changes": 9,
+          "longest_direct_run_frames": 36,
+          "states": {
+            "LOST": 16,
+            "DETECTED": 5,
+            "TRACKED": 402,
+            "AMBIGUOUS": 10,
+            "OCCLUDED": 88,
+            "PREDICTED": 20
+          },
+          "independent_precision": null,
+          "independent_recall": null
+        },
+        "passes": {
+          "frames": 541,
+          "ball_observed_frames": 402,
+          "ball_observed_fraction": 0.7430683918669131,
+          "stable_contact_runs": 20,
+          "completed_pass_estimates": 1,
+          "transfer_candidates": 9,
+          "frame_diagnostics": {
+            "BALL_NOT_DIRECTLY_OBSERVED": 139,
+            "NO_PLAYER_CONTACT": 200,
+            "CLEAR_LOWER_BODY_PROXIMITY": 202
+          },
+          "candidate_reasons": {
+            "BALL_TRACK_DISCONTINUITY": 3,
+            "BALL_OBSERVATION_GAP": 2,
+            "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+            "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+            "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+            "TEAM_UNCERTAIN": 3,
+            "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+          },
+          "goal_count": null,
+          "shot_count": null,
+          "pass_attempts": null,
+          "pass_accuracy": null,
+          "independent_event_accuracy": null
+        }
+      },
+      "team_goal": {
+        "ball": {
+          "frames": 500,
+          "direct_observed_frames": 7,
+          "direct_observed_fraction": 0.014,
+          "predicted_only_frames": 28,
+          "track_ids": 3,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 3,
+          "states": {
+            "LOST": 450,
+            "DETECTED": 15,
+            "TRACKED": 7,
+            "OCCLUDED": 20,
+            "PREDICTED": 8
+          },
+          "independent_precision": null,
+          "independent_recall": null
+        },
+        "passes": {
+          "frames": 500,
+          "ball_observed_frames": 7,
+          "ball_observed_fraction": 0.014,
+          "stable_contact_runs": 0,
+          "completed_pass_estimates": 0,
+          "transfer_candidates": 0,
+          "frame_diagnostics": {
+            "BALL_NOT_DIRECTLY_OBSERVED": 493,
+            "NO_PLAYER_CONTACT": 6,
+            "CLEAR_LOWER_BODY_PROXIMITY": 1
+          },
+          "candidate_reasons": {},
+          "goal_count": null,
+          "shot_count": null,
+          "pass_attempts": null,
+          "pass_accuracy": null,
+          "independent_event_accuracy": null
+        }
+      },
+      "southampton": {
+        "ball": {
+          "frames": 660,
+          "direct_observed_frames": 90,
+          "direct_observed_fraction": 0.13636363636363635,
+          "predicted_only_frames": 131,
+          "track_ids": 12,
+          "observed_track_changes": 11,
+          "longest_direct_run_frames": 13,
+          "states": {
+            "LOST": 410,
+            "DETECTED": 25,
+            "TRACKED": 90,
+            "OCCLUDED": 70,
+            "PREDICTED": 61,
+            "AMBIGUOUS": 4
+          },
+          "independent_precision": null,
+          "independent_recall": null
+        },
+        "passes": {
+          "frames": 660,
+          "ball_observed_frames": 90,
+          "ball_observed_fraction": 0.13636363636363635,
+          "stable_contact_runs": 5,
+          "completed_pass_estimates": 0,
+          "transfer_candidates": 2,
+          "frame_diagnostics": {
+            "BALL_NOT_DIRECTLY_OBSERVED": 570,
+            "NO_PLAYER_CONTACT": 57,
+            "CLEAR_LOWER_BODY_PROXIMITY": 33
+          },
+          "candidate_reasons": {
+            "BALL_TRACK_DISCONTINUITY": 2,
+            "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 2,
+            "BALL_OBSERVATION_GAP": 2,
+            "TEAM_UNCERTAIN": 2
+          },
+          "goal_count": null,
+          "shot_count": null,
+          "pass_attempts": null,
+          "pass_accuracy": null,
+          "independent_event_accuracy": null
+        }
+      }
+    }
+  },
+  "crop_resolution_benchmark": {
+    "checkpoint_sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+    "ultralytics_version": "8.4.208",
+    "device": "mps",
+    "task_fingerprint": "d09ac4321745a6373fa8f9291f67bd206322bf5655bbc5b2a80ed2300afc0ade",
+    "independent_accuracy": null,
+    "false_positive_rate": null,
+    "selection": "sealed uniform-time ball frames; identical existing M20 planned crops at both resolutions",
+    "results": {
+      "640": {
+        "sampled_frames_with_regions": 17,
+        "crop_views": 23,
+        "seconds": 1.2807045410154387,
+        "above_threshold_candidates": 6,
+        "rows": [
+          {
+            "recording_id": "test_match",
+            "frame": 22,
+            "regions": 2,
+            "seconds": 0.8119895410491154,
+            "candidates": 3,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 67,
+            "regions": 2,
+            "seconds": 0.03813595895189792,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 112,
+            "regions": 1,
+            "seconds": 0.09921033296268433,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 157,
+            "regions": 1,
+            "seconds": 0.018117832951247692,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 202,
+            "regions": 1,
+            "seconds": 0.01824591599870473,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 247,
+            "regions": 2,
+            "seconds": 0.036679791985079646,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 2
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 293,
+            "regions": 2,
+            "seconds": 0.034778499975800514,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 338,
+            "regions": 1,
+            "seconds": 0.020305208046920598,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 383,
+            "regions": 1,
+            "seconds": 0.018275500042364,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 428,
+            "regions": 1,
+            "seconds": 0.018258207943290472,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 473,
+            "regions": 1,
+            "seconds": 0.018109083990566432,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 518,
+            "regions": 1,
+            "seconds": 0.018335958011448383,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "team_goal",
+            "frame": 62,
+            "regions": 1,
+            "seconds": 0.0183371250750497,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 1
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 302,
+            "regions": 1,
+            "seconds": 0.018175999983213842,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 357,
+            "regions": 2,
+            "seconds": 0.03731316700577736,
+            "candidates": 3,
+            "above_frozen_visual_threshold": 1
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 467,
+            "regions": 2,
+            "seconds": 0.035497625009156764,
+            "candidates": 3,
+            "above_frozen_visual_threshold": 1
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 522,
+            "regions": 1,
+            "seconds": 0.02093879203312099,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 1
+          }
+        ]
+      },
+      "960": {
+        "sampled_frames_with_regions": 17,
+        "crop_views": 23,
+        "seconds": 0.9298936672275886,
+        "above_threshold_candidates": 1,
+        "rows": [
+          {
+            "recording_id": "test_match",
+            "frame": 22,
+            "regions": 2,
+            "seconds": 0.09543937491253018,
+            "candidates": 0,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 67,
+            "regions": 2,
+            "seconds": 0.07230275007896125,
+            "candidates": 4,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 112,
+            "regions": 1,
+            "seconds": 0.08714670804329216,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 157,
+            "regions": 1,
+            "seconds": 0.03550812497269362,
+            "candidates": 3,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 202,
+            "regions": 1,
+            "seconds": 0.03542412503156811,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 247,
+            "regions": 2,
+            "seconds": 0.0749936249339953,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 293,
+            "regions": 2,
+            "seconds": 0.07313504093326628,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 338,
+            "regions": 1,
+            "seconds": 0.039206292014569044,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 383,
+            "regions": 1,
+            "seconds": 0.03658654203172773,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 428,
+            "regions": 1,
+            "seconds": 0.03666650003287941,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 473,
+            "regions": 1,
+            "seconds": 0.036405834020115435,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "test_match",
+            "frame": 518,
+            "regions": 1,
+            "seconds": 0.03703016706276685,
+            "candidates": 2,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "team_goal",
+            "frame": 62,
+            "regions": 1,
+            "seconds": 0.037216875003650784,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 1
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 302,
+            "regions": 1,
+            "seconds": 0.036989000043831766,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 357,
+            "regions": 2,
+            "seconds": 0.07856462500058115,
+            "candidates": 4,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 467,
+            "regions": 2,
+            "seconds": 0.07660320808645338,
+            "candidates": 5,
+            "above_frozen_visual_threshold": 0
+          },
+          {
+            "recording_id": "southampton",
+            "frame": 522,
+            "regions": 1,
+            "seconds": 0.040674875024706125,
+            "candidates": 1,
+            "above_frozen_visual_threshold": 0
+          }
+        ]
+      }
+    }
+  },
+  "independent_evaluation": {
+    "dataset_fingerprint": "d09ac4321745a6373fa8f9291f67bd206322bf5655bbc5b2a80ed2300afc0ade",
+    "annotation_file_supplied": false,
+    "independent_accuracy_acceptance": "pending_human_review",
+    "annotations_used": 0,
+    "existing_saved_annotations_preserved": 4,
+    "variants": {
+      "m19": {
+        "status": "awaiting_independent_human_labels",
+        "independent_label_count": 0,
+        "ball": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "precision_wilson95": null,
+          "recall_wilson95": null,
+          "reviewed_frames": 0,
+          "unknown_visibility_frames": 0
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "precision_wilson95": null,
+          "recall_wilson95": null,
+          "exhaustively_reviewed_windows": 0,
+          "unknown_or_incomplete_windows": 0,
+          "reviewed_seconds": 0,
+          "false_positives_per_reviewed_minute": null
+        },
+        "identity": {
+          "reviewed_matched_pairs": 0,
+          "unknown_or_unmatched_pairs": 0,
+          "correct_pairs": 0,
+          "pair_accuracy": null,
+          "wilson95": null,
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "localization": {
+          "matched_human_boxes": 0,
+          "median_pixel_error": null,
+          "mean_pixel_error": null,
+          "p90_pixel_error": null,
+          "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+        },
+        "independent_reacquisition_success": null,
+        "incorrect_ball_associations": null,
+        "temporal_ball_reference_limitation": "Sparse visibility/box tasks do not provide exhaustive ball identity and reacquisition truth. Temporal ball reference tracks are still required."
+      },
+      "m20": {
+        "status": "awaiting_independent_human_labels",
+        "independent_label_count": 0,
+        "ball": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "precision_wilson95": null,
+          "recall_wilson95": null,
+          "reviewed_frames": 0,
+          "unknown_visibility_frames": 0
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "precision_wilson95": null,
+          "recall_wilson95": null,
+          "exhaustively_reviewed_windows": 0,
+          "unknown_or_incomplete_windows": 0,
+          "reviewed_seconds": 0,
+          "false_positives_per_reviewed_minute": null
+        },
+        "identity": {
+          "reviewed_matched_pairs": 0,
+          "unknown_or_unmatched_pairs": 0,
+          "correct_pairs": 0,
+          "pair_accuracy": null,
+          "wilson95": null,
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "localization": {
+          "matched_human_boxes": 0,
+          "median_pixel_error": null,
+          "mean_pixel_error": null,
+          "p90_pixel_error": null,
+          "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+        },
+        "independent_reacquisition_success": null,
+        "incorrect_ball_associations": null,
+        "temporal_ball_reference_limitation": "Sparse visibility/box tasks do not provide exhaustive ball identity and reacquisition truth. Temporal ball reference tracks are still required."
+      }
+    }
+  },
+  "reproducibility": {
+    "exact_hash_matches": [
+      [
+        "test_match",
+        "ball_m20/ball_frames.jsonl",
+        "acb810f1a7b8f4d2df6bcbe0f312f9eb793db1f87a44678490046748ae71504d"
+      ],
+      [
+        "test_match",
+        "ball_m20/video_ball_observations.jsonl",
+        "29ddeb7bfc57e41307292c9a10a1b7f60c212d01445c69650b4d85b63d52dba5"
+      ],
+      [
+        "test_match",
+        "passes_m20/events.json",
+        "d76c296612d23b8ba7cfbf57ab2ff5e90fb9e36486be2d4adf4ccb5b5057b396"
+      ],
+      [
+        "test_match",
+        "passes_m20/evidence_frames.jsonl",
+        "24f280be5b2cc89270a49d61fbacdca97f202a43fca7e5c31d43b1ce5ee484f3"
+      ],
+      [
+        "test_match",
+        "ball_m19_control/ball_frames.jsonl",
+        "d64fe5dddee037bf68c989ba04dbea67eb4d0b6a1d9335f9ea77ac18fa424363"
+      ],
+      [
+        "team_goal",
+        "ball_m20/ball_frames.jsonl",
+        "0df0fd9301abb8ca319023bbc7dada4d237d2e1bf955ebf32bdecffbc9830b5c"
+      ],
+      [
+        "team_goal",
+        "ball_m20/video_ball_observations.jsonl",
+        "c7f60c70a22d185ad97e0c60e770c74d52d76110e4853a785344bac49abc8d1e"
+      ],
+      [
+        "team_goal",
+        "passes_m20/events.json",
+        "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      ],
+      [
+        "team_goal",
+        "passes_m20/evidence_frames.jsonl",
+        "e11c9884f05e596138bf2e20c14528fb1749a1a0c57d30a9e0c9231905a03e6a"
+      ],
+      [
+        "team_goal",
+        "ball_m19_control/ball_frames.jsonl",
+        "ace4716736ab20a8633ff95d91f0db28d148b879b5120f5c0626aa3dc4b84154"
+      ],
+      [
+        "southampton",
+        "ball_m20/ball_frames.jsonl",
+        "a1d54d37bddafec4e18c2dc1fef2d4c8923eb43ce85e2ef9d624df9e6c1ef119"
+      ],
+      [
+        "southampton",
+        "ball_m20/video_ball_observations.jsonl",
+        "7ef795008f3a9ed7031c624a0c58b596e9d2cabdee633d4c994413cd3260f2ea"
+      ],
+      [
+        "southampton",
+        "passes_m20/events.json",
+        "41d7fa6c00aa1412669c0b3924b989e24d2226903eec03d5c337954d8d634fb8"
+      ],
+      [
+        "southampton",
+        "passes_m20/evidence_frames.jsonl",
+        "4658da720bb981f50be1db0a8bd39ce6599cc6dfb005a8b368f1a91d6fd29783"
+      ],
+      [
+        "southampton",
+        "ball_m19_control/ball_frames.jsonl",
+        "62d493f6bc5fe2dd803fcafac3b0904dd7183e6fe6c6e4f8753e59cc927af5b1"
+      ]
+    ],
+    "trajectory_semantics_equal": true,
+    "timing_fields_excluded": [
+      "inference_seconds",
+      "crop_inference_seconds",
+      "tracker_seconds"
+    ]
+  },
+  "live_verification": {
+    "/health": {
+      "status": "ok",
+      "recordings": 12,
+      "processing": "precomputed_artifacts"
+    },
+    "/ready": {
+      "status": "ready",
+      "recordings": 15
+    },
+    "/recordings": {
+      "recordings": [
+        {
+          "recording_id": "117092_clip",
+          "match_id": "117092",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/117092_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "117093_clip",
+          "match_id": "117093",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/117093_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118575_clip",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118575_h1",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_h1/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118575_h2",
+          "match_id": "118575",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118575_h2/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118576_clip",
+          "match_id": "118576",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118576_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118577_clip",
+          "match_id": "118577",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118577_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "118578_clip",
+          "match_id": "118578",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/118578_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "128057_clip",
+          "match_id": "128057",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/128057_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "128058_clip",
+          "match_id": "128058",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/128058_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "132831_clip",
+          "match_id": "132831",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/132831_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "132877_clip",
+          "match_id": "132877",
+          "known": true,
+          "configured": true,
+          "processed": true,
+          "artifact_store": "azure",
+          "status": "available",
+          "artifact_available": true,
+          "artifact_ready": true,
+          "media_available": true,
+          "media_url": "/matches/132877_clip/video.mp4",
+          "source": "soccertrack_structured",
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": true,
+            "tactical_view_available": true,
+            "cv_world_model_available": false,
+            "pitch_calibration_available": false,
+            "ask_available": true,
+            "experimental_events_available": false,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "test_match",
+          "match_id": "test_match",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/test_match/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false,
+            "experimental_events_available": true,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "team_goal",
+          "match_id": "team_goal",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/team_goal/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false,
+            "experimental_events_available": true,
+            "assistant_available": true
+          }
+        },
+        {
+          "recording_id": "southampton",
+          "match_id": "southampton",
+          "status": "available",
+          "source": "cv_experimental",
+          "artifact_ready": false,
+          "media_available": true,
+          "media_url": "/matches/southampton/video.mp4",
+          "diagnostic": null,
+          "capabilities": {
+            "video_available": true,
+            "analytics_available": false,
+            "tactical_view_available": false,
+            "cv_world_model_available": true,
+            "pitch_calibration_available": true,
+            "ask_available": false,
+            "experimental_events_available": true,
+            "assistant_available": true
+          }
+        }
+      ]
+    },
+    "test_match": {
+      "observed_frames": 410,
+      "qualified_estimates": 1,
+      "comparison": {
+        "m19": {
+          "direct_observed_frames": 408,
+          "frames": 541,
+          "observed_track_changes": 11,
+          "longest_direct_run_frames": 37,
+          "qualified_pass_estimates": 1,
+          "transfer_candidates": 9
+        },
+        "m20": {
+          "direct_observed_frames": 410,
+          "frames": 541,
+          "observed_track_changes": 17,
+          "longest_direct_run_frames": 36,
+          "qualified_pass_estimates": 1,
+          "transfer_candidates": 9
+        }
+      },
+      "source_range": 206,
+      "trajectory_frame": 8,
+      "assistant_status": 200,
+      "assistant_text": "Player N completed 1 passes. These figures cover the available footage; passes and interceptions are tracking estimates. This is experimental video analysis using M20 ball observations; sparse visibility can miss actions.",
+      "player_focus": "segment:0:TRACK_00018:32",
+      "source_video_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac"
+    },
+    "team_goal": {
+      "observed_frames": 30,
+      "qualified_estimates": 0,
+      "comparison": {
+        "m19": {
+          "direct_observed_frames": 6,
+          "frames": 500,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 3,
+          "qualified_pass_estimates": 0,
+          "transfer_candidates": 0
+        },
+        "m20": {
+          "direct_observed_frames": 30,
+          "frames": 500,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 7,
+          "qualified_pass_estimates": 0,
+          "transfer_candidates": 0
+        }
+      },
+      "source_range": 206,
+      "trajectory_frame": 27,
+      "assistant_status": 200,
+      "assistant_text": "Player A completed 0 passes. These figures cover the available footage; passes and interceptions are tracking estimates. This is experimental video analysis using M20 ball observations; sparse visibility can miss actions.",
+      "player_focus": "segment:0:TRACK_00001:0",
+      "source_video_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d"
+    },
+    "southampton": {
+      "observed_frames": 147,
+      "qualified_estimates": 0,
+      "comparison": {
+        "m19": {
+          "direct_observed_frames": 96,
+          "frames": 660,
+          "observed_track_changes": 11,
+          "longest_direct_run_frames": 13,
+          "qualified_pass_estimates": 0,
+          "transfer_candidates": 2
+        },
+        "m20": {
+          "direct_observed_frames": 147,
+          "frames": 660,
+          "observed_track_changes": 21,
+          "longest_direct_run_frames": 19,
+          "qualified_pass_estimates": 0,
+          "transfer_candidates": 2
+        }
+      },
+      "source_range": 206,
+      "trajectory_frame": 283,
+      "assistant_status": 200,
+      "assistant_text": "Player A completed 0 passes. These figures cover the available footage; passes and interceptions are tracking estimates. This is experimental video analysis using M20 ball observations; sparse visibility can miss actions.",
+      "player_focus": "segment:0:TRACK_00001:0",
+      "source_video_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6"
+    },
+    "soccertrack_grounded_ask": {
+      "status": 200,
+      "supported_facts": 14
+    },
+    "soccertrack_view": 200,
+    "m20_unavailable_without_fallback": 503,
+    "saved_human_annotations": 4
+  },
+  "frozen_inputs": [
+    {
+      "path": "configs/vision/cv_m19.json",
+      "sha256": "c32707aa25f81848ef0f85c98f2b96cfb58b37ac3bdc819857db255951b3cbde",
+      "bytes": 700,
+      "unchanged": true
+    },
+    {
+      "path": "configs/evaluation/cv_m19_tasks.json",
+      "sha256": "c1e3b7b34cab86b2a609da74d968d76b9ef6faca33effdedeef9b58e19499416",
+      "bytes": 13634,
+      "unchanged": true
+    },
+    {
+      "path": "src/vision/events/passes.py",
+      "sha256": "7a8e7af3c05ed8be73ea91a91134bda927358b32ebe1591ba081a7e22b0c02f1",
+      "bytes": 11434,
+      "unchanged": true
+    },
+    {
+      "path": "src/vision/events/passes_m19.py",
+      "sha256": "7984c29c3207e248d8f155f75b1bd16aed4a0e558e22608eb7824a8ec9b0c097",
+      "bytes": 633,
+      "unchanged": true
+    },
+    {
+      "path": "src/vision/world/player_identity.py",
+      "sha256": "cb5bb626e4e2b231e4f7d25aeac771bb3a58d3223f5a4bf9575f3ad2f7df5b57",
+      "bytes": 9561,
+      "unchanged": true
+    },
+    {
+      "path": "src/vision/world/player_teams.py",
+      "sha256": "d935bb80d94d8933d03670bdd941d4a6bc42ae10a2d50a72f01dc6a6d40f34e3",
+      "bytes": 8849,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/human_review/labels.json",
+      "sha256": "fdf73c44e001b338787b0e1929fe838e35e0da0a8ed08a7976edeca288288b73",
+      "bytes": 2670,
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/test_match.mp4",
+      "sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "bytes": 3375243,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/test_match_m9_ready/frames.jsonl",
+      "sha256": "cde55040f4f06aaca2b79bac2f8cfd7be0f6441a58184ae149db2686b3dabc9d",
+      "bytes": 296206394,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/test_match/ball_frames.jsonl",
+      "sha256": "f9d83f15829b546ad5cd86a871d998681a7e73df5ecadcf8e1ba6b05ae4456da",
+      "bytes": 1654591,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/test_match/manifest.json",
+      "sha256": "d3bbfc158c433121527e2475f0b49c1edab4b44a70fd380f559e2cee76755e19",
+      "bytes": 9905,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/test_match/ball_frames.jsonl",
+      "sha256": "a51ef5f35b7408c02e74db33e4b7e825099e155c44db3a2412d219076cdb4fa1",
+      "bytes": 2285997,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/test_match/manifest.json",
+      "sha256": "a219bd93fefd699d2bf0756c94d81462529b28e298a23312b9795669157cde4c",
+      "bytes": 9092,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/test_match/ball_m16/ball_frames.jsonl",
+      "sha256": "ea912820213e284d705eb5081ebabe349d4477d4299f6922f5e9d791a1cbc8d3",
+      "bytes": 1502895,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/test_match/passes_m16/events.json",
+      "sha256": "95ab279074c2145bab9ec33ad6be98d6eb5ed6ff072041f392f2841a1ade73ca",
+      "bytes": 14544,
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/team_goal.mp4",
+      "sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "bytes": 1753330,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/team_goal_m9_ready/frames.jsonl",
+      "sha256": "49fa39be90dd5d3c1774d38d28e5103b9a4aafe32c1d453d909f68b5da1f3799",
+      "bytes": 186768674,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/team_goal/ball_frames.jsonl",
+      "sha256": "422e310ec6e72458b7938a3b0da96f3c38b71422c3767c5e605e5b752fde20c2",
+      "bytes": 1857855,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/team_goal/manifest.json",
+      "sha256": "0b052c5da55db95a65392a79363d0629a8059959c55b39f28a1ddc006b7b0dc0",
+      "bytes": 9415,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/team_goal/ball_frames.jsonl",
+      "sha256": "2219a40996b7a8d4ac44b618ebc07da5888a08d814b23c4c6fc5f450b54092db",
+      "bytes": 855708,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/team_goal/manifest.json",
+      "sha256": "534cd127a768602e6c0081d5b78626b5ae0cb4b0f570ef4a21076a2a6643a18f",
+      "bytes": 8180,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/team_goal/ball_m16/ball_frames.jsonl",
+      "sha256": "4935a70f06b0d9b8232d1c5778b8e45e6378b632fc61ad3760ce8b1547e47db6",
+      "bytes": 752168,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/team_goal/passes_m16/events.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/southampton.mp4",
+      "sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "bytes": 4720872,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/southampton_m9_ready/frames.jsonl",
+      "sha256": "9941f605719d2b4c80ffd96c2fca5f7154560a6863d1ef4a73204442c3922f20",
+      "bytes": 273471447,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/southampton/ball_frames.jsonl",
+      "sha256": "99c9e42b169e81d91df091e4b42882d80a0978456637cac000b71f16a2a61991",
+      "bytes": 2245516,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m14/southampton/manifest.json",
+      "sha256": "0b5d4453cec6eb695496f1649c450003866a783017822ed99b4bad7add198e85",
+      "bytes": 11516,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/southampton/ball_frames.jsonl",
+      "sha256": "34e76c2dfd85d458f70ea624fb0b9fea883fdb614248f6167c463fad6de9209c",
+      "bytes": 2133918,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/world_model/ball_m16/southampton/manifest.json",
+      "sha256": "10c96ba1fc444698d474bcc27276781838115cbc77b339de4d69ea2658c15cad",
+      "bytes": 10373,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/southampton/ball_m16/ball_frames.jsonl",
+      "sha256": "5e0f2eb8799237ca6d5e7675fa31675c8b18d9307ec98219e36bfee6e010328f",
+      "bytes": 1648285,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/m19/run_v3/southampton/passes_m16/events.json",
+      "sha256": "1cc92daa3fc1b1529f8ef362f970849dc4238db9787321cceffa631b11594cbb",
+      "bytes": 3565,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+      "sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df",
+      "bytes": 19170842,
+      "unchanged": true
+    },
+    {
+      "path": "outputs/ml/ball_m14/generic_fasterrcnn_mobilenet320.pth",
+      "sha256": "907ea3f91ff92242bc1baea8049276a3e76bca48ce7560bd268cc029f37977b5",
+      "bytes": 77844807,
+      "unchanged": true
+    }
+  ],
+  "source_code_sha256": {
+    "src/vision/ball20/motion.py": "8c08a4a018d8c32049271051fbac7909ce0cca01d0f95890c6a7bb20179d46e9",
+    "src/vision/ball20/tracker.py": "dc48950abf11e231345d844fd57994ff866d95bcd74980dbd0fe4984139da3c7",
+    "src/vision/ball20/detector.py": "5dd624e37669d9bdef87f1dab1fc5773581846197e888e49770e212a8263782b",
+    "src/vision/ball20/schema.py": "a0d3861fc01dd0430c5d99ac002ed547222e1a4d6894f9818911984459fa9a40",
+    "src/vision/ball19/tracker.py": "94a00da32c49ea571cd495dbcf4c882a01f38551449df095f18a5c326ad1faad",
+    "src/vision/events/passes.py": "7a8e7af3c05ed8be73ea91a91134bda927358b32ebe1591ba081a7e22b0c02f1",
+    "src/vision/events/passes_m19.py": "7984c29c3207e248d8f155f75b1bd16aed4a0e558e22608eb7824a8ec9b0c097",
+    "src/serving/ball20.py": "87cb2781f0a37738bb40e3e15115e78e1ff2e26620dbfe693c2fe8e7cea9fb9a",
+    "scripts/run_cv_m20.py": "c68c3270f1fefaabded44d8d1963170cd4b5c404c73627be885c6953a1a993ba",
+    "configs/vision/cv_m20.json": "694c466e5005e1fe966531b56eb8de4989b16ac5ca72c2546936aa73175c2e9a"
+  },
+  "tests": {
+    "frontend_passed": 130,
+    "production_build": "passed",
+    "browser_cases_passed": 7,
+    "m20_lazy_ui_rerun_passed": 1,
+    "backend_run": 1028,
+    "backend_passed": 1027,
+    "backend_skipped": 1
+  },
+  "limitations": [
+    "Additional direct detections are not independently verified balls. Coverage is not accuracy.",
+    "Observed track changes worsened on test_match and southampton.",
+    "M14 still has higher coverage on team_goal and southampton.",
+    "The one qualified pass estimate is the same unreviewed source event as M19.",
+    "All-frame global/tiled inference is deliberately retained for the fair control; this run does not establish a real-time or lower-cost production schedule.",
+    "Four existing human annotations are preserved and are not used as a complete independent accuracy set.",
+    "Higher resolution and motion probabilities are not evidence of improved independent accuracy.",
+    "Gravity and height are not identified from monocular image motion; acceleration modes are image-space hypotheses.",
+    "Long Tottenham\u2013Arsenal processing remains deferred."
+  ],
+  "browser_m20": {
+    "results": [
+      {
+        "name": "test_match",
+        "observed": 410,
+        "qualified_estimates": 1,
+        "sampled": [
+          {
+            "frame": 8,
+            "state": "OBSERVED",
+            "regions": 0
+          },
+          {
+            "frame": 16,
+            "state": "PREDICTED",
+            "regions": 2
+          },
+          {
+            "frame": 9,
+            "state": "AMBIGUOUS",
+            "regions": 1
+          },
+          {
+            "frame": 0,
+            "state": "UNKNOWN",
+            "regions": 0
+          }
+        ],
+        "frame_step": true,
+        "source_playback": true,
+        "player_focus": true,
+        "assistant_version_isolated": true
+      },
+      {
+        "name": "team_goal",
+        "observed": 30,
+        "qualified_estimates": 0,
+        "sampled": [
+          {
+            "frame": 27,
+            "state": "OBSERVED",
+            "regions": 0
+          },
+          {
+            "frame": 28,
+            "state": "PREDICTED",
+            "regions": 1
+          },
+          {
+            "frame": 43,
+            "state": "AMBIGUOUS",
+            "regions": 1
+          },
+          {
+            "frame": 0,
+            "state": "UNKNOWN",
+            "regions": 0
+          }
+        ],
+        "frame_step": true,
+        "source_playback": true,
+        "player_focus": true,
+        "assistant_version_isolated": true
+      },
+      {
+        "name": "southampton",
+        "observed": 147,
+        "qualified_estimates": 0,
+        "sampled": [
+          {
+            "frame": 283,
+            "state": "OBSERVED",
+            "regions": 0
+          },
+          {
+            "frame": 284,
+            "state": "PREDICTED",
+            "regions": 1
+          },
+          {
+            "frame": 331,
+            "state": "AMBIGUOUS",
+            "regions": 3
+          },
+          {
+            "frame": 0,
+            "state": "UNKNOWN",
+            "regions": 0
+          }
+        ],
+        "frame_step": true,
+        "source_playback": true,
+        "player_focus": true,
+        "assistant_version_isolated": true
+      }
+    ],
+    "page_errors": [],
+    "human_annotations_unchanged": true,
+    "human_labels_written": 0
+  },
+  "source_examples": {
+    "examples": [
+      {
+        "name": "team_goal",
+        "frame": 32,
+        "state": "OBSERVED",
+        "file": "cv_m20_observed.png"
+      },
+      {
+        "name": "team_goal",
+        "frame": 28,
+        "state": "PREDICTED",
+        "file": "cv_m20_predicted.png"
+      },
+      {
+        "name": "test_match",
+        "frame": 9,
+        "state": "AMBIGUOUS",
+        "file": "cv_m20_ambiguous.png"
+      }
+    ],
+    "source": "actual frontend source video plus M20 debug overlays",
+    "independent_ground_truth": false,
+    "human_labels_written": 0
+  }
+}
