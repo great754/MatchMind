@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-18",
+  "root_cause": "Client enabled Save without task-specific preflight and hid structured validation details; pass-window start timestamps could round one frame early. The console alone does not identify the exact field in the user request.",
+  "backend_validation_changed": false,
+  "autosave": false,
+  "frontend_tests_passed": 155,
+  "backend_annotation_validation_tests_passed": 8,
+  "typed_production_build": "passed",
+  "chrome_cases_passed": 3,
+  "browser": {
+    "identity": {
+      "task_number": 19,
+      "incomplete_posts": 0,
+      "successful_mock_posts": 1,
+      "human_labels_written": 0,
+      "real_annotations_unchanged": true
+    },
+    "passes": {
+      "task_number": 13,
+      "same_frame_posts": 0,
+      "expected_mock_422": 1,
+      "manual_retry_posts": 1,
+      "draft_preserved": true,
+      "human_labels_written": 0,
+      "real_annotations_unchanged": true
+    }
+  },
+  "captured_browser_payloads_accepted_by_unchanged_server_validator": 2,
+  "actual_annotation_posts_from_tests": 0,
+  "saved_annotations_before": 17,
+  "saved_annotations_after": 17,
+  "saved_annotation_file_unchanged": true
+}

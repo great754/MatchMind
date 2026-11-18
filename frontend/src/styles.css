@@ -80,3 +80,10 @@
 .trajectory-events span{border:1px solid #506078;border-radius:6px;padding:6px 10px}
 .trajectory-hypothesis{padding:12px 0;border-bottom:1px solid var(--border)}
 .trajectory-panel>button{justify-self:start;min-height:44px}
+
+.human-review .review-save-requirements{padding:14px 16px;background:#192737;border:1px solid #526984;border-radius:8px;color:#e1eaf5}
+.human-review .review-save-requirements ul{margin:8px 0 0;padding-left:20px}
+.human-review .review-save-error{padding:14px 16px;background:#381e24;border:1px solid #ba737e;border-radius:8px;color:#ffe0e5}
+.human-review .review-save-success{padding:14px 16px;background:#1c3025;border:1px solid #72957c;border-radius:8px;color:#def1df}
+.human-review .review-save-help{color:#c0ccdc;font-size:13px}
+.human-review figure>.secondary{margin-top:10px}

@@ -1,5 +1,12 @@
 # TactiqAI Current Pipeline Status
 
+## Review save validation fixed (2026-11-18)
+
+The review form now blocks incomplete submissions and shows **To save this task** guidance before any request. Both player boxes are required for same/different continuity labels; visible balls require valid boxes; pending releases, same-frame/reversed/out-of-window pass marks and invalid reviewer fields cannot be submitted. A browser timestamp precision bug that could turn pass-window start frame 31 into frame 30 is corrected. The exact field behind the user's original 422 is not available from the console trace alone; these client-side failures were independently reproduced.
+
+Specific backend validation errors now appear beside Save; failed requests keep edits, duplicate in-flight saves are blocked, and success clears when fields are edited again. Save requires the server's positive acknowledgement. There is no automatic save or retry while editing. Server validation and human-reference semantics remain unchanged. **All 17 existing saved annotations are byte-for-byte unchanged.** Verification: **155 frontend tests, eight existing backend annotation-validation tests, typed build and three Chrome cases passed**. Browser writes were mocked; two captured valid payloads passed the real validator without saving. [Results](evidence/review_save_validation_2026_11_18.json).
+
+
 
 ## CV workspace startup routing (2026-11-18)
 
