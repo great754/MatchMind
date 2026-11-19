@@ -1,0 +1,23 @@
+{
+  "schema_version": "cv-m21-config-v1",
+  "promotion": "experimental_opt_in_only",
+  "reference_role": "development_only",
+  "detectors": {
+    "soccer": "outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+    "generic": "outputs/ml/ball_m16/yolo11s.pt",
+    "temporal_verifier": "outputs/ml/ball_m16/temporal_visual.pth",
+    "resolution": 640,
+    "visual_threshold": 0.35,
+    "tile_sizes": [192, 320],
+    "tile_overlap": 0.2,
+    "fusion_current_weight": 0.6,
+    "fusion_history_frames": 2,
+    "current_verification_region": 192
+  },
+  "temporal": {"learned_threshold": 0.5, "learned_score_is_calibrated": false},
+  "offline": {"maximum_gap_seconds": 0.35, "reconstruction_gap_seconds": 0.24, "uses_future": true},
+  "players": {"high_confidence": 0.5, "low_confidence": 0.1, "minimum_iou": 0.2, "maximum_missing_seconds": 0.35, "appearance_weight": 0.2},
+  "pass_policy": "unchanged_m19_gates_then_additional_verification_only",
+  "physics": {"enabled_for_statistics": false, "requires_verified_full_projection": true, "gravity_m_s2": 9.81},
+  "final_acceptance": "requires_new_source_disjoint_human_test_labels"
+}

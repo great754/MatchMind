@@ -67,8 +67,8 @@ class HumanReviewStore:
         return {'dataset_fingerprint':self.dataset['fingerprint'],'selection_uses_model_candidates':False,'source':self.dataset['sources'][recording],'tasks':[t for t in self.dataset['tasks'] if t['recording_id']==recording],'labels':[r for r in self.labels() if self.tasks[r['task_id']]['recording_id']==recording],'instructions':'Review original source footage without model overlays. These labels never change detections or confirmed player identities.'}
 
 
-def review_router(authorize,reviews):
-    router=APIRouter(dependencies=[Depends(authorize)]);store=HumanReviewStore()
+def review_router(authorize,reviews,*,store=None,prefix=''):
+    router=APIRouter(prefix=prefix,dependencies=[Depends(authorize)]);store=store or HumanReviewStore()
     def source(recording):
         review=reviews.get(recording)
         if review is None or recording not in store.dataset['sources']:raise HTTPException(404,'Source review unavailable')

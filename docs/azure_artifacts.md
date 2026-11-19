@@ -1,5 +1,13 @@
 # TactiqAI canonical Azure artifacts
 
+## M21 local experiments and bounded Azure review reads (2026-11-19)
+
+M21 ran fresh small-ball inference on the three local CV clips and registered 60 validated local experiment sidecars. These are not canonical Azure bundles and do not change `artifact_ready`, SoccerTrack analytics, possession or GSR semantics. Missing/corrupt optional experiments remain unavailable without removing usable recordings. M21 selects the M20 control because higher-recall alternatives regress precision or pass matches; ordinary M14 remains default.
+
+Two five-second source-only review excerpts were read from the already uploaded external match with its pinned ETag, a bounded range gateway and SDK content checking: 19,922,944 bytes served. The full source was not saved/processed or rehashed, no Azure object was written, and no new source was declared analytics-ready. The 48 new review tasks and separate local label store have no model-derived references. Existing 60 labels remain unchanged development data. Independent accuracy acceptance remains pending.
+
+Live `/health`, `/ready`, `/recordings` return 200; 15 recordings are usable (12 canonical analytics plus three local CV). Existing `118575_clip` view and grounded Local Ask return 200, media ranges 206. No Azure configuration change is required. Keep the local CV source videos and experiment files for playback/review. [M21 measured report and exact start/reproduction commands](cv_advanced_perception_m21.md) · [aggregate evidence](evidence/cv_m21_results.json).
+
 ## Completed short-clip human evaluation (2026-11-18)
 
 All 60 local source reviews were received and used to evaluate frozen CV outputs. M20 detects 10 of 31 reviewed visible balls with four false detections and matches one of seven completed reference passes. This sample does not establish accuracy acceptance or canonical Azure analytics readiness. Human labels and inference outputs remain local; no source video, annotation file or new artifact bundle was uploaded. Source/world/ball/event hashes remain enforced, M14 remains default and M20 stays opt-in. Live `/health`, `/ready` and `/recordings` returned 200; readiness has 15 usable recordings. Existing Azure settings require no change; keep the three local CV source videos for playback. [Evaluation and limits](cv_human_evaluation_2026_11_18.md).

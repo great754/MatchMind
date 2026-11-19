@@ -1,5 +1,15 @@
 # TactiqAI Match Intelligence frontend
 
+## M21 opt-in perception comparison (2026-11-19)
+
+The running frontend at http://127.0.0.1:5173 offers **Ball review → M21 Advanced Perception · opt-in** on test_match, team_goal and southampton. Choose among 20 experiments, enable the side-by-side source view, and use the existing video controls to play/seek both canvases. Overlays require a matching evidence frame. Development precision/recall/pass counts and direct/inferred diagnostics are shown separately from whole-recording statistics. Candidate explanations and research limits are expandable. No independently accepted upgrade is claimed; M21 starts with the M20 control and ordinary M14 remains default.
+
+Player focus, profiles and Ask use the selected experiment. Changing it clears previous answers/video and conversation references. Browser checks explicitly used the grounded local provider; no hosted planner request was made in this milestone. Existing full-half goals, player markers, score, heatmaps, pass maps and playback regressions pass.
+
+New source-only review: http://127.0.0.1:5173/?review=m21&recording=m21_holdout_1. It contains 48 tasks from two excerpts of one new source match, with source-pixel zoom and no model suggestions. Labels are written only on explicit valid Save to `outputs/m21/human_review/labels.json`, separate from the original M19 labels. No new annotations were fabricated or saved by browser checks. Independent evaluation remains pending.
+
+Verified: 159 frontend tests, TypeScript/production build and all nine M21/legacy Chrome cases passed; 44 live API checks passed. Main entry is 495.98 kB, lazy M21 panel 8.34 kB. Azure-backed readiness is 200 with 15 usable recordings. Start with `npm --prefix frontend run dev -- --host 127.0.0.1`; backend command and the full measured development limitations are in [the M21 report](cv_advanced_perception_m21.md). Keep local CV videos/sidecars; no Azure settings change is needed.
+
 ## Short-clip CV pass analysis (2026-11-13)
 
 Refresh http://127.0.0.1:5173 and select **test_match**, **team_goal** or **southampton**. The new **Pass analysis** card separates completed-pass estimates from possible transfers. Current results are 0 qualified passes and 5/1/2 possible transfers respectively. This is not a statement that the footage has no passes; reliable ball/identity/team evidence is insufficient. Goals, shots and pass accuracy remain unavailable.

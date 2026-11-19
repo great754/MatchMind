@@ -15,10 +15,13 @@ class CVEventReview:
         cfg=PassConfig.model_validate(m['config'])
         if signature(m['config'])!=m['config_sha256'] or digest(self.path)!=m['events_sha256'] or digest(self.evidence)!=m['evidence_sha256']:raise ValueError('CV event hash mismatch')
         self.events=[VideoPass.model_validate(x).model_dump() for x in json.loads(self.path.read_text())]
-        if m.get('algorithm_version')=='cv-pass-m19-v1':
+        if m.get('algorithm_version') in ['cv-pass-m19-v1','cv-pass-m21-v1']:
             from src.vision.events.passes_m19 import existing_m9_receiver
             with self.evidence.open() as source:evidence=[json.loads(line) for line in source]
             replay,_,_=events_from_evidence(m['recording_id'],evidence,m['fps'],cfg,receiver_lookup=existing_m9_receiver)
+            if m.get('algorithm_version')=='cv-pass-m21-v1' and m.get('second_stage_enabled'):
+                from src.vision.advanced21.passes import verify_events
+                replay,_=verify_events(replay,evidence,m['fps'])
             if replay!=self.events:raise ValueError('M19 event gate replay mismatch')
             if len(evidence)!=m['frames']:raise ValueError('M19 evidence frame count mismatch')
             for i,row in enumerate(evidence):

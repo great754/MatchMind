@@ -8,8 +8,14 @@ class AssistantRequest(Closed):
     session_id:UUID
     previous_turn:UUID|None=None
     selected_player:str|None=Field(default=None,max_length=180)
-    cv_pipeline:Literal['m14','m19','m20']='m14'
+    cv_pipeline:Literal['m14','m19','m20','m21']='m14'
+    cv_experiment:str|None=Field(default=None,max_length=60,pattern=r'^[a-z0-9_]+$')
     provider:Literal['auto','local','gemini','microsoft']='auto'
+
+    @model_validator(mode='after')
+    def experiment_scope(self):
+        if self.cv_experiment is not None and self.cv_pipeline!='m21':raise ValueError('Experiment selection requires M21')
+        return self
 
 class AssistantPlan(Closed):
     clarification:str|None=Field(default=None,max_length=240)

@@ -1,0 +1,17 @@
+{
+  "test_match": {
+    "root": "outputs/m21/analysis_final_v1",
+    "default_experiment": "m20_control",
+    "report_sha256": "1be48083c817bea0bd404c5e4229fc06f2fa740e330ae931d919f505d9b19de0"
+  },
+  "team_goal": {
+    "root": "outputs/m21/analysis_final_v1",
+    "default_experiment": "m20_control",
+    "report_sha256": "1be48083c817bea0bd404c5e4229fc06f2fa740e330ae931d919f505d9b19de0"
+  },
+  "southampton": {
+    "root": "outputs/m21/analysis_final_v1",
+    "default_experiment": "m20_control",
+    "report_sha256": "1be48083c817bea0bd404c5e4229fc06f2fa740e330ae931d919f505d9b19de0"
+  }
+}

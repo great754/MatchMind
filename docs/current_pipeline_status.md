@@ -1,5 +1,23 @@
 # TactiqAI Current Pipeline Status
 
+## M21 advanced perception experiments (2026-11-19)
+
+**20 CONFIGURATIONS EXECUTED / OPT-IN UI VERIFIED / MAJOR ACCURACY UPGRADE NOT ESTABLISHED.** Read the completed human evaluation first, then prioritized small-ball inference, cross-clip behavior and false-positive rejection. Fresh inference processed all **1,701 frames** of test_match, team_goal and southampton. Compared dense/current-pixel detection, deterministic and source-separated learned temporal verification, past-frame fusion with current-pixel re-detection, Viterbi and skip-edge DAG optimization, matched IMM ablations, alternate player association, camera smoothing and additional pass verification.
+
+| Development result | Ball TP / FP / FN | Precision / recall | Completed passes matched |
+|---|---:|---:|---:|
+| M20 control | 10 / 4 / 21 | 71.4% / 32.3% | 1 / 7 |
+| Offline DAG | 11 / 2 / 20 | 84.6% / 35.5% | 0 / 7 |
+| Multi-frame + matched IMM | 15 / 8 / 16 | 65.2% / 48.4% | 0 / 7 |
+| Temporal + offline | 17 / 9 / 14 | 65.4% / 54.8% | 0 / 7 |
+
+New inference finds four of team_goal's 11 reviewed visible balls, but adds five false detections. Higher recall alone does not satisfy the combined ball/pass selection policy: **M21 selects M20 control; ordinary M14 remains default.** An isolated second-stage check preserves M20's one pass and adds none. Player alternatives do not beat M9 on the three matched continuity pairs (nine unmatched; no negative pairs). Camera smoothing worsens internal feature residuals and was not adopted. Real 3D remains unavailable without verified full camera geometry; no physical heights/speeds or inferred points enter football facts. Existing analytics/possession/GSR and validation gates are unchanged.
+
+The original **60 labels remain byte-identical and are development evidence**. **48 new source-only tasks** are sealed from two five-second Azure excerpts of one new match group, with zero labels at acquisition and no model inference on those excerpts. Broader independent evaluation and training-source overlap checks remain pending. No large download, full-match CV run, hosted LLM request, Azure upload or video deletion occurred.
+
+Open a short clip at localhost:5173 and select **Ball review → M21 Advanced Perception · opt-in**. Side-by-side source video, experiment metrics, candidate diagnostics and experiment-isolated grounded Ask are available. The [new model-blind review](http://127.0.0.1:5173/?review=m21&recording=m21_holdout_1) stores labels separately. **1,062 backend tests run / 1,061 passed / one skip; 159 frontend tests, typed production build and nine Chrome cases passed.** All 60 sidecars validated and 240 primary rerun hashes match. Live Azure-backed `/health`, `/ready`, `/recordings` return 200, readiness has **15 usable recordings**, existing Azure view/grounded Local Ask return 200 and video ranges 206. Servers are running; no Azure settings change is needed. Keep the local CV videos and sidecars. [Full M21 report, exact commands, confidence intervals and remaining work](cv_advanced_perception_m21.md) · [Aggregate evidence](evidence/cv_m21_results.json). Sections below are historical verification snapshots.
+
+
 ## Completed human-review evaluation (2026-11-18)
 
 **ALL 60 REVIEWS RECEIVED / FROZEN OUTPUTS EVALUATED / ACCURACY ACCEPTANCE NOT ESTABLISHED.** Each short clip has 20 saved reviews. Eligible references are 34 known ball frames (31 visible), six exhaustive pass windows containing seven completed passes, and 12 same-person continuity pairs. Two uncertain ball frames and six uncertain/incomplete pass windows are excluded and counted.

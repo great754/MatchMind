@@ -1,0 +1,446 @@
+{
+  "schema_version": "cv-m21-review-v1",
+  "protocol": {
+    "schema_version": "cv-m21-review-v1",
+    "ball_box_match_iou": 0.25,
+    "pass_endpoint_tolerance_seconds": 0.25,
+    "selection": "predeclared_source_times_without_model_candidate_selection",
+    "reference_role": "sealed_final_test_pending_human_labels",
+    "source_group_split": "Both excerpts are ONE unseen match group; do not train on either excerpt.",
+    "temporal_ball_target": "The in-play match ball, tightly boxed; uncertainty is not a negative.",
+    "independent_accuracy_requires_human_review": true
+  },
+  "sources": {
+    "m21_holdout_1": {
+      "video_sha256": "88ebb3a0805049549621080d0f22902f64084a2e801dd85a06cef9a1d1d6136a",
+      "source_video": "outputs/m21/holdout_v1/m21_holdout_1.mp4",
+      "source_group": "Tottenham_Arsenal_external_vibuxer_z4ny0atm95s8",
+      "source_offset_seconds": 600,
+      "source_blob_etag": "\"0x8DF41BE9BE376A5\"",
+      "source_blob_sha256_metadata": "2c6310d984110604bf753f69336916c41d3d03886f60a80d1123e8cbd32675e8",
+      "frames": 125,
+      "fps": 25.0,
+      "width": 1280,
+      "height": 720,
+      "media_url": "/cv/m21/matches/m21_holdout_1/video.mp4"
+    },
+    "m21_holdout_2": {
+      "video_sha256": "6c0922526f4c1ba30c3be4a515e1428c2344e4916fb8e7ee801ce71faa74712d",
+      "source_video": "outputs/m21/holdout_v1/m21_holdout_2.mp4",
+      "source_group": "Tottenham_Arsenal_external_vibuxer_z4ny0atm95s8",
+      "source_offset_seconds": 1800,
+      "source_blob_etag": "\"0x8DF41BE9BE376A5\"",
+      "source_blob_sha256_metadata": "2c6310d984110604bf753f69336916c41d3d03886f60a80d1123e8cbd32675e8",
+      "frames": 125,
+      "fps": 25.0,
+      "width": 1280,
+      "height": 720,
+      "media_url": "/cv/m21/matches/m21_holdout_2/video.mp4"
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "m21_holdout_1:ball:5",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 5,
+      "timestamp": 0.2,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:15",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 15,
+      "timestamp": 0.6,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:26",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 26,
+      "timestamp": 1.04,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:36",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 36,
+      "timestamp": 1.44,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:46",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 46,
+      "timestamp": 1.84,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:49",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 49,
+      "timestamp": 1.96,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:50",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 50,
+      "timestamp": 2.0,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:51",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 51,
+      "timestamp": 2.04,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:52",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 52,
+      "timestamp": 2.08,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:53",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 53,
+      "timestamp": 2.12,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:54",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 54,
+      "timestamp": 2.16,
+      "temporal_group": "m21_holdout_1:49-54"
+    },
+    {
+      "task_id": "m21_holdout_1:ball:57",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 57,
+      "timestamp": 2.28,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:67",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 67,
+      "timestamp": 2.68,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:78",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 78,
+      "timestamp": 3.12,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:88",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 88,
+      "timestamp": 3.52,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:98",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 98,
+      "timestamp": 3.92,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:109",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 109,
+      "timestamp": 4.36,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:ball:119",
+      "recording_id": "m21_holdout_1",
+      "kind": "ball",
+      "frame": 119,
+      "timestamp": 4.76,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_1:identity:15",
+      "recording_id": "m21_holdout_1",
+      "kind": "identity",
+      "frame": 15,
+      "other_frame": 20,
+      "timestamp": 0.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_1:identity:40",
+      "recording_id": "m21_holdout_1",
+      "kind": "identity",
+      "frame": 40,
+      "other_frame": 45,
+      "timestamp": 1.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_1:identity:65",
+      "recording_id": "m21_holdout_1",
+      "kind": "identity",
+      "frame": 65,
+      "other_frame": 70,
+      "timestamp": 2.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_1:identity:90",
+      "recording_id": "m21_holdout_1",
+      "kind": "identity",
+      "frame": 90,
+      "other_frame": 95,
+      "timestamp": 3.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_1:passes:12-49",
+      "recording_id": "m21_holdout_1",
+      "kind": "passes",
+      "start_frame": 12,
+      "end_frame": 49,
+      "start": 0.48,
+      "end": 1.96,
+      "fps": 25.0
+    },
+    {
+      "task_id": "m21_holdout_1:passes:65-112",
+      "recording_id": "m21_holdout_1",
+      "kind": "passes",
+      "start_frame": 65,
+      "end_frame": 112,
+      "start": 2.6,
+      "end": 4.48,
+      "fps": 25.0
+    },
+    {
+      "task_id": "m21_holdout_2:ball:5",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 5,
+      "timestamp": 0.2,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:15",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 15,
+      "timestamp": 0.6,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:26",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 26,
+      "timestamp": 1.04,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:36",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 36,
+      "timestamp": 1.44,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:46",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 46,
+      "timestamp": 1.84,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:49",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 49,
+      "timestamp": 1.96,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:50",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 50,
+      "timestamp": 2.0,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:51",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 51,
+      "timestamp": 2.04,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:52",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 52,
+      "timestamp": 2.08,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:53",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 53,
+      "timestamp": 2.12,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:54",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 54,
+      "timestamp": 2.16,
+      "temporal_group": "m21_holdout_2:49-54"
+    },
+    {
+      "task_id": "m21_holdout_2:ball:57",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 57,
+      "timestamp": 2.28,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:67",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 67,
+      "timestamp": 2.68,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:78",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 78,
+      "timestamp": 3.12,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:88",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 88,
+      "timestamp": 3.52,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:98",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 98,
+      "timestamp": 3.92,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:109",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 109,
+      "timestamp": 4.36,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:ball:119",
+      "recording_id": "m21_holdout_2",
+      "kind": "ball",
+      "frame": 119,
+      "timestamp": 4.76,
+      "temporal_group": null
+    },
+    {
+      "task_id": "m21_holdout_2:identity:15",
+      "recording_id": "m21_holdout_2",
+      "kind": "identity",
+      "frame": 15,
+      "other_frame": 20,
+      "timestamp": 0.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_2:identity:40",
+      "recording_id": "m21_holdout_2",
+      "kind": "identity",
+      "frame": 40,
+      "other_frame": 45,
+      "timestamp": 1.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_2:identity:65",
+      "recording_id": "m21_holdout_2",
+      "kind": "identity",
+      "frame": 65,
+      "other_frame": 70,
+      "timestamp": 2.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_2:identity:90",
+      "recording_id": "m21_holdout_2",
+      "kind": "identity",
+      "frame": 90,
+      "other_frame": 95,
+      "timestamp": 3.6,
+      "instruction": "Compare the same player if recognizable; on alternate tasks also include clearly different-player comparisons. Mark uncertainty when identity is unclear."
+    },
+    {
+      "task_id": "m21_holdout_2:passes:12-49",
+      "recording_id": "m21_holdout_2",
+      "kind": "passes",
+      "start_frame": 12,
+      "end_frame": 49,
+      "start": 0.48,
+      "end": 1.96,
+      "fps": 25.0
+    },
+    {
+      "task_id": "m21_holdout_2:passes:65-112",
+      "recording_id": "m21_holdout_2",
+      "kind": "passes",
+      "start_frame": 65,
+      "end_frame": 112,
+      "start": 2.6,
+      "end": 4.48,
+      "fps": 25.0
+    }
+  ],
+  "selection_uses_model_candidates": false,
+  "human_labels_created": false,
+  "fingerprint": "b9db1125df99326b62273cd4f2b2a42ad622e1c1c9e181bb0ed02db4f7f8c373"
+}

@@ -28,7 +28,7 @@ class CandidateVerification(Closed):
  calibrated_visual_probability:float|None=Field(default=None,ge=0,le=1)
 
 class BallFrame(Closed):
- version:Literal['m14','m15','m16','m19','m20']='m14'
+ version:Literal['m14','m15','m16','m19','m20','m21']='m14'
  frame:int=Field(ge=0)
  timestamp:float=Field(ge=0)
  camera_epoch:int=Field(ge=0)
@@ -82,7 +82,7 @@ class BallFrame(Closed):
 
 class VideoBallObservation(Closed):
  source:Literal['VIDEO_CV']='VIDEO_CV'
- schema_version:Literal['ball-m14-v1','ball-m15-v1','ball-m16-v1','ball-m19-v1','ball-m20-v1']='ball-m14-v1'
+ schema_version:Literal['ball-m14-v1','ball-m15-v1','ball-m16-v1','ball-m19-v1','ball-m20-v1','ball-m21-v1']='ball-m14-v1'
  recording_id:str
  frame:int=Field(ge=0)
  timestamp:float=Field(ge=0)

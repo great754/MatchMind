@@ -41,10 +41,10 @@ class MatchPresentation:
             if len(set(frames))!=len(frames):return None
             points=pitch[frames,slots].astype(float);valid=np.isfinite(points).all(axis=1)&(points[:,0]>=0)&(points[:,0]<=105)&(points[:,1]>=0)&(points[:,1]<=68)
             return points[valid],frames[valid],expected
-    def profile(self,recording,ref,session,pipeline='m14'):
+    def profile(self,recording,ref,session,pipeline='m14',experiment=None):
         a=self.assistant;cat=a.catalog(recording)
         if ref not in cat.by_ref:raise HTTPException(404,'Choose a player from this recording')
-        player=cat.by_ref[ref];identity=a.identities.load(recording,session,cat);index=a.index(recording) if pipeline=='m14' else a.index(recording,pipeline);metrics=PlayerIntelligenceService(index,a.loaded.get(recording),cat).statistics(ref);m={r['name']:r for r in metrics}
+        player=cat.by_ref[ref];identity=a.identities.load(recording,session,cat);index=a.index(recording,pipeline,experiment) if experiment else a.index(recording) if pipeline=='m14' else a.index(recording,pipeline);metrics=PlayerIntelligenceService(index,a.loaded.get(recording),cat).statistics(ref);m={r['name']:r for r in metrics}
         stats=[]
         mapping=[('shots','Shots','Recorded shots'),('goals','Goals','Recorded goals'),('passes','Passes completed','Completed pass estimates'),('pass_attempts','Pass attempts','Recorded pass attempts'),('pass_accuracy','Pass accuracy','Estimated pass completion'),('tackles','Tackles','Recorded tackles'),('interceptions','Interceptions','Interception estimates'),('receptions','Passes received','Reception estimates'),('crosses','Crosses','Recorded crosses'),('distance','Distance covered','Tracked distance'),('peak_speed','Peak speed','Peak estimated speed')]
         for key,label,title in mapping:

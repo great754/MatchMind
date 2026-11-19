@@ -28,23 +28,23 @@ export function UnifiedResult({turn,recordingId,session,onOpen,onChoose,develope
  {turn.provider==='local_fallback'&&<p className="assistant-language-status">Language service unavailable for this answer; the built-in fallback was used.</p>}
  {error&&<p role="alert">{error}</p>}{developer&&<details className="assistant-developer"><summary>Developer / detailed evidence</summary><pre>{JSON.stringify({...turn,highlight:job},null,2)}</pre></details>}</article>;
 }
-export default function UnifiedConversation({recordingId,selectedPlayer,onOpen,onChoose,onClearFocus,experimentalPasses=false,selectedPlayerLabel,cvPipeline='m14'}:{recordingId:string,selectedPlayer?:string|null,onOpen:(t:number)=>void,onChoose?:(ref:string)=>void,onClearFocus?:()=>void,experimentalPasses?:boolean,selectedPlayerLabel?:string,cvPipeline?:'m14'|'m19'|'m20'}){
+export default function UnifiedConversation({recordingId,selectedPlayer,onOpen,onChoose,onClearFocus,experimentalPasses=false,selectedPlayerLabel,cvPipeline='m14',cvExperiment}:{recordingId:string,selectedPlayer?:string|null,onOpen:(t:number)=>void,onChoose?:(ref:string)=>void,onClearFocus?:()=>void,experimentalPasses?:boolean,selectedPlayerLabel?:string,cvPipeline?:'m14'|'m19'|'m20'|'m21',cvExperiment?:string}){
  const names=useIdentity();
  const [question,setQuestion]=useState(''),[turn,setTurn]=useState<Turn|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[provider,setProvider]=useState('auto'),[selection,setSelection]=useState(selectedPlayer??null),[developer,setDeveloper]=useState(false);
  const session=useRef(assistantSession()),previous=useRef<string|null>(null),generation=useRef(0),panel=useRef<HTMLElement>(null),focus=useRef(selectedPlayer??null),activeJob=useRef<Turn['highlight']>(null),choose=useRef(onChoose);choose.current=onChoose;
  const cancelJob=(job:Turn['highlight'])=>{if(job&&['QUEUED','PROCESSING'].includes(job.state))void request(`/api/matches/${job.recording??recordingId}/highlights/${job.job_id}?session_id=${session.current}`,jobSchema,{method:'DELETE'}).catch(()=>{})};
  function reset(next:string|null){generation.current++;cancelJob(activeJob.current);activeJob.current=null;previous.current=null;focus.current=next;setSelection(next);setTurn(null);setQuestion('');setBusy(false);setError('')}
- useEffect(()=>{reset(selectedPlayer??null)},[recordingId,cvPipeline]);
+ useEffect(()=>{reset(selectedPlayer??null)},[recordingId,cvPipeline,cvExperiment]);
  useEffect(()=>{if((selectedPlayer??null)!==focus.current)reset(selectedPlayer??null)},[selectedPlayer]);
- useEffect(()=>()=>{generation.current++;cancelJob(activeJob.current)},[recordingId,cvPipeline]);
+ useEffect(()=>()=>{generation.current++;cancelJob(activeJob.current)},[recordingId,cvPipeline,cvExperiment]);
  const sendLatest=useRef(send);sendLatest.current=send;
- useEffect(()=>{const chosen=(event:Event)=>{const d=(event as CustomEvent).detail;if(d.recording===recordingId){if(d.player_ref!==focus.current)reset(d.player_ref);choose.current?.(d.player_ref);if(d.question){setQuestion(d.question);panel.current?.scrollIntoView?.({behavior:'smooth'});if(d.submit)setTimeout(()=>void sendLatest.current(d.question),0)}}};window.addEventListener('tactiqai-player-selected',chosen);return()=>window.removeEventListener('tactiqai-player-selected',chosen)},[recordingId,cvPipeline]);
+ useEffect(()=>{const chosen=(event:Event)=>{const d=(event as CustomEvent).detail;if(d.recording===recordingId){if(d.player_ref!==focus.current)reset(d.player_ref);choose.current?.(d.player_ref);if(d.question){setQuestion(d.question);panel.current?.scrollIntoView?.({behavior:'smooth'});if(d.submit)setTimeout(()=>void sendLatest.current(d.question),0)}}};window.addEventListener('tactiqai-player-selected',chosen);return()=>window.removeEventListener('tactiqai-player-selected',chosen)},[recordingId,cvPipeline,cvExperiment]);
  async function send(text:string){
   if(!text.trim()||busy)return;
   cancelJob(activeJob.current);activeJob.current=null;setTurn(null);setQuestion(text);setError('');setBusy(true);
   const current=++generation.current;const requestedPlayer=focus.current;
   try{
-   const answer=await request(`/api/matches/${recordingId}/assistant`,unifiedSchema,{method:'POST',body:JSON.stringify({question:text,session_id:session.current,previous_turn:previous.current,selected_player:requestedPlayer,provider,cv_pipeline:cvPipeline})},60000);
+   const answer=await request(`/api/matches/${recordingId}/assistant`,unifiedSchema,{method:'POST',body:JSON.stringify({question:text,session_id:session.current,previous_turn:previous.current,selected_player:requestedPlayer,provider,cv_pipeline:cvPipeline,...(cvExperiment?{cv_experiment:cvExperiment}:{})})},60000);
    if(current===generation.current){setTurn(answer);activeJob.current=answer.highlight;previous.current=answer.turn_id}
    else cancelJob(answer.highlight);
   }catch(e){if(current===generation.current){setError(e instanceof Error?e.message:'I couldn’t complete that question.');if(e instanceof Error&&e.message.includes('unavailable'))previous.current=null}}

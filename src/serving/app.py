@@ -150,6 +150,13 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             cv_m20_reviews[key]=alternative
         except (OSError,ValueError,KeyError,TypeError) as error:
             logger.warning('Optional M20 review %s unavailable: %s',key,type(error).__name__)
+    from .advanced21 import AdvancedRegistry
+    advanced_registry=AdvancedRegistry(cv_reviews)
+    cv_m21_reviews={}
+    for key in cv_reviews:
+        if key not in advanced_registry.entries:continue
+        try:cv_m21_reviews[key]=advanced_registry.load(key)
+        except HTTPException:logger.warning('Optional M21 review %s unavailable or invalid',key)
     for key,status in statuses.items():
         cv=cv_reviews.get(key)
         status.setdefault('source','soccertrack_structured')
@@ -198,15 +205,17 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return dict(recordings=list(statuses.values()))
 
     @app.get('/matches/{match_id}/cv',dependencies=secured)
-    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19','m20']='m14'):
+    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19','m20','m21']='m14',experiment:str|None=None):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
+        review=advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
-        return review.metadata()|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])}
+        return review.metadata()|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])+(['m21'] if match_id in cv_m21_reviews else [])}
 
     @app.get('/matches/{match_id}/cv/events',dependencies=secured)
-    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20']='m14'):
-        cv=(cv_m20_reviews if ball_pipeline=='m20' else cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
+    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20','m21']='m14',experiment:str|None=None):
+        if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
+        cv=advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else (cv_m20_reviews if ball_pipeline=='m20' else cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
         if cv is None:raise HTTPException(503 if ball_pipeline!='m14' else 404,'Selected CV review unavailable')
         layer=getattr(cv,'event_review',None)
         if layer is None:raise HTTPException(503,getattr(cv,'event_diagnostic',None) or 'Experimental pass events not processed')
@@ -214,9 +223,10 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return layer.public({p['player_ref']:p['label'] for p in cat.players})|{'players':cat.players}
 
     @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
-    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19','m20']='m14'):
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19','m20','m21']='m14',experiment:str|None=None):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
-        review=cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
+        review=advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
         # The frame is already schema-validated. Pydantic serializes its large
         # nested evidence directly, avoiding FastAPI's second recursive walk.
@@ -229,6 +239,23 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         frame=review.frame(timestamp)
         row=review.ball_review.trajectory.frame(frame.frame)
         return Response(content=row.model_dump_json(),media_type='application/json')
+
+    @app.get('/matches/{match_id}/cv/advanced',dependencies=secured)
+    def cv_advanced(match_id:str,experiment:str|None=None):
+        return advanced_registry.metadata(match_id,experiment)
+
+    @app.get('/matches/{match_id}/cv/advanced/frame',dependencies=secured)
+    def cv_advanced_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),experiment:str|None=None):
+        review=advanced_registry.load(match_id,experiment)
+        frame=review.frame(timestamp)
+        return Response(content=review.ball_review.advanced.frame(frame.frame).model_dump_json(),media_type='application/json')
+
+    @app.get('/matches/{match_id}/cv/advanced/reference',dependencies=secured)
+    def cv_advanced_reference(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+        reference=cv_m20_reviews.get(match_id)
+        if reference is None or reference.ball_review is None:raise HTTPException(503,'Frozen M20 comparison unavailable')
+        index=min(reference.manifest['frames']-1,int(timestamp*reference.manifest['fps']+1e-8))
+        return {'frame':index,'ball':reference.ball_review.frame(index).model_dump()}
 
     @app.get('/matches/{match_id}/view',response_model=Review,dependencies=secured)
     def match_view(match_id:str,workspace:str|None=Header(default=None,alias='X-TactiqAI-View')):
@@ -314,10 +341,17 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     app.state.highlights=highlights
     app.include_router(highlights.router(authorize))
     from src.assistant.service import UnifiedMatchAssistant
-    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews,'m20':cv_m20_reviews})
+    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews,'m20':cv_m20_reviews,'m21':cv_m21_reviews},cv_resolver=advanced_registry.load)
     from .cv_review_labels import review_router
     annotation_router,app.state.cv_human_review=review_router(authorize,cv_reviews)
     app.include_router(annotation_router)
+    if Path('configs/evaluation/cv_m21_holdout.json').exists():
+        from .advanced21_review import create_review_router
+        try:
+            m21_review_router,app.state.cv_m21_human_review=create_review_router(authorize)
+            app.include_router(m21_review_router)
+        except (OSError,ValueError,KeyError,TypeError):
+            logger.warning('Optional M21 sealed review unavailable or invalid')
     app.state.assistant=assistant
     # Static roster/picture routes precede the legacy integer-player route.
     route_start=len(app.router.routes)

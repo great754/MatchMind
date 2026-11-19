@@ -157,7 +157,7 @@
       <span class="tag">match 118575</span>
       <span class="tag">25 FPS</span>
       <span class="tag">105 x 68 m pitch</span>
-      <span class="tag">offline analytics / online serving</span><span class="tag">60 human reviews evaluated · M20 opt-in · 15 recordings · 2026-11-18</span>
+      <span class="tag">offline analytics / online serving</span><span class="tag">M21 experiments evaluated · no accuracy promotion · 15 recordings · 2026-11-19</span>
       <span class="tag">GSR-first</span>
       <span class="tag">tactics at 5 Hz</span>
     </div>
@@ -169,12 +169,32 @@
       <button type="button" data-mode="technical" aria-pressed="false">Technical view</button>
     </div>
     <input class="search" id="search" type="search" placeholder="Search this guide, e.g. pass, homography, speed..." aria-label="Search this guide">
-    <a class="toolbar-link" href="#cv-human-evaluation">Human evaluation</a><a class="toolbar-link" href="#cv-m20">M20 trajectories</a><a class="toolbar-link" href="#cv-m19">M19 tracking</a><a class="toolbar-link" href="#cv-pass-review">CV pass review</a><a class="toolbar-link" href="#player-focus">Player focus</a><a class="toolbar-link" href="#match-experience">Match UI</a><a class="toolbar-link" href="#unified-assistant-m18">M18 assistant</a><a class="toolbar-link" href="#cv-milestone-15">M15 experiment</a><a class="toolbar-link" href="#cv-milestone-14">M14 ball evidence</a><a class="toolbar-link" href="#cv-milestones-12-13">M12–M13 research</a><a class="toolbar-link" href="#cv-milestone-11">M11 baseline</a><a class="toolbar-link" href="#cv-milestone-10">M10 baseline</a><a class="toolbar-link" href="#cv-milestone-9">Active M9</a><a class="toolbar-link" href="#cv-milestone-8">M8 camera</a><a class="toolbar-link" href="#southampton-cv">Southampton</a><a class="toolbar-link" href="#cv-playback-smoothness">Smooth playback</a><a class="toolbar-link" href="#cv-milestone-7">M7 baseline</a><a class="toolbar-link" href="#cv-milestone-6">M6 baseline</a><a class="toolbar-link" href="#team-goal">Historical team_goal</a><a class="toolbar-link" href="#cv-milestone-5">M5 baseline</a>
+    <a class="toolbar-link" href="#cv-m21">M21 experiments</a><a class="toolbar-link" href="#cv-human-evaluation">Human evaluation</a><a class="toolbar-link" href="#cv-m20">M20 trajectories</a><a class="toolbar-link" href="#cv-m19">M19 tracking</a><a class="toolbar-link" href="#cv-pass-review">CV pass review</a><a class="toolbar-link" href="#player-focus">Player focus</a><a class="toolbar-link" href="#match-experience">Match UI</a><a class="toolbar-link" href="#unified-assistant-m18">M18 assistant</a><a class="toolbar-link" href="#cv-milestone-15">M15 experiment</a><a class="toolbar-link" href="#cv-milestone-14">M14 ball evidence</a><a class="toolbar-link" href="#cv-milestones-12-13">M12–M13 research</a><a class="toolbar-link" href="#cv-milestone-11">M11 baseline</a><a class="toolbar-link" href="#cv-milestone-10">M10 baseline</a><a class="toolbar-link" href="#cv-milestone-9">Active M9</a><a class="toolbar-link" href="#cv-milestone-8">M8 camera</a><a class="toolbar-link" href="#southampton-cv">Southampton</a><a class="toolbar-link" href="#cv-playback-smoothness">Smooth playback</a><a class="toolbar-link" href="#cv-milestone-7">M7 baseline</a><a class="toolbar-link" href="#cv-milestone-6">M6 baseline</a><a class="toolbar-link" href="#team-goal">Historical team_goal</a><a class="toolbar-link" href="#cv-milestone-5">M5 baseline</a>
     <a class="toolbar-link" href="#map">Pipeline map</a>
     <a class="toolbar-link" href="#microsoft-hardening">TLS + fallback</a><a class="toolbar-link" href="#online">Online + providers</a><a class="toolbar-link" href="#azure">Azure status</a><a class="toolbar-link" href="#glossary">Glossary</a>
   </div>
 
   <main class="shell">
+<section class="panel" id="cv-m21" data-search="M21 advanced perception temporal multi-frame offline Viterbi DAG ball precision recall pass human sealed review 2026-11-19">
+<h2>M21 — Advanced perception experiments</h2>
+<p><strong>20 configurations ran on all three clips; a major independent accuracy upgrade is not established.</strong> Small-ball detection, cross-clip behavior and false-positive rejection came first. Fresh inference processed all 1,701 frames. Original 60 reviews remain unchanged and are development evidence.</p>
+<table><thead><tr><th>Development configuration</th><th>Ball correct / false / missed</th><th>Precision / recall</th><th>Pass matches</th></tr></thead><tbody>
+<tr><td>M20 control</td><td>10 / 4 / 21</td><td>71.4% / 32.3%</td><td>1 / 7</td></tr>
+<tr><td>Offline DAG</td><td>11 / 2 / 20</td><td>84.6% / 35.5%</td><td>0 / 7</td></tr>
+<tr><td>Multi-frame + matched IMM</td><td>15 / 8 / 16</td><td>65.2% / 48.4%</td><td>0 / 7</td></tr>
+<tr><td>Temporal + offline</td><td>17 / 9 / 14</td><td>65.4% / 54.8%</td><td>0 / 7</td></tr>
+</tbody></table>
+<img src="evidence/cv_m21_detection_comparison.svg" alt="Development ball precision and recall with Wilson 95 percent intervals; alternatives lose the M20 pass match" loading="lazy" style="width:100%;height:auto">
+<p>New inference finds four of 11 reviewed visible balls on team_goal, with five false detections. No configuration preserves ball precision and pass matches while improving the combined result. <strong>M21 selects M20 control; ordinary M14 remains default.</strong> Camera smoothing worsens internal residuals; player alternatives do not beat M9 on three matched pairs; verified real 3D geometry is unavailable. The extra pass verifier retains one match and adds none.</p>
+<p>At <a href="http://127.0.0.1:5173/?recording=team_goal">localhost:5173</a>, select <strong>Ball review → M21 Advanced Perception · opt-in</strong>. Choose an experiment, compare synchronized source pixels, inspect direct/inferred evidence and ask grounded questions. Changing experiments clears prior answers and video. <a href="evidence/cv_m21_workspace.jpg">Verified comparison UI</a>.</p>
+<p><strong>48 new model-blind tasks</strong> use two five-second Azure excerpts from one new match group; zero new labels at acquisition, no held-out model inference. <a href="http://127.0.0.1:5173/?review=m21&amp;recording=m21_holdout_1">Open separate source-only review</a>. Broader independent evaluation, hard negatives, negative identity pairs and verified pitch landmarks remain pending.</p>
+<p><strong>Verified:</strong> 1,062 backend run / 1,061 passed / one skip; 159 frontend passed; typed build; nine Chrome integration cases; 60 sidecars validated; 240 primary output hashes match. Live health/ready/recordings 200, ready has 15 usable sources, Azure view/grounded Local Ask 200 and video ranges 206. No Azure write, full-match CV, video deletion or hosted LLM call. Keep local CV source files; Azure settings need no change.</p>
+<details><summary>Start and validation commands</summary><pre>AZURE_TOKEN_CREDENTIALS=AzureCliCredential MATCHMIND_ARTIFACT_STORE=azure MATCHMIND_PROVIDER=local MATCHMIND_CACHE=outputs/cache/azure_m17 MATCHMIND_HIGHLIGHT_CACHE=outputs/highlights_m18 TACTIQAI_BACKEND_PYTHON=/Users/greatabhieyighan/Library/Caches/TactiqAI/backend-m17/bin/python scripts/start_backend.sh
+npm --prefix frontend run dev -- --host 127.0.0.1
+npm --prefix frontend run test:browser -- --config playwright.m21.config.ts</pre></details>
+<p><a href="cv_advanced_perception_m21.md">Full M21 report, experiment commands, provenance, confidence intervals and limitations</a> · <a href="evidence/cv_m21_results.json">Portable measured evidence</a></p>
+</section>
+
 <section class="panel" id="cv-human-evaluation" data-search="human review completed 60 M19 M20 accuracy precision recall passes 2026-11-18">
 <h2>All 60 source reviews received and evaluated</h2>
 <p><strong>Verified 2026-11-18:</strong> 20 saved tasks per clip. The usable sample contains 31 visible balls, three not-visible frames and seven completed passes in six exhaustive windows. Uncertain/incomplete tasks remain saved and are excluded from the relevant metrics.</p>

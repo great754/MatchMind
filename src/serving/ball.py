@@ -32,7 +32,12 @@ class BallReview:
   if m.get('version')=='m20':
    from .ball20 import TrajectoryReview
    self.trajectory=TrajectoryReview(self)
+  self.advanced=None
+  if m.get('version')=='m21':
+   from .advanced21 import AdvancedReview
+   self.advanced=AdvancedReview(self)
  def frame(self,index):
+  if getattr(self,'advanced',None) is not None:self.advanced.check()
   if (self.path.stat().st_mtime_ns,self.canonical.stat().st_mtime_ns)!=self.stamps:raise ValueError('Ball sidecar changed; restart validation')
   with self.path.open('rb') as f:f.seek(self.offsets[index]);return BallFrame.model_validate_json(f.readline())
 

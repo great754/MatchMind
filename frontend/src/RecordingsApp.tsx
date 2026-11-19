@@ -4,9 +4,10 @@ import {recordingList} from './api';
 import VideoOnlyRecording from './VideoOnlyRecording';
 import CVReview from './CVReview';
 const CVHumanReview=lazy(()=>import('./CVHumanReview'));
+const M21HumanReview=lazy(()=>import('./M21HumanReview'));
 type Recording={recording_id:string,match_id:string,status:'available'|'not_processed'|'unavailable'|'error',media_available?:boolean,media_url?:string|null,source?:string,capabilities?:{cv_world_model_available:boolean,analytics_available:boolean,ask_available:boolean}};
 const selectable=(r:Recording)=>r.status==='available'||Boolean(r.media_available&&r.media_url);
-export default function RecordingsApp(){
+function RecordingsApp(){
  const [items,setItems]=useState<Recording[]>([]);
  const [loading,setLoading]=useState(true),[catalogRevision,setCatalogRevision]=useState(0);
  const [selected,setSelected]=useState(new URLSearchParams(window.location.search).get('recording')||'118575_clip'),[error,setError]=useState(''),[reviewMode,setReviewMode]=useState('analytics');
@@ -21,4 +22,8 @@ export default function RecordingsApp(){
  if(current?.capabilities?.cv_world_model_available&&(!current.capabilities.analytics_available||reviewMode==='cv'))return <CVReview key={selected} recordingId={selected} recordingPicker={picker} analyticsAvailable={current.capabilities.analytics_available}/>;
  if(current&&current.status!=='available'&&current.media_available&&current.media_url)return <VideoOnlyRecording key={selected} recordingId={selected} mediaPath={current.media_url} recordingPicker={picker}/>;
  return <App key={selected} recordingId={selected} recordingPicker={picker}/>;
+}
+export default function RecordingRouter(){
+ if(new URLSearchParams(window.location.search).get('review')==='m21')return <Suspense fallback={<main className="app-shell"><p role="status">Loading sealed source review…</p></main>}><M21HumanReview/></Suspense>;
+ return <RecordingsApp/>;
 }
