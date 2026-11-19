@@ -8012,7 +8012,9 @@
       "model_inference_on_test_sources": false,
       "tasks_fingerprint": "b9db1125df99326b62273cd4f2b2a42ad622e1c1c9e181bb0ed02db4f7f8c373"
     },
-    "task_manifest_sha256": "d3e50292acbcbc08227fc03bd3b6b13ca7f485ebe1a1b1ca4d27b5e93c9c86ed"
+    "task_manifest_sha256": "d3e50292acbcbc08227fc03bd3b6b13ca7f485ebe1a1b1ca4d27b5e93c9c86ed",
+    "current_status": "withdrawn_from_review_and_acceptance_plan",
+    "suitability_verified_before_publication": false
   },
   "integrity": {
     "original_live_annotations_sha256": "c4ac71548269fd1fe4e601684dffa09a706e8a215ed978ff9e0c8feb2966991e",
@@ -8313,5 +8315,21 @@
     "mobile_m21_no_overflow": true,
     "pipeline_explorer_m21_panel_and_chart_loaded": true,
     "final_manual_browser_page_errors": []
+  },
+  "review_set_correction": {
+    "date": "2026-11-19",
+    "status": "withdrawn_from_review_and_acceptance_plan",
+    "evidence_origin": "explicit_user_report_not_new_agent_visual_audit",
+    "user_reports_relevant_player_ball_action_absent": true,
+    "user_rejects_source_for_m21_review": true,
+    "source_selection_error": "Fixed full-match offsets without verifying source relevance and intended user scope.",
+    "prior_browser_verification_scope": "transport_and_interface_only_not_football_content_suitability",
+    "withdrawn_tasks_used_for_published_development_accuracy": false,
+    "preserve_manifest_acquisition_and_any_saved_labels": true,
+    "replacement_tasks_ready": false,
+    "independent_final_test_ready": false,
+    "runtime_review_route_disabled_by_this_update": false,
+    "m22_status": "proposal_only_not_started",
+    "next_milestone_document": "docs/next_milestone_m22.md"
   }
 }
