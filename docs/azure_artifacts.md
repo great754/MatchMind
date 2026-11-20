@@ -1,5 +1,11 @@
 # TactiqAI canonical Azure artifacts
 
+## M22 remains a local opt-in CV experiment (2026-11-20)
+
+The trained three-frame football detector and its review/training files are local sidecars for test_match, team_goal and southampton. They do not publish canonical Azure bundles or grant `artifact_ready`. Their hash/schema/source/checkpoint validation remains strict; missing or corrupt optional M22 files leave existing recordings usable. Original SoccerTrack analytics, possession, GSR and grounded Ask are unchanged. M22's measured development accuracy regresses against M20, so M14 remains default and M20 remains the control.
+
+Live Azure-backed health/ready/catalog return 200, with **15 usable recordings** (12 canonical analytics plus three local CV). Existing 118575_clip view returns 200 / 481 events; grounded Local Ask returns 200 / 14 facts, video range 206. A 1-MiB full-half video range also returns 206. All three M22 metadata/frame/Local Ask endpoints return 200. The approved 46,830,571-byte official ImageNet initialization was downloaded locally; no new dataset, full-match CV, Azure write or model/annotation/video upload occurred. Keep the three local CV sources and sidecars downloaded. No Azure environment-variable change is needed. The withdrawn M21 review is blocked for new labels, with prior exports preserved. [M22 report, local/Azure boundary, verification and startup command](cv_temporal_football_detector_m22.md).
+
 ## M21 local experiments and bounded Azure review reads (2026-11-19)
 
 M21 ran fresh small-ball inference on the three local CV clips and registered 60 validated local experiment sidecars. These are not canonical Azure bundles and do not change `artifact_ready`, SoccerTrack analytics, possession or GSR semantics. Missing/corrupt optional experiments remain unavailable without removing usable recordings. M21 selects the M20 control because higher-recall alternatives regress precision or pass matches; ordinary M14 remains default.

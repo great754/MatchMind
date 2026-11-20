@@ -1,0 +1,22 @@
+{
+  "schema_version": "cv-m22-config-v1",
+  "architecture": "m22-three-frame-resnet18-fpn64-centernet-stride4-v1",
+  "input_order": ["t-2", "t-1", "t"],
+  "reference_fps": 25,
+  "input_hw": [384, 640],
+  "tile_source_size": 320,
+  "tile_overlap": 0.2,
+  "candidate_threshold": 0.05,
+  "observation_threshold": 0.35,
+  "current_only_verification_threshold": 0.35,
+  "current_verification_match_iou": 0.1,
+  "maximum_candidates_per_frame": 12,
+  "association": "existing_m21_offline_dag",
+  "association_selected_before_m22_development_inference": true,
+  "reconstruction_is_observation": false,
+  "pass_rules": "unchanged_detect_m19_and_PassConfig",
+  "ordinary_default": "m14",
+  "experimental_control": "m20",
+  "promotion": "conditional_on_new_independent_user_approved_test",
+  "withdrawn_review_used": false
+}

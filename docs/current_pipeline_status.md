@@ -1,6 +1,30 @@
 # TactiqAI Current Pipeline Status
 
-## M21 review withdrawn; next milestone proposal (2026-11-19)
+## M22 trained temporal football detector — opt-in, accuracy regression (2026-11-20)
+
+**TRAINING, THREE-CLIP INFERENCE, EVALUATION AND M22 FRONTEND VERIFIED / ACCURACY TARGETS NOT MET / NO PROMOTION.** One three-frame ImageNet ResNet-18 + 64-channel FPN + CenterNet detector ran on all **1,701 frames** of test_match, team_goal and southampton. It reuses the fixed M21 offline DAG and unchanged M19 pass rules. The approved official ResNet-18 initialization download was 46,830,571 bytes. No new dataset, paid compute, Azure write or full-match CV was performed.
+
+| Development system | Ball correct / false / missed | Precision / recall / F1 | Completed passes matched |
+|---|---:|---:|---:|
+| Frozen M20 control | 10 / 4 / 21 | 71.4% / 32.3% / 0.444 | 1 / 7 |
+| M21 offline DAG | 11 / 2 / 20 | 84.6% / 35.5% / 0.500 | 0 / 7 |
+| M21 temporal + offline | 17 / 9 / 14 | 65.4% / 54.8% / 0.596 | 0 / 7 |
+| Final trained M22 + fixed DAG | **8 / 22 / 23** | **26.7% / 25.8% / 0.262** | **0 / 7** |
+
+M22 per-clip ball TP/FP/FN: **8/4/3, 0/10/11, 0/8/9**. It repeatedly follows incorrect objects on team_goal and southampton despite high model-observation coverage; that coverage is not accuracy. The initial strong-only model scored 0/1/31. The same architecture's final bounded campaign adds 120 existing organizer-labelled SoccerNet triplets as **weak positive-only supervision, weight 0.15**; no unknown background becomes negative truth. Each of three fits excludes its target recording from human training/validation. Only 34 known human ball frames exist across the three sources. All original 60 reviews remain unchanged development data, with no untouched independent final test. Original-match overlap with external weak material is not fully established. M14 stays default; M20 remains the control.
+
+**150 source-inspected development review frames are ready (50 per approved clip).** Open [M22 football training review](http://127.0.0.1:5173/?review=m22&recording=team_goal), inspect/accept/correct proposals or mark absent/uncertain, then explicitly save. Model suggestions are not truth. New labels have their own versioned store; none were fabricated. The withdrawn 48-task M21 page now shows a notice and rejects POST with 410; historical labels/exports remain preserved. Do not review that withdrawn set.
+
+At [the clip workspace](http://127.0.0.1:5173/?recording=team_goal), choose **Ball review → M22 — Temporal Football Detector** for M20/M22 playback comparison, source heatmaps, observed/inferred diagnostics, per-clip results, all seven pass failure traces, model provenance and review controls. Chrome verified playback, seeking, heatmaps and checkpoint-isolated grounded Local Ask on all three clips with no page errors. M22 Ask explicitly describes experimental pass estimates, not verified match totals. Two whole-test_match estimates remain unreviewed; zero matches in the seven reviewed references is the accuracy result. Unsupported goals/shots/tackles/accuracy/possession remain unavailable.
+
+**Verified:** 1,082 backend tests run / 1,081 passed / one skip; 164 frontend tests; typed production build; all three strict M22 sidecars; 12 primary cached-analysis rerun hashes match; completed-training resume verifies all three checkpoints. All 11 final Chrome cases passed in one 2.4-minute run, including Azure full-half playback, goal compilations, player focus, all existing CV modes and both M22 workflows. Earlier overlapping runs had timeouts; existing iCloud-offloaded artifacts/small caches were restored and the final checks followed processing completion and a clean restart. No frozen input was replaced.
+
+Live Azure-backed health/ready/catalog return 200, readiness has **15 usable recordings**, existing 118575_clip view returns 200 / 481 events, grounded Local Ask 200 / 14 facts, video range 206. All three M22 metadata/frame/Local Ask endpoints return 200. Canonical Azure analytics and media remain Azure-backed; M22 inference outputs and these three CV videos remain local and must stay downloaded. No Azure setting change is needed. Next: collect source-verified ball corrections/hard negatives, retrain this architecture, and obtain explicitly chosen useful unseen footage before independent acceptance. M23 has not started.
+
+[Full M22 report, checkpoint hashes, exact commands and limitations](cv_temporal_football_detector_m22.md) · [Aggregate measured evidence](evidence/cv_m22_results.json) · [Verified M22 UI](evidence/cv_m22_workspace.jpg). Sections below are historical verification snapshots.
+
+
+## Historical M21 review correction;  next milestone proposal (2026-11-19)
 
 **DO NOT COMPLETE THE CURRENT 48 M21 REVIEW TASKS.** The user reports no relevant player/ball action in the selected excerpts and says the Azure full-match source was not selected for M21 review. The tasks are withdrawn from the evaluation plan. Selecting fixed offsets without a source-suitability check was an error: playback/form tests did not verify useful football content. This correction records the user's report; no new visual audit or model run is claimed.
 

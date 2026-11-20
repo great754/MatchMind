@@ -17,7 +17,8 @@ from src.highlights.schema import HighlightRequest,HighlightQueryPlan
 from src.highlights.index import digest
 
 class UnifiedMatchAssistant:
-    def __init__(self,loaded,cv,highlights,root=None,cv_variants=None,cv_resolver=None):
+    def __init__(self,loaded,cv,highlights,root=None,cv_variants=None,cv_resolver=None,cv_m22_resolver=None):
+        self.cv_m22_resolver=cv_m22_resolver
         self.cv_resolver=cv_resolver
         self.cv_variants=cv_variants or {}
         self.loaded=loaded;self.cv=cv;self.highlights=highlights;self.root=Path(root or os.environ.get('MATCHMIND_ASSISTANT_CACHE','outputs/assistant_m18'));self.root.mkdir(parents=True,exist_ok=True);self.identities=ConfirmedIdentityStore(self.root/'identities');self.catalogs={};self.indexes={};self.sprints={};self.turns={};self.lock=threading.RLock();self.recording_locks={};self.planner=IntentAndQueryPlanner();self.presentation=MatchPresentation(self);self.portraits=PlayerImageService(self.root/'pictures',highlights,self.catalog)
@@ -32,12 +33,18 @@ class UnifiedMatchAssistant:
         if experiment is not None and pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
         key=recording if pipeline=='m14' else (recording,pipeline,experiment) if pipeline=='m21' else (recording,pipeline)
         review=self.cv_resolver(recording,experiment) if pipeline=='m21' and self.cv_resolver else self.cv.get(recording) if pipeline=='m14' else self.cv_variants.get(pipeline,{}).get(recording)
+        if pipeline=='m22' and getattr(self,'cv_m22_resolver',None):review=self.cv_m22_resolver(recording)
+        revision=None
+        if pipeline=='m22' and review is not None:
+            revision=':'.join([review.ball_review.manifest['detector_sha256'],review.ball_review.manifest['ball_frames_sha256'],review.event_review.manifest['events_sha256']])
+            key=(recording,pipeline,revision)
         if pipeline!='m14' and (recording in self.loaded or review is None):raise HTTPException(503,'Selected experimental event pipeline unavailable')
         with self.recording_lock(recording):
             if key not in self.indexes:
                 idx=AssistantEventIndex(recording,self.loaded.get(recording),self.catalog(recording))
                 layer=getattr(review,'event_review',None)
                 if recording not in self.loaded and layer is not None:idx.attach_cv(layer)
+                if revision is not None:idx.cv_model_revision=revision
                 self.indexes[key]=idx
             return self.indexes[key]
     def sprint_service(self,recording):
@@ -56,6 +63,7 @@ class UnifiedMatchAssistant:
         if request.selected_player and previous and previous.get('selected_player')!=request.selected_player:previous=None
         if previous and previous.get('cv_pipeline','m14')!=request.cv_pipeline:previous=None
         if previous and previous.get('cv_experiment')!=request.cv_experiment:previous=None
+        if previous and previous.get('cv_model_revision')!=getattr(idx,'cv_model_revision',None):previous=None
         selected=request.selected_player or (previous.get('selected_player') if previous else None)
         refs,identity_error=self.identities.resolve(request.question,identity,cat,selected)
         if request.selected_player and not identity_error:
@@ -248,7 +256,7 @@ class UnifiedMatchAssistant:
             highlight=self.highlights.submit(evidence_recording,HighlightRequest(question=request.question,session_id=request.session_id,provider='local'),selection=(hp,rows,copy.copy(idx),overlay))
         if evidence_recording!=recording and rows:
             text+=' The source footage is the '+('first' if self.loaded[evidence_recording].summary['half']==1 else 'second')+' half of this match.'
-        turn_id=str(uuid.uuid4());turn={'turn_id':turn_id,'cv_pipeline':request.cv_pipeline,'cv_experiment':request.cv_experiment,'source_recording':evidence_recording,'text':text,'plan':plan.model_dump(),'metrics':metrics,'events':rows,'illustration':illustration,'selected_player':selected,'players':plan.players or ([selected] if selected else []),'event_ids':[e['event_id'] for e in rows],'highlight':highlight,'player_profile':profile,'provider':provider,'provider_note':diagnostic,'identity_revision':identity['revision'],'evidence':old_answer,'_session':str(request.session_id),'_recording':recording,'_created':time.time()}
+        turn_id=str(uuid.uuid4());turn={'turn_id':turn_id,'cv_pipeline':request.cv_pipeline,'cv_experiment':request.cv_experiment,'cv_model_revision':getattr(idx,'cv_model_revision',None),'source_recording':evidence_recording,'text':text,'plan':plan.model_dump(),'metrics':metrics,'events':rows,'illustration':illustration,'selected_player':selected,'players':plan.players or ([selected] if selected else []),'event_ids':[e['event_id'] for e in rows],'highlight':highlight,'player_profile':profile,'provider':provider,'provider_note':diagnostic,'identity_revision':identity['revision'],'evidence':old_answer,'_session':str(request.session_id),'_recording':recording,'_created':time.time()}
         with self.lock:
             expired=[k for k,v in self.turns.items() if time.time()-v['_created']>86400]
             for k in expired:del self.turns[k]
@@ -264,7 +272,7 @@ class UnifiedMatchAssistant:
         @r.get('/matches/{recording}/score')
         def score(recording:str):return self.presentation.score(recording)
         @r.get('/matches/{recording}/players/profile')
-        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19','m20','m21']='m14',cv_experiment:str|None=None):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline,cv_experiment) if cv_experiment else self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
+        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19','m20','m21','m22']='m14',cv_experiment:str|None=None):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline,cv_experiment) if cv_experiment else self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
         @r.get('/matches/{recording}/players/roster')
         def roster(recording:str,session_id:uuid.UUID):
             cat=self.catalog(recording);return {**cat.public(),'identities':self.identities.load(recording,session_id,cat),'pictures':self.portraits.public(recording)}

@@ -1,5 +1,7 @@
 ## TactiqAI tactical video
 
+Current update (2026-11-20): **M22 is trained and available as an opt-in temporal football detector**, with M20 comparison, heatmaps and 150 source-inspected development review frames. Measured precision/recall is **26.7% / 25.8%, passes 0/7**, so it is an accuracy regression and is not promoted. M14 remains default. [M22 report, limitations and commands](docs/cv_temporal_football_detector_m22.md) · [Current pipeline status](docs/current_pipeline_status.md). Earlier milestone snapshots follow.
+
 
 ## New Southampton recording — verified 2026-10-27
 

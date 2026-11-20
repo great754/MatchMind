@@ -44,17 +44,15 @@ test('M21 compares frozen source frames and isolates experiment answers on all t
  await writeFile('test-results/m21-results.json',JSON.stringify({results,page_errors:errors,original_labels_preserved:true},null,2));
 });
 
-test('sealed M21 review stays model-blind and never autosaves or alters original labels',async({page})=>{
+test('withdrawn M21 review shows a notice and never writes or alters original labels',async({page})=>{
  const original=await(await page.request.get('/api/cv/review/export')).json();
  const before=await(await page.request.get('/api/cv/m21/cv/review/export')).json();let writes=0;
  page.on('request',request=>{if(request.method()==='POST'&&request.url().includes('/cv/review/labels'))writes++});
  await page.goto('/?review=m21&recording=m21_holdout_1');
- await expect(page.getByRole('heading',{name:'M21 sealed source review'})).toBeVisible({timeout:90000});
- await expect(page.getByLabel('Zoom: Source frame: box the visible ball')).toBeVisible();
- await expect(page.getByRole('img',{name:'Source frame: box the visible ball'})).toBeVisible();
- await expect(page.getByRole('button',{name:'Save human reference'})).toBeDisabled();
+ await expect(page.getByRole('heading',{name:'M21 review withdrawn'})).toBeVisible({timeout:90000});
+ await expect(page.getByRole('link',{name:'Open M22 football training review'})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Save human reference'})).toHaveCount(0);
  await expect(page.getByRole('region',{name:'M21 Advanced Perception'})).toHaveCount(0);
- await page.getByLabel('Reviewer ID').fill('browser check');await page.getByLabel('Notes',{exact:true}).fill('Unsaved transport/UI check');
  expect(writes).toBe(0);expect(await(await page.request.get('/api/cv/m21/cv/review/export')).json()).toEqual(before);
  expect(await(await page.request.get('/api/cv/review/export')).json()).toEqual(original);
  // No held-out source screenshot is inspected or used for model selection.

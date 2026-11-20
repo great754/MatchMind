@@ -1,6 +1,6 @@
 # TactiqAI — Next milestone proposal: M22
 
-Updated 2026-11-19. **Proposed scope only; M22 implementation has not started.**
+Historical proposal, 2026-11-19. **Superseded by the latest three-frame architecture brief and the [measured M22 implementation report](cv_temporal_football_detector_m22.md), verified 2026-11-20.** The model is trained and integrated, but regresses against M20 and is not promoted. The M21 review is now blocked for new annotation; 150 source-inspected proposals from the three approved short clips are available in the separate M22 development review. The text below preserves the original proposal and correction.
 
 ## Decision and correction
 

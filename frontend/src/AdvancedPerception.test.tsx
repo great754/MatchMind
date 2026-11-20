@@ -9,7 +9,7 @@ describe('M21 development comparisons',()=>{
  it('labels development metrics and leaves undefined precision unavailable',()=>{
   render(<AdvancedPerception metadata={metadata} video={null} width={640} height={360} fps={25} onExperiment={()=>{}} onSeek={()=>{}}/>);
   expect(screen.getByText(/new independent test labels are pending/i)).toBeInTheDocument();
-  expect(screen.getByRole('link',{name:'Open new source-only review'})).toHaveAttribute('href','/?review=m21&recording=m21_holdout_1');
+  expect(screen.getByRole('link',{name:'Open football training review'})).toHaveAttribute('href','/?review=m22&recording=team_goal');
   expect(screen.queryByRole('img',{name:'M20 comparison video'})).not.toBeInTheDocument();
  });
  it('selects an explicit experiment without changing defaults',()=>{

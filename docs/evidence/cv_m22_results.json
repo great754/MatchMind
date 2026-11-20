@@ -1,0 +1,1839 @@
+{
+  "verified_date": "2026-11-20",
+  "reference_role": "development_only",
+  "independent_final_test": "not_available",
+  "architecture": "m22-three-frame-resnet18-fpn64-centernet-stride4-v1",
+  "promotion": {
+    "status": "not_promoted",
+    "ordinary_default": "m14",
+    "experimental_control": "m20",
+    "independent_final_test": "not_available",
+    "reason": "Development-only trained model; independent user-approved final footage/labels required. Do not infer improvement from training completion."
+  },
+  "original_annotations_sha256": "c4ac71548269fd1fe4e601684dffa09a706e8a215ed978ff9e0c8feb2966991e",
+  "task_manifest_sha256": "bfae5847bb741c29ae5717620b4a28e6c0007a36fb22f59635e50f748de5c697",
+  "aggregate": {
+    "status": "development_reference_evaluation",
+    "ball": {
+      "tp": 8,
+      "fp": 22,
+      "fn": 23,
+      "precision": 0.26666666666666666,
+      "recall": 0.25806451612903225,
+      "f1": 0.26229508196721313,
+      "precision_wilson95": [
+        0.14182495553910618,
+        0.4444830204431169
+      ],
+      "recall_wilson95": [
+        0.1370154373686976,
+        0.432464724277151
+      ],
+      "reviewed_frames": 34,
+      "unknown_visibility_frames": 2
+    },
+    "passes": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 7,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "precision_wilson95": null,
+      "recall_wilson95": [
+        0,
+        0.35433884297520657
+      ],
+      "exhaustively_reviewed_windows": 6,
+      "unknown_or_incomplete_windows": 6,
+      "reviewed_seconds": 18.012,
+      "false_positives_per_reviewed_minute": 0.0
+    },
+    "identity": {
+      "reviewed_matched_pairs": 3,
+      "unknown_or_unmatched_pairs": 9,
+      "correct_pairs": 3,
+      "pair_accuracy": 1.0,
+      "wilson95": [
+        0.43849391955098227,
+        1
+      ],
+      "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+    },
+    "limitations": [
+      "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+      "One reviewer and few examples do not establish generalization or eliminate label error.",
+      "Unknown visibility and incomplete windows are excluded, not negative labels."
+    ],
+    "localization": {
+      "matched_human_boxes": 8,
+      "median_pixel_error": 6.313825575339078,
+      "mean_pixel_error": 6.591436122971522,
+      "p90_pixel_error": 9.42348851082155,
+      "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+    },
+    "candidate_recall": {
+      "visible_reference_frames": 31,
+      "reference_role": "development_only",
+      "minimum_candidate_confidence": 0.05,
+      "matching_iou": 0.25,
+      "top_1": {
+        "matched": 8,
+        "total": 31,
+        "recall": 0.25806451612903225
+      },
+      "top_3": {
+        "matched": 10,
+        "total": 31,
+        "recall": 0.3225806451612903
+      },
+      "top_5": {
+        "matched": 11,
+        "total": 31,
+        "recall": 0.3548387096774194
+      }
+    },
+    "original_review_count": 60
+  },
+  "per_recording": {
+    "test_match": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 8,
+        "fp": 4,
+        "fn": 3,
+        "precision": 0.6666666666666666,
+        "recall": 0.7272727272727273,
+        "f1": 0.6956521739130435,
+        "precision_wilson95": [
+          0.3906175873976139,
+          0.8618821601026385
+        ],
+        "recall_wilson95": [
+          0.4343497069897537,
+          0.9025411942607853
+        ],
+        "reviewed_frames": 12,
+        "unknown_visibility_frames": 0
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": null,
+        "recall_wilson95": [
+          0,
+          0.6576280471103807
+        ],
+        "exhaustively_reviewed_windows": 2,
+        "unknown_or_incomplete_windows": 2,
+        "reviewed_seconds": 6.006,
+        "false_positives_per_reviewed_minute": 0.0
+      },
+      "identity": {
+        "reviewed_matched_pairs": 1,
+        "unknown_or_unmatched_pairs": 3,
+        "correct_pairs": 1,
+        "pair_accuracy": 1.0,
+        "wilson95": [
+          0.20654329147389294,
+          1
+        ],
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "localization": {
+        "matched_human_boxes": 8,
+        "median_pixel_error": 6.313825575339078,
+        "mean_pixel_error": 6.591436122971522,
+        "p90_pixel_error": 9.42348851082155,
+        "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+      },
+      "candidate_recall": {
+        "visible_reference_frames": 11,
+        "reference_role": "development_only",
+        "minimum_candidate_confidence": 0.05,
+        "matching_iou": 0.25,
+        "top_1": {
+          "matched": 7,
+          "total": 11,
+          "recall": 0.6363636363636364
+        },
+        "top_3": {
+          "matched": 8,
+          "total": 11,
+          "recall": 0.7272727272727273
+        },
+        "top_5": {
+          "matched": 9,
+          "total": 11,
+          "recall": 0.8181818181818182
+        }
+      },
+      "processing": {
+        "frames": 541,
+        "direct_observed_frames": 457,
+        "direct_observed_fraction": 0.844731977818854,
+        "predicted_only_frames": 53,
+        "track_ids": 2,
+        "observed_track_changes": 1,
+        "longest_direct_run_frames": 128,
+        "states": {
+          "DETECTED": 2,
+          "TRACKED": 455,
+          "PREDICTED": 53,
+          "LOST": 31
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "analysis_seconds": 18.788639958947897,
+      "original_review_count": 20
+    },
+    "team_goal": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 0,
+        "fp": 10,
+        "fn": 11,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": [
+          0,
+          0.2775401687666166
+        ],
+        "recall_wilson95": [
+          2.7755575615628914e-17,
+          0.2588400172488141
+        ],
+        "reviewed_frames": 11,
+        "unknown_visibility_frames": 1
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": null,
+        "recall_wilson95": [
+          0,
+          0.5615060804490177
+        ],
+        "exhaustively_reviewed_windows": 2,
+        "unknown_or_incomplete_windows": 2,
+        "reviewed_seconds": 6.0,
+        "false_positives_per_reviewed_minute": 0.0
+      },
+      "identity": {
+        "reviewed_matched_pairs": 2,
+        "unknown_or_unmatched_pairs": 2,
+        "correct_pairs": 2,
+        "pair_accuracy": 1.0,
+        "wilson95": [
+          0.34237195288961925,
+          1
+        ],
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "localization": {
+        "matched_human_boxes": 0,
+        "median_pixel_error": null,
+        "mean_pixel_error": null,
+        "p90_pixel_error": null,
+        "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+      },
+      "candidate_recall": {
+        "visible_reference_frames": 11,
+        "reference_role": "development_only",
+        "minimum_candidate_confidence": 0.05,
+        "matching_iou": 0.25,
+        "top_1": {
+          "matched": 0,
+          "total": 11,
+          "recall": 0.0
+        },
+        "top_3": {
+          "matched": 0,
+          "total": 11,
+          "recall": 0.0
+        },
+        "top_5": {
+          "matched": 0,
+          "total": 11,
+          "recall": 0.0
+        }
+      },
+      "processing": {
+        "frames": 500,
+        "direct_observed_frames": 464,
+        "direct_observed_fraction": 0.928,
+        "predicted_only_frames": 36,
+        "track_ids": 1,
+        "observed_track_changes": 0,
+        "longest_direct_run_frames": 129,
+        "states": {
+          "DETECTED": 1,
+          "TRACKED": 463,
+          "PREDICTED": 36
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "analysis_seconds": 26.779068542062305,
+      "original_review_count": 20
+    },
+    "southampton": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 0,
+        "fp": 8,
+        "fn": 9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": [
+          0,
+          0.3244156195108769
+        ],
+        "recall_wilson95": [
+          0,
+          0.2991527535509594
+        ],
+        "reviewed_frames": 11,
+        "unknown_visibility_frames": 1
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": null,
+        "recall_wilson95": [
+          0,
+          0.6576280471103807
+        ],
+        "exhaustively_reviewed_windows": 2,
+        "unknown_or_incomplete_windows": 2,
+        "reviewed_seconds": 6.006,
+        "false_positives_per_reviewed_minute": 0.0
+      },
+      "identity": {
+        "reviewed_matched_pairs": 0,
+        "unknown_or_unmatched_pairs": 4,
+        "correct_pairs": 0,
+        "pair_accuracy": null,
+        "wilson95": null,
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "localization": {
+        "matched_human_boxes": 0,
+        "median_pixel_error": null,
+        "mean_pixel_error": null,
+        "p90_pixel_error": null,
+        "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+      },
+      "candidate_recall": {
+        "visible_reference_frames": 9,
+        "reference_role": "development_only",
+        "minimum_candidate_confidence": 0.05,
+        "matching_iou": 0.25,
+        "top_1": {
+          "matched": 1,
+          "total": 9,
+          "recall": 0.1111111111111111
+        },
+        "top_3": {
+          "matched": 2,
+          "total": 9,
+          "recall": 0.2222222222222222
+        },
+        "top_5": {
+          "matched": 2,
+          "total": 9,
+          "recall": 0.2222222222222222
+        }
+      },
+      "processing": {
+        "frames": 660,
+        "direct_observed_frames": 552,
+        "direct_observed_fraction": 0.8363636363636363,
+        "predicted_only_frames": 37,
+        "track_ids": 5,
+        "observed_track_changes": 4,
+        "longest_direct_run_frames": 210,
+        "states": {
+          "DETECTED": 5,
+          "TRACKED": 547,
+          "PREDICTED": 37,
+          "LOST": 71
+        },
+        "independent_precision": null,
+        "independent_recall": null
+      },
+      "analysis_seconds": 41.99519637506455,
+      "original_review_count": 20
+    }
+  },
+  "detector_only_aggregate": {
+    "status": "development_reference_evaluation",
+    "ball": {
+      "tp": 7,
+      "fp": 25,
+      "fn": 24,
+      "precision": 0.21875,
+      "recall": 0.22580645161290322,
+      "f1": 0.2222222222222222,
+      "precision_wilson95": [
+        0.11023696931531854,
+        0.3875533079044484
+      ],
+      "recall_wilson95": [
+        0.11394991594498799,
+        0.3981276005869738
+      ],
+      "reviewed_frames": 34,
+      "unknown_visibility_frames": 2
+    },
+    "passes": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "precision_wilson95": null,
+      "recall_wilson95": null,
+      "exhaustively_reviewed_windows": 0,
+      "unknown_or_incomplete_windows": 0,
+      "reviewed_seconds": 0,
+      "false_positives_per_reviewed_minute": null
+    },
+    "identity": {
+      "reviewed_matched_pairs": 0,
+      "unknown_or_unmatched_pairs": 0,
+      "correct_pairs": 0,
+      "pair_accuracy": null,
+      "wilson95": null,
+      "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+    },
+    "limitations": [
+      "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+      "One reviewer and few examples do not establish generalization or eliminate label error.",
+      "Unknown visibility and incomplete windows are excluded, not negative labels."
+    ],
+    "original_review_count": 36
+  },
+  "detector_only_per_recording": {
+    "test_match": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 7,
+        "fp": 5,
+        "fn": 4,
+        "precision": 0.5833333333333334,
+        "recall": 0.6363636363636364,
+        "f1": 0.6086956521739131,
+        "precision_wilson95": [
+          0.3195073356553728,
+          0.8067425380947535
+        ],
+        "recall_wilson95": [
+          0.35379677689163724,
+          0.8483377638586862
+        ],
+        "reviewed_frames": 12,
+        "unknown_visibility_frames": 0
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "precision_wilson95": null,
+        "recall_wilson95": null,
+        "exhaustively_reviewed_windows": 0,
+        "unknown_or_incomplete_windows": 0,
+        "reviewed_seconds": 0,
+        "false_positives_per_reviewed_minute": null
+      },
+      "identity": {
+        "reviewed_matched_pairs": 0,
+        "unknown_or_unmatched_pairs": 0,
+        "correct_pairs": 0,
+        "pair_accuracy": null,
+        "wilson95": null,
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "original_review_count": 12
+    },
+    "team_goal": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 0,
+        "fp": 11,
+        "fn": 11,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": [
+          2.7755575615628914e-17,
+          0.2588400172488141
+        ],
+        "recall_wilson95": [
+          2.7755575615628914e-17,
+          0.2588400172488141
+        ],
+        "reviewed_frames": 11,
+        "unknown_visibility_frames": 1
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "precision_wilson95": null,
+        "recall_wilson95": null,
+        "exhaustively_reviewed_windows": 0,
+        "unknown_or_incomplete_windows": 0,
+        "reviewed_seconds": 0,
+        "false_positives_per_reviewed_minute": null
+      },
+      "identity": {
+        "reviewed_matched_pairs": 0,
+        "unknown_or_unmatched_pairs": 0,
+        "correct_pairs": 0,
+        "pair_accuracy": null,
+        "wilson95": null,
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "original_review_count": 12
+    },
+    "southampton": {
+      "status": "development_reference_evaluation",
+      "ball": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 9,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "precision_wilson95": [
+          0,
+          0.2991527535509594
+        ],
+        "recall_wilson95": [
+          0,
+          0.2991527535509594
+        ],
+        "reviewed_frames": 11,
+        "unknown_visibility_frames": 1
+      },
+      "passes": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "precision_wilson95": null,
+        "recall_wilson95": null,
+        "exhaustively_reviewed_windows": 0,
+        "unknown_or_incomplete_windows": 0,
+        "reviewed_seconds": 0,
+        "false_positives_per_reviewed_minute": null
+      },
+      "identity": {
+        "reviewed_matched_pairs": 0,
+        "unknown_or_unmatched_pairs": 0,
+        "correct_pairs": 0,
+        "pair_accuracy": null,
+        "wilson95": null,
+        "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+      },
+      "limitations": [
+        "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+        "One reviewer and few examples do not establish generalization or eliminate label error.",
+        "Unknown visibility and incomplete windows are excluded, not negative labels."
+      ],
+      "original_review_count": 12
+    }
+  },
+  "baselines": {
+    "m20_control": {
+      "aggregate": {
+        "status": "partial_independent_reference_evaluation",
+        "independent_label_count": 60,
+        "ball": {
+          "tp": 10,
+          "fp": 4,
+          "fn": 21,
+          "precision": 0.7142857142857143,
+          "recall": 0.3225806451612903,
+          "f1": 0.4444444444444444,
+          "precision_wilson95": [
+            0.4535045882751561,
+            0.882788120898909
+          ],
+          "recall_wilson95": [
+            0.18569230747313034,
+            0.49859314440049185
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "precision_wilson95": [
+            0.20654329147389294,
+            1
+          ],
+          "recall_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "localization": {
+          "matched_human_boxes": 10,
+          "median_pixel_error": 2.3785946881673454,
+          "mean_pixel_error": 1.9979567672449263,
+          "p90_pixel_error": 3.051022346994007,
+          "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+        }
+      },
+      "per_recording": {
+        "test_match": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 8,
+            "fp": 2,
+            "fn": 3,
+            "precision": 0.8,
+            "recall": 0.7272727272727273,
+            "f1": 0.7619047619047619,
+            "precision_wilson95": [
+              0.49015684672072335,
+              0.9433190520193067
+            ],
+            "recall_wilson95": [
+              0.4343497069897537,
+              0.9025411942607853
+            ],
+            "reviewed_frames": 12,
+            "unknown_visibility_frames": 0
+          },
+          "passes": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "precision_wilson95": [
+              0.20654329147389294,
+              1
+            ],
+            "recall_wilson95": [
+              0.09452865480086614,
+              0.9054713451991339
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 1,
+            "unknown_or_unmatched_pairs": 3,
+            "correct_pairs": 1,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.20654329147389294,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 8,
+            "median_pixel_error": 2.4256783246241316,
+            "mean_pixel_error": 2.242735204994723,
+            "p90_pixel_error": 3.105732492200925,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 410,
+            "direct_observed_fraction": 0.7578558225508318,
+            "predicted_only_frames": 93,
+            "track_ids": 11,
+            "observed_track_changes": 17,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "LOST": 20,
+              "DETECTED": 5,
+              "TRACKED": 410,
+              "AMBIGUOUS": 13,
+              "OCCLUDED": 77,
+              "PREDICTED": 16
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 1,
+          "passes_after_second_stage": 1,
+          "analysis_wall_seconds": 0.23120275000110269,
+          "image_space_fit": {
+            "image_quadratic_windows": 25,
+            "median_in_sample_rms_px": 1.932317144899153,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "team_goal": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 0,
+            "fp": 1,
+            "fn": 11,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": [
+              0,
+              0.7934567085261071
+            ],
+            "recall_wilson95": [
+              2.7755575615628914e-17,
+              0.2588400172488141
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.5615060804490177
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.0,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 2,
+            "unknown_or_unmatched_pairs": 2,
+            "correct_pairs": 2,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.34237195288961925,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 0,
+            "median_pixel_error": null,
+            "mean_pixel_error": null,
+            "p90_pixel_error": null,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 30,
+            "direct_observed_fraction": 0.06,
+            "predicted_only_frames": 32,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 7,
+            "states": {
+              "LOST": 423,
+              "DETECTED": 14,
+              "TRACKED": 30,
+              "OCCLUDED": 25,
+              "AMBIGUOUS": 1,
+              "PREDICTED": 7
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.18901075003668666,
+          "image_space_fit": {
+            "image_quadratic_windows": 1,
+            "median_in_sample_rms_px": 0.7517389772898699,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "southampton": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 7,
+            "precision": 0.6666666666666666,
+            "recall": 0.2222222222222222,
+            "f1": 0.3333333333333333,
+            "precision_wilson95": [
+              0.2076549551264879,
+              0.9385096847238394
+            ],
+            "recall_wilson95": [
+              0.06322376231222723,
+              0.5474166563271946
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 0,
+            "unknown_or_unmatched_pairs": 4,
+            "correct_pairs": 0,
+            "pair_accuracy": null,
+            "wilson95": null,
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 2,
+            "median_pixel_error": 1.0188430162457396,
+            "mean_pixel_error": 1.0188430162457396,
+            "p90_pixel_error": 1.3919370247928509,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 147,
+            "direct_observed_fraction": 0.22272727272727272,
+            "predicted_only_frames": 117,
+            "track_ids": 14,
+            "observed_track_changes": 21,
+            "longest_direct_run_frames": 19,
+            "states": {
+              "LOST": 372,
+              "DETECTED": 12,
+              "TRACKED": 147,
+              "OCCLUDED": 58,
+              "PREDICTED": 59,
+              "AMBIGUOUS": 12
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.3744800409767777,
+          "image_space_fit": {
+            "image_quadratic_windows": 6,
+            "median_in_sample_rms_px": 0.4264086705580682,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        }
+      }
+    },
+    "offline_dag": {
+      "aggregate": {
+        "status": "partial_independent_reference_evaluation",
+        "independent_label_count": 60,
+        "ball": {
+          "tp": 11,
+          "fp": 2,
+          "fn": 20,
+          "precision": 0.8461538461538461,
+          "recall": 0.3548387096774194,
+          "f1": 0.5,
+          "precision_wilson95": [
+            0.5776482949136899,
+            0.9567427368172621
+          ],
+          "recall_wilson95": [
+            0.21116447741565816,
+            0.530523619571851
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "localization": {
+          "matched_human_boxes": 11,
+          "median_pixel_error": 2.39239541980687,
+          "mean_pixel_error": 2.0447215270105015,
+          "p90_pixel_error": 3.0236672743905477,
+          "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+        }
+      },
+      "per_recording": {
+        "test_match": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 8,
+            "fp": 2,
+            "fn": 3,
+            "precision": 0.8,
+            "recall": 0.7272727272727273,
+            "f1": 0.7619047619047619,
+            "precision_wilson95": [
+              0.49015684672072335,
+              0.9433190520193067
+            ],
+            "recall_wilson95": [
+              0.4343497069897537,
+              0.9025411942607853
+            ],
+            "reviewed_frames": 12,
+            "unknown_visibility_frames": 0
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 1,
+            "unknown_or_unmatched_pairs": 3,
+            "correct_pairs": 1,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.20654329147389294,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 8,
+            "median_pixel_error": 2.4256783246241316,
+            "mean_pixel_error": 2.242735204994723,
+            "p90_pixel_error": 3.105732492200925,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 414,
+            "direct_observed_fraction": 0.7652495378927912,
+            "predicted_only_frames": 51,
+            "track_ids": 5,
+            "observed_track_changes": 4,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "LOST": 76,
+              "DETECTED": 5,
+              "TRACKED": 409,
+              "PREDICTED": 51
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.3231244160560891,
+          "image_space_fit": {
+            "image_quadratic_windows": 27,
+            "median_in_sample_rms_px": 1.703720667969761,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "team_goal": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              2.7755575615628914e-17,
+              0.2588400172488141
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.5615060804490177
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.0,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 2,
+            "unknown_or_unmatched_pairs": 2,
+            "correct_pairs": 2,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.34237195288961925,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 0,
+            "median_pixel_error": null,
+            "mean_pixel_error": null,
+            "p90_pixel_error": null,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 17,
+            "direct_observed_fraction": 0.034,
+            "predicted_only_frames": 0,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 12,
+            "states": {
+              "LOST": 483,
+              "DETECTED": 3,
+              "TRACKED": 14
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.1881092080147937,
+          "image_space_fit": {
+            "image_quadratic_windows": 1,
+            "median_in_sample_rms_px": 7.457359742015058,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "southampton": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "precision_wilson95": [
+              0.43849391955098227,
+              1
+            ],
+            "recall_wilson95": [
+              0.12058159868274293,
+              0.6458026525009102
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 0,
+            "unknown_or_unmatched_pairs": 4,
+            "correct_pairs": 0,
+            "pair_accuracy": null,
+            "wilson95": null,
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 3,
+            "median_pixel_error": 1.4852105269296287,
+            "mean_pixel_error": 1.5166850523859114,
+            "p90_pixel_error": 2.3069374051189295,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 152,
+            "direct_observed_fraction": 0.23030303030303031,
+            "predicted_only_frames": 54,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 19,
+            "states": {
+              "LOST": 454,
+              "DETECTED": 3,
+              "TRACKED": 149,
+              "PREDICTED": 54
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.4208737909793854,
+          "image_space_fit": {
+            "image_quadratic_windows": 9,
+            "median_in_sample_rms_px": 0.6573241357446281,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        }
+      }
+    },
+    "temporal_offline": {
+      "aggregate": {
+        "status": "partial_independent_reference_evaluation",
+        "independent_label_count": 60,
+        "ball": {
+          "tp": 17,
+          "fp": 9,
+          "fn": 14,
+          "precision": 0.6538461538461539,
+          "recall": 0.5483870967741935,
+          "f1": 0.5964912280701754,
+          "precision_wilson95": [
+            0.46220229009632996,
+            0.8058798502714787
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "localization": {
+          "matched_human_boxes": 17,
+          "median_pixel_error": 2.3647939565278207,
+          "mean_pixel_error": 2.3546247283203208,
+          "p90_pixel_error": 3.7092148839745382,
+          "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+        }
+      },
+      "per_recording": {
+        "test_match": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 9,
+            "fp": 1,
+            "fn": 2,
+            "precision": 0.9,
+            "recall": 0.8181818181818182,
+            "f1": 0.8571428571428571,
+            "precision_wilson95": [
+              0.5958436145024278,
+              0.9821242504842788
+            ],
+            "recall_wilson95": [
+              0.5230138624217553,
+              0.9486333993289995
+            ],
+            "reviewed_frames": 12,
+            "unknown_visibility_frames": 0
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 1,
+            "unknown_or_unmatched_pairs": 3,
+            "correct_pairs": 1,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.20654329147389294,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 9,
+            "median_pixel_error": 2.622277372130284,
+            "mean_pixel_error": 2.630740534421131,
+            "p90_pixel_error": 3.4977836925097847,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 425,
+            "direct_observed_fraction": 0.7855822550831792,
+            "predicted_only_frames": 45,
+            "track_ids": 5,
+            "observed_track_changes": 4,
+            "longest_direct_run_frames": 41,
+            "states": {
+              "LOST": 71,
+              "DETECTED": 5,
+              "TRACKED": 420,
+              "PREDICTED": 45
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.4093437500996515,
+          "image_space_fit": {
+            "image_quadratic_windows": 27,
+            "median_in_sample_rms_px": 1.859374654569933,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "team_goal": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 4,
+            "fp": 5,
+            "fn": 7,
+            "precision": 0.4444444444444444,
+            "recall": 0.36363636363636365,
+            "f1": 0.4,
+            "precision_wilson95": [
+              0.188775429471914,
+              0.7333526542559703
+            ],
+            "recall_wilson95": [
+              0.15166223614131383,
+              0.6462032231083628
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.5615060804490177
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.0,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 2,
+            "unknown_or_unmatched_pairs": 2,
+            "correct_pairs": 2,
+            "pair_accuracy": 1.0,
+            "wilson95": [
+              0.34237195288961925,
+              1
+            ],
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 4,
+            "median_pixel_error": 1.367803466584177,
+            "mean_pixel_error": 1.4239494935527484,
+            "p90_pixel_error": 1.876296797706037,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 242,
+            "direct_observed_fraction": 0.484,
+            "predicted_only_frames": 81,
+            "track_ids": 9,
+            "observed_track_changes": 8,
+            "longest_direct_run_frames": 26,
+            "states": {
+              "DETECTED": 9,
+              "TRACKED": 233,
+              "PREDICTED": 81,
+              "LOST": 177
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.47121241700369865,
+          "image_space_fit": {
+            "image_quadratic_windows": 15,
+            "median_in_sample_rms_px": 0.48775817737374527,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        },
+        "southampton": {
+          "status": "partial_independent_reference_evaluation",
+          "independent_label_count": 20,
+          "ball": {
+            "tp": 4,
+            "fp": 3,
+            "fn": 5,
+            "precision": 0.5714285714285714,
+            "recall": 0.4444444444444444,
+            "f1": 0.5,
+            "precision_wilson95": [
+              0.2504542304090258,
+              0.8417830777373732
+            ],
+            "recall_wilson95": [
+              0.188775429471914,
+              0.7333526542559703
+            ],
+            "reviewed_frames": 11,
+            "unknown_visibility_frames": 1
+          },
+          "passes": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": null,
+            "recall_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "exhaustively_reviewed_windows": 2,
+            "unknown_or_incomplete_windows": 2,
+            "reviewed_seconds": 6.006,
+            "false_positives_per_reviewed_minute": 0.0
+          },
+          "identity": {
+            "reviewed_matched_pairs": 0,
+            "unknown_or_unmatched_pairs": 4,
+            "correct_pairs": 0,
+            "pair_accuracy": null,
+            "wilson95": null,
+            "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+          },
+          "limitations": [
+            "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+            "One reviewer and few examples do not establish generalization or eliminate label error.",
+            "Unknown visibility and incomplete windows are excluded, not negative labels."
+          ],
+          "localization": {
+            "matched_human_boxes": 4,
+            "median_pixel_error": 2.4123527285039734,
+            "mean_pixel_error": 2.6640393993610707,
+            "p90_pixel_error": 3.796079866854571,
+            "definition": "Center error only for selected direct observations matched to independently boxed source balls."
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 319,
+            "direct_observed_fraction": 0.48333333333333334,
+            "predicted_only_frames": 70,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "DETECTED": 8,
+              "TRACKED": 311,
+              "PREDICTED": 70,
+              "LOST": 271
+            },
+            "independent_precision": null,
+            "independent_recall": null
+          },
+          "passes_before_second_stage": 0,
+          "passes_after_second_stage": 0,
+          "analysis_wall_seconds": 0.587299625040032,
+          "image_space_fit": {
+            "image_quadratic_windows": 20,
+            "median_in_sample_rms_px": 0.50744688490306,
+            "independent_metric_or_height_accuracy": null,
+            "definition": "Diagnostic 2D fit to selected model observations, not human trajectory ground truth."
+          },
+          "incorrect_ball_associations": null,
+          "independent_reacquisition_accuracy": null
+        }
+      }
+    }
+  },
+  "pass_trace_count": 7,
+  "pass_failure_reasons": {
+    "test_match": [
+      [
+        "NO_EVENT_WITH_BOTH_ENDPOINTS_INSIDE_FIXED_MATCH_TOLERANCE; CHECK_FLIGHT_CONTINUITY_TEAM_AND_CONTACT_GATES"
+      ],
+      [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RELEASE"
+      ]
+    ],
+    "team_goal": [
+      [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RELEASE"
+      ],
+      [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RELEASE"
+      ],
+      [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RELEASE"
+      ]
+    ],
+    "southampton": [
+      [
+        "NO_DIRECT_BALL_NEAR_HUMAN_RELEASE",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RELEASE"
+      ],
+      [
+        "NO_EVENT_WITH_BOTH_ENDPOINTS_INSIDE_FIXED_MATCH_TOLERANCE; CHECK_FLIGHT_CONTINUITY_TEAM_AND_CONTACT_GATES"
+      ]
+    ]
+  },
+  "training": {
+    "test_match": {
+      "checkpoint_sha256": "adff759a7ddafe23ee84411cb68eb26eb8639ef5c5b6fff279efe6b9e0c77ab9",
+      "split": {
+        "train_sources": [
+          "team_goal"
+        ],
+        "validation_sources": [
+          "southampton"
+        ],
+        "excluded_development_source": "test_match",
+        "validation_is_independent_final_test": false,
+        "target_labels_used_for_fitting_or_early_stopping": false
+      },
+      "verified_training_frames": 11,
+      "verified_validation_frames": 11,
+      "weak_training_frames": 120,
+      "training_visible_frames": 11,
+      "validation_visible_frames": 9,
+      "epochs_run": 8,
+      "wall_seconds_this_process": 167.79553750006016,
+      "peak_rss_bytes_macos": 1009401856,
+      "checkpoint_size_bytes": 47528147
+    },
+    "team_goal": {
+      "checkpoint_sha256": "d4c4c1770f00c93bb3c6930f011a225d08c69b3dc0f3cfff47c39aceed885368",
+      "split": {
+        "train_sources": [
+          "test_match"
+        ],
+        "validation_sources": [
+          "southampton"
+        ],
+        "excluded_development_source": "team_goal",
+        "validation_is_independent_final_test": false,
+        "target_labels_used_for_fitting_or_early_stopping": false
+      },
+      "verified_training_frames": 12,
+      "verified_validation_frames": 11,
+      "weak_training_frames": 120,
+      "training_visible_frames": 11,
+      "validation_visible_frames": 9,
+      "epochs_run": 8,
+      "wall_seconds_this_process": 229.96549741690978,
+      "peak_rss_bytes_macos": 1009401856,
+      "checkpoint_size_bytes": 47528531
+    },
+    "southampton": {
+      "checkpoint_sha256": "ebb1cebfe6ed47fde7c7877e4a92fef47789b7837674770359a76b603086a3ee",
+      "split": {
+        "train_sources": [
+          "test_match"
+        ],
+        "validation_sources": [
+          "team_goal"
+        ],
+        "excluded_development_source": "southampton",
+        "validation_is_independent_final_test": false,
+        "target_labels_used_for_fitting_or_early_stopping": false
+      },
+      "verified_training_frames": 12,
+      "verified_validation_frames": 11,
+      "weak_training_frames": 120,
+      "training_visible_frames": 11,
+      "validation_visible_frames": 11,
+      "epochs_run": 8,
+      "wall_seconds_this_process": 323.13348616601434,
+      "peak_rss_bytes_macos": 1009401856,
+      "checkpoint_size_bytes": 47528339
+    }
+  },
+  "runtime": {
+    "test_match": {
+      "frames": 541,
+      "processing_fps": 0.8825304331218822,
+      "inference_seconds": 613.0100217465078,
+      "inference_views": 18394,
+      "peak_rss_bytes_macos": 668745728,
+      "device": "mps",
+      "mps_allocated_bytes": 47511808
+    },
+    "team_goal": {
+      "frames": 500,
+      "processing_fps": 1.9193822416515534,
+      "inference_seconds": 260.50048247282393,
+      "inference_views": 7000,
+      "peak_rss_bytes_macos": 668745728,
+      "device": "mps",
+      "mps_allocated_bytes": 47511808
+    },
+    "southampton": {
+      "frames": 660,
+      "processing_fps": 0.776571213990893,
+      "inference_seconds": 849.8898595637875,
+      "inference_views": 21120,
+      "peak_rss_bytes_macos": 740671488,
+      "device": "mps",
+      "mps_allocated_bytes": 47511808
+    }
+  },
+  "integrity": {
+    "original_60_unchanged": true,
+    "withdrawn_m21_labels_sha256": "ca678291e33d97f4fdec774c396df5d7a159a57c17ee283928fa6fe7f869cd4b",
+    "withdrawn_tasks_sha256": "d3e50292acbcbc08227fc03bd3b6b13ca7f485ebe1a1b1ca4d27b5e93c9c86ed"
+  },
+  "review": {
+    "published_tasks": 150,
+    "per_clip": 50,
+    "proposals_are_truth": false,
+    "source_sequences_visually_inspected": true,
+    "saved_new_human_labels": 0
+  },
+  "live": {
+    "/health": {
+      "http_status": 200,
+      "data": {
+        "status": "ok",
+        "recordings": 12,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "/ready": {
+      "http_status": 200,
+      "data": {
+        "status": "ready",
+        "recordings": 15
+      }
+    },
+    "azure_view": {
+      "http_status": 200,
+      "recording_id": "118575_clip",
+      "events": 481
+    },
+    "grounded_local_ask": {
+      "http_status": 200,
+      "status": "ok",
+      "facts": 14,
+      "question_type": "possession_summary"
+    },
+    "azure_video_range": {
+      "http_status": 206,
+      "bytes": 16
+    },
+    "withdrawn_review_post": {
+      "http_status": 410
+    }
+  },
+  "verification": {
+    "backend_run": 1082,
+    "backend_passed": 1081,
+    "backend_skipped": 1,
+    "frontend_passed": 164,
+    "typed_production_build_passed": true,
+    "chrome_cases_passed": 11,
+    "chrome_final_minutes": 2.4,
+    "strict_m22_sources": 3,
+    "cached_primary_sha_matches": 12,
+    "completed_training_resume_checked": true,
+    "early_overlapping_runs_had_timeouts": true
+  },
+  "live_m22": {
+    "test_match": {
+      "metadata": 200,
+      "frame": 200,
+      "assistant": 200,
+      "model_sha256": "adff759a7ddafe23ee84411cb68eb26eb8639ef5c5b6fff279efe6b9e0c77ab9",
+      "grounded_answer": "I found 2 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M22 ball observations; sparse visibility can miss actions.",
+      "event_count": 2,
+      "source_clock_aligned": true,
+      "ball_revision_isolated": true,
+      "timestamp_check_seconds": 1,
+      "frame_at_timestamp": 23
+    },
+    "team_goal": {
+      "metadata": 200,
+      "frame": 200,
+      "assistant": 200,
+      "model_sha256": "d4c4c1770f00c93bb3c6930f011a225d08c69b3dc0f3cfff47c39aceed885368",
+      "grounded_answer": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M22 ball observations; sparse visibility can miss actions.",
+      "event_count": 0,
+      "source_clock_aligned": true,
+      "ball_revision_isolated": true,
+      "timestamp_check_seconds": 1,
+      "frame_at_timestamp": 25
+    },
+    "southampton": {
+      "metadata": 200,
+      "frame": 200,
+      "assistant": 200,
+      "model_sha256": "ebb1cebfe6ed47fde7c7877e4a92fef47789b7837674770359a76b603086a3ee",
+      "grounded_answer": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M22 ball observations; sparse visibility can miss actions.",
+      "event_count": 0,
+      "source_clock_aligned": true,
+      "ball_revision_isolated": true,
+      "timestamp_check_seconds": 1,
+      "frame_at_timestamp": 29
+    }
+  }
+}

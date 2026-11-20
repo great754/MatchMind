@@ -1,5 +1,13 @@
 # TactiqAI Match Intelligence frontend
 
+## M22 trained temporal detector and development review (2026-11-20)
+
+Open http://127.0.0.1:5173/?recording=team_goal and select **Ball review → M22 — Temporal Football Detector**. Synchronized M20/M22 playback, source-aligned activation maps, observed/inferred state, per-clip accuracy, rejected candidates, pass failure traces and checkpoint information are available. Chrome verified all three clips' playback, seeking, heatmaps and version-isolated grounded Local Ask. The model **regresses against M20** (aggregate ball precision 26.7%, recall 25.8%, seven-pass matches 0/7); it is not promoted, and M14 remains the default.
+
+Use http://127.0.0.1:5173/?review=m22&recording=team_goal for **150 source-inspected training proposals, 50 per approved short clip**. Inspect the source and consecutive context; accept/correct a tight ball box or reject a false proposal, choose visible/not visible/uncertain, confirm source review and explicitly save. Saved progress and export use a separate M22 development store. Suggestions are not human truth or independent final-test labels. The original 60 reviews are preserved. The withdrawn M21 page now shows a notice and its save POST returns 410; historical exports remain accessible.
+
+The typed production build, all 164 frontend tests and all 11 final Chrome cases pass. Runtime dependencies remain outside the iCloud-synced Desktop tree; existing source/artifact/cache files must remain downloaded. M22 runs and plays these three CV videos locally. Canonical SoccerTrack media/analytics remain Azure-backed; readiness is 200 with 15 usable recordings, and no Azure setting change is required. [Full M22 measurements, verification and exact commands](cv_temporal_football_detector_m22.md). Earlier sections retain historical verification snapshots.
+
 ## M21 opt-in perception comparison (2026-11-19)
 
 The running frontend at http://127.0.0.1:5173 offers **Ball review → M21 Advanced Perception · opt-in** on test_match, team_goal and southampton. Choose among 20 experiments, enable the side-by-side source view, and use the existing video controls to play/seek both canvases. Overlays require a matching evidence frame. Development precision/recall/pass counts and direct/inferred diagnostics are shown separately from whole-recording statistics. Candidate explanations and research limits are expandable. No independently accepted upgrade is claimed; M21 starts with the M20 control and ordinary M14 remains default.

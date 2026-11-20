@@ -103,6 +103,9 @@ class IndependentReviewM21Tests(unittest.TestCase):
             self.assertEqual(response.status_code,206);self.assertEqual(response.content,b'synt')
             self.assertFalse((root/'new-labels/labels.json').exists())
             self.assertEqual(client.get('/cv/m21/matches/../video.mp4').status_code,404)
+            self.assertEqual(client.post('/cv/m21/matches/holdout/cv/review/labels',json={}).status_code,410)
+            self.assertTrue(client.get('/cv/m21/review/sources').json()['withdrawn'])
+            self.assertFalse((root/'new-labels/labels.json').exists())
 
 
 class AssistantVersionM21Tests(unittest.TestCase):
