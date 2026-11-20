@@ -1,0 +1,54 @@
+{
+  "verified_date": "2026-11-20",
+  "change": "simplified_m22_automatic_review",
+  "tasks_unchanged": 150,
+  "frontend_tests_passed": 171,
+  "focused_backend_tests_passed": 21,
+  "typed_production_build_passed": true,
+  "chrome_cases_passed": 2,
+  "chrome_seconds": 15.0,
+  "live_ready_recordings": 15,
+  "browser": {
+    "results": [
+      {
+        "name": "team_goal",
+        "tasks": 50,
+        "zoomed_proposals": true,
+        "automatic_save_and_next": true,
+        "back_restores_choices": true,
+        "automatic_correction": true,
+        "mobile_no_overflow": true
+      },
+      {
+        "name": "test_match",
+        "tasks": 50,
+        "zoomed_proposals": true,
+        "automatic_save_and_next": true,
+        "back_restores_choices": true,
+        "automatic_correction": true,
+        "mobile_no_overflow": true
+      },
+      {
+        "name": "southampton",
+        "tasks": 50,
+        "zoomed_proposals": true,
+        "automatic_save_and_next": true,
+        "back_restores_choices": true,
+        "automatic_correction": true,
+        "mobile_no_overflow": true
+      }
+    ],
+    "page_errors": [],
+    "no_real_annotations_written": true,
+    "posts_mocked": 6
+  },
+  "browser_payloads_checked_by_real_backend_without_saving": 6,
+  "saved_review_counts_preserved": {
+    "outputs/m19/human_review/labels.json": 60,
+    "outputs/m21/human_review/labels.json": 20,
+    "outputs/m22/human_review/labels.json": 6
+  },
+  "model_training_rerun": false,
+  "human_labels_written_by_automated_tests": 0,
+  "returns_to_unfinished_questions_after_skipping": true
+}

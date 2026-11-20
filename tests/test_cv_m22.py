@@ -124,6 +124,15 @@ class DevelopmentReviewM22Tests(unittest.TestCase):
         store,root=self.make();label=DevelopmentLabel(task_id='t',reviewer_id='AB',state='uncertain',reviewed_from_source=True,rejected_proposals=['p'])
         row=store.validate('team_goal',label);self.assertEqual(row['state'],'uncertain');self.assertEqual(row['hard_negative_regions'][0]['bbox'],[10,10,5,5])
 
+    def test_completed_proposal_review_preserves_explicit_coverage_and_legacy_labels(self):
+        store,_=self.make()
+        self.assertTrue(store.public('team_goal')['supports_reviewed_proposals'])
+        self.assertEqual(store.validate('team_goal',self.label())['reviewed_proposals'],[])
+        store.save('team_goal',self.label(accepted_proposal='p',reviewed_proposals=['p']))
+        self.assertEqual(store.labels()[0]['reviewed_proposals'],['p'])
+        for ids in [['p','p'],['unknown']]:
+            with self.assertRaises(ValueError):store.validate('team_goal',self.label(reviewed_proposals=ids))
+
     def test_wrong_source_outside_box_unknown_proposal_or_overlap_are_rejected(self):
         store,_=self.make()
         for recording,label in [('southampton',self.label()),('team_goal',self.label(accepted_proposal='unknown')),('team_goal',self.label(rejected_proposals=['p']))]:

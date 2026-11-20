@@ -21,6 +21,7 @@ class DevelopmentLabel(Closed):
     model_assisted:Literal[True]=True
     accepted_proposal:str|None=Field(default=None,max_length=150)
     rejected_proposals:list[str]=Field(default_factory=list,max_length=12)
+    reviewed_proposals:list[str]=Field(default_factory=list,max_length=12)
     notes:str=Field(default='',max_length=500)
 
     @model_validator(mode='after')
@@ -61,6 +62,8 @@ class DevelopmentReviewStore:
             x,y,w,h=label.bbox
             if x+w>source['width'] or y+h>source['height']:raise ValueError('Box outside source image')
         proposals={p['proposal_id']:p for p in task['proposals']}
+        if label.reviewed_proposals and (len(set(label.reviewed_proposals))!=len(label.reviewed_proposals) or set(label.reviewed_proposals)!=set(proposals)):
+            raise ValueError('Completed proposal review must include each source proposal exactly once')
         if label.accepted_proposal is not None and label.accepted_proposal not in proposals:raise ValueError('Unknown proposal')
         if len(set(label.rejected_proposals))!=len(label.rejected_proposals) or any(p not in proposals for p in label.rejected_proposals):raise ValueError('Unknown or duplicate hard-negative proposal')
         if label.accepted_proposal in label.rejected_proposals:raise ValueError('One proposal cannot be accepted and rejected')
@@ -87,6 +90,7 @@ class DevelopmentReviewStore:
         if recording not in self.dataset['sources']:raise ValueError('Unknown approved source')
         labels=self.labels()
         return {'dataset_fingerprint':self.dataset['fingerprint'],'reference_role':'development_only','model_proposals_are_truth':False,
+            'supports_reviewed_proposals':True,
             'source':self.dataset['sources'][recording],'tasks':[t for t in self.tasks.values() if t['recording_id']==recording],
             'labels':[r for r in labels if self.tasks[r['task_id']]['recording_id']==recording],
             'sources':[{'recording_id':name,'tasks':sum(t['recording_id']==name for t in self.tasks.values()),

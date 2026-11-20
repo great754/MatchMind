@@ -82,13 +82,17 @@ The limiting evidence is clear: **small-data cross-source generalization and fal
 
 Open [M22 football training review](http://127.0.0.1:5173/?review=m22&recording=team_goal). There are **150 new frames, 50 per approved clip**, arranged in short sequences across ten temporal bins per clip. Selection prioritizes M20/M21 disagreements, uncertain proposals and missing candidates. Original reviewed frames are excluded. All 150 selected source frames were inspected on six model-free sheets before publication. Proposals are never pre-saved as labels.
 
-1. Check the clip name and expand the source previews if needed. Enter your reviewer ID.
-2. Inspect the current frame and its two preceding source images. Zoom for the ball.
-3. If the ball is visible, accept a correct proposal or draw/correct a tight ball box. Center-click is a starting point; inspect box size before saving.
-4. Mark wrong proposals as rejected only when that region truly contains no ball. Choose **not visible** only after checking the whole frame; choose **uncertain** whenever visibility is unclear.
-5. Check the source-review confirmation, then explicitly save. Wait for the saved acknowledgement before navigating. Saved decisions restore on return, and export retains frame/time/source/proposal provenance.
+1. Check the clip name and current source frame. Your reviewer identity is remembered; settings are collapsed.
+2. Inspect the enlarged proposal previews. Click **Accept proposal** for the actual ball and **Not the ball** for incorrect boxes. Accept overlapping proposals too if they show the same ball. A different non-overlapping ball choice requires reviewing the previous choice again.
+3. If no proposal fits, draw/correct a tight ball box. **Ball not visible** explicitly marks absence; **Can't tell** records uncertainty. Rejecting all proposals alone never becomes a whole-frame absence label.
+4. Once every proposal is reviewed and the ball decision is complete, the page **automatically saves and moves to the next frame**, after positive server acknowledgement. There is no Save button or per-frame confirmation checkbox. Your choices confirm that you checked the source. The last frame stays available with a completion message.
+5. Use **Previous frame** to fix a saved decision; corrections save automatically too. Incomplete choices remain browser drafts when navigating. A failed/timeout/unacknowledged save keeps the current frame and offers a deliberate retry; it never enters an automatic retry loop. Optional notes pause saving while being edited. Notes, context images, examples, provenance and exports are under expandable sections.
 
 New labels go to `outputs/m22/human_review/labels.json`, separately from the original 60 and withdrawn M21 labels. They are model-assisted **development** labels. A new data revision importer validates them and never overwrites original frames. The former M21 page now shows a withdrawal notice; its POST returns 410 while historical exports remain preserved.
+
+## Review simplification verification (2026-11-20)
+
+The updated review UI passed **171 frontend tests**, **21 focused backend tests**, the typed production build and **two Chrome cases in 15.0 seconds**. Chrome checked automatic progression and back/correction on all three approved clips, desktop/mobile layouts, and failed-save recovery. Six captured automatic-save payloads passed the real backend validator without being written. All **six existing M22 labels**, the original **60 M19 reviews**, and **20 saved withdrawn M21 records** remain byte-identical. Opening a frame never accepts a proposal automatically. The original 150 tasks and model results are unchanged; no retraining or new source selection occurred. [Verification](evidence/cv_m22_review_simple.json) · [Simplified UI](evidence/cv_m22_review_simple.jpg). The implementation verification below retains its original milestone counts.
 
 ## Frontend and evidence boundaries
 
