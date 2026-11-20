@@ -19,6 +19,9 @@ test('trained M22 evidence, heatmaps, playback and grounded Ask stay isolated on
   await expect(panel.getByTestId('m22-state')).toContainText('Frame',{timeout:120000});
   const response=await page.request.get(`/api/matches/${name}/cv?ball_pipeline=m22`);expect(response.status()).toBe(200);const meta=await response.json();
   const metrics=await(await page.request.get(`/api/matches/${name}/cv/football`)).json();expect(metrics.promotion.status).toBe('not_promoted');expect(metrics.independent_test_status).toBe('not_available');
+  expect(metrics.model.m22_annotation_snapshot_sha256).toMatch(/^[a-f0-9]{64}$/);
+  expect(metrics.model.split.train_sources).not.toContain(name);expect(metrics.model.split.validation_sources).not.toContain(name);
+  expect(metrics.model.split.shared_context_frames).toBe(0);expect(metrics.completed_review.frames).toBe(150);
   expect(meta.m22_checkpoint_sha256).toBe(metrics.checkpoint_sha256);
   const video=page.locator('.cv-video-stage video');await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:45000}).toBeGreaterThanOrEqual(2);
   const target=meta.ball_examples.find((e:any)=>e.directly_observed)?.frame??Math.floor(meta.frames/2);
@@ -32,6 +35,9 @@ test('trained M22 evidence, heatmaps, playback and grounded Ask stay isolated on
   await panel.getByRole('checkbox',{name:'Inspect current-frame activation map'}).check();await expect(panel.getByRole('img',{name:'M22 source-aligned heatmap'})).toBeVisible();
   await video.evaluate((v:HTMLVideoElement)=>{v.muted=true;return v.play()});await page.waitForTimeout(400);await video.evaluate((v:HTMLVideoElement)=>v.pause());
   await panel.getByText('Compare reviewed results',{exact:true}).click();await expect(panel.getByRole('table')).toContainText('M22 trained temporal detector');
+  await panel.getByText('Results from your completed M22 review',{exact:true}).click();
+  await expect(panel.getByRole('table',{name:'Completed M22 review comparison'})).toContainText('Retrained M22');
+  await expect(panel.getByText(/not an independent final test/)).toBeVisible();
   await page.screenshot({path:`test-results/m22-${name}.jpg`,type:'jpeg',quality:70,fullPage:true});
   await page.getByRole('button',{name:'How many passes were detected?',exact:true}).click();await expect(page.getByTestId('assistant-answer')).toBeVisible({timeout:90000});
   expect(body.cv_pipeline).toBe('m22');expect(body.cv_experiment??null).toBeNull();expect(turn.cv_pipeline).toBe('m22');expect(turn.cv_model_revision).toContain(meta.m22_ball_revision);

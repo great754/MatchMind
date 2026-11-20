@@ -12,11 +12,15 @@ def run(base_root,output,reviewer=None,task_manifest='configs/training/cv_m22_ta
     base=Path(base_root)/'dataset.json';dataset=json.loads(base.read_text());root=Path(output)
     if root.exists():raise ValueError('Use a fresh training-data revision')
     store=DevelopmentReviewStore(task_manifest,labels_root);annotations=store.labels()
+    annotation_sha=digest(Path(labels_root)/'labels.json') if annotations else None
     if not annotations:raise ValueError('No human M22 labels saved; model proposals cannot be imported as truth')
     reviewers={r['reviewer_id'] for r in annotations}
     if reviewer is None and len(reviewers)!=1:raise ValueError('Select one reviewer or adjudicate labels explicitly')
     reviewer=reviewer or next(iter(reviewers));chosen=[r for r in annotations if r['reviewer_id']==reviewer]
     if not chosen:raise ValueError('No annotations for the requested reviewer')
+    for name,source in dataset['sources'].items():
+        if source['video_sha256']!=store.dataset['sources'][name]['video_sha256'] or digest(source['source_video'])!=source['video_sha256']:
+            raise ValueError('Reviewed source video changed')
     root.mkdir(parents=True);rows=list(dataset['rows']);seen={(r['recording_id'],r['frame']) for r in rows};excluded=[];added=[]
     for annotation in chosen:
         body=DevelopmentLabel.model_validate({k:v for k,v in annotation.items() if k in DevelopmentLabel.model_fields})
@@ -36,9 +40,10 @@ def run(base_root,output,reviewer=None,task_manifest='configs/training/cv_m22_ta
             'state':body.state,'bbox':body.bbox,'origin':'human_confirmed_model_assisted_development',
             'model_assisted':True,'reference_role':'development_only','negative_regions':negatives})
         seen.add(key);added.append(body.task_id)
+    if digest(Path(labels_root)/'labels.json')!=annotation_sha:raise ValueError('Annotation snapshot changed during import; use a frozen copy')
     result={**{k:v for k,v in dataset.items() if k!='fingerprint'},'rows':rows,
         'parent_dataset_sha256':digest(base),'m22_task_manifest_sha256':digest(task_manifest),
-        'm22_annotation_snapshot_sha256':digest(Path(labels_root)/'labels.json'),
+        'm22_annotation_snapshot_sha256':annotation_sha,
         'additional_human_confirmed_frames':len(added),'excluded_uncertain':excluded,
         'hard_negative_policy':'Only explicitly rejected source regions supervised; no surrounding unknown pixels made negative',
         'independent_test_available':False,'withdrawn_m21_set_used':False}
@@ -47,4 +52,4 @@ def run(base_root,output,reviewer=None,task_manifest='configs/training/cv_m22_ta
     return result
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--base',required=True);p.add_argument('--output',required=True);p.add_argument('--reviewer');a=p.parse_args();run(a.base,a.output,a.reviewer)
+    p=argparse.ArgumentParser();p.add_argument('--base',required=True);p.add_argument('--output',required=True);p.add_argument('--reviewer');p.add_argument('--task-manifest',default='configs/training/cv_m22_tasks.json');p.add_argument('--labels-root',default='outputs/m22/human_review');a=p.parse_args();run(a.base,a.output,a.reviewer,a.task_manifest,a.labels_root)

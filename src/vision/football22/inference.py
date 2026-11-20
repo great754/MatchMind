@@ -23,6 +23,7 @@ class FootballDetector:
         self.model=TemporalFootballNet();self.model.load_state_dict(state['model'],strict=True);self.model.to(self.device).eval()
         self.metadata={k:state[k] for k in ['architecture','epoch','split','training_manifest_sha256','dataset_sha256','original_annotations_sha256']}
         self.metadata['weak_training']=state.get('weak_training')
+        self.metadata['m22_annotation_snapshot_sha256']=state.get('m22_annotation_snapshot_sha256')
 
     def infer(self,images,index):
         started=time.perf_counter();h,w=images[-1].shape[:2]

@@ -6,11 +6,12 @@ from src.serving.cv import digest
 from src.vision.football22.data import NAMES,write
 
 
-def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrained/resnet18-f37072fd.pth'):
+def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrained/resnet18-f37072fd.pth',validation_layout='source'):
+    if validation_layout not in ['source','temporal_groups']:raise ValueError('Unknown validation layout')
     import torch
     from torch.utils.data import DataLoader
     from src.vision.football22.model import ARCHITECTURE,TemporalFootballNet,detection_loss
-    from src.vision.football22.training import TemporalSamples,split_sources,matched_validation
+    from src.vision.football22.training import TemporalSamples,split_sources,split_temporal_groups,matched_validation,HARD_NEGATIVE_CROP_FRACTION
     torch.set_num_threads(4);torch.manual_seed(20261119);random.seed(20261119);np.random.seed(20261119)
     initial=Path(pretrained)
     if not initial.exists():raise ValueError('Explicitly approved ImageNet checkpoint required; automatic downloads disabled')
@@ -24,14 +25,23 @@ def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrain
         'weight_decay':.0005,'seed':20261119,'patience':6,'mixed_precision':False,'training_size':[384,384],
         'validation_size':[384,640],'repeats_per_verified_frame':6,'head_width':64,'temporal_input_filters_trainable':True,
         'strong_source_crop_sizes':[192,256,320,384],'weak_source_crop_sizes':[384,640,960,1080],
-        'selection':'maximum source-separated matched-detector validation F1, then precision, then minimum loss'}
+        'selection':'maximum source-separated matched-detector validation F1, then precision, then minimum loss',
+        'hard_negative_crop_fraction':HARD_NEGATIVE_CROP_FRACTION,
+        'hard_negative_crop_loss':'only explicitly human-rejected, non-ball-overlapping regions; surrounding pixels unknown',
+        'validation_layout':validation_layout}
     detector_config=json.loads(Path('configs/vision/cv_m22.json').read_text())
     config['validation_detector_config_sha256']=digest('configs/vision/cv_m22.json')
     manifest={'schema_version':'cv-m22-temporal-training-v1','dataset_sha256':digest(dataset_path),
         'imagenet_checkpoint_sha256':initial_sha,'imagenet_checkpoint':str(initial),'config':config,'device':device,
         'reference_role':'development_only','independent_test_used':False,'weak_labels_used':bool(dataset.get('weak_or_pseudo_labels_used')),
         'weak_training':dataset.get('weak_training'),
-        'small_data_warning':'34 known human frames total, 31 visible; no independent generalization claim.'}
+        'm22_annotation_snapshot_sha256':dataset.get('m22_annotation_snapshot_sha256'),
+        'human_frame_count':sum(not r.get('weak_supervision') for r in dataset['rows']),
+        'human_visible_frames':sum(r['state']=='visible' for r in dataset['rows']),
+        'human_negative_regions':sum(len(r.get('negative_regions',[])) for r in dataset['rows']),
+        'training_source_sha256':digest(__file__),'sample_source_sha256':digest('src/vision/football22/training.py'),
+        'model_source_sha256':digest('src/vision/football22/model.py'),
+        'small_data_warning':'Source-separated development data only; no independent generalization claim.'}
     meta=root/'manifest.json'
     if meta.exists() and json.loads(meta.read_text())!=manifest:raise ValueError('Resume dataset/model/config mismatch')
     write(meta,manifest)
@@ -43,7 +53,7 @@ def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrain
             print('M22 verified completed fold',excluded,flush=True);continue
         fold_seed=20261119+list(NAMES).index(excluded)
         torch.manual_seed(fold_seed);random.seed(fold_seed);np.random.seed(fold_seed)
-        train_rows,val_rows,split=split_sources(dataset['rows'],excluded)
+        train_rows,val_rows,split=split_sources(dataset['rows'],excluded) if validation_layout=='source' else split_temporal_groups(dataset['rows'],excluded,dataset['sources'])
         train=TemporalSamples(train_rows,True);val=TemporalSamples(val_rows,False)
         loader=DataLoader(train,batch_size=2,shuffle=True,num_workers=0,generator=torch.Generator().manual_seed(20261119))
         validation=DataLoader(val,batch_size=1,num_workers=0)
@@ -82,7 +92,8 @@ def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrain
             common={'architecture':ARCHITECTURE,'model':{k:v.detach().cpu() for k,v in model.state_dict().items()},'epoch':epoch,
                 'training_manifest_sha256':digest(meta),'dataset_sha256':manifest['dataset_sha256'],'split':split,
                 'best_validation_loss':best,'stale':stale,'history':history,'original_annotations_sha256':dataset['original_annotations_sha256'],
-                'weak_training':dataset.get('weak_training'),'best_validation_key':list(best_key)}
+                'weak_training':dataset.get('weak_training'),'best_validation_key':list(best_key),
+                'm22_annotation_snapshot_sha256':dataset.get('m22_annotation_snapshot_sha256')}
             if improved:torch.save(common,best_path)
             state={**common,'optimizer':optimizer.state_dict(),'scheduler':scheduler.state_dict(),'torch_rng':torch.get_rng_state(),
                 'python_rng':random.getstate(),'numpy_rng':np.random.get_state(),'loader_rng':loader.generator.get_state()}
@@ -103,6 +114,6 @@ def run(data_root,output,epochs=20,resume=False,pretrained='outputs/m22/pretrain
         if device=='mps':torch.mps.empty_cache()
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--data',required=True);p.add_argument('--output',required=True);p.add_argument('--epochs',type=int,default=20);p.add_argument('--resume',action='store_true');p.add_argument('--pretrained',default='outputs/m22/pretrained/resnet18-f37072fd.pth');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--data',required=True);p.add_argument('--output',required=True);p.add_argument('--epochs',type=int,default=20);p.add_argument('--resume',action='store_true');p.add_argument('--pretrained',default='outputs/m22/pretrained/resnet18-f37072fd.pth');p.add_argument('--validation-layout',choices=['source','temporal_groups'],default='source');a=p.parse_args()
     if not 1<=a.epochs<=40:raise ValueError('Local training supports 1–40 bounded epochs')
-    run(a.data,a.output,a.epochs,a.resume,a.pretrained)
+    run(a.data,a.output,a.epochs,a.resume,a.pretrained,a.validation_layout)

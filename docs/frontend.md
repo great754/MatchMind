@@ -1,6 +1,13 @@
 # TactiqAI Match Intelligence frontend
 
-## M22 trained temporal detector and development review (2026-11-20)
+## Completed M22 review and retrained model — 2026-11-20
+
+All 150 tasks are saved and preserved. Open http://127.0.0.1:5173/?recording=team_goal (or test_match/southampton), select **Ball review → M22 — Temporal Football Detector**, then expand **Results from your completed M22 review**. This comparison uses your new 150 frames; the original sample remains separate. The retrained model scores **64 / 27 / 81**, **70.3% / 44.1% / 0.542** on the new assisted development sample, and **1/7** original pass matches. Checkpoint hashes pin the new outputs and Ask revision. M22 stays experimental; M14 remains default.
+
+Automatic-save review remains available for corrections; no further annotation is required for this completed run. Browser checks mock saves and preserve all real labels. **173 frontend tests, typed build and all 12 Chrome cases passed** against the updated model. Both servers are running; Azure readiness is 200 / 15 usable recordings. Keep local CV videos/checkpoints/sidecars available; no Azure configuration change is needed. [Full results, commands and scientific limits](cv_temporal_football_detector_m22.md) · [Aggregate evidence](evidence/cv_m22_reviewed_results.json). Earlier sections are historical snapshots.
+
+
+## Historical initial M22 detector and review (2026-11-20)
 
 Open http://127.0.0.1:5173/?recording=team_goal and select **Ball review → M22 — Temporal Football Detector**. Synchronized M20/M22 playback, source-aligned activation maps, observed/inferred state, per-clip accuracy, rejected candidates, pass failure traces and checkpoint information are available. Chrome verified all three clips' playback, seeking, heatmaps and version-isolated grounded Local Ask. The model **regresses against M20** (aggregate ball precision 26.7%, recall 25.8%, seven-pass matches 0/7); it is not promoted, and M14 remains the default.
 

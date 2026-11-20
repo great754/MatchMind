@@ -25,7 +25,7 @@ def candidate_recall(tasks,labels,records):
     return result
 
 
-def run(perception_root,training_root,output,register=True):
+def run(perception_root,training_root,output,register=True,completed_review_snapshot=None):
     source=Path(perception_root);root=Path(output)
     if root.exists():raise ValueError('Use a fresh analysis directory')
     perception=json.loads((source/'report.json').read_text())
@@ -102,6 +102,29 @@ def run(perception_root,training_root,output,register=True):
             'reason':'Development-only trained model; independent user-approved final footage/labels required. Do not infer improvement from training completion.'},
         'human_review':{'tasks':150,'source_scope':list(NAMES),'model_proposals_are_truth':False,'withdrawn_set_used':False}}
     if report['pass_reference_count']!=7:raise ValueError('All seven original eligible passes require an evidence trace')
+    targets={'ball_precision':.75,'ball_recall':.55,'ball_f1':.60,'completed_passes_matched':3}
+    values={'ball_precision':aggregate['ball']['precision'],'ball_recall':aggregate['ball']['recall'],
+        'ball_f1':aggregate['ball']['f1'],'completed_passes_matched':aggregate['passes']['tp']}
+    achieved={key:values[key] is not None and values[key]>=threshold for key,threshold in targets.items()}
+    report['research_targets']={'reference':'original_60_development_reviews','thresholds':targets,'values':values,
+        'achieved':achieved,'all_met':all(achieved.values()),'independent_accuracy_acceptance':False}
+    if completed_review_snapshot:
+        from scripts.evaluate_cv_m22_reviews import run as review_evaluation
+        from src.evaluation.cv_m19 import counts
+        reviewed=review_evaluation(completed_review_snapshot,root/'completed_review',root)
+        original_m22=json.loads(Path('outputs/m22/analysis_final_v1/report.json').read_text())
+        originals={'m20_control':baselines['m20_control'],'m21_offline_dag':baselines['offline_dag'],
+            'm21_temporal_offline':baselines['temporal_offline'],'m22_initial':original_m22,
+            'm22_reviewed':{'aggregate':aggregate,'per_recording':per_clip}}
+        def combined(a,b):
+            return {**counts(*(a[k]+b[k] for k in ['tp','fp','fn'])),
+                'reviewed_frames':a['reviewed_frames']+b['reviewed_frames'],
+                'unknown_visibility_frames':a['unknown_visibility_frames']+b['unknown_visibility_frames'],
+                'reference_role':'development_only_mixed_original_and_model_assisted'}
+        report['completed_review_evaluation']=reviewed
+        report['combined_development_ball']={key:{'aggregate':combined(originals[key]['aggregate']['ball'],value['ball']),
+            'per_recording':{name:combined(originals[key]['per_recording'][name]['ball'],value['per_recording'][name]['ball']) for name in NAMES}}
+            for key,value in reviewed['systems'].items()}
     write(root/'report.json',report)
     # Validate all optional artifacts before making them selectable. Registry is
     # written last, so an incomplete experiment cannot become application-ready.
@@ -118,4 +141,4 @@ def run(perception_root,training_root,output,register=True):
     return report
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--perception',required=True);p.add_argument('--training',required=True);p.add_argument('--output',required=True);p.add_argument('--no-register',action='store_true');a=p.parse_args();run(a.perception,a.training,a.output,not a.no_register)
+    p=argparse.ArgumentParser();p.add_argument('--perception',required=True);p.add_argument('--training',required=True);p.add_argument('--output',required=True);p.add_argument('--no-register',action='store_true');p.add_argument('--completed-review-snapshot');a=p.parse_args();run(a.perception,a.training,a.output,not a.no_register,a.completed_review_snapshot)

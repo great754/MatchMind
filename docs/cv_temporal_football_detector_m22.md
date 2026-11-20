@@ -2,6 +2,85 @@
 
 Verified implementation and development experiment, 2026-11-20. **Opt-in research; no accuracy promotion.** M14 remains the ordinary default, M20 the frozen experimental control, and M21 diagnostics remain available. This report follows the latest three-frame architecture brief, which supersedes the earlier broader M22 proposal. M23 has not started.
 
+## Completed reviews used for retraining — verified 2026-11-20
+
+All **150/150 reviews** are received and validated: **145 visible-ball frames, five absent frames and 372 explicit rejected regions**, 50 tasks per approved clip, one reviewer, no duplicate tasks. The frozen annotation SHA-256 is `0b4c470a5f116f2a8c4811f7a5b7d66f11b017534d0f4d5146aae7a1312a51b4`. The private snapshot is `outputs/m22/completed_review_snapshot_v1/`. The original 60 labels, 20 saved withdrawn M21 labels and these completed 150 labels remain byte-identical. No new tasks or fabricated references were added.
+
+The data revision contains **184 strong known frames (176 visible, eight absent)** plus the same **120 weak positive-only triplets at weight 0.15**. Only explicitly human-rejected regions get negative loss; unknown surroundings remain masked. The outside-crop negative-mask slicing bug is fixed and regression-tested. Negative-only crops are sampled with probability one-third where applicable.
+
+| System | Correct / false / missed | Precision / recall / F1 |
+|---|---:|---:|
+| M20 control | 41 / 3 / 104 | 93.2% / 28.3% / 0.434 |
+| M21 offline DAG | 49 / 0 / 96 | 100.0% / 33.8% / 0.505 |
+| M21 temporal + offline | 95 / 14 / 50 | 87.2% / 65.5% / 0.748 |
+| Initial M22 | 21 / 110 / 124 | 16.0% / 14.5% / 0.152 |
+| Retrained M22 | 64 / 27 / 81 | 70.3% / 44.1% / 0.542 |
+
+The table uses **only the new 150 assisted development frames**, fixed IoU ≥0.25. Original references remain separate: retrained M22 scores **14 / 7 / 17**, precision/recall/F1 **66.7% / 45.2% / 0.538**, and **1/7 completed-pass matches**. Combined original/new known ball frames score **78 / 34 / 98**, **69.6% / 44.3% / 0.542** across 184 known frames. These are development measurements, not an independent final test. Original and new task frames do not overlap.
+
+| Excluded evaluation clip | Original ball TP / FP / FN | New-review TP / FP / FN | New precision / recall | Pass matches |
+|---|---:|---:|---:|---:|
+| test_match | 9 / 3 / 2 | 29 / 12 / 21 | 70.7% / 58.0% | 1 / 2 |
+| team_goal | 0 / 1 / 11 | 3 / 9 / 42 | 25.0% / 6.7% | 0 / 3 |
+| southampton | 5 / 3 / 4 | 32 / 6 / 18 | 84.2% / 64.0% | 0 / 2 |
+
+**All four original-sample research targets remain unmet** (precision 75%, recall 55%, F1 0.60, three of seven passes). The one recovered pass is in test_match; it equals M20’s matched-pass count and exceeds initial M22’s zero. **team_goal remains the main generalization failure:** only three of 45 new visible balls and zero of 11 original visible balls are matched. All five new absent frames receive false observations. The frozen M21 temporal/offline system remains stronger on the new sample (95 correct / 14 false / 50 missed). It is not replaced by an accuracy-promotion claim.
+
+Before association, retrained M22 gives **12 correct / 12 false / 19 missed** original balls; the fixed DAG improves this to 14/7/17. Original candidate-pool recall at confidence ≥0.05 is **16/31 top-one, 20/31 top-three, 21/31 top-five**. team_goal has seven of 11 matching boxes somewhere in its top-five pool but zero accepted matches on those original frames: visual ranking/current-only rejection and association remain distinct failure stages. These loose candidate pools are diagnostic, not valid observations. Contact evidence is missing near the unmatched test_match receipt and team_goal endpoints; Southampton traces include player separation, opponent-transfer and endpoint/continuity/team rejection. No threshold or evidence gate was relaxed to force recovery.
+
+Each model completely excludes its target recording from fitting and checkpoint selection. Both other clips supply training; fixed temporal bins 2 and 7 out of ten supply validation, with a **0.5-second exclusion buffer and zero shared context frames**. The layout was chosen before final target inference after weak one-source validation in a preserved diagnostic. The unchanged architecture is three chronological RGB frames → nine-channel ImageNet ResNet-18 → 64-channel FPN → stride-four CenterNet heads. Training retains the eight-epoch cap, seed, optimizer and detector thresholds; fixed M21 DAG association and M19 pass gates remain unchanged.
+
+| Excluded clip | Strong train / validation | Selected epoch / run | Checkpoint SHA-256 |
+|---|---:|---:|---|
+| test_match | 85 / 25 | 3 / 8 | `e2382fb45171f9660612db8f87c7be4c3c38124a57dd55d18c716cf06547fe0d` |
+| team_goal | 90 / 26 | 2 / 8 | `62414ec4cfdd1599ed3f65433689a5c8a61a912404511e8ecb0a87a93cb9b1b0` |
+| southampton | 91 / 27 | 7 / 8 | `0d96d0de6669274fb04c295e0415a946516c011d23baa70ff4789d050c0b1bae` |
+
+Across the complete clips, the unchanged rules produce **three completed-pass estimates and 13 possible transfers on test_match, zero and zero on team_goal, zero and six on southampton**. These are experimental model outputs; only one of seven original reference passes is matched, and the remaining full-clip estimates/candidates are not independently verified. Goals, shots, pass attempts and completion accuracy remain null.
+
+All **1,701 frames** were processed with causal visual inputs and offline association. Same-model current-only agreement remains a model check, not human verification. Inferred positions cannot become observed release/flight/receipt evidence. Seven original pass references retain per-event failure traces; whole-clip estimates are not automatically true passes or verified match totals. Player continuity/team evidence still limits passes even when ball detection improves. No new independently measured goals, shots, tackles, interceptions, possession or pass-completion accuracy is claimed.
+
+| Clip | Completed epoch seconds | Inference frames/s | Inference seconds | Peak process RSS |
+|---|---:|---:|---:|---:|
+| test_match | 441.3 | 1.97 | 275.2 | 0.90 GiB |
+| team_goal | 586.2 | 4.30 | 116.4 | 0.90 GiB |
+| southampton | 530.4 | 1.97 | 334.8 | 0.90 GiB |
+
+Runtime is local MPS/float32. Epoch seconds sum successful saved epochs; they exclude failed drafts, file-provider waits and failed partial epochs. Peak RSS is the inference process high-water mark, not isolated GPU memory. iCloud offloaded training inputs/checkpoints during the third fit. The run resumed from optimizer/scheduler/RNG state using **546 hash-verified encoded-image copies outside iCloud**, with identical OpenCV decoding and unchanged statistical trainer source hashes. Strict selected-checkpoint verification was retained. Cached-I/O launcher/source hashes are recorded in `pixel_cache_executions.json`. Bit-identical MPS resumption is not established. Earlier interrupted roots and source snapshots remain preserved.
+
+Current private roots: `data_review_v1`, `temporal_data_review_v1`, `temporal_training_review_v3`, `perception_review_v1`, `analysis_review_v1`. The serving registry now pins the new analysis report. M22 stays **opt-in, not promoted**; M14 is the ordinary default and M20 remains the frozen control. No architecture search, external dataset/checkpoint download, paid compute, full-match CV, Azure write or change to soccer analytics/grounding was performed in this continuation.
+
+Verified: **1,092 backend tests run / 1,091 passed / one skip; 173 frontend tests passed; typed production build; 12 distinct Chrome cases passed across the suite and focused rechecks; all three strict M22 sidecars; 12 reproduced primary artifact hashes; completed resume verified all three selected checkpoints**.
+
+Fresh Azure-backed `/health`, `/ready` and `/recordings` return 200. Readiness reports **15 usable recordings** (12 canonical analytics and three local CV). `118575_clip` view returns 200 / 481 events; grounded Local Ask returns 200 / 14 facts; video range returns 206 / 16 bytes. All three new M22 metadata/frame/grounded Local Ask requests return 200 and carry the selected checkpoint revision. Both servers remain running.
+
+Open http://127.0.0.1:5173/?recording=team_goal and choose **Ball review → M22 — Temporal Football Detector**. Expand **Results from your completed M22 review** to compare the models on your new labels; original results remain in their own comparison. Chrome verified playback, seeking, heatmaps, comparison and revision-isolated Local Ask on all three clips, plus automatic-save review and legacy Azure/player/video regressions. Original/raw review exports remain preserved; browser test saves were mocked.
+
+The Azure account/container settings stay unchanged. Operational cache paths now use `~/Library/Caches/TactiqAI/azure_artifacts_m22`, `highlights_m22` and `assistant_m22`, outside iCloud. A total of **851 existing files / 957,912,365 bytes** was copied and SHA-verified; originals remain preserved. Earlier browser attempts had a source-unavailable highlight, a cached-highlight TimeoutError and M22 stale-stamp rejection after file hydration. Restoring exact inputs, rechecking hashes and restarting preserved strict validation; ten suite cases passed, followed by the two focused rechecks. Read-only file handles were used during verification. For reliable local CV playback, mark the three approved MP4s, current `*_m9_ready` worlds, M22 analysis sidecars and selected checkpoints as **Keep Downloaded** in Finder; no need to pin every historical experiment. Canonical SoccerTrack media/analytics stay Azure-backed; the three CV videos, trained checkpoints and sidecars remain local and must stay available. GitHub receives source, tests, registry and aggregate evidence; videos, model binaries and raw labels stay ignored.
+
+**Limits and remaining work:** one reviewer, three development-influenced clips, model-assisted active selection, temporally correlated frames and weak-source original-match overlap not established. Source exclusion does not erase prior development influence or proposal-selection bias. Research target flags in the evidence refer only to the original development sample; no independent accuracy acceptance exists. Improve the measured missing-ball/contact/player/team failure stages without relaxing evidence gates, then obtain explicitly user-selected useful unseen footage and independent source annotations before promotion. M23 has not started.
+
+[Aggregate reviewed results and provenance](evidence/cv_m22_reviewed_results.json) · [Verified current comparison UI](evidence/cv_m22_reviewed_workspace.jpg).
+
+### Current reproduction commands
+
+```sh
+export TACTIQAI_BACKEND_PYTHON=/Users/greatabhieyighan/Library/Caches/TactiqAI/backend-m17/bin/python
+
+# Verify the completed campaign without fitting again (same pinned data/code):
+"$TACTIQAI_BACKEND_PYTHON" -m scripts.train_cv_m22_cached --data outputs/m22/temporal_data_review_v1 --output outputs/m22/temporal_training_review_v3 --epochs 8 --validation-layout temporal_groups --resume
+"$TACTIQAI_BACKEND_PYTHON" -m scripts.run_cv_m22 --data outputs/m22/temporal_data_review_v1 --training outputs/m22/temporal_training_review_v3 --output outputs/m22/perception_review_v1 --resume
+
+# Use a fresh destination for another cached-analysis check; never overwrite a frozen run:
+"$TACTIQAI_BACKEND_PYTHON" -m scripts.analyze_cv_m22 --perception outputs/m22/perception_review_v1 --training outputs/m22/temporal_training_review_v3 --output outputs/m22/analysis_review_repro_next --completed-review-snapshot outputs/m22/completed_review_snapshot_v1 --no-register
+
+# Re-import the frozen review into a NEW dataset (not over the trained dataset):
+"$TACTIQAI_BACKEND_PYTHON" -m scripts.import_cv_m22_review --base outputs/m22/data_v1 --output outputs/m22/data_review_repro_next --task-manifest outputs/m22/completed_review_snapshot_v1/tasks.json --labels-root outputs/m22/completed_review_snapshot_v1
+"$TACTIQAI_BACKEND_PYTHON" -m scripts.prepare_cv_m22 --temporal-from outputs/m22/data_review_repro_next --output outputs/m22/temporal_review_repro_next --weak-local
+```
+
+The startup/check commands below use the current local operational cache paths. The next sections preserve the **historical initial M22 experiment before the completed review**.
+
 ## Architecture and source research
 
 CourtVision was studied at commit `581f67e82c9e271751baffb62046cee4e1e94902`: [student detector](https://github.com/aiden-guan/courtvision/blob/581f67e82c9e271751baffb62046cee4e1e94902/courtvision/perception/student.py), [training](https://github.com/aiden-guan/courtvision/blob/581f67e82c9e271751baffb62046cee4e1e94902/courtvision/training/train_student.py), [ball labels](https://github.com/aiden-guan/courtvision/blob/581f67e82c9e271751baffb62046cee4e1e94902/courtvision/training/ball_labels.py), [pseudo-labels](https://github.com/aiden-guan/courtvision/blob/581f67e82c9e271751baffb62046cee4e1e94902/courtvision/training/pseudo_labels.py), and [offline analysis](https://github.com/aiden-guan/courtvision/blob/581f67e82c9e271751baffb62046cee4e1e94902/courtvision/nba/analyze.py). The useful ideas are three chronological RGB inputs, a pretrained small backbone, high-resolution center prediction, confidence-aware weak supervision, ignoring unknown labels, and offline linking. Basketball weights, court/color assumptions, pseudo-labels, player heads and event rules were not imported. One detector architecture is implemented:
@@ -135,7 +214,7 @@ Review creation uses `scripts.prepare_cv_m22_review`: inspect the draft's source
 Start the Azure-backed application from the repository root:
 
 ```sh
-AZURE_TOKEN_CREDENTIALS=AzureCliCredential MATCHMIND_ARTIFACT_STORE=azure MATCHMIND_PROVIDER=local MATCHMIND_CACHE=outputs/cache/azure_m17 MATCHMIND_HIGHLIGHT_CACHE=outputs/highlights_m18 TACTIQAI_BACKEND_PYTHON=/Users/greatabhieyighan/Library/Caches/TactiqAI/backend-m17/bin/python scripts/start_backend.sh
+AZURE_TOKEN_CREDENTIALS=AzureCliCredential MATCHMIND_ARTIFACT_STORE=azure MATCHMIND_PROVIDER=local MATCHMIND_CACHE=/Users/greatabhieyighan/Library/Caches/TactiqAI/azure_artifacts_m22 MATCHMIND_HIGHLIGHT_CACHE=/Users/greatabhieyighan/Library/Caches/TactiqAI/highlights_m22 MATCHMIND_ASSISTANT_CACHE=/Users/greatabhieyighan/Library/Caches/TactiqAI/assistant_m22 TACTIQAI_BACKEND_PYTHON=/Users/greatabhieyighan/Library/Caches/TactiqAI/backend-m17/bin/python scripts/start_backend.sh
 # Separate terminal:
 npm --prefix frontend run dev
 ```

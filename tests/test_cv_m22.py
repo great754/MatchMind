@@ -77,12 +77,32 @@ class TemporalModelM22Tests(unittest.TestCase):
         self.assertEqual(train,[{'recording_id':'test_match'}]);self.assertEqual(val,[{'recording_id':'southampton'}])
         self.assertFalse(split['target_labels_used_for_fitting_or_early_stopping'])
 
+    def test_two_source_temporal_validation_excludes_target_buffers_and_shared_context(self):
+        from src.vision.football22.training import split_temporal_groups
+        sources={n:{'fps':25.,'frames':100} for n in ['test_match','team_goal','southampton']}
+        rows=[{'recording_id':n,'frame':f,'context':[{'frame':f-d} for d in [2,1,0]]} for n in sources for f in [5,20,30,50,70,90]]
+        train,val,split=split_temporal_groups(rows,'team_goal',sources)
+        self.assertEqual({r['recording_id'] for r in train},{'test_match','southampton'})
+        self.assertEqual({r['frame'] for r in val},{20,70});self.assertFalse(any(r['frame']==30 for r in train))
+        for a in train:
+            for b in val:
+                if a['recording_id']==b['recording_id']:
+                    self.assertGreater(abs(a['frame']-b['frame'])/25,.5)
+                    self.assertFalse({c['frame'] for c in a['context']} & {c['frame'] for c in b['context']})
+        self.assertFalse(split['target_labels_used_for_fitting_or_early_stopping'])
+
     def test_hard_negative_regions_never_label_surrounding_unknown_pixels(self):
         im=np.zeros((64,96,3),np.uint8);_,mapping=preprocess([im]*3,(64,96))
         target=targets('uncertain',None,mapping,negative_regions=[[20,20,12,12]])
         self.assertGreater(float(target['valid'].sum()),0)
         self.assertEqual(float(target['valid'][0,0,0]),0.)
         self.assertEqual(float(target['heatmap'].sum()),0.)
+
+    def test_negative_regions_outside_a_crop_do_not_wrap_around_the_mask(self):
+        im=np.zeros((100,100,3),np.uint8);_,mapping=preprocess([im]*3,(384,384),(30,30,32,32))
+        for box in [[24,40,4,4],[40,24,4,4],[65,40,4,4],[40,65,4,4]]:
+            target=targets('uncertain',None,mapping,negative_regions=[box])
+            self.assertEqual(float(target['valid'].sum()),0.)
 
     def test_weak_organizer_positive_has_no_unknown_background_negative_loss(self):
         import cv2
@@ -95,6 +115,25 @@ class TemporalModelM22Tests(unittest.TestCase):
             data=TemporalSamples([row],False);_,target=data[0]
             self.assertEqual(int((target['valid']>0).sum()),1)
             self.assertAlmostEqual(float(target['valid'].sum()),.15,places=6)
+
+    def test_human_hard_negative_crops_mask_all_unreviewed_pixels(self):
+        import cv2
+        from src.serving.cv import digest
+        from src.vision.football22.training import TemporalSamples
+        with TemporaryDirectory() as directory:
+            path=Path(directory)/'frame.png';cv2.imwrite(str(path),np.zeros((360,640,3),np.uint8))
+            row={'recording_id':'test_match','frame':2,'state':'visible','bbox':[500,260,12,12],
+                'negative_regions':[[50,50,20,20]],'weight':1.,
+                'context':[{'path':str(path),'sha256':digest(path),'frame':i} for i in range(3)]}
+            dataset=TemporalSamples([row],True,repeats=24);positive=negative=0
+            for i in range(len(dataset)):
+                _,target=dataset[i]
+                if target['mask'].sum():positive+=1
+                else:
+                    negative+=1;self.assertEqual(float(target['heatmap'].sum()),0.)
+                    self.assertGreater(float(target['valid'].sum()),0.)
+                    self.assertLess(float(target['valid'].sum()),target['valid'].numel()/10)
+            self.assertGreater(negative,0);self.assertGreater(positive,0)
 
 
 class DevelopmentReviewM22Tests(unittest.TestCase):
@@ -218,6 +257,71 @@ class EvidenceIsolationM22Tests(unittest.TestCase):
             self.assertIsNot(first,second);self.assertIsNot(other,second)
             self.assertNotEqual(first.cv_model_revision,second.cv_model_revision)
             self.assertIs(second.layer,layers[('r','second')])
+
+
+class AssistedDevelopmentMetricsM22Tests(unittest.TestCase):
+    def make(self):
+        tasks=[{'task_id':'t','recording_id':'r','frame':0,'kind':'ball'}]
+        source={'r':{'video_sha256':'a'*64,'fps':25.,'frames':1,'width':100,'height':80}}
+        row={'task_id':'t','frame':0,'timestamp':0.,'source_video_sha256':'a'*64,
+            'origin':'human','reviewed_from_source':True,'model_assisted':True,'state':'visible','bbox':[10.,10.,5.,5.]}
+        balls={'r':[{'directly_observed':True,'image_bbox':[10.,10.,5.,5.]}]}
+        return tasks,source,row,balls
+
+    def test_assisted_labels_are_explicitly_development_and_still_rejected_by_independent_evaluator(self):
+        from src.evaluation.cv_m22_development import ball_metrics
+        from src.evaluation.cv_m19 import evaluate
+        tasks,sources,row,balls=self.make();result=ball_metrics(tasks,[row],balls,sources)
+        self.assertEqual(result['ball']['tp'],1);self.assertEqual(result['reference_role'],'development_only');self.assertFalse(result['independent_final_test'])
+        with self.assertRaises(ValueError):evaluate(tasks,[row],balls,{}, {'sources':sources,'ball_box_match_iou':.25})
+
+    def test_predicted_positions_and_unknown_visibility_cannot_inflate_observation_accuracy(self):
+        from src.evaluation.cv_m22_development import ball_metrics
+        tasks,sources,row,balls=self.make();balls['r'][0]={'directly_observed':False,'image_bbox':None,'predicted_image_position':[12.,12.]}
+        result=ball_metrics(tasks,[row],balls,sources);self.assertEqual(result['ball']['fn'],1);self.assertEqual(result['ball']['tp'],0)
+        row.update(state='uncertain',bbox=None);result=ball_metrics(tasks,[row],balls,sources)
+        self.assertEqual(result['ball']['unknown_visibility_frames'],1);self.assertEqual(result['ball']['reviewed_frames'],0)
+
+    def test_incorrect_boxes_count_as_false_and_missed_and_absence_is_explicit(self):
+        from src.evaluation.cv_m22_development import ball_metrics
+        tasks,sources,row,balls=self.make();balls['r'][0]['image_bbox']=[50.,50.,5.,5.]
+        result=ball_metrics(tasks,[row],balls,sources);self.assertEqual((result['ball']['fp'],result['ball']['fn']),(1,1))
+        row.update(state='not_visible',bbox=None);result=ball_metrics(tasks,[row],balls,sources);self.assertEqual(result['ball']['fp'],1)
+
+    def test_wrong_source_duplicate_and_nonhuman_provenance_are_rejected(self):
+        from src.evaluation.cv_m22_development import ball_metrics
+        tasks,sources,row,balls=self.make()
+        with self.assertRaises(ValueError):ball_metrics(tasks,[row,row],balls,sources)
+        for override in [{'source_video_sha256':'b'*64},{'model_assisted':False},{'origin':'model'},{'frame':1}]:
+            with self.assertRaises(ValueError):ball_metrics(tasks,[{**row,**override}],balls,sources)
+
+
+class VerifiedPixelCacheM22Tests(unittest.TestCase):
+    def make(self,root):
+        import cv2
+        from src.serving.cv import digest
+        pixels=np.full((32,48,3),123,np.uint8);image=root/'source.png';cv2.imwrite(str(image),pixels)
+        dataset=root/'dataset.json';dataset.write_text(json.dumps({'rows':[{'context':[{'path':str(image),'sha256':digest(image)}]}]}))
+        return pixels,image,dataset
+
+    def test_cache_uses_identical_pixels_after_original_is_unavailable_without_global_opencv_patch(self):
+        import cv2
+        from src.vision.football22 import training
+        from src.vision.football22.pixel_cache import PixelCache
+        with TemporaryDirectory() as directory:
+            root=Path(directory);pixels,image,dataset=self.make(root);cache=PixelCache(dataset,root/'cache');original=cv2.imread;sha=cache.digest(image);image.unlink()
+            with cache.training_io():
+                np.testing.assert_array_equal(training.cv2.imread(str(image)),pixels)
+                self.assertEqual(training.digest(image),sha);self.assertIs(cv2.imread,original)
+            self.assertIs(training.cv2,cv2)
+
+    def test_corrupted_cache_and_unknown_image_are_rejected(self):
+        from src.vision.football22.pixel_cache import PixelCache
+        with TemporaryDirectory() as directory:
+            root=Path(directory);_,image,dataset=self.make(root);cache=PixelCache(dataset,root/'cache')
+            with self.assertRaises(ValueError):cache.imread(root/'unrelated.png')
+            next(iter(cache.paths.values())).write_bytes(b'corrupt')
+            with self.assertRaisesRegex(ValueError,'hash mismatch'):PixelCache(dataset,root/'cache')
 
 
 if __name__=='__main__':unittest.main()

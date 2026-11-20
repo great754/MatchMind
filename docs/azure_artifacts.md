@@ -1,6 +1,15 @@
 # TactiqAI canonical Azure artifacts
 
-## M22 remains a local opt-in CV experiment (2026-11-20)
+## M22 completed-review retraining stays local — 2026-11-20
+
+The 150 completed short-clip reviews were preserved and used for three source-excluded fits. New M22 outputs are pinned local sidecars in `outputs/m22/analysis_review_v1`; they do not publish Azure bundles or grant `artifact_ready`. Strict source, manifest, checkpoint and schema validation remains in force. M22 is opt-in, with M14 default and M20 control; measured ball/pass results and development-only limits are in the [updated report](cv_temporal_football_detector_m22.md).
+
+Fresh Azure-backed `/health`, `/ready` and `/recordings` return 200. Readiness reports **15 usable recordings** (12 canonical analytics and three local CV). `118575_clip` view returns 200 / 481 events; grounded Local Ask returns 200 / 14 facts; video range returns 206 / 16 bytes. All three new M22 metadata/frame/grounded Local Ask requests return 200 and carry the selected checkpoint revision. Both servers remain running.
+
+No Azure writes, container/account changes, model/video/annotation uploads, external dataset download or full-match CV occurred. Keep the three local CV sources, checkpoints and sidecars available; canonical SoccerTrack media/analytics remain Azure-backed. Existing MATCHMIND_* names are retained. The current startup command selects the three operational cache directories outside iCloud. Earlier sections are historical snapshots.
+
+
+## Historical initial M22 local experiment (2026-11-20)
 
 The trained three-frame football detector and its review/training files are local sidecars for test_match, team_goal and southampton. They do not publish canonical Azure bundles or grant `artifact_ready`. Their hash/schema/source/checkpoint validation remains strict; missing or corrupt optional M22 files leave existing recordings usable. Original SoccerTrack analytics, possession, GSR and grounded Ask are unchanged. M22's measured development accuracy regresses against M20, so M14 remains default and M20 remains the control.
 

@@ -97,11 +97,11 @@ def targets(state,bbox,mapping,weight=1.,negative_regions=None):
     # fully inside that region; surrounding unknown source pixels stay masked.
     for region in negative_regions or []:
         x,y,bw,bh=region
-        left=math.ceil((x-mapping['x'])*mapping['scale_x']/4)
-        top=math.ceil((y-mapping['y'])*mapping['scale_y']/4)
-        right=math.floor((x+bw-mapping['x'])*mapping['scale_x']/4)
-        bottom=math.floor((y+bh-mapping['y'])*mapping['scale_y']/4)
-        if right>left and bottom>top:valid[:,max(0,top):min(h,bottom),max(0,left):min(w,right)]=weight
+        left=max(0,math.ceil((x-mapping['x'])*mapping['scale_x']/4))
+        top=max(0,math.ceil((y-mapping['y'])*mapping['scale_y']/4))
+        right=min(w,math.floor((x+bw-mapping['x'])*mapping['scale_x']/4))
+        bottom=min(h,math.floor((y+bh-mapping['y'])*mapping['scale_y']/4))
+        if right>left and bottom>top:valid[:,top:bottom,left:right]=weight
     if state=='visible':
         if bbox is None:raise ValueError('Visible supervision requires a verified current source box')
         x,y,bw,bh=bbox

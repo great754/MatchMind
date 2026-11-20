@@ -1,6 +1,25 @@
 # TactiqAI Current Pipeline Status
 
-## Simpler M22 review — automatic save and next (2026-11-20)
+## M22 completed-review retraining — verified 2026-11-20
+
+**150/150 reviews received, preserved and used in a fresh training revision.** Your decisions provide 145 visible balls, five absent frames and 372 rejected regions. The same three-frame ResNet-18/FPN/CenterNet architecture was trained in three source-excluded fits and run on all 1,701 approved short-clip frames. No extra review work is required for this development run.
+
+On the **new 150 assisted development frames**, retrained M22 gives **64 / 27 / 81 correct / false / missed**, precision **70.3%**, recall **44.1%**, F1 **0.542**. Initial M22 on those same frames was 21/110/124, 16.0% precision and 14.5% recall. On the original sample, retrained M22 scores **14 / 7 / 17**, **66.7% / 45.2% / 0.538**, with **1/7 pass matches**. Combined known frames: **78 / 34 / 98**, **69.6% / 44.3% / 0.542**. Original and new comparisons stay separate; these labels are development evidence, with no independent final test or promotion.
+
+Open [team_goal](http://127.0.0.1:5173/?recording=team_goal), choose **Ball review → M22 — Temporal Football Detector**, and expand **Results from your completed M22 review**. test_match and southampton are available too. M14 remains default; M20 stays the control. The new model pins checkpoints/report hashes and isolates Ask by checkpoint/ball/event revision. Negative-region crop masking and iCloud input resumption are fixed without weakening validation, observation thresholds or pass rules.
+
+Verified: **1,092 backend tests run / 1,091 passed / one skip; 173 frontend tests passed; typed production build; 12 distinct Chrome cases passed across the suite and focused rechecks; all three strict M22 sidecars; 12 reproduced primary artifact hashes; completed resume verified all three selected checkpoints**.
+
+Fresh Azure-backed `/health`, `/ready` and `/recordings` return 200. Readiness reports **15 usable recordings** (12 canonical analytics and three local CV). `118575_clip` view returns 200 / 481 events; grounded Local Ask returns 200 / 14 facts; video range returns 206 / 16 bytes. All three new M22 metadata/frame/grounded Local Ask requests return 200 and carry the selected checkpoint revision. Both servers remain running.
+
+Keep the three local CV videos/checkpoints/sidecars downloaded; canonical SoccerTrack media and analytics remain Azure-backed. No Azure account/container change, upload, external dataset download, paid compute or full-match CV was needed. Verified operational cache copies now live outside iCloud; use the updated startup command in the report. Remaining: recover the measured pass evidence stages and obtain independently labelled, explicitly selected unseen football footage. M23 has not started.
+
+[Full report, checkpoint hashes, commands and limitations](cv_temporal_football_detector_m22.md) · [Measured aggregate evidence](evidence/cv_m22_reviewed_results.json) · [Current UI](evidence/cv_m22_reviewed_workspace.jpg). Earlier sections are historical verification snapshots.
+
+---
+
+
+## Historical UI verification — automatic save and next (2026-11-20)
 
 The [M22 review](http://127.0.0.1:5173/?review=m22&recording=team_goal) now keeps one source frame and enlarged proposal previews visible. Keep using **Accept proposal** / **Not the ball**; after all proposals have been reviewed, the complete decision **saves automatically and advances only after the server confirms it**. There is no Save button or per-frame confirmation checkbox. Go back to correct choices; corrections save automatically. Optional context, notes, examples and settings are collapsed. Incomplete browser drafts survive navigation. Failed saves keep the current question and offer Retry; no repeated automatic error requests.
 
@@ -9,7 +28,7 @@ All 150 original tasks remain. **Six existing M22 labels, 60 original M19 review
 Verified: **171 frontend tests, 21 focused backend tests, typed production build and two Chrome cases (15.0s)** covering all three clips, back/correction, automatic advancement, failure recovery and desktop/mobile layouts. Six mocked browser payloads passed real backend validation without saving test labels. Live readiness is 200 / 15 usable recordings; both servers remain running. [Evidence](evidence/cv_m22_review_simple.json) · [Simpler UI](evidence/cv_m22_review_simple.jpg). The broader M22 model results and original verification snapshot follow.
 
 
-## M22 trained temporal football detector — opt-in, accuracy regression (2026-11-20)
+## Historical initial M22 detector — accuracy regression (2026-11-20)
 
 **TRAINING, THREE-CLIP INFERENCE, EVALUATION AND M22 FRONTEND VERIFIED / ACCURACY TARGETS NOT MET / NO PROMOTION.** One three-frame ImageNet ResNet-18 + 64-channel FPN + CenterNet detector ran on all **1,701 frames** of test_match, team_goal and southampton. It reuses the fixed M21 offline DAG and unchanged M19 pass rules. The approved official ResNet-18 initialization download was 46,830,571 bytes. No new dataset, paid compute, Azure write or full-match CV was performed.
 

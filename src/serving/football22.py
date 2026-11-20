@@ -81,10 +81,14 @@ class FootballRegistry:
 
     def metadata(self,recording):
         review=self.load(recording);entry=self.entries()[recording];report=json.loads((Path(entry['root'])/'report.json').read_text())
+        completed=report.get('completed_review_evaluation')
+        extra={'completed_review':{'frames':completed['frame_count'],'visible_frames':completed['visible_ball_frames'],
+            'systems':[{'id':key,'ball':value['per_recording'][recording]['ball']} for key,value in completed['systems'].items()],
+            'combined':report['combined_development_ball']['m22_reviewed']['per_recording'][recording]}} if completed else {}
         return {'recording_id':recording,'model':report['perception']['clips'][recording]['model'],
             'metrics':report['per_recording'][recording],'aggregate':report['aggregate'],'baselines':report['baselines'],
             'detector_only':report.get('detector_only_per_recording',{}).get(recording),
             'reference_role':'development_only','independent_test_status':'not_available','promotion':report['promotion'],
             'runtime':report['perception']['clips'][recording],'training':report['training'][recording],
             'checkpoint_sha256':review.ball_review.manifest['detector_sha256'],'review_tasks':50,
-            'pass_trace':report['pass_traces'][recording]}
+            'pass_trace':report['pass_traces'][recording]}|extra

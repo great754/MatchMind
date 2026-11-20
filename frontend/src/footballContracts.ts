@@ -4,6 +4,7 @@ const measure=z.object({ball:counts,passes:counts}).passthrough();
 export const footballMetadataSchema=z.object({recording_id:z.string(),reference_role:z.literal('development_only'),checkpoint_sha256:z.string(),
  model:z.object({architecture:z.string(),epoch:z.number(),split:z.object({train_sources:z.array(z.string()),validation_sources:z.array(z.string()),excluded_development_source:z.string()}).passthrough()}).passthrough(),
  metrics:measure,aggregate:measure,detector_only:z.object({ball:counts}).passthrough().nullable().optional(),baselines:z.record(z.string(),z.object({aggregate:measure,per_recording:z.record(z.string(),measure)})),
+ completed_review:z.object({frames:z.number(),visible_frames:z.number(),systems:z.array(z.object({id:z.string(),ball:counts})),combined:counts}).optional(),
  promotion:z.object({status:z.string(),reason:z.string()}).passthrough(),independent_test_status:z.string(),
  training:z.object({verified_training_frames:z.number(),verified_validation_frames:z.number(),epochs_run:z.number(),weak_training_frames:z.number().optional()}).passthrough(),
  runtime:z.object({processing_fps:z.number(),inference_seconds:z.number(),peak_rss_bytes_macos:z.number()}).passthrough(),

@@ -10,6 +10,8 @@ from src.serving.cv import digest
 from .data import NAMES,write,frame,crop_sample
 from .model import preprocess,targets,context_indices
 
+HARD_NEGATIVE_CROP_FRACTION=1/3
+
 
 def prepare_temporal(data_root,output,weak_local=False):
     base=Path(data_root)/'dataset.json';dataset=json.loads(base.read_text());root=Path(output)
@@ -58,6 +60,8 @@ def prepare_temporal(data_root,output,weak_local=False):
             'complete_original_match_overlap_audit_with_approved_clips':'not_established',
             'limits':'Existing organizer object boxes are weak ball-object supervision, not certified visibility or in-play identity; no historical validation/test images used.'}
     output_manifest={'schema_version':'cv-m22-temporal-data-v1','base_dataset_sha256':digest(base),
+        'm22_annotation_snapshot_sha256':dataset.get('m22_annotation_snapshot_sha256'),
+        'm22_task_manifest_sha256':dataset.get('m22_task_manifest_sha256'),
         'original_annotations_sha256':dataset['original_annotations_sha256'],'sources':dataset['sources'],
         'source_cut_epochs':epochs,'rows':items,'reference_role':'development_only','weak_or_pseudo_labels_used':weak_local,'weak_training':weak_info,
         'withdrawn_m21_set_used':False,'independent_final_test_available':False}
@@ -81,13 +85,23 @@ class TemporalSamples(Dataset):
         if any(i is None for i in images):raise ValueError('Source sequence unavailable')
         bbox=row['bbox'] if row['state'] in ['visible','weak_positive'] else None
         negatives=[list(r) for r in row.get('negative_regions',[])]
-        region=None;output_hw=(384,640)
+        region=None;output_hw=(384,640);target_state=row['state']
         if self.training:
+            # Deliberately show human-rejected lookalikes. Only their exact
+            # reviewed regions receive negative loss; the rest stays unknown.
+            # Exclude any region intersecting the human ball, even when its IoU
+            # is small enough to be allowed by the review overlap validator.
+            def touches_ball(r):
+                return bbox is not None and min(r[0]+r[2],bbox[0]+bbox[2])>max(r[0],bbox[0]) and min(r[1]+r[3],bbox[1]+bbox[3])>max(r[1],bbox[1])
+            safe_negatives=[r for r in negatives if not touches_ball(r)]
+            negative_only=bool(safe_negatives) and row['state'] in ['visible','uncertain'] and rng.random()<HARD_NEGATIVE_CROP_FRACTION
+            focus=safe_negatives[int(rng.integers(len(safe_negatives)))] if negative_only else bbox or (negatives[0] if negatives else None)
+            if negative_only:target_state='uncertain';bbox=None;negatives=safe_negatives
             # Broadcast organizer balls are much larger in their 1080p source.
             # Zoom OUT those weak examples so their network-pixel sizes cover
             # the small footballs in our 360p/720p development footage.
             sizes=[384,640,960,1080] if row.get('weak_supervision') else [192,256,320,384]
-            _,_,region=crop_sample(images[-1],bbox or (negatives[0] if negatives else None),sizes[index%4],rng)
+            _,_,region=crop_sample(images[-1],focus,sizes[index%4],rng)
             output_hw=(384,384)
             if rng.random()<.5:
                 images=[np.ascontiguousarray(i[:,::-1]) for i in images]
@@ -112,7 +126,7 @@ class TemporalSamples(Dataset):
             target=targets('visible',bbox,mapping,row['weight'])
             target['valid']=target['mask'].clone()  # positive-only; unknown pixels are NOT negative labels
             return x,target
-        return x,targets(row['state'],bbox,mapping,row.get('weight',1.),negatives)
+        return x,targets(target_state,bbox,mapping,row.get('weight',1.),negatives)
 
 
 def split_sources(rows,excluded):
@@ -121,8 +135,37 @@ def split_sources(rows,excluded):
     train=[row for row in rows if row['recording_id']==remaining[0] or row.get('weak_supervision')]
     val=[row for row in rows if row['recording_id']==remaining[1]]
     if not train or not val:raise ValueError('Source-separated training and validation required')
+    if any(r['recording_id']==excluded for r in train+val):raise ValueError('Target recording cannot enter fitting or validation')
     return train,val,{'train_sources':[remaining[0]],'validation_sources':[remaining[1]],'excluded_development_source':excluded,
         'validation_is_independent_final_test':False,'target_labels_used_for_fitting_or_early_stopping':False}
+
+
+def split_temporal_groups(rows,excluded,sources):
+    """Target source excluded; fixed whole temporal bins validate the two others.
+
+    Half-second buffers and explicit context-disjoint checks prevent adjacent
+    frames from crossing training/validation. This is development validation.
+    """
+    if excluded not in NAMES:raise ValueError('Unknown target recording')
+    remaining=[name for name in NAMES if name!=excluded];val=[];train=[];removed=0
+    for name in remaining:
+        source=sources[name];strong=[r for r in rows if r['recording_id']==name and not r.get('weak_supervision')]
+        selected=[r for r in strong if min(9,r['frame']*10//source['frames']) in [2,7]]
+        if not selected:raise ValueError('Fixed temporal validation groups are empty')
+        val.extend(selected);validation_frames=[r['frame'] for r in selected]
+        val_context={c['frame'] for r in selected for c in r['context']}
+        for r in strong:
+            if r in selected:continue
+            if any(abs(r['frame']-f)/source['fps']<=.5 for f in validation_frames):removed+=1;continue
+            if val_context.intersection(c['frame'] for c in r['context']):raise ValueError('Shared source frames across train/validation')
+            train.append(r)
+    train.extend(r for r in rows if r.get('weak_supervision'))
+    if any(r['recording_id']==excluded for r in train+val):raise ValueError('Target recording cannot enter fitting or validation')
+    if not any(not r.get('weak_supervision') for r in train):raise ValueError('No strong training rows after exclusion buffers')
+    return train,val,{'train_sources':remaining,'validation_sources':remaining,'excluded_development_source':excluded,
+        'validation_is_independent_final_test':False,'target_labels_used_for_fitting_or_early_stopping':False,
+        'validation_layout':'fixed_temporal_groups_with_source_excluded_target','temporal_bins_per_source':10,
+        'validation_bins':[2,7],'exclusion_buffer_seconds':.5,'buffer_excluded_training_rows':removed,'shared_context_frames':0}
 
 
 def matched_validation(model,rows,config,device):
