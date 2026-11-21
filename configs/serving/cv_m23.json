@@ -10,5 +10,9 @@
   "southampton": {
     "root": "outputs/m23/analysis_v5",
     "report_sha256": "92826c317c6dd4045db5867248aad8a37a4eb35890a5575bc5cb5230f5c5b89f"
+  },
+  "giroud": {
+    "root": "outputs/m23/giroud_v1/analysis",
+    "report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8"
   }
 }

@@ -15,7 +15,7 @@ export const intelligentFrameSchema=z.object({
 export type IntelligentFrame=z.infer<typeof intelligentFrameSchema>;
 export const detectionMetrics=z.object({tp:n,fp:n,fn:n,precision:n.nullable(),recall:n.nullable(),f1:n.nullable()});
 const nav=z.object({kind:z.string(),frame:n,receipt_frame:n.optional()}).passthrough();
-export const intelligentMetadataSchema=z.object({recording_id:z.string(),model_set_sha256:sha,ball_revision:sha,reference_role:z.literal('development_only'),promotion:z.object({status:z.string(),ordinary_default:z.literal('m14'),reason:z.string()}),independent_final_test:z.string(),
+export const intelligentMetadataSchema=z.object({recording_id:z.string(),model_set_sha256:sha,ball_revision:sha,reference_role:z.enum(['development_only','unlabelled_inference']),promotion:z.object({status:z.string(),ordinary_default:z.literal('m14'),reason:z.string()}),independent_final_test:z.string(),
  metrics:z.object({navigation:z.array(nav),engineering:z.object({states:z.record(z.string(),n)}),pass_traces:z.array(z.object({release_frame:n,receipt_frame:n,matched:z.boolean().optional()}).passthrough())}),
  comparisons:z.array(z.object({id:z.string(),new_150:detectionMetrics,original:detectionMetrics,passes:detectionMetrics})),
  frozen_baselines:z.array(z.object({id:z.string(),new_150:detectionMetrics})),

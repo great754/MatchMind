@@ -1,0 +1,741 @@
+{
+  "verified_at_utc": "2026-11-21T18:59:10.037803+00:00",
+  "classification": "unlabelled_source_inference; poor visual ball quality; no promotion",
+  "source": {
+    "recording_id": "giroud",
+    "video_sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+    "frames": 450,
+    "fps": 25.0,
+    "width": 640,
+    "height": 360,
+    "frames_sha256": "715ac2357d7ff536864d272693cc31cc0c4d4970479481710e105fdf9d6194db"
+  },
+  "source_bytes": 964751,
+  "people": {
+    "observations": 5763,
+    "projected": 5542,
+    "anonymous_entity_hypotheses": 36,
+    "reconnect_hypotheses": 8,
+    "teams": {
+      "visible_observations": 5763,
+      "projected_observations": 5542,
+      "team_UNKNOWN": 320,
+      "team_TEAM_B": 2433,
+      "team_OFFICIAL": 364,
+      "team_TEAM_A": 2646
+    }
+  },
+  "camera": {
+    "accepted_frames": 442,
+    "coverage_percent": 98.22222222222223,
+    "player_placement_percent": 96.16519174041298,
+    "states": {
+      "camera_DIRECT": 1,
+      "camera_accepted": 442,
+      "camera_TEMPORAL_PREDICTED": 425,
+      "camera_BIDIRECTIONAL_INTERPOLATED": 1,
+      "camera_RELOCALIZED": 8,
+      "camera_TEMPORAL_CORRECTED": 2,
+      "camera_PARTIAL_CONSTRAINED": 5,
+      "camera_UNKNOWN": 8
+    }
+  },
+  "timing_seconds": {
+    "fresh_m1_through_m7": 508.80606033303775,
+    "m8_replay": 44.9903879170306,
+    "m9_people": 16.42435133398976
+  },
+  "independent_accuracy": null,
+  "ball": {
+    "engineering": {
+      "frames": 450,
+      "direct_observed_frames": 67,
+      "direct_observed_fraction": 0.14888888888888888,
+      "predicted_only_frames": 14,
+      "track_ids": 14,
+      "observed_track_changes": 13,
+      "longest_direct_run_frames": 7,
+      "states": {
+        "UNKNOWN": 232,
+        "AMBIGUOUS": 137,
+        "OBSERVED": 67,
+        "PREDICTED": 14
+      },
+      "independent_precision": null,
+      "independent_recall": null,
+      "independent_reacquisition_accuracy": null,
+      "true_ball_identity_switches": null,
+      "true_trajectory_fragmentation": null
+    },
+    "full_clip_passes": {
+      "frames": 450,
+      "ball_observed_frames": 67,
+      "ball_observed_fraction": 0.14888888888888888,
+      "stable_contact_runs": 1,
+      "completed_pass_estimates": 0,
+      "transfer_candidates": 0,
+      "frame_diagnostics": {
+        "BALL_NOT_DIRECTLY_OBSERVED": 383,
+        "NO_PLAYER_CONTACT": 62,
+        "CLEAR_LOWER_BODY_PROXIMITY": 5
+      },
+      "candidate_reasons": {},
+      "goal_count": null,
+      "shot_count": null,
+      "pass_attempts": null,
+      "pass_accuracy": null,
+      "independent_event_accuracy": null
+    },
+    "estimated_passes": 0,
+    "all_events": 0,
+    "navigation": [
+      {
+        "kind": "ball_observed",
+        "frame": 29
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 48
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 52
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 102
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 124
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 131
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 179
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 209
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 223
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 235
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 238
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 269
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 272
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 291
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 303
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 313
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 348
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 386
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 395
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 432
+      }
+    ],
+    "pass_traces": [],
+    "accuracy": null
+  },
+  "fresh_m21_control": {
+    "engineering": {
+      "frames": 450,
+      "direct_observed_frames": 60,
+      "direct_observed_fraction": 0.13333333333333333,
+      "predicted_only_frames": 12,
+      "track_ids": 14,
+      "observed_track_changes": 13,
+      "longest_direct_run_frames": 6,
+      "states": {
+        "UNKNOWN": 371,
+        "OBSERVED": 60,
+        "PREDICTED": 12,
+        "AMBIGUOUS": 7
+      },
+      "independent_precision": null,
+      "independent_recall": null,
+      "independent_reacquisition_accuracy": null,
+      "true_ball_identity_switches": null,
+      "true_trajectory_fragmentation": null
+    },
+    "full_clip_passes": {
+      "frames": 450,
+      "ball_observed_frames": 60,
+      "ball_observed_fraction": 0.13333333333333333,
+      "stable_contact_runs": 2,
+      "completed_pass_estimates": 0,
+      "transfer_candidates": 0,
+      "frame_diagnostics": {
+        "BALL_NOT_DIRECTLY_OBSERVED": 390,
+        "NO_PLAYER_CONTACT": 53,
+        "CLEAR_LOWER_BODY_PROXIMITY": 7
+      },
+      "candidate_reasons": {},
+      "goal_count": null,
+      "shot_count": null,
+      "pass_attempts": null,
+      "pass_accuracy": null,
+      "independent_event_accuracy": null
+    },
+    "estimated_passes": 0,
+    "all_events": 0,
+    "navigation": [
+      {
+        "kind": "ball_observed",
+        "frame": 29
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 48
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 52
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 55
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 102
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 124
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 131
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 179
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 210
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 223
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 235
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 238
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 269
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 272
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 289
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 303
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 313
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 348
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 386
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 396
+      },
+      {
+        "kind": "ball_observed",
+        "frame": 432
+      }
+    ],
+    "pass_traces": [],
+    "accuracy": null
+  },
+  "ball_runtime": {
+    "schema_version": "cv-m23-source-perception-v1",
+    "source_world_sha256": "715ac2357d7ff536864d272693cc31cc0c4d4970479481710e105fdf9d6194db",
+    "source_video_sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+    "inputs_sha256": "4878dc72d3e44266cc16f5d62c15680918b10bf86d3857b011aaf893861e9247",
+    "config": {
+      "schema_version": "cv-m23-config-v1",
+      "architecture": "m21_temporal_primary_m20_memory_active_search_m22_support_m21_dag",
+      "visual_threshold": 0.35,
+      "primary_tile_size": 320,
+      "primary_tile_overlap": 0.2,
+      "primary_global_interval_frames": 1,
+      "memory": {
+        "maximum_tentative_regions": 1,
+        "tentative_age_seconds": 0.08,
+        "maximum_motion_modes_per_track": 2,
+        "minimum_motion_mode_probability": 0.05,
+        "discovery_regions_per_frame": 2,
+        "discovery_region_px": 192,
+        "maximum_age_seconds": 1.2,
+        "maximum_hypotheses": 4,
+        "maximum_regions": 3,
+        "minimum_region_px": 96,
+        "maximum_region_px": 384,
+        "maximum_radius_diagonals": 0.3,
+        "measurement_size_margin": 6.0,
+        "duplicate_region_iou": 0.8,
+        "minimum_size_ratio": 0.25,
+        "maximum_size_ratio": 4.0,
+        "maximum_blurred_size_ratio": 6.0,
+        "static_line_minimum_frames": 3
+      },
+      "verification": {
+        "preserve_independently_eligible_primary_views": true,
+        "complement_global_requires_visual_memory": true,
+        "maximum_mahalanobis_squared": 16.0,
+        "minimum_appearance_similarity": 0.25,
+        "maximum_forward_backward_error_px": 4.0,
+        "blur_direction_cosine": 0.5,
+        "m22_temporal_threshold": 0.35,
+        "m22_current_threshold": 0.35,
+        "m22_match_iou": 0.1,
+        "maximum_m22_regions": 2,
+        "motion_penalty": 0.25,
+        "appearance_penalty": 0.2,
+        "m22_agreement_bonus": 0.2
+      },
+      "offline": {
+        "maximum_gap_seconds": 0.35,
+        "reconstruction_gap_seconds": 0.24,
+        "uses_future_for_association": true,
+        "reconstruction_requires_same_epoch_camera_warps": true,
+        "primary_anchored_complement_only": true,
+        "m22_dual_current_visual_proposals_require_two_primary_anchors": true
+      },
+      "ablations": [
+        "m21_temporal_offline",
+        "guided_search",
+        "guided_verified",
+        "full_m23"
+      ],
+      "ordinary_default": "m14",
+      "pass_policy": "unchanged_m19",
+      "reference_role": "development_only",
+      "promotion": "requires_frozen_independent_user_approved_source"
+    },
+    "config_sha256": "40825fc9eb5a88b75754bf08571a5401e1361b755f124b7a8418ff5888e4c53c",
+    "components": [
+      {
+        "role": "generic_primary",
+        "path": "outputs/m23/inputs_v2/files/outputs/ml/ball_m16/yolo11s.pt",
+        "sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5"
+      },
+      {
+        "role": "soccer_fresh_global_measurements",
+        "path": "outputs/m23/inputs_v2/files/outputs/ml/ball_m16/training/soccer11s/weights/best.pt",
+        "sha256": "638dc0baeed14f0cb4cb50f55454840a7614928405f5886381f70793439db4df"
+      },
+      {
+        "role": "m22_complementary",
+        "path": "outputs/m23/inputs_v2/files/outputs/m22/temporal_training_review_v3/test_match/best.pt",
+        "sha256": "e2382fb45171f9660612db8f87c7be4c3c38124a57dd55d18c716cf06547fe0d"
+      }
+    ],
+    "checkpoint_policy": "Fixed existing test_match-excluded M22 checkpoint; no Giroud labels or fitting; match overlap not independently audited",
+    "labels_read": false,
+    "new_training": false,
+    "device": "mps",
+    "torch": "2.15.0",
+    "opencv": "5.0.0",
+    "processing_fps": 1.8371145291841458,
+    "recorded_processing_seconds": 244.94934466597624,
+    "timing": {
+      "extra_crop_views": 1286,
+      "primary_views": 3150,
+      "m22_views": 8016,
+      "soccer_views": 560
+    },
+    "peak_rss_bytes_macos": 1361821696,
+    "source_code_sha256": {
+      "/Users/greatabhieyighan/Desktop/Projects/matchmind/scripts/run_cv_source_m23.py": "2c64e210dfc756222db7e5c73a21156c64d01241ca3464e4611e394bfa722421",
+      "src/vision/intelligent23/detection.py": "093222a924da567d05d9053a9c5d8b40f97830f9542c3e1de0da4314f20b4d29",
+      "src/vision/intelligent23/verification.py": "9dc32c0446f3e47a6a2d6b95726ab06d8a88f57df7de5849d672134bd7a0434e",
+      "src/vision/intelligent23/memory.py": "7f58c4c52f9bb5086e9df1c0d5a0da87d5ab9f9a8c2886119c7741e2312fff7f",
+      "src/vision/intelligent23/evaluation.py": "166ca18c6c97ff1ec02484c0a5f35197b0eddb45098846c0da5708f22f7e59b9",
+      "src/vision/intelligent23/__init__.py": "346770b09c2191c0f9ca7e622f430bb2cf0839b0360e1040609d7b40584943a9",
+      "src/vision/intelligent23/offline.py": "be9a8faee6c6d70da9bb4c167973ebe22d6932061f36d3d026051a9053dc8f2e",
+      "src/vision/intelligent23/inputs.py": "d2e2a21d3faf79c32c8d1ac0309edaa7756224987b068e9e18e41ed788bd10be",
+      "src/vision/intelligent23/schema.py": "6382139520d9a51d16b1cd67d392b4f55aadd50c5d9b2d0e66f39a6e9e9f0ef4"
+    }
+  },
+  "precision": null,
+  "recall": null,
+  "f1": null,
+  "new_human_labels": 0,
+  "new_neural_training": false,
+  "qualitative_spot_check": {
+    "frames": [
+      29,
+      60,
+      102,
+      179,
+      240,
+      303,
+      386,
+      432
+    ],
+    "role": "post_hoc_diagnostic_visual_inspection; no reference labels or accuracy scores",
+    "findings": [
+      "Frame 29 selection is near advertising rather than the ball in play.",
+      "Frame 303 selection is in the crowd.",
+      "Frame 386 selection encloses a player detail.",
+      "Frame 432 selection is at the right image boundary.",
+      "Visible ball motion is frequently missed."
+    ]
+  },
+  "live": {
+    "verification_started_at_utc": "2026-11-21T18:54:36.975340+00:00",
+    "backend": "http://127.0.0.1:8000",
+    "provider": "local",
+    "/health": {
+      "status_code": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 12,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "/ready": {
+      "status_code": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 16
+      }
+    },
+    "recordings": {
+      "total": 16,
+      "ready_azure_analytics": 12,
+      "local_cv": 4
+    },
+    "cv": [
+      {
+        "recording_id": "giroud",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 29,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 0,
+        "cv_model_revision": "62475f67418bd8d330e3bc41cf0d995eea76f85e58ef3dbda00a7457c4e78e9d:5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "reference_role": "unlabelled_inference",
+        "answer_text": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 450,
+          "direct_observed_frames": 67,
+          "direct_observed_fraction": 0.14888888888888888,
+          "predicted_only_frames": 14,
+          "track_ids": 14,
+          "observed_track_changes": 13,
+          "longest_direct_run_frames": 7,
+          "states": {
+            "UNKNOWN": 232,
+            "AMBIGUOUS": 137,
+            "OBSERVED": 67,
+            "PREDICTED": 14
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": null
+      },
+      {
+        "recording_id": "test_match",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 351,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 3,
+        "cv_model_revision": "1ac32c2f5d4506ba81e403f5949c6797795f4c5bb4d2833e12365a021504694c:ba980ef2f6293275b617c858066629a33c539e707f7ec1509791c8c4035d4fcd:4635a6001864c275e1a7d507326afbd55a1c9d902ff550a071054df0c54d7947",
+        "reference_role": "development_only",
+        "answer_text": "I found 3 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 541,
+          "direct_observed_frames": 456,
+          "direct_observed_fraction": 0.8428835489833642,
+          "predicted_only_frames": 24,
+          "track_ids": 3,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 103,
+          "states": {
+            "AMBIGUOUS": 61,
+            "OBSERVED": 456,
+            "PREDICTED": 24
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 44,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.88,
+          "f1": 0.9361702127659575,
+          "precision_wilson95": [
+            0.9197016822179859,
+            0.9999999999999999
+          ],
+          "recall_wilson95": [
+            0.7619492111337642,
+            0.9438247628937535
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "team_goal",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 8,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 1,
+        "cv_model_revision": "d2f2c7ef42982e198d0d778002872edd0e381b86145264046c3a33d41b8bf21e:a2b7224f67cf8b150094848f7ef9c50509f572c2276160ec6baf380213fa5c08:50c4d1d2546b693c1b4c05d4e7af65d1521cbcef081e7d1ab6163eba3f31495f",
+        "reference_role": "development_only",
+        "answer_text": "I found 1 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 500,
+          "direct_observed_frames": 301,
+          "direct_observed_fraction": 0.602,
+          "predicted_only_frames": 76,
+          "track_ids": 7,
+          "observed_track_changes": 6,
+          "longest_direct_run_frames": 45,
+          "states": {
+            "OBSERVED": 301,
+            "PREDICTED": 76,
+            "UNKNOWN": 102,
+            "AMBIGUOUS": 21
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 29,
+          "fp": 10,
+          "fn": 16,
+          "precision": 0.7435897435897436,
+          "recall": 0.6444444444444445,
+          "f1": 0.6904761904761905,
+          "precision_wilson95": [
+            0.589180432321585,
+            0.854313741565478
+          ],
+          "recall_wilson95": [
+            0.49835546011952203,
+            0.7678110864309596
+          ],
+          "tn": 2,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "southampton",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 16,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 0,
+        "cv_model_revision": "5cab3e521444fe45b7306bab76df05aa2289fcb526619ca64bd19770d65f0db8:e14ebf32525905c78697cef3a239119ab31c77038efebaa6531bf54c53468ff4:57f290deb92b5413ef9ac8eaa49fa4c451088bc4143476551c73c1dde5eb09dc",
+        "reference_role": "development_only",
+        "answer_text": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 660,
+          "direct_observed_frames": 358,
+          "direct_observed_fraction": 0.5424242424242425,
+          "predicted_only_frames": 43,
+          "track_ids": 8,
+          "observed_track_changes": 7,
+          "longest_direct_run_frames": 40,
+          "states": {
+            "OBSERVED": 358,
+            "PREDICTED": 43,
+            "AMBIGUOUS": 118,
+            "UNKNOWN": 141
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 34,
+          "fp": 8,
+          "fn": 16,
+          "precision": 0.8095238095238095,
+          "recall": 0.68,
+          "f1": 0.7391304347826086,
+          "precision_wilson95": [
+            0.6669893264500356,
+            0.9001811039014357
+          ],
+          "recall_wilson95": [
+            0.5418944286372394,
+            0.792419559060006
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      }
+    ],
+    "azure_118575_clip": {
+      "view_status": 200,
+      "events": 481,
+      "ask_status": 200,
+      "evidence_items": 14,
+      "video_status": 206,
+      "video_bytes": 16
+    },
+    "verified_at_utc": "2026-11-21T18:55:31.174223+00:00",
+    "giroud_recording": {
+      "recording_id": "giroud",
+      "match_id": "giroud",
+      "status": "available",
+      "source": "cv_experimental",
+      "artifact_ready": false,
+      "media_available": true,
+      "media_url": "/matches/giroud/video.mp4",
+      "diagnostic": null,
+      "capabilities": {
+        "video_available": true,
+        "analytics_available": false,
+        "tactical_view_available": false,
+        "cv_world_model_available": true,
+        "pitch_calibration_available": true,
+        "ask_available": false,
+        "experimental_events_available": false,
+        "assistant_available": false
+      }
+    }
+  },
+  "checks": {
+    "targeted_backend_tests_passed": 116,
+    "frontend_tests_passed": 182,
+    "final_focused_frontend_tests_passed": 11,
+    "typed_production_build": "passed",
+    "giroud_chrome_cases_passed": 1,
+    "cached_reproduction": {
+      "byte_identical_core_artifacts": [
+        {
+          "method": "full_m23",
+          "artifact": "ball_frames.jsonl",
+          "sha256": "5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c"
+        },
+        {
+          "method": "full_m23",
+          "artifact": "video_ball_observations.jsonl",
+          "sha256": "20a22b3f2a20f12a87a5302b6b0d586885e0abf4282b6e10d4cf49db55c57f96"
+        },
+        {
+          "method": "full_m23",
+          "artifact": "intelligent_frames.jsonl",
+          "sha256": "da85a11edd2ad8cb7c4e9501e4f07b272d49b9a06d22a4454294271629e13ea5"
+        },
+        {
+          "method": "full_m23",
+          "artifact": "passes/events.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        {
+          "method": "m21_temporal_offline",
+          "artifact": "ball_frames.jsonl",
+          "sha256": "fa16476435d9372a0deb80f378663a521e0ae560feb9b6557bb94a8a921d06f8"
+        },
+        {
+          "method": "m21_temporal_offline",
+          "artifact": "video_ball_observations.jsonl",
+          "sha256": "855a2b7e8219b0ad30ae2416adc8ef2e64c27c41614a15d4be3f4e6344e28917"
+        },
+        {
+          "method": "m21_temporal_offline",
+          "artifact": "intelligent_frames.jsonl",
+          "sha256": "5f0585589c0e95c7cdcd8e49f5840e28655ca9415e3fae8a423636c9f77976cc"
+        },
+        {
+          "method": "m21_temporal_offline",
+          "artifact": "passes/events.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "model_video_or_label_uploads": false,
+    "local_cv_source_required": true,
+    "lossless_intermediate_archives": 12,
+    "reclaimed_bytes": 358086269
+  }
+}

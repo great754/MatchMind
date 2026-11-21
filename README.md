@@ -1,6 +1,6 @@
 ## TactiqAI tactical video
 
-Current update (2026-11-20): **M22 is trained and available as an opt-in temporal football detector**, with M20 comparison, heatmaps and 150 source-inspected development review frames. Measured precision/recall is **26.7% / 25.8%, passes 0/7**, so it is an accuracy regression and is not promoted. M14 remains default. [M22 report, limitations and commands](docs/cv_temporal_football_detector_m22.md) · [Current pipeline status](docs/current_pipeline_status.md). Earlier milestone snapshots follow.
+Current update (2026-11-21): **Giroud is processed and available in the M23 review**, with source playback, anonymous players, camera geometry and grounded Local Ask. Ball quality is poor: 67/450 selected frames and zero qualified passes; accuracy is unmeasured. The original M23 development evaluation stays separate and M14 remains the ordinary default. [Open Giroud](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23) · [Verified results and commands](docs/cv_giroud_m23.md) · [Current pipeline status](docs/current_pipeline_status.md). Earlier milestone snapshots follow.
 
 
 ## New Southampton recording — verified 2026-10-27

@@ -1,5 +1,13 @@
 # TactiqAI canonical Azure artifacts
 
+## Giroud local CV source added — 2026-11-21
+
+`giroud.mp4` has completed the existing local M23 pipeline and is available through its validated local world/ball/event registry entries. It is separate from canonical Azure bundles and does not receive Azure `artifact_ready` status. Its source copy, checkpoints and sidecars remain in the explicit local cache; keep that cache for playback. No video/artifact upload or account/container/environment-variable change occurred.
+
+Live Azure-backed health/ready/catalog return 200; readiness now reports **16 usable sources: 12 canonical Azure analytics plus four local CV**. Giroud and all three previous M23 clips pass metadata/frame/reference, video-range and grounded Local Ask checks. Azure `118575_clip` still returns view 200/481 events, grounded Local Ask 200/14 evidence items and video range 206/16 bytes. Start `scripts/start_backend_m23.sh`; frontend `http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23` selects the experimental mode explicitly.
+
+Giroud ball quality is poor: 67/450 selected frames, several visually inspected false positives and zero qualified passes. Precision/recall remain unavailable without human references. Artifact integrity and recording availability remain distinct from model quality. The new-source runner installs only after strict validation, merges existing registries, and retains the original evaluation sources. [Verified results and commands](cv_giroud_m23.md).
+
 ## M23 intelligent tracking remains local — 2026-11-21
 
 The three approved CV sources now have strictly validated opt-in M23 sidecars. They are local experiments, separate from canonical Azure analytics and `artifact_ready`. The final integration measures 107/18/38 TP/FP/FN, 85.6% precision, 73.8% recall and F1 0.793 on the new development review; one of seven pass references is retained. Original-sample false positives regress, targets are unmet, and there is no promotion. M14 stays default. No Azure blob, schema/hash gate, soccer analytics, possession or GSR alignment was changed.

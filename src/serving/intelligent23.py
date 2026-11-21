@@ -156,10 +156,18 @@ class IntelligentRegistry:
                     from .ball import BallReview
                     from src.vision.intelligent23.inputs import Inputs
                     report = json.loads((Path(entry['root'])/'report.json').read_text())
-                    inputs = Inputs(report['inputs_root'])
-                    if inputs.sha256 != report['input_manifest_sha256']:
-                        raise HTTPException(503, 'Frozen M21 comparison snapshot changed')
-                    path = inputs.path(Path('outputs/m21/analysis_final_v1')/recording/'temporal_offline/manifest.json').parent
+                    if report.get('schema_version') == 'cv-m23-unlabelled-source-v1':
+                        # A new source has its own fresh control, never an old
+                        # recording's frozen reference or invented annotations.
+                        path = Path(report['reference']['path'])
+                        expected = Path(entry['root'])/recording/'m21_temporal_offline'
+                        if path.resolve() != expected.resolve() or digest(path/'manifest.json') != report['reference']['manifest_sha256']:
+                            raise ValueError('New-source M21 comparison changed')
+                    else:
+                        inputs = Inputs(report['inputs_root'])
+                        if inputs.sha256 != report['input_manifest_sha256']:
+                            raise HTTPException(503, 'Frozen M21 comparison snapshot changed')
+                        path = inputs.path(Path('outputs/m21/analysis_final_v1')/recording/'temporal_offline/manifest.json').parent
                     self.references[key] = BallReview(path, review.manifest)
                 return self.references[key].frame(index)
         except (OSError, ValueError, KeyError, TypeError, IndexError):
@@ -169,6 +177,16 @@ class IntelligentRegistry:
         review = self.load(recording)
         entry = self.entries()[recording]
         report = json.loads((Path(entry['root'])/'report.json').read_text())
+        if report.get('schema_version') == 'cv-m23-unlabelled-source-v1':
+            if report['recording_id'] != recording or any(report['source'][k] != review.manifest[k] for k in ['video_sha256','frames_sha256','frames','fps','width','height']):
+                raise HTTPException(503, 'New-source report does not match this recording')
+            return {'recording_id':recording,'reference_role':'unlabelled_inference',
+                'independent_final_test':report['independent_final_test'],'promotion':report['promotion'],
+                'metrics':report['metrics'],'comparisons':[],'frozen_baselines':[],
+                'aggregate':None,'accuracy':None,'runtime':report['runtime'],'research_targets':[],
+                'model_set_sha256':review.ball_review.manifest['detector_sha256'],
+                'ball_revision':review.ball_review.manifest['ball_frames_sha256'],
+                'model_components':review.ball_review.manifest['model_components']}
         current = report['variants']['full_m23']
         return {'recording_id': recording, 'reference_role': 'development_only',
             'independent_final_test': report['independent_final_test'], 'promotion': report['promotion'],

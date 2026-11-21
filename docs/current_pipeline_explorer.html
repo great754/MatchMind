@@ -157,7 +157,7 @@
       <span class="tag">match 118575</span>
       <span class="tag">25 FPS</span>
       <span class="tag">105 x 68 m pitch</span>
-      <span class="tag">offline analytics / online serving</span><span class="tag">M23 integrated · development measured · opt-in · 2026-11-20</span>
+      <span class="tag">offline analytics / online serving</span><span class="tag">Giroud processed · M23 experimental · 2026-11-21</span>
       <span class="tag">GSR-first</span>
       <span class="tag">tactics at 5 Hz</span>
     </div>
@@ -175,6 +175,15 @@
   </div>
 
   <main class="shell">
+<section class="panel" id="cv-giroud" data-search="giroud M23 new video 450 frames low ball coverage false positives unlabelled 2026-11-21">
+<h2>Giroud — current model run complete</h2>
+<p>All <strong>450 frames / 18 seconds / 25 fps / 640×360</strong> processed through people, semantics, M8/M9 camera/player replay and current M23 ball tracking. <a href="http://127.0.0.1:5173/?recording=giroud&amp;ball_pipeline=m23">Open Giroud with M23 selected</a>.</p>
+<p><strong>Ball quality is poor:</strong> 67 selected detection frames (14.9%), 14 predicted-only, 137 ambiguous and 232 unknown. Visual samples include selections on advertising, crowd and player details. <strong>Zero qualified pass estimates</strong>; goals, shots and pass accuracy remain unavailable. No human labels or independent accuracy scores exist for this clip.</p>
+<p>5,763 person observations; 36 anonymous identity hypotheses; eight reconnect hypotheses. Camera accepted on 442/450 frames (98.2%), mostly propagated; person projection coverage 96.2%. These are internal diagnostic counts. Ball inference took 244.949 s at 1.84 processing FPS; source playback remains 25 fps.</p>
+<p><strong>Verified:</strong> 116 targeted backend tests; 182 frontend tests plus 11 final focused checks; typed build; focused Chrome source playback, synchronized evidence/comparison and grounded Local Ask; eight exactly reproduced cached artifact hashes. Health/ready/catalog 200; readiness <strong>16 usable sources</strong> (12 Azure analytics + four local CV). New and previous M23 sources and Azure view/Ask/video pass live checks.</p>
+<p>Giroud has its own unlabelled results display and fresh same-video M21 control. Original labels, three-source evaluation scores and M14 default are retained. Compute and Giroud playback are local; Azure configuration is unchanged. No neural training or media upload. Start <code>scripts/start_backend_m23.sh</code>. Keep the local CV cache.</p>
+<p><a href="cv_giroud_m23.md">Full results, commands, failures and remaining work</a> · <a href="evidence/cv_giroud_m23_results.json">Measured evidence</a> · <a href="evidence/cv_giroud_m23_samples.jpg">Inspected samples</a> · <a href="evidence/cv_giroud_m23_workspace.jpg">Verified UI</a>. Earlier sections retain their historical results; M24 has not begun.</p>
+</section>
 <!-- M23 EXPLORER START -->
 <section class="panel" id="cv-m23" data-search="M23 intelligent ball reacquisition uncertainty camera search offline DAG passes">
 <h2>M23 — Intelligent ball tracking</h2><p><strong>107 correct / 18 false / 38 missed</strong> on the new 150 reviewed development frames: 85.6% precision, 73.8% recall, F1 0.793. M21: 95/14/50, F1 0.748. Original sample: 17/11/14 versus M21 17/9/14. One of seven passes preserved, zero false completed passes in reviewed windows. Recall/F1 targets unmet; independent accuracy unverified; M14 remains default.</p>

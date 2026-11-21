@@ -10,14 +10,14 @@ from .player_identity import build_segments,globally_associate,uncertainty,absen
 from .player_teams import TeamAppearance,PersistentTeam,JerseyBelief
 
 SOURCES={'test_match':'outputs/world_model/test_match_m8_release','team_goal':'outputs/world_model/team_goal_m8_release','southampton':'outputs/world_model/southampton_m8_release'}
-def run(name,output,checkpoint='outputs/models/m9/osnet_x0_25_msmt17.pth',config=None,ocr=True,baseline=None):
+def run(name,output,checkpoint='outputs/models/m9/osnet_x0_25_msmt17.pth',config=None,ocr=True,baseline=None,cache=None):
  started=time.perf_counter();cfg=config or PlayerWorldConfig()
  if baseline is None and name not in SOURCES:raise ValueError('--baseline is required for a new recording')
  baseline=Path(baseline or SOURCES[name]);output=Path(output)
  if output.exists():raise ValueError('Use a new directory to preserve prior evidence')
  m=json.loads((baseline/'manifest.json').read_text())
  if m['recording_id']!=name or m['camera_model_version']!='m8' or digest(baseline/'frames.jsonl')!=m['frames_sha256'] or digest(m['source_video'])!=m['video_sha256']:raise ValueError('M9 requires matching recording, M8 camera snapshot and source hashes')
- rows=[json.loads(l) for l in (baseline/'frames.jsonl').open()];features,embeddings,timing=extract(m['source_video'],rows,m,Path('outputs/world_model/m9_cache')/name,checkpoint);tick=time.perf_counter();segments,lookup=build_segments(features,rows,embeddings,m['fps']);timing['short_track_segmentation_seconds']=time.perf_counter()-tick;tick=time.perf_counter();teams=TeamAppearance.fit(segments)
+ rows=[json.loads(l) for l in (baseline/'frames.jsonl').open()];features,embeddings,timing=extract(m['source_video'],rows,m,Path(cache) if cache else Path('outputs/world_model/m9_cache')/name,checkpoint);tick=time.perf_counter();segments,lookup=build_segments(features,rows,embeddings,m['fps']);timing['short_track_segmentation_seconds']=time.perf_counter()-tick;tick=time.perf_counter();teams=TeamAppearance.fit(segments)
  for people in features:
   for p in people:p['visual_team']=teams.classify(p['feature'])
  for s in segments:s.team_summary()

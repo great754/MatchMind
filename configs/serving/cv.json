@@ -1,5 +1,6 @@
 {
   "test_match": "outputs/world_model/test_match_m9_ready",
   "team_goal": "outputs/world_model/team_goal_m9_ready",
-  "southampton": "outputs/world_model/southampton_m9_ready"
+  "southampton": "outputs/world_model/southampton_m9_ready",
+  "giroud": "outputs/m23/giroud_v1/world"
 }

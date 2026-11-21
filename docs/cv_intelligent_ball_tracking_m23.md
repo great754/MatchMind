@@ -1,5 +1,7 @@
 # TactiqAI M23 — Intelligent Ball Reacquisition and Unified Football Tracking
 
+Update 2026-11-21: the explicitly requested new `giroud.mp4` has a separate [existing-model inference run](cv_giroud_m23.md), frontend entry and unlabelled results. Ball quality is poor (67/450 selected frames; zero qualified passes). The original three-clip campaign and measured development results below are unchanged. No new neural training or M24 work occurred.
+
 Development measurements frozen 2026-11-20; final service/test verification 2026-11-21 local time. M23 only; M24 was not started.
 
 ## Result and acceptance decision

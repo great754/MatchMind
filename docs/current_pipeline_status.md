@@ -1,5 +1,21 @@
 # TactiqAI Current Pipeline Status
 
+## Giroud — full existing-model run verified 2026-11-21
+
+**`giroud.mp4` is processed and available in the frontend.** All 450 frames (18 s, 25 fps, 640×360) ran through fresh people/semantic perception, existing M8/M9 camera/player stages and the current M23 ball/pass pipeline. [Open Giroud with M23 selected](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23).
+
+**Ball quality is poor on this clip:** 67/450 frames (14.9%) have a selected current neural detection, with 14 predicted-only, 137 ambiguous and 232 unknown frames. Inspected selections include advertising, crowd and player false positives. Zero completed-pass estimates and zero transfer candidates qualify. Goals, shots and pass accuracy remain unavailable. There are no Giroud human labels, precision/recall/F1 scores or promotion claims. The original three-source evaluation is unchanged.
+
+Person layer: 5,763 observations, 36 anonymous identity hypotheses and eight reconnection hypotheses. Camera acceptance: 442/450 frames (98.2%), mostly propagated geometry; 5,542/5,763 person observations projected (96.2%). These are internal coverage/hypothesis counts, not independent accuracy or a verified roster. Fresh ball inference took 244.949 seconds (1.84 processing FPS); playback remains 25 fps.
+
+Verified: 116 targeted backend tests, 182 frontend tests, final 11 focused frontend checks, typed production build, one focused Chrome playback/overlay/comparison/Ask case and eight byte-identical cached reproduction artifacts. Live health/ready/catalog return 200; `/ready` reports **16 usable recordings**: 12 Azure analytics plus four local CV. Giroud and all three previous M23 clips pass metadata/detail/reference, video-range and grounded Local Ask checks. Azure `118575_clip` view/Ask/video remain verified (200/200/206). No hosted-LLM call, neural training or Azure upload occurred.
+
+The new source runner preserves strict artifact validation, M19 event rules and frozen evaluation sources. The frontend labels Giroud as unlabelled inference and omits fabricated accuracy tables. Start the backend with `scripts/start_backend_m23.sh`; no Azure setting change is needed. Keep the local CV cache. Twelve completed intermediates from this run were losslessly archived after decompression-hash verification to reclaim 358 MB; original data and active artifacts are retained.
+
+[Full Giroud results, exact commands, qualitative failures and remaining work](cv_giroud_m23.md) · [Portable evidence](evidence/cv_giroud_m23_results.json) · [Diagnostic frames](evidence/cv_giroud_m23_samples.jpg) · [Verified frontend](evidence/cv_giroud_m23_workspace.jpg). The sections below describe earlier verification snapshots. M24 has not begun.
+
+---
+
 <!-- M23 CURRENT START -->
 ## M23 — unified intelligent ball tracking, verified 2026-11-21
 
