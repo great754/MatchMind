@@ -1,5 +1,24 @@
 # TactiqAI Current Pipeline Status
 
+<!-- M23 CURRENT START -->
+## M23 — unified intelligent ball tracking, verified 2026-11-21
+
+**Opt-in implementation and three-clip evaluation complete; targets not met; no promotion.** New 150-frame development review: **107 / 18 / 38 TP / FP / FN**, **85.6% precision, 73.8% recall, F1 0.793**, versus frozen M21 95/14/50 and F1 0.748. Correct balls rise by twelve; false detections rise by four. The separate original sample remains 17 correct with eleven false, a regression from M21's nine false. **One of seven reference passes is preserved, with zero false completed passes in the 18.012 exhaustively reviewed seconds.** Other full-clip estimates remain unverified.
+
+M21 temporal pixels, M20 IMM/crops, optional current-verified M22 gap evidence and M21 DAG are integrated, with M9/M19 football gates unchanged. M22 cannot replace the primary path or reinforce its own causal search memory. Observations, predictions, ambiguity, reconstructions and historical evidence stay distinct. The first bad-feedback integration was rejected after visual inspection. M14 remains default; independent generalization is unverified.
+
+Open [team_goal](http://127.0.0.1:5173/?recording=team_goal) and select **Ball review → M23 — Intelligent Ball Tracking**. The same mode is installed for test_match and southampton, with synchronized strongest-M21 comparison, per-clip original/new metrics, search/uncertainty/history, rejection reasons, reference-case navigation and version-isolated grounded Local Ask. Ordinary metadata lists configuration separately from validation, avoiding eager optional M23 validation.
+
+Verified backend **1,122 run / 1,121 passed / one skip**; frontend **181 passed**; TypeScript and production build passed. The three-clip M23 Chrome case passed. Broader browser verification: **11 distinct Chrome cases passed targeted checks; latest complete isolated-browser run: 7 passed and 4 timed out; combined suite is not all-green**. Live standard-port evidence: **verified; see the report and evidence JSON**.
+
+Start with `scripts/start_backend_m23.sh`; frontend `npm --prefix frontend run dev`. Existing Azure account/container settings and `MATCHMIND_*` names remain. M23's three source videos, weights and sidecars are local, cached outside iCloud; existing canonical SoccerTrack analytics/media remain Azure-backed. No Azure upload, dataset/model download, new labels, paid compute or full-match CV. No M24 work.
+
+[Full report, commands and limitations](cv_intelligent_ball_tracking_m23.md) · [Measured evidence](evidence/cv_m23_results.json) · [Verified UI](evidence/cv_m23_workspace.jpg). Earlier sections are historical verification snapshots.
+
+<!-- M23 CURRENT END -->
+
+---
+
 ## M22 completed-review retraining — verified 2026-11-20
 
 **150/150 reviews received, preserved and used in a fresh training revision.** Your decisions provide 145 visible balls, five absent frames and 372 rejected regions. The same three-frame ResNet-18/FPN/CenterNet architecture was trained in three source-excluded fits and run on all 1,701 approved short-clip frames. No extra review work is required for this development run.

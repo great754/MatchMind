@@ -1,0 +1,3681 @@
+{
+  "schema_version": "cv-m23-public-development-evidence-v1",
+  "reference_role": "development_only",
+  "analysis_report_sha256": "92826c317c6dd4045db5867248aad8a37a4eb35890a5575bc5cb5230f5c5b89f",
+  "input_manifest_sha256": "0afd0b7798d8e6a55ea7b3b9cc43e89ca5dd44ea586861564663b76af6550b01",
+  "source_hashes": {
+    "scripts/analyze_cv_m23.py": "100d6f1681b2b676b5403797f73d0b58d1135ed14c17874c157d8f565d34521a",
+    "src/vision/intelligent23/schema.py": "6382139520d9a51d16b1cd67d392b4f55aadd50c5d9b2d0e66f39a6e9e9f0ef4",
+    "src/vision/intelligent23/offline.py": "be9a8faee6c6d70da9bb4c167973ebe22d6932061f36d3d026051a9053dc8f2e",
+    "src/vision/intelligent23/evaluation.py": "166ca18c6c97ff1ec02484c0a5f35197b0eddb45098846c0da5708f22f7e59b9",
+    "src/vision/advanced21/offline.py": "f3104a5ed7da35f2fe17f78054abecae3215a468f084a2ec81b7529dd115a622",
+    "src/vision/ball/schema.py": "37b39f0919b36a79781acc34469816fa4a890a155049cc7ca198e4194abd8ead"
+  },
+  "label_hashes": {
+    "original": "c4ac71548269fd1fe4e601684dffa09a706e8a215ed978ff9e0c8feb2966991e",
+    "new_150": "0b4c470a5f116f2a8c4811f7a5b7d66f11b017534d0f4d5146aae7a1312a51b4"
+  },
+  "variants": {
+    "m21_temporal_offline": {
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 95,
+          "fp": 14,
+          "fn": 50,
+          "precision": 0.8715596330275229,
+          "recall": 0.6551724137931034,
+          "f1": 0.7480314960629921,
+          "precision_wilson95": [
+            0.7958940699649537,
+            0.9219263083352476
+          ],
+          "recall_wilson95": [
+            0.5747012667155194,
+            0.7276335644069625
+          ],
+          "tn": 2,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 95,
+          "median_pixel_error": 0.0,
+          "mean_pixel_error": 0.5995543903089154,
+          "p90_pixel_error": 1.4365196086704464
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 17,
+          "fp": 9,
+          "fn": 14,
+          "precision": 0.6538461538461539,
+          "recall": 0.5483870967741935,
+          "f1": 0.5964912280701754,
+          "precision_wilson95": [
+            0.46220229009632996,
+            0.8058798502714787
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 43,
+              "fp": 0,
+              "fn": 7,
+              "precision": 1.0,
+              "recall": 0.86,
+              "f1": 0.9247311827956989,
+              "precision_wilson95": [
+                0.9179874299767729,
+                1
+              ],
+              "recall_wilson95": [
+                0.738135428014719,
+                0.9304925473797714
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 43,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.5945819726166967,
+              "p90_pixel_error": 1.1674307089944271
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 9,
+              "fp": 1,
+              "fn": 2,
+              "precision": 0.9,
+              "recall": 0.8181818181818182,
+              "f1": 0.8571428571428571,
+              "precision_wilson95": [
+                0.5958436145024278,
+                0.9821242504842788
+              ],
+              "recall_wilson95": [
+                0.5230138624217553,
+                0.9486333993289995
+              ],
+              "reviewed_frames": 12,
+              "unknown_visibility_frames": 0
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 1,
+              "unknown_or_unmatched_pairs": 3,
+              "correct_pairs": 1,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.20654329147389294,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 425,
+            "direct_observed_fraction": 0.7855822550831792,
+            "predicted_only_frames": 45,
+            "track_ids": 5,
+            "observed_track_changes": 4,
+            "longest_direct_run_frames": 41,
+            "states": {
+              "UNKNOWN": 66,
+              "OBSERVED": 425,
+              "PREDICTED": 45,
+              "AMBIGUOUS": 5
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 541,
+            "ball_observed_frames": 425,
+            "ball_observed_fraction": 0.7855822550831792,
+            "stable_contact_runs": 19,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 10,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 116,
+              "NO_PLAYER_CONTACT": 208,
+              "CLEAR_LOWER_BODY_PROXIMITY": 217
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "BALL_OBSERVATION_GAP": 3,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 3,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 8,
+              "fn": 19,
+              "precision": 0.7647058823529411,
+              "recall": 0.5777777777777777,
+              "f1": 0.6582278481012658,
+              "precision_wilson95": [
+                0.6000353719173557,
+                0.8756316189075566
+              ],
+              "recall_wilson95": [
+                0.433005327959445,
+                0.7103151201831219
+              ],
+              "tn": 2,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.16116848762023478,
+              "p90_pixel_error": 0.7698316956610493
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 5,
+              "fn": 7,
+              "precision": 0.4444444444444444,
+              "recall": 0.36363636363636365,
+              "f1": 0.4,
+              "precision_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "recall_wilson95": [
+                0.15166223614131383,
+                0.6462032231083628
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.5615060804490177
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.0,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 2,
+              "unknown_or_unmatched_pairs": 2,
+              "correct_pairs": 2,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 242,
+            "direct_observed_fraction": 0.484,
+            "predicted_only_frames": 81,
+            "track_ids": 9,
+            "observed_track_changes": 8,
+            "longest_direct_run_frames": 26,
+            "states": {
+              "OBSERVED": 242,
+              "PREDICTED": 81,
+              "UNKNOWN": 162,
+              "AMBIGUOUS": 15
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 500,
+            "ball_observed_frames": 242,
+            "ball_observed_fraction": 0.484,
+            "stable_contact_runs": 26,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 11,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 122,
+              "BALL_NOT_DIRECTLY_OBSERVED": 258,
+              "CLEAR_LOWER_BODY_PROXIMITY": 120
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 4,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 5,
+              "BALL_OBSERVATION_GAP": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 4,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 6,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 8
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 6,
+              "fn": 24,
+              "precision": 0.8125,
+              "recall": 0.52,
+              "f1": 0.6341463414634146,
+              "precision_wilson95": [
+                0.6469050424507756,
+                0.9111057606383721
+              ],
+              "recall_wilson95": [
+                0.3851151225880844,
+                0.6520308760449429
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 1.1109140177020183,
+              "mean_pixel_error": 1.0461639068731887,
+              "p90_pixel_error": 1.87306800957928
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 3,
+              "fn": 5,
+              "precision": 0.5714285714285714,
+              "recall": 0.4444444444444444,
+              "f1": 0.5,
+              "precision_wilson95": [
+                0.2504542304090258,
+                0.8417830777373732
+              ],
+              "recall_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 0,
+              "unknown_or_unmatched_pairs": 4,
+              "correct_pairs": 0,
+              "pair_accuracy": null,
+              "wilson95": null,
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 319,
+            "direct_observed_fraction": 0.48333333333333334,
+            "predicted_only_frames": 70,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "OBSERVED": 319,
+              "PREDICTED": 70,
+              "UNKNOWN": 271
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 660,
+            "ball_observed_frames": 319,
+            "ball_observed_fraction": 0.48333333333333334,
+            "stable_contact_runs": 8,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 203,
+              "CLEAR_LOWER_BODY_PROXIMITY": 116,
+              "BALL_NOT_DIRECTLY_OBSERVED": 341
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 1,
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    },
+    "guided_search": {
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 97,
+          "fp": 14,
+          "fn": 48,
+          "precision": 0.8738738738738738,
+          "recall": 0.6689655172413793,
+          "f1": 0.7578125,
+          "precision_wilson95": [
+            0.7993724735211747,
+            0.9233621452929135
+          ],
+          "recall_wilson95": [
+            0.5888769999932555,
+            0.7403320383401137
+          ],
+          "tn": 2,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 97,
+          "median_pixel_error": 0.36783950470514615,
+          "mean_pixel_error": 0.7151214225437281,
+          "p90_pixel_error": 1.4971811231540901
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 17,
+          "fp": 10,
+          "fn": 14,
+          "precision": 0.6296296296296297,
+          "recall": 0.5483870967741935,
+          "f1": 0.5862068965517241,
+          "precision_wilson95": [
+            0.442289046234463,
+            0.7846771293206314
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 43,
+              "fp": 0,
+              "fn": 7,
+              "precision": 1.0,
+              "recall": 0.86,
+              "f1": 0.9247311827956989,
+              "precision_wilson95": [
+                0.9179874299767729,
+                1
+              ],
+              "recall_wilson95": [
+                0.738135428014719,
+                0.9304925473797714
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 43,
+              "median_pixel_error": 0.4363851179418939,
+              "mean_pixel_error": 0.8806838457902146,
+              "p90_pixel_error": 1.5265147048866015
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 9,
+              "fp": 1,
+              "fn": 2,
+              "precision": 0.9,
+              "recall": 0.8181818181818182,
+              "f1": 0.8571428571428571,
+              "precision_wilson95": [
+                0.5958436145024278,
+                0.9821242504842788
+              ],
+              "recall_wilson95": [
+                0.5230138624217553,
+                0.9486333993289995
+              ],
+              "reviewed_frames": 12,
+              "unknown_visibility_frames": 0
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 1,
+              "unknown_or_unmatched_pairs": 3,
+              "correct_pairs": 1,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.20654329147389294,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 430,
+            "direct_observed_fraction": 0.7948243992606284,
+            "predicted_only_frames": 36,
+            "track_ids": 4,
+            "observed_track_changes": 3,
+            "longest_direct_run_frames": 60,
+            "states": {
+              "UNKNOWN": 69,
+              "OBSERVED": 430,
+              "PREDICTED": 36,
+              "AMBIGUOUS": 6
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 541,
+            "ball_observed_frames": 430,
+            "ball_observed_fraction": 0.7948243992606284,
+            "stable_contact_runs": 19,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 10,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 111,
+              "NO_PLAYER_CONTACT": 212,
+              "CLEAR_LOWER_BODY_PROXIMITY": 218
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 3,
+              "BALL_TRACK_DISCONTINUITY": 1,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 3,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 28,
+              "fp": 8,
+              "fn": 17,
+              "precision": 0.7777777777777778,
+              "recall": 0.6222222222222222,
+              "f1": 0.691358024691358,
+              "precision_wilson95": [
+                0.6191498017214091,
+                0.882838070251604
+              ],
+              "recall_wilson95": [
+                0.4762967000646754,
+                0.7489211470165014
+              ],
+              "tn": 2,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 28,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.20496732836856263,
+              "p90_pixel_error": 0.7647837816761036
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 5,
+              "fn": 7,
+              "precision": 0.4444444444444444,
+              "recall": 0.36363636363636365,
+              "f1": 0.4,
+              "precision_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "recall_wilson95": [
+                0.15166223614131383,
+                0.6462032231083628
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.5615060804490177
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.0,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 2,
+              "unknown_or_unmatched_pairs": 2,
+              "correct_pairs": 2,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 273,
+            "direct_observed_fraction": 0.546,
+            "predicted_only_frames": 81,
+            "track_ids": 9,
+            "observed_track_changes": 8,
+            "longest_direct_run_frames": 29,
+            "states": {
+              "OBSERVED": 273,
+              "PREDICTED": 81,
+              "UNKNOWN": 132,
+              "AMBIGUOUS": 14
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 500,
+            "ball_observed_frames": 273,
+            "ball_observed_fraction": 0.546,
+            "stable_contact_runs": 27,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 11,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 134,
+              "BALL_NOT_DIRECTLY_OBSERVED": 227,
+              "CLEAR_LOWER_BODY_PROXIMITY": 139
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 3,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 6,
+              "BALL_OBSERVATION_GAP": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 3,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 5,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 8,
+              "TEAM_UNCERTAIN": 1,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 6,
+              "fn": 24,
+              "precision": 0.8125,
+              "recall": 0.52,
+              "f1": 0.6341463414634146,
+              "precision_wilson95": [
+                0.6469050424507756,
+                0.9111057606383721
+              ],
+              "recall_wilson95": [
+                0.3851151225880844,
+                0.6520308760449429
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 1.03560924757157,
+              "mean_pixel_error": 0.9907033624401017,
+              "p90_pixel_error": 1.7333817641974798
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 4,
+              "fn": 5,
+              "precision": 0.5,
+              "recall": 0.4444444444444444,
+              "f1": 0.47058823529411764,
+              "precision_wilson95": [
+                0.21521252682444186,
+                0.7847874731755582
+              ],
+              "recall_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 0,
+              "unknown_or_unmatched_pairs": 4,
+              "correct_pairs": 0,
+              "pair_accuracy": null,
+              "wilson95": null,
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 326,
+            "direct_observed_fraction": 0.49393939393939396,
+            "predicted_only_frames": 58,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "OBSERVED": 326,
+              "PREDICTED": 58,
+              "UNKNOWN": 273,
+              "AMBIGUOUS": 3
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 660,
+            "ball_observed_frames": 326,
+            "ball_observed_fraction": 0.49393939393939396,
+            "stable_contact_runs": 8,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 206,
+              "CLEAR_LOWER_BODY_PROXIMITY": 120,
+              "BALL_NOT_DIRECTLY_OBSERVED": 334
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 1,
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    },
+    "guided_verified": {
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 97,
+          "fp": 15,
+          "fn": 48,
+          "precision": 0.8660714285714286,
+          "recall": 0.6689655172413793,
+          "f1": 0.754863813229572,
+          "precision_wilson95": [
+            0.7907338379805311,
+            0.9171293130809184
+          ],
+          "recall_wilson95": [
+            0.5888769999932555,
+            0.7403320383401137
+          ],
+          "tn": 2,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 97,
+          "median_pixel_error": 0.36783950470514615,
+          "mean_pixel_error": 0.7157023618996585,
+          "p90_pixel_error": 1.548044166514119
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 17,
+          "fp": 10,
+          "fn": 14,
+          "precision": 0.6296296296296297,
+          "recall": 0.5483870967741935,
+          "f1": 0.5862068965517241,
+          "precision_wilson95": [
+            0.442289046234463,
+            0.7846771293206314
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 43,
+              "fp": 0,
+              "fn": 7,
+              "precision": 1.0,
+              "recall": 0.86,
+              "f1": 0.9247311827956989,
+              "precision_wilson95": [
+                0.9179874299767729,
+                1
+              ],
+              "recall_wilson95": [
+                0.738135428014719,
+                0.9304925473797714
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 43,
+              "median_pixel_error": 0.4363851179418939,
+              "mean_pixel_error": 0.881994336895453,
+              "p90_pixel_error": 1.6132556259427508
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 9,
+              "fp": 1,
+              "fn": 2,
+              "precision": 0.9,
+              "recall": 0.8181818181818182,
+              "f1": 0.8571428571428571,
+              "precision_wilson95": [
+                0.5958436145024278,
+                0.9821242504842788
+              ],
+              "recall_wilson95": [
+                0.5230138624217553,
+                0.9486333993289995
+              ],
+              "reviewed_frames": 12,
+              "unknown_visibility_frames": 0
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 1,
+              "unknown_or_unmatched_pairs": 3,
+              "correct_pairs": 1,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.20654329147389294,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 430,
+            "direct_observed_fraction": 0.7948243992606284,
+            "predicted_only_frames": 36,
+            "track_ids": 4,
+            "observed_track_changes": 3,
+            "longest_direct_run_frames": 60,
+            "states": {
+              "UNKNOWN": 70,
+              "OBSERVED": 430,
+              "PREDICTED": 36,
+              "AMBIGUOUS": 5
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 541,
+            "ball_observed_frames": 430,
+            "ball_observed_fraction": 0.7948243992606284,
+            "stable_contact_runs": 19,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 10,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 111,
+              "NO_PLAYER_CONTACT": 212,
+              "CLEAR_LOWER_BODY_PROXIMITY": 218
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 3,
+              "BALL_TRACK_DISCONTINUITY": 1,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "TEAM_UNCERTAIN": 3,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 28,
+              "fp": 9,
+              "fn": 17,
+              "precision": 0.7567567567567568,
+              "recall": 0.6222222222222222,
+              "f1": 0.6829268292682927,
+              "precision_wilson95": [
+                0.5988239750929105,
+                0.8663879656733671
+              ],
+              "recall_wilson95": [
+                0.4762967000646754,
+                0.7489211470165014
+              ],
+              "tn": 2,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 28,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.20496732836856263,
+              "p90_pixel_error": 0.7647837816761036
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 5,
+              "fn": 7,
+              "precision": 0.4444444444444444,
+              "recall": 0.36363636363636365,
+              "f1": 0.4,
+              "precision_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "recall_wilson95": [
+                0.15166223614131383,
+                0.6462032231083628
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.5615060804490177
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.0,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 2,
+              "unknown_or_unmatched_pairs": 2,
+              "correct_pairs": 2,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 279,
+            "direct_observed_fraction": 0.558,
+            "predicted_only_frames": 90,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 29,
+            "states": {
+              "OBSERVED": 279,
+              "PREDICTED": 90,
+              "UNKNOWN": 123,
+              "AMBIGUOUS": 8
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 500,
+            "ball_observed_frames": 279,
+            "ball_observed_fraction": 0.558,
+            "stable_contact_runs": 28,
+            "completed_pass_estimates": 1,
+            "transfer_candidates": 11,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 138,
+              "BALL_NOT_DIRECTLY_OBSERVED": 221,
+              "CLEAR_LOWER_BODY_PROXIMITY": 140,
+              "AMBIGUOUS_CONTACT": 1
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 4,
+              "BALL_OBSERVATION_GAP": 2,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 3,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 7,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 8,
+              "CONTESTED_LOWER_BODY_CONTACT": 1,
+              "TEAM_UNCERTAIN": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 6,
+              "fn": 24,
+              "precision": 0.8125,
+              "recall": 0.52,
+              "f1": 0.6341463414634146,
+              "precision_wilson95": [
+                0.6469050424507756,
+                0.9111057606383721
+              ],
+              "recall_wilson95": [
+                0.3851151225880844,
+                0.6520308760449429
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 1.03560924757157,
+              "mean_pixel_error": 0.9907033624401017,
+              "p90_pixel_error": 1.7333817641974798
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 4,
+              "fn": 5,
+              "precision": 0.5,
+              "recall": 0.4444444444444444,
+              "f1": 0.47058823529411764,
+              "precision_wilson95": [
+                0.21521252682444186,
+                0.7847874731755582
+              ],
+              "recall_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 0,
+              "unknown_or_unmatched_pairs": 4,
+              "correct_pairs": 0,
+              "pair_accuracy": null,
+              "wilson95": null,
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 326,
+            "direct_observed_fraction": 0.49393939393939396,
+            "predicted_only_frames": 58,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 36,
+            "states": {
+              "OBSERVED": 326,
+              "PREDICTED": 58,
+              "UNKNOWN": 274,
+              "AMBIGUOUS": 2
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 660,
+            "ball_observed_frames": 326,
+            "ball_observed_fraction": 0.49393939393939396,
+            "stable_contact_runs": 8,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 204,
+              "CLEAR_LOWER_BODY_PROXIMITY": 122,
+              "BALL_NOT_DIRECTLY_OBSERVED": 334
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 1,
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    },
+    "full_m23": {
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 107,
+          "fp": 18,
+          "fn": 38,
+          "precision": 0.856,
+          "recall": 0.7379310344827587,
+          "f1": 0.7925925925925926,
+          "precision_wilson95": [
+            0.783838881626985,
+            0.9069318011338623
+          ],
+          "recall_wilson95": [
+            0.6608740646535611,
+            0.8027060097342444
+          ],
+          "tn": 2,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 107,
+          "median_pixel_error": 0.5718527368735448,
+          "mean_pixel_error": 0.8383657530732783,
+          "p90_pixel_error": 1.866551602465319
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 17,
+          "fp": 11,
+          "fn": 14,
+          "precision": 0.6071428571428571,
+          "recall": 0.5483870967741935,
+          "f1": 0.576271186440678,
+          "precision_wilson95": [
+            0.42408726034906297,
+            0.7643454817241996
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "precision_wilson95": [
+            0.20654329147389294,
+            1
+          ],
+          "recall_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 44,
+              "fp": 0,
+              "fn": 6,
+              "precision": 1.0,
+              "recall": 0.88,
+              "f1": 0.9361702127659575,
+              "precision_wilson95": [
+                0.9197016822179859,
+                0.9999999999999999
+              ],
+              "recall_wilson95": [
+                0.7619492111337642,
+                0.9438247628937535
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 44,
+              "median_pixel_error": 0.46902417518694306,
+              "mean_pixel_error": 0.9875021472975848,
+              "p90_pixel_error": 2.0481779173169246
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 9,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.8181818181818182,
+              "recall": 0.8181818181818182,
+              "f1": 0.8181818181818182,
+              "precision_wilson95": [
+                0.5230138624217553,
+                0.9486333993289995
+              ],
+              "recall_wilson95": [
+                0.5230138624217553,
+                0.9486333993289995
+              ],
+              "reviewed_frames": 12,
+              "unknown_visibility_frames": 0
+            },
+            "passes": {
+              "tp": 1,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "precision_wilson95": [
+                0.20654329147389294,
+                1
+              ],
+              "recall_wilson95": [
+                0.09452865480086614,
+                0.9054713451991339
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 1,
+              "unknown_or_unmatched_pairs": 3,
+              "correct_pairs": 1,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.20654329147389294,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 541,
+            "direct_observed_frames": 456,
+            "direct_observed_fraction": 0.8428835489833642,
+            "predicted_only_frames": 24,
+            "track_ids": 3,
+            "observed_track_changes": 2,
+            "longest_direct_run_frames": 103,
+            "states": {
+              "AMBIGUOUS": 61,
+              "OBSERVED": 456,
+              "PREDICTED": 24
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 541,
+            "ball_observed_frames": 456,
+            "ball_observed_fraction": 0.8428835489833642,
+            "stable_contact_runs": 18,
+            "completed_pass_estimates": 3,
+            "transfer_candidates": 8,
+            "frame_diagnostics": {
+              "BALL_NOT_DIRECTLY_OBSERVED": 85,
+              "NO_PLAYER_CONTACT": 220,
+              "CLEAR_LOWER_BODY_PROXIMITY": 236
+            },
+            "candidate_reasons": {
+              "BALL_OBSERVATION_GAP": 2,
+              "TEAM_UNCERTAIN": 4,
+              "RECEIVER_NOT_VISIBLE_AT_RELEASE": 2,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 4,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 2,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 29,
+              "fp": 10,
+              "fn": 16,
+              "precision": 0.7435897435897436,
+              "recall": 0.6444444444444445,
+              "f1": 0.6904761904761905,
+              "precision_wilson95": [
+                0.589180432321585,
+                0.854313741565478
+              ],
+              "recall_wilson95": [
+                0.49835546011952203,
+                0.7678110864309596
+              ],
+              "tn": 2,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 29,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.2195356822430297,
+              "p90_pixel_error": 0.7622598246836307
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 5,
+              "fn": 7,
+              "precision": 0.4444444444444444,
+              "recall": 0.36363636363636365,
+              "f1": 0.4,
+              "precision_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "recall_wilson95": [
+                0.15166223614131383,
+                0.6462032231083628
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 3,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.5615060804490177
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.0,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 2,
+              "unknown_or_unmatched_pairs": 2,
+              "correct_pairs": 2,
+              "pair_accuracy": 1.0,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ],
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 500,
+            "direct_observed_frames": 301,
+            "direct_observed_fraction": 0.602,
+            "predicted_only_frames": 76,
+            "track_ids": 7,
+            "observed_track_changes": 6,
+            "longest_direct_run_frames": 45,
+            "states": {
+              "OBSERVED": 301,
+              "PREDICTED": 76,
+              "UNKNOWN": 102,
+              "AMBIGUOUS": 21
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 500,
+            "ball_observed_frames": 301,
+            "ball_observed_fraction": 0.602,
+            "stable_contact_runs": 28,
+            "completed_pass_estimates": 1,
+            "transfer_candidates": 11,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 149,
+              "CLEAR_LOWER_BODY_PROXIMITY": 151,
+              "BALL_NOT_DIRECTLY_OBSERVED": 199,
+              "AMBIGUOUS_CONTACT": 1
+            },
+            "candidate_reasons": {
+              "BALL_TRACK_DISCONTINUITY": 2,
+              "INSUFFICIENT_OBSERVED_BALL_COVERAGE": 4,
+              "BALL_OBSERVATION_GAP": 2,
+              "OPPONENT_TRANSFER_NOT_PROVEN_PASS_ATTEMPT": 3,
+              "INSUFFICIENT_SAME_FRAME_PLAYER_SEPARATION": 7,
+              "NO_OBSERVED_RELEASE_AND_FLIGHT": 8,
+              "CONTESTED_LOWER_BODY_CONTACT": 1,
+              "TEAM_UNCERTAIN": 1
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 34,
+              "fp": 8,
+              "fn": 16,
+              "precision": 0.8095238095238095,
+              "recall": 0.68,
+              "f1": 0.7391304347826086,
+              "precision_wilson95": [
+                0.6669893264500356,
+                0.9001811039014357
+              ],
+              "recall_wilson95": [
+                0.5418944286372394,
+                0.792419559060006
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 34,
+              "median_pixel_error": 1.1686104739716514,
+              "mean_pixel_error": 1.1731913621382108,
+              "p90_pixel_error": 2.0387989045377046
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          },
+          "original_references": {
+            "status": "development_reference_evaluation",
+            "ball": {
+              "tp": 4,
+              "fp": 4,
+              "fn": 5,
+              "precision": 0.5,
+              "recall": 0.4444444444444444,
+              "f1": 0.47058823529411764,
+              "precision_wilson95": [
+                0.21521252682444186,
+                0.7847874731755582
+              ],
+              "recall_wilson95": [
+                0.188775429471914,
+                0.7333526542559703
+              ],
+              "reviewed_frames": 11,
+              "unknown_visibility_frames": 1
+            },
+            "passes": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 2,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "precision_wilson95": null,
+              "recall_wilson95": [
+                0,
+                0.6576280471103807
+              ],
+              "exhaustively_reviewed_windows": 2,
+              "unknown_or_incomplete_windows": 2,
+              "reviewed_seconds": 6.006,
+              "false_positives_per_reviewed_minute": 0.0
+            },
+            "identity": {
+              "reviewed_matched_pairs": 0,
+              "unknown_or_unmatched_pairs": 4,
+              "correct_pairs": 0,
+              "pair_accuracy": null,
+              "wilson95": null,
+              "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+            },
+            "limitations": [
+              "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+              "One reviewer and few examples do not establish generalization or eliminate label error.",
+              "Unknown visibility and incomplete windows are excluded, not negative labels."
+            ],
+            "reference_role": "development_only",
+            "original_review_tasks": 20,
+            "independent_final_test": false
+          },
+          "engineering": {
+            "frames": 660,
+            "direct_observed_frames": 358,
+            "direct_observed_fraction": 0.5424242424242425,
+            "predicted_only_frames": 43,
+            "track_ids": 8,
+            "observed_track_changes": 7,
+            "longest_direct_run_frames": 40,
+            "states": {
+              "OBSERVED": 358,
+              "PREDICTED": 43,
+              "AMBIGUOUS": 118,
+              "UNKNOWN": 141
+            },
+            "independent_precision": null,
+            "independent_recall": null,
+            "independent_reacquisition_accuracy": null,
+            "true_ball_identity_switches": null,
+            "true_trajectory_fragmentation": null
+          },
+          "full_clip_passes": {
+            "frames": 660,
+            "ball_observed_frames": 358,
+            "ball_observed_fraction": 0.5424242424242425,
+            "stable_contact_runs": 8,
+            "completed_pass_estimates": 0,
+            "transfer_candidates": 2,
+            "frame_diagnostics": {
+              "NO_PLAYER_CONTACT": 229,
+              "CLEAR_LOWER_BODY_PROXIMITY": 129,
+              "BALL_NOT_DIRECTLY_OBSERVED": 302
+            },
+            "candidate_reasons": {
+              "TEAM_UNCERTAIN": 2
+            },
+            "goal_count": null,
+            "shot_count": null,
+            "pass_attempts": null,
+            "pass_accuracy": null,
+            "independent_event_accuracy": null
+          }
+        }
+      }
+    }
+  },
+  "baselines": {
+    "m20_control": {
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 30,
+              "fp": 2,
+              "fn": 20,
+              "precision": 0.9375,
+              "recall": 0.6,
+              "f1": 0.7317073170731707,
+              "precision_wilson95": [
+                0.7985253275199642,
+                0.9826897968048427
+              ],
+              "recall_wilson95": [
+                0.4618118910275937,
+                0.7239181021375425
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 30,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.0,
+              "p90_pixel_error": 0.0
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 41,
+              "precision": 1.0,
+              "recall": 0.08888888888888889,
+              "f1": 0.16326530612244897,
+              "precision_wilson95": [
+                0.5100999795960008,
+                1
+              ],
+              "recall_wilson95": [
+                0.035110548134203154,
+                0.20733851168365702
+              ],
+              "tn": 5,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 4,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.0,
+              "p90_pixel_error": 0.0
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 7,
+              "fp": 1,
+              "fn": 43,
+              "precision": 0.875,
+              "recall": 0.14,
+              "f1": 0.2413793103448276,
+              "precision_wilson95": [
+                0.5291051942301386,
+                0.9775830911367038
+              ],
+              "recall_wilson95": [
+                0.06950745262022862,
+                0.2618645719852809
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 7,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.0,
+              "p90_pixel_error": 0.0
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        }
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 10,
+          "fp": 4,
+          "fn": 21,
+          "precision": 0.7142857142857143,
+          "recall": 0.3225806451612903,
+          "f1": 0.4444444444444444,
+          "precision_wilson95": [
+            0.4535045882751561,
+            0.882788120898909
+          ],
+          "recall_wilson95": [
+            0.18569230747313034,
+            0.49859314440049185
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "precision_wilson95": [
+            0.20654329147389294,
+            1
+          ],
+          "recall_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 41,
+          "fp": 3,
+          "fn": 104,
+          "precision": 0.9318181818181818,
+          "recall": 0.2827586206896552,
+          "f1": 0.43386243386243384,
+          "precision_wilson95": [
+            0.8177467866338279,
+            0.9765410298271597
+          ],
+          "recall_wilson95": [
+            0.21579934714746768,
+            0.3609318892810576
+          ],
+          "tn": 5,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 41,
+          "median_pixel_error": 0.0,
+          "mean_pixel_error": 0.0,
+          "p90_pixel_error": 0.0
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      }
+    },
+    "m21_temporal_offline": {
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 43,
+              "fp": 0,
+              "fn": 7,
+              "precision": 1.0,
+              "recall": 0.86,
+              "f1": 0.9247311827956989,
+              "precision_wilson95": [
+                0.9179874299767729,
+                1
+              ],
+              "recall_wilson95": [
+                0.738135428014719,
+                0.9304925473797714
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 43,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.5945819726166967,
+              "p90_pixel_error": 1.1674307089944271
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 8,
+              "fn": 19,
+              "precision": 0.7647058823529411,
+              "recall": 0.5777777777777777,
+              "f1": 0.6582278481012658,
+              "precision_wilson95": [
+                0.6000353719173557,
+                0.8756316189075566
+              ],
+              "recall_wilson95": [
+                0.433005327959445,
+                0.7103151201831219
+              ],
+              "tn": 2,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 0.0,
+              "mean_pixel_error": 0.16116848762023478,
+              "p90_pixel_error": 0.7698316956610493
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 26,
+              "fp": 6,
+              "fn": 24,
+              "precision": 0.8125,
+              "recall": 0.52,
+              "f1": 0.6341463414634146,
+              "precision_wilson95": [
+                0.6469050424507756,
+                0.9111057606383721
+              ],
+              "recall_wilson95": [
+                0.3851151225880844,
+                0.6520308760449429
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 26,
+              "median_pixel_error": 1.1109140177020183,
+              "mean_pixel_error": 1.0461639068731887,
+              "p90_pixel_error": 1.87306800957928
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        }
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 17,
+          "fp": 9,
+          "fn": 14,
+          "precision": 0.6538461538461539,
+          "recall": 0.5483870967741935,
+          "f1": 0.5964912280701754,
+          "precision_wilson95": [
+            0.46220229009632996,
+            0.8058798502714787
+          ],
+          "recall_wilson95": [
+            0.37771879603669134,
+            0.7083851716341388
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "precision_wilson95": null,
+          "recall_wilson95": [
+            0,
+            0.35433884297520657
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 95,
+          "fp": 14,
+          "fn": 50,
+          "precision": 0.8715596330275229,
+          "recall": 0.6551724137931034,
+          "f1": 0.7480314960629921,
+          "precision_wilson95": [
+            0.7958940699649537,
+            0.9219263083352476
+          ],
+          "recall_wilson95": [
+            0.5747012667155194,
+            0.7276335644069625
+          ],
+          "tn": 2,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 95,
+          "median_pixel_error": 0.0,
+          "mean_pixel_error": 0.5995543903089154,
+          "p90_pixel_error": 1.4365196086704464
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      }
+    },
+    "m22_reviewed": {
+      "per_recording": {
+        "test_match": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 29,
+              "fp": 12,
+              "fn": 21,
+              "precision": 0.7073170731707317,
+              "recall": 0.58,
+              "f1": 0.6373626373626373,
+              "precision_wilson95": [
+                0.5552024292386027,
+                0.8239098236694112
+              ],
+              "recall_wilson95": [
+                0.4423319668777783,
+                0.7062520276543307
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 29,
+              "median_pixel_error": 2.348189975683591,
+              "mean_pixel_error": 2.8370369044816326,
+              "p90_pixel_error": 5.131887780635005
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "team_goal": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 3,
+              "fp": 9,
+              "fn": 42,
+              "precision": 0.25,
+              "recall": 0.06666666666666667,
+              "f1": 0.10526315789473684,
+              "precision_wilson95": [
+                0.08894003962896138,
+                0.53231033912066
+              ],
+              "recall_wilson95": [
+                0.022931616462147086,
+                0.17856874388640825
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 3,
+              "median_pixel_error": 1.2501263706739474,
+              "mean_pixel_error": 1.2303236376049398,
+              "p90_pixel_error": 1.5843485804158113
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        },
+        "southampton": {
+          "new_150": {
+            "reference_role": "development_only",
+            "model_assisted": true,
+            "independent_final_test": false,
+            "matching_iou": 0.25,
+            "annotations": 50,
+            "ball": {
+              "tp": 32,
+              "fp": 6,
+              "fn": 18,
+              "precision": 0.8421052631578947,
+              "recall": 0.64,
+              "f1": 0.7272727272727273,
+              "precision_wilson95": [
+                0.6958287736272311,
+                0.9255623777627731
+              ],
+              "recall_wilson95": [
+                0.5014076201030195,
+                0.7586143703281711
+              ],
+              "tn": 0,
+              "reviewed_frames": 50,
+              "unknown_visibility_frames": 0
+            },
+            "localization": {
+              "matched_boxes": 32,
+              "median_pixel_error": 1.1673178906261656,
+              "mean_pixel_error": 1.3186313444941968,
+              "p90_pixel_error": 2.327297233406924
+            },
+            "limits": [
+              "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+              "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+            ]
+          }
+        }
+      },
+      "original_references": {
+        "status": "development_reference_evaluation",
+        "ball": {
+          "tp": 14,
+          "fp": 7,
+          "fn": 17,
+          "precision": 0.6666666666666666,
+          "recall": 0.45161290322580644,
+          "f1": 0.5384615384615384,
+          "precision_wilson95": [
+            0.45373075657210293,
+            0.8280546356731631
+          ],
+          "recall_wilson95": [
+            0.29161482836586106,
+            0.6222812039633085
+          ],
+          "reviewed_frames": 34,
+          "unknown_visibility_frames": 2
+        },
+        "passes": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "precision_wilson95": [
+            0.20654329147389294,
+            1
+          ],
+          "recall_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "exhaustively_reviewed_windows": 6,
+          "unknown_or_incomplete_windows": 6,
+          "reviewed_seconds": 18.012,
+          "false_positives_per_reviewed_minute": 0.0
+        },
+        "identity": {
+          "reviewed_matched_pairs": 3,
+          "unknown_or_unmatched_pairs": 9,
+          "correct_pairs": 3,
+          "pair_accuracy": 1.0,
+          "wilson95": [
+            0.43849391955098227,
+            1
+          ],
+          "definition": "Agreement of unique visible M9 identities with independently boxed source-frame pairs; unmatched/ambiguous pairs excluded."
+        },
+        "limitations": [
+          "Uniform-time source tasks; metrics describe only reviewed samples/windows.",
+          "One reviewer and few examples do not establish generalization or eliminate label error.",
+          "Unknown visibility and incomplete windows are excluded, not negative labels."
+        ],
+        "reference_role": "development_only",
+        "original_review_tasks": 60,
+        "independent_final_test": false
+      },
+      "new_150": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 150,
+        "ball": {
+          "tp": 64,
+          "fp": 27,
+          "fn": 81,
+          "precision": 0.7032967032967034,
+          "recall": 0.4413793103448276,
+          "f1": 0.5423728813559322,
+          "precision_wilson95": [
+            0.6027577176380822,
+            0.7873664472853271
+          ],
+          "recall_wilson95": [
+            0.3631045082657405,
+            0.5226801110879885
+          ],
+          "tn": 0,
+          "reviewed_frames": 150,
+          "unknown_visibility_frames": 0
+        },
+        "localization": {
+          "matched_boxes": 64,
+          "median_pixel_error": 1.6905455851742464,
+          "mean_pixel_error": 2.0025194401030695,
+          "p90_pixel_error": 4.079443936512413
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      }
+    }
+  },
+  "baseline_reproduction": {
+    "test_match": {
+      "frozen_m21_ball_sha256": "0d49ba2dd6f06c63a9566d63b9147bd15e4ac80a0bf6a3fe6678fbf1fd4a288f",
+      "byte_identical": true,
+      "fresh_source_pixel_hashes_match": true
+    },
+    "team_goal": {
+      "frozen_m21_ball_sha256": "0675c4cc7019e9024db13948f4bff5034c2d919e3da1ef86f44527084fedfa4c",
+      "byte_identical": true,
+      "fresh_source_pixel_hashes_match": true
+    },
+    "southampton": {
+      "frozen_m21_ball_sha256": "2a5b5f51d0e00d9d10a24d0723176798b2033d48b7fd34a325bec2ca0d300c6c",
+      "byte_identical": true,
+      "fresh_source_pixel_hashes_match": true
+    }
+  },
+  "runtime": {
+    "test_match": {
+      "frames": 541,
+      "source_video_sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "source_world_sha256": "cde55040f4f06aaca2b79bac2f8cfd7be0f6441a58184ae149db2686b3dabc9d",
+      "inputs_sha256": "4e1a3272cf05029f712ed8f9075cd5fdaa212063891da14a92a99979fc6a19ad",
+      "timing": {
+        "primary_neural_seconds": 183.5428468626924,
+        "primary_seconds": 199.22362108156085,
+        "search_neural_seconds": 75.36725924594793,
+        "m22_neural_seconds": 37.188469765358604,
+        "verification_memory_seconds": 8.299631676636636,
+        "extra_crop_views": 3669,
+        "m22_views": 2160,
+        "primary_views": 9325
+      },
+      "wall_seconds_this_process": 332.4081642499659,
+      "frames_per_second_this_process": 1.6275171857487116,
+      "recorded_processing_seconds": 337.1942183399806,
+      "processing_fps": 1.6044165960595727,
+      "m22_checkpoint_sha256": "e2382fb45171f9660612db8f87c7be4c3c38124a57dd55d18c716cf06547fe0d",
+      "generic_checkpoint_sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5",
+      "peak_rss_bytes_macos": 1059848192,
+      "mps_allocated_bytes": 85521920,
+      "parent_inputs_sha256": "b532ba1050f6afb55c89a5111d671ed8684cc5e5ccf8c9ce2ebb7c570effe655",
+      "cache_derivation_seconds": 5.443105416954495
+    },
+    "team_goal": {
+      "frames": 500,
+      "source_video_sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "source_world_sha256": "49fa39be90dd5d3c1774d38d28e5103b9a4aafe32c1d453d909f68b5da1f3799",
+      "inputs_sha256": "ec956c00c2c8fdf5c6c0122ecdf52b74dff6a769a9322f378b7c5d043beef774",
+      "timing": {
+        "primary_neural_seconds": 88.69249121367466,
+        "primary_seconds": 95.69533602893353,
+        "search_neural_seconds": 67.5518522602506,
+        "m22_neural_seconds": 47.61188481817953,
+        "verification_memory_seconds": 8.480764767271467,
+        "extra_crop_views": 2532,
+        "m22_views": 1952,
+        "primary_views": 3500
+      },
+      "wall_seconds_this_process": 231.23152520798612,
+      "frames_per_second_this_process": 2.1623349132444822,
+      "recorded_processing_seconds": 233.02087475801818,
+      "processing_fps": 2.1457305081324916,
+      "m22_checkpoint_sha256": "62414ec4cfdd1599ed3f65433689a5c8a61a912404511e8ecb0a87a93cb9b1b0",
+      "generic_checkpoint_sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5",
+      "peak_rss_bytes_macos": 1271578624,
+      "mps_allocated_bytes": 85521920,
+      "parent_inputs_sha256": "47e6ccf39c684b9c66011455536ef50194273342548aafea2a5bc1a0c26afa7f",
+      "cache_derivation_seconds": 2.595672916038893
+    },
+    "southampton": {
+      "frames": 660,
+      "source_video_sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "source_world_sha256": "9941f605719d2b4c80ffd96c2fca5f7154560a6863d1ef4a73204442c3922f20",
+      "inputs_sha256": "91cdf25507e70d9e8584db5f0fc25f0b890330b5b6fd213ba48d4a5bda605624",
+      "timing": {
+        "primary_neural_seconds": 287.46806277160067,
+        "primary_seconds": 321.07309461093973,
+        "search_neural_seconds": 104.31099140783772,
+        "m22_neural_seconds": 69.83746379916556,
+        "verification_memory_seconds": 13.353652076679282,
+        "extra_crop_views": 3641,
+        "m22_views": 2592,
+        "primary_views": 10555
+      },
+      "wall_seconds_this_process": 531.5941512499703,
+      "frames_per_second_this_process": 1.2415486484343385,
+      "recorded_processing_seconds": 535.4734957835171,
+      "processing_fps": 1.2325540016397503,
+      "m22_checkpoint_sha256": "0d96d0de6669274fb04c295e0415a946516c011d23baa70ff4789d050c0b1bae",
+      "generic_checkpoint_sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5",
+      "peak_rss_bytes_macos": 1356791808,
+      "mps_allocated_bytes": 85521152,
+      "parent_inputs_sha256": "edffcbece4a63c2ad3fd6d3cbdba25b2e778471bb1e58ace54a439b66b9e269c",
+      "cache_derivation_seconds": 5.041912999935448
+    }
+  },
+  "analysis_runtime": {
+    "test_match": {
+      "seconds": 25.290028249961324,
+      "peak_rss_bytes_macos": 641515520
+    },
+    "team_goal": {
+      "seconds": 13.33542379096616,
+      "peak_rss_bytes_macos": 795525120
+    },
+    "southampton": {
+      "seconds": 21.399720999994315,
+      "peak_rss_bytes_macos": 1018724352
+    }
+  },
+  "research_targets": {
+    "achieved": {
+      "precision": true,
+      "recall": false,
+      "f1": false,
+      "correct_balls": false,
+      "known_pass_preserved": true,
+      "aspirational_passes": false,
+      "no_false_passes_in_reviewed_windows": true
+    },
+    "primary_all_met": false,
+    "independent_accuracy_acceptance": false
+  },
+  "pass_diagnostics": [
+    {
+      "recording_id": "test_match",
+      "release_frame": 64,
+      "receipt_frame": 84,
+      "matched_completed_pass": true,
+      "diagnostic_reasons": [],
+      "direct_observations_near_release": [
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "direct_observations_near_receipt": [
+        78,
+        79,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "direct_flight_observations": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        77,
+        78,
+        79,
+        83,
+        84
+      ],
+      "trajectory_guided_current_observation_frames": [
+        66,
+        67,
+        69,
+        70,
+        72,
+        75,
+        77,
+        78
+      ],
+      "receiver_detected_in_M9_near_receipt": true
+    },
+    {
+      "recording_id": "test_match",
+      "release_frame": 442,
+      "receipt_frame": 455,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_EVENT_WITH_BOTH_ENDPOINTS_INSIDE_FIXED_MATCH_TOLERANCE; CHECK_FLIGHT_CONTINUITY_TEAM_AND_CONTACT_GATES"
+      ],
+      "direct_observations_near_release": [
+        436,
+        444,
+        445,
+        446,
+        447,
+        448
+      ],
+      "direct_observations_near_receipt": [
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461
+      ],
+      "direct_flight_observations": [
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454
+      ],
+      "trajectory_guided_current_observation_frames": [
+        445,
+        447,
+        450
+      ],
+      "receiver_detected_in_M9_near_receipt": true
+    },
+    {
+      "recording_id": "team_goal",
+      "release_frame": 66,
+      "receipt_frame": 89,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_DIRECT_BALL_NEAR_HUMAN_RECEIPT",
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT"
+      ],
+      "direct_observations_near_release": [
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "direct_observations_near_receipt": [],
+      "direct_flight_observations": [
+        75,
+        76
+      ],
+      "trajectory_guided_current_observation_frames": [
+        75,
+        76
+      ],
+      "receiver_detected_in_M9_near_receipt": false
+    },
+    {
+      "recording_id": "team_goal",
+      "release_frame": 181,
+      "receipt_frame": 216,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT"
+      ],
+      "direct_observations_near_release": [
+        175
+      ],
+      "direct_observations_near_receipt": [
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ],
+      "direct_flight_observations": [
+        195,
+        196,
+        197,
+        198,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ],
+      "trajectory_guided_current_observation_frames": [
+        198,
+        212,
+        214,
+        215
+      ],
+      "receiver_detected_in_M9_near_receipt": true
+    },
+    {
+      "recording_id": "team_goal",
+      "release_frame": 150,
+      "receipt_frame": 163,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_EVENT_WITH_BOTH_ENDPOINTS_INSIDE_FIXED_MATCH_TOLERANCE; CHECK_FLIGHT_CONTINUITY_TEAM_AND_CONTACT_GATES"
+      ],
+      "direct_observations_near_release": [
+        152,
+        153,
+        154,
+        155,
+        156
+      ],
+      "direct_observations_near_receipt": [
+        157,
+        158,
+        159,
+        160,
+        161,
+        163,
+        164,
+        165,
+        169
+      ],
+      "direct_flight_observations": [
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        163
+      ],
+      "trajectory_guided_current_observation_frames": [
+        157,
+        159,
+        163
+      ],
+      "receiver_detected_in_M9_near_receipt": true
+    },
+    {
+      "recording_id": "southampton",
+      "release_frame": 367,
+      "receipt_frame": 404,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_EVENT_WITH_BOTH_ENDPOINTS_INSIDE_FIXED_MATCH_TOLERANCE; CHECK_FLIGHT_CONTINUITY_TEAM_AND_CONTACT_GATES"
+      ],
+      "direct_observations_near_release": [
+        360,
+        361,
+        362,
+        363,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374
+      ],
+      "direct_observations_near_receipt": [
+        400,
+        401,
+        403,
+        404
+      ],
+      "direct_flight_observations": [
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        400,
+        401,
+        403,
+        404
+      ],
+      "trajectory_guided_current_observation_frames": [],
+      "receiver_detected_in_M9_near_receipt": true
+    },
+    {
+      "recording_id": "southampton",
+      "release_frame": 434,
+      "receipt_frame": 442,
+      "matched_completed_pass": false,
+      "diagnostic_reasons": [
+        "NO_UNAMBIGUOUS_M9_LOWER_BODY_CONTACT_NEAR_RECEIPT"
+      ],
+      "direct_observations_near_release": [
+        427,
+        428,
+        429,
+        430,
+        431,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441
+      ],
+      "direct_observations_near_receipt": [
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449
+      ],
+      "direct_flight_observations": [
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442
+      ],
+      "trajectory_guided_current_observation_frames": [
+        442
+      ],
+      "receiver_detected_in_M9_near_receipt": true
+    }
+  ],
+  "team_goal_original_stage_counts": {
+    "MATCHED": 4,
+    "SEARCH_REGION_MISSED_REFERENCE": 1,
+    "VISUAL_VERIFICATION_OR_THRESHOLD": 2,
+    "NO_MATCHING_VISUAL_CANDIDATE_INSIDE_SEARCH": 3,
+    "ASSOCIATION_OR_REPEAT_SUPPORT": 1
+  },
+  "team_goal_new_stage_counts": {
+    "MATCHED": 29,
+    "VISUAL_VERIFICATION_OR_THRESHOLD": 8,
+    "ASSOCIATION_OR_REPEAT_SUPPORT": 5,
+    "NO_MATCHING_VISUAL_CANDIDATE_INSIDE_SEARCH": 3
+  },
+  "promotion": {
+    "status": "not_promoted",
+    "ordinary_default": "m14",
+    "experimental_control": "m20",
+    "reason": "Development-influenced clips and sparse labels; independent source approval, overlap audit and frozen labels required."
+  },
+  "independent_final_test": "not_available_no_new_approved_source",
+  "browser": {
+    "status": "11 distinct Chrome cases passed targeted checks; latest complete isolated-browser run: 7 passed and 4 timed out; combined suite is not all-green",
+    "distinct_targeted_passed": 11,
+    "m23_three_clip_targeted_passed": true,
+    "final_combined": {
+      "passed": 7,
+      "timed_out": 4,
+      "affected": [
+        "M23 detail API wait",
+        "M19 source/interaction wait",
+        "full-match media readiness",
+        "match-experience cross-half goal rendering"
+      ]
+    },
+    "earlier_combined_runs": [
+      {
+        "passed": 4,
+        "failed": 7
+      },
+      {
+        "passed": 2,
+        "failed": 9
+      },
+      {
+        "passed": 7,
+        "failed": 4
+      }
+    ],
+    "test_integrity": "No evidence/clock/grounding assertion removed; M21 explicitly requests playback before requiring decoded data",
+    "runtime_mitigations": "Fresh frontend, isolated browser projects, opt-in tracing and idle-sleep prevention did not eliminate every long-batch timeout",
+    "baseline_probe": "Unchanged frontend probe also timed out before page setup; this does not establish the cause of all batch failures",
+    "hosted_llm_calls": 0,
+    "isolated_previous": {
+      "passed": 7,
+      "timed_out": 4,
+      "affected": [
+        "M23 detail API wait",
+        "M20 diagnostic API wait",
+        "full-match media readiness",
+        "match-experience cross-half goal rendering"
+      ]
+    },
+    "frontend_restart": "Final frontend restarted successfully on 5173; direct /api/ready and backend /ready returned 200 with 15 recordings"
+  },
+  "live_azure": {
+    "verification_started_at_utc": "2026-11-21T14:42:12.957989+00:00",
+    "backend": "http://127.0.0.1:8000",
+    "provider": "local",
+    "/health": {
+      "status_code": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 12,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "/ready": {
+      "status_code": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 15
+      }
+    },
+    "recordings": {
+      "total": 15,
+      "ready_azure_analytics": 12,
+      "local_cv": 3
+    },
+    "cv": [
+      {
+        "recording_id": "test_match",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 351,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 3,
+        "cv_model_revision": "1ac32c2f5d4506ba81e403f5949c6797795f4c5bb4d2833e12365a021504694c:ba980ef2f6293275b617c858066629a33c539e707f7ec1509791c8c4035d4fcd:4635a6001864c275e1a7d507326afbd55a1c9d902ff550a071054df0c54d7947",
+        "new_development_metrics": {
+          "tp": 44,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.88,
+          "f1": 0.9361702127659575,
+          "precision_wilson95": [
+            0.9197016822179859,
+            0.9999999999999999
+          ],
+          "recall_wilson95": [
+            0.7619492111337642,
+            0.9438247628937535
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "team_goal",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 8,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 1,
+        "cv_model_revision": "d2f2c7ef42982e198d0d778002872edd0e381b86145264046c3a33d41b8bf21e:a2b7224f67cf8b150094848f7ef9c50509f572c2276160ec6baf380213fa5c08:50c4d1d2546b693c1b4c05d4e7af65d1521cbcef081e7d1ab6163eba3f31495f",
+        "new_development_metrics": {
+          "tp": 29,
+          "fp": 10,
+          "fn": 16,
+          "precision": 0.7435897435897436,
+          "recall": 0.6444444444444445,
+          "f1": 0.6904761904761905,
+          "precision_wilson95": [
+            0.589180432321585,
+            0.854313741565478
+          ],
+          "recall_wilson95": [
+            0.49835546011952203,
+            0.7678110864309596
+          ],
+          "tn": 2,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "southampton",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 16,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 0,
+        "cv_model_revision": "5cab3e521444fe45b7306bab76df05aa2289fcb526619ca64bd19770d65f0db8:e14ebf32525905c78697cef3a239119ab31c77038efebaa6531bf54c53468ff4:57f290deb92b5413ef9ac8eaa49fa4c451088bc4143476551c73c1dde5eb09dc",
+        "new_development_metrics": {
+          "tp": 34,
+          "fp": 8,
+          "fn": 16,
+          "precision": 0.8095238095238095,
+          "recall": 0.68,
+          "f1": 0.7391304347826086,
+          "precision_wilson95": [
+            0.6669893264500356,
+            0.9001811039014357
+          ],
+          "recall_wilson95": [
+            0.5418944286372394,
+            0.792419559060006
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      }
+    ],
+    "azure_118575_clip": {
+      "view_status": 200,
+      "events": 481,
+      "ask_status": 200,
+      "evidence_items": 14,
+      "video_status": 206,
+      "video_bytes": 16
+    },
+    "verified_at_utc": "2026-11-21T14:42:36.147542+00:00"
+  },
+  "cache_reproduction": {
+    "matching_artifact_hashes": 48,
+    "items": [
+      {
+        "recording": "test_match",
+        "variant": "m21_temporal_offline",
+        "artifact": "ball_frames_sha256",
+        "sha256": "fdb19da71173208eeb79d6620c05c7fdbc0d5abfd8b0ca4e7071fefe5d90e123"
+      },
+      {
+        "recording": "test_match",
+        "variant": "m21_temporal_offline",
+        "artifact": "canonical_sha256",
+        "sha256": "e76e83569e28f33bc89d8fa5d7e7d60aca43149250afb05a9cb95a867c17ab70"
+      },
+      {
+        "recording": "test_match",
+        "variant": "m21_temporal_offline",
+        "artifact": "intelligent_sha256",
+        "sha256": "7e3414f8b701782a7a1f59ddba599dc3f898290a68ddda30f56e35d1b87fa062"
+      },
+      {
+        "recording": "test_match",
+        "variant": "m21_temporal_offline",
+        "artifact": "events_sha256",
+        "sha256": "cf9156caaae850b6322be6fb05f64116b0fc6435102906c49c9ee6d9d821accc"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_search",
+        "artifact": "ball_frames_sha256",
+        "sha256": "d301f41afd477c6679aa330e316c095c66c4ad3fa543f3433071952164e08171"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_search",
+        "artifact": "canonical_sha256",
+        "sha256": "e42e82658e11a092c11f79a79f73009a7ea6e1b234541afafa290f0dd82a581b"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_search",
+        "artifact": "intelligent_sha256",
+        "sha256": "c7f196b5abff1449b1608be0b00fd50c58df02a37b508b32246576964df77a19"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_search",
+        "artifact": "events_sha256",
+        "sha256": "1981d9f77c1b26f6b38bac05967c34989043a3e40659de2ee3caf2a894cce927"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_verified",
+        "artifact": "ball_frames_sha256",
+        "sha256": "5f54a33f4b676217fd4c94de086696a03c305d045d35fe5f9ea05f8e315e12e5"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_verified",
+        "artifact": "canonical_sha256",
+        "sha256": "e73f43b42d2739843c556bf4e2021e28a95534eea869294967b92eec5707294d"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_verified",
+        "artifact": "intelligent_sha256",
+        "sha256": "ef4e3c02964fa4847e649e38d672d32e5310d455973b9c28d895d4773529bc4d"
+      },
+      {
+        "recording": "test_match",
+        "variant": "guided_verified",
+        "artifact": "events_sha256",
+        "sha256": "c8bb69c52bb92010c4d075bfd2be5b600b226751840d979e9f9c170568e72f4d"
+      },
+      {
+        "recording": "test_match",
+        "variant": "full_m23",
+        "artifact": "ball_frames_sha256",
+        "sha256": "ba980ef2f6293275b617c858066629a33c539e707f7ec1509791c8c4035d4fcd"
+      },
+      {
+        "recording": "test_match",
+        "variant": "full_m23",
+        "artifact": "canonical_sha256",
+        "sha256": "23a10be019e8574267cbe8a06c5a3614c83faae67111670498935b7d3cd93bd6"
+      },
+      {
+        "recording": "test_match",
+        "variant": "full_m23",
+        "artifact": "intelligent_sha256",
+        "sha256": "80895a964a09e0a1f18d8ae5762a873659834b8dac5855cc5eac516d10bd169f"
+      },
+      {
+        "recording": "test_match",
+        "variant": "full_m23",
+        "artifact": "events_sha256",
+        "sha256": "4635a6001864c275e1a7d507326afbd55a1c9d902ff550a071054df0c54d7947"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "m21_temporal_offline",
+        "artifact": "ball_frames_sha256",
+        "sha256": "39bfce8f611d043ae24150698708a2f62d43cf030ae8959d195a75840562cae1"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "m21_temporal_offline",
+        "artifact": "canonical_sha256",
+        "sha256": "bd3dc7dd927c5903a601340a5c371ca64f285a472ce3f89d6e5d5dbd967c9eec"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "m21_temporal_offline",
+        "artifact": "intelligent_sha256",
+        "sha256": "cf4a747cc3172539941f7a0f0eda9259334f4bee496ec81f11aed7fdd098087f"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "m21_temporal_offline",
+        "artifact": "events_sha256",
+        "sha256": "9330f64d1e122054cc52c64b8525a2fd1f5932a17460cc53cd48b4837dcfff4b"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_search",
+        "artifact": "ball_frames_sha256",
+        "sha256": "e8956f3c42974bde6a7a15f17d4b032748db25f2040a080af30de3e465114690"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_search",
+        "artifact": "canonical_sha256",
+        "sha256": "c68e451b867f08749565ef2cfbba8456013474119c1bc21883138782763e9275"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_search",
+        "artifact": "intelligent_sha256",
+        "sha256": "d7597094a66036db37ea73b89a7ae41f75c17a5c051d4c969fa16361c2d6855a"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_search",
+        "artifact": "events_sha256",
+        "sha256": "cf903b71c0d1d243b85a94791e3a21f0027e3dc5cfdd8e6eb1c30fcadf9cee5c"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_verified",
+        "artifact": "ball_frames_sha256",
+        "sha256": "da1a7fd5d07d3da53f195f8e91c39c66a561dab1ed67e17ed4f47953644c6e21"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_verified",
+        "artifact": "canonical_sha256",
+        "sha256": "ad6632bb11e93597f2a7d51e88c9116fd9cc987bf90904688f2ca7cdd0747da1"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_verified",
+        "artifact": "intelligent_sha256",
+        "sha256": "6bc4cc1ff334a445852dd8142d2281074dfba245401b19047577e437f7c29a64"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "guided_verified",
+        "artifact": "events_sha256",
+        "sha256": "0a7c3860c401e547fee1daf155fdbf2514d87430829847a76eeadaa7014841b9"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "full_m23",
+        "artifact": "ball_frames_sha256",
+        "sha256": "a2b7224f67cf8b150094848f7ef9c50509f572c2276160ec6baf380213fa5c08"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "full_m23",
+        "artifact": "canonical_sha256",
+        "sha256": "3fed68a67b8f94fa1ac2ac3a64a626bedc402320f9b7cec406e49a8212f8060e"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "full_m23",
+        "artifact": "intelligent_sha256",
+        "sha256": "a012f5f11205799c8c4fff435747d359a31c67f54e3fd47083bab78e2cef4d4b"
+      },
+      {
+        "recording": "team_goal",
+        "variant": "full_m23",
+        "artifact": "events_sha256",
+        "sha256": "50c4d1d2546b693c1b4c05d4e7af65d1521cbcef081e7d1ab6163eba3f31495f"
+      },
+      {
+        "recording": "southampton",
+        "variant": "m21_temporal_offline",
+        "artifact": "ball_frames_sha256",
+        "sha256": "a1f1ed0a8e6d8d376bfb605e41ef41040e76b957cc7314a835d28f2f8f9be5dd"
+      },
+      {
+        "recording": "southampton",
+        "variant": "m21_temporal_offline",
+        "artifact": "canonical_sha256",
+        "sha256": "892bf36e38b401e7b194131e333c67aec13b3ff057588cfed46a77d915f4225c"
+      },
+      {
+        "recording": "southampton",
+        "variant": "m21_temporal_offline",
+        "artifact": "intelligent_sha256",
+        "sha256": "7ebc5eb071bc5d0090bf49fba5f7eaf2a7c93cbd03e4de2618acfbfcb0564686"
+      },
+      {
+        "recording": "southampton",
+        "variant": "m21_temporal_offline",
+        "artifact": "events_sha256",
+        "sha256": "f9b2a14ac972bca0fc65681b0a05d489c7455db8b1f90bdd47b1ba2cd0d57c63"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_search",
+        "artifact": "ball_frames_sha256",
+        "sha256": "c43d8e25943b4244496f2ca956fc754bef430abae7978fffe849f28ff4e6b754"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_search",
+        "artifact": "canonical_sha256",
+        "sha256": "31958af526863431e07a0deb62d6c0575add2ff86d178043d9caa347617f9d8f"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_search",
+        "artifact": "intelligent_sha256",
+        "sha256": "f6f5e903e6f158d010529fd472e9c78cf24cffd27f43b327a945f1a4ea9582f3"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_search",
+        "artifact": "events_sha256",
+        "sha256": "f9b2a14ac972bca0fc65681b0a05d489c7455db8b1f90bdd47b1ba2cd0d57c63"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_verified",
+        "artifact": "ball_frames_sha256",
+        "sha256": "bc10fca06e147766997cce2e3bf0081f381784f5a3bf3240f4cbb1c72f8f89e0"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_verified",
+        "artifact": "canonical_sha256",
+        "sha256": "1ae9c0c19abb9bee4c7ad7305db5c8d576981f91407b48f13f3f1130f61cb4f9"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_verified",
+        "artifact": "intelligent_sha256",
+        "sha256": "9c5fb5a95f5af0939544a675f6c7521ee1341763e420d0b7288663db90e37503"
+      },
+      {
+        "recording": "southampton",
+        "variant": "guided_verified",
+        "artifact": "events_sha256",
+        "sha256": "f9b2a14ac972bca0fc65681b0a05d489c7455db8b1f90bdd47b1ba2cd0d57c63"
+      },
+      {
+        "recording": "southampton",
+        "variant": "full_m23",
+        "artifact": "ball_frames_sha256",
+        "sha256": "e14ebf32525905c78697cef3a239119ab31c77038efebaa6531bf54c53468ff4"
+      },
+      {
+        "recording": "southampton",
+        "variant": "full_m23",
+        "artifact": "canonical_sha256",
+        "sha256": "2fe2ac53d5723f6eb684b42c5c13fb5984a7ce45b9da407a69a7a471770fbc40"
+      },
+      {
+        "recording": "southampton",
+        "variant": "full_m23",
+        "artifact": "intelligent_sha256",
+        "sha256": "69b7360070509ae843ea98ea83db1a613b3c101b00c7770bfa3091f451450f77"
+      },
+      {
+        "recording": "southampton",
+        "variant": "full_m23",
+        "artifact": "events_sha256",
+        "sha256": "57f290deb92b5413ef9ac8eaa49fa4c451088bc4143476551c73c1dde5eb09dc"
+      }
+    ]
+  }
+}

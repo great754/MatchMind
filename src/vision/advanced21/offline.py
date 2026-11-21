@@ -68,7 +68,8 @@ def viterbi(candidates, cameras, fps, diagonal, threshold=.35):
     return repeated_visual_support(selected, cameras, fps)
 
 
-def dag_link(candidates, cameras, fps, diagonal, threshold=.35, maximum_gap_seconds=.35):
+def dag_link(candidates, cameras, fps, diagonal, threshold=.35, maximum_gap_seconds=.35,
+             node_adjustment=None, edge_adjustment=None):
     """Maximum-score path through a time-ordered DAG; skip edges model bounded occlusions.
 
     Each candidate is visited once in time order. Positive contiguous paths can
@@ -83,6 +84,10 @@ def dag_link(candidates, cameras, fps, diagonal, threshold=.35, maximum_gap_seco
                 if candidate['confidence'] < threshold:
                     continue
                 reward = math.log(max(candidate['confidence'], 1e-6)/max(1-candidate['confidence'], 1e-6))+.6
+                if node_adjustment is not None:
+                    extra = float(node_adjustment(candidate, frame))
+                    if not math.isfinite(extra):raise ValueError('Finite offline visual adjustment required')
+                    reward += extra
                 best, parent = reward-.4, None
                 for j in range(len(nodes)-1, -1, -1):
                     prior = nodes[j]
@@ -99,6 +104,10 @@ def dag_link(candidates, cameras, fps, diagonal, threshold=.35, maximum_gap_seco
                             break
                         transform = step@transform
                     cost = transition(prior['candidate'], candidate, gap/fps, diagonal, transform)+.12*(gap-1)
+                    if edge_adjustment is not None:
+                        extra = float(edge_adjustment(prior['candidate'], candidate, gap/fps))
+                        if not math.isfinite(extra) or extra < 0:raise ValueError('Finite nonnegative offline edge cost required')
+                        cost += extra
                     score = prior['score']+reward-cost
                     if score > best:
                         best, parent = score, j

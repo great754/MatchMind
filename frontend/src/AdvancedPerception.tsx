@@ -6,7 +6,7 @@ import {observeVideoFrames,decodedFrameTime} from './videoFrames';
 
 export const overlayMatchesFrame=(expected:number,frame:number|undefined)=>frame===expected;
 
-export function Comparison({video,width,height,fps,frame,m20,ball,label}:{video:HTMLVideoElement|null,width:number,height:number,fps:number,frame?:Pick<AdvancedFrame,'frame'|'variant'>|null,m20?:{frame:number,ball:BallState}|null,ball?:BallState|null,label?:string}){
+export function Comparison({video,width,height,fps,frame,m20,ball,label,referenceLabel}:{video:HTMLVideoElement|null,width:number,height:number,fps:number,frame?:Pick<AdvancedFrame,'frame'|'variant'>|null,m20?:{frame:number,ball:BallState}|null,ball?:BallState|null,label?:string,referenceLabel?:string}){
  const left=useRef<HTMLCanvasElement>(null),right=useRef<HTMLCanvasElement>(null);
  const redraw=useRef<((time:number,decoded?:boolean)=>void)|null>(null);
  const latest=useRef({frame,m20,ball});latest.current={frame,m20,ball};
@@ -33,7 +33,7 @@ export function Comparison({video,width,height,fps,frame,m20,ball,label}:{video:
   return()=>{stop();video.removeEventListener('seeked',seek);if(redraw.current===draw)redraw.current=null};
  },[video,width,height,fps]);
  useEffect(()=>{if(video)redraw.current?.(video.currentTime)},[frame,m20,ball,video]);
- return <div className="advanced-comparison" aria-label={label?'Synchronized M20 and M22 video comparison':'Synchronized M20 and M21 video comparison'}><figure><figcaption>M20 control</figcaption><canvas ref={left} width={width} height={height} aria-label="M20 comparison video"/></figure><figure><figcaption>{label??`M21 · ${frame?experimentLabel(frame.variant):'selected experiment'}`}</figcaption><canvas ref={right} width={width} height={height} aria-label={label?'M22 comparison video':'M21 comparison video'}/></figure><p>Use the source-video controls below to play or seek both views. Both use the same decoded pixels; a marker appears only when its evidence matches the displayed frame.</p></div>;
+ return <div className="advanced-comparison" aria-label={referenceLabel?'Synchronized M21 and M23 video comparison':label?'Synchronized M20 and M22 video comparison':'Synchronized M20 and M21 video comparison'}><figure><figcaption>{referenceLabel??'M20 control'}</figcaption><canvas ref={left} width={width} height={height} aria-label={referenceLabel?'M21 comparison video':'M20 comparison video'}/></figure><figure><figcaption>{label??`M21 · ${frame?experimentLabel(frame.variant):'selected experiment'}`}</figcaption><canvas ref={right} width={width} height={height} aria-label={referenceLabel?'M23 comparison video':label?'M22 comparison video':'M21 comparison video'}/></figure><p>Use the source-video controls below to play or seek both views. Both use the same decoded pixels; a marker appears only when its evidence matches the displayed frame.</p></div>;
 }
 
 export default function AdvancedPerception({metadata,frame,ball,m20,video,width,height,fps,onExperiment,onSeek}:{metadata:AdvancedMetadata|null,frame?:AdvancedFrame|null,ball?:BallState|null,m20?:{frame:number,ball:BallState}|null,video:HTMLVideoElement|null,width:number,height:number,fps:number,onExperiment:(id:string)=>void,onSeek:(time:number)=>void}){

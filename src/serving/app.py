@@ -154,6 +154,8 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     advanced_registry=AdvancedRegistry(cv_reviews)
     from .football22 import FootballRegistry
     football_registry=FootballRegistry(cv_reviews)
+    from .intelligent23 import IntelligentRegistry
+    intelligent_registry=IntelligentRegistry(cv_reviews)
     cv_m21_reviews={}
     for key in cv_reviews:
         if key not in advanced_registry.entries:continue
@@ -207,18 +209,19 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return dict(recordings=list(statuses.values()))
 
     @app.get('/matches/{match_id}/cv',dependencies=secured)
-    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19','m20','m21','m22']='m14',experiment:str|None=None):
+    def cv_metadata(match_id:str,ball_pipeline:Literal['m14','m15','m16','m19','m20','m21','m22','m23']='m14',experiment:str|None=None):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
         if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
-        review=football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        review=intelligent_registry.load(match_id) if ball_pipeline=='m23' else football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
         revision={'m22_checkpoint_sha256':review.ball_review.manifest['detector_sha256'],'m22_ball_revision':review.ball_review.manifest['ball_frames_sha256']} if ball_pipeline=='m22' else {}
-        return review.metadata()|revision|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])+(['m21'] if match_id in cv_m21_reviews else [])+(['m22'] if football_registry.available(match_id) else [])}
+        if ball_pipeline=='m23':revision={'m23_model_set_sha256':review.ball_review.manifest['detector_sha256'],'m23_ball_revision':review.ball_review.manifest['ball_frames_sha256']}
+        return review.metadata()|revision|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])+(['m21'] if match_id in cv_m21_reviews else [])+(['m22'] if football_registry.available(match_id) else [])+(['m23'] if intelligent_registry.configured(match_id) else []),'m23_validation':intelligent_registry.validation_state(match_id)}
 
     @app.get('/matches/{match_id}/cv/events',dependencies=secured)
-    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20','m21','m22']='m14',experiment:str|None=None):
+    def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20','m21','m22','m23']='m14',experiment:str|None=None):
         if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
-        cv=football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else (cv_m20_reviews if ball_pipeline=='m20' else cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
+        cv=intelligent_registry.load(match_id) if ball_pipeline=='m23' else football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else (cv_m20_reviews if ball_pipeline=='m20' else cv_m19_reviews if ball_pipeline=='m19' else cv_reviews).get(match_id)
         if cv is None:raise HTTPException(503 if ball_pipeline!='m14' else 404,'Selected CV review unavailable')
         layer=getattr(cv,'event_review',None)
         if layer is None:raise HTTPException(503,getattr(cv,'event_diagnostic',None) or 'Experimental pass events not processed')
@@ -226,14 +229,30 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         return layer.public({p['player_ref']:p['label'] for p in cat.players})|{'players':cat.players}
 
     @app.get('/matches/{match_id}/cv/frame',dependencies=secured)
-    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19','m20','m21','m22']='m14',experiment:str|None=None):
+    def cv_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False),ball_pipeline:Literal['m14','m15','m16','m19','m20','m21','m22','m23']='m14',experiment:str|None=None):
         if match_id not in cv_reviews:raise HTTPException(404,'CV review unavailable')
         if experiment is not None and ball_pipeline!='m21':raise HTTPException(422,'Experiment selection requires M21')
-        review=football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
+        review=intelligent_registry.load(match_id) if ball_pipeline=='m23' else football_registry.load(match_id) if ball_pipeline=='m22' else advanced_registry.load(match_id,experiment) if ball_pipeline=='m21' else cv_m20_reviews.get(match_id) if ball_pipeline=='m20' else cv_m19_reviews.get(match_id) if ball_pipeline=='m19' else cv_m16_reviews.get(match_id) if ball_pipeline=='m16' else cv_m15_reviews.get(match_id) if ball_pipeline=='m15' else cv_reviews[match_id]
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
         # The frame is already schema-validated. Pydantic serializes its large
         # nested evidence directly, avoiding FastAPI's second recursive walk.
         return Response(content=review.frame(timestamp).model_dump_json(),media_type="application/json")
+
+    @app.get('/matches/{match_id}/cv/intelligent',dependencies=secured)
+    def cv_intelligent(match_id:str):return intelligent_registry.metadata(match_id)
+
+    @app.get('/matches/{match_id}/cv/intelligent/frame',dependencies=secured)
+    def cv_intelligent_frame(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+        review=intelligent_registry.load(match_id)
+        index=min(review.manifest['frames']-1,int(timestamp*review.manifest['fps']+1e-8))
+        row=review.ball_review.intelligent.frame(index)
+        return row.model_dump(mode='json')|{'ball_revision':review.ball_review.manifest['ball_frames_sha256']}
+
+    @app.get('/matches/{match_id}/cv/intelligent/reference',dependencies=secured)
+    def cv_intelligent_reference(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
+        review=intelligent_registry.load(match_id)
+        index=min(review.manifest['frames']-1,int(timestamp*review.manifest['fps']+1e-8))
+        return {'frame':index,'ball':intelligent_registry.reference(match_id,index).model_dump(mode='json')}
 
     @app.get('/matches/{match_id}/cv/trajectory',dependencies=secured)
     def cv_trajectory(match_id:str,timestamp:float=Query(default=0,ge=0,le=86400,allow_inf_nan=False)):
@@ -353,7 +372,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     app.state.highlights=highlights
     app.include_router(highlights.router(authorize))
     from src.assistant.service import UnifiedMatchAssistant
-    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews,'m20':cv_m20_reviews,'m21':cv_m21_reviews},cv_resolver=advanced_registry.load,cv_m22_resolver=football_registry.load)
+    assistant=UnifiedMatchAssistant(loaded,cv_reviews,highlights,cv_variants={'m19':cv_m19_reviews,'m20':cv_m20_reviews,'m21':cv_m21_reviews},cv_resolver=advanced_registry.load,cv_m22_resolver=football_registry.load,cv_m23_resolver=intelligent_registry.load)
     from .cv_review_labels import review_router
     annotation_router,app.state.cv_human_review=review_router(authorize,cv_reviews)
     app.include_router(annotation_router)

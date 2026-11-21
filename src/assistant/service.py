@@ -17,7 +17,8 @@ from src.highlights.schema import HighlightRequest,HighlightQueryPlan
 from src.highlights.index import digest
 
 class UnifiedMatchAssistant:
-    def __init__(self,loaded,cv,highlights,root=None,cv_variants=None,cv_resolver=None,cv_m22_resolver=None):
+    def __init__(self,loaded,cv,highlights,root=None,cv_variants=None,cv_resolver=None,cv_m22_resolver=None,cv_m23_resolver=None):
+        self.cv_m23_resolver=cv_m23_resolver
         self.cv_m22_resolver=cv_m22_resolver
         self.cv_resolver=cv_resolver
         self.cv_variants=cv_variants or {}
@@ -34,8 +35,9 @@ class UnifiedMatchAssistant:
         key=recording if pipeline=='m14' else (recording,pipeline,experiment) if pipeline=='m21' else (recording,pipeline)
         review=self.cv_resolver(recording,experiment) if pipeline=='m21' and self.cv_resolver else self.cv.get(recording) if pipeline=='m14' else self.cv_variants.get(pipeline,{}).get(recording)
         if pipeline=='m22' and getattr(self,'cv_m22_resolver',None):review=self.cv_m22_resolver(recording)
+        if pipeline=='m23' and getattr(self,'cv_m23_resolver',None):review=self.cv_m23_resolver(recording)
         revision=None
-        if pipeline=='m22' and review is not None:
+        if pipeline in ['m22','m23'] and review is not None:
             revision=':'.join([review.ball_review.manifest['detector_sha256'],review.ball_review.manifest['ball_frames_sha256'],review.event_review.manifest['events_sha256']])
             key=(recording,pipeline,revision)
         if pipeline!='m14' and (recording in self.loaded or review is None):raise HTTPException(503,'Selected experimental event pipeline unavailable')
@@ -272,7 +274,7 @@ class UnifiedMatchAssistant:
         @r.get('/matches/{recording}/score')
         def score(recording:str):return self.presentation.score(recording)
         @r.get('/matches/{recording}/players/profile')
-        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19','m20','m21','m22']='m14',cv_experiment:str|None=None):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline,cv_experiment) if cv_experiment else self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
+        def profile(recording:str,player_ref:str,session_id:uuid.UUID,cv_pipeline:Literal['m14','m19','m20','m21','m22','m23']='m14',cv_experiment:str|None=None):return self.presentation.profile(recording,player_ref,session_id,cv_pipeline,cv_experiment) if cv_experiment else self.presentation.profile(recording,player_ref,session_id,cv_pipeline)
         @r.get('/matches/{recording}/players/roster')
         def roster(recording:str,session_id:uuid.UUID):
             cat=self.catalog(recording);return {**cat.public(),'identities':self.identities.load(recording,session_id,cat),'pictures':self.portraits.public(recording)}

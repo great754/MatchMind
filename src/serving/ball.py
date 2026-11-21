@@ -40,7 +40,12 @@ class BallReview:
   if m.get('version')=='m22':
    from .football22 import FootballReview
    self.football=FootballReview(self)
+  self.intelligent=None
+  if m.get('version')=='m23':
+   from .intelligent23 import IntelligentReview
+   self.intelligent=IntelligentReview(self)
  def frame(self,index):
+  if getattr(self,'intelligent',None) is not None:self.intelligent.check()
   if getattr(self,'football',None) is not None:self.football.check()
   if getattr(self,'advanced',None) is not None:self.advanced.check()
   if (self.path.stat().st_mtime_ns,self.canonical.stat().st_mtime_ns)!=self.stamps:raise ValueError('Ball sidecar changed; restart validation')

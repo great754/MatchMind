@@ -19,7 +19,11 @@ test('M21 compares frozen source frames and isolates experiment answers on all t
   await expect(panel.getByTestId('m21-state')).toContainText('Frame',{timeout:120000});await expect(page.getByTestId('cv-pass-count')).toHaveText(String(count));
   await expect(panel.getByText(/new independent test labels are pending/i)).toBeVisible();
   const meta=await(await page.request.get(`/api/matches/${name}/cv?ball_pipeline=m21`)).json();
-  const source=page.locator('.cv-video-stage video');await expect.poll(()=>source.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:45000}).toBeGreaterThanOrEqual(2);
+  const source=page.locator('.cv-video-stage video');
+  // Metadata preload may stop before decoding a frame. Request actual playback
+  // before asserting decoded-data readiness, as a user does with Play.
+  await source.evaluate((v:HTMLVideoElement)=>{v.muted=true;return v.play()});
+  await expect.poll(()=>source.evaluate((v:HTMLVideoElement)=>v.readyState),{timeout:45000}).toBeGreaterThanOrEqual(2);await source.evaluate((v:HTMLVideoElement)=>v.pause());
   const example=meta.ball_examples.find((e:any)=>e.directly_observed);if(example){
    await source.evaluate((v:HTMLVideoElement,t:number)=>{v.currentTime=t},(example.frame+.001)/meta.fps);
    await expect(panel.getByTestId('m21-state')).toContainText(`Frame ${example.frame} ·`);

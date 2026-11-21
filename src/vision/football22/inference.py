@@ -25,9 +25,9 @@ class FootballDetector:
         self.metadata['weak_training']=state.get('weak_training')
         self.metadata['m22_annotation_snapshot_sha256']=state.get('m22_annotation_snapshot_sha256')
 
-    def infer(self,images,index):
+    def infer(self,images,index,regions=None):
         started=time.perf_counter();h,w=images[-1].shape[:2]
-        regions=[(0,0,w,h)]+tile_regions(w,h,self.config['tile_source_size'],self.config['tile_overlap'])
+        regions=([(0,0,w,h)]+tile_regions(w,h,self.config['tile_source_size'],self.config['tile_overlap'])) if regions is None else regions
         # Whole-source search is independent of tracker state on EVERY frame.
         groups={};coarse=np.zeros((24,40),np.float32);raw=[];current=[]
         for region in dict.fromkeys(regions):

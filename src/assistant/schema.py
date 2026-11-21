@@ -8,7 +8,7 @@ class AssistantRequest(Closed):
     session_id:UUID
     previous_turn:UUID|None=None
     selected_player:str|None=Field(default=None,max_length=180)
-    cv_pipeline:Literal['m14','m19','m20','m21','m22']='m14'
+    cv_pipeline:Literal['m14','m19','m20','m21','m22','m23']='m14'
     cv_experiment:str|None=Field(default=None,max_length=60,pattern=r'^[a-z0-9_]+$')
     provider:Literal['auto','local','gemini','microsoft']='auto'
 

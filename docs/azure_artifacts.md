@@ -1,5 +1,18 @@
 # TactiqAI canonical Azure artifacts
 
+## M23 intelligent tracking remains local — 2026-11-21
+
+The three approved CV sources now have strictly validated opt-in M23 sidecars. They are local experiments, separate from canonical Azure analytics and `artifact_ready`. The final integration measures 107/18/38 TP/FP/FN, 85.6% precision, 73.8% recall and F1 0.793 on the new development review; one of seven pass references is retained. Original-sample false positives regress, targets are unmet, and there is no promotion. M14 stays default. No Azure blob, schema/hash gate, soccer analytics, possession or GSR alignment was changed.
+
+Real Azure verification on port 8000: health/ready/catalog 200; readiness has 15 usable recordings (12 validated canonical analytics plus three local CV). `118575_clip` view returns 200/481 events, grounded Local Ask 200/14 evidence items, video range 206/16 bytes. All three M23 metadata/frame/reference/grounded Local Ask paths return 200 and their source-video range checks return 206. Selected model/ball/event revision identities stay isolated in Ask.
+
+Start with `scripts/start_backend_m23.sh` from the repository root. It uses the existing `MATCHMIND_*` names and Azure account/container settings, existing AzureCliCredential authentication, explicit cached M9/video registry and artifact/highlight/assistant caches outside iCloud. Install first on another machine using `python -m scripts.install_cv_m23 --analysis <validated-analysis-root>` with the actual local artifacts available. It never falls back to unrelated source files or uploads local CV data. Configured optional M23 modes are listed separately from validation state, and selected evidence always passes the strict loader before use.
+
+Keep the M23 source clips, fixed checkpoints and active sidecars in the explicit local cache; canonical SoccerTrack footage remains Azure-backed. Folder-wide iCloud downloads can exhaust disk space. This run preserved original labels/videos/M14–M22 outputs and losslessly archived only rejected M23 intermediates after verifying decompressed hashes. No additional user review or Azure configuration change is needed for the installed development run. Independent generalization still needs explicitly approved unseen football footage and source-overlap review.
+
+[Full M23 measurements and reproduction commands](cv_intelligent_ball_tracking_m23.md) · [Public aggregate/live evidence](evidence/cv_m23_results.json).
+
+
 ## M22 completed-review retraining stays local — 2026-11-20
 
 The 150 completed short-clip reviews were preserved and used for three source-excluded fits. New M22 outputs are pinned local sidecars in `outputs/m22/analysis_review_v1`; they do not publish Azure bundles or grant `artifact_ready`. Strict source, manifest, checkpoint and schema validation remains in force. M22 is opt-in, with M14 default and M20 control; measured ball/pass results and development-only limits are in the [updated report](cv_temporal_football_detector_m22.md).

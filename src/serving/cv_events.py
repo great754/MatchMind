@@ -15,7 +15,7 @@ class CVEventReview:
         cfg=PassConfig.model_validate(m['config'])
         if signature(m['config'])!=m['config_sha256'] or digest(self.path)!=m['events_sha256'] or digest(self.evidence)!=m['evidence_sha256']:raise ValueError('CV event hash mismatch')
         self.events=[VideoPass.model_validate(x).model_dump() for x in json.loads(self.path.read_text())]
-        if m.get('algorithm_version') in ['cv-pass-m19-v1','cv-pass-m21-v1','cv-pass-m22-v1']:
+        if m.get('algorithm_version') in ['cv-pass-m19-v1','cv-pass-m21-v1','cv-pass-m22-v1','cv-pass-m23-v1']:
             from src.vision.events.passes_m19 import existing_m9_receiver
             with self.evidence.open() as source:evidence=[json.loads(line) for line in source]
             replay,_,_=events_from_evidence(m['recording_id'],evidence,m['fps'],cfg,receiver_lookup=existing_m9_receiver)
