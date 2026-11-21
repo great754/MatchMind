@@ -36,7 +36,7 @@ def verify(base, output, recordings=None):
         assert debug['frame']==frame['frame']==reference['frame']==case['frame']
         assert debug['ball_revision']==meta['m23_ball_revision']==report['ball_revision']
         assert debug['model_set_sha256']==meta['m23_model_set_sha256']
-        assert reference['ball']['version']==('m23' if report['reference_role']=='unlabelled_inference' else 'm21')
+        assert reference['ball']['version']==('m23' if report['reference_role'] in ['unlabelled_inference','reviewed_development'] else 'm21')
         status,video=request(f'/matches/{name}/video.mp4',video=True)
         assert status==206 and len(video)==16
         _,answer=request(f'/matches/{name}/assistant',{'question':'How many passes were detected?',

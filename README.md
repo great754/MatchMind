@@ -1,5 +1,7 @@
 ## TactiqAI tactical video
 
+**Giroud review received: 40/40.** On 31 visible references, M23 and M21 both score precision **14.3%**, recall **3.2%**, F1 **0.053**; nine uncertain frames are excluded. [Results and failure analysis](docs/cv_giroud_completed_review.md) · [Open results](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23). No retraining or model promotion occurred.
+
 **Giroud ball review is ready:** [40 questions with automatic save and next](http://127.0.0.1:5173/?review=m23&recording=giroud) · [Instructions](docs/cv_giroud_review.md). Your completed reviews remain separate and unchanged.
 
 Current update (2026-11-21): **Giroud is processed and available in the M23 review**, with source playback, anonymous players, camera geometry and grounded Local Ask. Ball quality is poor: 67/450 selected frames and zero qualified passes; accuracy is unmeasured. The original M23 development evaluation stays separate and M14 remains the ordinary default. [Open Giroud](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23) · [Verified results and commands](docs/cv_giroud_m23.md) · [Current pipeline status](docs/current_pipeline_status.md). Earlier milestone snapshots follow.

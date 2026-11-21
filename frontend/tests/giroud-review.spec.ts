@@ -9,7 +9,7 @@ test('Giroud review auto-saves, advances, corrects, resumes and completes with t
  const original=await(await page.request.get('/api/cv/review/export')).json();
  const m22=await(await page.request.get('/api/cv/m22/review/export')).json();
  const live=await(await page.request.get(endpoint+'/tasks')).json();
- expect(live.tasks).toHaveLength(40);expect(live.labels).toHaveLength(0);
+ expect(live.tasks).toHaveLength(40); // Preserve real annotations; simulation uses its own mocked labels below.
  expect(live.tasks.every((t:any)=>t.proposals.length<=2)).toBe(true);
  let labels:any[]=[],posts=0,failNext=false;
  await page.addInitScript(()=>localStorage.setItem('tactiq.m23.reviewer','Automated UI check; not human reference'));

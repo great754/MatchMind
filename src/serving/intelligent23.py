@@ -180,7 +180,14 @@ class IntelligentRegistry:
         if report.get('schema_version') == 'cv-m23-unlabelled-source-v1':
             if report['recording_id'] != recording or any(report['source'][k] != review.manifest[k] for k in ['video_sha256','frames_sha256','frames','fps','width','height']):
                 raise HTTPException(503, 'New-source report does not match this recording')
-            return {'recording_id':recording,'reference_role':'unlabelled_inference',
+            completed=None;diagnostic=None
+            if entry.get('completed_review'):
+                try:
+                    from .source_review_evaluation import completed_review
+                    completed=completed_review(entry['completed_review'],review,entry['root'])
+                except (OSError,ValueError,KeyError,TypeError):diagnostic='Completed review results unavailable or invalid; saved predictions remain available'
+            return {'recording_id':recording,'reference_role':'reviewed_development' if completed else 'unlabelled_inference',
+                'completed_review':completed,'completed_review_diagnostic':diagnostic,
                 'independent_final_test':report['independent_final_test'],'promotion':report['promotion'],
                 'metrics':report['metrics'],'comparisons':[],'frozen_baselines':[],
                 'aggregate':None,'accuracy':None,'runtime':report['runtime'],'research_targets':[],

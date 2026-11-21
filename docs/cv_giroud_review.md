@@ -1,4 +1,6 @@
-# Giroud ball review — ready
+# Giroud ball review — completed
+
+**40/40 human answers received and evaluated on 2026-11-21.** There are 31 visible-ball labels and nine uncertain frames. M23 and M21 both score 1/6/30 correct/false/missed, precision 14.3%, recall 3.2%, F1 0.053 under the unchanged box-matching rule. [Completed results and failure analysis](cv_giroud_completed_review.md) · [Open results](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23). The review remains available for corrections; its setup and instructions follow.
 
 Prepared and verified **2026-11-21**. [Open the 40-question review](http://127.0.0.1:5173/?review=m23&recording=giroud), or click **Review the ball** from Giroud's analysis page. Both servers are running. No Azure setting change is needed.
 
@@ -23,13 +25,13 @@ The review uses only the user-approved **Giroud** clip: 18 seconds, 450 frames a
 - **76 proposals total**, capped at two per question. These are actual saved M23 neural candidates, with unchanged boxes and confidence. Where available, the selected candidate is shown first. Proposals are suggestions and never become labels merely by opening a page.
 - Both source-only preview sheets were inspected before publication. The selected images contain football players, pitch and active match footage. This inspection created no human ball labels.
 
-This is **model-assisted development evidence**. The diagnostic examples and model proposals influence selection, and original-match training overlap has not been independently audited. These labels can support development and measurement of this clip's failures; they are not an untouched final test set. Existing Giroud precision/recall/F1 remain unmeasured until actual human reviews are received and evaluated.
+This is **model-assisted development evidence**. The diagnostic examples and model proposals influence selection, and original-match training overlap has not been independently audited. These labels support development and measurement of this clip's failures; they are not an untouched final test set. The completed comparison is in the results report linked above.
 
 ## Storage and isolation
 
 Published tasks: `configs/training/cv_giroud_review.json`, fingerprint `ee1aa6425a483a9b348f32211cd7044b1fe3616f884ae1d3049989b5916ed089`.
 
-Human labels will save to `outputs/m23/giroud_v1/human_review/labels.json`, in the existing persistent local cache outside iCloud. The file is created only on a real completed save. Browser reviewer IDs and drafts use their own `tactiq.m23` namespace. The old M22 tasks, labels, reviewer setting and drafts retain their original scope. Opening the new review does not prefill Giroud with earlier answers.
+Actual human labels are saved in `outputs/m23/giroud_v1/human_review/labels.json`, in the existing persistent local cache outside iCloud. The file was created through real completed saves. Browser reviewer IDs and drafts use their own `tactiq.m23` namespace. The old M22 tasks, labels, reviewer setting and drafts retain their original scope. Opening the new review does not prefill Giroud with earlier answers.
 
 The source-specific store requires explicit approved-source configuration and its own versioned manifest. Task fingerprint, source hash, clock, dimensions, box bounds, proposal IDs, reviewed-proposal completeness and accepted-box consistency are checked. Correcting an answer replaces only the same reviewer's answer to that task. Other reviewers remain separate. Rejected proposal regions are local hard negatives and never automatically imply whole-frame ball absence.
 
@@ -70,4 +72,4 @@ frontend/node_modules/.bin/playwright test \
 
 Task preparation is implemented in `scripts/prepare_cv_source_review.py`. Preparation creates a draft and source-only preview sheets; publication requires explicitly identifying both inspected sheets and a curator. Published task manifests cannot be overwritten. The existing source and model artifacts are required to recreate a fresh draft.
 
-After the human review is complete, evaluate the actual saved labels against the frozen Giroud predictions and use the measured missed-ball/false-positive cases to prioritize further development. This preparation did not start M24 or retrain a model.
+The completed human review has now been evaluated against the frozen Giroud predictions; see the completed-results report above. Later corrections remain possible and require a fresh evaluation snapshot. No retraining or M24 work was performed during preparation or evaluation.

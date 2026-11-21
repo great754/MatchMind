@@ -1,5 +1,19 @@
 # TactiqAI Current Pipeline Status
 
+## Giroud review received and evaluated — 2026-11-21
+
+**40/40 actual human answers received:** 31 visible, nine uncertain, zero absent; 16 accepted proposals, 15 manually drawn visible boxes and 49 rejected regions. All pass source/proposal validation and are preserved in an immutable snapshot.
+
+Against the frozen outputs at unchanged **IoU ≥ 0.25**, **M23 and the same-source M21 control both score 1 correct / 6 false / 30 missed: precision 14.3%, recall 3.2%, F1 0.053**. Nine uncertain frames are excluded. Source-spread subset: 0/2/24; diagnostic subset: 1/4/6. This is assisted, temporally correlated development evidence, not independent final-test accuracy.
+
+The misses split into **12 with no matching retained candidate, four below the fixed visual gate, 12 complementary-only matches not admitted by the primary-anchor gap policy, and two eligible primary matches lost by association**. The matching candidate pool covers 19/31 visible frames, with eligible matches in 15/31; these are diagnostic counts. Next priorities are safe complementary-track acquisition, small-ball proposal coverage and false-positive rejection. No additional review is needed now to establish those priorities.
+
+The Giroud page now displays the completed-review scores and warns if later label edits make the frozen snapshot stale. Serving rechecks source/model/annotation hashes and reproduces both score rows. Tests: **26 targeted backend, 186 frontend, typed build and real completed-review Chrome check**. Live health/ready/catalog are 200, with 16 usable recordings; all four M23 sources and Azure view/Local Ask/media still pass verification. Original labels and predictions are unchanged; no neural inference, training, threshold change or Azure upload. M24 has not begun.
+
+[Open results](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23) · [Full completed-review report and commands](cv_giroud_completed_review.md) · [Aggregate evidence](evidence/cv_giroud_completed_results.json) · [Verified results display](evidence/cv_giroud_completed_workspace.jpg). Earlier sections retain historical verification snapshots.
+
+---
+
 ## Giroud ball review — ready 2026-11-21
 
 [Open the review](http://127.0.0.1:5173/?review=m23&recording=giroud): **40 ball-only questions**, with 32 source-spread sequence frames plus eight post-hoc diagnostics, and at most two actual M23 proposals per frame. Both source-only preview sheets were inspected before publication. Use Accept proposal / Not the ball, draw a correction if needed, or choose Ball not visible / Can't tell. Completed decisions **save and advance automatically**; back/correction, failed-save retry, resume and 40/40 completion are verified. An optional original-video player provides context. Giroud analysis now has a **Review the ball** link.

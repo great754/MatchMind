@@ -1,5 +1,9 @@
 # TactiqAI canonical Azure artifacts
 
+## Completed Giroud review evaluated locally — 2026-11-21
+
+All 40 actual answers are preserved and scored against the frozen Giroud predictions. The local frontend now shows the validated snapshot metrics: M23 and M21 both 1/6/30 correct/false/missed on 31 visible labels, with nine uncertain frames excluded. Precision 14.3%, recall 3.2%, F1 0.053 are assisted development measurements. They do not grant canonical Azure artifact readiness or change analytics/Ask evidence. No Azure write, retraining, threshold relaxation or new inference occurred. Health/ready remain 200 / 16 usable sources; all four M23 paths and Azure view/Local Ask/video remain verified. [Completed evaluation and next priorities](cv_giroud_completed_review.md).
+
 ## Giroud review ready — 2026-11-21
 
 The [40-question Giroud ball review](cv_giroud_review.md) uses the existing local source and frozen model proposals. Actual annotations will save separately in the persistent local CV cache. Setup created no human labels, inference run, training job or Azure writes. Health/ready remain 200, with 16 usable recordings. All forty frame images and automatic save/next/correction/resume/completion behaviour were verified; browser annotation writes were mocked. Original labels and canonical Azure artifacts are unchanged.

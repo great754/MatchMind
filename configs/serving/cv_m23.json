@@ -13,6 +13,10 @@
   },
   "giroud": {
     "root": "outputs/m23/giroud_v1/analysis",
-    "report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8"
+    "report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8",
+    "completed_review": {
+      "path": "outputs/m23/giroud_v1/review_evaluation_v1/report.json",
+      "sha256": "9bf9248b2828abdda2816ccf861002145fc041ea86909ccc2a0ed71b50a7368a"
+    }
   }
 }

@@ -14,8 +14,9 @@ test('Giroud plays with source-specific M23 evidence and unlabelled results',asy
  await expect(picker.locator('option[value=m23]')).toBeEnabled({timeout:90000});
  await expect(picker).toHaveValue('m23');
  const panel=page.getByRole('region',{name:'M23 intelligent ball tracking'});
- await expect(panel.getByTestId('m23-unlabelled')).toBeVisible({timeout:90000});
- await expect(panel.getByRole('table')).toHaveCount(0);
+ const report=await(await page.request.get('/api/matches/giroud/cv/intelligent')).json();
+ if(report.completed_review)await expect(panel.getByRole('table',{name:'Completed ball review comparison'})).toBeVisible({timeout:90000});
+ else{await expect(panel.getByTestId('m23-unlabelled')).toBeVisible({timeout:90000});await expect(panel.getByRole('table')).toHaveCount(0)}
  const meta=await(await page.request.get('/api/matches/giroud/cv?ball_pipeline=m23')).json();
  expect(meta.frames).toBe(450);expect(meta.fps).toBe(25);expect(meta.recording_id).toBe('giroud');
  const video=page.locator('.cv-video-stage video');
@@ -25,7 +26,6 @@ test('Giroud plays with source-specific M23 evidence and unlabelled results',asy
  await expect(panel.getByTestId('m23-state')).toContainText('Frame');
  await expect(panel.getByLabel('M21 comparison video')).toBeVisible();
  await expect(panel.getByLabel('M23 comparison video')).toBeVisible();
- const report=await(await page.request.get('/api/matches/giroud/cv/intelligent')).json();
  const diagnostic=report.metrics.navigation[0];expect(diagnostic).toBeTruthy();
  await panel.getByRole('button',{name:`${diagnostic.kind.replaceAll('_',' ')} · frame ${diagnostic.frame}`,exact:true}).click();
  await expect(panel.getByTestId('m23-state')).toContainText(`Frame ${diagnostic.frame} ·`);

@@ -1,5 +1,7 @@
 # Giroud — existing M23 pipeline run
 
+Completed-review update: [All 40 Giroud answers were received and evaluated](cv_giroud_completed_review.md). M23 and M21 both measure 1/6/30 correct/false/missed, precision 14.3%, recall 3.2%, F1 0.053 on the 31 visible references. The nine uncertain frames are excluded. These are assisted development results; original inference outputs below remain unchanged.
+
 The separate [40-question Giroud ball review](cv_giroud_review.md) is now ready, with automatic save/next and an isolated label store. [Open the review](http://127.0.0.1:5173/?review=m23&recording=giroud). Preparing it did not change the model outputs or create human labels; the run results below remain the frozen baseline.
 
 Verified **2026-11-21**. All **450 frames** of the user-selected `data/raw/giroud.mp4` were processed. The clip is available in the frontend with source playback, anonymous players, experimental pitch positions, M23 ball evidence, a fresh same-source M21 comparison and grounded Local Ask.

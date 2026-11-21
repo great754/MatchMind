@@ -15,7 +15,10 @@ export const intelligentFrameSchema=z.object({
 export type IntelligentFrame=z.infer<typeof intelligentFrameSchema>;
 export const detectionMetrics=z.object({tp:n,fp:n,fn:n,precision:n.nullable(),recall:n.nullable(),f1:n.nullable()});
 const nav=z.object({kind:z.string(),frame:n,receipt_frame:n.optional()}).passthrough();
-export const intelligentMetadataSchema=z.object({recording_id:z.string(),model_set_sha256:sha,ball_revision:sha,reference_role:z.enum(['development_only','unlabelled_inference']),promotion:z.object({status:z.string(),ordinary_default:z.literal('m14'),reason:z.string()}),independent_final_test:z.string(),
+export const intelligentMetadataSchema=z.object({recording_id:z.string(),model_set_sha256:sha,ball_revision:sha,reference_role:z.enum(['development_only','unlabelled_inference','reviewed_development']),promotion:z.object({status:z.string(),ordinary_default:z.literal('m14'),reason:z.string()}),independent_final_test:z.string(),
+ completed_review:z.object({completed_tasks:n.int().nonnegative(),visible_frames:n.int().nonnegative(),uncertain_frames:n.int().nonnegative(),absent_frames:n.int().nonnegative(),rejected_regions:n.int().nonnegative(),
+  systems:z.array(z.object({id:z.string(),ball:detectionMetrics})),failure_counts:z.record(z.string(),n),evaluated_at_utc:z.string(),annotation_snapshot_sha256:sha,labels_updated_since_snapshot:z.boolean(),reference_role:z.literal('development_only'),model_assisted:z.literal(true),independent_final_test:z.literal(false)}).nullable().optional(),
+ completed_review_diagnostic:z.string().nullable().optional(),
  metrics:z.object({navigation:z.array(nav),engineering:z.object({states:z.record(z.string(),n)}),pass_traces:z.array(z.object({release_frame:n,receipt_frame:n,matched:z.boolean().optional()}).passthrough())}),
  comparisons:z.array(z.object({id:z.string(),new_150:detectionMetrics,original:detectionMetrics,passes:detectionMetrics})),
  frozen_baselines:z.array(z.object({id:z.string(),new_150:detectionMetrics})),

@@ -1,0 +1,545 @@
+{
+  "schema_version": "cv-source-review-evaluation-v1",
+  "recording_id": "giroud",
+  "reference_role": "development_only",
+  "model_assisted": true,
+  "independent_final_test": false,
+  "evaluated_at_utc": "2026-11-21T22:13:27.343865+00:00",
+  "source": {
+    "recording_id": "giroud",
+    "frames": 450,
+    "fps": 25.0,
+    "width": 640,
+    "height": 360,
+    "video_sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+    "frames_sha256": "715ac2357d7ff536864d272693cc31cc0c4d4970479481710e105fdf9d6194db"
+  },
+  "dataset_fingerprint": "ee1aa6425a483a9b348f32211cd7044b1fe3616f884ae1d3049989b5916ed089",
+  "task_manifest_sha256": "e372031c6759483268715c5c42af3c53e4dc478359089644cec9e8f84f7800ec",
+  "annotation_snapshot_sha256": "eceb6c2a46fb5c96ebdbe40d39fdc2f535d93034fab2b754d8b2e344d0e6519c",
+  "analysis_report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8",
+  "perception_records_sha256": "4878dc72d3e44266cc16f5d62c15680918b10bf86d3857b011aaf893861e9247",
+  "completed_tasks": 40,
+  "reviewers": 1,
+  "annotation_summary": {
+    "states": {
+      "uncertain": 9,
+      "visible": 31
+    },
+    "accepted_proposals": 16,
+    "manual_visible_boxes": 15,
+    "rejected_regions": 49
+  },
+  "systems": {
+    "full_m23": {
+      "metrics": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 40,
+        "ball": {
+          "tp": 1,
+          "fp": 6,
+          "fn": 30,
+          "precision": 0.14285714285714285,
+          "recall": 0.03225806451612903,
+          "f1": 0.05263157894736842,
+          "precision_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "recall_wilson95": [
+            0.00571707408694444,
+            0.16194457176169622
+          ],
+          "tn": 0,
+          "reviewed_frames": 31,
+          "unknown_visibility_frames": 9
+        },
+        "localization": {
+          "matched_boxes": 1,
+          "median_pixel_error": 0.0,
+          "mean_pixel_error": 0.0,
+          "p90_pixel_error": 0.0
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "subsets": {
+        "uniform_source_sequence": {
+          "reference_role": "development_only",
+          "model_assisted": true,
+          "independent_final_test": false,
+          "matching_iou": 0.25,
+          "annotations": 32,
+          "ball": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 24,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "recall_wilson95": [
+              0,
+              0.13798057582897535
+            ],
+            "tn": 0,
+            "reviewed_frames": 24,
+            "unknown_visibility_frames": 8
+          },
+          "localization": {
+            "matched_boxes": 0,
+            "median_pixel_error": null,
+            "mean_pixel_error": null,
+            "p90_pixel_error": null
+          },
+          "limits": [
+            "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+            "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+          ]
+        },
+        "post_hoc_diagnostic": {
+          "reference_role": "development_only",
+          "model_assisted": true,
+          "independent_final_test": false,
+          "matching_iou": 0.25,
+          "annotations": 8,
+          "ball": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 6,
+            "precision": 0.2,
+            "recall": 0.14285714285714285,
+            "f1": 0.16666666666666666,
+            "precision_wilson95": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "recall_wilson95": [
+              0.02567895594897479,
+              0.51313450331903
+            ],
+            "tn": 0,
+            "reviewed_frames": 7,
+            "unknown_visibility_frames": 1
+          },
+          "localization": {
+            "matched_boxes": 1,
+            "median_pixel_error": 0.0,
+            "mean_pixel_error": 0.0,
+            "p90_pixel_error": 0.0
+          },
+          "limits": [
+            "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+            "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+          ]
+        }
+      },
+      "ball_frames_sha256": "5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c",
+      "model_set_sha256": "62475f67418bd8d330e3bc41cf0d995eea76f85e58ef3dbda00a7457c4e78e9d"
+    },
+    "m21_temporal_offline": {
+      "metrics": {
+        "reference_role": "development_only",
+        "model_assisted": true,
+        "independent_final_test": false,
+        "matching_iou": 0.25,
+        "annotations": 40,
+        "ball": {
+          "tp": 1,
+          "fp": 6,
+          "fn": 30,
+          "precision": 0.14285714285714285,
+          "recall": 0.03225806451612903,
+          "f1": 0.05263157894736842,
+          "precision_wilson95": [
+            0.02567895594897479,
+            0.51313450331903
+          ],
+          "recall_wilson95": [
+            0.00571707408694444,
+            0.16194457176169622
+          ],
+          "tn": 0,
+          "reviewed_frames": 31,
+          "unknown_visibility_frames": 9
+        },
+        "localization": {
+          "matched_boxes": 1,
+          "median_pixel_error": 0.0,
+          "mean_pixel_error": 0.0,
+          "p90_pixel_error": 0.0
+        },
+        "limits": [
+          "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+          "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+        ]
+      },
+      "subsets": {
+        "uniform_source_sequence": {
+          "reference_role": "development_only",
+          "model_assisted": true,
+          "independent_final_test": false,
+          "matching_iou": 0.25,
+          "annotations": 32,
+          "ball": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 24,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "precision_wilson95": [
+              0,
+              0.6576280471103807
+            ],
+            "recall_wilson95": [
+              0,
+              0.13798057582897535
+            ],
+            "tn": 0,
+            "reviewed_frames": 24,
+            "unknown_visibility_frames": 8
+          },
+          "localization": {
+            "matched_boxes": 0,
+            "median_pixel_error": null,
+            "mean_pixel_error": null,
+            "p90_pixel_error": null
+          },
+          "limits": [
+            "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+            "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+          ]
+        },
+        "post_hoc_diagnostic": {
+          "reference_role": "development_only",
+          "model_assisted": true,
+          "independent_final_test": false,
+          "matching_iou": 0.25,
+          "annotations": 8,
+          "ball": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 6,
+            "precision": 0.2,
+            "recall": 0.14285714285714285,
+            "f1": 0.16666666666666666,
+            "precision_wilson95": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "recall_wilson95": [
+              0.02567895594897479,
+              0.51313450331903
+            ],
+            "tn": 0,
+            "reviewed_frames": 7,
+            "unknown_visibility_frames": 1
+          },
+          "localization": {
+            "matched_boxes": 1,
+            "median_pixel_error": 0.0,
+            "mean_pixel_error": 0.0,
+            "p90_pixel_error": 0.0
+          },
+          "limits": [
+            "Human-confirmed proposals and source corrections are development evidence, not independent final-test truth.",
+            "Active-learning selection and model-assisted boxes can bias comparison; source-excluded fits do not remove prior development influence."
+          ]
+        }
+      },
+      "ball_frames_sha256": "fa16476435d9372a0deb80f378663a521e0ae560feb9b6557bb94a8a921d06f8",
+      "model_set_sha256": "a60ceeb813b03cb4ba75ac5cda73a9ed386e280665510432402a06dfad943c15"
+    }
+  },
+  "failure_counts": {
+    "eligible_primary_not_selected_by_offline_association": 2,
+    "complement_only_gap_policy_did_not_admit_match": 12,
+    "matched": 1,
+    "no_matching_raw_candidate": 12,
+    "matching_candidate_below_fixed_visual_gate": 4
+  },
+  "candidate_audit": {
+    "visible_frames_with_matching_raw_candidate": 19,
+    "visible_frames_with_matching_eligible_candidate": 15,
+    "matching_rule": "Same reviewed source frame, IoU >= 0.25; diagnostic pool coverage, not a deployed detector score"
+  },
+  "new_inference": false,
+  "new_training": false,
+  "predictions_changed": false,
+  "pass_accuracy": null,
+  "limits": [
+    "Assisted development review; 32 temporally correlated source-spread frames and eight post-hoc diagnostics.",
+    "Nine uncertain frames are excluded from known-visibility metrics; no absent-ball references were supplied.",
+    "A wrong selected box on a visible-ball frame counts as both a false detection and a missed ball.",
+    "Candidate-pool matches diagnose losses; choosing candidates by human labels is not a deployable inference method.",
+    "Complementary proposals retain the existing two-sided-primary-anchor policy; eligible pixels alone do not establish a safe trajectory.",
+    "No pass references or independent final-test labels were collected by this ball-only review."
+  ],
+  "checks": {
+    "targeted_backend_tests_passed": 26,
+    "frontend_tests_passed": 186,
+    "typed_production_build": "passed",
+    "completed_review_chrome_cases_passed": 1,
+    "live_labels_unchanged": true,
+    "previous_review_labels_unchanged": true,
+    "original_core_artifact_hashes_verified": 8
+  },
+  "live": {
+    "verification_started_at_utc": "2026-11-21T22:19:47.221720+00:00",
+    "backend": "http://127.0.0.1:8000",
+    "provider": "local",
+    "/health": {
+      "status_code": 200,
+      "body": {
+        "status": "ok",
+        "recordings": 12,
+        "processing": "precomputed_artifacts"
+      }
+    },
+    "/ready": {
+      "status_code": 200,
+      "body": {
+        "status": "ready",
+        "recordings": 16
+      }
+    },
+    "recordings": {
+      "total": 16,
+      "ready_azure_analytics": 12,
+      "local_cv": 4
+    },
+    "cv": [
+      {
+        "recording_id": "giroud",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 29,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 0,
+        "cv_model_revision": "62475f67418bd8d330e3bc41cf0d995eea76f85e58ef3dbda00a7457c4e78e9d:5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "reference_role": "reviewed_development",
+        "answer_text": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 450,
+          "direct_observed_frames": 67,
+          "direct_observed_fraction": 0.14888888888888888,
+          "predicted_only_frames": 14,
+          "track_ids": 14,
+          "observed_track_changes": 13,
+          "longest_direct_run_frames": 7,
+          "states": {
+            "UNKNOWN": 232,
+            "AMBIGUOUS": 137,
+            "OBSERVED": 67,
+            "PREDICTED": 14
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": null
+      },
+      {
+        "recording_id": "test_match",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 351,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 3,
+        "cv_model_revision": "1ac32c2f5d4506ba81e403f5949c6797795f4c5bb4d2833e12365a021504694c:ba980ef2f6293275b617c858066629a33c539e707f7ec1509791c8c4035d4fcd:4635a6001864c275e1a7d507326afbd55a1c9d902ff550a071054df0c54d7947",
+        "reference_role": "development_only",
+        "answer_text": "I found 3 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 541,
+          "direct_observed_frames": 456,
+          "direct_observed_fraction": 0.8428835489833642,
+          "predicted_only_frames": 24,
+          "track_ids": 3,
+          "observed_track_changes": 2,
+          "longest_direct_run_frames": 103,
+          "states": {
+            "AMBIGUOUS": 61,
+            "OBSERVED": 456,
+            "PREDICTED": 24
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 44,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.88,
+          "f1": 0.9361702127659575,
+          "precision_wilson95": [
+            0.9197016822179859,
+            0.9999999999999999
+          ],
+          "recall_wilson95": [
+            0.7619492111337642,
+            0.9438247628937535
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "team_goal",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 8,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 1,
+        "cv_model_revision": "d2f2c7ef42982e198d0d778002872edd0e381b86145264046c3a33d41b8bf21e:a2b7224f67cf8b150094848f7ef9c50509f572c2276160ec6baf380213fa5c08:50c4d1d2546b693c1b4c05d4e7af65d1521cbcef081e7d1ab6163eba3f31495f",
+        "reference_role": "development_only",
+        "answer_text": "I found 1 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 500,
+          "direct_observed_frames": 301,
+          "direct_observed_fraction": 0.602,
+          "predicted_only_frames": 76,
+          "track_ids": 7,
+          "observed_track_changes": 6,
+          "longest_direct_run_frames": 45,
+          "states": {
+            "OBSERVED": 301,
+            "PREDICTED": 76,
+            "UNKNOWN": 102,
+            "AMBIGUOUS": 21
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 29,
+          "fp": 10,
+          "fn": 16,
+          "precision": 0.7435897435897436,
+          "recall": 0.6444444444444445,
+          "f1": 0.6904761904761905,
+          "precision_wilson95": [
+            0.589180432321585,
+            0.854313741565478
+          ],
+          "recall_wilson95": [
+            0.49835546011952203,
+            0.7678110864309596
+          ],
+          "tn": 2,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      },
+      {
+        "recording_id": "southampton",
+        "metadata_frame_reference_status": 200,
+        "source_frame": 16,
+        "video_status": 206,
+        "video_bytes": 16,
+        "grounded_ask_status": 200,
+        "event_count": 0,
+        "cv_model_revision": "5cab3e521444fe45b7306bab76df05aa2289fcb526619ca64bd19770d65f0db8:e14ebf32525905c78697cef3a239119ab31c77038efebaa6531bf54c53468ff4:57f290deb92b5413ef9ac8eaa49fa4c451088bc4143476551c73c1dde5eb09dc",
+        "reference_role": "development_only",
+        "answer_text": "I found 0 recorded pass entries in this footage. These are completed pass estimates, not independently verified match pass totals. This does not guarantee a complete match count. This is experimental video analysis using M23 ball observations; sparse visibility can miss actions.",
+        "engineering": {
+          "frames": 660,
+          "direct_observed_frames": 358,
+          "direct_observed_fraction": 0.5424242424242425,
+          "predicted_only_frames": 43,
+          "track_ids": 8,
+          "observed_track_changes": 7,
+          "longest_direct_run_frames": 40,
+          "states": {
+            "OBSERVED": 358,
+            "PREDICTED": 43,
+            "AMBIGUOUS": 118,
+            "UNKNOWN": 141
+          },
+          "independent_precision": null,
+          "independent_recall": null,
+          "independent_reacquisition_accuracy": null,
+          "true_ball_identity_switches": null,
+          "true_trajectory_fragmentation": null
+        },
+        "new_development_metrics": {
+          "tp": 34,
+          "fp": 8,
+          "fn": 16,
+          "precision": 0.8095238095238095,
+          "recall": 0.68,
+          "f1": 0.7391304347826086,
+          "precision_wilson95": [
+            0.6669893264500356,
+            0.9001811039014357
+          ],
+          "recall_wilson95": [
+            0.5418944286372394,
+            0.792419559060006
+          ],
+          "tn": 0,
+          "reviewed_frames": 50,
+          "unknown_visibility_frames": 0
+        }
+      }
+    ],
+    "azure_118575_clip": {
+      "view_status": 200,
+      "events": 481,
+      "ask_status": 200,
+      "evidence_items": 14,
+      "video_status": 206,
+      "video_bytes": 16
+    },
+    "verified_at_utc": "2026-11-21T22:20:46.417924+00:00"
+  },
+  "browser": {
+    "human_answers": 40,
+    "completed_review_resumes": true,
+    "measured_table": true,
+    "source_playback": true,
+    "annotation_writes": 0,
+    "labels_unchanged": true,
+    "independent_test_claimed": false,
+    "page_errors": []
+  },
+  "diagnostic_spot_check": {
+    "frames": [
+      60,
+      65,
+      102,
+      127,
+      179,
+      192,
+      256,
+      303,
+      322,
+      382,
+      386,
+      432
+    ],
+    "reference_boxes_edited": false,
+    "note": "Inspected locally; original human reference boxes remain unchanged. Frame 102 selected box has IoU 0.217, below the fixed 0.25 rule."
+  }
+}
