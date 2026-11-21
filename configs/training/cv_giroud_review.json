@@ -1,0 +1,1646 @@
+{
+  "schema_version": "cv-m23-source-review-v1",
+  "reference_role": "development_only",
+  "model_proposals_are_truth": false,
+  "sources": {
+    "giroud": {
+      "recording_id": "giroud",
+      "video_sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+      "frames": 450,
+      "fps": 25.0,
+      "width": 640,
+      "height": 360
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "m23:giroud:ball:0",
+      "recording_id": "giroud",
+      "frame": 0,
+      "timestamp": 0.0,
+      "sequence_id": "giroud:uniform_source_sequence:0",
+      "sequence_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_22d7f9f5bbb37b98d087",
+          "bbox": [
+            452.42186665534973,
+            116.29556250572205,
+            12.003807067871094,
+            10.836758613586426
+          ],
+          "confidence": 0.5821619033813477,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_4217e409777b07d4bf44",
+          "bbox": [
+            165.91592407226562,
+            160.8031005859375,
+            14.6077880859375,
+            14.545379638671875
+          ],
+          "confidence": 0.19674117863178253,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:1",
+      "recording_id": "giroud",
+      "frame": 1,
+      "timestamp": 0.04,
+      "sequence_id": "giroud:uniform_source_sequence:0",
+      "sequence_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_c62ccb6ecae8b614f8e9",
+          "bbox": [
+            410.93927001953125,
+            157.8060302734375,
+            14.9583740234375,
+            13.27532958984375
+          ],
+          "confidence": 0.13022556900978088,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:2",
+      "recording_id": "giroud",
+      "frame": 2,
+      "timestamp": 0.08,
+      "sequence_id": "giroud:uniform_source_sequence:0",
+      "sequence_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e110d383ba34a55bdf4f",
+          "bbox": [
+            413.03607177734375,
+            157.08163452148438,
+            13.8660888671875,
+            12.5672607421875
+          ],
+          "confidence": 0.26385992765426636,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:3",
+      "recording_id": "giroud",
+      "frame": 3,
+      "timestamp": 0.12,
+      "sequence_id": "giroud:uniform_source_sequence:0",
+      "sequence_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_8409a6ae62b27020487f",
+          "bbox": [
+            413.48541259765625,
+            155.04713439941406,
+            14.0728759765625,
+            13.424896240234375
+          ],
+          "confidence": 0.08087866008281708,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:29",
+      "recording_id": "giroud",
+      "frame": 29,
+      "timestamp": 1.16,
+      "sequence_id": "giroud:post_hoc_diagnostic:29",
+      "sequence_frames": [
+        28,
+        29,
+        30
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_0fea35c1877732290864",
+          "bbox": [
+            473.9453430175781,
+            92.14682006835938,
+            6.48590087890625,
+            9.07696533203125
+          ],
+          "confidence": 0.4148770868778229,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_66bb9091d502f1abb118",
+          "bbox": [
+            635.5064697265625,
+            262.4864807128906,
+            4.3939208984375,
+            18.45587158203125
+          ],
+          "confidence": 0.16669024527072906,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:60",
+      "recording_id": "giroud",
+      "frame": 60,
+      "timestamp": 2.4,
+      "sequence_id": "giroud:post_hoc_diagnostic:60",
+      "sequence_frames": [
+        59,
+        60,
+        61
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_0263d0652215ecfbf9e5",
+          "bbox": [
+            484.56968581676483,
+            170.52170187234879,
+            8.466744422912598,
+            7.531169414520264
+          ],
+          "confidence": 0.977260410785675,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_3bf4b650a0cadbff0635",
+          "bbox": [
+            432.6260470151901,
+            101.94566607475281,
+            18.418729782104492,
+            16.46750831604004
+          ],
+          "confidence": 0.8755115270614624,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:64",
+      "recording_id": "giroud",
+      "frame": 64,
+      "timestamp": 2.56,
+      "sequence_id": "giroud:uniform_source_sequence:1",
+      "sequence_frames": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_0d6a02fcd13b9e63abf3",
+          "bbox": [
+            485.6408983170986,
+            170.1037272196263,
+            8.21211464703083,
+            7.064406797289848
+          ],
+          "confidence": 0.9547324776649475,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_665370c54b9b04968d14",
+          "bbox": [
+            200.39218139648438,
+            158.99920654296875,
+            16.60491943359375,
+            23.9383544921875
+          ],
+          "confidence": 0.22870488464832306,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:65",
+      "recording_id": "giroud",
+      "frame": 65,
+      "timestamp": 2.6,
+      "sequence_id": "giroud:uniform_source_sequence:1",
+      "sequence_frames": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_a6470d4b642f87ff1ea7",
+          "bbox": [
+            484.96534057644504,
+            169.76345995378992,
+            9.108048170804977,
+            7.793478240569414
+          ],
+          "confidence": 0.9334740042686462,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_032e45b18c78b29f9d79",
+          "bbox": [
+            404.9448469877243,
+            100.51604557037354,
+            17.76346778869629,
+            16.85611915588379
+          ],
+          "confidence": 0.7112031579017639,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:66",
+      "recording_id": "giroud",
+      "frame": 66,
+      "timestamp": 2.64,
+      "sequence_id": "giroud:uniform_source_sequence:1",
+      "sequence_frames": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_c699ebe27539b6f01363",
+          "bbox": [
+            398.0722920894623,
+            99.0536241531372,
+            16.756227493286133,
+            14.469853401184082
+          ],
+          "confidence": 0.6429365873336792,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_d0651ab2e0b0c7820106",
+          "bbox": [
+            485.2325652676324,
+            171.39248627672592,
+            6.433424115180969,
+            6.111377219359099
+          ],
+          "confidence": 0.6417263150215149,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:67",
+      "recording_id": "giroud",
+      "frame": 67,
+      "timestamp": 2.68,
+      "sequence_id": "giroud:uniform_source_sequence:1",
+      "sequence_frames": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_105b1803b034b088f27a",
+          "bbox": [
+            484.2240020148456,
+            171.97720538126305,
+            5.446250788867474,
+            5.260222248733044
+          ],
+          "confidence": 0.6549298167228699,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_999f7c0eb57e70e49a56",
+          "bbox": [
+            392.7788599729538,
+            100.59775841236115,
+            17.947887420654297,
+            16.60770034790039
+          ],
+          "confidence": 0.5313003063201904,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:102",
+      "recording_id": "giroud",
+      "frame": 102,
+      "timestamp": 4.08,
+      "sequence_id": "giroud:post_hoc_diagnostic:102",
+      "sequence_frames": [
+        101,
+        102,
+        103
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_1da0827dc0103750e3fd",
+          "bbox": [
+            387.4190673828125,
+            231.28814697265625,
+            6.030029296875,
+            6.01605224609375
+          ],
+          "confidence": 0.5473865270614624,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_d5529a0e6be7bc841c8f",
+          "bbox": [
+            384.64014168580377,
+            225.37417213122052,
+            13.423139254252078,
+            12.440807819366455
+          ],
+          "confidence": 0.9476168751716614,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:127",
+      "recording_id": "giroud",
+      "frame": 127,
+      "timestamp": 5.08,
+      "sequence_id": "giroud:uniform_source_sequence:2",
+      "sequence_frames": [
+        127,
+        128,
+        129,
+        130
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_576d90479e8c9bebdb7a",
+          "bbox": [
+            339.472412109375,
+            213.41311645507812,
+            20.99639892578125,
+            26.9210205078125
+          ],
+          "confidence": 0.4883040189743042,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_5829147117358bc86926",
+          "bbox": [
+            332.82782727542025,
+            219.43597133023044,
+            10.700718114773395,
+            8.58307004471618
+          ],
+          "confidence": 0.7170655727386475,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:128",
+      "recording_id": "giroud",
+      "frame": 128,
+      "timestamp": 5.12,
+      "sequence_id": "giroud:uniform_source_sequence:2",
+      "sequence_frames": [
+        127,
+        128,
+        129,
+        130
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_f051bdf36320996165f3",
+          "bbox": [
+            336.8353271484375,
+            213.17510986328125,
+            22.9478759765625,
+            25.89215087890625
+          ],
+          "confidence": 0.43790480494499207,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_e355d3c7ab3875762dd3",
+          "bbox": [
+            329.9648414837817,
+            218.42216042242944,
+            9.513663669427274,
+            8.343663637836755
+          ],
+          "confidence": 0.9511799216270447,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:129",
+      "recording_id": "giroud",
+      "frame": 129,
+      "timestamp": 5.16,
+      "sequence_id": "giroud:uniform_source_sequence:2",
+      "sequence_frames": [
+        127,
+        128,
+        129,
+        130
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_c0b74428caa63b57ad21",
+          "bbox": [
+            325.87467858692014,
+            218.05447005604705,
+            9.991381714741351,
+            8.510589917500795
+          ],
+          "confidence": 0.957524299621582,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_25795544776a7ab45737",
+          "bbox": [
+            323.91923145453137,
+            215.84167520205182,
+            14.760533968607547,
+            12.153592904408754
+          ],
+          "confidence": 0.8336599469184875,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:130",
+      "recording_id": "giroud",
+      "frame": 130,
+      "timestamp": 5.2,
+      "sequence_id": "giroud:uniform_source_sequence:2",
+      "sequence_frames": [
+        127,
+        128,
+        129,
+        130
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_99221d4b0a394c985124",
+          "bbox": [
+            322.2571063172072,
+            217.2347063496709,
+            11.740616261959076,
+            10.191774800419807
+          ],
+          "confidence": 0.9702305197715759,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_56d712371018c7396342",
+          "bbox": [
+            337.55548095703125,
+            212.43211364746094,
+            18.31622314453125,
+            27.36248779296875
+          ],
+          "confidence": 0.26416340470314026,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:179",
+      "recording_id": "giroud",
+      "frame": 179,
+      "timestamp": 7.16,
+      "sequence_id": "giroud:post_hoc_diagnostic:179",
+      "sequence_frames": [
+        178,
+        179,
+        180
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_a36a3376e6d9e31b2854",
+          "bbox": [
+            506.2624206542969,
+            225.6578369140625,
+            7.84027099609375,
+            6.4156494140625
+          ],
+          "confidence": 0.45781248807907104,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_a0162f8b394e39c89036",
+          "bbox": [
+            279.4428708553314,
+            211.4708766937256,
+            23.18695831298828,
+            19.92092514038086
+          ],
+          "confidence": 0.6822466254234314,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:191",
+      "recording_id": "giroud",
+      "frame": 191,
+      "timestamp": 7.64,
+      "sequence_id": "giroud:uniform_source_sequence:3",
+      "sequence_frames": [
+        191,
+        192,
+        193,
+        194
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_2697a953684165dbbf04",
+          "bbox": [
+            393.65374755859375,
+            149.76510620117188,
+            21.0755615234375,
+            27.9271240234375
+          ],
+          "confidence": 0.16432352364063263,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:192",
+      "recording_id": "giroud",
+      "frame": 192,
+      "timestamp": 7.68,
+      "sequence_id": "giroud:uniform_source_sequence:3",
+      "sequence_frames": [
+        191,
+        192,
+        193,
+        194
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_ed05fd8e480b488250ba",
+          "bbox": [
+            480.0586242675781,
+            202.72061157226562,
+            6.128173828125,
+            4.978515625
+          ],
+          "confidence": 0.18439358472824097,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_41a81cd00a0bec364f3a",
+          "bbox": [
+            394.2099609375,
+            150.1885528564453,
+            18.9068603515625,
+            23.562774658203125
+          ],
+          "confidence": 0.12982937693595886,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:193",
+      "recording_id": "giroud",
+      "frame": 193,
+      "timestamp": 7.72,
+      "sequence_id": "giroud:uniform_source_sequence:3",
+      "sequence_frames": [
+        191,
+        192,
+        193,
+        194
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_46f9421b3e7a992835c5",
+          "bbox": [
+            392.557373046875,
+            156.47915649414062,
+            13.96142578125,
+            19.0181884765625
+          ],
+          "confidence": 0.2896328866481781,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_dac498240fb4c87fd353",
+          "bbox": [
+            477.9239959716797,
+            40.0,
+            17.76458740234375,
+            6.365893840789795
+          ],
+          "confidence": 0.0796462818980217,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:194",
+      "recording_id": "giroud",
+      "frame": 194,
+      "timestamp": 7.76,
+      "sequence_id": "giroud:uniform_source_sequence:3",
+      "sequence_frames": [
+        191,
+        192,
+        193,
+        194
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_866db3607a2071400370",
+          "bbox": [
+            180.6661787033081,
+            222.38395830988884,
+            8.713642120361328,
+            7.805924415588379
+          ],
+          "confidence": 0.5806193351745605,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_ac16a6b7f7c214edbf76",
+          "bbox": [
+            391.9780578613281,
+            158.806884765625,
+            14.80426025390625,
+            17.50238037109375
+          ],
+          "confidence": 0.34473398327827454,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:240",
+      "recording_id": "giroud",
+      "frame": 240,
+      "timestamp": 9.6,
+      "sequence_id": "giroud:post_hoc_diagnostic:240",
+      "sequence_frames": [
+        239,
+        240,
+        241
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_792bb3435af149e8b25a",
+          "bbox": [
+            413.4555969238281,
+            78.28174591064453,
+            13.301040649414062,
+            16.3101806640625
+          ],
+          "confidence": 0.3418056070804596,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_da7dbb01ffc53d2b2c1e",
+          "bbox": [
+            43.34809112548828,
+            40.54133224487305,
+            9.338218688964844,
+            7.152008056640625
+          ],
+          "confidence": 0.16605348885059357,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:255",
+      "recording_id": "giroud",
+      "frame": 255,
+      "timestamp": 10.2,
+      "sequence_id": "giroud:uniform_source_sequence:4",
+      "sequence_frames": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e0dd9d996e84135e4328",
+          "bbox": [
+            358.9767150878906,
+            80.14047241210938,
+            12.56890869140625,
+            15.33404541015625
+          ],
+          "confidence": 0.11109810322523117,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_e10fbbfb998c802f8c1c",
+          "bbox": [
+            585.0782012939453,
+            12.306962966918945,
+            11.439788818359375,
+            8.008045196533203
+          ],
+          "confidence": 0.089120052754879,
+          "source_pipeline": "m23_discovery"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:256",
+      "recording_id": "giroud",
+      "frame": 256,
+      "timestamp": 10.24,
+      "sequence_id": "giroud:uniform_source_sequence:4",
+      "sequence_frames": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e5971c2f565957ca0b72",
+          "bbox": [
+            303.96369715904194,
+            125.90106124399851,
+            6.94746182610595,
+            6.280774841705963
+          ],
+          "confidence": 0.4306561052799225,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_9d356c3038259aa2d5de",
+          "bbox": [
+            217.84844970703125,
+            41.389851570129395,
+            11.0936279296875,
+            12.360941886901855
+          ],
+          "confidence": 0.0744175836443901,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:257",
+      "recording_id": "giroud",
+      "frame": 257,
+      "timestamp": 10.28,
+      "sequence_id": "giroud:uniform_source_sequence:4",
+      "sequence_frames": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_63aed64cd95234961485",
+          "bbox": [
+            303.47249922156334,
+            124.28313725317518,
+            8.192804967363713,
+            7.501485998431846
+          ],
+          "confidence": 0.8091942667961121,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_4268644c1f63333e38c8",
+          "bbox": [
+            355.12432861328125,
+            79.90029907226562,
+            13.4591064453125,
+            15.066986083984375
+          ],
+          "confidence": 0.23158349096775055,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:258",
+      "recording_id": "giroud",
+      "frame": 258,
+      "timestamp": 10.32,
+      "sequence_id": "giroud:uniform_source_sequence:4",
+      "sequence_frames": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_d289360d7c059c9e3064",
+          "bbox": [
+            303.03609034232795,
+            123.28914985619485,
+            9.461928717792034,
+            8.257627435028553
+          ],
+          "confidence": 0.74875408411026,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_26599c3f6f8565fea35d",
+          "bbox": [
+            559.6241760253906,
+            12.453917503356934,
+            11.98681640625,
+            8.456559181213379
+          ],
+          "confidence": 0.08008956909179688,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:303",
+      "recording_id": "giroud",
+      "frame": 303,
+      "timestamp": 12.12,
+      "sequence_id": "giroud:post_hoc_diagnostic:303",
+      "sequence_frames": [
+        302,
+        303,
+        304
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_7ea3b372319531ac4fb1",
+          "bbox": [
+            242.4352264404297,
+            22.515735626220703,
+            9.07342529296875,
+            8.015350341796875
+          ],
+          "confidence": 0.39800262451171875,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_d6742bbee0030bd2f37f",
+          "bbox": [
+            146.99679565429688,
+            53.624305725097656,
+            11.21990966796875,
+            12.80621337890625
+          ],
+          "confidence": 0.09379676729440689,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:319",
+      "recording_id": "giroud",
+      "frame": 319,
+      "timestamp": 12.76,
+      "sequence_id": "giroud:uniform_source_sequence:5",
+      "sequence_frames": [
+        319,
+        320,
+        321,
+        322
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_33a1695a8614f5460d13",
+          "bbox": [
+            104.90007019042969,
+            28.678821563720703,
+            10.203643798828125,
+            10.032699584960938
+          ],
+          "confidence": 0.17417708039283752,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_535bd7fca2fdbd46a068",
+          "bbox": [
+            0.19184017181396484,
+            62.43629837036133,
+            14.144200325012207,
+            14.63083267211914
+          ],
+          "confidence": 0.16342000663280487,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:320",
+      "recording_id": "giroud",
+      "frame": 320,
+      "timestamp": 12.8,
+      "sequence_id": "giroud:uniform_source_sequence:5",
+      "sequence_frames": [
+        319,
+        320,
+        321,
+        322
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e27fc221544bdd20c022",
+          "bbox": [
+            96.98532104492188,
+            29.228290557861328,
+            10.3558349609375,
+            11.082443237304688
+          ],
+          "confidence": 0.29889991879463196,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_2a622c70144a45c31fbe",
+          "bbox": [
+            123.34225463867188,
+            20.088966369628906,
+            9.759185791015625,
+            11.375301361083984
+          ],
+          "confidence": 0.22843807935714722,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:321",
+      "recording_id": "giroud",
+      "frame": 321,
+      "timestamp": 12.84,
+      "sequence_id": "giroud:uniform_source_sequence:5",
+      "sequence_frames": [
+        319,
+        320,
+        321,
+        322
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e0c6a80c8195907183a8",
+          "bbox": [
+            89.06588745117188,
+            30.414758682250977,
+            9.839996337890625,
+            9.695310592651367
+          ],
+          "confidence": 0.43417754769325256,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_41055f8a9b0b344dabd0",
+          "bbox": [
+            115.48944854736328,
+            20.254783630371094,
+            9.48333740234375,
+            11.339073181152344
+          ],
+          "confidence": 0.1962856650352478,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:322",
+      "recording_id": "giroud",
+      "frame": 322,
+      "timestamp": 12.88,
+      "sequence_id": "giroud:uniform_source_sequence:5",
+      "sequence_frames": [
+        319,
+        320,
+        321,
+        322
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_ef7951d5ddf05a5e0b54",
+          "bbox": [
+            311.53916931152344,
+            116.27726745605469,
+            3.9546966552734375,
+            3.7496337890625
+          ],
+          "confidence": 0.4765413701534271,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_78119b7c749e2204de3a",
+          "bbox": [
+            80.91444396972656,
+            30.412479400634766,
+            10.025115966796875,
+            10.032188415527344
+          ],
+          "confidence": 0.39772024750709534,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:382",
+      "recording_id": "giroud",
+      "frame": 382,
+      "timestamp": 15.28,
+      "sequence_id": "giroud:uniform_source_sequence:6",
+      "sequence_frames": [
+        382,
+        383,
+        384,
+        385
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_9dfe515991a12125136c",
+          "bbox": [
+            491.881103515625,
+            184.30007934570312,
+            7.37994384765625,
+            3.332000732421875
+          ],
+          "confidence": 0.21350108087062836,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_a5759f47ce5e681ac40f",
+          "bbox": [
+            436.2141418457031,
+            68.47865295410156,
+            12.55035400390625,
+            11.77691650390625
+          ],
+          "confidence": 0.05659404397010803,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:383",
+      "recording_id": "giroud",
+      "frame": 383,
+      "timestamp": 15.32,
+      "sequence_id": "giroud:uniform_source_sequence:6",
+      "sequence_frames": [
+        382,
+        383,
+        384,
+        385
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_2629e643ad1a983a6057",
+          "bbox": [
+            490.73779296875,
+            184.47088623046875,
+            7.29718017578125,
+            3.976409912109375
+          ],
+          "confidence": 0.19959470629692078,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_380bee2ee03c57bcaa67",
+          "bbox": [
+            120.538818359375,
+            104.27212524414062,
+            12.903701782226562,
+            22.685195922851562
+          ],
+          "confidence": 0.0626269057393074,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:384",
+      "recording_id": "giroud",
+      "frame": 384,
+      "timestamp": 15.36,
+      "sequence_id": "giroud:uniform_source_sequence:6",
+      "sequence_frames": [
+        382,
+        383,
+        384,
+        385
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_d893a7c2e1a46626155e",
+          "bbox": [
+            359.7931521733602,
+            127.68252074718475,
+            15.22685209910071,
+            13.933491706848145
+          ],
+          "confidence": 0.40834128856658936,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_f84606458bcfb80c79a0",
+          "bbox": [
+            490.0666198730469,
+            185.340087890625,
+            7.158447265625,
+            3.5198974609375
+          ],
+          "confidence": 0.13070927560329437,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:385",
+      "recording_id": "giroud",
+      "frame": 385,
+      "timestamp": 15.4,
+      "sequence_id": "giroud:uniform_source_sequence:6",
+      "sequence_frames": [
+        382,
+        383,
+        384,
+        385
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_7c9eb33c89b0bda6940d",
+          "bbox": [
+            360.79863405227667,
+            128.31154624621072,
+            13.948289553324344,
+            12.807432810465514
+          ],
+          "confidence": 0.47079700231552124,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_01a40ad04f612211665b",
+          "bbox": [
+            264.50666666030884,
+            109.38611137866974,
+            13.099250793457031,
+            11.13152027130127
+          ],
+          "confidence": 0.3775295615196228,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:386",
+      "recording_id": "giroud",
+      "frame": 386,
+      "timestamp": 15.44,
+      "sequence_id": "giroud:post_hoc_diagnostic:386",
+      "sequence_frames": [
+        385,
+        386,
+        387
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_cfbd89a37325deb7d61c",
+          "bbox": [
+            215.63162231445312,
+            98.18572998046875,
+            18.2347412109375,
+            17.710968017578125
+          ],
+          "confidence": 0.4531323313713074,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_5a8c44ab91cbbc4832dc",
+          "bbox": [
+            486.77031775315606,
+            182.91962385177615,
+            10.659856796264648,
+            9.185400803883851
+          ],
+          "confidence": 0.4174405336380005,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:432",
+      "recording_id": "giroud",
+      "frame": 432,
+      "timestamp": 17.28,
+      "sequence_id": "giroud:post_hoc_diagnostic:432",
+      "sequence_frames": [
+        431,
+        432,
+        433
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_d38caf991152bc5d4781",
+          "bbox": [
+            635.7528076171875,
+            184.409912109375,
+            4.1553955078125,
+            7.5360107421875
+          ],
+          "confidence": 0.5885921716690063,
+          "source_pipeline": "m23_primary"
+        },
+        {
+          "proposal_id": "m23_ef31a793b0b7d52162e4",
+          "bbox": [
+            61.015438079833984,
+            103.7930908203125,
+            12.39444351196289,
+            13.08624267578125
+          ],
+          "confidence": 0.13877654075622559,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Post-hoc diagnostic example from the existing model run",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "post_hoc_diagnostic"
+    },
+    {
+      "task_id": "m23:giroud:ball:446",
+      "recording_id": "giroud",
+      "frame": 446,
+      "timestamp": 17.84,
+      "sequence_id": "giroud:uniform_source_sequence:7",
+      "sequence_frames": [
+        446,
+        447,
+        448,
+        449
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_8b4d5d389ff4d442f5a3",
+          "bbox": [
+            273.32177805900574,
+            166.07111763954163,
+            18.25103187561035,
+            15.658994674682617
+          ],
+          "confidence": 0.5875574350357056,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_059dc26e247a5bdbe4db",
+          "bbox": [
+            423.41636657714844,
+            137.85452270507812,
+            18.345855712890625,
+            14.72784423828125
+          ],
+          "confidence": 0.23812325298786163,
+          "source_pipeline": "m23_primary"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:447",
+      "recording_id": "giroud",
+      "frame": 447,
+      "timestamp": 17.88,
+      "sequence_id": "giroud:uniform_source_sequence:7",
+      "sequence_frames": [
+        446,
+        447,
+        448,
+        449
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_9b951a3f70e7a39894ba",
+          "bbox": [
+            273.3013548851013,
+            166.42003536224365,
+            18.30118179321289,
+            15.386624336242676
+          ],
+          "confidence": 0.6307535171508789,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_53e11c3d12714c6861c9",
+          "bbox": [
+            599.5905957221985,
+            61.94006562232971,
+            11.135810852050781,
+            9.44276237487793
+          ],
+          "confidence": 0.459441214799881,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:448",
+      "recording_id": "giroud",
+      "frame": 448,
+      "timestamp": 17.92,
+      "sequence_id": "giroud:uniform_source_sequence:7",
+      "sequence_frames": [
+        446,
+        447,
+        448,
+        449
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_9183a3bc89a28812fb5a",
+          "bbox": [
+            273.34983682632446,
+            166.59209537506104,
+            18.55422592163086,
+            15.196197509765625
+          ],
+          "confidence": 0.4657275378704071,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_502cd1ebecf516b25a35",
+          "bbox": [
+            399.1640707850456,
+            166.9689137339592,
+            6.978763103485107,
+            5.332015037536621
+          ],
+          "confidence": 0.46185410022735596,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    },
+    {
+      "task_id": "m23:giroud:ball:449",
+      "recording_id": "giroud",
+      "frame": 449,
+      "timestamp": 17.96,
+      "sequence_id": "giroud:uniform_source_sequence:7",
+      "sequence_frames": [
+        446,
+        447,
+        448,
+        449
+      ],
+      "proposals": [
+        {
+          "proposal_id": "m23_e5d511787ac30d1cb17c",
+          "bbox": [
+            386.1813192591071,
+            156.93974696472287,
+            6.234745800495148,
+            5.5048331916332245
+          ],
+          "confidence": 0.6464029550552368,
+          "source_pipeline": "m23_complement"
+        },
+        {
+          "proposal_id": "m23_da44da85c59225c9ef68",
+          "bbox": [
+            272.7373025417328,
+            166.20192646980286,
+            19.913728713989258,
+            16.089759826660156
+          ],
+          "confidence": 0.41347748041152954,
+          "source_pipeline": "m23_complement"
+        }
+      ],
+      "selection_reason": "Source-spread four-frame sequence",
+      "reference_role": "development_only",
+      "model_proposals_are_truth": false,
+      "selection_kind": "uniform_source_sequence"
+    }
+  ],
+  "preview_sheets": {
+    "outputs/m23/giroud_v1/review_v1/giroud_selected_0.jpg": {
+      "recording_id": "giroud",
+      "model_overlays": false,
+      "sha256": "d143fc12b13b0884a9d8862d888772155baa9e09af9b20cdc36327b6019dd748"
+    },
+    "outputs/m23/giroud_v1/review_v1/giroud_selected_1.jpg": {
+      "recording_id": "giroud",
+      "model_overlays": false,
+      "sha256": "958b1dc90361de96bcc2eacb13ea4c27c2855fdaba47e968cd5a71d90bccf199"
+    }
+  },
+  "source_suitability": {
+    "source_video_sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+    "authorization": "User explicitly requested the Giroud model run and then preparation of this ball review.",
+    "original_match_overlap_audited": false,
+    "human_ball_labels_created": false
+  },
+  "selection": {
+    "method": "32 source-spread consecutive frames plus eight post-hoc diagnostic frames",
+    "uniform_frames": 32,
+    "diagnostic_frames": 8,
+    "maximum_proposals_per_frame": 2,
+    "independent_final_test": false,
+    "proposals": "Actual pinned M23 candidates; selected candidate first when present; confidence unchanged; IoU deduplication",
+    "analysis_report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8",
+    "ball_frames_sha256": "5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c",
+    "perception_records_sha256": "4878dc72d3e44266cc16f5d62c15680918b10bf86d3857b011aaf893861e9247"
+  },
+  "publication_status": "source_sequences_visually_inspected",
+  "selected_sequence_inspection": {
+    "curator": "Codex source-only relevance inspection; no human ball labels",
+    "active_football_players_and_pitch_seen": true,
+    "human_ball_labels_created": false,
+    "independent_test": false,
+    "inspected_sheets": [
+      "outputs/m23/giroud_v1/review_v1/giroud_selected_0.jpg",
+      "outputs/m23/giroud_v1/review_v1/giroud_selected_1.jpg"
+    ]
+  },
+  "fingerprint": "ee1aa6425a483a9b348f32211cd7044b1fe3616f884ae1d3049989b5916ed089"
+}

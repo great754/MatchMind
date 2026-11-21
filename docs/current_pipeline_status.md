@@ -1,5 +1,17 @@
 # TactiqAI Current Pipeline Status
 
+## Giroud ball review — ready 2026-11-21
+
+[Open the review](http://127.0.0.1:5173/?review=m23&recording=giroud): **40 ball-only questions**, with 32 source-spread sequence frames plus eight post-hoc diagnostics, and at most two actual M23 proposals per frame. Both source-only preview sheets were inspected before publication. Use Accept proposal / Not the ball, draw a correction if needed, or choose Ball not visible / Can't tell. Completed decisions **save and advance automatically**; back/correction, failed-save retry, resume and 40/40 completion are verified. An optional original-video player provides context. Giroud analysis now has a **Review the ball** link.
+
+Labels are isolated under `outputs/m23/giroud_v1/human_review/`; none were created by setup or automated tests. The original M19/M21/M22 label files remain byte-identical. This is assisted development review, not independent final evaluation. No model inference, retraining, threshold change or Azure upload occurred.
+
+Verified: all 40 image endpoints, tasks/previews/export, **45 backend tests**, **183 frontend tests**, typed build, two Giroud Chrome checks and both legacy M22 review Chrome checks. Browser saves were mocked. A clean legacy retry used isolated temporary artifacts after missing trace files in the initial attempt. Both servers remain running; readiness is 200 / 16 recordings.
+
+[Step-by-step guide and storage details](cv_giroud_review.md) · [Verification evidence](evidence/cv_giroud_review_results.json) · [Review screenshot](evidence/cv_giroud_review_workspace.jpg).
+
+---
+
 ## Giroud — full existing-model run verified 2026-11-21
 
 **`giroud.mp4` is processed and available in the frontend.** All 450 frames (18 s, 25 fps, 640×360) ran through fresh people/semantic perception, existing M8/M9 camera/player stages and the current M23 ball/pass pipeline. [Open Giroud with M23 selected](http://127.0.0.1:5173/?recording=giroud&ball_pipeline=m23).

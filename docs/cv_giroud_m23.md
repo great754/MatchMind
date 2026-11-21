@@ -1,5 +1,7 @@
 # Giroud — existing M23 pipeline run
 
+The separate [40-question Giroud ball review](cv_giroud_review.md) is now ready, with automatic save/next and an isolated label store. [Open the review](http://127.0.0.1:5173/?review=m23&recording=giroud). Preparing it did not change the model outputs or create human labels; the run results below remain the frozen baseline.
+
 Verified **2026-11-21**. All **450 frames** of the user-selected `data/raw/giroud.mp4` were processed. The clip is available in the frontend with source playback, anonymous players, experimental pitch positions, M23 ball evidence, a fresh same-source M21 comparison and grounded Local Ask.
 
 **Ball performance is poor on this clip.** The model selected a ball in only **67/450 frames (14.9%)**, and visual inspection found several selections on advertising, crowd and player details. **Zero completed-pass estimates and zero transfer candidates** passed the unchanged rules. These outputs do not establish that the footage contains no passes. Goals, shots, tackles, pass attempts and pass accuracy remain unavailable from this detector. No accuracy improvement or model promotion is claimed.

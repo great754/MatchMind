@@ -1,5 +1,9 @@
 # TactiqAI canonical Azure artifacts
 
+## Giroud review ready — 2026-11-21
+
+The [40-question Giroud ball review](cv_giroud_review.md) uses the existing local source and frozen model proposals. Actual annotations will save separately in the persistent local CV cache. Setup created no human labels, inference run, training job or Azure writes. Health/ready remain 200, with 16 usable recordings. All forty frame images and automatic save/next/correction/resume/completion behaviour were verified; browser annotation writes were mocked. Original labels and canonical Azure artifacts are unchanged.
+
 ## Giroud local CV source added — 2026-11-21
 
 `giroud.mp4` has completed the existing local M23 pipeline and is available through its validated local world/ball/event registry entries. It is separate from canonical Azure bundles and does not receive Azure `artifact_ready` status. Its source copy, checkpoints and sidecars remain in the explicit local cache; keep that cache for playback. No video/artifact upload or account/container/environment-variable change occurred.

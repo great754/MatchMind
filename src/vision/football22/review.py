@@ -35,13 +35,30 @@ class DevelopmentLabel(Closed):
 
 
 class DevelopmentReviewStore:
-    def __init__(self,manifest='configs/training/cv_m22_tasks.json',root='outputs/m22/human_review'):
+    def __init__(self,manifest='configs/training/cv_m22_tasks.json',root='outputs/m22/human_review',approved_sources=None):
+        self.source_scoped=approved_sources is not None
         self.path=Path(manifest);self.dataset=json.loads(self.path.read_text());self.root=Path(root);self.lock=threading.RLock()
         if signature({k:v for k,v in self.dataset.items() if k!='fingerprint'})!=self.dataset['fingerprint']:
             raise ValueError('M22 task fingerprint changed')
         if self.dataset.get('reference_role')!='development_only' or self.dataset.get('model_proposals_are_truth') is not False:
             raise ValueError('Assisted tasks cannot be independent references')
-        if set(self.dataset['sources'])!={'test_match','team_goal','southampton'}:raise ValueError('Only approved short clips may be reviewed')
+        expected={'test_match','team_goal','southampton'} if approved_sources is None else set(approved_sources)
+        if not expected or set(self.dataset['sources'])!=expected:raise ValueError('Only explicitly approved short clips may be reviewed')
+        if approved_sources is not None:
+            if self.dataset.get('schema_version')!='cv-m23-source-review-v1':raise ValueError('New sources require their own versioned review manifest')
+            for name,source in self.dataset['sources'].items():
+                if source.get('recording_id')!=name or not math.isfinite(source['fps']) or source['fps']<=0 or any(not isinstance(source[k],int) or source[k]<=0 for k in ['frames','width','height']):
+                    raise ValueError('Invalid review source clock or dimensions')
+            for task in self.dataset['tasks']:
+                source=self.dataset['sources'].get(task['recording_id'])
+                if source is None or not 0<=task['frame']<source['frames'] or abs(task['timestamp']-task['frame']/source['fps'])>1e-6:
+                    raise ValueError('Review source clock mismatch')
+                ids=[p['proposal_id'] for p in task['proposals']]
+                if len(ids)>12 or len(ids)!=len(set(ids)):raise ValueError('Invalid source proposal IDs')
+                for p in task['proposals']:
+                    x,y,w,h=p['bbox']
+                    if not all(math.isfinite(v) for v in [x,y,w,h,p['confidence']]) or min(x,y)<0 or min(w,h)<=0 or x+w>source['width'] or y+h>source['height'] or not 0<=p['confidence']<=1:
+                        raise ValueError('Review proposal outside actual source')
         self.tasks={t['task_id']:t for t in self.dataset['tasks']}
         if len(self.tasks)!=len(self.dataset['tasks']):raise ValueError('Duplicate development task')
         self.stamp=self.path.stat().st_mtime_ns
@@ -62,9 +79,12 @@ class DevelopmentReviewStore:
             x,y,w,h=label.bbox
             if x+w>source['width'] or y+h>source['height']:raise ValueError('Box outside source image')
         proposals={p['proposal_id']:p for p in task['proposals']}
+        if self.source_scoped and set(label.reviewed_proposals)!=set(proposals):raise ValueError('Review every proposal before completing this question')
         if label.reviewed_proposals and (len(set(label.reviewed_proposals))!=len(label.reviewed_proposals) or set(label.reviewed_proposals)!=set(proposals)):
             raise ValueError('Completed proposal review must include each source proposal exactly once')
         if label.accepted_proposal is not None and label.accepted_proposal not in proposals:raise ValueError('Unknown proposal')
+        if self.source_scoped and label.accepted_proposal is not None and (label.state!='visible' or tuple(proposals[label.accepted_proposal]['bbox'])!=label.bbox):
+            raise ValueError('Accepted proposal must match the visible ball box; draw a correction instead')
         if len(set(label.rejected_proposals))!=len(label.rejected_proposals) or any(p not in proposals for p in label.rejected_proposals):raise ValueError('Unknown or duplicate hard-negative proposal')
         if label.accepted_proposal in label.rejected_proposals:raise ValueError('One proposal cannot be accepted and rejected')
         hard_negatives=[]

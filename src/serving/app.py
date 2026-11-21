@@ -216,7 +216,10 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         if review is None:raise HTTPException(503,f'{ball_pipeline.upper()} experimental ball review unavailable or invalid')
         revision={'m22_checkpoint_sha256':review.ball_review.manifest['detector_sha256'],'m22_ball_revision':review.ball_review.manifest['ball_frames_sha256']} if ball_pipeline=='m22' else {}
         if ball_pipeline=='m23':revision={'m23_model_set_sha256':review.ball_review.manifest['detector_sha256'],'m23_ball_revision':review.ball_review.manifest['ball_frames_sha256']}
-        return review.metadata()|revision|{'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])+(['m21'] if match_id in cv_m21_reviews else [])+(['m22'] if football_registry.available(match_id) else [])+(['m23'] if intelligent_registry.configured(match_id) else []),'m23_validation':intelligent_registry.validation_state(match_id)}
+        source_review=getattr(app.state,'cv_giroud_human_review',None)
+        human_review_url=(f'/?review=m23&recording={match_id}' if source_review and match_id in source_review.dataset['sources'] else
+            f'/?review=m19&recording={match_id}' if match_id in app.state.cv_human_review.dataset['sources'] else None)
+        return review.metadata()|revision|{'human_review_url':human_review_url,'ball_pipeline_versions':['m14']+(['m15'] if match_id in cv_m15_reviews else [])+(['m16'] if match_id in cv_m16_reviews else [])+(['m19'] if match_id in cv_m19_reviews else [])+(['m20'] if match_id in cv_m20_reviews else [])+(['m21'] if match_id in cv_m21_reviews else [])+(['m22'] if football_registry.available(match_id) else [])+(['m23'] if intelligent_registry.configured(match_id) else []),'m23_validation':intelligent_registry.validation_state(match_id)}
 
     @app.get('/matches/{match_id}/cv/events',dependencies=secured)
     def cv_events(match_id:str,ball_pipeline:Literal['m14','m19','m20','m21','m22','m23']='m14',experiment:str|None=None):
@@ -383,6 +386,15 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             app.include_router(m22_review_router)
         except (OSError,ValueError,KeyError,TypeError):
             logger.warning('Optional M22 development review unavailable or invalid')
+    if Path('configs/training/cv_giroud_review.json').exists():
+        from .football22_review import create_review_router as create_source_review_router
+        try:
+            source_router,app.state.cv_giroud_human_review=create_source_review_router(authorize,cv_reviews,
+                manifest='configs/training/cv_giroud_review.json',root='outputs/m23/giroud_v1/human_review',
+                prefix='/cv/m23',approved_sources={'giroud'})
+            app.include_router(source_router)
+        except (OSError,ValueError,KeyError,TypeError):
+            logger.warning('Optional Giroud development review unavailable or invalid')
     if Path('configs/evaluation/cv_m21_holdout.json').exists():
         from .advanced21_review import create_review_router
         try:

@@ -25,6 +25,7 @@ function RecordingsApp(){
  return <App key={selected} recordingId={selected} recordingPicker={picker}/>;
 }
 export default function RecordingRouter(){
+ if(new URLSearchParams(window.location.search).get('review')==='m23')return <Suspense fallback={<main className="app-shell"><p role="status">Loading Giroud ball review…</p></main>}><M22HumanReview reviewKey="m23" sourceRecordings={['giroud']}/></Suspense>;
  if(new URLSearchParams(window.location.search).get('review')==='m22')return <Suspense fallback={<main className="app-shell"><p role="status">Loading football development review…</p></main>}><M22HumanReview/></Suspense>;
  if(new URLSearchParams(window.location.search).get('review')==='m21')return <Suspense fallback={<main className="app-shell"><p role="status">Loading sealed source review…</p></main>}><M21HumanReview/></Suspense>;
  return <RecordingsApp/>;

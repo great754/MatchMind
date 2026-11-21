@@ -1,0 +1,112 @@
+{
+  "verified_at_utc": "2026-11-21T21:37:13.230811+00:00",
+  "scope": "Giroud only; assisted development review; no new human annotations",
+  "live": {
+    "tasks": 40,
+    "proposal_count": 76,
+    "fingerprint": "ee1aa6425a483a9b348f32211cd7044b1fe3616f884ae1d3049989b5916ed089",
+    "task_api": 200,
+    "all_40_source_frames": 200,
+    "source_contact_sheets": 2,
+    "export_status": 200,
+    "actual_annotations": 0,
+    "ready": {
+      "status": "ready",
+      "recordings": 16
+    },
+    "health": {
+      "status": "ok",
+      "recordings": 12,
+      "processing": "precomputed_artifacts"
+    },
+    "analysis_review_link": "/?review=m23&recording=giroud",
+    "original_labels_sha256": {
+      "outputs/m19/human_review/labels.json": "c4ac71548269fd1fe4e601684dffa09a706e8a215ed978ff9e0c8feb2966991e",
+      "outputs/m21/human_review/labels.json": "ca678291e33d97f4fdec774c396df5d7a159a57c17ee283928fa6fe7f869cd4b",
+      "outputs/m22/human_review/labels.json": "0b4c470a5f116f2a8c4811f7a5b7d66f11b017534d0f4d5146aae7a1312a51b4"
+    },
+    "original_labels_unchanged": true
+  },
+  "browser": {
+    "tasks": 40,
+    "actual_source_video_playback": true,
+    "automatic_save_next": true,
+    "back_correction": true,
+    "failed_save_retry": true,
+    "resume": true,
+    "last_question_completion": true,
+    "mobile_no_overflow": true,
+    "posts_mocked": 42,
+    "no_real_annotations_written": true,
+    "page_errors": []
+  },
+  "additional_browser_checks": {
+    "analysis_to_review_link": "passed",
+    "legacy_m22_review_cases_passed": 2,
+    "legacy_initial_attempt": "Missing browser trace files during teardown; passed clean retry with isolated temporary artifacts and tracing disabled"
+  },
+  "tests": {
+    "targeted_backend_passed": 45,
+    "frontend_passed": 183,
+    "typed_production_build": "passed",
+    "giroud_browser_cases_passed": 2
+  },
+  "selection": {
+    "method": "32 source-spread consecutive frames plus eight post-hoc diagnostic frames",
+    "uniform_frames": 32,
+    "diagnostic_frames": 8,
+    "maximum_proposals_per_frame": 2,
+    "independent_final_test": false,
+    "proposals": "Actual pinned M23 candidates; selected candidate first when present; confidence unchanged; IoU deduplication",
+    "analysis_report_sha256": "5f5c252479a6a6333d1abbd23ebc91b62486833d034ec29c24d455cd5f5552d8",
+    "ball_frames_sha256": "5a1a1da1ca1de7a8b2e1b8aa463cf308f4868543c8ef116d8c323a975a47c93c",
+    "perception_records_sha256": "4878dc72d3e44266cc16f5d62c15680918b10bf86d3857b011aaf893861e9247"
+  },
+  "task_frames": [
+    0,
+    1,
+    2,
+    3,
+    29,
+    60,
+    64,
+    65,
+    66,
+    67,
+    102,
+    127,
+    128,
+    129,
+    130,
+    179,
+    191,
+    192,
+    193,
+    194,
+    240,
+    255,
+    256,
+    257,
+    258,
+    303,
+    319,
+    320,
+    321,
+    322,
+    382,
+    383,
+    384,
+    385,
+    386,
+    432,
+    446,
+    447,
+    448,
+    449
+  ],
+  "manifest_sha256": "e372031c6759483268715c5c42af3c53e4dc478359089644cec9e8f84f7800ec",
+  "labels_root": "outputs/m23/giroud_v1/human_review",
+  "new_human_labels_created": 0,
+  "new_neural_inference": false,
+  "new_training": false
+}

@@ -3,11 +3,11 @@ import {afterEach,beforeEach,it,expect,vi} from 'vitest';
 import M22HumanReview from './M22HumanReview';
 const proposal=(id:string,bbox=[20,30,8,8])=>({proposal_id:id,bbox,confidence:.6,source_pipeline:'m21'});
 const task=(id:string,frame:number)=>({task_id:id,frame,timestamp:frame/25,sequence_id:'seq',sequence_frames:[10,11],proposals:[proposal('p'+id)],selection_reason:'detector disagreement'});
-const initial={dataset_fingerprint:'dev',reference_role:'development_only',model_proposals_are_truth:false,supports_reviewed_proposals:true,source:{width:640,height:360,fps:25,video_sha256:'a'.repeat(64)},tasks:[task('one',10),task('two',11)],labels:[] as any[],sources:[{recording_id:'test_match',tasks:2,saved_tasks:0}]};
+const initial={dataset_fingerprint:'dev',reference_role:'development_only',model_proposals_are_truth:false,supports_reviewed_proposals:true,source:{width:640,height:360,fps:25,video_sha256:'a'.repeat(64),recording_id:'test_match'},tasks:[task('one',10),task('two',11)],labels:[] as any[],sources:[{recording_id:'test_match',tasks:2,saved_tasks:0}]};
 beforeEach(()=>{localStorage.clear();localStorage.setItem('tactiq.m22.reviewer','AB')});
 afterEach(()=>{cleanup();vi.unstubAllGlobals();history.replaceState({},'', '/')});
-function setup({saved=false,fail=false,extra=false,duplicate=false,hold=false}={}){
- const data=structuredClone(initial);if(extra||duplicate)data.tasks[0].proposals.push(proposal('other',duplicate?[21,30,8,8]:[70,40,8,8]));
+function setup({saved=false,fail=false,extra=false,duplicate=false,hold=false,reviewKey='m22' as 'm22'|'m23'}={}){
+ const data=structuredClone(initial);if(reviewKey==='m23'){data.source.recording_id='giroud';data.sources[0].recording_id='giroud'}if(extra||duplicate)data.tasks[0].proposals.push(proposal('other',duplicate?[21,30,8,8]:[70,40,8,8]));
  if(saved){data.labels=[{task_id:'one',reviewer_id:'AB',state:'visible',bbox:[20,30,8,8],accepted_proposal:'pone',rejected_proposals:[],notes:'Saved earlier'}];data.sources[0].saved_tasks=1}
  let release:((value:any)=>void)|null=null;
  const fetch=vi.fn().mockImplementation(async(_url,options)=>{
@@ -18,7 +18,7 @@ function setup({saved=false,fail=false,extra=false,duplicate=false,hold=false}={
    return hold?new Promise(resolve=>{release=resolve}):response;
   }
   return {ok:true,json:async()=>structuredClone(data)};
- });vi.stubGlobal('fetch',fetch);render(<M22HumanReview/>);
+ });vi.stubGlobal('fetch',fetch);render(<M22HumanReview reviewKey={reviewKey} sourceRecordings={reviewKey==='m23'?['giroud']:undefined}/>);
  return {fetch,posts:()=>fetch.mock.calls.filter(c=>c[1]?.method==='POST'),release:()=>release?.({ok:true,json:async()=>({saved:true,task_id:'one'})})};
 }
 async function ready(){await screen.findByRole('region',{name:'M22 ball annotation'});fireEvent.load(screen.getByRole('img',{name:'Current source frame: verify the football'}).querySelector('image')!)}
@@ -80,4 +80,18 @@ it('returns to an unfinished question instead of claiming completion after skipp
  setup();await ready();fireEvent.click(screen.getByRole('button',{name:'Next frame'}));await ready();
  fireEvent.click(screen.getByRole('button',{name:"Can't tell"}));await screen.findByText(/Frame 10 ·/);
  expect(screen.queryByText(/This clip is complete/)).toBeNull();expect(screen.getByTestId('m22-review-progress')).toHaveTextContent('1/2');
+});
+
+it('isolates Giroud endpoints, reviewer and drafts while retaining automatic save and next',async()=>{
+ history.replaceState({},'', '/?review=m23&recording=giroud');localStorage.setItem('tactiq.m23.reviewer','CD');
+ localStorage.setItem('tactiq.m22.draft:dev:CD:one',JSON.stringify({decisionMade:true,label:{state:'not_visible',bbox:null,accepted_proposal:null,rejected_proposals:['pone'],reviewed_proposals:['pone'],notes:''}}));
+ const state=setup({reviewKey:'m23'});await screen.findByRole('region',{name:'M23 ball annotation'});
+ fireEvent.load(screen.getByRole('img',{name:'Current source frame: verify the football'}).querySelector('image')!);
+ expect(screen.getByRole('heading',{name:'Giroud ball review'})).toBeTruthy();expect(state.posts()).toHaveLength(0);
+ expect(screen.getByRole('button',{name:'Accept proposal 1'})).toHaveAttribute('aria-pressed','false');
+ expect(screen.getByRole('link',{name:'Export training labels'})).toHaveAttribute('href','/api/cv/m23/review/export');
+ fireEvent.click(screen.getByRole('button',{name:'Accept proposal 1'}));await screen.findByText(/Frame 11 ·/);
+ expect(state.posts()).toHaveLength(1);expect(state.posts()[0][0]).toBe('/api/cv/m23/matches/giroud/review/labels');
+ expect(JSON.parse(state.posts()[0][1].body).reviewer_id).toBe('CD');expect(screen.getByTestId('m23-review-progress')).toHaveTextContent('1/2');
+ expect(localStorage.getItem('tactiq.m22.reviewer')).toBe('AB');expect(localStorage.getItem('tactiq.m22.draft:dev:CD:one')).toBeTruthy();
 });
