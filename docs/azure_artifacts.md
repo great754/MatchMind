@@ -1,5 +1,13 @@
 # TactiqAI canonical Azure artifacts
 
+## M24 is an isolated local detector benchmark — 2026-11-23
+
+The official FootAndBall checkpoint ran on the four approved local short clips only (2,151 frames plus the fixed Giroud resolution diagnostic). Its Giroud reviewed recall is zero; it is not promoted or integrated with canonical analytics. The [M24 report](cv_footandball_benchmark_m24.md) and [read-only comparison](http://127.0.0.1:5173/?benchmark=m24&recording=giroud) distinguish image-space detector evidence from Azure artifact readiness. Model weights, raw annotations, source videos and full heatmaps stay in the ignored local cache outside iCloud. They were not uploaded to Azure or GitHub.
+
+Live `/health`, `/ready` and `/recordings` return 200; readiness remains **16 sources: 12 canonical Azure-ready analytics plus four local CV recordings**. All four existing M23 metadata/frame/reference/grounded Local Ask/video paths still verify. Azure `118575_clip` view is 200 / 481 events, grounded Local Ask 200 / 14 evidence facts, video range 206. No Azure account/container, `MATCHMIND_*` name, default mode, manifest validation or event/pass evidence rule changed.
+
+Start **`scripts/start_backend_m23.sh`**, then **`npm --prefix frontend run dev`** in another terminal. Existing Azure credentials/settings suffice. The optional `configs/serving/cv_m24.json` pins the local benchmark report/input hashes; absent or invalid M24 files return a benchmark-only diagnostic and do not block ordinary recordings. Keep the local short-clip and model caches for this interface; an Azure connection does not supply those new local research artifacts. No new user review or configuration change is needed on this machine.
+
 ## Completed Giroud review evaluated locally — 2026-11-21
 
 All 40 actual answers are preserved and scored against the frozen Giroud predictions. The local frontend now shows the validated snapshot metrics: M23 and M21 both 1/6/30 correct/false/missed on 31 visible labels, with nine uncertain frames excluded. Precision 14.3%, recall 3.2%, F1 0.053 are assisted development measurements. They do not grant canonical Azure artifact readiness or change analytics/Ask evidence. No Azure write, retraining, threshold relaxation or new inference occurred. Health/ready remain 200 / 16 usable sources; all four M23 paths and Azure view/Local Ask/video remain verified. [Completed evaluation and next priorities](cv_giroud_completed_review.md).

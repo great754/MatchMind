@@ -402,6 +402,8 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             app.include_router(m21_review_router)
         except (OSError,ValueError,KeyError,TypeError):
             logger.warning('Optional M21 sealed review unavailable or invalid')
+    from .footandball24 import create_router as create_m24_router
+    app.include_router(create_m24_router(authorize))
     app.state.assistant=assistant
     # Static roster/picture routes precede the legacy integer-player route.
     route_start=len(app.router.routes)

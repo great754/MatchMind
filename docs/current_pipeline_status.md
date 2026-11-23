@@ -1,5 +1,23 @@
 # TactiqAI Current Pipeline Status
 
+## M24 — FootAndBall benchmark complete, checkpoint rejected as upgrade — 2026-11-23
+
+The official pretrained **198,840-parameter** detector processed **all 2,151 native frames** from Giroud, test_match, team_goal and southampton, plus the one predefined **450-frame 2× Giroud diagnostic**. Safe checkpoint loading, original-code attribution, aspect-preserving padding, source coordinate mapping and CPU/MPS parity are verified. Raw inference has no temporal/tracker inputs. Original sources, all human labels and M21–M23 outputs are preserved.
+
+At the frozen **1%-diagonal center criterion / official 0.7 threshold**, FootAndBall scores **0 correct / 0 false / 31 missed on Giroud**; precision is undefined, recall/F1 zero. Same-frame M21 and M23 each score **2/5/29**, precision 28.6%, recall 6.5%, F1 0.105. Fixed raw temporal M22, a separately labelled secondary reference, scores **6/7/25**, 46.2% precision / 19.4% recall. Original M19 references: FootAndBall **1/0/30**, recall 3.2%, versus M23 **22/6/9**, recall 71.0%. Completed M22 references: FootAndBall **2/0/143**, recall 1.4%, versus M23 **110/15/35**, recall 75.9%. Reference protocols stay separate; native IoU results remain separately available and no synthetic FootAndBall boxes are scored.
+
+FootAndBall top-five candidate recall is **2/31 Giroud, 9/31 original, 31/145 completed M22**. The full-heatmap/ranking audit covers every miss; nine real example figures were inspected, with unknown causes left uncertain. Size bins and 0.5%/1.5% tolerance sensitivities are reported. The 2× diagnostic still finds no Giroud ball. Measured native Giroud throughput is **71.10 FPS**, including video decoding and compressed evidence writes; warm MPS inference mean **11.30 ms** versus CPU **20.04 ms**. These are detector measurements, not whole-pipeline real-time claims.
+
+[Open M24 — FootAndBall Detector Benchmark](http://127.0.0.1:5173/?benchmark=m24&recording=giroud). It has original footage, side-by-side frozen M23 comparison, ranked confidence markers, mapped heatmaps, read-only human references and case navigation. M14 remains default; no tracking integration, fine-tuning, pass-rule change, Azure upload, new dataset, new annotation campaign or M25 work. The recommendation is to keep the existing model; any later fine-tuning feasibility experiment must exclude Giroud and audit original-match leakage first.
+
+Verified: **1,156 backend tests run / 1,155 passed / one skip**, plus **13 focused M24 tests**; **189 frontend tests**, strict TypeScript and production build; actual M24 and legacy completed-Giroud Chrome checks. Initial sandbox socket-fixture failures and an ambiguous browser test locator were resolved and documented. Live `/health`, `/ready`, `/recordings` are **200**, readiness **16** (12 canonical Azure-ready analytics plus four local CV). All four legacy M23/Local Ask/media checks pass; Azure `118575_clip` view **200 / 481 events**, grounded Local Ask **200 / 14 evidence facts**, video range **206**. Both servers remain running.
+
+Start backend: **`scripts/start_backend_m23.sh`**. Frontend: **`npm --prefix frontend run dev`**. Existing Azure settings suffice. Keep the local short-clip/model/evidence cache; M24 is a local optional benchmark, and its absence does not prevent normal startup. No additional review or configuration change is needed here.
+
+[Full M24 report, sources, commands, limitations and next-step recommendation](cv_footandball_benchmark_m24.md) · [Aggregate evidence](evidence/cv_m24_results.json) · [Verified interface](evidence/cv_m24_workspace.jpg). Older sections below retain their original criteria and historical verification dates.
+
+---
+
 ## Giroud review received and evaluated — 2026-11-21
 
 **40/40 actual human answers received:** 31 visible, nine uncertain, zero absent; 16 accepted proposals, 15 manually drawn visible boxes and 49 rejected regions. All pass source/proposal validation and are preserved in an immutable snapshot.

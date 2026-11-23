@@ -1,0 +1,5 @@
+{
+  "report": "outputs/m24/evaluation_v2/report.json",
+  "report_sha256": "785588257ae9c3ef337011a825d3f85f82b12bf85c6d84f0f4c0929f88641eb7",
+  "inputs": "outputs/m24/inputs_v1/manifest.json"
+}
