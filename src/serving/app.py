@@ -33,7 +33,7 @@ class AskRequest(Closed):
     conversation:ConversationState=Field(default_factory=ConversationState)
 
 
-def create_app(registry,provider=None,token=None,default_provider='local',media_root=None,recording_catalog=None,media_store=None,cv_registry=None):
+def create_app(registry,provider=None,token=None,default_provider='local',media_root=None,recording_catalog=None,media_store=None,cv_registry=None,cv_media=None):
     # Resolve once before traffic. Azure recordings fail independently; local stays strict.
     store=registry if hasattr(registry,'resolve') and hasattr(registry,'ids') else LocalArtifactStore(registry)
     logger=logging.getLogger('matchmind.requests')
@@ -84,12 +84,12 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         from .cv import CVReview
         try:
             try:
-                cv_reviews[key]=CVReview(directory)
+                cv_reviews[key]=CVReview(directory,video_source=(cv_media or {}).get(key))
             except TimeoutError:
                 # Cloud-synced local files can time out during hydration. Retry
                 # complete validation once; corrupt hashes/schemas still fail.
                 logger.warning('CV recording %s file read timed out; retrying validation',key)
-                cv_reviews[key]=CVReview(directory)
+                cv_reviews[key]=CVReview(directory,video_source=(cv_media or {}).get(key))
             if key in ball_registry:cv_reviews[key].attach_ball(ball_registry[key])
             if cv_reviews[key].manifest['recording_id']!=key:raise ValueError('CV registry identity mismatch')
             if key in loaded:
@@ -108,6 +108,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
             source='cv_experimental',artifact_ready=False,media_available=key in cv_reviews,
             media_url=f'/matches/{key}/video.mp4' if key in cv_reviews else None,
             diagnostic=None if key in cv_reviews else 'cv_review_unavailable')
+        if key in cv_reviews:statuses[key]['media_storage']='azure' if getattr(cv_reviews[key],'video_source',None) is not None else 'local'
     from .ball import read_ball_registry
     from .cv_events import CVEventReview
     event_registry=read_ball_registry(Path(os.environ.get('MATCHMIND_CV_EVENTS_REGISTRY','configs/serving/cv_events.json')))
@@ -353,6 +354,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
     def image(match_id:str,asset:str,request:Request):
         if asset=='video.mp4' and match_id in cv_reviews and match_id not in media_ids:
             cv_reviews[match_id].frame(0)
+            if getattr(cv_reviews[match_id],'video_source',None) is not None:return cv_reviews[match_id].video_source.response(request)
             return FileResponse(cv_reviews[match_id].video,media_type='video/mp4')
         if asset=='video.mp4' and media_store and match_id in media_ids:
             return media_store.response(media_ids[match_id],request)
@@ -403,7 +405,7 @@ def create_app(registry,provider=None,token=None,default_provider='local',media_
         except (OSError,ValueError,KeyError,TypeError):
             logger.warning('Optional M21 sealed review unavailable or invalid')
     from .footandball24 import create_router as create_m24_router
-    app.include_router(create_m24_router(authorize))
+    app.include_router(create_m24_router(authorize,video_sources=cv_media))
     app.state.assistant=assistant
     # Static roster/picture routes precede the legacy integer-player route.
     route_start=len(app.router.routes)
@@ -442,4 +444,8 @@ def from_environment():
     catalog.extend(dict(recording_id=key,match_id='',processed=True) for key in processed if key not in known)
     cv_path=Path(os.environ.get('MATCHMIND_CV_REGISTRY','configs/serving/cv.json'))
     cv_registry=json.loads(cv_path.read_text()) if cv_path.is_file() else {}
-    return create_app(registry,recording_catalog=catalog,token=os.environ.get('MATCHMIND_API_TOKEN'),default_provider=os.environ.get('MATCHMIND_PROVIDER','local'),media_root=os.environ.get('MATCHMIND_MEDIA_ROOT'),media_store=media_store,cv_registry=cv_registry)
+    cv_media={}
+    if media_store is not None:
+        from .cv_media import load_sources
+        cv_media=load_sources(media_store.client,os.environ['MATCHMIND_BLOB_ACCOUNT_URL'],os.environ['MATCHMIND_MEDIA_BLOB_CONTAINER'])
+    return create_app(registry,recording_catalog=catalog,token=os.environ.get('MATCHMIND_API_TOKEN'),default_provider=os.environ.get('MATCHMIND_PROVIDER','local'),media_root=os.environ.get('MATCHMIND_MEDIA_ROOT'),media_store=media_store,cv_registry=cv_registry,cv_media=cv_media)

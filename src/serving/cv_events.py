@@ -50,7 +50,8 @@ class CVEventReview:
         self.stamps=(self.path.stat().st_mtime_ns,self.evidence.stat().st_mtime_ns)
     def check(self):
         if self.stamps!=(self.path.stat().st_mtime_ns,self.evidence.stat().st_mtime_ns):raise HTTPException(503,'CV events changed; restart validation')
-        if self.review.data.stat().st_mtime_ns!=self.review.data_stamp or self.review.video.stat().st_mtime_ns!=self.review.video_stamp:raise HTTPException(503,'CV source changed; restart validation')
+        if hasattr(self.review,'check_source'):self.review.check_source()
+        elif self.review.data.stat().st_mtime_ns!=self.review.data_stamp or self.review.video.stat().st_mtime_ns!=self.review.video_stamp:raise HTTPException(503,'CV source changed; restart validation')
         b=self.review.ball_review
         if (b.path.stat().st_mtime_ns,b.canonical.stat().st_mtime_ns)!=b.stamps:raise HTTPException(503,'Ball source changed; restart validation')
     def public(self,labels=None):

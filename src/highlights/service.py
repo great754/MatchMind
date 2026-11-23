@@ -82,6 +82,9 @@ class HighlightService:
             if tools and tools.summary.get('scope')=='half' and self.source.media:
                 from .azure_stream import azure_video_source
                 path,source_hash,origin,stream_state=stack.enter_context(azure_video_source(self.source.media,j['recording'],tools.summary,j['cancel']));streamed=True
+            elif j['recording'] in self.source.cv and getattr(self.source.cv[j['recording']],'video_source',None) is not None:
+                review=self.source.cv[j['recording']];path=stack.enter_context(review.video_path());source_hash=review.manifest['video_sha256']
+                origin={'origin':'registered_cv_azure','registered_media_access':True,'etag':review.video_source.etag}
             else:path,source_hash,origin=self.source.resolve(j['recording'],j['cancel'])
             info=probe(path,j['cancel'])
             tb=idx.timebase

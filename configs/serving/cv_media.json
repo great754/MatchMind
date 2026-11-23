@@ -1,0 +1,31 @@
+{
+  "schema_version": "cv-azure-media-v1",
+  "account_url": "https://tactiqaistorage.blob.core.windows.net",
+  "container": "soccertrack-v2",
+  "recordings": {
+    "giroud": {
+      "blob": "cv/clips/giroud/66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c.mp4",
+      "sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+      "bytes": 964751,
+      "etag": "\"0x8DF497CFFC13852\""
+    },
+    "southampton": {
+      "blob": "cv/clips/southampton/8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6.mp4",
+      "sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "bytes": 4720872,
+      "etag": "\"0x8DF497D00E4DD4D\""
+    },
+    "team_goal": {
+      "blob": "cv/clips/team_goal/726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d.mp4",
+      "sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "bytes": 1753330,
+      "etag": "\"0x8DF497D01D660AD\""
+    },
+    "test_match": {
+      "blob": "cv/clips/test_match/e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac.mp4",
+      "sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "bytes": 3375243,
+      "etag": "\"0x8DF497D02934555\""
+    }
+  }
+}

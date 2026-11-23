@@ -38,9 +38,10 @@ def create_review_router(authorize,reviews,manifest='configs/training/cv_m22_tas
         review=source(recording)
         if frame>=review.manifest['frames']:raise HTTPException(422,'Frame outside source')
         review.frame((frame+.001)/review.manifest['fps'])
-        cap=cv2.VideoCapture(str(review.video))
-        try:cap.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=cap.read()
-        finally:cap.release()
+        with review.video_path() as video:
+            cap=cv2.VideoCapture(str(video))
+            try:cap.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=cap.read()
+            finally:cap.release()
         if not ok:raise HTTPException(503,'Current source pixels unavailable')
         ok,encoded=cv2.imencode('.jpg',pixels)
         if not ok:raise HTTPException(503,'Image encoding failed')

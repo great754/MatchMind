@@ -74,11 +74,17 @@ class PlayerCatalog:
             # only the needed JSON fields here instead of revalidating and
             # serializing every historical identity field a second time.
             if hasattr(cv,'data'):
-                stamps=(cv.data.stat().st_mtime_ns,cv.video.stat().st_mtime_ns)
-                if stamps!=(cv.data_stamp,cv.video_stamp):raise ValueError('CV source changed')
+                if hasattr(cv,'check_source'):
+                    cv.check_source();stamps=(cv.data.stat().st_mtime_ns,)
+                else:
+                    stamps=(cv.data.stat().st_mtime_ns,cv.video.stat().st_mtime_ns)
+                    if stamps!=(cv.data_stamp,cv.video_stamp):raise ValueError('CV source changed')
                 with cv.data.open('rb') as stream:
                     for line in stream:yield json.loads(line)
-                if (cv.data.stat().st_mtime_ns,cv.video.stat().st_mtime_ns)!=stamps:raise ValueError('CV source changed')
+                if hasattr(cv,'check_source'):
+                    cv.check_source()
+                    if (cv.data.stat().st_mtime_ns,)!=stamps:raise ValueError('CV source changed')
+                elif (cv.data.stat().st_mtime_ns,cv.video.stat().st_mtime_ns)!=stamps:raise ValueError('CV source changed')
             else:
                 for i in range(self.frames):yield cv.frame((i+.001)/self.fps).model_dump()
         for i,w in enumerate(rows()):

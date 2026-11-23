@@ -1,13 +1,15 @@
 """Optional, fail-closed, read-only M24 benchmark. Never resolves analytics models."""
 import json
+from contextlib import contextmanager
 from pathlib import Path
-from fastapi import APIRouter,Depends,HTTPException,Query,Response
+from fastapi import APIRouter,Depends,HTTPException,Query,Response,Request
 from fastapi.responses import FileResponse
 from .cv import digest
 
 
 class Benchmark:
-    def __init__(self,config):
+    def __init__(self,config,video_sources=None):
+        self.video_sources=video_sources or {}
         config=json.loads(Path(config).read_text());self.report_path=Path(config['report'])
         if digest(self.report_path)!=config['report_sha256']:raise ValueError('M24 report hash mismatch')
         self.report=json.loads(self.report_path.read_text());self.inputs_path=Path(config['inputs'])
@@ -15,7 +17,9 @@ class Benchmark:
         self.inputs=json.loads(self.inputs_path.read_text());self.versions={};self.files={}
         self.pin(self.report_path,config['report_sha256']);self.pin(self.inputs_path,self.report['inputs_manifest_sha256'])
         for name,source in self.inputs['sources'].items():
-            self.pin(Path(source['video']),source['video_sha256']);entry=self.report['frame_files'][name];path=Path(entry['path']);self.pin(path,entry['sha256'])
+            if name in self.video_sources:self.video_sources[name].validate(source['video_sha256'])
+            else:self.pin(Path(source['video']),source['video_sha256'])
+            entry=self.report['frame_files'][name];path=Path(entry['path']);self.pin(path,entry['sha256'])
             self.files[name]=path
 
     def pin(self,path,sha):
@@ -28,8 +32,16 @@ class Benchmark:
             for path,version in self.versions.items():
                 stat=path.stat()
                 if (stat.st_size,stat.st_mtime_ns)!=version:raise ValueError('M24 evidence changed; reload a validated benchmark')
+            if name in self.video_sources:self.video_sources[name].validate(self.inputs['sources'][name]['video_sha256'])
         except (OSError,ValueError) as exc:raise HTTPException(503,str(exc)) from None
         return self.inputs['sources'][name]
+
+    @contextmanager
+    def video_path(self,name):
+        source=self.valid(name)
+        if name in self.video_sources:
+            with self.video_sources[name].open() as path:yield path
+        else:yield Path(source['video'])
 
     def frame(self,name,index):
         source=self.valid(name)
@@ -57,9 +69,9 @@ class Benchmark:
             'reference_revision':self.report['inputs_manifest_sha256'],'experimental':True}
 
 
-def create_router(authorize,config='configs/serving/cv_m24.json'):
+def create_router(authorize,config='configs/serving/cv_m24.json',video_sources=None):
     router=APIRouter(prefix='/cv/m24',dependencies=[Depends(authorize)]);benchmark=None;diagnostic='M24 benchmark is not installed'
-    try:benchmark=Benchmark(config)
+    try:benchmark=Benchmark(config,video_sources=video_sources)
     except (OSError,ValueError,KeyError,TypeError) as exc:diagnostic='M24 benchmark unavailable: '+str(exc)
     def get():
         if benchmark is None:raise HTTPException(503,diagnostic)
@@ -72,14 +84,19 @@ def create_router(authorize,config='configs/serving/cv_m24.json'):
     def frame(name:str,frame:int=Query(ge=0)):return get().frame(name,frame)
 
     @router.get('/matches/{name}/video.mp4')
-    def video(name:str):return FileResponse(get().valid(name)['video'],media_type='video/mp4')
+    def video(name:str,request:Request):
+        b=get();source=b.valid(name)
+        if name in b.video_sources:return b.video_sources[name].response(request)
+        return FileResponse(source['video'],media_type='video/mp4')
 
     @router.get('/matches/{name}/source.jpg')
     def image(name:str,frame:int=Query(ge=0)):
         import cv2
-        b=get();row=b.frame(name,frame);capture=cv2.VideoCapture(b.valid(name)['video'])
-        try:capture.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=capture.read()
-        finally:capture.release()
+        b=get();row=b.frame(name,frame)
+        with b.video_path(name) as video:
+            capture=cv2.VideoCapture(str(video))
+            try:capture.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=capture.read()
+            finally:capture.release()
         if not ok:raise HTTPException(503,'M24 source decode failed')
         if __import__('hashlib').sha256(pixels.tobytes()).hexdigest()!=row['footandball']['source_pixels_sha256']:raise HTTPException(503,'Decoded source pixels differ from benchmark')
         ok,data=cv2.imencode('.jpg',pixels)

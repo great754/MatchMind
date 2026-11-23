@@ -2,6 +2,8 @@
 
 Verified 2026-11-23 on this Mac. **Reject the official pretrained checkpoint as an upgrade on these clips.** It is fast, but finds **0/31 reviewed visible Giroud balls**, with only **2/31 top-five candidate matches**. Keep the current pipeline. No fine-tuning, tracker integration, M25 work, new annotation campaign or full-match inference was performed.
 
+**Storage update later that day:** at the user's request, all four source videos were archived to Azure and their 16 local copies deleted after full verification. The M24 page now reads the same pinned bytes from Azure; benchmark results and annotations are unchanged. Earlier run paths below are historical. See [current media setup and offline reproduction recovery](cv_azure_media.md).
+
 [Open the read-only benchmark](http://127.0.0.1:5173/?benchmark=m24&recording=giroud) · [Aggregate measurements](evidence/cv_m24_results.json) · [Verified browser view](evidence/cv_m24_workspace.jpg).
 
 ## What was inspected and implemented

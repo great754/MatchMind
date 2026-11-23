@@ -1,5 +1,13 @@
 # TactiqAI canonical Azure artifacts
 
+## Four short CV videos now reside in Azure — 2026-11-23
+
+The user-requested **giroud, southampton, team_goal and test_match** originals were uploaded to private content-addressed `cv/clips/<recording>/<SHA-256>.mp4` blobs in **soccertrack-v2**. All four passed full readback SHA-256 verification, repeated immediately before deleting **16 matching local copies**. No original video, model or raw annotation was added to GitHub; models/labels/analysis sidecars remain local. [Exact blob identities, migration and recovery](cv_azure_media.md).
+
+`configs/serving/cv_media.json` now pins media location, size, SHA and ETag. A fresh backend started after deletion; ordinary CV and M24 playback stream through authenticated Azure byte ranges. Reviews/frame extraction/highlight generation lease private temporary files that are removed on completion/error. No persistent original source is recreated. Frozen manifests retain their original hashes and paths as provenance; older offline scripts need explicit restoration of pinned source bytes before reprocessing.
+
+Live health/ready/catalog are **200**, readiness **16**, with all four source ranges **206** and Azure ETags verified. M24 metadata/source/heatmap/video and saved review images work; all four existing M23/grounded Local Ask paths pass. Canonical `118575_clip` view/Local Ask/range remain 200/200/206. **This media migration does not make CV analytics canonical Azure bundles or alter `artifact_ready`.** Existing account/container settings, credentials and `MATCHMIND_*` names remain unchanged. The normal command is still `scripts/start_backend_m23.sh`; no extra user setup is required.
+
 ## M24 is an isolated local detector benchmark — 2026-11-23
 
 The official FootAndBall checkpoint ran on the four approved local short clips only (2,151 frames plus the fixed Giroud resolution diagnostic). Its Giroud reviewed recall is zero; it is not promoted or integrated with canonical analytics. The [M24 report](cv_footandball_benchmark_m24.md) and [read-only comparison](http://127.0.0.1:5173/?benchmark=m24&recording=giroud) distinguish image-space detector evidence from Azure artifact readiness. Model weights, raw annotations, source videos and full heatmaps stay in the ignored local cache outside iCloud. They were not uploaded to Azure or GitHub.

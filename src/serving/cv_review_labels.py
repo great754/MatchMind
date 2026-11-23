@@ -1,5 +1,6 @@
 """Model-blind human annotation workflow, isolated from predictions and manual player identities."""
 import json,os,threading,math
+from contextlib import nullcontext
 from pathlib import Path
 from typing import Literal
 from fastapi import APIRouter,Depends,HTTPException,Response
@@ -83,9 +84,11 @@ def review_router(authorize,reviews,*,store=None,prefix=''):
         import cv2
         review=source(recording)
         if not 0<=frame<review.manifest['frames']:raise HTTPException(422,'Frame outside source')
-        review.frame((frame+.001)/review.manifest['fps']);cap=cv2.VideoCapture(str(review.video))
-        try:cap.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=cap.read()
-        finally:cap.release()
+        review.frame((frame+.001)/review.manifest['fps'])
+        with review.video_path() if hasattr(review,'video_path') else nullcontext(review.video) as video:
+            cap=cv2.VideoCapture(str(video))
+            try:cap.set(cv2.CAP_PROP_POS_FRAMES,frame);ok,pixels=cap.read()
+            finally:cap.release()
         if not ok:raise HTTPException(503,'Source frame unavailable')
         ok,encoded=cv2.imencode('.jpg',pixels)
         if not ok:raise HTTPException(503,'Source frame encoding failed')

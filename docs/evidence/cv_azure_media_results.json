@@ -1,0 +1,90 @@
+{
+  "verified_at_utc": "2026-11-23T16:30:49.123244+00:00",
+  "azure_account": "tactiqaistorage",
+  "container": "soccertrack-v2",
+  "sources": {
+    "giroud": {
+      "media_storage": "azure",
+      "blob": "cv/clips/giroud/66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c.mp4",
+      "bytes": 964751,
+      "sha256": "66fb0421464ba8a7a91a117a8625d4ea6f4870eb88e69ac0732fbaf3c7752e5c",
+      "video_range_status": 206,
+      "video_etag_matches_registry": true,
+      "m24_metadata_source_heatmap_video_status": 200,
+      "review_source_frame_status": 200,
+      "frames": 450
+    },
+    "southampton": {
+      "media_storage": "azure",
+      "blob": "cv/clips/southampton/8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6.mp4",
+      "bytes": 4720872,
+      "sha256": "8c3d8f2ca442bd21fa90ce66e948b844c2cdebb8af02eed1a39fcab3f2ee49f6",
+      "video_range_status": 206,
+      "video_etag_matches_registry": true,
+      "m24_metadata_source_heatmap_video_status": 200,
+      "review_source_frame_status": 200,
+      "frames": 660
+    },
+    "team_goal": {
+      "media_storage": "azure",
+      "blob": "cv/clips/team_goal/726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d.mp4",
+      "bytes": 1753330,
+      "sha256": "726e8592c8cac7b12251957ad4a9dff07afbf1d526b0e4e18387f03237805a0d",
+      "video_range_status": 206,
+      "video_etag_matches_registry": true,
+      "m24_metadata_source_heatmap_video_status": 200,
+      "review_source_frame_status": 200,
+      "frames": 500
+    },
+    "test_match": {
+      "media_storage": "azure",
+      "blob": "cv/clips/test_match/e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac.mp4",
+      "bytes": 3375243,
+      "sha256": "e092a252f47fd4f135506bd573ad36eaa25c95b0bbba3246c988827591c6dbac",
+      "video_range_status": 206,
+      "video_etag_matches_registry": true,
+      "m24_metadata_source_heatmap_video_status": 200,
+      "review_source_frame_status": 200,
+      "frames": 541
+    }
+  },
+  "deleted_copies": 16,
+  "logical_bytes_removed": 47012905,
+  "all_original_paths_absent_after_fresh_start_and_requests": true,
+  "all_four_sources_full_sha256_verified_before_deletion": true,
+  "original_annotations_unchanged": true,
+  "fresh_start_health": {
+    "status": "ok",
+    "recordings": 12,
+    "processing": "precomputed_artifacts"
+  },
+  "fresh_start_ready": {
+    "status": "ready",
+    "recordings": 16
+  },
+  "recording_count": 16,
+  "grounded_local_ask": {
+    "giroud": 200,
+    "test_match": 200,
+    "team_goal": 200,
+    "southampton": 200
+  },
+  "canonical_azure_regression": {
+    "view_status": 200,
+    "events": 481,
+    "ask_status": 200,
+    "evidence_items": 14,
+    "video_status": 206,
+    "video_bytes": 16
+  },
+  "tests": {
+    "backend_run": 1165,
+    "backend_passed": 1164,
+    "backend_skipped": 1,
+    "new_cloud_media_tests": 9,
+    "m24_chrome_after_deletion": true,
+    "giroud_completed_chrome_after_deletion": true,
+    "label_writes_from_browser": 0
+  },
+  "included_downloads_duplicate": true
+}

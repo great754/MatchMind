@@ -1,5 +1,6 @@
 """Validated, bounded, read-only precomputed CV review access."""
 import hashlib,json,math
+from contextlib import contextmanager
 from pathlib import Path
 from fastapi import HTTPException
 from src.vision.world.schema import WorldState
@@ -11,10 +12,13 @@ def digest(path):
     return h.hexdigest()
 
 class CVReview:
-    def __init__(self,directory):
+    def __init__(self,directory,video_source=None):
         self.directory=Path(directory).resolve();self.manifest=json.loads((self.directory/'manifest.json').read_text())
         m=self.manifest;self.video=Path(m['source_video']).resolve();self.data=self.directory/'frames.jsonl'
-        if digest(self.video)!=m['video_sha256'] or digest(self.data)!=m['frames_sha256']:raise ValueError('CV review hash mismatch')
+        self.video_source=video_source
+        if video_source is not None:video_source.validate(m['video_sha256'])
+        elif digest(self.video)!=m['video_sha256']:raise ValueError('CV review hash mismatch')
+        if digest(self.data)!=m['frames_sha256']:raise ValueError('CV review hash mismatch')
         if not math.isfinite(m['fps']) or m['fps']<=0 or m['frames']<1 or len(m['frame_offsets'])!=m['frames']:raise ValueError('Invalid CV index')
         # Validate all indexed frames once before exposure. No corruption enters UI.
         with self.data.open('rb') as f:
@@ -24,17 +28,29 @@ class CVReview:
                 if row.frame!=i or row.recording_id!=m['recording_id'] or abs(row.timestamp-i/m['fps'])>1e-6:raise ValueError('CV clock/recording mismatch')
             if f.read(1):raise ValueError('Unindexed CV frames')
         self.ball_review=None;self.ball_diagnostic=None
-        self.data_stamp=self.data.stat().st_mtime_ns;self.video_stamp=self.video.stat().st_mtime_ns
+        self.data_stamp=self.data.stat().st_mtime_ns;self.video_stamp=self.video.stat().st_mtime_ns if video_source is None else None
     def attach_ball(self,directory):
         from .ball import BallReview
         try:self.ball_review=BallReview(directory,self.manifest);self.ball_diagnostic=None
         except (ValueError,OSError,KeyError,TypeError):self.ball_review=None;self.ball_diagnostic='Ball layer unavailable or invalid; M9 review remains available'
-    def frame(self,timestamp):
+    def check_source(self):
         try:
-            changed=self.data.stat().st_mtime_ns!=self.data_stamp or self.video.stat().st_mtime_ns!=self.video_stamp
-        except OSError:
+            changed=self.data.stat().st_mtime_ns!=self.data_stamp
+            if self.video_source is not None:self.video_source.validate(self.manifest['video_sha256'])
+            else:changed=changed or self.video.stat().st_mtime_ns!=self.video_stamp
+        except (OSError,ValueError):
             raise HTTPException(503,'CV source unavailable; restart and revalidate') from None
         if changed:raise HTTPException(503,'CV source changed; restart and revalidate')
+
+    @contextmanager
+    def video_path(self):
+        self.check_source()
+        if self.video_source is not None:
+            with self.video_source.open() as path:yield path
+        else:yield self.video
+
+    def frame(self,timestamp):
+        self.check_source()
         m=self.manifest;i=min(m['frames']-1,max(0,math.floor(timestamp*m['fps']+1e-8)))
         with self.data.open('rb') as f:
             f.seek(m['frame_offsets'][i]);row=WorldState.model_validate_json(f.readline())
@@ -47,4 +63,5 @@ class CVReview:
         if self.ball_review is not None and 'comparison' in self.ball_review.manifest:metadata['trajectory_comparison']=self.ball_review.manifest['comparison']
         if self.ball_review is not None:metadata['review_notes']=[note.replace(' or ball perception','') for note in metadata.get('review_notes',[])]
         metadata['experimental_events_available']=bool(getattr(self,'event_review',None));metadata['event_diagnostic']=getattr(self,'event_diagnostic',None)
+        metadata['media_storage']='azure' if self.video_source is not None else 'local'
         return metadata

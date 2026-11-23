@@ -1,5 +1,17 @@
 # TactiqAI Current Pipeline Status
 
+## Four CV source clips moved to Azure; local originals deleted — 2026-11-23
+
+**giroud, southampton, team_goal and test_match now play from Azure** in `tactiqaistorage / soccertrack-v2 / cv/clips/<recording>/<SHA-256>.mp4`. Each original was uploaded create-only and fully downloaded/SHA-256 verified, then all four were reverified before deleting **16 matching local copies** from the project, Downloads and M23/M24 caches (47,012,905 logical bytes; hard links mean freed storage is smaller). Original video hashes, models, labels, manifests and derived analyses are preserved; only the local source-video files were removed.
+
+The backend was restarted **after deletion** and successfully loaded all four through the pinned Azure media registry. Browser playback uses ETag-conditioned byte ranges; source-frame reviews, M24 comparisons and highlight jobs use automatically removed private temporary decode files. No persistent original is recreated. Metadata/catalog report `media_storage: azure`; these remain CV analytics with Azure media, independently of canonical artifact readiness. Offline reprocessing that requires physical video files must explicitly restore the pinned Azure bytes to a working path.
+
+Verified after the fresh restart: `/health`, `/ready`, `/recordings` **200**, readiness **16**; all four video ranges **206**, matching Azure ETags; M24 source images/heatmaps/video and saved-review images **200**; all four M23 frame/reference/grounded Local Ask paths still pass. Canonical Azure `118575_clip` view remains **200 / 481 events**, grounded Local Ask **200 / 14 evidence facts**, video range **206**. Actual Chrome checks passed for completed Giroud review/playback and the four-source M24 benchmark, with labels unchanged. Backend regressions: **1,165 run / 1,164 passed / one skip**, including nine new cloud-source/deletion-safety tests. Both servers remain running.
+
+**No user configuration change is needed.** Start `scripts/start_backend_m23.sh` and, separately, `npm --prefix frontend run dev`. Keep the local models, labels and result caches; the four original videos no longer need to stay downloaded. [Media locations, verification, deletion receipt and recovery commands](cv_azure_media.md) · [Aggregate evidence](evidence/cv_azure_media_results.json). Older statements that these source videos must remain local describe the pre-migration setup.
+
+---
+
 ## M24 — FootAndBall benchmark complete, checkpoint rejected as upgrade — 2026-11-23
 
 The official pretrained **198,840-parameter** detector processed **all 2,151 native frames** from Giroud, test_match, team_goal and southampton, plus the one predefined **450-frame 2× Giroud diagnostic**. Safe checkpoint loading, original-code attribution, aspect-preserving padding, source coordinate mapping and CPU/MPS parity are verified. Raw inference has no temporal/tracker inputs. Original sources, all human labels and M21–M23 outputs are preserved.
