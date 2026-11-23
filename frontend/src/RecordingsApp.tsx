@@ -6,6 +6,7 @@ import CVReview from './CVReview';
 const CVHumanReview=lazy(()=>import('./CVHumanReview'));
 const M21HumanReview=lazy(()=>import('./M21HumanReview'));
 const M22HumanReview=lazy(()=>import('./M22HumanReview'));
+const M25Dataset=lazy(()=>import('./M25Dataset'));
 const M24Benchmark=lazy(()=>import('./M24Benchmark'));
 type Recording={recording_id:string,match_id:string,status:'available'|'not_processed'|'unavailable'|'error',media_available?:boolean,media_url?:string|null,source?:string,capabilities?:{cv_world_model_available:boolean,analytics_available:boolean,ask_available:boolean}};
 const selectable=(r:Recording)=>r.status==='available'||Boolean(r.media_available&&r.media_url);
@@ -26,6 +27,7 @@ function RecordingsApp(){
  return <App key={selected} recordingId={selected} recordingPicker={picker}/>;
 }
 export default function RecordingRouter(){
+ if(new URLSearchParams(window.location.search).get('review')==='m25')return <Suspense fallback={<p>Loading dataset…</p>}><M25Dataset/></Suspense>;
  if(new URLSearchParams(window.location.search).get('benchmark')==='m24')return <Suspense fallback={<main className="app-shell"><p role="status">Loading detector benchmark…</p></main>}><M24Benchmark/></Suspense>;
  if(new URLSearchParams(window.location.search).get('review')==='m23')return <Suspense fallback={<main className="app-shell"><p role="status">Loading Giroud ball review…</p></main>}><M22HumanReview reviewKey="m23" sourceRecordings={['giroud']}/></Suspense>;
  if(new URLSearchParams(window.location.search).get('review')==='m22')return <Suspense fallback={<main className="app-shell"><p role="status">Loading football development review…</p></main>}><M22HumanReview/></Suspense>;

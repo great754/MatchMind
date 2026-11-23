@@ -1,5 +1,21 @@
 # TactiqAI Current Pipeline Status
 
+## M25 — 20-image pilot ready for human review — 2026-11-23
+
+[Open M25 dataset review](http://127.0.0.1:5173/?review=m25). **Eight exact previously verified short-clip labels plus 12 frames from the long Tottenham–Arsenal Azure broadcast** are prepared. The long source is **51:39.08, 1280×720, 50 FPS**; its selected images span 120–2,979.08 s. Thirty-eight source-only candidates were inspected; zero near-duplicate flags. Only the 20 pilot images entered annotation. No persistent original MP4, training or M26 work.
+
+**Gemini completed:** all **12 unverified full-frame images returned schema-valid box proposals**, with **14,268 input / 540 output tokens** and estimated standard-rate usage **$0.0056304**, within the $1 pilot cap. These are proposals, not verified-correct detections. The eight trusted labels were never sent. The initial monthly spending cap was fixed by the user; one later connection reset resumed from cached results. No successful image was resent. Cache-only reruns with network calls forbidden passed. Historical error/interruption billing is not available from usage metadata.
+
+M16 proposals cover 11 long-source images, source-FPS-aware M22 proposals cover all 12, and frozen M21/M22/M23 short-source candidates remain available. **19/20 pilot images have CV proposals.** Every model output remains separate; overlap groups do not approve labels. Original human evidence is unchanged; source pixels for all eight imported labels match frozen references exactly.
+
+The existing annotation editor supports per-model overlays, accept/reject, native-coordinate redraw, uncertainty/absence, automatic save/next and back/correction. It opens at the first unreviewed image. All seven shot types can be corrected with separate history; replay/close-up/uncertain exclusions block new ball labels while preserving evidence. Source filtering remains a conservative camera/geometry screen plus actual preparation inspection, not a validated automatic replay classifier. Match overlap/split assignment remains to be audited; Giroud stays protected.
+
+Verified: **1,175 backend run / 1,174 passed / one skip**, ten focused M25 tests, **189 frontend tests**, TypeScript/build and actual Gemini-backed M25 Chrome. Browser writes were intercepted; **zero new real human labels**. Health/ready/batch are 200 and both servers remain running; prior four-clip tracking/grounded Local Ask and canonical Azure view/Ask/media regressions pass. Start `scripts/start_backend_m23.sh`; frontend `npm --prefix frontend run dev`.
+
+**Stop for the user to review the 20 images. Twelve new images need human decisions; the eight reused labels are optional re-review.** No dataset expansion, training or M26 is started. [M25 report, sources, commands, costs and limitations](cv_dataset_preparation_m25.md) · [Aggregate evidence](evidence/cv_m25_preparation.json).
+
+---
+
 ## Four CV source clips moved to Azure; local originals deleted — 2026-11-23
 
 **giroud, southampton, team_goal and test_match now play from Azure** in `tactiqaistorage / soccertrack-v2 / cv/clips/<recording>/<SHA-256>.mp4`. Each original was uploaded create-only and fully downloaded/SHA-256 verified, then all four were reverified before deleting **16 matching local copies** from the project, Downloads and M23/M24 caches (47,012,905 logical bytes; hard links mean freed storage is smaller). Original video hashes, models, labels, manifests and derived analyses are preserved; only the local source-video files were removed.
